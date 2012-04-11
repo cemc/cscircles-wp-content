@@ -1,7 +1,5 @@
 <?php
 
-define('PLOCALHOME', '/home/cscircles/dev/');
-
 $servername = $_SERVER['SERVER_NAME'];
 $currenturi = $_SERVER['REQUEST_URI'];
 
@@ -28,9 +26,11 @@ else {
  }
 
 if (PB_DEV) 
-  define('PWP', PLOCALHOME . 'www/wordpress/');
+  define('PLOCALHOME', '/home/cscircles/dev/');
  else
-   define('PWP', PLOCALHOME . 'public_html/wordpress/');
+   define('PLOCALHOME', '/home/cscircles/live/');
+
+define('PWP', PLOCALHOME . 'www/wordpress/');
 
 define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 
@@ -46,7 +46,7 @@ define('PPYBOXDIR', PWP . 'wp-content/plugins/pybox/');
 define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
 
 define('PWP_LOADER', PWP . 'wp-load.php');
-// external access to wordpress functions
+// PWP_LOADER is used for external access to wordpress functions
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
 // URL constants
