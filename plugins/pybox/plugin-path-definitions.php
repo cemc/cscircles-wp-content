@@ -35,7 +35,7 @@ define('PWP', PLOCALHOME . 'www/wordpress/');
 define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 
 // path constants :: should exist, and in many cases be writable
-define('PJAIL', PLOCALHOME . 'jail/');
+define('PJAIL', PLOCALHOME . 'python3jail/');
 define('PPYTHON3MODJAIL', '/python3');
 define('PSCRATCHDIRMODJAIL', 'scratch/');
 
