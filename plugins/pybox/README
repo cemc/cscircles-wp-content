@@ -1,0 +1,9 @@
+action-* : files which receive data via POST requests & give replies
+customizations-*: small tweaks to editors
+db-*: provides windowed db access using 'flexigrid' framework
+pages/*: rudimentary standalone html pages that can be accessed
+pybox.css, css-images/*, pybox.js: for browser interface of user
+plugin-*, shortcode*: the wordpress plugin definitions
+include-me.php: can be included whenever you want to access pybox stuff
+
+See .htaccess for what visitors can/cannot access directly.

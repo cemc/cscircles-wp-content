@@ -1,0 +1,657 @@
+ 
+/*********************** general stuff **********************/
+.prebox { overflow-x: auto; }
+.miny { font-size: 60%; }
+#content img.latex {
+	margin: 4px;
+	background: none;
+}
+#content ul, #content ol {
+	margin-bottom: 0.3em; /* not 1.625 */
+}
+#content th, #content #td {
+	text-align: inherit;
+}
+
+/* eg, lesson 15C */
+#content table.minyspace tr * { padding: 2px; border-top: 1px solid #E7E7E7; }
+
+a:not(.open-same-window):hover  {
+    color: darkblue;
+    background: #e0e0ff;
+    text-decoration: none;
+}
+
+#content p { margin-top: 8px; margin-bottom: 8px; }
+#content pre { margin: 1px 1px 1px 1px; padding: 10px 10px 10px 20px; }
+#content ul { margin-bottom: 0px; }
+#content hr { margin-top: 8px; margin-bottom: 8px; }
+
+#content .entry-content h1, #content .entry-content h2 {
+    margin: 20px 0px 0px 0px;
+}
+#content .entry-content h3, #content .entry-content h4, #content .entry-content h5, #content .entry-content h6 {
+    margin: 12px 0px 0px 0px;
+}
+
+.userpage img {
+    height: 32px;
+    width: 32px;
+    vertical-align: -10px;
+}
+
+.userpage .lessoninfo {
+    width: 300px;
+    text-align: right;
+    display: inline-block;
+    font-weight: bold;
+}
+
+.pybox .heading {
+     text-align: center;
+     font-size: 110%;
+}
+.pybox .heading .type {
+    font-style: italic;
+}
+.pybox .heading .title {
+    font-style: normal;
+    font-weight: bold;
+}
+
+.console .heading .type {
+	display: none !important;
+}
+
+.pybox {
+    background-color: #E0E0FF;
+}
+/*.pybox.modeNeutral {
+    background-color: #E0E0FF;
+}*/
+.pybox.modeInternalError {
+    background-color: #FFFF00;
+}
+.pybox.modeCorrect {
+    background-color: #80FF80;
+}
+.pybox.modeNeutral .heading {
+    background-color: #C8C8FF;
+}
+.pybox.modeInternalError .heading {
+    background-color: #D8D800;
+}
+.pybox.modeCorrect .heading {
+    background-color: #30DD30;
+}
+#content .pybox .heading code {
+    background: none;
+}
+
+.problem-completed {
+    border: 1px solid lightBlue;
+    border-radius: 3px;
+    margin-right: 10px;
+    padding: 2px;
+}
+/************************ admin bar ********************************/
+#wpadminbar img.totop {
+	background: none;
+	vertical-align: -2px;
+}
+
+#wpadminbar * {
+	border-left: none !important;
+	border-right: none !important;
+}
+
+#menu-item-122 { /* lesson 0 */
+    clear: left;
+}
+#menu-item-3391 { /* My Progress */
+    float: right !important;
+    font-weight: bold;
+}
+
+/* kill default grey colours  */
+#wpadminbar, #wpadminbar * {
+    color: darkGreen; 
+} 
+
+#wpadminbar {
+    background: url("css-images/banner.png") paleGreen;
+    border-bottom: 1px solid black;
+    box-shadow: 0px 0px 15px #777;
+}
+
+#wpadminbar li.new-or-login * {
+    font-weight: bold;
+    color: blue; /* highlight 'new account or log in' */
+    font-size: 110%;
+    line-height: 26px;
+    text-align: center;
+}
+
+.content #wp-admin-bar-site-name .ab-item { text-shadow: 2px 2px 0px paleGreen, -2px -2px 0px paleGreen; }
+
+#wp-admin-bar-my-account div.ab-sub-wrapper {
+    padding-top: 10px !important;
+    padding-bottom: 20px !important;
+}
+
+
+/* .content matches normal page views and search results, but not the admin menu/dashboard. */
+/* .profile-php is the reverse */
+
+/* necessary for top bar to grow and stretch with rest of page */
+@media all and (min-width:1000px) { .content #wpadminbar {
+    max-width: 1000px;
+    margin-left: -500px;
+    left: 50% !important;
+}}
+
+/* collection of lines modified from admin-bar.css so height is 52px instead of original (26?) */
+.content #wp-admin-bar-site-name .ab-item
+{font: bold 30px/52px sans-serif !important; margin-left: 40px !important;}
+
+.content #wpadminbar *{height:auto;width:auto;margin:0;padding:0;position:static;text-transform:none;letter-spacing:normal;line-height:1;font:normal 13px/52px sans-serif;color:darkgreen;}
+
+.content #wpadminbar{direction:ltr;color:darkgreen;font:normal 13px/52px sans-serif;height:52px;position:fixed;top:0;left:0;width:100%;min-width:600px;z-index:99999;}
+.profile-php #wpadminbar{
+background-color:#464646;background-image:-ms-linear-gradient(bottom,#373737,#464646 5px);
+background-image:-moz-linear-gradient(bottom,#373737,#464646 5px);background-image:-o-linear-gradient(bottom,#373737,#464646 5px);background-image:-webkit-gradient(linear,left bottom,left top,from(#373737),to(#464646));background-image:-webkit-linear-gradient(bottom,#373737,#464646 5px);background-image:linear-gradient(bottom,#373737,#464646 5px);}
+
+.content #wpadminbar .quicklinks a,#wpadminbar .quicklinks .ab-empty-item,#wpadminbar .shortlink-input{height:52px;display:block;padding:0 12px;margin:0;}#wpadminbar .menupop .ab-sub-wrapper,#wpadminbar .shortlink-input{margin:0 0 0 -1px;padding:0;-moz-box-shadow:0px 4px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0px 4px 4px rgba(0,0,0,0.2);box-shadow:0px 4px 4px rgba(0,0,0,0.2);background:#fff;display:none;position:absolute;float:none;border-width:0 1px 1px 1px;border-style:solid;border-color:#dfdfdf;}
+
+.content #wpadminbar.ie7 .menupop .ab-sub-wrapper,#wpadminbar.ie7 .shortlink-input{top:52px;left:0px;}
+
+.content #wpadminbar #adminbarsearch{height:52px;padding:0px 2px;}
+
+.content #wpadminbar #wp-admin-bar-user-info{margin-top:-6px;margin-bottom:25px;height:auto;background:none;}
+/* end of lines to adjust admin bar height */
+
+
+/*************** bumper: thing at the top to ensure cscircles banner covers nothing ***********8*/
+div#bumper {
+    background-color: paleGreen;
+/*    background-image: url("css-images/banner.png");*/
+    height: 52px;
+    width: 100%; 
+    color: #9F9;
+    text-align: right;
+}
+
+/******************* the picture of the fractal or computer ************/
+.toppictureholder {
+    height: 150px;
+    background-color: darkblue;
+/*    position: absolute;*/
+    top: 0px;
+    left: 0px;
+}
+
+header {
+   margin: 0px;
+   border: none !important;
+   position: relative;
+   top : 0px;
+}
+
+header > a {
+   position: relative;
+   top: 0px;
+}
+
+header > a > div.toppictureholder {
+   position: relative;
+}
+
+/************************** locator: buttons near the bottom to next, prev lessons *******/
+.locator, .locator td {
+    font-weight: 700;
+    color:green;
+}
+div.locator {
+    padding-bottom: 4px;
+  /*margin-left: 7.6%;
+    margin-right: 7.6%;*/
+}
+table.locator {
+    width: 100%;
+}
+td.locator {
+    align:center;
+    text-align: center;
+}
+.nextlesson {
+    color: #0f0;
+    border: 1px solid #0f0;
+    border-radius: 4px;
+    padding: 2px;
+}
+a.locator {
+    color: white;
+    background: green;
+    border-radius: 5px;
+    /*margin: 2px;*/
+    padding: 5px;
+    margin: 1px;
+    border: 3px outset palegreen;
+}
+a.locator:hover {
+    text-decoration: none;
+}
+a.locator:hover {
+    border-style: inset;
+}
+
+.locator-c {
+    cursor: pointer;
+}
+
+
+/*********************************** bottom, CEMC logo ************************/
+#site-generator {
+    box-shadow: 0px 35px 15px #777;
+}
+
+#colophon .cemc.logo {
+    float: left; 
+    margin-left: 25px;
+    background-image: url("css-images/cemc_logo.gif");
+    width: 73px;
+    height: 64px;
+}
+
+
+/************************ end of static content; shortcode stuff follows ****************/
+
+/***************** flexigrid ***********************/
+#content .flexigrid * {
+    font-size: 11px;
+    line-height: 14px;
+}
+#content .flexigrid td {
+    padding: 0px;
+}
+#content .flexigrid table {
+    width: auto;
+}
+#content .flexigrid .hDivBox th,
+#content .flexigrid .hDivBox th div
+ {
+    overflow: hidden;
+}
+
+#content .flexigrid table {
+    margin-bottom: 0px;
+}
+
+#content .flexigrid pre {
+    padding: 2px;
+}
+
+.flexcontain {
+    height: auto !important;
+    margin-top: 3px;
+}
+
+.pyflexerror {
+    background: paleYellow;
+    border: 1px solid red;
+    padding: 3px;
+}
+
+#page #content .pybox .flexigrid input {
+    margin: 2px;
+    padding: 1px 0px;
+}
+
+.usercodecol pre:hover {
+    box-shadow: 0px 0px 10px blue;
+}
+
+/*************** in accordions and tabs *****************/
+#content .ui-accordion-content {
+    padding: 0px;
+}
+
+#content .ui-accordion-content img.pycheck {
+    right: 0px;
+    top: 0px;
+}
+
+#content .wp-tab-content-wrapper .pybox {
+    line-height: 26px;
+    margin: 0px;
+}
+
+#content .ui-tabs-vertical ul.ui-tabs-nav li.ui-state-active {
+	padding-top: 3px !important
+}
+
+#content .wp-tab-content-wrapper {
+    padding: 0px;
+}
+
+#content .ui-tabs .wp-tab-content-wrapper {
+    margin: 0px;
+}
+
+#content .ui-tabs .ui-tabs-panel {
+    padding: 5px;
+}
+
+#content .ui-tabs .wp-tab-content {
+    margin: 0px;
+}
+
+#content .ui-tabs-nav {
+    border: 1px solid blue !important;
+}
+
+#content .wp-tab-title:hover {
+    box-shadow: 0px 0px 10px blue;
+}
+
+#content .ui-tabs-nav {
+    text-align: center;
+    padding-top: 0px;
+}
+
+#content .wptabnav {
+    background: lightblue;
+    padding: 3px;
+    border-radius: 3px;
+    margin:  7px;
+    font-size: 8pt;
+    line-height: 10pt;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+#content .wtnleft {
+    float:  left;
+}
+
+#content .wtnright {
+    float: right;
+}
+
+/*********************** pyWarn shortcode *********************************/
+
+.pywarnleft {
+    vertical-align:middle; 
+    width:90px;
+}
+.pywarnright {
+    vertical-align:middle;
+}
+
+table.pywarn {
+    border: 2px solid black;
+    min-height: 85px;
+    background: #FFFFBB;
+    width: 100%;
+}
+
+#content .pywarn img {
+    float:left;
+    margin:5px;
+}
+
+#content .pywarn .pybox {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+
+/***************************** pyHint shortcode ****************************/
+
+.hintlink {
+    text-decoration: none;
+    border: 1px solid magenta;
+    border-radius: 3px;
+    padding: 1px;
+    font-size: 90%;
+    white-space:nowrap;
+    color: blue;
+    margin-left: 1px;
+    margin-right: 1px;
+    cursor: pointer;
+}
+
+.hintlink:hover {
+    text-decoration: none;
+    background-color: yellow !important;
+}
+
+.hintbox {
+    display: none;
+    background-color:yellow;
+    width: 320px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 2px;
+    color: #000;
+    -moz-box-shadow: 5px 5px 5px #444;
+    -webkit-box-shadow: 5px 5px 5px #444;
+    box-shadow: 5px 5px 5px #444;
+    cursor: move;
+    z-index:100000; /* on top of resizable-handles */
+    position: absolute;
+}
+
+.hintbox:hover {
+}
+
+.hintbox pre {
+    margin-bottom: 0px;
+}
+
+.hintbox p {
+    margin-bottom: 5px;
+}
+
+.hintboxlink {
+    cursor: pointer;
+    color: #F00;
+    text-align: center;
+    float: right;
+    width: 30px;
+    background-color: gold;
+    vertical-align: middle;
+    position: relative;
+    border-radius: 1px;
+    background-image: url('css-images/close.png');
+    background-repeat: none;
+    width: 16px;
+    height: 16px;
+}
+
+.hintboxlink:hover {
+    background-color: yellow;
+}
+
+.hintLink {
+    float: right;
+    font-size: 80%;
+}
+
+/********************* rest: pybox shortcode and friends ***************/
+#content .pybox {
+    padding: 5px;
+    margin: 5px 0px 5px 0px;
+    border-color: #009900;
+    border-width: 1px;
+    border-style: solid;
+    width: auto;
+    position: relative;
+}
+#content .pybox p { margin-top: 0px; margin-bottom: 0px;}
+#content .pybox pre { padding: 10px; margin: 0px 0px 0px 0px; }
+#content .pybox hr { background-color: #F9F9F9; height: 5px;}
+#content .pybox input { margin: 0px; } 
+
+/********************* short answer *******************/
+#content .pybox input[type="text"] {
+    background: white;
+    border: 2px solid lightgrey;
+    padding: 0px;
+    margin-top: 5px;
+    box-shadow: none;
+}
+
+/******************* complete? *********************/
+img.pycheck {
+    width: 48px;
+    height: 48px;
+    float: right;
+    position: relative;
+    right: -15px;
+    top: -10px; 
+}
+
+/********************** scramble? ********************/
+ul.pyscramble {
+    position: relative;
+    margin: 0;  
+    display: block;
+    padding-left: 0; 
+    list-style: none; 
+    list-style-type: none; 	
+/*    width: 99%; */
+}
+
+li.pyscramble {
+    position: relative; 
+    margin: 0 0 -1px 0; 
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+    background: #ddd;
+    border: 1px solid #bbb; 
+/*    width: 100%; */
+    line-height: 1.2em;
+    cursor: move;	
+    padding: 5px; 
+    white-space: pre;
+}
+
+/********************* dumb editors *******************************/
+#content .pybox textarea {
+    word-wrap: normal;
+    wrap: off;
+    scroll-x: auto;
+    resize: none;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    padding: 2px 3px; 
+}
+#content .pybox textarea {
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+ie6 #content .pybox textarea,
+ie7 #content .pybox textarea {
+    padding: 0px;
+    border: 0px;
+}
+
+
+
+#content .pybox .ui-resizable-handle:hover {
+    background-color: blue;
+}
+#content .pybox .pyboxTextwrap {
+/*    margin:0px 7px 8px 0px;*/
+    padding:0px;
+}
+
+#content .pybox .pyboxTextwrap { 
+    position: relative;
+}
+
+
+#content .pyboxCode.RW, 
+#content .pyboxInput {
+    width: 100%;
+}
+#content .pyboxCode, 
+#content .pyboxInput {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+
+/******************** rich editors ******************************/
+
+#content .CodeMirror {
+    font-family: Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', Consolas, monospace !important;
+    background: #FAFAFA;
+    border-top: 1px solid black; 
+    border-bottom: 1px solid black;
+}
+
+#content .CodeMirror-lines pre { /* overriding overflow: auto for pre in style.css */
+    overflow: inherit;
+} 
+
+#content .CodeMirror-scroll {
+    overflow-y: auto; /* recommended for autosize, but i like everywhere */
+    overflow-x: auto; /* recommended for autosize, but i like everywhere */
+    width: 100%; /* recommended for autosize, but i like everywhere */
+}
+
+#content .autoCMsize {
+    height: auto !important;
+}
+
+#content .autoCMsize .CodeMirror-scroll { /* more specific than #content .CodeMirror in codemirrorwp.css */
+    min-height: 50px;
+    height: auto;
+    max-height: 300px;
+}
+
+/****************** action buttons inside each pybox *****************/
+#content .pyboxbuttons { margin: 5px 0px 5px 0px; }
+#content .selectmore   { margin: 5px 0px 0px 0px; }
+#content .pyboxbuttons td { margin: 0px; }
+#content .pyboxbuttons, #content .pyboxbuttons td {
+    padding: 0; 
+    text-align: center;
+}
+#content .pyboxbuttons table {
+    border: none;	
+    table-layout: fixed;
+}
+#content .pyboxbuttons select,
+#content .pyboxbuttons option {
+    background-color: #fafafa;
+    min-width: 100%;
+}
+#content .pyboxbuttons select {
+    border: 1px solid #ddd;
+}
+#content .pyboxbuttons input, 
+#content .pyboxbuttons select,
+#content .pyboxbuttons option {
+    font-size: 16px;
+    max-width: 250px;
+    font-weight: 700;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; /* firefox needed this especiallly */
+}
+
+/*************** line separating input from results**********************/
+#main #content .pbresults { border-top: 5px solid white; }
+#main #content .pbresults:empty, #main #content .pbresults.avoidline { border-top: none; }
+
+
+
+/**************** epilogue placeholder *********************/
+.epilogue { display: none; }

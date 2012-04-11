@@ -1,0 +1,6 @@
+K 13
+svn:externals
+V 61
+akismet http://plugins.svn.wordpress.org/akismet/tags/2.5.3/
+
+END

@@ -1,0 +1,32 @@
+<files *>
+Order Deny,Allow
+Deny from All
+</files>
+
+<files *.js>
+Allow from All
+</files>
+
+<files *.jpeg>
+Allow from All
+</files>
+
+<files *.gif>
+Allow from All
+</files>
+
+<files *.png>
+Allow from All
+</files>
+
+<files *.css>
+Allow from All
+</files>
+
+<files action-*.php>
+Allow from All
+</files>
+
+<files db-*.php>
+Allow from All
+</files>
