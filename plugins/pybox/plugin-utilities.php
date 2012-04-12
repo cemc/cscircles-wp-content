@@ -313,7 +313,7 @@ function beginProfilingEntry($data) {
   return $wpdb->insert_id;
 }
 
-function endProfilingEntry($id, $data) {  
+function endProfilingEntry($id, $data=array()) {  
   // $data must be a subset of the column names in wp_pb_profiling
   // any common values with beginProfilingEntry's $data will be overwritten
   // if $data['meta'] exists it will get json_encoded
