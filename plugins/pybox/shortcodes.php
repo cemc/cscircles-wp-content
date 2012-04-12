@@ -398,10 +398,10 @@ function pyBoxHandler($options, $content) {
   unset($options['inplace']);
 
   if ($inplace) setSoft($options, 'hideemptyoutput', 'Y');
- 
+
   $defaultValues = array
     ('defaultcode' => FALSE,        // default values in case not explicitly selected
-     'autocommentline' => !($scramble || $readonly),
+     'autocommentline' => ($lessonNumber > 3) && !($scramble || $readonly),
      'console' => 'N',
      'rows' => 10,
      'allowinput' => $lessonNumber > 5 && !$scramble && !$readonly,
