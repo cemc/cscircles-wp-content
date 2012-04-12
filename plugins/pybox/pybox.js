@@ -274,6 +274,44 @@ function pbConsoleCopy(id) {
     window.open(xurl);
 }
 
+function pbVisualize(id, tni) {
+    
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("target", "_blank");
+    form.setAttribute("action", VISUALIZEURL);
+
+    usercode = pbGetText(id);
+
+    params = {};
+
+    if ($('#inputInUse'+id).val()=='Y') {
+	extrainput = $('#pybox'+id+' textarea.pyboxInput').val();
+	if (tni == 'Y') {
+	    usercode += '\n# end of main program\n\n# start of tests\n' + extrainput
+	}
+	else {
+	    params["userinput"] = extrainput;
+	}
+    }
+
+    params["usercode"] =  usercode;
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+	    var hiddenField = document.createElement("input");
+	    hiddenField.setAttribute("type", "hidden");
+	    hiddenField.setAttribute("name", key);
+	    hiddenField.setAttribute("value", params[key]);
+	    
+	    form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function pbSelectChange(event) {
     id = getID(event);
     act = jQuery('#pbSelect'+id+' :selected').attr('pbonclick');

@@ -57,7 +57,7 @@ define('UWARN', UFILES . 'warning.png');
 
 define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
 
-define('UPYBOXJS', UPYBOX . 'pybox.js?v');
+define('UPYBOXJS', UPYBOX . 'pybox.js?1');
 define('UPYBOXCSS', UPYBOX . 'pybox.css');
 define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
 define('UOLDHISTORY', UPYBOX . 'pages/problem-history.php?p=');
@@ -72,6 +72,7 @@ define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
 define('USEARCH', UWPHOME . 'search/');
 define('URESOURCES', UWPHOME . 'resources/');
 define('UCONSOLE', UWPHOME . 'console/'); /*last / is Important to get newlines right in GET */
+define('UVISUALIZE', UWPHOME . 'visualize/'); 
 define('UUSAGE', UWPHOME . 'using-this-website/');
 define('UCONTACT', UWPHOME . 'contact/');
 define('URUNATHOME', UWPHOME . 'run-at-home/');

@@ -585,9 +585,9 @@ function pyBoxHandler($options, $content) {
 
   /// part 4: controls
 
+  $tni = $usertni?'Y':'N';
   $actions = array();
   if ($allowinput) {
-    $tni = $usertni?'Y':'N';
     $actions['switch'] = array('id'=>"switch$id", 'value'=>'Input Switch', 'onclick'=>"pbInputSwitch($id,'$tni')");
   }
   if (!$disablericheditor) {
@@ -600,6 +600,9 @@ function pyBoxHandler($options, $content) {
   }
   if (!$scramble && ($lessonNumber >= 4 || $lessonNumber < 0)) {
       $actions['consolecopy'] = array('value'=>'Open in console', 'onclick'=>"pbConsoleCopy($id)");
+  }
+  if (!$scramble && ($lessonNumber >= 4 || $lessonNumber < 0)) {
+      $actions['visualize'] = array('value'=>'Visualize', 'onclick'=>"pbVisualize($id,'$tni')");
   }
   if (!$readonly && !$scramble) {
     //$actions['save'] = array('value'=>'Save without running', 'onclick'=>"pbSave($id)");

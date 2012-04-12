@@ -39,6 +39,7 @@ function pyBoxHead() {
   echo sprintf("var FILESURL = '%s';\n", UFILES);
   echo sprintf("var HISTORYURL = '%s';\n", UHISTORY);
   echo sprintf("var OLDHISTORYURL = '%s';\n", UOLDHISTORY);
+  echo sprintf("var VISUALIZEURL = '%s';\n", UVISUALIZE);
   echo sprintf("var DEFAULTTIMEOUTMS = '%s';\n", (WALLFACTOR*1 + WALLBUFFER)*1000);
 
   echo "</script>\n";
