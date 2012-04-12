@@ -726,7 +726,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   foreach ($subproblemOptions as $N=>$spo) 
     $tcTotal += $spo["repeats"];
 
-  ksort($problemOptions); //test case 1, then 2, ...   
+  ksort($subproblemOptions); //test case 1, then 2, ...   
   $tcCurrent = 0;
   $allCorrect = TRUE; 
   $m = ''; //the result string, built a bit at a time.
