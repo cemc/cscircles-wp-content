@@ -1,5 +1,15 @@
  
 /*********************** general stuff **********************/
+
+.wp-tabs {
+ font: inherit !important;
+}
+
+.wpui-blue .ui-tabs {
+ font: inherit !important;
+}
+
+
 .prebox { overflow-x: auto; }
 .miny { font-size: 60%; }
 #content img.latex {
