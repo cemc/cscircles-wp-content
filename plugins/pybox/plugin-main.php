@@ -114,6 +114,16 @@ function enable_more_buttons($buttons) {
   }
 add_filter("mce_buttons", "enable_more_buttons");
 
+remove_action( 'wp_head', 'feed_links', 2 ); 
+// Don't display the links to the general feeds: Post and Comment Feed
+
+add_filter("robots_txt", "domo_arigato");
+
+function domo_arigato($output) {
+  $output .= 'Disallow: /wp-content/plugins/pybox/';
+  return $output;
+}
+
 require_once("shortcodes.php");
 require_once("shortcode-my-progress.php");
 require_once("shortcode-make-databases.php");
