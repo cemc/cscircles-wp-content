@@ -238,7 +238,7 @@ function pyMultiScramble($options, $content) {
   shuffle($answer);
 
   $r = '';
-  $slug = getSoft($options, 'name', 'NULL');
+  $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral multiscramble' id='pybox$id'>\n";
   registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL));
   $r .= checkbox($slug);
