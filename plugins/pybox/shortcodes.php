@@ -125,11 +125,6 @@ function heading($type, &$options) {
 }
 
 function pyShortHandler($options, $content) {
-  if (array_key_exists('name', $options)) {
-    $options['slug'] = $options['name'];
-    unset($options['name']);
-  }
-
   $id = generateId();
   
   $answer = $options["answer"];
@@ -171,11 +166,6 @@ function pyWarnHandler($options, $content) {
 }
 
 function pyMultiHandler($options, $content) {
-  if (array_key_exists('name', $options)) {
-    $options['slug'] = $options['name'];
-    unset($options['name']);
-  }
-
   $id = generateId();
 
   $right = softSafeDereference($options["right"]);
@@ -222,11 +212,6 @@ function pyExampleHandler($options, $content) {
 }
 
 function pyMultiScramble($options, $content) {
-  if (array_key_exists('name', $options)) {
-    $options['slug'] = $options['name'];
-    unset($options['name']);
-  }
-
   $id = generateId(); 
 
   $answer = $options['answer'];
@@ -336,12 +321,6 @@ function list_pybox_pages($options, $content) {
 function pyBoxHandler($options, $content) {
   // given a shortcode, print out the html for the user, 
   // and save the relevant grader options in a hash file.
-
-  if (array_key_exists('name', $options)) {
-    $options['slug'] = $options['name'];
-    unset($options['name']);
-  }
-
   $id = generateId();
 
   if ($options == FALSE) $options = array();           // wordpress does a weird thing where valueless
@@ -472,7 +451,7 @@ function pyBoxHandler($options, $content) {
     $defaultcode = ensureNewlineTerminated($defaultcode);
   }
 
-  $enableDebugFeatures = array_key_exists("d", $_GET) || userIsAdmin();
+  $enableDebugFeatures = array_key_exists("d", $_GET); # || userIsAdmin();
 
   /// actually start outputting here. part 1: headers and description
 
@@ -622,6 +601,12 @@ function pyBoxHandler($options, $content) {
       $actions['default'] = array('value'=>'Reset code to default', 'onclick'=>"pbSetText($id,'$dc')", );
     }
   }
+
+  if (!$facultative) {
+  //  $actions['help'] = array('value'=>'Help', 'onclick'=>"alert('helf');");
+  }
+
+
   if ( $richreadonly )
     $actions = array('CMtoggle' => $actions['CMtoggle']); // get rid of all other options
 

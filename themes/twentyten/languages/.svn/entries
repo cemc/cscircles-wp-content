@@ -2,7 +2,7 @@
 
 dir
 20578
-http://core.svn.wordpress.org/tags/3.3.2/wp-content/themes/twentyeleven/languages
+http://core.svn.wordpress.org/tags/3.3.2/wp-content/themes/twentyten/languages
 http://core.svn.wordpress.org
 
 
@@ -26,14 +26,14 @@ nacin
 
 1a063a9b-81f0-0310-95a4-ce76da25c4cd
 
-twentyeleven.pot
+twentyten.pot
 file
 
 
 
 
 2012-04-24T20:28:29.000000Z
-9afd2049a6abc98297add6db01b5933e
+b9cc717d329c84701441896c5c8cf997
 2012-02-10T16:38:48.527338Z
 19901
 nacin
@@ -58,5 +58,5 @@ has-props
 
 
 
-15943
+8643
 

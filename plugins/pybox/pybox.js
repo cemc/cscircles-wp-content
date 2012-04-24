@@ -1,5 +1,7 @@
+$ = jQuery;
+
 function stylePybox(id, modeCharacter) {
-    B = jQuery("#pybox"+id);
+    B = $("#pybox"+id);
     B.removeClass("modeNeutral modeCorrect modeInternalError");
     if (modeCharacter == 'E')
 	B.addClass("modeInternalError");
@@ -20,7 +22,6 @@ function gradingSI(fac, tni) {
 }
 
 function pbInputSwitch(id, tni) {
-    $ = jQuery;
     var fac = $('#pybox'+id).hasClass('facultative');
     $('#pyinput'+id).toggle();
     if ($('#inputInUse'+id).val()=='N') {
@@ -35,22 +36,15 @@ function pbInputSwitch(id, tni) {
     }
 }
 
-function fixWeirdBug(msg) {
-//    while (10==msg.charCodeAt(0)) 
-//	msg = msg.substring(1);
-    return msg;
-}
-
 function pbSetText(id, txt) { //should not be called on scrambles.
-    w = jQuery('#pybox'+id+" .pyboxCodewrap");
+    w = $('#pybox'+id+" .pyboxCodewrap");
     if (w.hasClass('CM')) 
 	cmed[id].setValue(txt);
     else 
-	jQuery('#usercode'+id).val(txt);		
+	$('#usercode'+id).val(txt);		
 }
 
 function pbGetText(id) {
-    $ = jQuery;
     if ($('#pybox'+id).hasClass('scramble')) 
 	return $('#pyscramble'+id)
 	.sortable()
@@ -58,11 +52,11 @@ function pbGetText(id) {
 	.map(function(){return $(this).text();})
 	.get()
 	.join('\n');
-    w = jQuery('#pybox'+id+" .pyboxCodewrap");
+    w = $('#pybox'+id+" .pyboxCodewrap");
     if (w.hasClass('CM')) 
 	return cmed[id].getValue();
     else 
-	return jQuery('#usercode'+id).val();		
+	return $('#usercode'+id).val();		
 }	
 
 function getID(event) {
@@ -72,7 +66,6 @@ function getID(event) {
 }
 
 function pbFormSubmit(event) {
-    $ = jQuery;
     var id = getID(event);
     if ($('#pybox'+id).hasClass('multiscramble')) {
 	pbMSFormSubmit(id);
@@ -91,17 +84,16 @@ function pbFormSubmit(event) {
 
     $('#submit'+id).attr('disabled', true);
     
-    jQuery('#pbresults'+id).html("<p>Running...</p>");
-    jQuery.ajax({
+    $('#pbresults'+id).html("<p>Running...</p>");
+    $.ajax({
 	type: "POST",
 	url: SUBMITURL,
 	data: $.param(values), 
 	timeout: timeoutMS,
 	success: function(data) {
-	    data=fixWeirdBug(data);
- 	    jQuery('#pbresults'+id).html(data.substring(1));
+ 	    $('#pbresults'+id).html(data.substring(1));
 	    stylePybox(id, data.charAt(0));
-            //jQuery("#pybox"+id).css("background-color", returnColours[data.charAt(0)]);
+            //$("#pybox"+id).css("background-color", returnColours[data.charAt(0)]);
 	    if (data.charAt(0)=="Y")
 		happyFace(id);
 	    $('#submit'+id).attr('disabled', false);
@@ -113,36 +105,14 @@ function pbFormSubmit(event) {
 		alert('timed out!' + timeoutMS);
 	    }
 	   
- 	    jQuery('#pbresults'+id).html("Could not grade program because communication to the server was not possible. Ajax information: "+xhr.statusText+" "+xhr.status+" "+thrownError);
+ 	    $('#pbresults'+id).html("Could not grade program because communication to the server was not possible. Ajax information: "+xhr.statusText+" "+xhr.status+" "+thrownError);
         }
     });
     event.preventDefault(); 
-//    return false;
 }
-
-/*function pbSave(id) {
-    $ = jQuery;
-    var values = {};
-    $.each($('#pbform'+id).serializeArray(), function(i, field) {values[field.name] = field.value;});
-    values['usercode'+id]=pbGetText(id);
-    values['justsave']='';
-
-    jQuery.ajax({
-	type: "POST",
-	url: SUBMITURL,
-	data: $.param(values), 
-  	success: function(msg) {pbSaveCallback(id, msg);},
-	error: function(jqXHR, text){alert( "Error: " + text );}
-    });
-}
-
-function pbSaveCallback(id, msg) {
-    msg=fixWeirdBug(msg);
-    alert(msg.substring(1)); //kill the 'S'
-}*/
 
 function happyFace(id) {
-    jQuery("#pybox" + id + " .pycheck").attr({
+    $("#pybox" + id + " .pycheck").attr({
 	'title':'You have completed this problem at least once.',
 	'src':FILESURL+'checked.png'
     });
@@ -150,7 +120,7 @@ function happyFace(id) {
 
 function setCompleted(name) {
     if (name != 'NULL') {
-	jQuery.ajax({
+	$.ajax({
 	    type: "POST",
 	    url: SETCOMPLETEDURL,
 	    data: {"problem":name},
@@ -162,7 +132,6 @@ function setCompleted(name) {
 // three types of short answer question: short answer, multiple choice, scramble
 // all are client-side exercises not requiring execution on the server
 function pbNoncodeShowResults(id, correct) { 
-    $ = jQuery;
     name = $('#pybox'+id).find('input[name="slug"]').val();
     stylePybox(id, correct?"Y":"N");
     $('#pybox'+id+' .pbresults').html((!correct)?"Incorrect, try again.":$('#pybox'+id+' .epilogue').html());
@@ -173,12 +142,10 @@ function pbNoncodeShowResults(id, correct) {
 }
 
 function pbShortCheck(id) {
-    $ = jQuery;
     ans = document.getElementById("pyShortAnswer"+id).value;    
-    // old version before IE8 hackery: type = jQuery('#pybox'+id).find('input[name="type"]').val();
-    JQtype = jQuery('#pybox'+id).find('input[name="type"]');
+    JQtype = $('#pybox'+id).find('input[name="type"]');
     thetype = JQtype.get(0).value;
-    JQcorrect = jQuery('#pybox'+id).find('input[name="correct"]');
+    JQcorrect = $('#pybox'+id).find('input[name="correct"]');
     lecorrect = JQcorrect.get(0).value;
     if (thetype=="number")
     { ok = parseFloat(ans) == parseFloat(lecorrect); }
@@ -193,7 +160,6 @@ function pbMultiCheck(id) {
 }
 
 function pbMultiscrambleCheck(id) { //NB: does not yet work if there are multiple identical lines
-    $ = jQuery;
     lines = $('#pybox'+id+' li.pyscramble');
     len = lines.size();
     name = $('#pybox'+id+' input[name="name"]').val();
@@ -206,7 +172,6 @@ function pbMultiscrambleCheck(id) { //NB: does not yet work if there are multipl
 // end of client-side-evaluated exercise types.
 
 function pbCodeMirror(id) {
-    var $ = jQuery;
     var cmwrap = $('#pybox'+id+" .pyboxCodewrap");
     var ro = cmwrap.hasClass("RO");
     cmwrap.addClass('autoCMsize');
@@ -233,7 +198,7 @@ function pbCodeMirror(id) {
     var cg = cmwrap.find('.CodeMirror-gutter');
     
 
-    jQuery(function() {
+    $(function() {
 	cmwrap.resizable({
 	    handles:'s', 
 	    minHeight: 50,
@@ -249,14 +214,13 @@ function pbCodeMirror(id) {
  
 function pbUndoCodeMirror(id) {
     cmed[id].toTextArea();
-    w = jQuery('#pybox'+id+" .pyboxCodewrap");
+    w = $('#pybox'+id+" .pyboxCodewrap");
     w.removeClass('autoCMsize');
     w.removeClass('CM');
 }
 
 function pbToggleCodeMirror(id) {
-    $ = jQuery;
-    w = jQuery('#pybox'+id+" .pyboxCodewrap");
+    w = $('#pybox'+id+" .pyboxCodewrap");
     if (w.hasClass('CM')) {
 	$('#toggleCM'+id).val('Rich editor');
 	pbUndoCodeMirror(id);
@@ -314,19 +278,19 @@ function pbVisualize(id, tni) {
 
 function pbSelectChange(event) {
     id = getID(event);
-    act = jQuery('#pbSelect'+id+' :selected').attr('pbonclick');
+    act = $('#pbSelect'+id+' :selected').attr('pbonclick');
     eval(act);
-    jQuery('#pbSelect'+id).val('More actions...').blur();
+    $('#pbSelect'+id).val('More actions...').blur();
 }
 
 function stayHere(event) {
-    if (!jQuery(event.target).hasClass('open-same-window')) 
-	jQuery(event.target).attr('target', '_blank');
+    if (!$(event.target).hasClass('open-same-window')) 
+	$(event.target).attr('target', '_blank');
     return true;
 }
 
 function scrollToTop() {
-    jQuery('html,body').animate({scrollTop:0}, 1000);
+    $('html,body').animate({scrollTop:0}, 1000);
 }
 	
 cmed = {}; //list of code mirror instances, indexed by pyid
@@ -334,27 +298,26 @@ cmed = {}; //list of code mirror instances, indexed by pyid
 hflex = {}; //history flexigrid instances
 hflexhelp = {};
 
-jQuery(".hintlink").live("click", function(e) {
-    //	    console.log("hintlink clicked" + e.pageX + " " + e.pageY);
-    n = jQuery(this).attr("id").substring(8);
-    o = jQuery("#hintbox" + n);
+$(".hintlink").live("click", function(e) {
+    n = $(this).attr("id").substring(8);
+    o = $("#hintbox" + n);
     o.insertBefore('#page');
     o.css({"display":"block","top": e.pageY,"left": e.pageX});
     o.draggable({ cancel: ".hintboxlink" });
 });
 
-jQuery(".hintboxlink").live("click", function(e) {
-    n = jQuery(this).attr("id").substring(11);
-    jQuery("#hintbox"+n).css("display","none");
+$(".hintboxlink").live("click", function(e) {
+    n = $(this).attr("id").substring(11);
+    $("#hintbox"+n).css("display","none");
 });   
 
-jQuery(".pbform").live("submit", pbFormSubmit);
-jQuery(".selectmore").live("change", pbSelectChange);
-jQuery('.entry-content a').live('click', stayHere);
-jQuery('.hintbox a').live('click', stayHere);
-jQuery('.pyflexClose').live('click', function (e) {historyClick(jQuery(e.target).closest('.pybox').find('input[name="pyId"]').val(),"");});
-jQuery('.flexigrid pre').live('dblclick', function (e) {
-    jq = jQuery(e.target);
+$(".pbform").live("submit", pbFormSubmit);
+$(".selectmore").live("change", pbSelectChange);
+$('.entry-content a').live('click', stayHere);
+$('.hintbox a').live('click', stayHere);
+$('.pyflexClose').live('click', function (e) {historyClick($(e.target).closest('.pybox').find('input[name="pyId"]').val(),"");});
+$('.flexigrid pre').live('dblclick', function (e) {
+    jq = $(e.target);
     id = jq.closest('.pybox').find('input[name="pyId"]').val();
     code = jq.html();
     var div = document.createElement('div');
@@ -362,12 +325,11 @@ jQuery('.flexigrid pre').live('dblclick', function (e) {
     var decoded = div.firstChild.nodeValue;
     pbSetText(id, decoded);
 });
-jQuery('div.hintLink a').live('click', function (e) {
-    jQuery(e.target).closest('.hintOuter').find('.hintContent').dialog({'dialogClass' : 'wp-dialog','width':800});
+$('div.hintLink a').live('click', function (e) {
+    $(e.target).closest('.hintOuter').find('.hintContent').dialog({'dialogClass' : 'wp-dialog','width':800});
 });
 
 function vtabby(wptabsdiv) {
-    $ = jQuery;
     f = function(index, elt) {
 	e = $(elt);
 	e.height(e.height()-45);
@@ -377,15 +339,14 @@ function vtabby(wptabsdiv) {
 }
 
 function tabby(index, wptabsdiv) {
-    $ = jQuery;
     if ($(wptabsdiv).hasClass('ui-tabs-vertical')) return vtabby(wptabsdiv);
     tabs = $(wptabsdiv).data('tabs');
-    L = jQuery('<span class="wptabnav wtnleft">&lt;</span>')
+    L = $('<span class="wptabnav wtnleft">&lt;</span>')
 	.click(function (event) {
 	    curr = tabs.option('selected');
 	    if (curr > 0) tabs.select(curr-1);
 	});
-    R = jQuery('<span class="wptabnav wtnright">&gt;</span>')
+    R = $('<span class="wptabnav wtnright">&gt;</span>')
 	.click(function (event) {
 	    curr = tabs.option('selected');
 	    tabs.select(curr+1);
@@ -394,14 +355,12 @@ function tabby(index, wptabsdiv) {
 }
 
 function flexfix(index, flexigrid) {
-    $ = jQuery;
     G = $(flexigrid);
     i = 0;
     sum = 0;
     G.find("th").each(function(index, th) {
 	w = $(G.find("div.bDiv tbody tr:first-child td")[i]).width();
 	if (w > $(th).width()) {
-	    //	console.log(w);
 	    $(th).find('div').width(w-10);
 	    sum += 2+w;
 	}
@@ -415,7 +374,7 @@ function flexfix(index, flexigrid) {
 }
 
 function flexfixall() {
-    jQuery('.flexigrid').each(flexfix);
+    $('.flexigrid').each(flexfix);
 }
 
 function pyflex(options) {
@@ -423,33 +382,31 @@ function pyflex(options) {
     //options['url']      : url that performs the database call
     //options['dbparams'] : extra arguments to send in database call
     //options['flparams'] : extra arguments for flexigrid, overwriting defaults
-    //console.log(options);
-    jQuery.ajax
+    $.ajax
     ({type:"POST",
       url:options['url'],
-      data:jQuery.param('dbparams' in options ? options['dbparams'] : []),
+      data:$.param('dbparams' in options ? options['dbparams'] : []),
       success:function(data){pyflexSuccess(options, data);},
-      failure:function(){jQuery("#"+options['id']).html('Error: could not connect to database.');}
+      failure:function(){$("#"+options['id']).html('Error: could not connect to database.');}
      });
 }
 function pyflexSuccess(options, data) {
-    jQuery('#'+options['id']+' .pyflexerror').remove();
+    $('#'+options['id']+' .pyflexerror').remove();
 
     if (!(data instanceof Object) || !("rows" in data) || data["rows"].length==0) {
 	hflexhelp[options['id']] = options;
 	msg = (!(data instanceof Object) || !("rows" in data)) ? data : 'The database connected but found no data.'; 
 	info = "<a onclick='pyflex(hflexhelp[\""+options['id']+"\"])'>Click to try again.</a>";
-	jQuery('#'+options['id']).html('<span class="pyflexerror">' + msg + ' ' + info + '</span>');
+	$('#'+options['id']).html('<span class="pyflexerror">' + msg + ' ' + info + '</span>');
 	alert(msg);
 	return;
     }
 
     firstRow = data['rows'][0]['cell'];
-    //console.log(firstRow);
     model = new Array();
     for (colname in firstRow) {
 	colModel = {display: colname, name: colname, sortable: true};
-	if (colname == 'user code' && jQuery('#'+options['id']).parents('.pybox').length > 0) 
+	if (colname == 'user code' && $('#'+options['id']).parents('.pybox').length > 0) 
 	    colModel['attrs'] = {'class': 'usercodecol', 'title': 'double-click to reload version'};
 	model.push(colModel);
     }
@@ -457,16 +414,15 @@ function pyflexSuccess(options, data) {
     if ('dbparams' in options)
 	for (paramname in options['dbparams']) 
 	    xp.push({name: paramname, value: options['dbparams'][paramname]});
-    jQuery('#' + options['id']).prepend('<span class="pyflex"></span>');
+    $('#' + options['id']).prepend('<span class="pyflex"></span>');
 
-    jQuery(function() {
+    $(function() {
 	opts = {
 	    url: options['url'], 
 	    dataType: 'json',
 	    colModel: model, 
 	    usepager: true,
 	    resizableVForce: true,
-	    //	    height: 'auto',
 	    useRp: true,
 	    unselectable: true,
 	    showToggleBtn: false,
@@ -480,14 +436,12 @@ function pyflexSuccess(options, data) {
 	if ('flparams' in options) 
 	    for (optname in options['flparams'])
 		opts[optname] = options['flparams'][optname];
-	//console.log(opts);
-	hflex[options['id']] = jQuery('#' + options['id'] + ' span.pyflex').flexigrid(opts);
-	jQuery('#' + options['id']).resizable({handles:'e'});
+	hflex[options['id']] = $('#' + options['id'] + ' span.pyflex').flexigrid(opts);
+	$('#' + options['id']).resizable({handles:'e'});
     });
 }
 
 function historyClick(id,thename) {
-    $ = jQuery;
     $('#pbhistory'+id).toggle();
     createNow = !$('#pbhistory'+id).is(":hidden") && ($('#pbhistory' + id + ' .flexigrid').length == 0);
     if (createNow) {
@@ -503,16 +457,15 @@ function historyClick(id,thename) {
 }
 
 function setCommandLabel(id, name, label) {
-    $ = jQuery;
     $('#pybox'+id+' input[name="'+name+'"]').attr('value', label);
     $('#pybox'+id+' option[name="'+name+'"]').html(label);
 }
 
-jQuery( // this call to jQuery makes it delay until the DOM is loaded
+$( // this call to $ makes it delay until the DOM is loaded
     function() {   
-	jQuery('ul.pyscramble').sortable();
-	jQuery('.resizy').resizable({handles:'s',minHeight:50});
-	jQuery('.wp-tabs > div').each(tabby);
+	$('ul.pyscramble').sortable();
+	$('.resizy').resizable({handles:'s',minHeight:50});
+	$('.wp-tabs > div').each(tabby);
 
 	if (window.location.hash) {
 	    setTimeout("window.scrollBy(0, -60)", 10); // so direct links aren't hidden by adminbar

@@ -1,6 +1,10 @@
  
 /*********************** general stuff **********************/
 
+.ui-resizable-handle {
+ z-index: 999 !important; // not to overlap modal dialogs
+}
+
 .wp-tabs {
  font: inherit !important;
 }
