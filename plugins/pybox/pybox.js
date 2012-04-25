@@ -129,6 +129,35 @@ function setCompleted(name) {
     }
 }
 
+function helpClick(id) {
+    $("#pybox"+id+" .helpOuter").toggle();
+}
+
+function sendMessage(id, slug) {
+    recipient = $("#pybox"+id+" .recipient").val();
+    message = $("#pybox"+id+" .helpInner textarea").val();
+    code = pbGetText(id);
+    if (recipient==0) {
+	alert('Please select a recipient for the message.');
+    }
+    else if (message.replace('\s', '')=='') {
+	alert('Please enter a non-empty message.');
+    }
+    else if (code.replace('\s', '')=='') {
+	alert('The code box is empty. It should instead contain your best partial solution so far.');
+    }
+    else {
+	$.ajax({
+	    type: "POST",
+	    url : MESSAGEURL,
+	    data: {"slug":slug,"recipient":recipient,"message":message,"code":code},
+	    error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");}
+	});
+	alert("Your message is being sent. You will also recieve a copy by e-mail.");
+	helpClick(id);
+    }
+}
+
 // three types of short answer question: short answer, multiple choice, scramble
 // all are client-side exercises not requiring execution on the server
 function pbNoncodeShowResults(id, correct) { 

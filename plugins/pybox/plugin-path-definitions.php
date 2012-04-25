@@ -64,6 +64,7 @@ define('UOLDHISTORY', UPYBOX . 'pages/problem-history.php?p=');
 
 define('USUBMIT', UPYBOX . 'action-submit-code.php');
 define('USETCOMPLETED', UPYBOX . 'action-notify-complete.php');
+define('UMESSAGE', UPYBOX . 'action-send-message.php');
 
 define('UFULLHISTORY', UPYBOX . 'db-entire-history.php');
 define('UHISTORY', UPYBOX . 'db-problem-history.php');

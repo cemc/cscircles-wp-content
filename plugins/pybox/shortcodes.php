@@ -477,15 +477,49 @@ function pyBoxHandler($options, $content) {
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";    
   }
 
-
   if ($facultative) 
     $r .= heading('Example', $options);
   else {
     $r .= checkbox($slug);
     $r .= heading($scramble ? 'Scramble Exercise' : 'Coding Exercise', $options);
   }
+
   
   $r .= do_shortcode($content); //instructions, problem description. process any shortcodes inside.
+
+
+  // part 1.5: help box
+
+if (!$facultative && !$scramble) {
+  $r .= '<div class="helpOuter" style="display: none;"><div class="helpInner">';
+  if (!is_user_logged_in()) {
+    $r .= '<div style="text-align: center">You need to create an account and log in to ask a question.</div>';
+  }
+  else {
+    global $wpdb;
+    $guru_login = get_the_author_meta('pbguru', get_current_user_id());
+    if ($guru_login != '')
+      $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from wp_users WHERE user_login = %s', $guru_login));
+    $r .= '<div style="text-align: center">';
+    if ($guru_login != '' and $guruid !== NULL) {
+      $r .= 'Send a question by e-mail to: ';
+      $r .= "<select class='recipient'><option value='0'>Select one...</option><option value='1'>My guru ($guru_login)</option><option value='-1'>CS Circles Assistant</option></select></div>";
+    } 
+    else {
+      $r .= 'Send a question by e-mail to: ';
+      $r .= "<select class='recipient'><option value='0'>Select one...</option><option value='0' disabled='disabled'>My guru (you don't have one)</option><option value='-1'>CS Circles Assistant</option></select>";
+      $r .= "<i>(name a guru on <a href=".get_edit_profile_url(get_current_user_id()).">your Profile Page</a>)</i><br/>";
+      $r .= '</div>';
+    }
+    $r .= "Enter text for the message below. <i>Be sure to explain where you're stuck and what you've tried so far. 
+          Your partial solution code will be automatically included with the message.</i>";
+    $r .= "<textarea style='font-family: serif'></textarea>";
+    $r .= "<table class='helpControls'><tr><td style='width: 50%'><a href='javascript:sendMessage($id,\"$slug\")'>Send this message</a></td><td style='width: 50%'>
+           <a href='javascript:helpClick($id)'>Cancel</a></td></tr></table>";
+  }
+
+  $r .= '</div></div>';
+ }
 
   /// part 2: code input
 
@@ -602,8 +636,8 @@ function pyBoxHandler($options, $content) {
     }
   }
 
-  if (!$facultative) {
-  //  $actions['help'] = array('value'=>'Help', 'onclick'=>"alert('helf');");
+  if (!$facultative && !$scramble) {
+    $actions['help'] = array('value'=>'Help', 'onclick'=>"helpClick($id);");
   }
 
 
