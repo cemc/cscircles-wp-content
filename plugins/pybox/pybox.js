@@ -131,6 +131,7 @@ function setCompleted(name) {
 
 function helpClick(id) {
     $("#pybox"+id+" .helpOuter").toggle();
+    $("#pybox"+id+" .helpOuter textarea").resizable({handles: "s"});
 }
 
 function sendMessage(id, slug) {

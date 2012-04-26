@@ -1,37 +1,9 @@
  
 /*********************** general stuff **********************/
 
-.helpControls td {
-    width: 50%;
-    text-align: center;
-}
-
-table.helpControls {
-    border: none; 
-}
-
-.helpOuter {
-    padding: 5px; 
-    background: url("css-images/rw.png") repeat;
-}
-
-.helpInner {
-    padding: 3px;
-    background: white;
-}
-
 .ui-resizable-handle {
     z-index: 999 !important; // not to overlap modal dialogs
 }
-
-.wp-tabs {
-    font: inherit !important;
-}
-
-.wpui-blue .ui-tabs {
-    font: inherit !important;
-}
-
 
 .prebox { overflow-x: auto; }
 .miny { font-size: 60%; }
@@ -411,6 +383,15 @@ a.locator:hover {
     float: right;
 }
 
+.wp-tabs {
+    font: inherit !important;
+}
+
+.wpui-blue .ui-tabs {
+    font: inherit !important;
+}
+
+
 /*********************** pyWarn shortcode *********************************/
 
 .pywarnleft {
@@ -688,3 +669,33 @@ ie7 #content .pybox textarea {
 
 /**************** epilogue placeholder *********************/
 .epilogue { display: none; }
+
+/****************** action-send-message *********************/
+
+.helpInner .ui-wrapper {
+    padding-bottom: 0px !important;
+}
+
+.helpInner .ui-resizable-s {
+    height: 13px;
+}
+
+.helpControls td {
+    width: 50%;
+    text-align: center;
+}
+
+table.helpControls {
+    border: none; 
+}
+
+.helpOuter {
+    padding: 5px; 
+    background: url("css-images/rw.png") repeat;
+}
+
+.helpInner {
+    padding: 3px;
+    background: white;
+}
+
