@@ -12,13 +12,11 @@ define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit 
 
 // string constants
 define('NASTYCHARACTERS', "\\\n");
-define('GENERATORWRAPPER', "from random import randint\n*code*");
 define('CSCIRCLES_EMAIL', 'cscircles@gmail.com');
 
 require_once('plugin-utilities.php');
 
 define('GRADERPREAMBLE', softSafeDereference("@file:graderPreamble.py"));  
-
-
+define('GENERATORPREAMBLE', softSafeDereference("@file:generatorPreamble.py"));
 
 // end of file

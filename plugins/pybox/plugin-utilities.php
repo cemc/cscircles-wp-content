@@ -150,25 +150,6 @@ function firstLine( $s ) { //get first line of a string
   return $list[0];
 }
 
-function substituteProgram( $inner, $outer ) {
-  $result = "";
-  $hits = 0;
-  foreach (explode("\n", $outer) as $outline) {
-    $m = preg_match( "/(\s*)\*code\*(\s*)/", $outline, $matches);
-    if ($m == 1) {
-      foreach (explode("\n", $inner) as $innerline)
-	$result .= $matches[1] . $innerline . "\n";
-      $hits++;
-    }
-    else
-      $result .= $outline . "\n";
-  }
-  if ($hits != 1) {
-    return FALSE;
-  }
-  return $result;
-}
-
 function popUp($linkText, $popup) {
   //pyboxlog('popup' . $linkText . ';' . $popup . '.');
   global $pyRenderCount;

@@ -229,7 +229,7 @@ function determineStdin($TC) {
   if ($input!==FALSE)
     return softSafeDereference($input);
   if ($generator !== FALSE) {
-    $genResult = safepythonsimple(substituteProgram($generator, GENERATORWRAPPER), $geninput);
+    $genResult = safepythonsimple(GENERATORPREAMBLE . "\n" . $generator, $geninput);
     if (!$genResult["ok"]) 
       throw new PyboxException('Generator failed '.preBox($generator).
 			       preBox($geninput).print_r($genResult,TRUE));

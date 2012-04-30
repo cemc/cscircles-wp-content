@@ -317,8 +317,13 @@ a.locator:hover {
 }
 
 /*************** in accordions and tabs *****************/
+#content .ui-accordion, #content .ui-accordion-content {
+    line-height: inherit;
+    color: inherit;
+}
+
 #content .ui-accordion-content {
-    padding: 0px;
+    padding: 5px;
 }
 
 #content .ui-accordion-content img.pycheck {
