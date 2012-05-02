@@ -39,7 +39,8 @@ function shortcode_list_pages( $atts, $content, $tag ) {
 		'meta_key'    => '',
 		'meta_value'  => '',
 		'offset'      => '',
-		'exclude_current_page' => 0
+		'exclude_current_page' => 0,
+		'post_status' => 'publish',
 	);
 	
 	// Merge user provided atts with defaults
