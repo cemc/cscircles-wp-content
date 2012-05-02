@@ -181,10 +181,10 @@ function pb_menu_items($wp_admin_bar) {
   $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact Us (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
   
   if (current_user_can('level_10')) {	  
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_bloginfo('wpurl') .'/wp-admin/index.php', 'title'=>'ADMIN: Go to Control Dashboard', 'id'=>'dancer'));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_bloginfo('wpurl') .'/wp-admin/index.php', 'title'=>'ADMIN: Admin Dashboard', 'id'=>'dancer'));
     $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_edit_post_link(), 'title'=>'ADMIN: Edit Current Page', 'id'=>'dasher'));
     $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "admin-manual/", 'title'=>"ADMIN: Manual Pages", 'id'=>'prancer'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => "/~atkong/pma/", 'title'=>'ADMIN: SQL Interface', 'id'=>'nixon'));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => "/~atkong/pma/", 'title'=>'ADMIN: Database Frontend', 'id'=>'nixon'));
   }      
 
 }
