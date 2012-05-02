@@ -178,18 +178,13 @@ function pb_menu_items($wp_admin_bar) {
   $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "user-page/", 'title'=>'My Progress', 'id'=>'up'));
   $wp_admin_bar->add_menu( array( 'id'=>'snap', 'parent' => 'user-actions', 'title' => 'Console (new window)', 'href' => UCONSOLE, "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => 'Resources (new window)', 'href' => URESOURCES, "meta" => array("target" => "_blank")));
-  $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact Us (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
   
   if (current_user_can('level_10')) {	  
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "pybox-manual/", 'title'=>"Shortcode Manual", 'id'=>'prancer'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "pybox-security-example/", 'title'=>'Security Examples', 'id'=>'vixen'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "examples/", 'title'=>'Other Random Examples', 'id'=>'comet'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "safeexec-usage/", 'title'=>'Safeexec Usage', 'id'=>'cupid'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "to-do/", 'title'=>'TO-DO List', 'id'=>'donner'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "notes/", 'title'=>'Notes (backups, monitoring)', 'id'=>'dixon'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => "/~atkong/pma/", 'title'=>'SQL', 'id'=>'nixon'));
-    $wp_admin_bar->add_menu( array ( 'parent' => 'user-actions', 'href' => UWPHOME . "makedb/", 'title' => 'rebuild problem and lesson DB', 'id'=>'carter'));
-    $wp_admin_bar->add_menu( array ( 'parent' => 'user-actions', 'href' => UWPHOME . "profiling/", 'title' => 'Profiling', 'id'=>'zz'));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_bloginfo('wpurl') .'/wp-admin/index.php', 'title'=>'ADMIN: Go to Control Dashboard', 'id'=>'dancer'));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_edit_post_link(), 'title'=>'ADMIN: Edit Current Page', 'id'=>'dasher'));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "admin-manual/", 'title'=>"ADMIN: Manual Pages", 'id'=>'prancer'));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => "/~atkong/pma/", 'title'=>'ADMIN: SQL Interface', 'id'=>'nixon'));
   }      
 
 }
