@@ -260,7 +260,7 @@ function setSoft(&$array, $key, $value) {
   if (!array_key_exists($key, $array))
     $array[$key] = $value;
 }
-function isSoft($array, $key, $value) {
+function isSoft(&$array, $key, $value) {
   return array_key_exists($key, $array) && ($array[$key] === $value);
 }
 function unsetSoft(&$array, $key) {
@@ -321,6 +321,10 @@ function optionsHelper($options, $argname) {
       $r .= "<option value='$key'>$text</option>";
   $r .= '</select>';
   return $r;
+}
+
+function pythonEscape($string) {
+  return "'''" . addslashes($string) . "'''";
 }
 
 

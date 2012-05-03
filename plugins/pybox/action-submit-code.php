@@ -13,12 +13,16 @@ function safepythonsimple($program, $stdin="") {
   return safepython(array("program.py" => $program), "program.py", $stdin);
 }
 
-function safepython($files, $mainfile, $stdin, $cpulimit = 1, $outfiles = array(), $uidfixed = FALSE) {
+function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
 // execute the python $program using safeexec (here $program is a string or file reference)
 // $stdin is the standard input for the program
 //
 // safepython will copy all relevant files to a new jail subdirectory and clean it up after
 // only permanent side effect should be a log entry
+//
+// $files is an associative array of (filename => NULL | <string>)
+// <string>: the file is created non-writeable and filled with <string>
+// NULL: the file is create writeable and empty
 //
 // outputs in array format: see end of code
    if (!is_numeric($cpulimit) || !is_int($cpulimit+0) || $cpulimit <= 0 || $cpulimit > 10) 
@@ -39,12 +43,12 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1, $outfiles = array(
    chmod(PJAIL . $dir, 0710); //new scratch directory owned by user and group apache
 
    foreach ($files as $filename=>$contents) 
-     softDump ( html_entity_decode($contents), PJAIL . $dir . $filename);
-
-   foreach ($outfiles as $filename=>$ignored) {
-     softDump ( "", PJAIL . $dir . $filename);
-     chmod(PJAIL . $dir . $filename, 0777); 
-   }
+     if ($contents === NULL) { // file for output
+       softDump ( "", PJAIL . $dir . $filename);
+       chmod(PJAIL . $dir . $filename, 0777); 
+     }
+     else  // file for input
+       softDump ( html_entity_decode($contents), PJAIL . $dir . $filename);
 
    $safeexecOutFile = PJAIL . $dir . "safeexec.out";
    $stderrFile = PJAIL . $dir . "stderr.out";
@@ -91,17 +95,16 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1, $outfiles = array(
 		     array("meta"=>array("loadLevel"=>$loadLevel,"safeexec reported cputime"=>$cpuTime)));
 
    $outdata = array();
-   foreach ($outfiles as $filename=>$ignored) 
-     $outdata[$filename] = file_get_contents(PJAIL . $dir . $filename);
+   foreach ($files as $filename=>$data) 
+     if ($data === NULL)
+       $outdata[$filename] = file_get_contents(PJAIL . $dir . $filename);
 
-   $keepTemp = FALSE;
+   $keepTemp = TRUE;//FALSE;
    if (!$keepTemp) {
      // delete all temp things
      unlink($safeexecOutFile);
      unlink($stderrFile);
      foreach ($files as $filename=>$ignore) 
-       unlink(PJAIL . $dir . $filename);
-     foreach ($outfiles as $filename=>$ignore) 
        unlink(PJAIL . $dir . $filename);
      rmdir(PJAIL . $dir);  
    }
@@ -151,7 +154,6 @@ function optionsAndDefaults() {
 
 	       // for safeexec //
 	       "cpulimit" => "1",              # in seconds; maximum 10
-	       "uidfixed" => FALSE,            # fix uid to 1000
 
 	       // etc //
 	       "haltonwrong" => "Y",           # halt after any incorrect sub-problem?
@@ -186,6 +188,9 @@ function stderrNiceify($S) {
       $i++;
     }
     else if (preg_match('|(\s*)File "/scratch|', $line)) {
+      $i++;
+    }
+    else if (preg_match('|(\s*)File "/static|', $line)) {
       $i++;
     }
     else if (preg_match('|(\s*)File "usercode", line ([\d]*), in <module>\s*|', $line, $matches)) {
@@ -224,10 +229,10 @@ function inputMaker($TC) {
     if ($usertni) 
       return FALSE;
     else
-      return "_stdin='''" . addslashes($userinput) . "'''";
+      return "_stdin=" . pythonEscape($userinput);
   }
   if ($input!==FALSE)
-    return "_stdin='''" . addslashes(softSafeDereference($input)) . "'''";
+    return "_stdin=" . pythonEscape(softSafeDereference($input));
 
   if ($generator === FALSE)
     return FALSE;
@@ -240,10 +245,13 @@ function inputMaker($TC) {
 
 function outputDescription($pass, $args) {
   extract($args);
-  $what = "output";
   if ($pass === TRUE) {
-    if ($showoutput=='Y' || $showexpected=='Y') 
-      return "Program gave the following correct $what:" . preBox($stdout, $stdoutlen);
+    if (($showoutput=='Y' || $showexpected=='Y') && $stdout != "") {
+      if ($grader == "*nograder*" || $grader == '*inplace*')
+	return "Program gave the following output:" . preBox($stdout, $stdoutlen);
+      else
+	return "Program gave the following correct output:" . preBox($stdout, $stdoutlen);
+    }
     else
       return "";
   }
@@ -253,7 +261,7 @@ function outputDescription($pass, $args) {
     elseif ($stdoutlen == 0)
       return "Program printed no output.<br>";
     else
-      return "Program gave the following $what:" . preBox($stdout, $stdoutlen);
+      return "Program gave the following output:" . preBox($stdout, $stdoutlen);
   }
 
   // pass == FAIL
@@ -265,7 +273,7 @@ function outputDescription($pass, $args) {
     $part1 = "Program output:" . preBox($stdout, $stdoutlen);
 
   if ($showexpected == 'Y' && $requiredStdout != "")
-    $part2 = "Correct $what:".preBox($requiredStdout);
+    $part2 = "Correct output:".preBox($requiredStdout);
   else
     $part2 = "";
   
@@ -274,8 +282,7 @@ function outputDescription($pass, $args) {
 
 // main function for a test case
 function doGrading($usercode, $TC) {
-  $filesToExecute = array();
-  $filesToWrite = array();
+  $files = array();
   if ($TC['showonly']!==FALSE) {
     $desired = explode(" ", $TC['showonly']);
     foreach ($TC as $name=>$value) 
@@ -286,9 +293,6 @@ function doGrading($usercode, $TC) {
   if ($TC['answer']!==FALSE)
     $TC['answer']=ensureNewlineTerminated($TC['answer']);
   
-  //$stdin = determineStdin($TC);
-  //$stdinSoft = $stdin === FALSE ? "" : $stdin;
-
   $TC["inplace"] = booleanize($TC["inplace"]);
 
   extract($TC); // same as $showinput = $TC["showinput"], etc  
@@ -302,32 +306,31 @@ function doGrading($usercode, $TC) {
   $noInput = ($inputMaker === FALSE);
   $mainFile .= ($inputMaker === FALSE ? "_stdin=''" : $inputMaker) 
     . "
-_geninput = (input()=='--stdin placeholder--')
-if _geninput:
- _stdincopy = open('stdincopy', 'w')
- print(_stdin, file=_stdincopy, end='')
- _stdincopy.close()
+_stdincopy = open('stdincopy', 'w')
+print(_stdin, file=_stdincopy, end='')
+_stdincopy.close()
 ";
 
   if ($precode !== FALSE) 
     $mainFile .= softSafeDereference($precode) . "\n";
 
-  $filesToWrite['stdincopy'] = NULL;
+  $files['stdincopy'] = NULL;
 
-  global $inputInUse;
-  if (!$inputInUse && $inplace) {
+  $mainFile .= "import _GRADER\n";
+  $mainFile .= "_G = _GRADER\n";
+
+  global $inputInUse, $facultative;
+
+  if (!$inputInUse && ($inplace || $solver !== FALSE)) {
     if ($solver !== FALSE) 
-      $filesToExecute['solver'] = $solver;
-    $mainFile .= "import _GRADER\n";
-    $mainFile .= "_G = _GRADER\n";
+      $files['solver'] = $solver;
     if ($solver !== FALSE) 
       $mainFile .= "_GRADER.globalsInitAndEcho(globals())\n";
     else
       $mainFile .= "_GRADER.globalsInitAndEcho(globals(), False)\n";
-    $filesToWrite['graderreply'] = NULL;
-    $filesToWrite['graderpre'] = NULL;
-    $filesToWrite['solverstdout'] = NULL;
-    //$filesToExecute['stdincopy'] = $stdinSoft;
+    $files['graderreply'] = NULL;
+    $files['graderpre'] = NULL;
+    $files['solverstdout'] = NULL;
     $mainFile .= "_GRADER.runSolverWithTests()\n"; // run the solver before usercode, lest they mess up our globals.
     
     $testcode = "";
@@ -355,43 +358,57 @@ if _geninput:
 	else $testcode .= $autotestline . "\n"; // just leave it alone
       }
     }
-    $filesToExecute['testcode'] = $testcode === FALSE ? "" : softSafeDereference($testcode) . "\n";
+    $files['testcode'] = $testcode === FALSE ? "" : softSafeDereference($testcode) . "\n";
   }
 
   $mainFile .= '
-if _geninput:
- _origstdin = _sys.stdin
- _sys.stdin = _StringIO(_stdin)
+_orig_std = (_sys.stdin, _sys.stdout)
+_user_stdout = _StringIO()
+_sys.stdout = _TeeOut(_user_stdout, _orig_std[1])
+_sys.stdin = _StringIO(_stdin)
 exec(compile(open(\'usercode\').read(), \'usercode\', \'exec\'))
-if _geninput:
- _sys.stdin = _origstdin
 ';
-
-  if (!$inputInUse && $inplace) {
-    $mainFile .= "exec(compile(open('testcode').read(), 'testcode', 'exec'))\n";
-    $mainFile .= "_GRADER.end()\n";    
+  if (!$inputInUse) { // lesson 18, part 2: may do this even if facultative
+    if ($inplace) {
+      $mainFile .= "exec(compile(open('testcode').read(), 'testcode', 'exec'))\n";
+      $mainFile .= "_G.say('Y', 'noend')\n"; // success if none of the tests crash
+    }
   }
-  
+  // we've got all the user stdout necessary for testing
+$mainFile .= '
+__user_stdout = _user_stdout.getvalue()
+_user_stdout.close()
+(_sys.stdin, _sys.stdout) = _orig_std
+';
+  if (!$facultative && !$inputInUse) {
+    if ($answer !== FALSE) {
+      $mainFile .= "_G._solver_stdout = " . pythonEscape(softSafeDereference($answer)) . "\n";
+    }
+    if ($grader !== '*nograder*' && ($answer !== FALSE || $solver !== FALSE)) {
+      $mainFile .= "_G.stdoutGrading(_stdin, __user_stdout, _G._solver_stdout, " .pythonEscape(softSafeDereference($grader))." )\n";
+      $files['stdoutgraderreply'] = NULL;
+    }
+  }
+
   $testDescription = FALSE;
 
-  $filesToExecute["usercode"] = $usercode;
+  $files["usercode"] = $usercode;
 
   global $usertni;
 
   if ($inputInUse && $usertni) {
     $mainFile .= "\n" . "exec(compile(open('usertests').read(), 'usertests', 'exec'))\n";
     global $userinput;
-    $filesToExecute['usertests'] = $userinput;
+    $files['usertests'] = $userinput;
   }
 
-  $filesToExecute["mainfile"] = $mainFile;
+  $files["mainfile"] = $mainFile;
 
-  $userResult = safepython($filesToExecute, "mainfile", "--stdin placeholder--", $cpulimit, $filesToWrite, $uidfixed);
+  $userResult = safepython($files, "mainfile", "" /* stdin is simulated */, $cpulimit);
 
   extract($userResult);
 
   // start printing stuff out now.
-
   $m = '';
 
   if ($testDescription != FALSE)
@@ -423,8 +440,6 @@ if _geninput:
   if ($showsafeexec=="Y")
     $m .= "Sandbox messages:" . preBox($safeexecOut);
 
-  global $facultative;
-
   $simpleOutputDescription = outputDescription
     (NULL, array('showoutput'=>$showoutput, 'stdoutlen'=>$stdoutlen, 'hideemptyoutput'=>$hideemptyoutput,
 		 'stdout'=>$stdout, 'ok'=>$ok));
@@ -448,8 +463,10 @@ if _geninput:
   }
 
   if ($inplace) { // don't care what's in stdout, unless solverstdout != ''
-    $inplaceresult = substr($outdata['graderreply'], -1);
-    $inplacereply = substr($outdata['graderreply'], 0, -1);
+    $GR = $outdata['graderreply'];
+    $inplaceresult = substr($GR, -1);
+    $inplacereply = substr($GR, 0, -1);
+
     if ($inplacereply != '')
       $inplacereply = "<i>The grader said:</i><div>$inplacereply</div>";
 
@@ -459,85 +476,27 @@ if _geninput:
     }
     elseif ($inplaceresult == 'N')
       return tcfail($m . $inplacereply . $errnice . $simpleOutputDescription);
-    else
-      throw new PyboxException("Grader Internal Error 1 | $m | $simpleOutputDescription | $errnice | " . $outdata['graderreply']);
-    $m .= $inplacereply; //carry on
+
+    $m .= $inplacereply; // carry on and let the stdout grader do its thing
   }
 
-  // the user's code did not crash, and we need to grade it.
-  $requiredStdout = FALSE;
+  // the user's code did not crash. what did the stdout grader say?
+  $outGraderReply = $outdata['stdoutgraderreply'];
+  if ($outGraderReply=="" || !( $outGraderReply[0] == "Y" || $outGraderReply[0] == "N") )
+    throw new PyboxException("Grader error 2 [" . $outGraderReply .'|' . $outdata['graderreply'] . "|" . ord(substr($outdata['graderreply'], -1)) . "| $m ]");
 
-  if ($inplace) // passed the in-Python tests, now test its output 
-    $requiredStdout = $outdata['solverstdout'];
-  else if ($answer !== FALSE) 
-    $requiredStdout = ensureNewlineTerminated(softSafeDereference($answer));
-  else if ($solver !== FALSE) {
-    $filesToExecute["usercode"] = softSafeDereference($solver);
-    $solverResult = safepython($filesToExecute, "mainfile", "\n".$outdata['stdincopy'], $cpulimit, $filesToWrite);
-    if (!$solverResult["ok"])
-      throw new PyboxException('Grader Internal Error 2 ' . $m . print_r($solverResult, TRUE) . $outdata['stdincopy']);
-    $requiredStdout = $solverResult["stdout"];
-  }
-  else if ($grader=='') 
-    throw new PyboxException('Grader Internal Error 3 ');
+  $outinfo = array('stdout'=>$stdout, 'stdoutlen'=>$stdoutlen,
+		   'requiredStdout'=>getSoft($outdata, 'solverstdout', $answer),
+		   'showoutput'=>$showoutput, 'showexpected'=>$showexpected, 'grader'=>$grader);
+  $m .= outputDescription($outGraderReply[0] == "Y", $outinfo) . $errnice;
 
-  $outinfo = array('stdout'=>$stdout, 'stdoutlen'=>$stdoutlen, 'requiredStdout'=>$requiredStdout, 
-		   'showoutput'=>$showoutput, 'showexpected'=>$showexpected);
+  if (strlen(trim($outGraderReply)) > 1)
+    $m .= "<p>Result of grading: " . substr($outGraderReply, 1) . "</p>";
 
-  $outputsUponPass = outputDescription(TRUE, $outinfo) . $errnice;
-  $outputsUponFail = outputDescription(FALSE, $outinfo) . $errnice;
+  return ($outGraderReply[0]=="Y") ? tcpass($m) : tcfail($m);
+}
+// end of doGrading
 
-  if ($grader=="*diff*" || $grader=='*strictdiff*') {
-    $what = "output";
-    $m .= "<p><i>Checking the output:</i><br/>";
-    if ($requiredStdout===FALSE) 
-      throw new PyboxException("No correct answer given -- cannot evaluate.</p>" . $outputsUponFail . $m);
-    if (ensureNewlineTerminated($stdout)==ensureNewlineTerminated($requiredStdout))
-      return tcpass($m . $outputsUponPass);
-    else if ($grader == '*diff*' && preg_replace( '/\s+/', '', $stdout) === preg_replace( '/\s+/', '', $requiredStdout))
-      return tcfail($m . "Your $what is incorrect, but just barely. Either whitespace characters (e.g. space,
-newline) are missing, or unnecessary ones are present.</p>" . $outputsUponFail); 
-    else 
-      return tcfail($m . "Your $what is not correct.</p>" . $outputsUponFail);
-  }
-
-  //custom grader
-
-  $grader = softSafeDereference($grader);
-  if ($grader === FALSE) throw new PyboxException("Grader not found" . print_r($TC, TRUE));
-  $actualGrader = GRADERPREAMBLE . "\n" . $grader;
-  if ($actualGrader === FALSE) throw new PyboxException("Grader could not be wrapped" . print_r($TC, TRUE));
-  
-  $graderinput = rawurlencode($outdata['stdincopy']) . "\n";
-  $graderinput .= rawurlencode((($requiredStdout===FALSE)?"":$requiredStdout)) . "\n";
-  $graderinput .= rawurlencode($stdout) . "\n";
-  
-  $graderResult = safepythonsimple($actualGrader, $graderinput);
-
-  if ($graderResult["stdout"]=="")
-    throw new PyboxException("Grader error 1" . print_r($graderResult, TRUE));
-
-  if ($graderResult["stdout"][0]=="Y") 
-    $m .= $outputsUponPass;
-  else
-    $m .= $outputsUponFail;
-  
-  if ((substr($graderResult["safeexecOut"], 0, 2)!="OK") || ($graderResult["stdout"]==""))
-    throw new PyboxException("Grader did not run correctly. Debug info:" . print_r($graderResult, TRUE) . $m);
-  
-  $graderReply = trim(substr($graderResult["stdout"], 1));
-  if ($graderReply != '')
-    $graderReply = "<p>Result of grading: $graderReply</p>";
-
-  $m .= $graderReply;
-
-  if ($graderResult["stdout"][0]=="Y") 
-    return tcpass($m);
-  elseif ($graderResult["stdout"][0]=="N")
-    return tcfail($m);
-  else
-    throw new PyboxException("Grader did not run correctly. Debug info:" . print_r($graderResult, TRUE) . $m);
-} // end of doGrading
 
 // this is only for saving completed coding exercises; short answer etc work differently.
 function saveCompletion() {
@@ -667,6 +626,9 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   }
 
   $inputInUse = isSoft($_POST, "inputInUse", "Y");
+  /*  var_dump( $_POST, TRUE);
+  echo "eq: " .(($_POST["inputInUse"] === "Y") ? "T":"F");
+  echo "inputinuse: " . ($inputInUse ? "T":"F");*/
   if ($inputInUse && !isSoft($problemOptions, "allowinput", "Y")) 
     return merror("", "Pybox error: input not actually allowed");
 

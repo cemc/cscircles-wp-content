@@ -414,23 +414,14 @@ function pyBoxHandler($options, $content) {
   $cosmeticOptions = array('defaultcode', 'autocommentline', 'console', 
 			   'rows', 'disablericheditor', 'scramble', 'readonly',
 			   'showeditortoggle', 'title');
-  $optionString = "";
   $copyForGrader = array();
   foreach ($options as $optname => $optvalue) {
     if (!in_array($optname, $cosmeticOptions))
-      {
-	$optionString .= $optname . "\n" . addcslashes($optvalue, NASTYCHARACTERS) . "\n";
 	$copyForGrader[$optname] = $optvalue;
-      }
   }
   $optionsJson = json_encode($copyForGrader);
 
   $hash = md5($shortcodeOptions . $optionsJson);
-  //if (!file_exists(PHASHESDIR . $hash)) { 
-  //  $file = fopen(PHASHESDIR . $hash, "w");
-  //  fwrite($file, $optionString);
-  //  fclose($file);
-  //}
 
   $slug = getSoft($options, 'slug', 'NULL');
 
