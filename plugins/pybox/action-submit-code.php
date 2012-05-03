@@ -99,7 +99,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
      if ($data === NULL)
        $outdata[$filename] = file_get_contents(PJAIL . $dir . $filename);
 
-   $keepTemp = TRUE;//FALSE;
+   $keepTemp = FALSE;
    if (!$keepTemp) {
      // delete all temp things
      unlink($safeexecOutFile);
