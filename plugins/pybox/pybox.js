@@ -314,7 +314,10 @@ function pbSelectChange(event) {
 }
 
 function stayHere(event) {
-    if (!$(event.target).hasClass('open-same-window')) 
+    if (!
+	($(event.target).hasClass('open-same-window')
+	 || $(event.target).parents('.open-same-window').length > 0)
+       )
 	$(event.target).attr('target', '_blank');
     return true;
 }

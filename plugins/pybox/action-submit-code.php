@@ -142,7 +142,6 @@ function optionsAndDefaults() {
 	       "solver" => FALSE,
 	       "repeats" => "1",   
 	       "generator" => FALSE,
-	       "geninput" => FALSE,            # never actually used as of 2012-03-08
 
 	       // additional things which run in Python along with the user code //
 	       "precode" => FALSE,
@@ -217,25 +216,26 @@ function stderrNiceify($S) {
   function tcpass($message) {return array("result" => "pass", "message" => $message, "errmsg" => FALSE);}
   function tcfail($message) {return array("result" => "fail", "message" => $message, "errmsg" => FALSE);}
 
-function determineStdin($TC) {
+function inputMaker($TC) {
   global $inputInUse, $userinput, $usertni;
   extract($TC);
+
   if ($inputInUse) {
     if ($usertni) 
-      return "";
+      return FALSE;
     else
-      return str_replace("\r", "", $userinput);
+      return "_stdin='''" . addslashes($userinput) . "'''";
   }
   if ($input!==FALSE)
-    return softSafeDereference($input);
-  if ($generator !== FALSE) {
-    $genResult = safepythonsimple(GENERATORPREAMBLE . "\n" . $generator, $geninput);
-    if (!$genResult["ok"]) 
-      throw new PyboxException('Generator failed '.preBox($generator).
-			       preBox($geninput).print_r($genResult,TRUE));
-    return $genResult["stdout"];
-  }
-  return FALSE;
+    return "_stdin='''" . addslashes(softSafeDereference($input)) . "'''";
+
+  if ($generator === FALSE)
+    return FALSE;
+
+  return "def _genstdin():\n" 
+    . " _stdout = _sys.stdout\n _sys.stdout = mystdout = _StringIO()\n"
+    . str_replace("\n", "\n ", "\n" . $generator) . "\n _sys.stdout = _stdout\n return mystdout.getvalue()\n"
+    . "\n_stdin = _genstdin()";
 }
 
 function outputDescription($pass, $args) {
@@ -286,8 +286,8 @@ function doGrading($usercode, $TC) {
   if ($TC['answer']!==FALSE)
     $TC['answer']=ensureNewlineTerminated($TC['answer']);
   
-  $stdin = determineStdin($TC);
-  $stdinSoft = $stdin === FALSE ? "" : $stdin;
+  //$stdin = determineStdin($TC);
+  //$stdinSoft = $stdin === FALSE ? "" : $stdin;
 
   $TC["inplace"] = booleanize($TC["inplace"]);
 
@@ -297,19 +297,27 @@ function doGrading($usercode, $TC) {
   $er = FALSE;
 
   $mainFile .= "from _UTILITIES import *\n";
-  $filesToExecute['_UTILITIES.py'] = "@file:submit/_UTILITIES.py";
+
+  $inputMaker = inputMaker($TC);
+  $noInput = ($inputMaker === FALSE);
+  $mainFile .= ($inputMaker === FALSE ? "_stdin=''" : $inputMaker) 
+    . "
+_geninput = (input()=='--stdin placeholder--')
+if _geninput:
+ _stdincopy = open('stdincopy', 'w')
+ print(_stdin, file=_stdincopy, end='')
+ _stdincopy.close()
+";
 
   if ($precode !== FALSE) 
     $mainFile .= softSafeDereference($precode) . "\n";
 
+  $filesToWrite['stdincopy'] = NULL;
+
   global $inputInUse;
   if (!$inputInUse && $inplace) {
-    if ($solver !== FALSE) {
+    if ($solver !== FALSE) 
       $filesToExecute['solver'] = $solver;
-      $filesToExecute['_SOLVERANDTESTS.py'] = "@file:submit/_SOLVERANDTESTS.py";
-    }
-    else $filesToExecute['_SOLVERANDTESTS.py'] = '';
-    $filesToExecute['_GRADER.py'] = "@file:submit/_GRADER.py";
     $mainFile .= "import _GRADER\n";
     $mainFile .= "_G = _GRADER\n";
     if ($solver !== FALSE) 
@@ -319,7 +327,7 @@ function doGrading($usercode, $TC) {
     $filesToWrite['graderreply'] = NULL;
     $filesToWrite['graderpre'] = NULL;
     $filesToWrite['solverstdout'] = NULL;
-    $filesToExecute['stdincopy'] = $stdinSoft;
+    //$filesToExecute['stdincopy'] = $stdinSoft;
     $mainFile .= "_GRADER.runSolverWithTests()\n"; // run the solver before usercode, lest they mess up our globals.
     
     $testcode = "";
@@ -350,8 +358,14 @@ function doGrading($usercode, $TC) {
     $filesToExecute['testcode'] = $testcode === FALSE ? "" : softSafeDereference($testcode) . "\n";
   }
 
-  $mainFile .= "\n";
-  $mainFile .= "exec(compile(open('usercode').read(), 'usercode', 'exec'))\n";
+  $mainFile .= '
+if _geninput:
+ _origstdin = _sys.stdin
+ _sys.stdin = _StringIO(_stdin)
+exec(compile(open(\'usercode\').read(), \'usercode\', \'exec\'))
+if _geninput:
+ _sys.stdin = _origstdin
+';
 
   if (!$inputInUse && $inplace) {
     $mainFile .= "exec(compile(open('testcode').read(), 'testcode', 'exec'))\n";
@@ -372,7 +386,7 @@ function doGrading($usercode, $TC) {
 
   $filesToExecute["mainfile"] = $mainFile;
 
-  $userResult = safepython($filesToExecute, "mainfile", $stdinSoft, $cpulimit, $filesToWrite, $uidfixed);
+  $userResult = safepython($filesToExecute, "mainfile", "--stdin placeholder--", $cpulimit, $filesToWrite, $uidfixed);
 
   extract($userResult);
 
@@ -386,9 +400,9 @@ function doGrading($usercode, $TC) {
   if (!$inputInUse && $inplace && trim($outdata['graderpre']) != '')
     $m .= '<i>Before running your code:</i> ' . $outdata['graderpre'] . '<br/>';
 
-  if ($showinput=="Y" && !$inputInUse && $stdin !== FALSE &&
-      ($hideemptyinput=="N" || $stdin!=""))
-    $m .= "Input:" . preBox($stdin);
+  if ($showinput=="Y" && !$inputInUse && !$noInput &&
+      ($hideemptyinput=="N" || $outdata['stdincopy']!=""))
+    $m .= "Input:" . preBox($outdata['stdincopy']);
 
   $errnice = preBox(stderrNiceify($stderr), $stderrlen);
   if (userIsAdmin()) 
@@ -459,9 +473,9 @@ function doGrading($usercode, $TC) {
     $requiredStdout = ensureNewlineTerminated(softSafeDereference($answer));
   else if ($solver !== FALSE) {
     $filesToExecute["usercode"] = softSafeDereference($solver);
-    $solverResult = safepython($filesToExecute, "mainfile", $stdinSoft, $cpulimit, $filesToWrite);
+    $solverResult = safepython($filesToExecute, "mainfile", "\n".$outdata['stdincopy'], $cpulimit, $filesToWrite);
     if (!$solverResult["ok"])
-      throw new PyboxException('Grader Internal Error 2 ' . $m . print_r($solverResult, TRUE));
+      throw new PyboxException('Grader Internal Error 2 ' . $m . print_r($solverResult, TRUE) . $outdata['stdincopy']);
     $requiredStdout = $solverResult["stdout"];
   }
   else if ($grader=='') 
@@ -494,7 +508,7 @@ newline) are missing, or unnecessary ones are present.</p>" . $outputsUponFail);
   $actualGrader = GRADERPREAMBLE . "\n" . $grader;
   if ($actualGrader === FALSE) throw new PyboxException("Grader could not be wrapped" . print_r($TC, TRUE));
   
-  $graderinput = rawurlencode($stdin) . "\n";
+  $graderinput = rawurlencode($outdata['stdincopy']) . "\n";
   $graderinput .= rawurlencode((($requiredStdout===FALSE)?"":$requiredStdout)) . "\n";
   $graderinput .= rawurlencode($stdout) . "\n";
   
