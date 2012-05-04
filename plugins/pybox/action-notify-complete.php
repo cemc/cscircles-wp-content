@@ -4,6 +4,7 @@ require_once("include-me.php");
 require_once(PWP_LOADER);
 
 $problem = $_POST["problem"];
+
   
 global $current_user;
 get_currentuserinfo();

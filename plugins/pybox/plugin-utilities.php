@@ -310,6 +310,20 @@ function endProfilingEntry($id, $data=array()) {
   $wpdb->update($table_name, $data, array('ID' => $id));
 }
 
+// don't actually do separate start and end calls; just a single thing
+function retroProfilingEntry($seconds, $data=array()) {
+  date_default_timezone_set('America/New_York');
+  $data['start'] = date( 'Y-m-d H:i:s', time() );
+  $data['preciseEnd'] = implode(".", timeAndMicro());
+  $data['preciseStart'] = $data['preciseEnd'] - $seconds;
+  $data['duration'] = $seconds;
+  $data['userid'] = getUserID();
+  if (array_key_exists('meta', $data))
+    $data['meta'] = json_encode($data['meta']);
+  global $wpdb;
+  $wpdb->insert( "wp_pb_profiling", $data );
+}
+
 function optionsHelper($options, $argname) {
   // $options is an associative array mapping value=>text for html <options> elements
   $select = getSoft($_GET, $argname, NULL);
