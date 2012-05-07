@@ -505,8 +505,8 @@ if (!$facultative && !$scramble) {
     $r .= "Enter text for the message below. <i>Be sure to explain where you're stuck and what you've tried so far. 
           Your partial solution code will be automatically included with the message.</i>";
     $r .= "<textarea style='font-family: serif'></textarea>";
-    $r .= "<table class='helpControls'><tr><td style='width: 50%'><a href='javascript:sendMessage($id,\"$slug\")'>Send this message</a></td><td style='width: 50%'>
-           <a href='javascript:helpClick($id)'>Cancel</a></td></tr></table>";
+    $r .= "<table class='helpControls'><tr><td style='width: 50%'><a onclick='sendMessage($id,\"$slug\")'>Send this message</a></td><td style='width: 50%'>
+           <a onclick='helpClick($id)'>Cancel</a></td></tr></table>";
   }
 
   $r .= '</div></div>';
