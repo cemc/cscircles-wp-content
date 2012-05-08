@@ -9,10 +9,6 @@ require_once(PWP_LOADER);
 // is this a performance hit (from loading all of wordpress?) 
 
 
-function safepythonsimple($program, $stdin="") {
-  return safepython(array("program.py" => $program), "program.py", $stdin);
-}
-
 function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
 // execute the python $program using safeexec (here $program is a string or file reference)
 // $stdin is the standard input for the program
