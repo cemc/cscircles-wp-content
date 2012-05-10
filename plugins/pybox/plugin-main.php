@@ -116,6 +116,8 @@ add_filter("mce_buttons", "enable_more_buttons");
 
 remove_action( 'wp_head', 'feed_links', 2 ); 
 // Don't display the links to the general feeds: Post and Comment Feed
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'rsd_link' );
 
 add_filter("robots_txt", "domo_arigato");
 
