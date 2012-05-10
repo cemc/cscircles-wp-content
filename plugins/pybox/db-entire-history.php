@@ -45,7 +45,7 @@ echo dbFlexigrid
      $u = get_userdata($user);
      if ($u === false)
        return "User number not found.";
-     if (get_user_meta($user, 'pbguru', true) != $current_user->user_login) {
+     if (strcasecmp(get_user_meta($user, 'pbguru', true) , $current_user->user_login)!=0) {
        return "User $user does not have you as their guru.";
      }
    }
