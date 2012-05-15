@@ -413,7 +413,7 @@ function pyBoxHandler($options, $content) {
 
   $cosmeticOptions = array('defaultcode', 'autocommentline', 'console', 
 			   'rows', 'disablericheditor', 'scramble', 'readonly',
-			   'showeditortoggle', 'title');
+			   'showeditortoggle', 'title', 'placeholder');
   $copyForGrader = array();
   foreach ($options as $optname => $optvalue) {
     if (!in_array($optname, $cosmeticOptions))
@@ -560,7 +560,9 @@ if (!$facultative && !$scramble) {
 
     //cols=... required for valid html but width actually set by css
     //height is set explicitly since it's the only way for IE to render the textarea at the correct height
-    $r .= "<div class='pyboxTextwrap pyboxCodewrap $c $s' $h><textarea wrap='off' name='usercode$id' id='usercode$id' cols=10 rows=$rows $ro $p class='pyboxCode $c'>\n";
+    $pl = (array_key_exists("placeholder", $options)) ? ("placeholder='" . $options['placeholder'] . "'") : "";
+
+    $r .= "<div class='pyboxTextwrap pyboxCodewrap $c $s' $h><textarea wrap='off' name='usercode$id' id='usercode$id' $pl cols=10 rows=$rows $ro $p class='pyboxCode $c'>\n";
     $r .= $thecode;
     $r .= '</textarea></div>'."\n";
   }
