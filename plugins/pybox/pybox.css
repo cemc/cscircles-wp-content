@@ -5,6 +5,10 @@
     z-index: 999 !important; // not to overlap modal dialogs
 }
 
+#content .wp-accordion {
+	margin: 5px 0px;
+}
+
 .prebox { overflow-x: auto; }
 .miny { font-size: 60%; }
 #content img.latex {
