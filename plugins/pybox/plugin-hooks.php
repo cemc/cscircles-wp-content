@@ -181,10 +181,34 @@ function pb_menu_items($wp_admin_bar) {
   $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact Us (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
   
   if (current_user_can('level_10')) {	  
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_bloginfo('wpurl') .'/wp-admin/index.php', 'title'=>'ADMIN: Admin Dashboard', 'id'=>'dancer'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => get_edit_post_link(), 'title'=>'ADMIN: Edit Current Page', 'id'=>'dasher'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "admin-manual/", 'title'=>"ADMIN: Manual Pages", 'id'=>'prancer'));
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => "/~atkong/pma/", 'title'=>'ADMIN: Database Frontend', 'id'=>'nixon'));
+
+    $wp_admin_bar->add_node( array(
+				   'id'        => 'admin-menu',
+				   'parent'    => 'top-secondary',
+				   'title'     => 'ADMIN',
+				   'meta'      => array(
+							'class'     => '',
+							'title'     => __('Admin Menu'),
+							),
+				   ) );
+
+    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => get_bloginfo('wpurl') .'/wp-admin/index.php', 'title'=>'Wordpress Dashboard', 'id'=>'dancer'));
+    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => get_edit_post_link(), 'title'=>'Edit THIS Page', 'id'=>'dasher'));
+    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => "/~atkong/pma/", 'title'=>'MySQL Frontend', 'id'=>'nixon'));
+
+    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'title' => 'Daily submit-code usage', 'href' => get_bloginfo('wpurl') .
+				    'profiling/?frequency=10&activity=submit-code', 'id'=>'zixon'));
+
+    $ap = get_page_by_title('Admin Pages');
+
+    $wp_admin_bar->add_node( array ('parent'=>'admin-menu', 'href' => get_permalink($ap->ID), 'title'=>'[listing of admin-manual]', 'id'=>'zumba'.($ap->ID)));
+
+    $pages = get_pages( array('child_of' => $ap->ID, 'post_status'=>'publish,private'));
+    foreach ($pages as $page) {
+      $wp_admin_bar->add_node( array ('parent'=>'admin-menu', 'href'=> get_permalink($page), 'title' => $page->post_title, 
+				      'id' => 'am'.$page->ID));
+    }
+
   }      
 
 }
