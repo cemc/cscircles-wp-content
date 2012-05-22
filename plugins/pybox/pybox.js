@@ -496,6 +496,9 @@ function setCommandLabel(id, name, label) {
 
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   
+
+	alert('CS Circles will be down for scheduled maintenance from 1 PM to 4 PM today (Tuesday May 22).');
+
 	$('ul.pyscramble').sortable();
 	$('.resizy').resizable({handles:'s',minHeight:50});
 	$('.wp-tabs > div').each(tabby);
