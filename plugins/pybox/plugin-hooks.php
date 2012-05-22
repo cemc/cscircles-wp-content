@@ -196,10 +196,10 @@ function pb_menu_items($wp_admin_bar) {
     $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => get_edit_post_link(), 'title'=>'Edit THIS Page', 'id'=>'dasher'));
     $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => "/~atkong/pma/", 'title'=>'MySQL Frontend', 'id'=>'nixon'));
 
-    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'title' => 'Daily submit-code usage', 'href' => get_bloginfo('wpurl') .
-				    'profiling/?frequency=10&activity=submit-code', 'id'=>'zixon'));
-
     $ap = get_page_by_title('Admin Pages');
+
+    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'title' => 'Daily submit-code usage', 'href' => get_permalink($ap) .
+				    '/profiling/?frequency=10&activity=submit-code', 'id'=>'zixon'));
 
     $wp_admin_bar->add_node( array ('parent'=>'admin-menu', 'href' => get_permalink($ap->ID), 'title'=>'[listing of admin-manual]', 'id'=>'zumba'.($ap->ID)));
 
