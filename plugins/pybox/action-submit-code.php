@@ -263,8 +263,13 @@ function outputDescription($pass, $args) {
   // pass == FAIL
   if ($showoutput != 'Y')
     $part1 = "";
-  elseif ($stdoutlen == 0)
-    $part1 = "Program printed no output.<br/>";
+  elseif ($stdoutlen == 0) {
+    $part1 = "Program printed no output.";
+    if ($requiredStdout != "") {
+      $part1 .= " <i>(Did you forget to use </i><code>print</code><i>?)</i>";
+    }
+    $part1 .= "<br/>";
+  }
   else
     $part1 = "Program output:" . preBox($stdout, $stdoutlen);
 
