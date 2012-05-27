@@ -274,7 +274,7 @@ function outputDescription($pass, $args) {
     $part1 = "Program output:" . preBox($stdout, $stdoutlen);
 
   if ($showexpected == 'Y' && $requiredStdout != "")
-    $part2 = "Correct output:".preBox($requiredStdout);
+    $part2 = "Expected this correct output:".preBox($requiredStdout);
   else
     $part2 = "";
   

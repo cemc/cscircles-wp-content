@@ -580,7 +580,7 @@ if (!$facultative && !$scramble) {
 	"Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> below.";
     else
       $description =
-	"You may enter input for the program in the box above.";
+	"You may enter input for the program in the box below.";
 
     $r .= '<div name="pyinput" id="pyinput'.$id.'">';
     $r .= $description;
