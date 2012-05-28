@@ -625,7 +625,8 @@ if (!$facultative && !$scramble) {
       // we put in single-quotes, rather than json's default double quotes, for compatibility with
       // our $button usage
       $dc = substr(json_encode(htmlspecialchars_decode($defaultcode, ENT_QUOTES), JSON_HEX_APOS), 1, -1);
-      $actions['default'] = array('value'=>'Reset code to default', 'onclick'=>"pbSetText($id,'$dc')", );
+      $r .= "<input type='hidden' id='defaultCode$id' value='$dc'></input>\n";
+      $actions['default'] = array('value'=>'Reset code to default', 'onclick'=>"pbSetText($id,descape(defaultCode$id.value))", );
     }
   }
 

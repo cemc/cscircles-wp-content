@@ -494,6 +494,11 @@ function setCommandLabel(id, name, label) {
     $('#pybox'+id+' option[name="'+name+'"]').html(label);
 }
 
+function descape(S) {
+    S = S.replace(/\\\"/g, '"').replace(/\\\'/g, "'").replace(/\\n/g, '\n').replace(/\\\\/g, '\\');
+    return S;
+}
+
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   
 
