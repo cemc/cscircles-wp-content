@@ -495,7 +495,9 @@ function setCommandLabel(id, name, label) {
 }
 
 function descape(S) {
-    S = S.replace(/\\\"/g, '"').replace(/\\\'/g, "'").replace(/\\n/g, '\n').replace(/\\\\/g, '\\').replace(/\\\//g, '/');
+    // because jquery is giving me some funny weirdness.
+    S = S.replace(/\\\"/g, '"').replace(/\\\'/g, "'").replace(/\\n/g, '\n').replace(/\\\//g, '/');
+    S = S.replace(/\\\\/g, '\\');
     return S;
 }
 
