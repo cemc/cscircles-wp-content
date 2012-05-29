@@ -192,26 +192,25 @@ function pb_menu_items($wp_admin_bar) {
 							),
 				   ) );
 
-    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => get_bloginfo('wpurl') .'/wp-admin/index.php', 'title'=>'Wordpress Dashboard', 'id'=>'dancer'));
-    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => get_edit_post_link(), 'title'=>'Edit THIS Page', 'id'=>'dasher'));
-    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => "/~atkong/pma/", 'title'=>'MySQL Frontend', 'id'=>'nixon'));
-
-    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => 'http://107.22.148.206/trace-log.txt',
-				    'title'=>'AWS EC2 visualizer log'));
-
     $ap = get_page_by_title('Admin Pages');
 
-    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'title' => 'Daily submit-code usage', 'href' => get_permalink($ap) .
-				    '/profiling/?frequency=10&activity=submit-code', 'id'=>'zixon'));
-
-    $wp_admin_bar->add_node( array ('parent'=>'admin-menu', 'href' => get_permalink($ap->ID), 'title'=>'[listing of admin-manual]', 'id'=>'zumba'.($ap->ID)));
+    $more_links = array(
+			'Wordpress Dashboard' => get_bloginfo('wpurl') .'/wp-admin/index.php',
+			'Edit THIS Page' => get_edit_post_link(),	
+			'MySQL Frontend' => "/~atkong/pma/", 
+			'AWS EC2 visualizer log' => 'http://107.22.148.206/trace-log.txt',
+			'Daily submit-code usage' => get_permalink($ap).'/profiling/?frequency=10&activity=submit-code',
+			'[listing of admin-manual follows]' => get_permalink($ap)
+			);
 
     $pages = get_pages( array('child_of' => $ap->ID, 'post_status'=>'publish,private'));
-    foreach ($pages as $page) {
-      $wp_admin_bar->add_node( array ('parent'=>'admin-menu', 'href'=> get_permalink($page), 'title' => $page->post_title, 
-				      'id' => 'am'.$page->ID));
-    }
+    foreach ($pages as $page) 
+      $more_links[$page->post_title] = get_permalink($page);
 
+    $i = 0;
+    foreach ($more_links as $title => $link) {
+      $wp_admin_bar->add_node(array('parent'=>'admin-menu', 'id'=>"morelinks" . $i++, 'href' => $link, 'title' => $title));
+    }
   }      
 
 }

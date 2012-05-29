@@ -478,7 +478,7 @@ function historyClick(id,thename) {
     $('#pbhistory'+id).toggle();
     createNow = !$('#pbhistory'+id).is(":hidden") && ($('#pbhistory' + id + ' .flexigrid').length == 0);
     if (createNow) {
-	url = HISTORYURL;
+	var url = HISTORYURL;
 	pyflex({'id':'pbhistory'+id, 'url':url, 'dbparams':{'p': thename}, 'flparams':{'showCloseBtn':true}});
     }
     if ($('#pbhistory'+id).is(":hidden")) 
@@ -495,10 +495,7 @@ function setCommandLabel(id, name, label) {
 }
 
 function descape(S) {
-    // because jquery is giving me some funny weirdness.
-    S = S.replace(/\\\"/g, '"').replace(/\\\'/g, "'").replace(/\\n/g, '\n').replace(/\\\//g, '/');
-    S = S.replace(/\\\\/g, '\\');
-    return S;
+    return jQuery.parseJSON('"' + S + '"');
 }
 
 $( // this call to $ makes it delay until the DOM is loaded
