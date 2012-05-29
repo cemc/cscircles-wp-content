@@ -196,6 +196,9 @@ function pb_menu_items($wp_admin_bar) {
     $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => get_edit_post_link(), 'title'=>'Edit THIS Page', 'id'=>'dasher'));
     $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => "/~atkong/pma/", 'title'=>'MySQL Frontend', 'id'=>'nixon'));
 
+    $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'href' => 'http://107.22.148.206/trace-log.txt',
+				    'title'=>'AWS EC2 visualizer log'));
+
     $ap = get_page_by_title('Admin Pages');
 
     $wp_admin_bar->add_node( array( 'parent' => 'admin-menu', 'title' => 'Daily submit-code usage', 'href' => get_permalink($ap) .
