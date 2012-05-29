@@ -703,10 +703,10 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     $T = preg_replace('/\s+/', '', $problemOptions["originalcode"]);
     $s = strlen($S);
     $t = strlen($T);
-    $msg = "You are only allowed to change/add/delete at most $k character" .(($k>1)?"s":"") 
-      ." from the original version of the code.";
+    $msg = "You are only allowed to change at most $k character" .(($k>1)?"s":"") 
+      ." compared to the original version of the code.";
     if (abs($s-$t)>2*$k+5)
-      return mfail($msg) . " You changed at least " . (2*$k+5) . " (whitespace does not count).";
+      return mfail($msg) . " You changed " . (2*$k+5) . " or more.";
     else {
       $DP = array_fill(0, $s+1, NULL);
       for ($i=0; $i<=$s; $i++)
@@ -724,8 +724,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
 	  }
 	}
       if (($DP[$s][$t]) > (0+$k)) 
-	return mfail( $msg . " You changed " . ($DP[$s][$t]) . " (whitespace does not count).");
-      pyboxlog($k . " " . $DP[$s][$t]);
+	return mfail( $msg . " You changed " . ($DP[$s][$t]) . ".");
     }
   }
   
