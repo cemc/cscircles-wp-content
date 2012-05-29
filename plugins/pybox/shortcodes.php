@@ -419,6 +419,8 @@ function pyBoxHandler($options, $content) {
     if (!in_array($optname, $cosmeticOptions))
 	$copyForGrader[$optname] = $optvalue;
   }
+  if (array_key_exists('maxeditdistance', $options))
+    $copyForGrader['originalcode'] = $defaultcode;
   $optionsJson = json_encode($copyForGrader);
 
   $hash = md5($shortcodeOptions . $optionsJson);

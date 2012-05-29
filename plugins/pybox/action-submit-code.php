@@ -123,6 +123,7 @@ function optionsAndDefaults() {
   // note: these should be all lower case, there was once a bug in wordpress' shortcode processing otherwise
   return array( 
 	       "slug" => FALSE,                # important unless it's a pyExample or facultative
+	       "facultative" => "N",           # does this exercise not have a checkmark?
 
 	       // stuff affecting what the pybox shows upon submission //
 	       "showinput" => "Y",             
@@ -151,13 +152,18 @@ function optionsAndDefaults() {
 	       // for safeexec //
 	       "cpulimit" => "1",              # in seconds; maximum 10
 
+	       // restrictions on source code //
+	       "taboo" => FALSE,               # forbidden substrings/regexes for user code
+	       "maxeditdistance" => FALSE,     # is there a limit on edit distance from original code? (number)
+	       "originalcode" => FALSE,        # used with maxeditdistance
+
+	       // UI //
+	       "allowinput" => "N",            # is input allowed?
+	       "usertni" => FALSE,             # are user tests allowed in place of user input?	       
+	       
 	       // etc //
 	       "haltonwrong" => "Y",           # halt after any incorrect sub-problem?
 	       "nolog" => FALSE,               # don't generate a DB entry... used for pyExample, scramble
-	       "taboo" => FALSE,               # forbidden substrings/regexes for user code
-	       "allowinput" => "N",            # is input allowed?
-	       "usertni" => FALSE,             # are user tests allowed in place of user input?
-	       "facultative" => "N",           # does this exercise not have a checkmark?
 	       "desirederror" => FALSE         # what error message must be produced?
 	       );
 }
@@ -691,6 +697,38 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     }
   }  
 
+  if ($problemOptions["maxeditdistance"] != FALSE) {
+    $k = $problemOptions["maxeditdistance"];
+    $S = preg_replace('/\s+/', '', $usercode);
+    $T = preg_replace('/\s+/', '', $problemOptions["originalcode"]);
+    $s = strlen($S);
+    $t = strlen($T);
+    $msg = "You are only allowed to change/add/delete at most $k character" .(($k>1)?"s":"") 
+      ." from the original version of the code.";
+    if (abs($s-$t)>2*$k+5)
+      return mfail($msg) . " You changed at least " . (2*$k+5) . " (whitespace does not count).";
+    else {
+      $DP = array_fill(0, $s+1, NULL);
+      for ($i=0; $i<=$s; $i++)
+	$DP[$i] = array_fill(0, $t+1, NULL);
+
+      for ($i=0; $i<=$s; $i++)
+	for ($j=0; $j<=$t; $j++) {
+	  if ($i == 0 || $j == 0)
+	    $DP[$i][$j] = $i + $j;
+	  else {
+	    $DP[$i][$j] = $DP[$i-1][$j-1];
+	    if ($S[$i-1] != $T[$j-1])
+	      $DP[$i][$j]++;
+	    $DP[$i][$j] = min($DP[$i][$j], 1+min($DP[$i][$j-1], $DP[$i-1][$j]));
+	  }
+	}
+      if (($DP[$s][$t]) > (0+$k)) 
+	return mfail( $msg . " You changed " . ($DP[$s][$t]) . " (whitespace does not count).");
+      pyboxlog($k . " " . $DP[$s][$t]);
+    }
+  }
+  
   if (count($subproblemOptions)==0) {
     //    if ($problemOptions['grader'] == '*nograder*')
       $subproblemOptions["1"] = $problemOptions;
