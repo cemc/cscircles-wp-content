@@ -27,7 +27,7 @@ get_header(); ?>
 	  'if the website sent you here via a broken link.', 'twentyeleven' ); ?></p>
 
 <form id="searchform" action="<?php echo USEARCH; ?>">
-  <input type="hidden" name="cx" value= "007230231723983473694:vetw4z-cc8e" />
+  <input type="hidden" name="cx" value= "007230231723983473694:r0-95non7ri" />
      <input type="hidden" name="cof" value="FORID:9" />
      <input type="hidden" name="ie" value="UTF-8" />
      <input type="text" name="q" id="s"  />
