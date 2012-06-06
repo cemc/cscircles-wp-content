@@ -13,9 +13,10 @@ $meta = array('message'=>$message, 'user_stdin'=>$user_stdin, 'user_script'=>$us
 
 if ($error != "") {
   $meta['error'] = $error;
-  pyboxlog("Notified of a visualizer error" . "\n" . $error . "\n" . 
-	   $_SERVER['SERVER_PROTOCOL'] . " " . $_SERVER['HTTP_USER_AGENT'] . " " . $_SERVER["REMOTE_ADDR"] . " " . 
- 	   getUserID() . "\n" . $user_stdin . "\n" . $user_script);
+  if ($message=='failed')
+    pyboxlog("Notified of a visualizer error" . "\n" . $error . "\n" . 
+	     $_SERVER['SERVER_PROTOCOL'] . " " . $_SERVER['HTTP_USER_AGENT'] . " " . $_SERVER["REMOTE_ADDR"] . " " . 
+	     getUserID() . "\n" . $user_stdin . "\n" . $user_script);
  }
 
 retroProfilingEntry($millis*0.001, array('activity'=>'visualize', 'meta'=>$meta));
