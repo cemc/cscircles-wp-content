@@ -104,10 +104,8 @@ ID integer NOT NULL AUTO_INCREMENT,
 ustudent integer,
 ufrom integer,
 uto integer,
-seqno integer,
 problem text,
 body text,
-re integer,
 time datetime,
 primary key (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
