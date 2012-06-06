@@ -97,6 +97,23 @@ primary key (ID)
       $result = dbDelta($sql);
   }
 
+  $table_name = $wpdb->prefix . "pb_mail";
+  if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
+    $sql = "CREATE TABLE " . $table_name . " (
+ID integer NOT NULL AUTO_INCREMENT,
+ufrom integer,
+uto integer,
+seqno integer,
+problem text,
+body text,
+re integer,
+time datetime,
+primary key (ID)
+) CHARACTER SET utf8 COLLATE utf8_general_ci;";
+      $result = dbDelta($sql);
+
+  }
+
 }
 
 
