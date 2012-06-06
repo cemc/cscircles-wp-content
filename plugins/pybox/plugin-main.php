@@ -101,6 +101,7 @@ primary key (ID)
   if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
     $sql = "CREATE TABLE " . $table_name . " (
 ID integer NOT NULL AUTO_INCREMENT,
+ustudent integer,
 ufrom integer,
 uto integer,
 seqno integer,
