@@ -63,7 +63,7 @@ function generateId() {
   return $id;
 }
 
-function registerPybox($id, $slug, $type, $facultative, $title, $args = NULL, $hash = NULL, $graderOptions = NULL) {
+function registerPybox($id, $slug, $type, $facultative, $title, $content, $args = NULL, $hash = NULL, $graderOptions = NULL) {
   global $wpdb, $post;
   if (userIsAdmin() && array_key_exists("makeproblemdb", $_GET)) {
      $table_name = $wpdb->prefix . "pb_problems";
@@ -76,6 +76,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $args = NULL, $h
     if ($slug != 'NULL')
       $row['slug'] = $slug;
     $row['type'] = $type;
+    $row['content'] = $content;
     $row['facultative'] = $facultative;
     $row['url'] = get_page_link($post->ID) . '#pybox' . $id;
     if ($title != NULL) {
@@ -134,7 +135,7 @@ function pyShortHandler($options, $content) {
   $r = '';
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
-  registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL));
+  registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content);
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -176,7 +177,7 @@ function pyMultiHandler($options, $content) {
   $r = '';
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
-  registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL));
+  registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content);
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -225,7 +226,7 @@ function pyMultiScramble($options, $content) {
   $r = '';
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral multiscramble' id='pybox$id'>\n";
-  registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL));
+  registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content);
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -427,7 +428,7 @@ function pyBoxHandler($options, $content) {
 
   $slug = getSoft($options, 'slug', 'NULL');
 
-  registerPybox($id, $slug, $scramble?"scramble":"code", $facultative, getSoft($options, 'title', NULL), $shortcodeOptions, $hash, $optionsJson);
+  registerPybox($id, $slug, $scramble?"scramble":"code", $facultative, getSoft($options, 'title', NULL), $content, $shortcodeOptions, $hash, $optionsJson);
 
   /// we've delivered options to the grader. get on with producing html
 
