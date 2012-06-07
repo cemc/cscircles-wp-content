@@ -127,7 +127,7 @@ function ensureNewlineTerminated( $s ) {
 }
 
 
-function preBox( $s, $len = -1, $lenlimit = 1000 ) {
+function preBox( $s, $len = -1, $lenlimit = 1000, $style = '' ) {
 // takes any long string, trims if needed, converts special html chars, and wraps in pre tag
 // the result can be directly inserted in html safely
 // $len: if this is a smaller version of an original string, what was the original length?
@@ -138,7 +138,8 @@ function preBox( $s, $len = -1, $lenlimit = 1000 ) {
   if ($lenlimit >= 0 && strlen($s) > $lenlimit) {
     $s = substr($s, 0, $lenlimit) . "\n" . "[Too long; only first $lenlimit out of " . $len . " characters shown]" . "\n";
   }
-  return '<pre class="prebox">'."\n".htmlspecialchars($s).'</pre>';
+  $style = ($style=="")?"":" style='$style'";
+  return "<pre class='prebox'$style>"."\n".htmlspecialchars($s).'</pre>';
 }
 
 function multilineToAssociative( $s ) {
