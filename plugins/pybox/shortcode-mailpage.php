@@ -60,7 +60,7 @@ function pbmailpage($options, $content) {
   $finished = $wpdb->get_var($wpdb->prepare("SELECT time FROM wp_pb_completed WHERE userid = %d AND problem = %s",
 					    $sid, $problem['slug']));
 
-  $r .= '<h1 style="margin-top:0">Messages about <a href="' . $problem['url'] . '">' . $problem['publicname'] .
+  $r .= '<h1 id="m" style="margin-top:0">Messages about <a href="' . $problem['url'] . '">' . $problem['publicname'] .
     '</a> for ' . userString($sid);
 
   if ($finished !== NULL)

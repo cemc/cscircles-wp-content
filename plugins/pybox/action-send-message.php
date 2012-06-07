@@ -21,7 +21,7 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $contents = $body."\n===\n";
   $contents .= "Problem URL: " . $problem_info['url'] . "\n";
   $contents .= "Link to reply page and more information:\n";
-  $contents .= USERVER . UMAIL . "?who=$student&what=$slug&which=$mailref\n";
+  $contents .= USERVER . UMAIL . "?who=$student&what=$slug&which=$mailref#m\n";
   $contents .= "[Sent by CS Circles http://cscircles.cemc.uwaterloo.ca]";
   
   if ($to == 0) {
