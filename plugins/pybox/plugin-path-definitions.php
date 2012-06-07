@@ -57,8 +57,8 @@ define('UWARN', UFILES . 'warning.png');
 
 define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
 
-define('UPYBOXJS', UPYBOX . 'pybox.js?8');
-define('UPYBOXCSS', UPYBOX . 'pybox.css?3');
+define('UPYBOXJS', UPYBOX . 'pybox.js?9');
+define('UPYBOXCSS', UPYBOX . 'pybox.css?4');
 define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
 define('UOLDHISTORY', UPYBOX . 'pages/problem-history.php?p=');
 
