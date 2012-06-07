@@ -452,7 +452,7 @@ function pyflexSuccess(options, data) {
 	msg = (!(data instanceof Object) || !("rows" in data)) ? data : 'The database connected but found no data.'; 
 	info = "<a onclick='pyflex(hflexhelp[\""+options['id']+"\"])'>Click to try again.</a>";
 	$('#'+options['id']).html('<span class="pyflexerror">' + msg + ' ' + info + '</span>');
-	alert(msg);
+	//alert(msg);
 	return;
     }
 
@@ -522,6 +522,7 @@ function descape(S) {
 $('.collapseHead').live('click', toggleSibling);
 function toggleSibling(event) {
     var con = $(this).parents('.collapseContain'); // .collapseContain
+    console.log(con.size(), con);
     var hideNow = con.hasClass("showing");
     if (!hideNow) {
 	con.children('.collapseBody').slideDown();
@@ -536,6 +537,22 @@ function toggleSibling(event) {
     return false;
 }
 
+$('.quoth').live('click', quoteIt);
+function quoteIt(event) {
+    $('#mailform').insertAfter($(this).parents('.collapseContain'));
+    var text = undo_htmlspecialchars($(this).parents('.collapseContain').find('pre').html());
+    var currreply = $('#mailform').find('textarea').val();
+    if (currreply.substring(-1, 0)=="\n") currreply = substring(currreply(0, -1));
+    currreply += ("\n"+text).replace(/\n/g, "\n>");
+    $('#mailform').find('textarea').val(currreply);
+}
+
+function undo_htmlspecialchars(S) {
+    S = S.replace(/&gt;/g, '>');
+    S = S.replace(/&lt;/g, '<');    
+    S = S.replace(/&amp;/g, '&');
+    return S;
+}
 
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   

@@ -3,6 +3,26 @@
 require_once("include-me.php");
 require_once(PWP_LOADER);
 
+/* 
+The generic template for exposing a database query to flexigrid.
+
+dbFlexigrid takes a single function argument with signature
+
+ function ($limit, $sortname, $sortorder, &$info) 
+
+where $limit is a LIMIT XX, YY string for SWL,
+$sortname, $sortorder is a column name and order to sort on,
+$info['type'] must be defined and is stored for profiling
+$info[anything else] can also be defined and will be stored for profiling.
+
+the function returns either a string in case of error,
+or an array-pair (total, (array of pairs (id, cell)),
+where each cell is an array representing a row... this is the format flexigrid uses.
+
+see db-mail for a reasonably-understandable example of using this framework
+
+*/
+
 function dbFlexigrid($innerFunction) {
 
   $userid = getUserID();
@@ -21,7 +41,6 @@ function dbFlexigrid($innerFunction) {
   
   $info = array();
   $result = $innerFunction(" LIMIT " . (($page-1)*$rp) . ", " . $rp . " ", $sortname, $sortorder, $info);
-  // $info is a pass-by-reference arg that should get 'type' and any other useful info like args
 
   header("Expires: Mon, 26 Jul 1997 05:00:00 GMT" ); 
   header("Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" ); 

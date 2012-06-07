@@ -138,9 +138,25 @@ a:not(.open-same-window):hover  {
 	background: -o-linear-gradient(top , #52A8E8, #377AD0);
 	padding: 4px 10px;
 	color: #FFF !important;
-	border: 1px solid #3B592A;
+	/*border: 1px solid #3B592A;*/
 	text-shadow: 0 -1px 0 #3B592A;
 	margin: 0px;
+}
+
+.quoth {
+    position: absolute;
+    font: bold 14px 'Segoe UI', 'Lucida Grande', 'Arial', sans-serif;
+    top: 0px;
+    right: 0px;
+    float: right;
+    display: table-cell;
+    border-radius: 4px;
+    padding: 1px;
+}
+.quoth:hover {
+    background: blue;
+    color: white;
+    cursor: pointer;
 }
 
 .collapseHead .icon {
@@ -152,6 +168,7 @@ a:not(.open-same-window):hover  {
 	height: 16px;
 }
 .collapseBody {
+    position: relative;
 	display:block;
 }
 .collapseContain.hiding .collapseBody {

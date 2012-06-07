@@ -74,7 +74,8 @@ shortcodeArgs text,
 graderArgs text,
 hash text,
 url text,
-publicname text
+publicname text,
+content text
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
   }

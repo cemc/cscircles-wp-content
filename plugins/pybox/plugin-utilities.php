@@ -12,6 +12,11 @@ function userIsAdmin() {
   return is_user_logged_in() && current_user_can('level_10');
 }
 
+function guruIDID($id) {
+  $tmp = get_user_by('login', get_the_author_meta('pbguru', $id));  
+  return ($tmp === FALSE) ? -1 : $tmp->ID;
+}
+
 function rightNowString() { // in format beloved by SQL
   date_default_timezone_set('America/New_York');
   return date("y-m-d H:i:s", time());

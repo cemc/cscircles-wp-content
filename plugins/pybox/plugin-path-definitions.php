@@ -68,10 +68,12 @@ define('UMESSAGE', UPYBOX . 'action-send-message.php');
 
 define('UFULLHISTORY', UPYBOX . 'db-entire-history.php');
 define('UHISTORY', UPYBOX . 'db-problem-history.php');
+define('UDBMAIL', UPYBOX . 'db-mail.php');
 define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
 
 define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
 
+define('UPROGRESS', UWPHOME . 'user-page/');
 define('USEARCH', UWPHOME . 'search/');
 define('UMAIL', UWPHOME . 'mail/');
 define('URESOURCES', UWPHOME . 'resources/');

@@ -12,19 +12,20 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())
-    $header_from = 'From: "CS Circles Assistant" <cscircles@gmail.com>';
+    $header_from = 'From: "CS Circles Assistant" <cscircles+asst@gmail.com>';
   else
     $header_from = 'From: "' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
 
   $subject = 'CS Circles - message about ' . $problem_info['publicname'];
   
   $contents = $body."\n===\n";
-  $contents .= "Reply using the following link, which has additional information:\n";
+  $contents .= "Problem URL: " . $problem_info['url'] . "\n";
+  $contents .= "Link to reply page and more information:\n";
   $contents .= USERVER . UMAIL . "?who=$student&what=$slug&which=$mailref\n";
   $contents .= "[Sent by CS Circles http://cscircles.cemc.uwaterloo.ca]";
   
   if ($to == 0) {
-    wp_mail("cscircles@gmail.com", $subject, $contents, $header_from);
+    wp_mail("cscircles+asst@gmail.com", $subject, $contents, $header_from);
     wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to the CS Circles Assistant.\n\n" . $contents, $header_from);
   }
   else {
@@ -67,7 +68,7 @@ if ($source == 1) {
   
   $message .= "\n===\nThe user sent this code with the message:\n===\n" . $code;
 
-  echo send($problem_info, getUserID(), isSoft($_POST, 'recipient', 1) ? $guru->ID : 0, getUserID(), $slug, $message);
+  echo send($problem_info, getUserID(), isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, getUserID(), $slug, $message);
  }
 elseif ($source == 2) {
   $id = $_POST['id'];  
@@ -79,7 +80,7 @@ elseif ($source == 2) {
   }
   elseif ($id == getUserID()) {
     // from student to {guru or CSC Asst.}
-    echo send($problem_info, $id, isSoft($_POST, 'recipient', 1) ? $guru->ID : 0, $id, $slug, $message);
+    echo send($problem_info, $id, isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, $id, $slug, $message);
   }
   
 }

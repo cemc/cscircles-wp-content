@@ -80,12 +80,12 @@ function pbmailpage($options, $content) {
 
   foreach ($messages as $i=>$message) {
     $c =  ($message['ID']==$focus) ?  " showing" : " hiding";
-    $r .= "<div class='collapseContain$c' style='border: 1px solid grey; border-radius: 5px;'>";
+    $r .= "<div class='collapseContain$c' style='border-radius: 5px;'>";
     $title = "From ".name($message['ufrom']). ' to '.name($message['uto']).' on '.$message['time'];
     if (count($messages)>1 && $i==0) $title = "(newest) " . $title;
     if (count($messages)>1 && $i==count($messages)-1) $title = "(oldest) " . $title;
     $r .= "<div class='collapseHead'><span class='icon'></span>$title</div>";
-    $r .= "<div class='collapseBody'>".preBox($message['body']).'</div>';
+    $r .= "<div class='collapseBody'><span class='quoth'>Quote and Reply</span>".preBox($message['body']).'</div>';
     $r .= '</div>';
   }
 
@@ -113,9 +113,42 @@ function pbmailpage($options, $content) {
 <button onclick="mailReply('.$sid.',\''.$problem['slug'].'\');">Send this message!</button>
 </div>';
 
-  $r .= '<h2>Useful Tools</h2>';
+  $r .= "<h2>Tools</h2>
+<a href='".$problem['url'].'">Original lesson page containing '.$problem['publicname'].'</a> (in new window)'."
+<div class='collapseContain hiding'>
+<div class='collapseHead'><span class='icon'></span>Problem description for ".$problem['publicname']."</div>
+<div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
+</div>";
+
+  if (getUserID()!=$sid)
+    $r .= niceFlex('us', name($sid)."'s submissions for ".$problem['publicname'], 
+		   UHISTORY, array('user'=>$sid, 'p'=>$problem['slug']));
+  $r .= niceFlex('ms', "My previous submissions for ".$problem['publicname'], 
+		 UHISTORY, array('p'=>$problem['slug']));
+
+  if (getUserID()!=$sid)
+    $r .= niceFlex('omp', "My other messages about ".$problem['publicname'], 
+		   UDBMAIL, array('what'=>$problem['slug'], 'xwho'=>$sid));
+  
+  $r .= niceFlex('oms',   (getUserID()==$sid)?"My messages for other programs":"Messages to/from ".name($sid)." for other problems", 
+		 UDBMAIL, array('who'=>$sid, 'xwhat'=>$problem['slug']));
+  
+  $r .= "<a href='".UPROGRESS.'?user='.$sid."'>".name($sid)."'s progress page</a> (in new window)";
+
+  $r .= '</ul>';
 
   return $r;
+}
+
+function niceFlex($id, $title, $url, $dbparams) {
+  return "<div class='collapseContain hiding' id='cc$id'>
+<div class='collapseHead' id='ch$id'><span class='icon'></span>$title</div>
+<div class='collapseBody' id='cb$id'></div></div>
+<script type='text/javascript'>
+jQuery('#ch$id').click(function(e) {
+  if (0==jQuery('#cb$id .flexigrid').size()) pyflex({'id':'cb$id', 'url':'$url', 'dbparams':".json_encode($dbparams)."});
+});
+</script>";
 }
 
 // end of file
