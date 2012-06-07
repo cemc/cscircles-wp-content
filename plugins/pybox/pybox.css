@@ -5,6 +5,10 @@
     z-index: 999 !important; // not to overlap modal dialogs
 }
 
+.fixsresize .ui-resizable-s {
+    bottom: 5px;
+}
+
 #content .wp-accordion {
 	margin: 5px 0px;
 }
@@ -103,6 +107,71 @@ a:not(.open-same-window):hover  {
     margin-right: 10px;
     padding: 2px;
 }
+
+/********************** simple collapsers ********************/
+
+
+
+/* USAGE:
+
+<div.collapseContain.{initialized to hiding or showing}>
+   <div.collapseHead> <span.icon/> text </div>
+   <div.collapseBody/>
+</div>
+
+*/
+
+.collapseContain {
+  margin: 0px;
+}
+
+.collapseHead {
+	border-radius          : 3px;
+	-moz-border-radius     : 3px;
+	-webkit-border-radius  : 3px;
+	-webkit-border-radius  : 3px;
+	font: bold 14px 'Segoe UI', 'Lucida Grande', 'Arial', sans-serif;
+	background: #377AD0;
+	background: -moz-linear-gradient(top ,#52A8E8, #377AD0);
+	background: -webkit-gradient(linear, left top, left bottom , from(#52A8E8), to(#305DA9));
+	background: -webkit-linear-gradient(top , #52A8E8, #377AD0);
+	background: -o-linear-gradient(top , #52A8E8, #377AD0);
+	padding: 4px 10px;
+	color: #FFF !important;
+	border: 1px solid #3B592A;
+	text-shadow: 0 -1px 0 #3B592A;
+	margin: 0px;
+}
+
+.collapseHead .icon {
+	display: inline-block;
+	border: none;
+	background: url('http://cscircles.cemc.uwaterloo.ca/dev/wp-content/plugins/wp-ui/images/ui-icon-whitest.png');
+	background-position: -64px -16px;
+	width: 16px;
+	height: 16px;
+}
+.collapseBody {
+	display:block;
+}
+.collapseContain.hiding .collapseBody {
+	display:none;
+}
+.collapseContain.hiding .collapseHead .icon {
+	background-position: -32px -16px;
+}
+
+.collapseHead:hover {
+	box-shadow: 0px 0px 10px blue;
+	cursor: pointer;
+}
+
+/******************************* mail page *****************************/
+.mailform {
+	text-align: center;
+}
+
+
 /************************ admin bar ********************************/
 #wpadminbar img.totop {
 	background: none;
@@ -589,6 +658,9 @@ ie7 #content .pybox textarea {
 
 
 #content .pybox .ui-resizable-handle:hover {
+    background-color: blue;
+}
+#content .show-resize-handle .ui-resizable-handle:hover {
     background-color: blue;
 }
 #content .pybox .pyboxTextwrap {

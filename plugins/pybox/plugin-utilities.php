@@ -2,6 +2,12 @@
 
   // this is included in include-me.php
 
+function userString($n) {
+  $user = get_userdata($n);
+  if ($user === FALSE) return FALSE;
+  return $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $n . ")";
+}
+
 function userIsAdmin() {
   return is_user_logged_in() && current_user_can('level_10');
 }

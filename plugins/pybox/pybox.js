@@ -151,12 +151,33 @@ function sendMessage(id, slug) {
 	$.ajax({
 	    type: "POST",
 	    url : MESSAGEURL,
-	    data: {"slug":slug,"recipient":recipient,"message":message,"code":code},
+	    data: {"source":1,"slug":slug,"recipient":recipient,"message":message,"code":code},
 	    error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");}
 	});
 	alert("Your message is being sent. You will also recieve a copy by e-mail.");
 	helpClick(id);
     }
+}
+
+function mailReply(id, slug) {
+    var thedata = {"source":2,"id":id,"slug":slug,"message":$('#mailform textarea').val()};
+    var r = null;
+    $('#mailform .recipient').each(function(i, item) {r = $(item);});
+    if (r != null) {
+	if (r.val()==0) {
+	    alert('You need to select a recipient.');
+	    return;
+	}
+	thedata['recipient'] = r.val();
+    }
+    $.ajax({
+	type: "POST",
+	url : MESSAGEURL,
+	data: thedata,
+	error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");},
+	success: function(data) {window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data;}
+    });
+    alert("Your message is being sent. You will also recieve a copy by e-mail.");
 }
 
 // three types of short answer question: short answer, multiple choice, scramble
@@ -498,12 +519,31 @@ function descape(S) {
     return jQuery.parseJSON('"' + S + '"');
 }
 
+$('.collapseHead').live('click', toggleSibling);
+function toggleSibling(event) {
+    var con = $(this).parents('.collapseContain'); // .collapseContain
+    var hideNow = con.hasClass("showing");
+    if (!hideNow) {
+	con.children('.collapseBody').slideDown();
+	con.removeClass('hiding');
+	con.addClass('showing');
+    }
+    else {
+	con.children('.collapseBody').slideUp();
+	con.removeClass('showing');
+	con.addClass('hiding');
+    }
+    return false;
+}
+
+
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   
 
 	$('ul.pyscramble').sortable();
 	$('.resizy').resizable({handles:'s',minHeight:50});
 	$('.wp-tabs > div').each(tabby);
+	$('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
 	if (window.location.hash) {
 	    setTimeout("window.scrollBy(0, -60)", 10); // so direct links aren't hidden by adminbar

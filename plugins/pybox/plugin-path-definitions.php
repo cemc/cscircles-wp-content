@@ -70,7 +70,10 @@ define('UFULLHISTORY', UPYBOX . 'db-entire-history.php');
 define('UHISTORY', UPYBOX . 'db-problem-history.php');
 define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
 
+define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
+
 define('USEARCH', UWPHOME . 'search/');
+define('UMAIL', UWPHOME . 'mail/');
 define('URESOURCES', UWPHOME . 'resources/');
 define('UCONSOLE', UWPHOME . 'console/'); /*last / is Important to get newlines right in GET */
 define('UVISUALIZE', UWPHOME . 'visualize/'); 

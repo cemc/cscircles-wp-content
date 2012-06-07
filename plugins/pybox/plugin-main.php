@@ -106,7 +106,7 @@ ufrom integer,
 uto integer,
 problem text,
 body text,
-time datetime,
+time timestamp CURRENT_TIMESTAMP,
 primary key (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
@@ -146,6 +146,7 @@ require_once("shortcodes.php");
 require_once("shortcode-my-progress.php");
 require_once("shortcode-make-databases.php");
 require_once("shortcode-youtube.php");
+require_once("shortcode-mailpage.php");
 require_once("shortcode-style.php");
 require_once("shortcode-db-profiling.php");
 require_once("plugin-footer-prevnext.php");

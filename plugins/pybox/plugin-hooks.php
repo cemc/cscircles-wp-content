@@ -41,6 +41,7 @@ function pyBoxHead() {
   echo sprintf("var OLDHISTORYURL = '%s';\n", UOLDHISTORY);
   echo sprintf("var VISUALIZEURL = '%s';\n", UVISUALIZE);
   echo sprintf("var MESSAGEURL = '%s';\n", UMESSAGE);
+  echo sprintf("var MAILURL = '%s';\n", UMAIL);
   echo sprintf("var DEFAULTTIMEOUTMS = '%s';\n", (WALLFACTOR*1 + WALLBUFFER)*1000);
 
   echo "</script>\n";
