@@ -154,7 +154,7 @@ function sendMessage(id, slug) {
 	    data: {"source":1,"slug":slug,"recipient":recipient,"message":message,"code":code},
 	    error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");}
 	});
-	alert("Your message is being sent. You will also recieve a copy by e-mail.");
+	alert("Your message was sent.");
 	helpClick(id);
     }
 }
@@ -177,7 +177,7 @@ function mailReply(id, slug) {
 	error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");},
 	success: function(data) {window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data;}
     });
-    alert("Your message is being sent. You will also recieve a copy by e-mail.");
+    alert("Your message was sent.");
 }
 
 // three types of short answer question: short answer, multiple choice, scramble

@@ -5,6 +5,8 @@ function user_pb_options_fields( $user ) {
   if (get_the_author_meta( 'pbplain', $user->ID )=='true') $checkd = ' checked="yes"  ';
   $oh = "";
   if (get_the_author_meta( 'pboldhistory', $user->ID )=='true') $oh = ' checked="yes"  ';
+  $nocc = "";
+  if (get_the_author_meta( 'pbnocc', $user->ID )=='true') $nocc = ' checked="yes"  ';
   $guru_login = get_the_author_meta( 'pbguru', $user->ID );
   $gurucheck = '';
   if (trim($guru_login) != '') {
@@ -26,6 +28,13 @@ function user_pb_options_fields( $user ) {
     <input type="text" name="pbguru" id="pbguru" value="<?php echo htmlspecialchars($guru_login) . '"> ' . $gurucheck; ?><br/>
      Any other person with a CS Circles account (such as your teacher) can be your guru. You can ask them direct questions when you get stuck, and they can view your progress.
 	 </input>
+       </td>
+       </tr>
+       <tr>
+       <th><label for="pbnocc">Don't Send Mail Copies</label></th>
+       <td>
+     <input type="checkbox" name="pbnocc" id="pbnocc"<?php echo $nocc; ?> >
+       (default: unchecked) If checked, you will not receive a carbon copy when you send a message.</input>
        </td>
        </tr>
        <tr>
@@ -56,6 +65,7 @@ function user_pb_options_fields_save( $user_id ) {
   update_user_meta( $user_id, 'pbplain', ($_POST['pbplain']=='on')?'true':'false' );
   update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );
   update_user_meta( $user_id, 'pbguru', ($_POST['pbguru']));
+  update_user_meta( $user_id, 'pbnocc', ($_POST['pbnocc']=='on')?'true':'false' );
 }
 add_action( 'personal_options_update', 'user_pb_options_fields_save' );
 add_action( 'edit_user_profile_update', 'user_pb_options_fields_save' );

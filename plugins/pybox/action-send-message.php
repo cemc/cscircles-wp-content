@@ -26,11 +26,13 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   
   if ($to == 0) {
     wp_mail("cscircles+asst@gmail.com", $subject, $contents, $header_from);
-    wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to the CS Circles Assistant.\n\n" . $contents, $header_from);
+    if (get_the_author_meta('pbnocc', getUserID())!='true')
+      wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to the CS Circles Assistant.\n\n" . $contents, $header_from);
   }
   else {
     wp_mail(get_user_by('id', $to)->user_email, $subject, $contents, $header_from);
-    wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to ".get_user_by('id',$to)->user_login.".\n\n" . $contents, $header_from);
+    if (get_the_author_meta('pbnocc', getUserID())!='true')
+      wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to ".get_user_by('id',$to)->user_login.".\n\n" . $contents, $header_from);
   }
   return $mailref;
 }
