@@ -1,6 +1,12 @@
 <?php
 
-add_action( 'init', 'wpcf7_ajax_onload', 11 );
+add_action( 'init', 'wpcf7_control_init', 11 );
+
+function wpcf7_control_init() {
+	wpcf7_ajax_onload();
+	wpcf7_ajax_json_echo();
+	wpcf7_submit_nonajax();
+}
 
 function wpcf7_ajax_onload() {
 	global $wpcf7_contact_form;
@@ -28,8 +34,6 @@ function wpcf7_ajax_onload() {
 
 	exit();
 }
-
-add_action( 'init', 'wpcf7_ajax_json_echo', 11 );
 
 function wpcf7_ajax_json_echo() {
 	global $wpcf7_contact_form;
@@ -102,8 +106,6 @@ function wpcf7_is_xhr() {
 	return $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest';
 }
 
-add_action( 'init', 'wpcf7_submit_nonajax', 11 );
-
 function wpcf7_submit_nonajax() {
 	global $wpcf7_contact_form;
 
@@ -169,8 +171,12 @@ function wpcf7_widget_text_filter( $content ) {
 
 /* Shortcodes */
 
-add_shortcode( 'contact-form-7', 'wpcf7_contact_form_tag_func' );
-add_shortcode( 'contact-form', 'wpcf7_contact_form_tag_func' );
+add_action( 'plugins_loaded', 'wpcf7_add_shortcodes', 1 );
+
+function wpcf7_add_shortcodes() {
+	add_shortcode( 'contact-form-7', 'wpcf7_contact_form_tag_func' );
+	add_shortcode( 'contact-form', 'wpcf7_contact_form_tag_func' );
+}
 
 function wpcf7_contact_form_tag_func( $atts, $content = null, $code = '' ) {
 	global $wpcf7, $wpcf7_contact_form;
@@ -230,14 +236,16 @@ function wpcf7_enqueue_scripts() {
 	// jquery.form.js originally bundled with WordPress is out of date and deprecated
 	// so we need to deregister it and re-register the latest one
 	wp_deregister_script( 'jquery-form' );
-	wp_register_script( 'jquery-form', wpcf7_plugin_url( 'jquery.form.js' ),
-		array( 'jquery' ), '3.08', true );
+	wp_register_script( 'jquery-form',
+		wpcf7_plugin_url( 'includes/js/jquery.form.js' ),
+		array( 'jquery' ), '3.09', true );
 
 	$in_footer = true;
 	if ( 'header' === WPCF7_LOAD_JS )
 		$in_footer = false;
 
-	wp_enqueue_script( 'contact-form-7', wpcf7_plugin_url( 'scripts.js' ),
+	wp_enqueue_script( 'contact-form-7',
+		wpcf7_plugin_url( 'includes/js/scripts.js' ),
 		array( 'jquery', 'jquery-form' ), WPCF7_VERSION, $in_footer );
 
 	$_wpcf7 = array(
@@ -260,11 +268,13 @@ if ( WPCF7_LOAD_CSS )
 	add_action( 'wp_enqueue_scripts', 'wpcf7_enqueue_styles' );
 
 function wpcf7_enqueue_styles() {
-	wp_enqueue_style( 'contact-form-7', wpcf7_plugin_url( 'styles.css' ),
+	wp_enqueue_style( 'contact-form-7',
+		wpcf7_plugin_url( 'includes/css/styles.css' ),
 		array(), WPCF7_VERSION, 'all' );
 
 	if ( wpcf7_is_rtl() ) {
-		wp_enqueue_style( 'contact-form-7-rtl', wpcf7_plugin_url( 'styles-rtl.css' ),
+		wp_enqueue_style( 'contact-form-7-rtl',
+			wpcf7_plugin_url( 'includes/css/styles-rtl.css' ),
 			array(), WPCF7_VERSION, 'all' );
 	}
 

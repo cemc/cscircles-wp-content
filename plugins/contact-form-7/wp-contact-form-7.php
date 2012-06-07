@@ -7,7 +7,7 @@ Author: Takayuki Miyoshi
 Author URI: http://ideasilo.wordpress.com/
 Text Domain: wpcf7
 Domain Path: /languages/
-Version: 3.1.2
+Version: 3.2
 */
 
 /*  Copyright 2007-2012 Takayuki Miyoshi (email: takayukister at gmail.com)
@@ -27,7 +27,7 @@ Version: 3.1.2
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-define( 'WPCF7_VERSION', '3.1.2' );
+define( 'WPCF7_VERSION', '3.2' );
 
 define( 'WPCF7_REQUIRED_WP_VERSION', '3.2' );
 
@@ -38,10 +38,10 @@ if ( ! defined( 'WPCF7_PLUGIN_NAME' ) )
 	define( 'WPCF7_PLUGIN_NAME', trim( dirname( WPCF7_PLUGIN_BASENAME ), '/' ) );
 
 if ( ! defined( 'WPCF7_PLUGIN_DIR' ) )
-	define( 'WPCF7_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . WPCF7_PLUGIN_NAME );
+	define( 'WPCF7_PLUGIN_DIR', untrailingslashit( dirname( __FILE__ ) ) );
 
 if ( ! defined( 'WPCF7_PLUGIN_URL' ) )
-	define( 'WPCF7_PLUGIN_URL', WP_PLUGIN_URL . '/' . WPCF7_PLUGIN_NAME );
+	define( 'WPCF7_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
 
 if ( ! defined( 'WPCF7_PLUGIN_MODULES_DIR' ) )
 	define( 'WPCF7_PLUGIN_MODULES_DIR', WPCF7_PLUGIN_DIR . '/modules' );
