@@ -107,7 +107,7 @@ function pbmailpage($options, $content) {
 
   $r .= '<div class="pybox fixsresize mailform" id="mailform">
 <div class="pyboxTextwrap">
-<textarea name="body" class="resizy" placeholder="Type here to send a reply about this problem" style="width:100%" rows=5></textarea>
+<textarea name="body" class="resizy" placeholder="Type here to send a reply about this problem" style="width:100%; white-space: pre-wrap; font-size: 11px; line-height:13px" rows=5></textarea>
 </div>
 '.$to.'
 <button onclick="mailReply('.$sid.',\''.$problem['slug'].'\');">Send this message!</button>
