@@ -85,7 +85,7 @@ function pbmailpage($options, $content) {
     if (count($messages)>1 && $i==0) $title = "(newest) " . $title;
     if (count($messages)>1 && $i==count($messages)-1) $title = "(oldest) " . $title;
     $r .= "<div class='collapseHead'><span class='icon'></span>$title</div>";
-    $r .= "<div class='collapseBody'><span class='quoth'>Quote and Reply</span>".preBox($message['body'], -1,1000,"font-size:12px; line-height:14px").'</div>';
+    $r .= "<div class='collapseBody'><span class='quoth'>Quote/<br/>Reply</span>".preBox($message['body'], -1,1000,"font-size:12px; line-height:14px; white-space: pre-wrap;").'</div>';
     $r .= '</div>';
   }
 

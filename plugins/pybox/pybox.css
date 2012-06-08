@@ -147,7 +147,7 @@ a:not(.open-same-window):hover  {
     position: absolute;
     font: bold 14px 'Segoe UI', 'Lucida Grande', 'Arial', sans-serif;
     top: 0px;
-    right: 0px;
+    right: -50px;
     float: right;
     display: table-cell;
     border-radius: 4px;
