@@ -6,9 +6,18 @@ require_once(PWP_LOADER);
 function send($problem_info, $from, $to, $student, $slug, $body) {
 
   global $wpdb, $current_user;
+
+  $unanswered = (getUserID() == $student) ? 1 : 0;
+
+  if (getUserID() != $student) 
+    $wpdb->update('wp_pb_mail',
+		  array('unanswered' => 0),
+		  array('unanswered' => 1, 'ustudent' => $student, 'problem' => $slug));
+  
   $wpdb->insert('wp_pb_mail', 
-		array('ufrom' => $from, 'uto' => $to, 'ustudent' => $student, 'problem' => $slug, 'body' => $body), 
-		array('%d','%d','%d','%s','%s'));
+		array('ufrom' => $from, 'uto' => $to, 'ustudent' => $student, 'problem' => $slug, 'body' => $body, 
+		      'unanswered' => $unanswered), 
+		array('%d','%d','%d','%s','%s', '%d'));
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())

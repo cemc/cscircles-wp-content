@@ -108,6 +108,7 @@ uto integer,
 problem text,
 body text,
 time timestamp CURRENT_TIMESTAMP,
+unanswered boolean,
 primary key (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
