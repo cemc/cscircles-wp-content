@@ -10,6 +10,7 @@ The present file accepts POST queries with the following arguments:
 - xwho : we seek all messages not about this user. cannot be used with who
 - what : a problem slug/name, and we seek all messages about this problem.
 - xwhat : we seek all messages not about this problem. cannot be used with what
+- unans : find only unanswered messages (1) or answered messages (0)
 
 Additionally, we filter by security: the presently logged-in user can
 only view messages that are to/from themselves and their students
@@ -35,12 +36,14 @@ echo dbFlexigrid
    $xwho = getSoft($_POST, "xwho", "");
    $what = getSoft($_POST, "what", "");
    $xwhat = getSoft($_POST, "xwhat", "");
+   $unans = getSoft($_POST, "unans", "");
 
    $info['type'] = 'mail-history';
    $info['who'] = $who;
    $info['xwho'] = $xwho;
    $info['what'] = $what;
    $info['xwhat'] = $xwhat;
+   $info['unans'] = $unans;
 
    if ( !is_user_logged_in() )
      return "You must log in to view past mail.";
@@ -69,6 +72,13 @@ echo dbFlexigrid
      $where .= ' AND ustudent != '.$xwho;
    }
 
+   if ($unans != '') {
+     if (!is_numeric($unans))
+       return "'unans' must be numeric.";
+     $unans = (int)$unans;
+     $where .= ' AND unanswered = '.$unans;
+   }
+
    global $wpdb;   
 
    if ($what != '') 
@@ -93,7 +103,8 @@ echo dbFlexigrid
      $cell = array();
      $cell['from'] = xname($r['ufrom']);
      $cell['to'] = xname($r['uto']);
-     $cell['message'] = preBox($r['body']);
+     $url =  UMAIL . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m\n";
+     $cell['message'] = "<a href='$url'>".preBox($r['body'])."</a>";
      $cell['when'] = $r['time'];
      if ($what=='')
        $cell['problem'] = $r['problem'];

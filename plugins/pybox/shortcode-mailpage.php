@@ -132,6 +132,10 @@ function pbmailpage($options, $content) {
   
   $r .= niceFlex('oms',   (getUserID()==$sid)?"My messages for other programs":"Messages to/from ".name($sid)." for other problems", 
 		 UDBMAIL, array('who'=>$sid, 'xwhat'=>$problem['slug']));
+
+  if (getUserID()!=$sid)
+    $r .= niceFlex('unread', "All unanswered messages by my students",
+		   UDBMAIL, array('unans'=>1));
   
   $r .= "<a href='".UPROGRESS.'?user='.$sid."'>".name($sid)."'s progress page</a> (in new window)";
 

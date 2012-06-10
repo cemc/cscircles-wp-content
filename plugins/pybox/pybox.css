@@ -190,9 +190,12 @@ a:not(.open-same-window):hover  {
 
 
 /************************ admin bar ********************************/
-#wpadminbar img.totop {
+#wpadminbar img.icon {
 	background: none;
 	vertical-align: -2px;
+}
+#wpadminbar #wp-admin-bar-mail img.icon {
+	vertical-align: -4px;
 }
 
 #wpadminbar * {

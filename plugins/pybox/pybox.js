@@ -160,7 +160,8 @@ function sendMessage(id, slug) {
 }
 
 function mailReply(id, slug) {
-    var thedata = {"source":2,"id":id,"slug":slug,"message":$('#mailform textarea').val()};
+    var thedata = {"source":2,"id":id,"slug":slug,
+		   "message":$('#mailform textarea').val()};
     var r = null;
     $('#mailform .recipient').each(function(i, item) {r = $(item);});
     if (r != null) {
@@ -175,7 +176,7 @@ function mailReply(id, slug) {
 	url : MESSAGEURL,
 	data: thedata,
 	error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");},
-	success: function(data) {window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data;}
+	success: function(data) {window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data+"#m";}
     });
     alert("Your message was sent.");
 }

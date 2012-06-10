@@ -180,6 +180,28 @@ function pb_menu_items($wp_admin_bar) {
   $wp_admin_bar->add_menu( array( 'id'=>'snap', 'parent' => 'user-actions', 'title' => 'Console (new window)', 'href' => UCONSOLE, "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => 'Resources (new window)', 'href' => URESOURCES, "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact Us (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
+
+  $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'totop', 
+				  'title' => '<img onclick="scrollToTop()" title="scroll to top"'.
+				  ' class="icon" src="'.UFILES . 'up.png"/>' ));
+  
+  global $wpdb;
+
+  $students = getStudents();
+  if (count($students)>0 || userIsAdmin()) {
+    $studentClause = userIsAdmin()?"1":"ustudent IN (".implode(',', $students).")";
+    $count = $wpdb->get_var("SELECT COUNT(1) FROM wp_pb_mail WHERE unanswered = 1 AND $studentClause");
+    if ($count > 0) {
+      $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM wp_pb_mail 
+                             WHERE unanswered = 1 AND $studentClause ORDER BY ID ASC LIMIT 1", ARRAY_A);
+
+      $url = UMAIL . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
+      
+      $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'mail', 'href' => $url,
+				      'title' => '<img title="goto oldest unanswered mail"'.
+				      'class="icon" src="'.UFILES . "mail-icon.png\"/>($count)" ));
+    }
+  }
   
   if (current_user_can('level_10')) {	  
 
