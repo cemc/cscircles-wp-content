@@ -217,7 +217,7 @@ function getStudents() {
   get_currentuserinfo();
 
   if ( ! is_user_logged_in() )
-    return FALSE;
+    return array();
 
   global $wpdb;
 
