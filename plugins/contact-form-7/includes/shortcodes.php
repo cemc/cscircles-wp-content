@@ -166,6 +166,8 @@ class WPCF7_ShortcodeManager {
 
 }
 
+global $wpcf7_shortcode_manager; // blargh! needed this in order to work when loaded externally
+
 $wpcf7_shortcode_manager = new WPCF7_ShortcodeManager();
 
 function wpcf7_add_shortcode( $tag, $func, $has_name = false ) {
