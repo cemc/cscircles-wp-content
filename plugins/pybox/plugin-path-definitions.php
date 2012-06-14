@@ -45,6 +45,8 @@ define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
 define('PPYBOXDIR', PWP . 'wp-content/plugins/pybox/');
 define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
 
+define('PEXPORT', PLOCALHOME . 'export/');
+
 define('PWP_LOADER', PWP . 'wp-load.php');
 // PWP_LOADER is used for external access to wordpress functions
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website

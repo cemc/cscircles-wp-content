@@ -291,12 +291,25 @@ function newuserwelcome($options, $content) {
   return "";
 }
 
+function getEnglish($text) {
+  $map = qtrans_split($text);
+  return getSoft($map, 'en', $text);
+}
+
 // for the navigation page
 function list_pybox_pages($options, $content) {
   $out = get_pages();
   $links = array();
   foreach ($out as $page) {
     $links[] = array("url"=>get_page_link( $page->ID), "title"=>$page->post_title);
+    if (isSoft($_GET, 'export', 'Y')) {
+      $p = get_page($page->ID);
+      $slug = $p->post_name;
+      $f = fopen(PEXPORT . $slug . ".txt", 'w');
+      fwrite($f, 'Title: ' . getEnglish($p->post_title) . "\n\nContent:\n\n");
+      fwrite($f, getEnglish($p->post_content));
+      fclose($f);
+    }
   }
   $links[] = array("url"=>USEARCH, 'title'=>'Search');
 
