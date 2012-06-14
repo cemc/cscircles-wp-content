@@ -291,6 +291,21 @@ function newuserwelcome($options, $content) {
   return "";
 }
 
+function sanitize_helper($matches) {
+  $attr = shortcode_parse_atts( $matches[3] );
+  if (array_key_exists('slug', $attr)) {
+    if (!array_key_exists('title', $attr))
+      echo 'Warning: ' . $attr['slug'] . ' has no title!';
+    return '[pyRecall slug="'.$attr['slug'].'" title="'.$attr['title'].'"]'. $matches[5] . '[/pyRecall]';
+  }
+  else return $matches[0];
+}
+
+function sanitize($page) {
+  $regex = '(\[?)\[(pyExample|pyShort|pyMulti|pyMultiScramble|pyBox)\b((?:[^\'"\\]]|' . "'[^']*'|" . '"[^"]*")*)(?:(\/))?\](?:(.+?)\[\/\2\])?(\]?)';
+  return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
+}
+
 function getEnglish($text) {
   $map = qtrans_split($text);
   return getSoft($map, 'en', $text);
@@ -307,7 +322,7 @@ function list_pybox_pages($options, $content) {
       $slug = $p->post_name;
       $f = fopen(PEXPORT . $slug . ".txt", 'w');
       fwrite($f, 'Title: ' . getEnglish($p->post_title) . "\n\nContent:\n\n");
-      fwrite($f, getEnglish($p->post_content));
+      fwrite($f, sanitize(getEnglish($p->post_content)));
       fclose($f);
     }
   }
