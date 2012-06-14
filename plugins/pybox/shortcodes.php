@@ -7,9 +7,11 @@ add_shortcode('pyWarn', 'pyWarnHandler');
 add_shortcode('pyMulti', 'pyMultiHandler');
 add_shortcode('pyExample', 'pyExampleHandler');
 add_shortcode('pyProtect', 'pyProtectHandler');
-add_shortcode('pyMultiScramble', 'pyMultiScramble');
+add_shortcode('pyMultiScramble', 'pyMultiScrambleHandler');
 add_shortcode('newuserwelcome', 'newuserwelcome');
 add_shortcode('br', 'printbr');
+
+add_shortcode('pyRecall', 'pyRecallHandler');
 
 function loadMostRecent($slug) {
   if ( !is_user_logged_in() ) 
@@ -212,7 +214,7 @@ function pyExampleHandler($options, $content) {
   return pyBoxHandler($options, $content);
 }
 
-function pyMultiScramble($options, $content) {
+function pyMultiScrambleHandler($options, $content) {
   $id = generateId(); 
 
   $answer = $options['answer'];
@@ -251,6 +253,32 @@ function pyMultiScramble($options, $content) {
 
 function pyProtectHandler($options, $content) {
   return $options['protect'];
+}
+
+function pyRecallHandler($options, $content) {
+
+  if (!array_key_exists('slug', $options))
+    return "[pyRecall error: no slug given]";
+  
+  global $wpdb;
+  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug like %s", $options['slug']), ARRAY_A);
+
+  if ($problem == NULL) 
+    return "[pyRecall error: slug " . $options['slug'] . " not found]";
+
+  if (trim($content)=="")
+    $content = $problem['content'];
+
+  $mergedOptions = json_decode($problem['shortcodeArgs'], TRUE);
+  foreach ($options as $o=>$v) {$mergedOptions[$o] = $v;}
+
+  if ($problem['type'] == "code") return pyBoxHandler($mergedOptions, $content);
+  if ($problem['type'] == "scramble") return pyBoxHandler($mergedOptions, $content);
+  if ($problem['type'] == "short answer") return pyShortHandler($mergedOptions, $content);
+  if ($problem['type'] == "multiple choice") return pyMultiHandler($mergedOptions, $content);
+  if ($problem['type'] == "multichoice scramble") return pyMultiScrambleHandler($mergedOptions, $content);
+
+  return "[pyRecall error: unknown type " . $problem['type'] . "]";
 }
 
 function newuserwelcome($options, $content) {
