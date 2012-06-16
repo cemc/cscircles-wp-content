@@ -108,7 +108,9 @@ function qtrans_useCurrentLanguageIfNotFoundShowAvailable($content) {
 
 function qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage($content) {
 	global $q_config;
-	return qtrans_use($q_config['language'], $content, false);
+	if (array_key_exists('language', $q_config))
+	  return qtrans_use($q_config['language'], $content, false);
+	return qtrans_use(FALSE, $content, false);
 }
 
 function qtrans_useDefaultLanguage($content) {
