@@ -615,7 +615,7 @@ class WP_Persistent_Object_Cache {
 		//rs_errlog ("<br />setting $id/$group:<br />");
 		
 		// is_404() function is no longer available at the execution of this wpp_cache_close, so check it here
-		if ( function_exists( 'is_404' ) && is_404() && empty( $this->is_404 ) )
+		if ( function_exists( 'is_404' ) && isset( $wp_query ) && is_404() && empty( $this->is_404 ) )
 			$this->is_404 = true;
 		
 		if ( ! empty( $this->is_404 ) )
