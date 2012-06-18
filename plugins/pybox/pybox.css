@@ -9,6 +9,8 @@
 
 #wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {min-width: inherit !important;}
 
+#wpadminbar.ie8 #adminbarsearch .adminbar-input{background-color: lightGreen !important;}
+
 /***************** end fix **********/
 
 .ui-resizable-handle {
