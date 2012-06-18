@@ -66,6 +66,10 @@ function generateId() {
 }
 
 function registerPybox($id, $slug, $type, $facultative, $title, $content, $args = NULL, $hash = NULL, $graderOptions = NULL) {
+  if (pll_current_language()!='en')
+    return;
+  if (is_array($args))
+    $args = json_encode($args);
   global $wpdb, $post;
   if (userIsAdmin() && array_key_exists("makeproblemdb", $_GET)) {
      $table_name = $wpdb->prefix . "pb_problems";
@@ -137,7 +141,7 @@ function pyShortHandler($options, $content) {
   $r = '';
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
-  registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content);
+  registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content, $options);
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -179,7 +183,7 @@ function pyMultiHandler($options, $content) {
   $r = '';
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
-  registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content);
+  registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content, $options);
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -228,7 +232,7 @@ function pyMultiScrambleHandler($options, $content) {
   $r = '';
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral multiscramble' id='pybox$id'>\n";
-  registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content);
+  registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content, $options);
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";

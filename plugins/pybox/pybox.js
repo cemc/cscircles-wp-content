@@ -567,6 +567,9 @@ $( // this call to $ makes it delay until the DOM is loaded
 	    setTimeout("window.scrollBy(0, -60)", 10); // so direct links aren't hidden by adminbar
 	} 
 
+	$("#wp-admin-bar-site-name").after($("#pylangswitcher li"));
+	$("#pylangswitcher").remove();
+
 	flexfixall();
     }
 );

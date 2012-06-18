@@ -1,6 +1,10 @@
  
 /*********************** general stuff **********************/
 
+#pylangswitcher {
+    display: none;
+}
+
 .ui-resizable-handle {
     z-index: 999 !important; // not to overlap modal dialogs
 }

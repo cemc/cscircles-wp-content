@@ -87,6 +87,11 @@ add_action('wp_footer', 'footsy');
 function footsy() { 
   global $popupBoxen;
   echo $popupBoxen;
+
+  if (userIsAdmin() || userIsTranslator()) {
+    echo '<span id="pylangswitcher">'.pll_the_languages(array('echo'=>0)).'</span>';
+  }
+
 }
 
 // adapted from http://www.ilovecolors.com.ar/tinymce-plugin-wordpress/

@@ -12,6 +12,12 @@ function userIsAdmin() {
   return is_user_logged_in() && current_user_can('level_10');
 }
 
+function userIsTranslator() {
+  if (!is_user_logged_in()) return false;
+  global $wpdb;
+  return 1==$wpdb->get_var("select count(1) from wp_user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);
+}
+
 function guruIDID($id) {
   $tmp = get_user_by('login', get_the_author_meta('pbguru', $id));  
   return ($tmp === FALSE) ? -1 : $tmp->ID;
