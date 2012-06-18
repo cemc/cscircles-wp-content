@@ -89,7 +89,7 @@ function footsy() {
   echo $popupBoxen;
 
   if (userIsAdmin() || userIsTranslator()) {
-    echo '<span id="pylangswitcher">'.pll_the_languages(array('echo'=>0)).'</span>';
+    echo '<span id="pylangswitcher">'.pll_the_languages(array('echo'=>0)).'<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">Editor</a></li></span>';
   }
 
 }
