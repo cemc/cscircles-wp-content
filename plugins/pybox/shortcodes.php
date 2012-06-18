@@ -66,8 +66,6 @@ function generateId() {
 }
 
 function registerPybox($id, $slug, $type, $facultative, $title, $content, $args = NULL, $hash = NULL, $graderOptions = NULL) {
-  if (pll_current_language()!='en')
-    return;
   if (is_array($args))
     $args = json_encode($args);
   global $wpdb, $post;
