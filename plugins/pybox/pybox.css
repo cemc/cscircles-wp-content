@@ -1,18 +1,6 @@
  
 /*********************** general stuff **********************/
 
-/*//////// fix problems introduced by wp 3.4 merge */
-
-#wpadminbar .ab-top-secondary {	background: none !important;}
-
-#wpadminbar * { text-shadow: none !important;}
-
-#wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {min-width: inherit !important;}
-
-#wpadminbar.ie8 #adminbarsearch .adminbar-input{background-color: lightGreen !important;}
-
-/***************** end fix **********/
-
 .ui-resizable-handle {
     z-index: 999 !important; // not to overlap modal dialogs
 }
@@ -202,6 +190,18 @@ a:not(.open-same-window):hover  {
 
 
 /************************ admin bar ********************************/
+
+
+#wpadminbar .ab-top-secondary {	background: none !important;}
+
+#wpadminbar * { text-shadow: none !important;}
+
+#wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {min-width: inherit !important;}
+
+#wpadminbar.ie8 #adminbarsearch .adminbar-input{background-color: lightGreen !important;}
+
+#wpadminbar #wp-admin-bar-totop img.icon {cursor: pointer}
+
 #wpadminbar img.icon {
 	background: none;
 	vertical-align: -2px;

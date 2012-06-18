@@ -181,9 +181,10 @@ function pb_menu_items($wp_admin_bar) {
   $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => 'Resources (new window)', 'href' => URESOURCES, "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact Us (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
 
-  $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'totop', 
-				  'title' => '<img onclick="scrollToTop()" title="scroll to top"'.
-				  ' class="icon" src="'.UFILES . 'up.png"/>' ));
+  if (!is_admin())
+    $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'totop', 
+				    'title' => '<img onclick="scrollToTop()" title="scroll to top"'.
+				    ' class="icon" src="'.UFILES . 'up.png"/>' ));
   
   global $wpdb;
 
