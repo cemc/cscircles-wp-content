@@ -18,7 +18,7 @@ function makedb($content, $options) {
   foreach ($out as $page) {
     $s = $page->post_title;
     $m = preg_match('/^([0-9]+)([A-Z]?)\: (.*)$/', $s, $matches);
-    if (get_the_terms($page->ID, 'language')=='en' && ($m >= 1))
+    if (get_the_terms($page->ID, 'language')->slug=='en' && ($m >= 1))
       $lessons[] = array('number'=>$matches[1].$matches[2], 'title'=>$matches[3], 
 			 'major'=>$matches[1], 'minor'=>$matches[2], 'id'=>$page->ID);
   }
