@@ -1,8 +1,8 @@
 10
 
 dir
-20578
-http://core.svn.wordpress.org/tags/3.3.2/wp-content/themes/twentyeleven/images
+21088
+http://core.svn.wordpress.org/tags/3.4/wp-content/themes/twentyeleven/images
 http://core.svn.wordpress.org
 
 
@@ -94,17 +94,17 @@ has-props
 
 272
 
-comment-arrow-bypostauthor-dark-rtl.png
+comment-bubble-dark-rtl.png
 file
 
 
 
 
 2012-04-11T17:25:24.000000Z
-b0fdc3c57b3593cd0a95d4229eec528d
-2011-06-09T14:30:57.685473Z
-18215
-iandstewart
+533950280eb9271022f1b3c73e15ff6b
+2011-06-25T20:24:07.881911Z
+18342
+azaozz
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-255
+1868
 
 comment-arrow-dark.png
 file
@@ -162,48 +162,14 @@ has-props
 
 348
 
-comment-bubble-dark-rtl.png
+comment-arrow-bypostauthor-dark-rtl.png
 file
 
 
 
 
 2012-04-11T17:25:24.000000Z
-533950280eb9271022f1b3c73e15ff6b
-2011-06-25T20:24:07.881911Z
-18342
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1868
-
-comment-arrow-bypostauthor-dark.png
-file
-
-
-
-
-2012-04-11T17:25:24.000000Z
-437883928567bb1560ad8f2b37030752
+b0fdc3c57b3593cd0a95d4229eec528d
 2011-06-09T14:30:57.685473Z
 18215
 iandstewart
@@ -228,7 +194,7 @@ has-props
 
 
 
-237
+255
 
 comment-bubble-dark.png
 file
@@ -264,8 +230,39 @@ has-props
 
 965
 
-headers
-dir
+comment-arrow-bypostauthor-dark.png
+file
+
+
+
+
+2012-04-11T17:25:24.000000Z
+437883928567bb1560ad8f2b37030752
+2011-06-09T14:30:57.685473Z
+18215
+iandstewart
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+237
 
 wordpress.png
 file
@@ -301,6 +298,9 @@ has-props
 
 794
 
+headers
+dir
+
 comment-arrow-rtl.png
 file
 
@@ -334,74 +334,6 @@ has-props
 
 
 271
-
-comment-arrow-bypostauthor-rtl.png
-file
-
-
-
-
-2012-04-11T17:25:24.000000Z
-c68fa620eeb4546c2d4a3548c148bb9f
-2011-06-09T14:30:57.685473Z
-18215
-iandstewart
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-257
-
-comment-arrow.png
-file
-
-
-
-
-2012-04-11T17:25:24.000000Z
-67d34cb867300e670a3237e5d0334017
-2011-06-09T14:30:57.685473Z
-18215
-iandstewart
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-250
 
 comment-bubble-rtl.png
 file
@@ -437,14 +369,14 @@ has-props
 
 1782
 
-comment-arrow-bypostauthor.png
+comment-arrow.png
 file
 
 
 
 
 2012-04-11T17:25:24.000000Z
-066e0295bbca17465582c96723783631
+67d34cb867300e670a3237e5d0334017
 2011-06-09T14:30:57.685473Z
 18215
 iandstewart
@@ -469,7 +401,41 @@ has-props
 
 
 
-239
+250
+
+comment-arrow-bypostauthor-rtl.png
+file
+
+
+
+
+2012-04-11T17:25:24.000000Z
+c68fa620eeb4546c2d4a3548c148bb9f
+2011-06-09T14:30:57.685473Z
+18215
+iandstewart
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+257
 
 comment-bubble.png
 file
@@ -504,4 +470,38 @@ has-props
 
 
 925
+
+comment-arrow-bypostauthor.png
+file
+
+
+
+
+2012-04-11T17:25:24.000000Z
+066e0295bbca17465582c96723783631
+2011-06-09T14:30:57.685473Z
+18215
+iandstewart
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+239
 
