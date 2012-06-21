@@ -117,21 +117,6 @@ primary key (ID)
 
 }
 
-
-
-add_action('my_daily_event', 'do_this_daily');
-
-function my_activation() {
-  if ( !wp_next_scheduled( 'my_daily_event' ) ) {
-    wp_schedule_event( 978332461, 'daily', 'my_daily_event');
-  }
-}
-add_action('wp', 'my_activation');
-
-function do_this_daily() {
-  wp_mail("cscircles@gmail.com", "a subject", "test message",  "jimmy <jimmy@foo.foo>");  
-}
-
 register_activation_hook(__FILE__, 'pybox_database_install');
 // for information about upgrading see
 // http://codex.wordpress.org/Creating_Tables_with_Plugins

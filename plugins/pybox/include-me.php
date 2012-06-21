@@ -11,7 +11,7 @@ define('WALLFACTOR', 2);
 define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit is FACTOR*X + BUFFER
 
 // string constants
-define('CSCIRCLES_EMAIL', 'cscircles@gmail.com');
+define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
 
 require_once('plugin-utilities.php');
 
