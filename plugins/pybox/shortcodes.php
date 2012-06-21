@@ -308,11 +308,6 @@ function sanitize($page) {
   return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
 }
 
-function getEnglish($text) {
-  $map = qtrans_split($text);
-  return getSoft($map, 'en', $text);
-}
-
 // for the navigation page
 function list_pybox_pages($options, $content) {
   $out = get_pages();
@@ -323,8 +318,8 @@ function list_pybox_pages($options, $content) {
       $p = get_page($page->ID);
       $slug = $p->post_name;
       $f = fopen(PEXPORT . $slug . ".txt", 'w');
-      fwrite($f, 'Title: ' . getEnglish($p->post_title) . "\n\nContent:\n\n");
-      fwrite($f, sanitize(getEnglish($p->post_content)));
+      fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
+      fwrite($f, sanitize($p->post_content));
       fclose($f);
     }
   }
