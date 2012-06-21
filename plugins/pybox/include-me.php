@@ -12,6 +12,7 @@ define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit 
 
 // string constants
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
+define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
 
 require_once('plugin-utilities.php');
 

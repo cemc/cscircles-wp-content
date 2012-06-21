@@ -21,7 +21,7 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())
-    $header_from = 'From: "CS Circles Assistant" <cscircles+asst@gmail.com>';
+    $header_from = 'From: "CS Circles Assistant" <'.CSCIRCLES_ASST_EMAIL.'>';
   else
     $header_from = 'From: "' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
 
@@ -34,7 +34,7 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $contents .= "[Sent by CS Circles http://cscircles.cemc.uwaterloo.ca]";
   
   if ($to == 0) {
-    wp_mail("cscircles+asst@gmail.com", $subject, $contents, $header_from);
+    wp_mail(CSCIRCLES_ASST_EMAIL, $subject, $contents, $header_from);
     if (get_the_author_meta('pbnocc', getUserID())!='true')
       wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to the CS Circles Assistant.\n\n" . $contents, $header_from);
   }
