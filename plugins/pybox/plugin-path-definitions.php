@@ -14,16 +14,6 @@ if (strcasecmp($servername, 'cscircles.cemc.uwaterloo.ca') == 0) {
     define('PB_DEV', FALSE);
   }
 }
-else {
-  if (strpos($currenturi, 'swordpress') != false) {
-    define('UWPHOME', '/~cscircles/swordpress/');
-    define('PB_DEV', TRUE);
-  }
-  else { //default
-    define('UWPHOME', '/~cscircles/wordpress/');
-    define('PB_DEV', FALSE); 
-  }
- }
 
 if (PB_DEV) 
   define('PLOCALHOME', '/home/cscircles/dev/');
@@ -71,6 +61,7 @@ define('UMESSAGE', UPYBOX . 'action-send-message.php');
 define('UFULLHISTORY', UPYBOX . 'db-entire-history.php');
 define('UHISTORY', UPYBOX . 'db-problem-history.php');
 define('UDBMAIL', UPYBOX . 'db-mail.php');
+define('UDBPREFIX', UPYBOX . 'db-');
 define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
 
 define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');

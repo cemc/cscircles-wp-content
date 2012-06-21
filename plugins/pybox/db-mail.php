@@ -18,8 +18,6 @@ only view messages that are to/from themselves and their students
 
 */
 
-require_once("db-include.php");
-
 function xname($uid) {
   if ($uid === 0 && userIsAdmin() || $uid === getUserID()) 
     return 'me';
@@ -29,14 +27,12 @@ function xname($uid) {
     return get_userdata($uid)->user_login;
 }
 
-echo dbFlexigrid
-(
- function ($limit, $sortname, $sortorder, &$info) {
-   $who = getSoft($_POST, "who", "");
-   $xwho = getSoft($_POST, "xwho", "");
-   $what = getSoft($_POST, "what", "");
-   $xwhat = getSoft($_POST, "xwhat", "");
-   $unans = getSoft($_POST, "unans", "");
+function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
+  $who = getSoft(($req==NULL?$_REQUEST:$req), "who", "");
+  $xwho = getSoft(($req==NULL?$_REQUEST:$req), "xwho", "");
+  $what = getSoft(($req==NULL?$_REQUEST:$req), "what", "");
+  $xwhat = getSoft(($req==NULL?$_REQUEST:$req), "xwhat", "");
+  $unans = getSoft(($req==NULL?$_REQUEST:$req), "unans", "");
 
    $info['type'] = 'mail-history';
    $info['who'] = $who;
@@ -111,8 +107,13 @@ echo dbFlexigrid
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);
    }
    return array('total' => $count, 'rows' => $flexirows);
- }
- );
+}
 
+
+// only do this if calld directly
+if(strpos($_SERVER["SCRIPT_FILENAME"], '/db-mail.php')!=FALSE) {
+  require_once("db-include.php");
+  echo dbFlexigrid('dbMail');
+ }
 
 // paranoid against newline error

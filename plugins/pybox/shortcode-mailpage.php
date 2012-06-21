@@ -1,7 +1,5 @@
 <?php
 
-require_once("db-include.php");
-
 add_shortcode('pbmailpage', 'pbmailpage');
 
 function validate() {
@@ -122,20 +120,20 @@ function pbmailpage($options, $content) {
 
   if (getUserID()!=$sid)
     $r .= niceFlex('us', name($sid)."'s submissions for ".$problem['publicname'], 
-		   UHISTORY, array('user'=>$sid, 'p'=>$problem['slug']));
+		   'problem-history', 'dbProblemHistory', array('user'=>$sid, 'p'=>$problem['slug']));
   $r .= niceFlex('ms', "My previous submissions for ".$problem['publicname'], 
-		 UHISTORY, array('p'=>$problem['slug']));
+		 'problem-history', 'dbProblemHistory', array('p'=>$problem['slug']));
 
   if (getUserID()!=$sid)
     $r .= niceFlex('omp', "My other messages about ".$problem['publicname'], 
-		   UDBMAIL, array('what'=>$problem['slug'], 'xwho'=>$sid));
+		   'mail', 'dbMail', array('what'=>$problem['slug'], 'xwho'=>$sid));
   
   $r .= niceFlex('oms',   (getUserID()==$sid)?"My messages for other programs":"Messages to/from ".name($sid)." for other problems", 
-		 UDBMAIL, array('who'=>$sid, 'xwhat'=>$problem['slug']));
+		 'mail', 'dbMail', array('who'=>$sid, 'xwhat'=>$problem['slug']));
 
   if (getUserID()!=$sid)
     $r .= niceFlex('unread', "All unanswered messages by my students",
-		   UDBMAIL, array('unans'=>1));
+		   'mail', 'dbMail', array('unans'=>1));
   
   $r .= "<a href='".UPROGRESS.'?user='.$sid."'>".name($sid)."'s progress page</a> (in new window)";
 
@@ -144,9 +142,16 @@ function pbmailpage($options, $content) {
   return $r;
 }
 
-function niceFlex($id, $title, $url, $dbparams) {
+function niceFlex($id, $title, $fileSuffix, $functionName, $dbparams) {
+  
+  include_once("db-$fileSuffix.php");
+  $url = UDBPREFIX . $fileSuffix . ".php";
+  $bar = array();
+  $foo = call_user_func($functionName," limit 0,0", '', '', &$bar, $dbparams);
+  $rows = $foo['total'];
+
   return "<div class='collapseContain hiding' id='cc$id'>
-<div class='collapseHead' id='ch$id'><span class='icon'></span>$title</div>
+<div class='collapseHead' id='ch$id'><span class='icon'></span>$title ($rows)</div>
 <div class='collapseBody' id='cb$id'></div></div>
 <script type='text/javascript'>
 jQuery('#ch$id').click(function(e) {

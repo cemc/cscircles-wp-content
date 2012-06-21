@@ -23,18 +23,18 @@ see db-mail for a reasonably-understandable example of using this framework
 
 */
 
-function dbFlexigrid($innerFunction) {
+function dbFlexigrid($innerFunction, $headers = TRUE) {
 
   $userid = getUserID();
   $profilingID = beginProfilingEntry(array("activity"=>"database", "userid"=>$userid));
 
-  $page = getSoft($_POST, "page", -1);     //flexigrid required
-  $rp = getSoft($_POST, "rp", -1);       //flexigrid required: results per page
+  $page = getSoft($_REQUEST, "page", -1);     //flexigrid required
+  $rp = getSoft($_REQUEST, "rp", -1);       //flexigrid required: results per page
   if (!is_numeric($page) || $page <= 0) $page = 1;  
-  if (!is_numeric($rp) || $rp <= 0) $rp = 1;
-  $sortname = trim(getSoft($_POST, "sortname", NULL));
+  if (!is_numeric($rp) || $rp < 0) $rp = 1; // $rp == 0 means you just want the count, it is not a real interface with flexigrid
+  $sortname = trim(getSoft($_REQUEST, "sortname", NULL));
   if ($sortname == "undefined") $sortname = NULL;
-  $sortorder = trim(getSoft($_POST, "sortorder", ""));
+  $sortorder = trim(getSoft($_REQUEST, "sortorder", ""));
   // not yet utilized: sortname, sortorder, qtype, query
   if (strtoupper($sortorder) != "ASC")
     $sortorder = "DESC";
@@ -42,11 +42,13 @@ function dbFlexigrid($innerFunction) {
   $info = array();
   $result = $innerFunction(" LIMIT " . (($page-1)*$rp) . ", " . $rp . " ", $sortname, $sortorder, $info);
 
-  header("Expires: Mon, 26 Jul 1997 05:00:00 GMT" ); 
-  header("Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" ); 
-  header("Cache-Control: no-cache, must-revalidate" ); 
-  header("Pragma: no-cache" );
-  header("Content-type: text/x-json");
+  if ($headers) {
+    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT" ); 
+    header("Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . "GMT" ); 
+    header("Cache-Control: no-cache, must-revalidate" ); 
+    header("Pragma: no-cache" );
+    header("Content-type: text/x-json");
+  }
 
   $activity = "database-";
   if (array_key_exists('type', $info)) {
