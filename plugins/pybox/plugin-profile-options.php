@@ -7,8 +7,8 @@ function user_pb_options_fields( $user ) {
   if (get_the_author_meta( 'pboldhistory', $user->ID )=='true') $oh = ' checked="yes"  ';*/
   $nocc = "";
   if (get_the_author_meta( 'pbnocc', $user->ID )=='true') $nocc = ' checked="yes"  ';
-  /*  $optout = "";
-   if (get_the_author_meta( 'pboptout', $user->ID )=='true') $optout = ' checked="yes"  ';*/
+  $optout = "";
+  if (get_the_author_meta( 'pboptout', $user->ID )=='true') $optout = ' checked="yes"  ';
   $guru_login = get_the_author_meta( 'pbguru', $user->ID );
   $gurucheck = '';
   if (trim($guru_login) != '') {
@@ -41,14 +41,14 @@ function user_pb_options_fields( $user ) {
        (default: unchecked) If checked, you will not receive a carbon copy when you send a message.</input>
        </td>
        </tr>
-<!--       <tr>
+       <tr>
        <th><label for="pboptout">Opt Out of Mass Emails</label></th>
        <td>
      <input type="checkbox" name="optout" id="optout"<?php echo $optout; ?> >
-       (default: unchecked) If checked, you will not receive announcements from CS Circles.</input>
+	 (default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.</input>
        </td>
        </tr>
-       <tr>
+<!--       <tr>
        <th><label for="plain">Disable Rich Editor</label></th>
        <td>
      <input type="checkbox" name="pbplain" id="pbplain"<?php echo $checkd; ?> >
@@ -77,7 +77,7 @@ function user_pb_options_fields_save( $user_id ) {
    update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );*/
   update_user_meta( $user_id, 'pbguru', ($_POST['pbguru']));
   update_user_meta( $user_id, 'pbnocc', ($_POST['pbnocc']=='on')?'true':'false' );
-  //  update_user_meta( $user_id, 'pboptout', ($_POST['pboptout']=='on')?'true':'false' );
+  update_user_meta( $user_id, 'pboptout', ($_POST['pboptout']=='on')?'true':'false' );
 }
 add_action( 'personal_options_update', 'user_pb_options_fields_save' );
 add_action( 'edit_user_profile_update', 'user_pb_options_fields_save' );
