@@ -89,8 +89,10 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
       else
 	$row['publicname'] = $title; //e.g., for the console, which is not part of any lesson
     }
-    if ($hash != NULL) {
+    if ($shortcodeArgs != NULL) {
       $row['shortcodeArgs'] = $args;
+    }
+    if ($hash != NULL) {
       $row['hash'] = $hash;
     }      
     if ($graderOptions != NULL) {
