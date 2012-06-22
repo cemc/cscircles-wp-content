@@ -168,7 +168,6 @@ function pyShortHandler($options, $content) {
 } 
 
 function pyWarnHandler($options, $content) {
-  //pyboxlog("warn: ".json_encode($options) . json_encode($content) . "\n");
   $scontent = do_shortcode($content);
   return "<table class='pywarn'><tr><td class='pywarnleft'><img src='".UWARN."'/></td>".
     "<td class='pywarnright'><span> $scontent </span></td></table>";
@@ -377,8 +376,6 @@ function list_pybox_pages($options, $content) {
     return $res . ">" . $atts['value'] . "</option>\n"; }
 
 function pyBoxHandler($options, $content) {
-
-  //pyboxlog("box: ".json_encode($options) . json_encode($content) . "\n");
 
   // given a shortcode, print out the html for the user, 
   // and save the relevant grader options in a hash file.
