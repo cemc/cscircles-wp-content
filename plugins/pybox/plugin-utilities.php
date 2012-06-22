@@ -168,7 +168,7 @@ function firstLine( $s ) { //get first line of a string
   return $list[0];
 }
 
-function popUp($linkText, $popup) {
+function popUp($linkText, $popup, $class = "") {
   //pyboxlog('popup' . $linkText . ';' . $popup . '.');
   global $pyRenderCount;
   if (!isset($pyRenderCount)) { // only used if called dynamically, e.g. "unsanitized output" in admin's submit.php
@@ -183,7 +183,7 @@ function popUp($linkText, $popup) {
   $r .= $linkText;
   $r .= '</a>';
 
-  $popupBoxen .= '<div id="hintbox' . $id . '" class="hintbox">';
+  $popupBoxen .= '<div id="hintbox' . $id . '" class="hintbox '.$class.'">';
   $popupBoxen .= '<div id="hintboxlink' . $id . '" class="hintboxlink"></div>';
   $popupBoxen .= $popup;
   $popupBoxen .= '</div>';
