@@ -88,8 +88,11 @@ function footsy() {
   global $popupBoxen;
   echo $popupBoxen;
 
-  if (userIsAdmin() || userIsTranslator()) {
-    echo '<span id="pylangswitcher">'.pll_the_languages(array('echo'=>0)).'<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">Editor</a></li></span>';
+  if (userIsAdmin() || userIsTranslator() || pll_current_language() != 'en') {
+    echo '<span id="pylangswitcher">'.pll_the_languages(array('echo'=>0,'display_names_as' => 'slug'));
+    if (userIsAdmin() || userIsTranslator())
+      echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">Editor</a></li>';
+    echo '</span>';
   }
 
 }
