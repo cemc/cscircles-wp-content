@@ -98,14 +98,12 @@ if (isset($post)) {
   echo '['.$blurb[$i].']'; //spit out a random phrase for all the search engines in the house
 }
 ?></div>
-<!-- g.b <?php echo WP_DEBUG?'dev':'live'; ?> -->
+
 	<div style="width: 100%; background: black;  height:40px;">
 	  <a href="http://www.uwaterloo.ca"><img src="<?php echo UFILES . 'wordmark-uw.gif';?>" style="margin: 0px;"/></a>
 	  <a href="http://cemc.uwaterloo.ca"><img src="<?php echo UFILES . 'wordmark-cemc.png';?>" style="margin: 0px; position: absolute; right: 0px;"></a>
 	  </div>
 	<header id="branding" role="banner">
-
-
 <?php 
 
   if (stripos($_SERVER["HTTP_USER_AGENT"], 'MSIE')===FALSE) 
@@ -128,7 +126,6 @@ if ( ! empty( $header_image ) ) :
  else : ?>
    <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
       <?php endif; // end check for featured image or standard header ?>
-
 </a>
 <?php   if (stripos($_SERVER["HTTP_USER_AGENT"], 'MSIE')===FALSE)  echo '</div>'; ?>
 <?php endif; // end check for removed header image ?>

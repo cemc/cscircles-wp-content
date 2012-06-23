@@ -43,10 +43,8 @@ function pyUser($options, $content) {
       $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")";
     }
     
-    $preamble .= optionsHelper($options, 'user');
-    $preamble .= "
-          <br/>
-          Just show submissions for one problem?<br/>";
+    $preamble .= optionsHelper($options, 'user')."<br/>";
+    $preamble .= __("Just show submissions for one problem?", "trans")."<br/>";
     $options = array();
     $options[''] = 'Show all';
     $options['console'] = 'Console';
