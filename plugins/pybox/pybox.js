@@ -330,7 +330,7 @@ function pbVisualize(id, tni) {
 
 function pbSelectChange(event) {
     id = getID(event);
-    act = $('#pbSelect'+id+' :selected').attr('pbonclick');
+    act = $('#pbSelect'+id+' :selected').attr('data-pbonclick');
     eval(act);
     $('#pbSelect'+id).val('More actions...').blur();
 }

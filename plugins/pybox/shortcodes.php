@@ -371,7 +371,7 @@ function list_pybox_pages($options, $content) {
     return $res . "></td>\n"; }
   function option($name, $atts) {
     $res = "<option name='$name' ";
-    $atts['pbonclick']=$atts['onclick'];
+    $atts['data-pbonclick']=$atts['onclick'];
     foreach ($atts as $att => $val) if ($att != 'value' && $att != 'onclick') $res .= $att.'="'.$val.'" ';
     return $res . ">" . $atts['value'] . "</option>\n"; }
 
@@ -686,7 +686,7 @@ if (!$facultative && !$scramble) {
       // our $button usage
       $dc = substr(json_encode(htmlspecialchars_decode($defaultcode, ENT_QUOTES), JSON_HEX_APOS), 1, -1);
       $r .= "<input type='hidden' id='defaultCode$id' value='$dc'></input>\n";
-      $actions['default'] = array('value'=>'Reset code to default', 'onclick'=>"pbSetText($id,descape(defaultCode$id.value))", );
+      $actions['default'] = array('value'=>'Reset code to default', 'onclick'=>"pbSetText($id,descape($('#defaultCode$id').val()))", );
     }
   }
 
