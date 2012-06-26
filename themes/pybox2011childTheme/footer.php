@@ -31,7 +31,7 @@ showLocationHandler(); ?>
     200 University Avenue West |
     Waterloo, Ontario, Canada N2L 3G1 |
     Phone: 519 888 4808 |
-    Fax: 519 746 6592
+    <a href="/contact">contact</a>
    </div>
 
   </div> 

@@ -1,6 +1,12 @@
  
 /*********************** general stuff **********************/
 
+input.wpcf7-text, textarea.wpcf7-textarea {
+  width: 100%;
+  padding: 3px;
+  margin: 2px 0px;
+}
+
 #pylangswitcher {
     display: none;
 }
