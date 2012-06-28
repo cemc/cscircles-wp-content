@@ -1,6 +1,8 @@
  
 /*********************** general stuff **********************/
 
+
+
 input.wpcf7-text, textarea.wpcf7-textarea {
   width: 100%;
   padding: 0px;
@@ -614,6 +616,9 @@ table.pywarn {
     font-size: 80%;
 }
 
+.widepophint {
+	width: 500px;
+}
 /********************* rest: pybox shortcode and friends ***************/
 #content .pybox {
     padding: 5px;
