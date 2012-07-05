@@ -177,9 +177,9 @@ function stderrNiceify($S) {
     if (preg_match('|(\s*)File "mainfile", line ([\d]*), in |', $line, $matches)) {
       $nextLine = $lines[$i+1]; //process two lines at a time
       $i++;
-      if (preg_match('|\s*exec\(compile\(open\(\'usercode\'\).read\(\), \'usercode\', \'exec\'\)\)\s*|', $nextLine) || 
-	  preg_match('|\s*exec\(compile\(open\(\'usertests\'\).read\(\), \'usertests\', \'exec\'\)\)\s*|', $nextLine) ||
-	  preg_match('|\s*exec\(compile\(open\(\'testcode\'\).read\(\), \'testcode\', \'exec\'\)\)\s*|', $nextLine))
+      if (preg_match('|\s*exec\(compile\(open\(\'usercode*|', $nextLine) || 
+	  preg_match('|\s*exec\(compile\(open\(\'usertests*|', $nextLine) ||
+	  preg_match('|\s*exec\(compile\(open\(\'testcode*|', $nextLine))
 	{}
       else if (preg_match('|raise\(|', $nextLine))
         {}
@@ -305,6 +305,7 @@ function doGrading($usercode, $TC) {
   extract($TC); // same as $showinput = $TC["showinput"], etc  
 
   $mainFile = "";
+ 
   $er = FALSE;
 
   $mainFile .= "from _UTILITIES import *\n";
@@ -313,7 +314,7 @@ function doGrading($usercode, $TC) {
   $noInput = ($inputMaker === FALSE);
   $mainFile .= ($inputMaker === FALSE ? "_stdin=''" : $inputMaker) 
     . "
-_stdincopy = open('stdincopy', 'w')
+_stdincopy = open('stdincopy', 'w', encoding='utf-8')
 print(_stdin, file=_stdincopy, end='')
 _stdincopy.close()
 ";
@@ -373,11 +374,11 @@ _orig_std = (_sys.stdin, _sys.stdout)
 _user_stdout = _StringIO()
 _sys.stdout = _TeeOut(_user_stdout, _orig_std[1])
 _sys.stdin = _StringIO(_stdin)
-exec(compile(open(\'usercode\').read(), \'usercode\', \'exec\'))
+exec(compile(open(\'usercode\', encoding="utf-8").read(), \'usercode\', \'exec\'))
 ';
   if (!$inputInUse) { // lesson 18, part 2: may do this even if facultative
     if ($inplace) {
-      $mainFile .= "exec(compile(open('testcode').read(), 'testcode', 'exec'))\n";
+      $mainFile .= "exec(compile(open('testcode', encoding='utf-8').read(), 'testcode', 'exec'))\n";
       $mainFile .= "_G.say('Y', 'noend')\n"; // success if none of the tests crash
     }
   }
@@ -404,7 +405,7 @@ _user_stdout.close()
   global $usertni;
 
   if ($inputInUse && $usertni) {
-    $mainFile .= "\n" . "exec(compile(open('usertests').read(), 'usertests', 'exec'))\n";
+    $mainFile .= "\n" . "exec(compile(open('usertests', encoding='utf-8').read(), 'usertests', 'exec'))\n";
     global $userinput;
     $files['usertests'] = $userinput;
   }
