@@ -657,7 +657,7 @@ if (!$facultative && !$scramble) {
     $actions['switch'] = array('id'=>"switch$id", 'value'=>'Input Switch', 'onclick'=>"pbInputSwitch($id,'$tni')");
   }
   if (!$disablericheditor) {
-    $userLikesRich = (!is_user_logged_in()) || ("false"==get_the_author_meta( 'pbplain', get_current_user_id()));
+    $userLikesRich = (!is_user_logged_in()) || ("false"===get_the_author_meta( 'pbplain', get_current_user_id()));
     if ($showEditorToggle || $richreadonly)
       $actions['CMtoggle'] = array('value'=>'Rich editor', 
 				   'id'=>"toggleCM$id", 'onclick'=>"pbToggleCodeMirror($id)");
