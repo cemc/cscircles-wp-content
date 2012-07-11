@@ -325,6 +325,14 @@ function list_pybox_pages($options, $content) {
       fwrite($f, sanitize($p->post_content));
       fclose($f);
     }
+    elseif (isSoft($_GET, 'export', 'raw')) {
+      $p = get_page($page->ID);
+      $slug = $p->post_name;
+      $f = fopen(PEXPORT . $slug . ".txt", 'w');
+      fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
+      fwrite($f, $p->post_content);
+      fclose($f);
+    }
   }
   $links[] = array("url"=>USEARCH, 'title'=>'Search');
 
