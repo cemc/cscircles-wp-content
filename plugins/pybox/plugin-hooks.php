@@ -205,7 +205,11 @@ function pb_menu_items($wp_admin_bar) {
 
   $students = getStudents();
   if (count($students)>0 || userIsAdmin()) {
-    $studentClause = userIsAdmin()?"1":("ustudent IN (".implode(',', $students).")");
+    $studentClause = "uto = " . getUserID();
+    if (userIsAdmin())
+      $studentClause = "($studentClause OR uto = 0)";
+    if (!userIsAdmin()) 
+      $studentClause .= "AND ustudent IN (".implode(',', $students).")";
     $count = $wpdb->get_var("SELECT COUNT(1) FROM wp_pb_mail WHERE unanswered = 1 AND $studentClause");
     if ($count > 0) {
       $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM wp_pb_mail 
