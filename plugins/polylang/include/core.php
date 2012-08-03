@@ -26,6 +26,7 @@ class Polylang_Core extends Polylang_base {
 		add_filter('override_load_textdomain', array(&$this, 'mofile'), 10, 3);
 		add_action('wp', array(&$this, 'load_textdomains'));
 		add_action('login_init', array(&$this, 'load_textdomains'));
+		add_action('admin_init', array(&$this, 'load_textdomains')); // Ajax thanks to g100g
 
 		// filters posts according to the language
 		add_filter('pre_get_posts', array(&$this, 'pre_get_posts'));
@@ -159,6 +160,10 @@ class Polylang_Core extends Polylang_base {
 		if ($var = get_query_var('lang'))
 			$lang = $this->get_language($var);
 
+		// Ajax thanks to g100g
+		elseif (isset($_REQUEST['pll_load_front']))
+			$lang =  isset($_REQUEST['lang']) && $_REQUEST['lang'] ? $this->get_language($_REQUEST['lang']) : $this->get_preferred_language();
+
 		elseif ((is_single() || is_page()) && ( ($var = get_queried_object_id()) || ($var = get_query_var('p')) || ($var = get_query_var('page_id')) ))
 			$lang = $this->get_post_language($var);
 
@@ -288,9 +293,9 @@ class Polylang_Core extends Polylang_base {
 		}
 
 		// redirect the language page to the homepage
-		if ($this->options['redirect_lang'] && is_tax('language') && count($query->query) == 1 && $this->page_on_front) {
-			$this->curlang = $this->get_language(get_query_var('lang'));
-			$query->parse_query('page_id='.$this->get_post($this->page_on_front, $this->curlang));
+		if ($this->options['redirect_lang'] && is_tax('language') && $this->page_on_front && (count($query->query) == 1 || (is_paged() && count($query->query) == 2))) {
+			$qvars['page_id'] = $this->get_post($this->page_on_front, $this->get_language(get_query_var('lang')));
+			$query->parse_query($qvars);
 			return;
 		}
 
@@ -322,11 +327,14 @@ class Polylang_Core extends Polylang_base {
 			}
 		}
 
+		$is_post_type = isset($qvars['post_type']) && (in_array($qvars['post_type'], $this->post_types) ||
+			 (is_array($qvars['post_type']) && array_intersect($qvars['post_type'], $this->post_types)) );
+
 		// FIXME to generalize as I probably forget things
 		$is_archive = (count($query->query) == 1 && isset($qvars['paged']) && $qvars['paged']) ||
 			(isset($qvars['m']) && $qvars['m']) ||
 			(isset($qvars['author']) && $qvars['author']) ||
-			(isset($qvars['post_type']) && is_post_type_archive() && in_array($qvars['post_type'], $this->post_types));
+			(isset($qvars['post_type']) && is_post_type_archive() && $is_post_type);
 
 		// sets 404 when the language is not set for archives needing the language in the url
 		if (!$this->options['hide_default'] && !isset($qvars['lang']) && !$GLOBALS['wp_rewrite']->using_permalinks() && $is_archive)
@@ -338,8 +346,7 @@ class Polylang_Core extends Polylang_base {
 
 		// allow filtering recent posts and secondary queries by the current language
 		// take care not to break queries for non visible post types such as nav_menu_items, attachments...
-		if (/*$query->is_home && */$this->curlang && (!isset($qvars['post_type']) || in_array($qvars['post_type'], $this->post_types) ||
-			 (is_array($qvars['post_type']) && array_intersect($qvars['post_type'], $this->post_types)) ))
+		if (/*$query->is_home && */$this->curlang && (!isset($qvars['post_type']) || $is_post_type ))
 			$query->set('lang', $this->curlang->slug);
 
 		// remove pages query when the language is set unless we do a search
@@ -363,6 +370,12 @@ class Polylang_Core extends Polylang_base {
 		// sets a language for theme preview
 		if ($qvars['preview'])
 			$query->set('lang', $this->curlang->slug);
+
+		// to avoid conflict beetwen taxonomies
+		if (isset($query->tax_query->queries))
+			foreach ($query->tax_query->queries as $tax)
+				if (in_array($tax['taxonomy'], $this->taxonomies))
+					unset ($query->query_vars['lang']);
 
 		if (PLL_DISPLAY_ALL) {
 			// add posts with no language set
@@ -431,7 +444,8 @@ class Polylang_Core extends Polylang_base {
 		// http://wordpress.org/support/topic/development-of-polylang-version-08?replies=6#post-2645559
 
 		$lang = esc_js($this->curlang->slug);
-		$js = "e = document.getElementsByName('s');
+		$js = "//<![CDATA[
+		e = document.getElementsByName('s');
 		for (i = 0; i < e.length; i++) {
 			if (e[i].tagName.toUpperCase() == 'INPUT') {
 				s = e[i].parentNode.parentNode.children;
@@ -449,7 +463,8 @@ class Polylang_Core extends Polylang_base {
 					e[i].parentNode.appendChild(ih);
 				}
 			}
-		}";
+		}
+		//]]>";
 		echo "<script type='text/javascript'>" .$js. "</script>";
 	}
 
@@ -721,9 +736,9 @@ class Polylang_Core extends Polylang_base {
 	// just returns the current language for API
 	function current_language($args) {
 		return !isset($this->curlang) ? false :
-			$args == 'name' ? $this->curlang->name :
-			$args == 'locale' ? $this->curlang->description :
-			$this->curlang->slug;
+			($args == 'name' ? $this->curlang->name :
+			($args == 'locale' ? $this->curlang->description :
+			$this->curlang->slug));
 	}
 }
 ?>
