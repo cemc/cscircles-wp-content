@@ -3,8 +3,8 @@ Contributors: takayukister
 Donate link: http://contactform7.com/donate/
 Tags: contact, form, contact form, feedback, email, ajax, captcha, akismet, multilingual
 Requires at least: 3.2
-Tested up to: 3.3.2
-Stable tag: 3.2
+Tested up to: 3.4.1
+Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,7 @@ It is hard to continue development and support for this plugin without contribut
 * Armenian (hy_AM) - [Emmanuelle Traduction](http://www.translatonline.com/)
 * Azerbaijani (az_AZ) - [Zaur Bayramov](http://bloglayaq.com/)
 * Bangla (bn_BD) - [SM Mehdi Akram](http://www.shamokaldarpon.com/)
+* Basque (Euskara; eu) - [karrikas](http://blog.karrikas.com/)
 * Belarusian (be_BY) - [Igor Dubilei](http://www.iflexion.com/)
 * Bosnian (bs) - [Vedran](http://www.seorabbit.com/)
 * Brazilian Portuguese (pt_BR) - [Leonardo Pinheiro](http://www.eletrikabarbarella.com.br/), [Henrique Vianna](http://henriquevianna.com/), [Caciano Gabriel Batista](http://www.gn10.com.br/), [Gervásio Antônio](http://twitter.com/gervasioantonio)
@@ -64,7 +65,7 @@ It is hard to continue development and support for this plugin without contribut
 * Maltese (mt_MT) - [Ajoft Technologies](http://www.ajoft.com/)
 * Norwegian (nb_NO) - Kjetil M. Bergem, [aanvik.net](http://www.aanvik.net), [Peter Holme](http://holme.se/nettsteder/)
 * Persian (Farsi; fa_IR) - [Mohammad Musavi](http://www.musavis.com/), [Mohsen Firoozmandan](http://www.rankbazar.com/)
-* Polish (pl_PL) - [Zbigniew Czernik](http://zibik.jogger.pl/), [Daniel Fruzynski](http://www.poradnik-webmastera.com), [RafalDesign](http://www.rafaldesign.pl/)
+* Polish (pl_PL) - [Zbigniew Czernik](http://zibik.jogger.pl/), [Daniel Fruzynski](http://www.poradnik-webmastera.com), [RafalDesign](http://www.rafaldesign.pl/), [Bartosz Arendt](http://digitalfactory.pl/)
 * Portuguese (pt_PT) - [Hugo Baeta](http://hugobaeta.com), [Pedro Nave](http://pedronave.com/)
 * Russian (ru_RU) - Dmitry Volotovich, [kg69design](http://kg69design.com/), [Denis Voituk](http://artprima.cz/)
 * Romanian (ro_RO) - [Stas Sushkov](http://stas.nerd.ro/), [Anunturi Jibo](http://www.jibo.ro/), [Marius Olar](http://webdudes.ro/)
@@ -103,7 +104,6 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 1. [Docs](http://contactform7.com/docs/)
 1. [FAQ](http://contactform7.com/faq/)
 1. [Support Forum](http://wordpress.org/support/plugin/contact-form-7)
-1. [WordPress HelpCenter](http://wphelpcenter.com/plugins/contact-form-7/)
 
 [Support](http://contactform7.com/support/)
 
@@ -112,6 +112,18 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 1. screenshot-1.png 
 
 == Changelog ==
+
+= 3.2.1 =
+
+* Fixed: Error for use of array_key_exists function with invalid first argument.
+* Fixed: Adding unnecessary rewrite rules.
+* Fixed: "Screen Options" doesn't appear on each contact form edit screen.
+* Change the comment_type value sent to Akismet from 'contactform7' to 'contact-form' following their blog post.
+* Introduce wpcf7_add_meta_boxes function and action with the same name. This makes it easier to add custom meta boxes to the edit screen.
+* Pass meta informations of each form submission (e.g. client's IP address) to Flamingo.
+* The jQuery Form Plugin (jquery.form.js) has been updated to 3.14 and compressed with YUI compressor.
+* Translation for Basque has been created.
+* Translations for German, Italian, and Polish have been updated.
 
 = 3.2 =
 
