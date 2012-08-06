@@ -33,7 +33,10 @@ class CR_Taxonomies extends AGP_Config_Items {
 		if ( $tx->uses_standard_schema ) {
 			$tx->source = 'term';
 			
-			// default WP schema properties			
+			// default WP schema properties	
+			if ( ! isset( $tx->cols ) )
+				$tx->cols = (object) array();
+			
 			$tx->cols->count = 'count';
 			
 			$tx->table_term2obj_basename = 'term_relationships';

@@ -85,7 +85,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		$set_parent = 0;
 		
 		if ( $col_parent = $scoper->data_sources->member_property($src_name, 'cols', 'parent') ) {
-			if ( in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php' ) ) ) {
+			if ( in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php', 'press-this.php' ) ) ) {
 				if ( isset($_POST[$col_parent]) ) 
 					$set_parent = $_POST[$col_parent];
 			} else {
@@ -430,8 +430,18 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 	
 	// Enforce any page parent filtering which may have been dictated by the flt_post_status filter, which executes earlier.
 	function scoper_flt_page_parent ($parent_id) {
-		if ( ! empty( $_POST['post_ID'] ) )
-			if ( $parent_id == $_POST['post_ID'] )	// normal revision save
+		if ( 'no_parent_filter' == scoper_get_option( 'lock_top_pages' ) )
+			return $parent_id;
+	
+		if ( ! empty($_REQUEST['post_ID']) ) 
+			$post_id = $_REQUEST['post_ID'];
+		elseif ( ! empty($_REQUEST['post_id']) )
+			$post_id = $_REQUEST['post_id'];
+		else
+			return $parent_id;
+			
+		if ( ! empty( $post_id ) )
+			if ( $parent_id == $post_id )	// normal revision save
 				return $parent_id;
 		
 		if ( defined( 'RVY_VERSION' ) ) {
@@ -452,7 +462,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		$args = array();
 		$args['alternate_reqd_caps'][0] = array("create_child_{$plural_name}");
 
-		if ( $descendant_ids = scoper_get_page_descendant_ids( $_POST['post_ID'] ) )
+		if ( $descendant_ids = scoper_get_page_descendant_ids( $post_id ) )
 			$exclusion_clause = "AND ID NOT IN('" . implode( "','", $descendant_ids ) . "')";
 		else
 			$exclusion_clause = '';
@@ -461,7 +471,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		$qry_parents = apply_filters('objects_request_rs', $qry_parents, 'post', $post_type, $args);
 		$valid_parents = scoper_get_col($qry_parents);
 				
-		$post = get_post( $_POST['post_ID'] );
+		$post = get_post( $post_id );
 		
 		if ( $parent_id ) {
 			if ( $post && ! in_array($parent_id, $valid_parents) ) {

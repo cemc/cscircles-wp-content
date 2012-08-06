@@ -1,0 +1,39 @@
+polylang : no customizations
+contact-form-7  :  : Dave patch needs to be created
+role-scoper : use role-scoper.patch
+all others : ask Dave
+
+==== PATCHING INFO ====
+situation: i have a custom hacked version of a plugin (role-scoper) and now i need to upgrade it.
+
+solution: diff and patch
+
+let's say that the old version was 1.3.55, and the new version is 1.3.56. arrange things so that the plugins directory contains these three subfolders:
+
+(a) "role-scoper", the custom hacked version of 1.3.55
+(b) "role-scoper.1.3.55", an unmodified copy
+(c) "role-scoper.1.3.56", an unmodified copy
+
+cd into the 1.3.55 copy
+find . | grep '~'
+delete any emacs temp files you want to kill
+
+CREATE PATCH:
+diff -Naur . ../role-scoper > ../role-scoper.patch
+
+cd ../role-scoper.1.3.56
+
+APPLY PATCH:
+patch -p1 -i ../role-scoper.patch
+
+OPTIONAL:
+unzip a fresh copy of 1.3.56 and inspect its diff against the patched folder. be careful to use distinct names
+
+CLEANUP:
+delete (a) and (b) {and the optional fresh copy}
+
+KEEP:
+the patch file, for the subsequent upgrade, as only APPLY PATCH will be needed.
+
+GOOD IDEA:
+submit the patch to the package maintainer

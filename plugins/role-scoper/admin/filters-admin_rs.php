@@ -195,6 +195,8 @@ class ScoperAdminFilters
 		}
 		
 		add_action( 'load-post.php', array( &$this, 'maybe_override_kses' ) );
+
+		add_action( 'add_link', 'wpp_cache_flush' );
 	}
 	
 	function maybe_override_kses() {
@@ -718,6 +720,9 @@ class ScoperAdminFilters
 		if ( is_content_administrator_rs() )
 			return true;
 
+		if ( 'no_parent_filter' == scoper_get_option( 'lock_top_pages' ) )
+			return true;
+			
 		if ( ! $post_type_obj = get_post_type_object($post_type) )
 			return true;
 			
@@ -731,6 +736,8 @@ class ScoperAdminFilters
 			if ( '1' === $top_pages_locked ) {
 				// only administrators can change top level structure
 				return false;
+			} elseif ( 'no_parent_filter' === $top_pages_locked ) {
+				return true;
 			} else {
 				$reqd_caps = ( 'author' === $top_pages_locked ) ? array( $post_type_obj->cap->publish_posts ) : array( $post_type_obj->cap->edit_others_posts );
 				$roles = $GLOBALS['scoper']->role_defs->qualify_roles($reqd_caps);

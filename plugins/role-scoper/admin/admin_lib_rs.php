@@ -20,7 +20,6 @@ add_filter('wp_dropdown_pages', array('ScoperAdminLib', 'flt_dropdown_pages') );
 if ( strpos( $_SERVER['REQUEST_URI'], 'nggallery' ) ) // Role Scoping for NGG calls ScoperAdminUI::dropdown_pages
 	require_once( dirname(__FILE__).'/admin_ui_lib_rs.php' );
 
-
 class ScoperAdminLib {
 	// filter page dropdown contents for Page Parent controls; leave others alone
 	function flt_dropdown_pages($orig_options_html) {

@@ -51,6 +51,10 @@ function scoper_log_init_action() {
 function scoper_act_set_current_user() {
 	$id = ( ! empty($GLOBALS['current_user']) ) ? $GLOBALS['current_user']->ID : 0;
 
+	if ( defined('MULTISITE') && MULTISITE ) {
+		scoper_version_check();
+	}
+
 	if ( $id ) {
 		require_once( dirname(__FILE__).'/scoped-user.php');
 		$GLOBALS['current_rs_user'] = new WP_Scoped_User($id);

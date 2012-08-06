@@ -272,7 +272,7 @@ class ScoperItemRolesUI {
 		echo "\r\n<p style='margin-bottom:0.8em;'>"
 			. "<span class='alignright'><a href='#wphead'>" . __('top', 'scoper') . '</a></span>'
 			. "<label for='objscope_{$role_code}'>"
-			. "<input type='checkbox' class='rs-check' name='objscope_{$role_code}' value='1' id='objscope_{$role_code}' $checked />"
+			. "<input type='checkbox' class='rs-check' name='objscope_{$role_code}' value='1' id='objscope_{$role_code}' $checked /> "
 			. sprintf(__('Restrict for %1$s (<strong>only</strong> selected users/groups are %2$s)', 'scoper'), $otype_def->labels->singular_name, $this->scoper->role_defs->get_abbrev($role_handle, OBJECT_UI_RS) )
 			. '</label></p>';
 			
@@ -283,7 +283,7 @@ class ScoperItemRolesUI {
 			
 			echo "<p style='margin-top: 0.5em;'>"
 			. "<label for='objscope_children_{$role_code}'>"
-			. "<input type='checkbox' class='rs-check' name='objscope_children_{$role_code}' value='1' id='objscope_children_{$role_code}' $checked />"
+			. "<input type='checkbox' class='rs-check' name='objscope_children_{$role_code}' value='1' id='objscope_children_{$role_code}' $checked /> "
 			. sprintf(__('Restrict for Sub-%1$s', 'scoper'), $otype_def->labels->name )
 			. '</label></p>';
 		}
@@ -563,28 +563,53 @@ class ScoperItemRolesUI {
 		$table_captions = ScoperAdminUI::restriction_captions(TERM_SCOPE_RS, $tx, $tx->labels->singular_name, $tx->labels->name );
 
 		echo '<br />';
-		$url = "admin.php?page=rs-category-restrictions_t#item-$term_id";
-		echo "\n<h3><a href='$url'>" . __('Category Restrictions', 'scoper') . '</a></h3>';
 		
-		$args = array( 
-		'admin_items' => $admin_terms, 	'editable_roles' => array(),			'default_strict_roles' => $default_strict_roles,
-		'ul_class' => 'rs-termlist', 	'table_captions' => $table_captions,	'single_item' => true
-		);
-		ScoperAdminBulk::item_tree( TERM_SCOPE_RS, ROLE_RESTRICTION_RS, $tx->source, $tx, $all_terms, '', $strict_terms, $role_defs_by_otype, array(), $args);
+		foreach( array_keys($strict_terms) as $_key ) {
+			if ( isset( $strict_terms[$_key][$term->term_taxonomy_id] ) ) {
+				$have_roles = true;
+				break;
+			}
+		}
 		
-		
-		$url = "admin.php?page=rs-category-roles_t#item-$term_id";
-		echo "\n<h3><a href='$url'>" . __('Category Roles', 'scoper') . '</a></h3>';
-		
-		$args = array( 
-		'admin_items' => $admin_terms, 	'editable_roles' => array(),						'role_bases' => $role_bases,
-		'agent_names' => $agent_names,	'agent_caption_plural' => $agent_caption_plural,	'agent_list_prefix' => $agent_list_prefix,
-		'ul_class' => 'rs-termlist', 	'single_item' => true
-		);
-		ScoperAdminBulk::item_tree(TERM_SCOPE_RS, ROLE_ASSIGNMENT_RS, $tx->source, $tx, $all_terms, $term_roles, $strict_terms, $role_defs_by_otype, array(), $args);
-
-		if ( ! empty($term_roles) ) {
-			$args = array( 'display_links' => false, 'display_restriction_key' => false);
+		if ( ! empty($have_restrictions) ) {
+			$url = "admin.php?page=rs-category-restrictions_t#item-$term_id";
+			echo "\n<h3><a href='$url'>" . __('Category Restrictions', 'scoper') . '</a></h3>';
+			
+			$args = array( 
+			'admin_items' => $admin_terms, 	'editable_roles' => array(),			'default_strict_roles' => $default_strict_roles,
+			'ul_class' => 'rs-termlist', 	'table_captions' => $table_captions,	'single_item' => true
+			);
+			ScoperAdminBulk::item_tree( TERM_SCOPE_RS, ROLE_RESTRICTION_RS, $tx->source, $tx, $all_terms, '', $strict_terms, $role_defs_by_otype, array(), $args);
+		}
+			
+		if ( ! empty( $term_roles['groups'][$term->term_taxonomy_id] ) || ! empty( $term_roles['user'][$term->term_taxonomy_id] ) ) {
+			$url = "admin.php?page=rs-category-roles_t#item-$term_id";
+			echo "\n<h3 id='single_item_roles_header'><a href='$url'>" . __('Category Roles', 'scoper') . '</a>&nbsp;&nbsp;<small><a href="#">' . __('key', 'pp') . '</a></small></h3>';
+			
+			$args = array( 
+			'admin_items' => $admin_terms, 	'editable_roles' => array(),						'role_bases' => $role_bases,
+			'agent_names' => $agent_names,	'agent_caption_plural' => $agent_caption_plural,	'agent_list_prefix' => $agent_list_prefix,
+			'ul_class' => 'rs-termlist', 	'single_item' => true
+			);
+			ScoperAdminBulk::item_tree(TERM_SCOPE_RS, ROLE_ASSIGNMENT_RS, $tx->source, $tx, $all_terms, $term_roles, $strict_terms, $role_defs_by_otype, array(), $args);
+			$have_roles = true;
+			
+			?>
+<script type="text/javascript">
+/* <![CDATA[ */
+jQuery(document).ready( function($) {
+	$('#single_item_roles_header').click( function(){
+		$('#single_item_roles_key').show();
+		return false;
+	});
+});
+/* ]]> */
+</script>
+<?php
+		}
+			
+		if ( ! empty($have_roles) ) {
+			$args = array( 'display_links' => false, 'display_restriction_key' => false, 'single_item' => true );
 			ScoperAdminUI::role_owners_key($tx, $args);
 		}
 	} // end function ui_single_term_roles

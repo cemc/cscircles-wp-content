@@ -212,15 +212,17 @@ class ScoperAdmin
 			$otype_def = $this->scoper->data_sources->member_property($src_name, 'object_types', $object_type);
 			
 			if ( ! empty($src) && ! empty($src->cols->parent) && empty($otype_def->ignore_object_hierarchy) ) {
-				$obj_title = sprintf( __('assign role for this %s', 'scoper'), agp_strtolower( $otype_def->labels->singular_name ) );
-				$child_title = sprintf( __('assign role for sub-%s', 'scoper'), agp_strtolower( $otype_def->labels->name ) );
+				if ( ! empty( $otype_def->labels ) ) {
+					$obj_title = sprintf( __('assign role for this %s', 'scoper'), agp_strtolower( $otype_def->labels->singular_name ) );
+					$child_title = sprintf( __('assign role for sub-%s', 'scoper'), agp_strtolower( $otype_def->labels->name ) );
 
-				$js_params = "var role_for_object_title = '$obj_title';"
-						. "var role_for_children_title = '$child_title';";
-		
-				// TODO: replace some of this JS with equivalent JQuery
-				echo "\n" . '<script type="text/javascript">' . $js_params . '</script>';
-				echo "\n" . "<script type='text/javascript' src='" . SCOPER_URLPATH . "/admin/rs-objrole-cbox-maint.js'></script>";
+					$js_params = "var role_for_object_title = '$obj_title';"
+							. "var role_for_children_title = '$child_title';";
+			
+					// TODO: replace some of this JS with equivalent JQuery
+					echo "\n" . '<script type="text/javascript">' . $js_params . '</script>';
+					echo "\n" . "<script type='text/javascript' src='" . SCOPER_URLPATH . "/admin/rs-objrole-cbox-maint.js'></script>";
+				}
 			}
 		}
 		
@@ -228,7 +230,8 @@ class ScoperAdmin
 		
 		if ( ( 0 === strpos( $plugin_page_cr, 'rs-' ) ) && strpos( $plugin_page_cr, 'roles' ) ) {
 			// add Ajax goodies we need for role duration/content date limit editing Bulk Role Admin
-			wp_print_scripts( array( 'page' ) );
+			if ( ! awp_ver('3.4') )
+				wp_print_scripts( array( 'page' ) );
 			
 			require_once( dirname(__FILE__).'/admin_lib-bulk_rs.php' );
 			ScoperAdminBulkLib::date_limits_js();

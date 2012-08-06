@@ -21,7 +21,7 @@ if ( ! function_exists('rs_errlog') ) {
 			$msg = serialize( $msg );
 			
 		$append = ( $line_break ) ? "\r\n" : '';
-		
+
 		if ( defined('RS_DEBUG_LOGFILE') )
 			error_log($msg . $append, 3, RS_DEBUG_LOGFILE);
 		

@@ -54,6 +54,7 @@ function cr_data_sources() {
 		'create_object' => '',			'delete_object' => 'delete_post',
 		'object_edit_ui' => '' );  // post data source defines an object_type-specific object_edit_ui hook
 		
+	$arr[$name]->admin_filters = (object) array();
 	$arr[$name]->admin_filters->pre_object_status = 'pre_post_status';
 	
 	// define html inserts for object role administration only if this is an admin URI
@@ -346,6 +347,7 @@ function cr_role_caps() {
 			'read' => true
 		),
 		'rs_link_editor' => array(
+			'read' => true,
 			'manage_links' => true
 		),
 		'rs_link_category_manager' => array(

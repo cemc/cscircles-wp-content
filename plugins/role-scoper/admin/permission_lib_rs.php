@@ -42,8 +42,13 @@
 			if ( is_null($item_id) )
 				$item_id = 0;
 
-			if ( ! cr_user_can( array_keys($reqd_caps[$role_handle]), $item_id ) )
-				return false;
+			if ( defined( 'SCOPER_AUTHORS_ASSIGN_ANY_ROLE' ) && ( 'post' == $src_name ) )
+				$author_post = get_post( $item_id );
+			
+			if ( empty($author_post) || ( $author_post->post_author == $GLOBALS['current_user']->ID ) || ! user_can_admin_object_rs( 'post', $author_post->post_type, $item_id ) ) {
+				if ( ! cr_user_can( array_keys($reqd_caps[$role_handle]), $item_id ) )
+					return false;
+			}
 			
 			// are we also applying the additional requirement (based on RS Option setting) that the user is a blog-wide editor?
 			if ( $require_blogwide_editor ) {
@@ -210,18 +215,21 @@
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
 
-		$object_types = ( $object_type ) ? (array) $object_type : get_post_types( array( 'public' => true ) );
+		$object_types = ( $object_type ) ? (array) $object_type : array_diff( get_post_types( array( 'public' => true ) ), array( 'attachment' ) );
 		
 		foreach( $object_types as $object_type ) {
 			$cap_defs = $scoper->cap_defs->get_matching( $src_name, $object_type, OP_EDIT_RS, '', ! $require_others_cap );
-		
+
 			if ( $status )
 				$cap_defs = array_merge( $cap_defs, $scoper->cap_defs->get_matching( $src_name, $object_type, OP_EDIT_RS, $status, ! $require_others_cap ) );
 
-			foreach ( array_keys($current_rs_user->blog_roles[ANY_CONTENT_DATE_RS]) as $role_handle )
-				if ( isset($scoper->role_defs->role_caps[$role_handle]) )
-					if ( ! array_diff_key( $cap_defs, $scoper->role_defs->role_caps[$role_handle] ) )
-						return true;
+			foreach ( array_keys($current_rs_user->blog_roles[ANY_CONTENT_DATE_RS]) as $role_handle ) {
+				if ( isset($scoper->role_defs->role_caps[$role_handle]) ) {
+					if ( ! array_diff_key( $cap_defs, $scoper->role_defs->role_caps[$role_handle] ) ) {
+						return true;			
+					}
+				}
+			}
 		}
 	}
 

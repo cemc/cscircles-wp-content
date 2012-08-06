@@ -192,7 +192,6 @@ class AttachmentFilters_RS {
 							if ( ! defined('SCOPER_QUIET_FILE_404') ) {
 								// note: subsequent act_attachment_access will call impose_post_teaser()
 								$will_tease = true; // will_tease flag only used within this function
-								$wp_query->query_vars['attachment'] = $matched_published_post[$object_type];
 								break;
 							}
 						}
@@ -211,16 +210,9 @@ class AttachmentFilters_RS {
 				if ( defined('SCOPER_QUIET_FILE_404') ) {
 					exit;
 				}
-				
-				// this may not be necessary
-				$wp_query->is_404 = true;
-				$wp_query->is_single = true;
-				$wp_query->is_singular = true;
-				$wp_query->query_vars['is_single'] = true;
-			}
-				
+			}		
 		}
-		
+
 	}
 } // end class
 ?>

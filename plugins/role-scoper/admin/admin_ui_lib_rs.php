@@ -137,7 +137,7 @@ class ScoperAdminUI {
 	
 	function role_owners_key($tx_or_otype, $args = array()) {
 		$defaults = array( 'display_links' => true, 'display_restriction_key' => true, 'restriction_caption' => '',
-							'role_basis' => '', 'agent_caption' => '' );
+							'role_basis' => '', 'agent_caption' => '', 'single_item' => false );
 		$args = array_merge( $defaults, (array) $args);
 		extract($args);
 	
@@ -153,7 +153,12 @@ class ScoperAdminUI {
 			
 		$agent_caption = agp_strtolower($agent_caption);
 		
-		echo '<h4 style="margin-bottom:0.1em"><a name="scoper_key"></a>' . __("Users / Groups Key", 'scoper') . ':</h4><ul class="rs-agents_key">';	
+		if ( $single_item ) {
+			echo '<div id="single_item_roles_key" style="display:none">';
+			echo '<div style="margin-bottom:0.1em;margin-top:0"><strong><a name="scoper_key"></a>' . __("Users / Groups Key", 'scoper') . ':</strong></div><ul class="rs-agents_key">';	
+		} else {
+			echo '<h4 style="margin-bottom:0.1em"><a name="scoper_key"></a>' . __("Users / Groups Key", 'scoper') . ':</h4><ul class="rs-agents_key">';	
+		}
 		
 		$link_open = ( $display_links ) ? "<a class='rs-link_plain' href='javascript:void(0)'>" : '';
 		$link_close = ( $display_links ) ? '</a>' : '';
@@ -186,6 +191,10 @@ class ScoperAdminUI {
 		}
 		
 		echo '</ul>';
+		
+		if ( $single_item ) {
+			echo '</div><br />';
+		}
 	}
 	
 	// Role Scoping for NGG calls ScoperAdminUI::dropdown_pages

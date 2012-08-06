@@ -3,8 +3,8 @@ Contributors: kevinB
 Donate link: http://agapetry.net/news/introducing-role-scoper/#role-scoper-download
 Tags: restrict, access, permissions, cms, user, members, admin, category, categories, pages, posts, page, Post, privacy, private, attachment, files, rss, feed
 Requires at least: 3.0
-Tested up to: 3.3.1
-Stable Tag: 1.3.55
+Tested up to: 3.4.1
+Stable Tag: 1.3.56
 
 CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
 
@@ -111,6 +111,52 @@ Yes, at this point I plan to keep Role Scoper compatible with upcoming WP versio
 8. [View more screenshots](http://agapetry.net/news/introducing-role-scoper/)
 
 == Changelog ==
+
+= 1.3.56 - 3 Aug 2012 =
+
+= WP 3.4 / PHP 5.4 =
+* Fixed : PHP 5.4 - warnings "Creating default object from empty value" (various symptoms including failed installations)
+* Fixed : WP 3.4 - stop using deprecated functions
+
+= Front End =
+* Feature : Filter post terms listing (function get_the_terms)
+* Fixed : Posts of inappropriate type were included in front-end posts listing under some configurations
+* Fixed : Calendar widget was not filtered
+
+= Category Roles / Media Upload =
+* Fixed : Files could not be uploaded when editing roles are category-specific
+* Fixed : When post authoring capabilities are from category role, files could not be uploaded to a new post prior to saving it
+* Fixed : Quick Press did not work when posting capabilities are via Category Role
+
+= Other Fixes =
+* Fixed : Other user's unattached uploads were always available in Media Library, regardless of RS option setting
+* Fixed : XML-RPC (ScribeFire) posting failure in some configurations, due to PHP warning
+* Fixed : Non-Editors could not see newly added link in link-manager.php until RS cache is flushed
+* Fixed : SCOPER_NO_ATTACHMENT_COMMENTS constant definition was ineffective for Administrators
+* Fixed : If "Users CSV Entry" option enabled, Group Members could not be added via rs_group_members > edit
+* Fixed : Categories / terms were filtered even if removed from Realm > Taxonomy Usage
+* Fixed : Multisite - Database errors (usually non-displayed and harmless PHP warnings) on first access of any site following creation or RS install
+* Fixed : Database errors (usually non-displayed and harmless PHP warnings) on first-time RS installation
+
+= Links / Link Categories =
+* Fixed : Link Editor restrictions did not limit category selection
+* Fixed : Link Editor role did not permit viewing widget on front end
+
+= Page Editing =
+* Feature : New option Roles > Options > Advanced > Page Structure > "no Page Parent filter", means anyone who can edit submit or publish a page can select any parent
+
+= Obscure Changes =
+* Feature : SCOPER_PUBLIC_ATTACHMENT_COMMENTS constant definition forces get_comments() inclusion of all comments on attachments to public posts (but not private posts)
+* Feature : SCOPER_AUTHORS_ASSIGN_ANY_ROLE constant definition allows authors to assign Editor role for their own posts
+* Fixed : Improper filtering of manually constructed post queries that have multiple WHERE clause criteria with one of the criteria "post_status ="
+
+= Plugin Compatibility =
+* Compat : Relevanssi - filtering failed due to modified plugin filter API in Relevanssi Free 2.9.15 and Premium 1.8
+* Compat : Relevanssi - PHP Warning for non-array under some conditions
+* Compat : WPML - improper comment filtering in wp-admin when WPML activated
+* Compat : CMS Page Tree View - could not create subpages based on propagating object roles
+* Advanced Custom Fields : ACF custom fields were not displed on term edit screen, RS roles and restrictions display wasted space
+* Subscribe2 : Subscription category selection checklist was not filtered
 
 = 1.3.55 - 22 Feb 2012 =
 * Feature : If jQuery is loaded on front end, hide titles of menus which have no readable items

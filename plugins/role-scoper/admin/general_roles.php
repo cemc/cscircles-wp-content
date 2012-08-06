@@ -245,6 +245,7 @@ if ( $duration_limits_enabled || $content_date_limits_enabled ) {
 
 	ScoperAdminBulkLib::display_date_limit_inputs( $duration_limits_enabled, $content_date_limits_enabled );
 
+	echo '<div style="clear:both"></div>';
 	echo '<br /><h3>4.&nbsp;';
 } else
 	echo '<br /><h3>3.&nbsp;';

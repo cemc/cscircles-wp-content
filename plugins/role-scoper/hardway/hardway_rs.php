@@ -29,7 +29,7 @@ if ( $scoper->data_sources->is_member('link') )
 // flt_get_terms '' so private posts are included in count, as basis for display when hide_empty arg is used
 
 add_filter('get_pages', array('ScoperHardway', 'flt_get_pages'), 1, 2);
-	
+
 /**
  * ScoperHardway PHP class for the WordPress plugin Role Scoper
  * hardway_rs.php
@@ -127,6 +127,9 @@ class ScoperHardway
 		// for the page parent dropdown, return no available selections for a published main page if the logged user isn't allowed to de-associate it from Main
 		if ( ! empty( $name ) && ( 'parent_id' == $name ) ) {
 			global $post;
+			
+			if ( 'no_parent_filter' == scoper_get_option( 'lock_top_pages' ) )
+				return $results;
 			
 			if ( ! $post->post_parent && ! $GLOBALS['scoper_admin_filters']->user_can_associate_main( $post_type ) ) {
 				$status_obj = get_post_status_object( $post->post_status );
@@ -340,7 +343,7 @@ class ScoperHardway
 		// ====================================
 
 		// Role Scoper note: WP core get_pages has already updated wp_cache and pagecache with unfiltered results.
-		update_page_cache($pages);
+		update_post_cache($pages);
 		
 
 		// === BEGIN Role Scoper MODIFICATION: Support a disjointed pages tree with some parents hidden ========

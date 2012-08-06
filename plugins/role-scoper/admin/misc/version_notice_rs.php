@@ -125,7 +125,7 @@ function scoper_new_version_notice() {
 }
 
 function scoper_pp_msg() {
-	$msg = __("<strong>Role Scoper has a big brother!</strong>&nbsp;&nbsp;Interested in a friendlier UI, cleaner restriction model with WP Roles integration, Custom Visibility and Moderation statuses, bbPress content roles, BuddyPress role groups and professional support? Step up to <a href='http://presspermit.com'>Press Permit</a>.", 'scoper');
+	$msg = sprintf( __("Interested in tigher WP integration, custom privacy and moderation statuses, bbPress roles, BuddyPress role groups and professional support? Step up to %s.", 'scoper'), "<a href='http://presspermit.com'>Press&nbsp;Permit</a>" );
 	return $msg;
 }
 

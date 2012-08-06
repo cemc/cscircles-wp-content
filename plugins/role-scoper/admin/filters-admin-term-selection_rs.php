@@ -3,7 +3,7 @@
 	// Removes terms for which the user has edit cap, but not edit_[status] cap
 	// If the removed terms are already stored to the post (by a user who does have edit_[status] cap), they will be reinstated by reinstate_hidden_terms
 	function scoper_filter_terms_for_status($taxonomy, $selected_terms, &$user_terms, $args = array() ) {
-		if ( defined( 'DISABLE_QUERYFILTERS_RS' ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) )
+		if ( defined( 'DISABLE_QUERYFILTERS_RS' ) ) // || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) )
 			return $selected_terms;
 			
 		global $scoper;

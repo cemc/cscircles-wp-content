@@ -10,8 +10,8 @@ class CommentsInterceptor_RS {
 		if ( is_admin() && defined( 'SCOPER_NO_COMMENT_FILTERING' ) && empty( $GLOBALS['current_user']->allcaps['moderate_comments'] ) )
 			return $clauses;
 
-		if ( empty( $clauses['join'] ) )
-			$clauses['join'] = "JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->comments.comment_post_ID";
+		if ( empty( $clauses['join'] ) || ! strpos( $clauses['join'], $wpdb->posts ) )
+			$clauses['join'] .= "JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->comments.comment_post_ID";
 		
 		// for WP 3.1 and any manual 3rd-party join construction (subsequent filter will expand to additional statuses as appropriate)
 		$clauses['where'] = preg_replace( "/ post_status\s*=\s*[']?publish[']?/", " $wpdb->posts.post_status = 'publish'", $clauses['where'] );
@@ -50,7 +50,7 @@ class CommentsInterceptor_RS {
 			$post_type_in = "'" . implode( "','", $post_types ) . "'";
 
 			$clauses['join'] .= " LEFT JOIN $wpdb->posts as parent ON parent.ID = {$wpdb->posts}.post_parent AND parent.post_type IN ($post_type_in) AND $wpdb->posts.post_type = 'attachment'";
-			
+
 			$use_post_types = scoper_get_option( 'use_post_types' );
 			
 			$where = array();
@@ -61,9 +61,14 @@ class CommentsInterceptor_RS {
 					$where_post = "AND 1=1";
 				
 				$where[]= "$wpdb->posts.post_type = '$type' $where_post";
-				$where[]= "$wpdb->posts.post_type = 'attachment' AND parent.post_type = '$type' " . str_replace( "$wpdb->posts.", "parent.", $where_post );
+				
+				if ( ! defined( 'SCOPER_PUBLIC_ATTACHMENT_COMMENTS' ) )
+					$where[]= "$wpdb->posts.post_type = 'attachment' AND parent.post_type = '$type' " . str_replace( "$wpdb->posts.", "parent.", $where_post );
 			}
-			
+
+			if ( defined( 'SCOPER_PUBLIC_ATTACHMENT_COMMENTS' ) )
+				$where[]= "$wpdb->posts.post_type = 'attachment' AND parent.post_status = 'publish'";
+
 			$clauses['where'] = preg_replace( "/\s*AND\s*{$wpdb->posts}.post_status\s*=\s*[']?publish[']?/", "", $clauses['where'] );
 			$clauses['where'] .= ' AND ( ' . agp_implode( ' ) OR ( ', $where, ' ( ', ' ) ' ) . ' )';
 		}

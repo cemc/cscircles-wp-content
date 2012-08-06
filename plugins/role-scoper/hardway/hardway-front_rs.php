@@ -18,6 +18,24 @@ if ( ! awp_ver( '3.3' ) )
 
 add_action( 'wp_print_footer_scripts', array('ScoperHardwayFront', 'flt_hide_empty_menus') );
 
+if ( _rs_is_active_widget_prefix( 'calendar-' ) )
+	add_filter( 'query', array( 'ScoperHardwayFront', 'flt_calendar' ) );
+
+function _rs_is_active_widget_prefix( $id_prefix ) {
+	global $wp_registered_widgets;
+
+	foreach ( (array) wp_get_sidebars_widgets() as $sidebar => $widgets ) {
+		if ( 'wp_inactive_widgets' != $sidebar && is_array($widgets) ) {
+			foreach ( $widgets as $widget ) {
+				if ( 0 === strpos( $wp_registered_widgets[$widget]['id'], $id_prefix ) )
+					return $sidebar;
+			}
+		}
+	}
+
+	return false;
+}
+	
 class ScoperHardwayFront
 {	
 	function include_jquery() {
@@ -65,6 +83,14 @@ jQuery(document).ready( function($) {
 				unset( $cats[$key] );
 	
 		return $cats;
+	}
+	
+	function flt_calendar( $query ) {
+		if ( strpos( $query, "DISTINCT DAYOFMONTH" ) || strpos( $query, "post_title, DAYOFMONTH(post_date)" ) || strpos( $query, "MONTH(post_date) AS month" ) ) {
+			$query = apply_filters( 'objects_request_rs', $query, 'post', '' );
+		}
+		
+		return $query;
 	}
 	
 	function flt_snazzy_archives( $query ) {

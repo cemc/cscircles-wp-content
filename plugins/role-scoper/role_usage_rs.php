@@ -25,7 +25,7 @@ class Role_Usage_RS {
 	
 	function determine_role_usage_rs( $src_name = 'post', $listed_ids = '' ) {
 		global $scoper, $wpdb;
-		
+
 		if ( 'post' != $src_name )
 			return;
 		

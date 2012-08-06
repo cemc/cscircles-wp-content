@@ -1371,14 +1371,14 @@ if ( ! empty( $ui->form_options[$tab][$section] ) ) : ?>
 
 	echo $ui->option_captions['lock_top_pages'];
 
-	$captions = array( 'author' => __('Page Authors, Editors and Administrators', 'scoper'), '' => __('Page Editors and Administrators', 'scoper'), '1' => __('Administrators', 'scoper') );
+	$captions = array( 'no_parent_filter' => __( 'no Page Parent filter (all published pages always selectable)' , 'scoper' ), 'author' => __('Page Authors, Editors and Administrators', 'scoper'), '' => __('Page Editors and Administrators', 'scoper'), '1' => __('Administrators', 'scoper') );
 	
 	foreach ( $captions as $key => $value) {
 		$key = strval($key);
 		echo "<div style='margin: 0 0 0.5em 2em;'><label for='{$id}_{$key}'>";
 		$checked = ( $current_setting === $key ) ? "checked='checked'" : '';
 	
-		echo "<input name='$id' type='radio' id='{$id}_{$key}' value='$key' $checked />";
+		echo "<input name='$id' type='radio' id='{$id}_{$key}' value='$key' $checked /> ";
 		echo $value;
 		echo '</label></div>';
 	}

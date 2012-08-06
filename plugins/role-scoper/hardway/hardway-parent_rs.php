@@ -3,6 +3,9 @@
 class ScoperHardwayParent {
 
 	function flt_dropdown_pages($orig_options_html) {
+		if ( 'no_parent_filter' == scoper_get_option( 'lock_top_pages' ) )
+			return $orig_options_html;
+
 		if ( ! strpos( $orig_options_html, 'parent_id' ) || ! $orig_options_html || is_content_administrator_rs() )
 			return $orig_options_html;
 

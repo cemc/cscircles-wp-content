@@ -239,6 +239,8 @@ echo '</li><li>';
 
 $search_replace_url = awp_plugin_search_url('replace');
 
+$upload_path = $uploads['baseurl'];
+
 if ( false !== strpos( $upload_path, 'http://www.' ) )
 	$www_msg = __('Note that to be detected as attachments, your file references must <strong>include www.</strong>');
 else

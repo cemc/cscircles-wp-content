@@ -29,8 +29,24 @@ class ScoperAdminFiltersItemUI {
 			add_action('admin_head', array(&$this, 'sync_private_js') );
 			
 		add_action( 'admin_head', array(&$this, 'deactive_term_checkboxes') );
+		add_action( 'admin_print_footer_scripts', array(&$this, 'force_autosave_before_upload') );
 	}
 	
+	function force_autosave_before_upload() {  // under some configuration, it is necessary to pre-assign categories. Autosave accomplishes this by triggering save_post action handlers.
+		if ( ! is_content_administrator_rs() ) : ?>
+<script type="text/javascript">
+/* <![CDATA[ */
+jQuery(document).ready( function($) {
+	$( '#wp-content-media-buttons a').click( function() {
+		if ( $('#post-status-info span.autosave-message').html() == '&nbsp;' ) {
+			autosave();
+		}
+	});
+});
+/* ]]> */
+</script>
+		<?php endif;
+	}
 
 	function deactive_term_checkboxes() {
 		if ( is_content_administrator_rs() )
@@ -72,7 +88,6 @@ jQuery(document).ready( function($) {
 </script>
 <?php
 }
-
 
 	function default_private_js() {
 		global $post;

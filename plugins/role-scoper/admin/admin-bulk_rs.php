@@ -128,7 +128,7 @@ function display_inputs($mode, $assignment_modes, $args = array()) {
 		$retain_value = ( isset($_POST["max_scope"]) ) ? $_POST["max_scope"] : '';
 		
 		foreach($max_scopes as $max_scope => $caption) {
-			$selected = ( $status_id === $retain_value ) ? 'selected="selected"' : '';
+			$selected = ( ! empty($status_id) && $status_id === $retain_value ) ? 'selected="selected"' : '';
 			echo "<option value='$max_scope' $selected>$caption</option>";
 		}
 		echo '</select></li>';
@@ -177,6 +177,7 @@ function display_inputs($mode, $assignment_modes, $args = array()) {
 		echo '</h3>';
 
 		ScoperAdminBulkLib::display_date_limit_inputs( $duration_limits_enabled, $content_date_limits_enabled );
+		echo '<div style="clear:both"></div>';
 	}
 
 	if ( ROLE_ASSIGNMENT_RS == $mode ) {
@@ -687,7 +688,7 @@ function item_tree($scope, $mode, $src, $otype_or_tx, $all_items, $assigned_role
 	}
 	
 	static $prevtext, $nexttext, $is_administrator, $role_header, $agents_header;
-	if ( empty($prevtext) ) {
+	if ( empty($prevtext) || $single_item ) {
 		// buffer prev/next caption for display with each term
 		//$prevtext = _ x('prev', '|abbreviated link to previous item', 'scoper');
 		//$nexttext = _ x('next', '|abbreviated link to next item', 'scoper');
@@ -1045,12 +1046,14 @@ function item_tree($scope, $mode, $src, $otype_or_tx, $all_items, $assigned_role
 					
 				$class = ($classes) ? " class='" . implode(' ', $classes) . "'" : '';
 				
-				echo "\r\n"
-					. "<tr{$class}>"
-					. "<td>$checkbox</td>"
-					. "<td>$label</td>"
-					. "<td>{$open_brace}$setting_display{$close_brace}</td>"
-					. "</tr>";
+				if ( $setting_display || ! $single_item ) {
+					echo "\r\n"
+						. "<tr{$class}>"
+						. "<td>$checkbox</td>"
+						. "<td>$label</td>"
+						. "<td>{$open_brace}$setting_display{$close_brace}</td>"
+						. "</tr>";
+				}
 			} // end foreach role
 
 		} // end foreach object_type
@@ -1064,10 +1067,12 @@ function item_tree($scope, $mode, $src, $otype_or_tx, $all_items, $assigned_role
 	}
 	
 	echo '</li>';
-	echo '</ul><br /><ul>';
+	echo '</ul><br />';
 	
 	// now display "select all" checkboxes for all terms in this taxonomy
 	if ( empty( $single_item ) ) {
+		echo '<ul>';
+		
 		if ( defined('SCOPER_EXTRA_SUBMIT_BUTTON') ) {
 			echo '<li class="alignright"><span class="submit" style="border:none;"><input type="submit" name="rs_submit" value="' 
 			. __('Update &raquo;', 'scoper') 

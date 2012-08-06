@@ -15,7 +15,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 
 require_once( dirname(__FILE__).'/groups-support.php');
 
-$mode = $_REQUEST['mode'];
+$mode = ( ! empty($_REQUEST['mode']) ) ? $_REQUEST['mode']: '';
 
 if($mode == "update"){
 	$group_temp = ScoperAdminLib::get_group($_REQUEST['id']);
@@ -23,16 +23,11 @@ if($mode == "update"){
 }
 
 
-if($_REQUEST['id'] == "" && ($mode == "edit" || $mode == "update"))
+if( ! empty($_REQUEST['id']) && $_REQUEST['id'] == "" && ($mode == "edit" || $mode == "update"))
 	UserGroups_tp::write( __('Invalid group.', 'scoper') );
 
-$cancel = $_REQUEST['cancel'];
-switch($cancel){
-	case 1:
-		UserGroups_tp::write( __('Group members edit canceled.', 'scoper') );
-		break;
-	default: 
-		break;
+if ( ! empty($_REQUEST['cancel']) ) {
+	UserGroups_tp::write( __('Group members edit canceled.', 'scoper') );
 }
 
 ?>
@@ -136,10 +131,17 @@ switch($mode){
 			// add/delete members
 			$current_members = ScoperAdminLib::get_group_members($group_id, COL_ID_RS);
 			
-			if ( $delete_members = array_diff($current_members, $_POST['member']) )
+			$posted_members = ( isset($_POST['member']) ) ? $_POST['member'] : array();
+		
+			if ( ! empty($_POST['member_csv']) ) {
+				if ( $csv_for_item = ScoperAdminLib::agent_ids_from_csv( 'member_csv', 'user' ) )
+					$posted_members = array_merge($posted_members, $csv_for_item);
+			}
+			
+			if ( $delete_members = array_diff($current_members, $posted_members) )
 				ScoperAdminLib::remove_group_user($group_id, $delete_members);
 			
-			if ( $new_members = array_diff($_POST['member'], $current_members) )
+			if ( $new_members = array_diff($posted_members, $current_members) )
 				ScoperAdminLib::add_group_user($group_id, $new_members);
 		}
 	default:

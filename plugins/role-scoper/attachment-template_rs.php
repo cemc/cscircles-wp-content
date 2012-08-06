@@ -65,7 +65,7 @@ class AttachmentTemplate_RS {
 		$force_excerpt[$post_type] = ( 'excerpt' == $use_teaser_type );
 		
 		$args = array( 'teaser_prepend' => $teaser_prepend,   'teaser_append' => $teaser_append, 	'teaser_replace' => $teaser_replace,  'force_excerpt' => $force_excerpt );
-		ScoperTeaser::apply_post_teaser( $object, $post_type, $args );
+		ScoperTeaser::apply_teaser( $object, $post_type, $args );
 		
 		$wp_query->is_404 = false;
 		$wp_query->is_attachment = true;

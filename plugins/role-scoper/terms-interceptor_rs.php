@@ -40,9 +40,30 @@ class TermsInterceptor_RS
 			add_filter('posts_where', array($this, 'flt_cat_not_in_subquery'), 1);
 		}
 		
+		if ( $scoper->is_front() && ! is_content_administrator_rs() ) {
+			add_filter('get_the_terms', array(&$this, 'flt_get_the_terms'), 10, 3 );
+		}
+		
 		$this->no_cache = defined( 'SCOPER_NO_TERMS_CACHE' ) || ( ! defined('SCOPER_QTRANSLATE_COMPAT') && awp_is_plugin_active('qtranslate') );
 	}
 
+	function flt_get_the_terms( $terms, $id, $taxonomy ) {
+		if ( $terms ) {
+			static $all_terms = array();
+			
+			if ( ! isset($all_terms[$taxonomy]) ) {
+				$all_terms[$taxonomy] = get_terms($taxonomy, array( 'fields'=> 'ids' ) );
+			}
+			
+			foreach( array_keys($terms) as $key ) {
+				if ( ! in_array( $terms[$key]->term_id, $all_terms[$taxonomy] ) )
+					unset( $terms[$key] );
+			}		
+		}
+
+		return $terms;
+	}
+	
 	function get_cache_key( $taxonomy, $args, $criteria ) {
 		// $default_criteria = array( 'is_term_admin' => false, 'filter_key' => '', 'required_operation' => '' );
 
@@ -126,6 +147,10 @@ class TermsInterceptor_RS
 				$return['required_operation'] = 'edit';
 				$return['post_type'] = 'post';
 				$return['remap_parents'] = true;
+			}
+
+			if ( is_admin() && ( 's2' == $GLOBALS['plugin_page'] ) ) {
+				$return['required_operation'] = 'read';
 			}
 		}
 
@@ -310,7 +335,7 @@ class TermsInterceptor_RS
 		
 		//d_echo( 'flt_get_terms input:' );
 		//dump($terms);
-		
+
 		if ( ! $this->no_cache ) {
 			// NOTE: this caching eliminates both the results post-processing below and query clause filtering in flt_terms_clauses()
 			$ckey = $this->get_cache_key( $taxonomy, $args, $criteria );
