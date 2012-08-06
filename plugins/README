@@ -18,16 +18,15 @@ cd into the 1.3.55 copy
 find . | grep '~'
 delete any emacs temp files you want to kill
 
-CREATE PATCH:
+CREATE PATCH: (still from inside 1.3.55 copy)
 diff -Naur . ../role-scoper > ../role-scoper.patch
 
-cd ../role-scoper.1.3.56
-
 APPLY PATCH:
+cd ../role-scoper.1.3.56
 patch -p1 -i ../role-scoper.patch
 
 OPTIONAL:
-unzip a fresh copy of 1.3.56 and inspect its diff against the patched folder. be careful to use distinct names
+unzip a fresh copy of 1.3.56 and inspect its diff against the patched (c) folder. be careful to use distinct names. NB: patch will create some .orig files in the patched  version.
 
 CLEANUP:
 delete (a) and (b) {and the optional fresh copy}
