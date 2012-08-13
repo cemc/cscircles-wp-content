@@ -1,5 +1,5 @@
 polylang : no customizations
-contact-form-7  :  : Dave patch needs to be created
+contact-form-7 : use contact-form-7.patch
 role-scoper : use role-scoper.patch
 all others : ask Dave
 
@@ -14,15 +14,16 @@ let's say that the old version was 1.3.55, and the new version is 1.3.56. arrang
 (b) "role-scoper.1.3.55", an unmodified copy
 (c) "role-scoper.1.3.56", an unmodified copy
 
-cd into the 1.3.55 copy
+inside the hacked version (b)
 find . | grep '~'
 delete any emacs temp files you want to kill
 
-CREATE PATCH: (still from inside 1.3.55 copy)
+CREATE PATCH:
+cd into the 1.3.55 copy (a)
 diff -Naur . ../role-scoper > ../role-scoper.patch
 
 APPLY PATCH:
-cd ../role-scoper.1.3.56
+cd ../role-scoper.1.3.56 (c)
 patch -p1 -i ../role-scoper.patch
 
 OPTIONAL:
