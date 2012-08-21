@@ -794,7 +794,8 @@ ie7 #content .pybox textarea {
 #main #content .pbresults { border-top: 5px solid white; }
 #main #content .pbresults:empty, #main #content .pbresults.avoidline { border-top: none; }
 
-
+/**************** grader *************/
+.gmi { white-space: pre; }
 
 /**************** epilogue placeholder *********************/
 .epilogue { display: none; }
