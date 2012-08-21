@@ -893,7 +893,7 @@ class Scoper
 			
 			if ( 'post' == $src_name ) {
 				if ( ! $operation )
-				  $operation = ( $this->is_front() || ( 'profile.php' == $pagenow ) || ( is_admin() && array_key_exists('plugin__page', $GLOBALS) && ( 's2' == $GLOBALS['plugin_page'] ) ) ) ? 'read' : 'edit';  // hack to support subscribe2 categories checklist
+				  $operation = ( $this->is_front() || ( 'profile.php' == $pagenow ) || ( is_admin() && array_key_exists('plugin_page', $GLOBALS) && ( 's2' == $GLOBALS['plugin_page'] ) ) ) ? 'read' : 'edit';  // hack to support subscribe2 categories checklist
 
 				$status = ( 'read' == $operation ) ? 'publish' : 'draft';
 				
