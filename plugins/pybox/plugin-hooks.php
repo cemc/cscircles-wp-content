@@ -228,7 +228,7 @@ function pb_menu_items($wp_admin_bar) {
     $wp_admin_bar->add_node( array(
 				   'id'        => 'admin-menu',
 				   'parent'    => 'top-secondary',
-				   'title'     => 'ADMIN',
+				   'title'     => 'su',
 				   'meta'      => array(
 							'class'     => '',
 							'title'     => __('Admin Menu'),
