@@ -1,6 +1,30 @@
 <?php
 
-  // this is included in include-me.php
+// plugin-utilities: this file is included in include-me.php
+
+// translation
+function __t($en_string) {
+  return __($en_string, 'cscircles');// . get_locale(); // for debugging
+}
+
+function cscurl($slug) {
+  
+  $cscurlmap = array(
+		     ('progress') => __t('<url>user-page/'),
+		     ('search') => __t('<url>search/'),
+		     ('mail') => __t('<url>mail/'),
+		     ('resources') => __t('<url>resources/'),
+		     ('console') => __t('<url>console/'),
+		     ('visualize') => __t('<url>visualize/'),
+		     ('usage') => __t('<url>using-this-website/'),
+		     ('contact') => __t('<url>contact/'),
+		     ('install') => __t('<url>run-at-home/')
+		     );
+  
+  $s = $cscurlmap[$slug];
+  if (substr($s, 0, 5)=='<url>') $s = substr($s, 5);
+  return UWPHOME . $s;
+}
 
 function userString($n) {
   $user = get_userdata($n);
@@ -142,7 +166,8 @@ function preBox( $s, $len = -1, $lenlimit = 1000, $style = '' ) {
   if ($len == -1)
     $len = strlen($s);
   if ($lenlimit >= 0 && strlen($s) > $lenlimit) {
-    $s = substr($s, 0, $lenlimit) . "\n" . "[Too long; only first $lenlimit out of " . $len . " characters shown]" . "\n";
+    $s = substr($s, 0, $lenlimit) . "\n" . 
+      sprintf(__t("[Too long; only first %1$s out of %2$s characters shown]"), $lenlimit, $len) . "\n";
   }
   $style = ($style=="")?"":" style='$style'";
   return "<pre class='prebox'$style>"."\n".htmlspecialchars($s).'</pre>';
@@ -266,7 +291,7 @@ function returnfromprofile() {
     $u = $_POST['redirect'];
   }
 
-  return "<div class='returnfromprofile'><a href='$u'>Return to Computer Science Circles</a></div>";
+  return "<div class='returnfromprofile'><a href='$u'>".__t("Return to Computer Science Circles")."</a></div>";
 }
 
 function getSoft($array, $key, $default) {

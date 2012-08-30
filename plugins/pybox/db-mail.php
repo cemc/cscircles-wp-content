@@ -42,7 +42,7 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
    $info['unans'] = $unans;
 
    if ( !is_user_logged_in() )
-     return "You must log in to view past mail.";
+     return __t("You must log in to view past mail.");
 
    $where = 'WHERE 1';
 
@@ -54,23 +54,23 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
 
    if ($who != '') {
      if (!is_numeric($who))
-       return "'who' must be numeric.";
+       return sprintf(__t("%s must be numeric."), "'who'");
      $who = (int)$who;
      if (userIsAdmin() || getUserID() == $who || getUserID() == guruIDID(getUserID()))
        $where .= ' AND ustudent = '.$who;
      else
-       return "Access denied.";
+       return __t("Access denied.");
    }
    else if ($xwho != '') {
      if (!is_numeric($xwho))
-       return "'xwho' must be numeric.";
+       return sprintf(__t("%s must be numeric."), "'xwho'");
      $xwho = (int)$xwho;
      $where .= ' AND ustudent != '.$xwho;
    }
 
    if ($unans != '') {
      if (!is_numeric($unans))
-       return "'unans' must be numeric.";
+       return sprintf(__t("%s must be numeric."), "'unans'");
      $unans = (int)$unans;
      $where .= ' AND unanswered = '.$unans;
    }
@@ -84,9 +84,9 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
    
    $table_name = $wpdb->prefix . "pb_mail";
 
-   $knownFields = array("from"=>"ufrom", "to"=>"uto", 
-			"when"=>"time", "message"=>"body",
-			"problem"=>"problem");
+   $knownFields = array(__t("from")=>"ufrom", __t("to")=>"uto", 
+			__t("when")=>"time", __t("message")=>"body",
+			__t("problem")=>"problem");
 
    $sortString = (array_key_exists($sortname, $knownFields)) ?
      ($knownFields[$sortname] . " " . $sortorder . ", ") : "";
@@ -97,11 +97,11 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
    $flexirows = array();
    foreach ($wpdb->get_results( $prep, ARRAY_A ) as $r) {
      $cell = array();
-     $cell['from'] = xname($r['ufrom']);
-     $cell['to'] = xname($r['uto']);
-     $url =  UMAIL . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m\n";
-     $cell['message'] = "<a href='$url'>".preBox($r['body'])."</a>";
-     $cell['when'] = $r['time'];
+     $cell[__t('from')] = xname($r['ufrom']);
+     $cell[__t('to')] = xname($r['uto']);
+     $url =  cscurl('mail') . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m\n";
+     $cell[__t('message')] = "<a href='$url'>".preBox($r['body'])."</a>";
+     $cell[__t('when')] = $r['time'];
      if ($what=='')
        $cell['problem'] = $r['problem'];
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);

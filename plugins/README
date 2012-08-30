@@ -1,7 +1,7 @@
 polylang : no customizations
 wp-ui : no customizations, but handled as a git submodule
 contact-form-7 : use contact-form-7.patch
-role-scoper : use role-scoper.patch
+role-scoper : use role-scoper.patch ... or not did the author upstream? see also /terms-interceptor_rs.php on line 152 
 all others : ask Dave
 
 ==== PATCHING INFO ====

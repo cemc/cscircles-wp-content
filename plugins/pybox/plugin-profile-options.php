@@ -15,53 +15,41 @@ function user_pb_options_fields( $user ) {
     global $wpdb;
     $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from wp_users WHERE user_login = %s', $guru_login));
     if ($guruid === NULL) 
-      $gurucheck = "<b>The username <code>" . htmlspecialchars($guru_login) . "</code> does not exist.</b>";
+      $gurucheck = 
+	"<b>".sprintf(__t("The username %s does not exist."), "<code>" . htmlspecialchars($guru_login) . "</code>")."</b>";
     else
-      $gurucheck = "<code>" . htmlspecialchars($guru_login) . "</code> exists! They are your guru.";
+      $gurucheck = 
+	sprintf(__t("%s exists! They are your guru."), "<code>" . htmlspecialchars($guru_login) . "</code> ");
   }
   else 
-    $gurucheck = "Enter the username of your guru. After you press <i>Update profile</i> we'll see if they exist.";
+    $gurucheck = __t("Enter the username of your guru. After you press <i>Update profile</i> we'll see if they exist.");
   
   $guruinput = '<input type="text" name="pbguru" id="pbguru" value="'. htmlspecialchars($guru_login) . '"> ' . $gurucheck .'<br/>';
   
 ?>
   <h3>Computer Science Circles Options</h3>
      <table class="form-table">
-     <tr><th><label for="pbguru">Guru&apos;s <i>Username</i> (blank for none)</label></th>
-       <td>
-       <?php echo $guruinput; ?>
-     Any other person with a CS Circles account (such as your teacher) can be your guru. You can ask them direct questions when you get stuck, and they can view your progress.
+     <tr><th><label for="pbguru"><?php echo __t('Guru&apos;s <i>Username</i> (blank for none)'); ?></label></th>
+				<td>
+		     <?php echo $guruinput . __t("Any other person with a CS Circles account (such as your teacher) can be your guru. You can ask them direct questions when you get stuck, and they can view your progress.");
+?>
 	 </input>
        </td>
        </tr>
        <tr>
-       <th><label for="pbnocc">Don&apos;t Send Mail Copies</label></th>
+	     <th><label for="pbnocc"><?php echo __t("Don&apos;t Send Mail Copies");?></label></th>
        <td>
-     <input type="checkbox" name="pbnocc" id="pbnocc"<?php echo $nocc; ?> >
-       (default: unchecked) If checked, you will not receive a carbon copy when you send a message.</input>
+     <input type="checkbox" name="pbnocc" id="pbnocc"<?php echo $nocc ." >".
+     __t("(default: unchecked) If checked, you will not receive a carbon copy when you send a message."); ?></input>
        </td>
        </tr>
        <tr>
-       <th><label for="pboptout">Opt Out of Mass Emails</label></th>
+														<th><label for="pboptout"><?php echo __t("Opt Out of Mass Emails"); ?></label></th>
        <td>
      <input type="checkbox" name="optout" id="optout"<?php echo $optout; ?> >
-	 (default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.</input>
+<?php echo __t("(default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.");?></input>
        </td>
        </tr>
-<!--       <tr>
-       <th><label for="plain">Disable Rich Editor</label></th>
-       <td>
-     <input type="checkbox" name="pbplain" id="pbplain"<?php echo $checkd; ?> >
-     (default: unchecked) Check to disable auto-loading of the rich editor. Good for some older browsers.</input>
-       </td>
-       </tr>
-       <tr>
-       <th><label for="pboldhistory">Disable History Table</label></th>
-       <td>
-     <input type="checkbox" name="pboldhistory" id="pboldhistory"<?php echo $oh; ?> >
-       (default: unchecked) Make history opens in new window in ugly table. Good for some older browsers.</input>
-       </td>
-       </tr>-->
        </table>
     <?php }
 

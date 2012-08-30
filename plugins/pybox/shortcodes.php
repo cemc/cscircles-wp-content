@@ -36,12 +36,12 @@ add_shortcode( 'list-pybox-pages', 'list_pybox_pages' );
 
 function pberror( $errmsg) {
   pyboxlog("[pyBoxHandler] " . $errmsg);
-  return "<b>Internal error, details below; please <a href=\"" . UCONTACT . "\">contact staff</a>.</b> Timestamp: " . date("y-m-d H:i:s", time()) . "<br/>" . preBox($errmsg);}
+  return "<b>".sprintf(__t("Internal error, details below; please <a href='%s'>contact staff</a>."), cscurl('contact'))."</b> ".__t("Timestamp:")." " . date("y-m-d H:i:s", time()) . "<br/>" . preBox($errmsg);}
 
 function pyLinkHandler($options, $content) {
   $code = softSafeDereference($options["code"]);
   $r = '';
-  $r .= '<a href="' . UCONSOLE . "?consolecode=" . rawurlencode( $code ) . '" target="_blank">';
+  $r .= '<a href="' . cscurl('console') . "?consolecode=" . rawurlencode( $code ) . '" target="_blank">';
   $r .= $content;
   $r .= '</a>';
   return $r;
@@ -54,9 +54,9 @@ function pyHintHandler($options, $content) {
 
 function checkbox($slug) {
   if ($slug != 'NULL' && getCompleted($slug)) 
-    return "<img title='You have completed this problem at least once.' src='".UFILES."checked.png' class='pycheck'/>";
+    return "<img title='".__t("You have completed this problem at least once.")."' src='".UFILES."checked.png' class='pycheck'/>";
   else
-    return "<img title='You have not yet completed this problem.' src='".UFILES."icon.png' class='pycheck'/>";
+    return "<img title='".__t("You have not yet completed this problem.")."' src='".UFILES."icon.png' class='pycheck'/>";
 }
 
 function generateId() {
@@ -147,21 +147,21 @@ function pyShortHandler($options, $content) {
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
 
-  $r .= heading('Short Answer Exercise', $options);
+  $r .= heading(__t('Short Answer Exercise'), $options);
 
   $r .= do_shortcode($content);
-  $r .= '<br><label for="pyShortAnswer'.$id.'">Your answer';
-  if ($type=="number") $r .= ' (enter a number)';
+  $r .= '<br><label for="pyShortAnswer'.$id.'">'.__t('Your answer');
+  if ($type=="number") $r .= ' ('.__t('enter a number').')';
   $r .= ': </label><input type="text" onkeypress="{if (event.keyCode==13) pbShortCheck('.$id.')}" id="pyShortAnswer'.$id.'">';
   //  $r .= '<hr>';
   $r .= '<div class="pyboxbuttons">';
   $r .= '<input type="hidden" name="type" value="'. $type . '"/>';
   $r .= '<input type="hidden" name="correct" value="'. $answer . '"/>';
   $r .= '<input type="hidden" name="slug" value="'. $slug . '"/>';
-  $r .= "<input type='submit' style='margin:5px;' value='Check answer' onClick = 'pbShortCheck($id)'/>";
+  $r .= "<input type='submit' style='margin:5px;' value='".__t('Check answer')."' onClick = 'pbShortCheck($id)'/>";
   $r .= '</div>';
   $r .= '<div class="pbresults" id="pyShortResults'.$id.'"></div>';
-  $r .= '<div class="epilogue">'. getSoft($options, "epilogue", "Correct!") . '</div>';
+  $r .= '<div class="epilogue">'. getSoft($options, "epilogue", __t("Correct!")) . '</div>';
   $r .= '</div>';
   
   return $r; 
@@ -189,11 +189,11 @@ function pyMultiHandler($options, $content) {
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
 
-  $r .= heading('Multiple Choice Exercise', $options);
+  $r .= heading(__t('Multiple Choice Exercise'), $options);
 
   $r .= '<div>';
   $r .= do_shortcode($content);
-  $r .= '</div><label>Your choice: </label><select id="pyselect' . $id . '"><option value="d" selected>Select one</option>';
+  $r .= '</div><label>'.__t('Your choice:').' </label><select id="pyselect' . $id . '"><option value="d" selected>'.__t('Select one').'</option>';
   foreach ($shuff as $s) {
     if ($s==-1)
       $r .= '<option value="r">' . $right . '</option>';
@@ -204,10 +204,10 @@ function pyMultiHandler($options, $content) {
   //$r .= '<hr>';
   $r .= "<div class='pyboxbuttons'>";
   $r .= '<input type="hidden" name="slug" value="'. $slug . '"/>';
-  $r .= "<input type='submit' style='margin:5px;' value='Check answer' onClick='pbMultiCheck($id)'/>";
+  $r .= "<input type='submit' style='margin:5px;' value='".__t("Check answer")."' onClick='pbMultiCheck($id)'/>";
   $r .= '</div>'; //pyboxbuttons
   $r .= '<div class="pbresults" id="pyMultiResults'.$id.'"></div>';
-  $r .= '<div class="epilogue">'. getSoft($options, "epilogue", "Correct!") . '</div>';
+  $r .= '<div class="epilogue">'. getSoft($options, "epilogue", __t("Correct!")) . '</div>';
   $r .= '</div>'; //pybox
 
   return $r;
@@ -238,7 +238,7 @@ function pyMultiScrambleHandler($options, $content) {
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
 
-  $r .= heading('Scramble Exercise', $options);
+  $r .= heading(__t('Scramble Exercise'), $options);
 
   $r .= $content;
   $r .= '<ul class="pyscramble" name="pyscramble" id="pyscramble' . $id . '">' . "\n";
@@ -246,11 +246,11 @@ function pyMultiScrambleHandler($options, $content) {
     $r .= '<li id="pyli' . $id . '_' . $a[0] . '" class="pyscramble" >' . $a[1] . '</li>' . "\n"; 
   $r .= '</ul>' . "\n";
   $r .= '<div class="pyboxbuttons">';
-  $r .= "<input type='button' value='Check answer' onclick='pbMultiscrambleCheck($id)'/>\n";
+  $r .= "<input type='button' value='".__t("Check answer")."' onclick='pbMultiscrambleCheck($id)'/>\n";
   $r .= '<input type="hidden" name="slug" value="'.$slug.'"/>' . "\n";
   $r .= '</div>'; 
   $r .= '<div id="pbresults' . $id . '" class="pbresults"></div>';
-  $r .= '<div class="epilogue">'. getSoft($options, "epilogue", "Correct!") . '</div>';
+  $r .= '<div class="epilogue">'. getSoft($options, "epilogue", __t("Correct!")) . '</div>';
   $r .= '</div>';
 
   return $r;
@@ -289,9 +289,11 @@ function pyRecallHandler($options, $content) {
 function newuserwelcome($options, $content) {
   if ( ! is_user_logged_in() ) {
     $ulog = wp_login_url( home_url() );
-    $uuse = UUSAGE;
-    return "<em>New around here? Read <a class='open-same-window' href='$uuse'>Using this Website</a>. ".
-      "You can also <a class='open-same-window' href='$ulog'>click here to create an account or log in</a>.</em>";
+    $uuse = cscurl('usage');
+
+    return "<em>".sprintf(__t('New around here? Read <a %1$s>Using this Website</a>. You can also <a %2$s>click here to create an account or log in</a>.'), 
+			  "class='open-same-window' href='$uuse'", 
+			  "class='open-same-window' href='$ulog'")."</em><br/>";
   }
   return "";
 }
@@ -334,18 +336,18 @@ function list_pybox_pages($options, $content) {
       fclose($f);
     }
   }
-  $links[] = array("url"=>USEARCH, 'title'=>'Search');
+  $links[] = array("url"=>cscurl('search'), 'title'=>__t('Search'));
 
   $user_id      = get_current_user_id();
   $current_user = wp_get_current_user();
   $profile_url  = get_edit_profile_url( $user_id );
 
   if ( $user_id ) {
-    $links[] = array("url"=>$profile_url, "title"=>'Edit my profile');
-    $links[] = array("url"=>wp_logout_url(), 'title'=>'Log out now');
+    $links[] = array("url"=>$profile_url, "title"=>__t('Edit my profile'));
+    $links[] = array("url"=>wp_logout_url(), 'title'=>__t('Log out now'));
   } 
   else
-    $links[] = array("url"=>wp_logout_url(), 'title'=>'Log in or create a new account');
+    $links[] = array("url"=>wp_logout_url(), 'title'=>__t('Log in or create a new account'));
 
 
   foreach ($links as $i=>$page) {
@@ -537,10 +539,10 @@ function pyBoxHandler($options, $content) {
   }
 
   if ($facultative) 
-    $r .= heading('Example', $options);
+    $r .= heading(__t('Example'), $options);
   else {
     $r .= checkbox($slug);
-    $r .= heading($scramble ? 'Scramble Exercise' : 'Coding Exercise', $options);
+    $r .= heading($scramble ? __t('Scramble Exercise') : __t('Coding Exercise'), $options);
   }
 
   
@@ -552,7 +554,7 @@ function pyBoxHandler($options, $content) {
 if (!$facultative && !$scramble) {
   $r .= '<div class="helpOuter" style="display: none;"><div class="helpInner">';
   if (!is_user_logged_in()) {
-    $r .= '<div style="text-align: center">You need to create an account and log in to ask a question.</div>';
+    $r .= '<div style="text-align: center">'.__t('You need to create an account and log in to ask a question.').'</div>';
   }
   else {
     global $wpdb;
@@ -561,20 +563,21 @@ if (!$facultative && !$scramble) {
       $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from wp_users WHERE user_login = %s', $guru_login));
     $r .= '<div style="text-align: center">';
     if ($guru_login != '' and $guruid !== NULL) {
-      $r .= 'Send a question by e-mail to: ';
-      $r .= "<select class='recipient'><option value='0'>Select one...</option><option value='1'>My guru ($guru_login)</option><option value='-1'>CS Circles Assistant</option></select></div>";
+      $r .= __t('Send a question by e-mail to: ');
+      $r .= "<select class='recipient'><option value='0'>".__t("Select one...")."</option><option value='1'>".__t("My guru")." ($guru_login)</option><option value='-1'>".__t("CS Circles Assistant")."</option></select></div>";
     } 
     else {
-      $r .= 'Send a question by e-mail to: ';
-      $r .= "<select class='recipient'><option value='0'>Select one...</option><option value='0' disabled='disabled'>My guru (you don't have one)</option><option value='-1'>CS Circles Assistant</option></select>";
-      $r .= "<i>(name a guru on <a href=".get_edit_profile_url(get_current_user_id()).">your Profile Page</a>)</i><br/>";
+      $r .= __t('Send a question by e-mail to: ');
+      $r .= "<select class='recipient'><option value='0'>".__t("Select one...")."</option><option value='0' disabled='disabled'>".__t("My guru (you don't have one)")."</option><option value='-1'>".__t("CS Circles Assistant")."</option></select>";
+      $r .= "<i>".
+	sprintf(__t("(name a guru on <a %s>your Profile Page</a>)"), "href='".get_edit_profile_url(get_current_user_id())."'")
+	."</i><br/>";
       $r .= '</div>';
     }
-    $r .= "Enter text for the message below. <i>Be sure to explain where you're stuck and what you've tried so far. 
-          Your partial solution code will be automatically included with the message.</i>";
+    $r .= __t("Enter text for the message below. <i>Be sure to explain where you're stuck and what you've tried so far. Your partial solution code will be automatically included with the message.</i>");
     $r .= "<textarea style='font-family: serif'></textarea>";
-    $r .= "<table class='helpControls'><tr><td style='width: 50%'><a onclick='sendMessage($id,\"$slug\")'>Send this message</a></td><td style='width: 50%'>
-           <a onclick='helpClick($id)'>Cancel</a></td></tr></table>";
+    $r .= "<table class='helpControls'><tr><td style='width: 50%'><a onclick='sendMessage($id,\"$slug\")'>".__t("Send this message")."</a></td><td style='width: 50%'>
+           <a onclick='helpClick($id)'>".__t("Cancel")."</a></td></tr></table>";
   }
 
   $r .= '</div></div>';
@@ -593,7 +596,7 @@ if (!$facultative && !$scramble) {
   else {
     $thecode = $defaultcode;
     if ($autocommentline)
-      $thecode .= '# delete this comment and enter your code here'."\n";
+      $thecode .= __t('# delete this comment and enter your code here')."\n";
     
     if (array_key_exists('slug', $options) && $scramble === FALSE) {
       $savedCode = loadMostRecent($options['slug']);
@@ -645,10 +648,10 @@ if (!$facultative && !$scramble) {
   if ($allowinput) {
     if ($usertni === TRUE)
       $description = 
-	"Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> below.";
+	__t('Enter testing statements like <tt>print(myfunction("test argument"))</tt> below.');
     else
       $description =
-	"You may enter input for the program in the box below.";
+	__t("You may enter input for the program in the box below.");
 
     $r .= '<div name="pyinput" id="pyinput'.$id.'">';
     $r .= $description;
@@ -668,26 +671,22 @@ if (!$facultative && !$scramble) {
     //    $userLikesRich = (!is_user_logged_in()) || ("true"!==get_the_author_meta( 'pbplain', get_current_user_id()));
     $userLikesRich = TRUE;
     if ($showEditorToggle || $richreadonly)
-      $actions['CMtoggle'] = array('value'=>'Rich editor', 
+      $actions['CMtoggle'] = array('value'=>__t('Rich editor'), 
 				   'id'=>"toggleCM$id", 'onclick'=>"pbToggleCodeMirror($id)");
     if ($userLikesRich)
       $readyScripts .= "jQuery(function(){pbToggleCodeMirror($id);});";
   }
   if (!$scramble && ($lessonNumber >= 4 || $lessonNumber < 0)) {
-      $actions['consolecopy'] = array('value'=>'Open in console', 'onclick'=>"pbConsoleCopy($id)");
+    $actions['consolecopy'] = array('value'=>__t('Open in console'), 'onclick'=>"pbConsoleCopy($id)");
   }
   if (!$scramble && ($lessonNumber >= 4 || $lessonNumber < 0)) {
-      $actions['visualize'] = array('value'=>'Visualize', 'onclick'=>"pbVisualize($id,'$tni')");
+    $actions['visualize'] = array('value'=>__t('Visualize'), 'onclick'=>"pbVisualize($id,'$tni')");
   }
   if (!$readonly && !$scramble) {
     //$actions['save'] = array('value'=>'Save without running', 'onclick'=>"pbSave($id)");
     if (array_key_exists("slug", $options)) {
-      $userLikesOH = is_user_logged_in() && ("true"==get_the_author_meta( 'pboldhistory', get_current_user_id()));
-      if ($userLikesOH)
-	$historyAction = "window.open('".UOLDHISTORY.$options["slug"]."')";
-      else
-	$historyAction = "historyClick($id,'$slug')";
-      $actions['history'] = array('value'=>'History', 'onclick'=>$historyAction);
+      $historyAction = "historyClick($id,'$slug')";
+      $actions['history'] = array('value'=>__t('History'), 'onclick'=>$historyAction);
     }
     if( !($readonly === "Y") && ($defaultcode != '') && ($defaultcode !== FALSE)) {
       // prepare the string for javaScript enclosure
@@ -695,12 +694,12 @@ if (!$facultative && !$scramble) {
       // our $button usage
       $dc = substr(json_encode(htmlspecialchars_decode($defaultcode, ENT_QUOTES), JSON_HEX_APOS), 1, -1);
       $r .= "<input type='hidden' id='defaultCode$id' value='$dc'></input>\n";
-      $actions['default'] = array('value'=>'Reset code to default', 'onclick'=>"pbSetText($id,descape($('#defaultCode$id').val()))", );
+      $actions['default'] = array('value'=>__t('Reset code to default'), 'onclick'=>"pbSetText($id,descape($('#defaultCode$id').val()))", );
     }
   }
 
   if (!$facultative && !$scramble) {
-    $actions['help'] = array('value'=>'Help', 'onclick'=>"helpClick($id);");
+    $actions['help'] = array('value'=>__t('Help'), 'onclick'=>"helpClick($id);");
   }
 
 
@@ -721,7 +720,7 @@ if (!$facultative && !$scramble) {
       continue;
     }
     if ($i==1+$mb) {
-      $r .= "</tr></table><select id='pbSelect$id' class='selectmore'><option name='more'>More actions...</option>\n";
+      $r .= "</tr></table><select id='pbSelect$id' class='selectmore'><option name='more'>".__t("More actions...")."</option>\n";
     } 
     $r .= option($name, $atts);
   }
@@ -742,7 +741,7 @@ if (!$facultative && !$scramble) {
   // although inputInUse starts as Y, the next script sets it to N and fixes the button labels
   $readyScripts .= $allowinput?
     ('pbInputSwitch(' . $id . ',"' . ($usertni?'Y':'N') . '");'):
-    'document.getElementById("submit' . $id . '").value = "Run program";' .
+    'document.getElementById("submit' . $id . '").value = "'.__t('Run program').'";' .
     'document.getElementById("inputInUse' . $id . '").value = "N";';
 
   /// part 5 : results area, and footers

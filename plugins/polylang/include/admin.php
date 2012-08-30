@@ -91,7 +91,7 @@ class Polylang_Admin extends Polylang_Admin_Base {
 					$this->delete_translations('post', $posts, $lang_slug);
 
 					// update the language slug in categories & post tags meta
-					$terms= get_terms($this->taxonomies, array('get'=>'all', 'fields'=>'ids'));
+					$terms = get_terms($this->taxonomies, array('get'=>'all', 'fields'=>'ids'));
 					$this->delete_translations('term', $terms, $lang_slug);
 
 					// FIXME should find something more efficient (with a sql query ?)
@@ -106,11 +106,18 @@ class Polylang_Admin extends Polylang_Admin_Base {
 					update_option('polylang_nav_menus', $menu_lang);
 
 					// delete language option in widgets
-					foreach ($widget_lang as $key=>$lang) {
-						if ($lang == $lang_slug)
+					foreach ($widget_lang as $key=>$slug) {
+						if ($slug == $lang_slug)
 							unset ($widget_lang[$key]);
 					}
 					update_option('polylang_widgets', $widget_lang);
+
+					// delete users options
+					foreach (get_users(array('fields' => 'ID')) as $user_id) {
+						delete_user_meta($user_id, 'user_lang', $lang->description);
+						delete_user_meta($user_id, 'pll_filter_content', $lang_slug);
+						delete_user_meta($user_id, 'description_'.$lang_slug);
+					}
 
 					// delete the string translations
 					delete_option('polylang_mo'.$lang_id);
@@ -218,12 +225,18 @@ class Polylang_Admin extends Polylang_Admin_Base {
 						$mo->add_entry($mo->make_entry($strings[$key]['string'], stripslashes($translation)));
 					}
 					$mo->add_entry($mo->make_entry('', '')); // empty string translation, just in case
-					// FIXME should I clean the mo object to remove unused strings ?
-					$this->mo_export($mo, $language);
+
+					// clean database
+					if (isset($_POST['clean']) && $_POST['clean']) {
+						$new_mo = new MO();
+						foreach ($strings as $string)
+							$new_mo->add_entry($mo->make_entry($string['string'], $mo->translate($string['string'])));
+					}
+					$this->mo_export(isset($new_mo) ? $new_mo : $mo, $language);
 				}
 
-				$paged = isset($_GET['paged']) ? '&paged='.$_GET['paged'] : '';
-				wp_redirect('admin.php?page=mlang&tab=strings'.$paged); // to refresh the page (possible thanks to the $_GET['noheader']=true)
+				// to refresh the page (possible thanks to the $_GET['noheader']=true)
+				wp_redirect('admin.php?page=mlang&tab=strings'.(isset($_GET['paged']) ? '&paged='.$_GET['paged'] : ''));
 				exit;
 				break;
 
@@ -231,8 +244,12 @@ class Polylang_Admin extends Polylang_Admin_Base {
 				check_admin_referer( 'options-lang', '_wpnonce_options-lang' );
 
 				$options['default_lang'] = $_POST['default_lang'];
-				$options['rewrite'] = $_POST['rewrite'];
-				foreach (array('browser', 'hide_default', 'force_lang', 'redirect_lang') as $key)
+				if (isset($_POST['force_lang']))
+					$options['force_lang'] = $_POST['force_lang'];
+				if (isset($_POST['rewrite']))
+					$options['rewrite'] = $_POST['rewrite'];
+
+				foreach (array('browser', 'hide_default', 'redirect_lang', 'sync') as $key)
 					$options[$key] = isset($_POST[$key]) ? 1 : 0;
 
 				update_option('polylang', $options);
@@ -244,11 +261,11 @@ class Polylang_Admin extends Polylang_Admin_Base {
 				// fills existing posts & terms with default language
 				if (isset($_POST['fill_languages'])) {
 					global $wpdb;
-					$untranslated = $this->get_untranslated();
+					$nolang = $this->get_objects_with_no_lang();
 					$lang = $this->get_language($options['default_lang']);
 
 					$values = array();
-					foreach ($untranslated['posts'] as $post_id)
+					foreach ($nolang['posts'] as $post_id)
 						$values[] = $wpdb->prepare("(%d, %d)", $post_id, $lang->term_taxonomy_id);
 
 					if ($values) {
@@ -257,7 +274,7 @@ class Polylang_Admin extends Polylang_Admin_Base {
 					}
 
 					$values = array();
-					foreach ($untranslated['terms'] as $term_id)
+					foreach ($nolang['terms'] as $term_id)
 						$values[] = $wpdb->prepare("(%d, %s, %d)", $term_id, '_language', $lang->term_id);
 
 					if ($values)
@@ -293,7 +310,8 @@ class Polylang_Admin extends Polylang_Admin_Base {
 				$list_table = new Polylang_List_Table();
 				$list_table->prepare_items($data);
 
-				$rtl = 0;
+				if (!$action)
+					$rtl = 0;
 
 				// error messages for data validation
 				$errors[1] = __('Enter a valid WorPress locale', 'polylang');
@@ -305,10 +323,9 @@ class Polylang_Admin extends Polylang_Admin_Base {
 
 			case 'menus':
 				// default values
-				foreach ($locations as $key=>$location) {
+				foreach ($locations as $key=>$location)
 					if (isset($menu_lang[$key]))
 						$menu_lang[$key] = wp_parse_args($menu_lang[$key], $this->get_switcher_options('menu', 'default'));
-				}
 				break;
 
 			case 'strings':
@@ -317,6 +334,10 @@ class Polylang_Admin extends Polylang_Admin_Base {
 
 				// load translations
 				foreach ($listlanguages as $language) {
+					// filters by language if requested
+					if (($lg = get_user_meta(get_current_user_id(), 'pll_filter_content', true)) && $language->slug != $lg)
+						continue;
+
 					$mo = $this->mo_import($language);
 					foreach ($data as $key=>$row) {
 						$data[$key]['translations'][$language->name] = $mo->translate($data[$key]['string']);
@@ -326,11 +347,6 @@ class Polylang_Admin extends Polylang_Admin_Base {
 
 				$string_table = new Polylang_String_Table();
 				$string_table->prepare_items($data);
-				break;
-
-			case 'settings':
-				// detects posts & pages without language set
-				$untranslated = $this->get_untranslated();
 				break;
 
 			default:
@@ -352,7 +368,7 @@ class Polylang_Admin extends Polylang_Admin_Base {
 			$error = 2;
 
 		// validate slug is unique
-		if ($this->get_language($_POST['slug']) != null && ( $lang === null || (isset($lang) && $lang->slug != $_POST['slug'])))
+		if ($this->get_language($_POST['slug']) && ( $lang === null || (isset($lang) && $lang->slug != $_POST['slug'])))
 			$error = 3;
 
 		// validate name
@@ -363,7 +379,7 @@ class Polylang_Admin extends Polylang_Admin_Base {
 	}
 
 	// returns unstranslated posts and terms ids
-	function get_untranslated() {
+	function get_objects_with_no_lang() {
 		$posts = get_posts(array(
 			'numberposts'=> -1,
 			'post_type' => $this->post_types,
@@ -383,7 +399,7 @@ class Polylang_Admin extends Polylang_Admin_Base {
 			WHERE tm.meta_key = '_language'");
 		$terms = array_diff($terms, $tr_terms);
 
-		return empty($posts) && empty($terms) ? false : array('posts' => $posts, 'terms' => $terms);
+		return apply_filters('pll_get_objects_with_no_lang', empty($posts) && empty($terms) ? false : array('posts' => $posts, 'terms' => $terms));
 	}
 
 	function &get_strings() {

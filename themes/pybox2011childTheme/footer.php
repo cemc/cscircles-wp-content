@@ -23,15 +23,16 @@ showLocationHandler(); ?>
 
   <div id="site-generator">
   <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
-  Computer Science Circles is a free service of the <a href="http://www.cemc.uwaterloo.ca/">Centre for Education in Mathematics and Computing</a> at the <a href="http://www.uwaterloo.ca">University of Waterloo</a>. &copy; 2010&ndash;2012
+  <?php echo sprintf(__t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>.'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"') . "&copy; 2010&ndash;2012"; ?>
+
 
    <div id="departmentaddress">
-    CEMC |
-    University of Waterloo, MC 5104 |
-    200 University Avenue West |
-    Waterloo, Ontario, Canada N2L 3G1 |
-    Phone: 519 888 4808 |
-    <a href="/contact">contact</a>
+  <?php echo __t('CEMC');?> |
+  <?php echo __t('University of Waterloo');?>, MC 5104 |
+  <?php echo __t('200 University Avenue West');?> |
+  <?php echo __t('Waterloo, Ontario, Canada N2L 3G1');?> |
+  <?php echo __t('Phone: 519 888 4808');?> |
+  <a href="<?php echo cscurl('contact'); ?>"><?php echo __t('contact us');?></a>
    </div>
 
   </div> 

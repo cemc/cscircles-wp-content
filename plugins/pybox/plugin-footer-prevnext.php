@@ -1,7 +1,6 @@
 <?php
 
 require_once("include-me.php");
-require_once(PWP_LOADER);
 
 function showLocationHandler() {
 
@@ -41,7 +40,7 @@ function showLocationHandler() {
     if ($s != 'c') 
       echo ' title="'.$longname.'" href="'.get_page_link($row->id).'">'; 
     else 
-      echo ' title="'.$longname.' (goes to top of current page)" onclick="scrollToTop()">';
+      echo ' title="'.$longname.' '.__t('(goes to top of current page)').'" onclick="scrollToTop()">';
     echo "<span class='buttn'>";
     if ($thisrow->ordering == $row->ordering-1) 
       echo "<span class='nextlesson'>Next</span> ";

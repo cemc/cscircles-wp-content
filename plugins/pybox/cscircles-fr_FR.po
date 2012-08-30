@@ -1,0 +1,1219 @@
+# French translations for PACKAGE package
+# Traductions françaises du paquet PACKAGE.
+# Copyright (C) 2012 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-08-30 17:57-0400\n"
+"PO-Revision-Date: 2012-08-30 17:57-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../wp-plugin/action-submit-code.php:246
+#: ../wp-plugin/action-submit-code.php:259
+msgid "Program gave the following output:"
+msgstr "Prógråm gåvé thé fóllówîng óùtpùt:"
+
+#: ../wp-plugin/action-submit-code.php:248
+msgid "Program gave the following correct output:"
+msgstr "Prógråm gåvé thé fóllówîng çórréçt óùtpùt:"
+
+#: ../wp-plugin/action-submit-code.php:257
+#: ../wp-plugin/action-submit-code.php:266
+msgid "Program printed no output."
+msgstr "Prógråm prîntéd nó óùtpùt."
+
+#: ../wp-plugin/action-submit-code.php:268
+msgid "(Did you forget to use </i><code>print</code><i>?)"
+msgstr "(Dîd ÿóù fórgét tó ùsé </i><code>prînt</code><i>?)"
+
+#: ../wp-plugin/action-submit-code.php:273
+msgid "Program output:"
+msgstr "Prógråm óùtpùt:"
+
+#: ../wp-plugin/action-submit-code.php:276
+msgid "Expected this correct output:"
+msgstr "Êxpéçtéd thîs çórréçt óùtpùt:"
+
+#: ../wp-plugin/action-submit-code.php:424
+msgid "Before running your code:"
+msgstr "Béfóré rùnnîng ÿóùr çódé:"
+
+#: ../wp-plugin/action-submit-code.php:428
+msgid "Input:"
+msgstr "Înpùt:"
+
+#: ../wp-plugin/action-submit-code.php:437
+msgid "Error messages: "
+msgstr "Êrrór méssågés: "
+
+#: ../wp-plugin/action-submit-code.php:440
+msgid "Program executed without crashing."
+msgstr "Prógråm éxéçùtéd wîthóùt çråshîng."
+
+#: ../wp-plugin/action-submit-code.php:442
+msgid "Program crashed."
+msgstr "Prógråm çråshéd."
+
+#: ../wp-plugin/action-submit-code.php:444
+msgid "Program crashed &mdash; "
+msgstr "Prógråm çråshéd &mdash; "
+
+#: ../wp-plugin/action-submit-code.php:464
+#: ../wp-plugin/action-submit-code.php:477
+msgid "The grader said:"
+msgstr "Thé grådér såîd:"
+
+#: ../wp-plugin/action-submit-code.php:466
+msgid "Automatic tests:"
+msgstr "Ãùtómåtîç tésts:"
+
+#: ../wp-plugin/action-submit-code.php:500
+msgid "Result of grading: "
+msgstr "Résùlt óf grådîng: "
+
+#: ../wp-plugin/action-submit-code.php:535
+msgid "Success!"
+msgstr "Sùççéss!"
+
+#: ../wp-plugin/action-submit-code.php:539
+msgid "Did not pass tests. Please check details below and try again."
+msgstr "Dîd nót påss tésts. Pléåsé çhéçk détåîls bélów ånd trÿ ågåîn."
+
+#: ../wp-plugin/action-submit-code.php:549
+msgid "You must log in to save data."
+msgstr "Ýóù mùst lóg în tó såvé dåtå."
+
+#: ../wp-plugin/action-submit-code.php:549
+msgid "Program saved."
+msgstr "Prógråm såvéd."
+
+#: ../wp-plugin/action-submit-code.php:573
+#, php-format
+msgid ""
+"Submitted data (program and/or test input) too large. Reduce size or <a href "
+"= \"%s\">run at home</a>."
+msgstr ""
+"Sùbmîttéd dåtå (prógråm ånd/ór tést înpùt) tóó lårgé. Rédùçé sîzé ór <a href "
+"= \"%s\">rùn åt hómé</a>."
+
+#: ../wp-plugin/action-submit-code.php:603
+#, php-format
+msgid "Pybox error: problem hash %s not found. Try reloading the page."
+msgstr "Pÿbóx érrór: próblém håsh %s nót fóùnd. Trÿ rélóådîng thé pågé."
+
+#: ../wp-plugin/action-submit-code.php:694
+#, php-format
+msgid "You cannot use %s in this exercise."
+msgstr "Ýóù çånnót ùsé %s în thîs éxérçîsé."
+
+#: ../wp-plugin/action-submit-code.php:705
+#, php-format
+msgid ""
+"You are only allowed to change at most %s characters compared to the "
+"original version of the code."
+msgstr ""
+"Ýóù åré ónlÿ ållówéd tó çhångé åt móst %s çhåråçtérs çómpåréd tó thé "
+"órîgînål vérsîón óf thé çódé."
+
+#: ../wp-plugin/action-submit-code.php:707
+#, php-format
+msgid "You changed %s or more."
+msgstr "Ýóù çhångéd %s ór móré."
+
+#: ../wp-plugin/action-submit-code.php:725
+#, php-format
+msgid "You changed %s."
+msgstr "Ýóù çhångéd %s."
+
+#: ../wp-plugin/action-submit-code.php:750
+#, php-format
+msgid "Results for test case %1$s out of %2$s"
+msgstr "Résùlts fór tést çåsé %1$s óùt óf %2$s"
+
+#: ../wp-plugin/db-entire-history.php:19
+#: ../wp-plugin/db-problem-history.php:19
+msgid "Did not crash."
+msgstr "Dîd nót çråsh."
+
+#: ../wp-plugin/db-entire-history.php:20
+#: ../wp-plugin/db-problem-history.php:20 ../wp-plugin/shortcodes.php:164
+#: ../wp-plugin/shortcodes.php:210 ../wp-plugin/shortcodes.php:253
+#: ../py_includes/graders/anyorder.py:12
+#: ../py_includes/graders/trim-lines.py:14
+msgid "Correct!"
+msgstr "Çórréçt!"
+
+#: ../wp-plugin/db-entire-history.php:21
+#: ../wp-plugin/db-problem-history.php:21
+msgid "Incorrect."
+msgstr "Înçórréçt."
+
+#: ../wp-plugin/db-entire-history.php:22
+#: ../wp-plugin/db-problem-history.php:22
+msgid "Internal error."
+msgstr "Întérnål érrór."
+
+#: ../wp-plugin/db-entire-history.php:23 ../wp-plugin/db-entire-history.php:24
+#: ../wp-plugin/db-problem-history.php:23
+#: ../wp-plugin/db-problem-history.php:24
+msgid "Saved."
+msgstr "Såvéd."
+
+#: ../wp-plugin/db-entire-history.php:31
+#: ../wp-plugin/db-problem-history.php:27
+msgid "You must log in to view past submissions."
+msgstr "Ýóù mùst lóg în tó vîéw påst sùbmîssîóns."
+
+#: ../wp-plugin/db-entire-history.php:42 ../wp-plugin/db-entire-history.php:47
+msgid "User number not found."
+msgstr "Ùsér nùmbér nót fóùnd."
+
+#: ../wp-plugin/db-entire-history.php:49
+#, php-format
+msgid "User %s does not have you as their guru."
+msgstr "Ùsér %s dóés nót håvé ÿóù ås théîr gùrù."
+
+#: ../wp-plugin/db-entire-history.php:62
+#, php-format
+msgid "Problem %s is unknown."
+msgstr "Próblém %s îs ùnknówn."
+
+#: ../wp-plugin/db-entire-history.php:68
+#: ../wp-plugin/db-entire-history.php:106
+msgid "userid"
+msgstr "ùsérîd"
+
+#: ../wp-plugin/db-entire-history.php:68
+#: ../wp-plugin/db-entire-history.php:116
+#: ../wp-plugin/db-problem-history.php:57
+#: ../wp-plugin/db-problem-history.php:75
+msgid "time &amp; ID"
+msgstr "tîmé &amp; ÎD"
+
+#: ../wp-plugin/db-entire-history.php:68
+#: ../wp-plugin/db-entire-history.php:109
+#: ../wp-plugin/db-entire-history.php:112 ../wp-plugin/db-mail.php:89
+msgid "problem"
+msgstr "próblém"
+
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:113
+#: ../wp-plugin/db-problem-history.php:57
+#: ../wp-plugin/db-problem-history.php:71
+msgid "user code"
+msgstr "ùsér çódé"
+
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:114
+#: ../wp-plugin/db-problem-history.php:58
+#: ../wp-plugin/db-problem-history.php:73
+msgid "user input"
+msgstr "ùsér înpùt"
+
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-problem-history.php:58
+#: ../wp-plugin/db-problem-history.php:74
+msgid "result"
+msgstr "résùlt"
+
+#: ../wp-plugin/db-entire-history.php:94
+msgid "We do not have record of any submissions."
+msgstr "Wé dó nót håvé réçórd óf ånÿ sùbmîssîóns."
+
+#: ../wp-plugin/db-entire-history.php:114
+#: ../wp-plugin/db-problem-history.php:73
+msgid "n/a"
+msgstr "n/å"
+
+#: ../wp-plugin/db-mail.php:45
+msgid "You must log in to view past mail."
+msgstr "Ýóù mùst lóg în tó vîéw påst måîl."
+
+#: ../wp-plugin/db-mail.php:57 ../wp-plugin/db-mail.php:66
+#: ../wp-plugin/db-mail.php:73
+#, php-format
+msgid "%s must be numeric."
+msgstr "%s mùst bé nùmérîç."
+
+#: ../wp-plugin/db-mail.php:62
+msgid "Access denied."
+msgstr "Ãççéss dénîéd."
+
+#: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:100
+msgid "from"
+msgstr "fróm"
+
+#: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:101
+msgid "to"
+msgstr "tó"
+
+#: ../wp-plugin/db-mail.php:88 ../wp-plugin/db-mail.php:104
+msgid "when"
+msgstr "whén"
+
+#: ../wp-plugin/db-mail.php:88 ../wp-plugin/db-mail.php:103
+msgid "message"
+msgstr "méssågé"
+
+#: ../wp-plugin/db-problem-history.php:16
+msgid "You must enter a non-empty problem name."
+msgstr "Ýóù mùst éntér å nón-émptÿ próblém nåmé."
+
+#: ../wp-plugin/db-problem-history.php:32
+#, php-format
+msgid "User number %s not found."
+msgstr "Ùsér nùmbér %s nót fóùnd."
+
+#: ../wp-plugin/db-problem-history.php:52
+#, php-format
+msgid ""
+"We do not have record of any submissions from user %1$s for problem %2$s."
+msgstr ""
+"Wé dó nót håvé réçórd óf ånÿ sùbmîssîóns fróm ùsér %1$s fór próblém %2$s."
+
+#: ../wp-plugin/js-translation.php:4
+msgid "The database connected but found no data."
+msgstr "Thé dåtåbåsé çónnéçtéd bùt fóùnd nó dåtå."
+
+#: ../wp-plugin/js-translation.php:5
+msgid "Error: could not connect to database."
+msgstr "Êrrór: çóùld nót çónnéçt tó dåtåbåsé."
+
+#: ../wp-plugin/js-translation.php:6
+msgid "Go back to grading"
+msgstr "Gó båçk tó grådîng"
+
+#: ../wp-plugin/js-translation.php:7
+msgid "Hide input box"
+msgstr "Hîdé înpùt bóx"
+
+#: ../wp-plugin/js-translation.php:8
+msgid "Please select a recipient for the message."
+msgstr "Pléåsé séléçt å réçîpîént fór thé méssågé."
+
+#: ../wp-plugin/js-translation.php:9
+msgid "end of main program"
+msgstr "énd óf måîn prógråm"
+
+#: ../wp-plugin/js-translation.php:10
+msgid "timed out!"
+msgstr "tîméd óùt!"
+
+#: ../wp-plugin/js-translation.php:11
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr ""
+"Thé çódé bóx îs émptÿ. Ît shóùld înstéåd çóntåîn ÿóùr bést pårtîål sólùtîón "
+"só får."
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Click to try again."
+msgstr "Çlîçk tó trÿ ågåîn."
+
+#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:744
+msgid "Run program"
+msgstr "Rùn prógråm"
+
+#: ../wp-plugin/js-translation.php:14
+msgid "Incorrect, try again."
+msgstr "Înçórréçt, trÿ ågåîn."
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Dîsplåÿîng {fróm} tó {tó} óf {tótål} îtéms"
+
+#: ../wp-plugin/js-translation.php:16
+msgid "Enter test input"
+msgstr "Êntér tést înpùt"
+
+#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:57
+msgid "You have completed this problem at least once."
+msgstr "Ýóù håvé çómplétéd thîs próblém åt léåst ónçé."
+
+#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:723
+msgid "More actions..."
+msgstr "Móré åçtîóns..."
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Enter input"
+msgstr "Êntér înpùt"
+
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:674
+msgid "Rich editor"
+msgstr "Rîçh édîtór"
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Please enter a non-empty message."
+msgstr "Pléåsé éntér å nón-émptÿ méssågé."
+
+#: ../wp-plugin/js-translation.php:22
+msgid "Run test"
+msgstr "Rùn tést"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Running..."
+msgstr "Rùnnîng..."
+
+#: ../wp-plugin/js-translation.php:24
+msgid "out of"
+msgstr "óùt óf"
+
+#: ../wp-plugin/js-translation.php:25
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+"Ùnåblé tó próçéss 'sénd méssågé' réqùést. Ýóù mîght håvé lóst ÿóùr întérnét "
+"çónnéçtîón."
+
+#: ../wp-plugin/js-translation.php:26
+msgid "Page"
+msgstr "Pågé"
+
+#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:689
+msgid "History"
+msgstr "Hîstórÿ"
+
+#: ../wp-plugin/js-translation.php:28
+msgid "Your message was sent."
+msgstr "Ýóùr méssågé wås sént."
+
+#: ../wp-plugin/js-translation.php:29
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr ""
+"Çóùld nót grådé prógråm béçåùsé çómmùnîçåtîón tó thé sérvér wås nót "
+"póssîblé. Ãjåx înfórmåtîón: "
+
+#: ../wp-plugin/js-translation.php:30
+msgid "Enter test statements"
+msgstr "Êntér tést ståtéménts"
+
+#: ../wp-plugin/js-translation.php:31
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr ""
+"Wårnîng: ùnåblé tó tålk tó sérvér. Çóùld nót sét 'çómplétéd' ståtùs fór thîs "
+"próblém."
+
+#: ../wp-plugin/js-translation.php:32
+msgid "start of tests"
+msgstr "stårt óf tésts"
+
+#: ../wp-plugin/js-translation.php:33
+msgid "Simple editor"
+msgstr "Sîmplé édîtór"
+
+#: ../wp-plugin/js-translation.php:34
+msgid "Hide history"
+msgstr "Hîdé hîstórÿ"
+
+#: ../wp-plugin/js-translation.php:35
+msgid "You need to select a recipient."
+msgstr "Ýóù nééd tó séléçt å réçîpîént."
+
+#: ../wp-plugin/plugin-footer-prevnext.php:43
+msgid "(goes to top of current page)"
+msgstr "(góés tó tóp óf çùrrént pågé)"
+
+#: ../wp-plugin/plugin-hooks.php:20
+msgid "Computer Science Circles, powered by WordPress"
+msgstr "Çómpùtér Sçîénçé Çîrçlés, pówéréd bÿ WórdPréss"
+
+#: ../wp-plugin/plugin-hooks.php:110
+msgid "Editor"
+msgstr "Êdîtór"
+
+#: ../wp-plugin/plugin-hooks.php:203
+msgid "My Progress"
+msgstr "Mÿ Prógréss"
+
+#: ../wp-plugin/plugin-hooks.php:204
+msgid "Console (new window)"
+msgstr "Çónsólé (néw wîndów)"
+
+#: ../wp-plugin/plugin-hooks.php:205
+msgid "Resources (new window)"
+msgstr "Résóùrçés (néw wîndów)"
+
+#: ../wp-plugin/plugin-hooks.php:206
+msgid "Contact Us (new window)"
+msgstr "Çóntåçt Ùs (néw wîndów)"
+
+#: ../wp-plugin/plugin-hooks.php:210
+msgid "scroll to top"
+msgstr "sçróll tó tóp"
+
+#: ../wp-plugin/plugin-hooks.php:230
+msgid "goto oldest unanswered mail"
+msgstr "gótó óldést ùnånswéréd måîl"
+
+#: ../wp-plugin/plugin-profile-options.php:19
+#, php-format
+msgid "The username %s does not exist."
+msgstr "Thé ùsérnåmé %s dóés nót éxîst."
+
+#: ../wp-plugin/plugin-profile-options.php:22
+#, php-format
+msgid "%s exists! They are your guru."
+msgstr "%s éxîsts! Théÿ åré ÿóùr gùrù."
+
+#: ../wp-plugin/plugin-profile-options.php:25
+msgid ""
+"Enter the username of your guru. After you press <i>Update profile</i> we'll "
+"see if they exist."
+msgstr ""
+"Êntér thé ùsérnåmé óf ÿóùr gùrù. Ãftér ÿóù préss <i>Ùpdåté prófîlé</i> wé'll "
+"séé îf théÿ éxîst."
+
+#: ../wp-plugin/plugin-profile-options.php:32
+msgid "Guru&apos;s <i>Username</i> (blank for none)"
+msgstr "Gùrù&apos;s <i>Ùsérnåmé</i> (blånk fór nóné)"
+
+#: ../wp-plugin/plugin-profile-options.php:34
+msgid ""
+"Any other person with a CS Circles account (such as your teacher) can be "
+"your guru. You can ask them direct questions when you get stuck, and they "
+"can view your progress."
+msgstr ""
+"Ãnÿ óthér pérsón wîth å ÇS Çîrçlés åççóùnt (sùçh ås ÿóùr téåçhér) çån bé "
+"ÿóùr gùrù. Ýóù çån åsk thém dîréçt qùéstîóns whén ÿóù gét stùçk, ånd théÿ "
+"çån vîéw ÿóùr prógréss."
+
+#: ../wp-plugin/plugin-profile-options.php:40
+msgid "Don&apos;t Send Mail Copies"
+msgstr "Dón&apos;t Sénd Måîl Çópîés"
+
+#: ../wp-plugin/plugin-profile-options.php:43
+msgid ""
+"(default: unchecked) If checked, you will not receive a carbon copy when you "
+"send a message."
+msgstr ""
+"(défåùlt: ùnçhéçkéd) Îf çhéçkéd, ÿóù wîll nót réçéîvé å çårbón çópÿ whén ÿóù "
+"sénd å méssågé."
+
+#: ../wp-plugin/plugin-profile-options.php:47
+msgid "Opt Out of Mass Emails"
+msgstr "Ópt Óùt óf Måss Êmåîls"
+
+#: ../wp-plugin/plugin-profile-options.php:50
+msgid ""
+"(default: unchecked) If checked, you will not receive announcements from CS "
+"Circles. They are pretty infrequent, about once per year."
+msgstr ""
+"(défåùlt: ùnçhéçkéd) Îf çhéçkéd, ÿóù wîll nót réçéîvé ånnóùnçéménts fróm ÇS "
+"Çîrçlés. Théÿ åré préttÿ înfréqùént, åbóùt ónçé pér ÿéår."
+
+#: ../wp-plugin/plugin-utilities.php:13
+msgid "<url>user-page/"
+msgstr "<url>ùsér-pågé/"
+
+#: ../wp-plugin/plugin-utilities.php:14
+msgid "<url>search/"
+msgstr "<url>séårçh/"
+
+#: ../wp-plugin/plugin-utilities.php:15
+msgid "<url>mail/"
+msgstr "<url>måîl/"
+
+#: ../wp-plugin/plugin-utilities.php:16
+msgid "<url>resources/"
+msgstr "<url>résóùrçés/"
+
+#: ../wp-plugin/plugin-utilities.php:17
+msgid "<url>console/"
+msgstr "<url>çónsólé/"
+
+#: ../wp-plugin/plugin-utilities.php:18
+msgid "<url>visualize/"
+msgstr "<url>vîsùålîzé/"
+
+#: ../wp-plugin/plugin-utilities.php:19
+msgid "<url>using-this-website/"
+msgstr "<url>ùsîng-thîs-wébsîté/"
+
+#: ../wp-plugin/plugin-utilities.php:20
+msgid "<url>contact/"
+msgstr "<url>çóntåçt/"
+
+#: ../wp-plugin/plugin-utilities.php:21
+msgid "<url>run-at-home/"
+msgstr "<url>rùn-åt-hómé/"
+
+#: ../wp-plugin/plugin-utilities.php:294
+msgid "Return to Computer Science Circles"
+msgstr "Rétùrn tó Çómpùtér Sçîénçé Çîrçlés"
+
+#: ../wp-plugin/shortcode-mailpage.php:7
+msgid "Mandatory arguments are missing."
+msgstr "Måndåtórÿ årgùménts åré mîssîng."
+
+#: ../wp-plugin/shortcode-mailpage.php:11
+msgid "Student ID must be a number."
+msgstr "Stùdént ÎD mùst bé å nùmbér."
+
+#: ../wp-plugin/shortcode-mailpage.php:19
+msgid "No such student exists."
+msgstr "Ñó sùçh stùdént éxîsts."
+
+#: ../wp-plugin/shortcode-mailpage.php:22
+msgid "Access denied. You may need to log in first."
+msgstr "Ãççéss dénîéd. Ýóù måÿ nééd tó lóg în fîrst."
+
+#: ../wp-plugin/shortcode-mailpage.php:27
+msgid "No such problem exists."
+msgstr "Ñó sùçh próblém éxîsts."
+
+#: ../wp-plugin/shortcode-mailpage.php:38
+#: ../wp-plugin/shortcode-mailpage.php:99
+#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:567
+#: ../wp-plugin/shortcodes.php:571
+msgid "CS Circles Assistant"
+msgstr "ÇS Çîrçlés Ãssîstånt"
+
+#: ../wp-plugin/shortcode-mailpage.php:45
+msgid "You must log in order to view the mail page."
+msgstr "Ýóù mùst lóg în órdér tó vîéw thé måîl pågé."
+
+#: ../wp-plugin/shortcode-mailpage.php:62
+#, php-format
+msgid "Messages about %1$s for user %2$s"
+msgstr "Méssågés åbóùt %1$s fór ùsér %2$s"
+
+#: ../wp-plugin/shortcode-mailpage.php:67
+msgid " has completed this problem."
+msgstr " hås çómplétéd thîs próblém."
+
+#: ../wp-plugin/shortcode-mailpage.php:69
+msgid " has not completed this problem."
+msgstr " hås nót çómplétéd thîs próblém."
+
+#: ../wp-plugin/shortcode-mailpage.php:74
+#, php-format
+msgid "Note: this student completed the problem at %s"
+msgstr "Ñóté: thîs stùdént çómplétéd thé próblém åt %s"
+
+#: ../wp-plugin/shortcode-mailpage.php:76
+msgid "Click on a message title to toggle the message open or closed."
+msgstr "Çlîçk ón å méssågé tîtlé tó tógglé thé méssågé ópén ór çlóséd."
+
+#: ../wp-plugin/shortcode-mailpage.php:88
+msgid "Quote/<br/>Reply"
+msgstr "Qùóté/<br/>Réplÿ"
+
+#: ../wp-plugin/shortcode-mailpage.php:97 ../wp-plugin/shortcodes.php:566
+#: ../wp-plugin/shortcodes.php:570
+msgid "Send a question by e-mail to: "
+msgstr "Sénd å qùéstîón bÿ é-måîl tó: "
+
+#: ../wp-plugin/shortcode-mailpage.php:99
+#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:567
+#: ../wp-plugin/shortcodes.php:571
+msgid "Select one..."
+msgstr "Séléçt óné..."
+
+#: ../wp-plugin/shortcode-mailpage.php:99 ../wp-plugin/shortcodes.php:567
+msgid "My guru"
+msgstr "Mÿ gùrù"
+
+#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:571
+msgid "My guru (you don't have one)"
+msgstr "Mÿ gùrù (ÿóù dón't håvé óné)"
+
+#: ../wp-plugin/shortcode-mailpage.php:104
+#, php-format
+msgid "(name a guru on <a href='%s'>your Profile Page</a>)"
+msgstr "(nåmé å gùrù ón <a href='%s'>ÿóùr Prófîlé Pågé</a>)"
+
+#: ../wp-plugin/shortcode-mailpage.php:111
+msgid "Type here to send a reply about this problem"
+msgstr "Tÿpé héré tó sénd å réplÿ åbóùt thîs próblém"
+
+#: ../wp-plugin/shortcode-mailpage.php:114
+msgid "Send this message!"
+msgstr "Sénd thîs méssågé!"
+
+#: ../wp-plugin/shortcode-mailpage.php:120
+#, php-format
+msgid "Original lesson page containing %s (new window)"
+msgstr "Órîgînål léssón pågé çóntåînîng %s (néw wîndów)"
+
+#: ../wp-plugin/shortcode-mailpage.php:128
+#, php-format
+msgid "%1$s's submissions for %2$s"
+msgstr "%1$s's sùbmîssîóns fór %2$s"
+
+#: ../wp-plugin/shortcode-mailpage.php:130
+#, php-format
+msgid "My previous submissions for %s"
+msgstr "Mÿ prévîóùs sùbmîssîóns fór %s"
+
+#: ../wp-plugin/shortcode-mailpage.php:134
+#, php-format
+msgid "My other messages about %s"
+msgstr "Mÿ óthér méssågés åbóùt %s"
+
+#: ../wp-plugin/shortcode-mailpage.php:137
+msgid "My messages for other programs"
+msgstr "Mÿ méssågés fór óthér prógråms"
+
+#: ../wp-plugin/shortcode-mailpage.php:138
+#, php-format
+msgid "Messages to/from %s for other problems"
+msgstr "Méssågés tó/fróm %s fór óthér próbléms"
+
+#: ../wp-plugin/shortcode-mailpage.php:142
+msgid "All unanswered messages by my students"
+msgstr "Ãll ùnånswéréd méssågés bÿ mÿ stùdénts"
+
+#: ../wp-plugin/shortcode-mailpage.php:145
+#, php-format
+msgid "%s's progress page (new window)"
+msgstr "%s's prógréss pågé (néw wîndów)"
+
+#: ../wp-plugin/shortcode-my-progress.php:9
+msgid "You must log in order to view your user page."
+msgstr "Ýóù mùst lóg în órdér tó vîéw ÿóùr ùsér pågé."
+
+#: ../wp-plugin/shortcode-my-progress.php:29
+#, php-format
+msgid "Reload with a different view? (you have %s students)"
+msgstr "Rélóåd wîth å dîfférént vîéw? (ÿóù håvé %s stùdénts)"
+
+#: ../wp-plugin/shortcode-my-progress.php:30
+msgid "Select different user?"
+msgstr "Séléçt dîfférént ùsér?"
+
+#: ../wp-plugin/shortcode-my-progress.php:32
+msgid "Show only me"
+msgstr "Shów ónlÿ mé"
+
+#: ../wp-plugin/shortcode-my-progress.php:33
+msgid "Summary of all my students"
+msgstr "Sùmmårÿ óf åll mÿ stùdénts"
+
+#: ../wp-plugin/shortcode-my-progress.php:47
+msgid "Just show submissions for one problem?"
+msgstr "Jùst shów sùbmîssîóns fór óné próblém?"
+
+#: ../wp-plugin/shortcode-my-progress.php:49
+msgid "Show all"
+msgstr "Shów åll"
+
+#: ../wp-plugin/shortcode-my-progress.php:50
+msgid "Console"
+msgstr "Çónsólé"
+
+#: ../wp-plugin/shortcode-my-progress.php:65
+msgid "User id must be numeric."
+msgstr "Ùsér îd mùst bé nùmérîç."
+
+#: ../wp-plugin/shortcode-my-progress.php:69
+#: ../wp-plugin/shortcode-my-progress.php:73
+msgid "Invalid user id."
+msgstr "Învålîd ùsér îd."
+
+#: ../wp-plugin/shortcode-my-progress.php:77
+msgid "Viewing as "
+msgstr "Vîéwîng ås "
+
+#: ../wp-plugin/shortcode-my-progress.php:80
+msgid "Viewing summary of all your students"
+msgstr "Vîéwîng sùmmårÿ óf åll ÿóùr stùdénts"
+
+#: ../wp-plugin/shortcode-my-progress.php:89
+msgid "Latest Problems Completed"
+msgstr "Låtést Próbléms Çómplétéd"
+
+#: ../wp-plugin/shortcode-my-progress.php:103
+msgid "Submitted Code"
+msgstr "Sùbmîttéd Çódé"
+
+#: ../wp-plugin/shortcode-my-progress.php:122
+msgid "Overview"
+msgstr "Óvérvîéw"
+
+#: ../wp-plugin/shortcodes.php:39
+#, php-format
+msgid "Internal error, details below; please <a href='%s'>contact staff</a>."
+msgstr "Întérnål érrór, détåîls bélów; please <å hréf='%s'>contact staff</å>."
+
+#: ../wp-plugin/shortcodes.php:39
+msgid "Timestamp:"
+msgstr "Tîméståmp:"
+
+#: ../wp-plugin/shortcodes.php:59
+msgid "You have not yet completed this problem."
+msgstr "Ýóù håvé nót ÿét çómplétéd thîs próblém."
+
+#: ../wp-plugin/shortcodes.php:150
+msgid "Short Answer Exercise"
+msgstr "Shórt Ãnswér Êxérçîsé"
+
+#: ../wp-plugin/shortcodes.php:153
+msgid "Your answer"
+msgstr "Ýóùr ånswér"
+
+#: ../wp-plugin/shortcodes.php:154
+msgid "enter a number"
+msgstr "éntér å nùmbér"
+
+#: ../wp-plugin/shortcodes.php:161 ../wp-plugin/shortcodes.php:207
+#: ../wp-plugin/shortcodes.php:249
+msgid "Check answer"
+msgstr "Çhéçk ånswér"
+
+#: ../wp-plugin/shortcodes.php:192
+msgid "Multiple Choice Exercise"
+msgstr "Mùltîplé Çhóîçé Êxérçîsé"
+
+#: ../wp-plugin/shortcodes.php:196
+msgid "Your choice:"
+msgstr "Ýóùr çhóîçé:"
+
+#: ../wp-plugin/shortcodes.php:196
+msgid "Select one"
+msgstr "Séléçt óné"
+
+#: ../wp-plugin/shortcodes.php:241 ../wp-plugin/shortcodes.php:545
+msgid "Scramble Exercise"
+msgstr "Sçråmblé Êxérçîsé"
+
+#: ../wp-plugin/shortcodes.php:294
+#, php-format
+msgid ""
+"New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
+"$s>click here to create an account or log in</a>."
+msgstr ""
+"Ñéw åróùnd héré? Réåd <a %1$s>Ùsîng thîs Wébsîté</a>. Ýóù çån ålsó <a %2"
+"$s>çlîçk héré tó çréåté ån åççóùnt ór lóg în</a>."
+
+#: ../wp-plugin/shortcodes.php:339
+msgid "Search"
+msgstr "Séårçh"
+
+#: ../wp-plugin/shortcodes.php:346
+msgid "Edit my profile"
+msgstr "Êdît mÿ prófîlé"
+
+#: ../wp-plugin/shortcodes.php:347
+msgid "Log out now"
+msgstr "Lóg óùt nów"
+
+#: ../wp-plugin/shortcodes.php:350
+msgid "Log in or create a new account"
+msgstr "Lóg în ór çréåté å néw åççóùnt"
+
+#: ../wp-plugin/shortcodes.php:542
+msgid "Example"
+msgstr "Êxåmplé"
+
+#: ../wp-plugin/shortcodes.php:545
+msgid "Coding Exercise"
+msgstr "Çódîng Êxérçîsé"
+
+#: ../wp-plugin/shortcodes.php:557
+msgid "You need to create an account and log in to ask a question."
+msgstr "Ýóù nééd tó çréåté ån åççóùnt ånd lóg în tó åsk å qùéstîón."
+
+#: ../wp-plugin/shortcodes.php:573
+#, php-format
+msgid "(name a guru on <a %s>your Profile Page</a>)"
+msgstr "(nåmé å gùrù ón <a %s>ÿóùr Prófîlé Pågé</a>)"
+
+#: ../wp-plugin/shortcodes.php:577
+msgid ""
+"Enter text for the message below. <i>Be sure to explain where you're stuck "
+"and what you've tried so far. Your partial solution code will be "
+"automatically included with the message.</i>"
+msgstr ""
+"Êntér téxt fór thé méssågé bélów. <i>Bé sùré tó éxplåîn whéré ÿóù'ré stùçk "
+"ånd whåt ÿóù'vé trîéd só får. Ýóùr pårtîål sólùtîón çódé wîll bé "
+"åùtómåtîçållÿ înçlùdéd wîth thé méssågé.</i>"
+
+#: ../wp-plugin/shortcodes.php:579
+msgid "Send this message"
+msgstr "Sénd thîs méssågé"
+
+#: ../wp-plugin/shortcodes.php:580
+msgid "Cancel"
+msgstr "Çånçél"
+
+#: ../wp-plugin/shortcodes.php:599
+msgid "# delete this comment and enter your code here"
+msgstr "# délété thîs çómmént ånd éntér ÿóùr çódé héré"
+
+#: ../wp-plugin/shortcodes.php:651
+msgid ""
+"Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> "
+"below."
+msgstr ""
+"Êntér téstîng ståtéménts lîké <tt>prînt(mÿfùnçtîón(\"tést årgùmént\"))</tt> "
+"bélów."
+
+#: ../wp-plugin/shortcodes.php:654
+msgid "You may enter input for the program in the box below."
+msgstr "Ýóù måÿ éntér înpùt fór thé prógråm în thé bóx bélów."
+
+#: ../wp-plugin/shortcodes.php:680
+msgid "Open in console"
+msgstr "Ópén în çónsólé"
+
+#: ../wp-plugin/shortcodes.php:683
+msgid "Visualize"
+msgstr "Vîsùålîzé"
+
+#: ../wp-plugin/shortcodes.php:697
+msgid "Reset code to default"
+msgstr "Rését çódé tó défåùlt"
+
+#: ../wp-plugin/shortcodes.php:702
+msgid "Help"
+msgstr "Hélp"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "Integer"
+msgstr "Întégér"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "String"
+msgstr "Strîng"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "Floating Point Number"
+msgstr "Flóåtîng Póînt Ñùmbér"
+
+#: ../python3jail/static/_GRADER.py:9
+msgid "Function Type"
+msgstr "Fùnçtîón Tÿpé"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "Boolean"
+msgstr "Bóóléån"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "\"None\" Type"
+msgstr "\"Ñóné\" Tÿpé"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "Range Type"
+msgstr "Rångé Tÿpé"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "List"
+msgstr "Lîst"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "Dictionary"
+msgstr "Dîçtîónårÿ"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "Tuple"
+msgstr "Tùplé"
+
+#: ../python3jail/static/_GRADER.py:32
+msgid "a function "
+msgstr "å fùnçtîón "
+
+#: ../python3jail/static/_GRADER.py:34
+msgid " equal to "
+msgstr " éqùål tó "
+
+#: ../python3jail/static/_GRADER.py:47
+#: ../py_includes/graders/display-input-vars.py:27
+msgid " and "
+msgstr " ånd "
+
+#: ../python3jail/static/_GRADER.py:49
+msgid ", and "
+msgstr ", ånd "
+
+#: ../python3jail/static/_GRADER.py:51
+msgid "We defined "
+msgstr "Wé défînéd "
+
+#: ../python3jail/static/_GRADER.py:65 ../python3jail/static/_GRADER.py:89
+msgid "Error: {0} has wrong type {1}, expected {2}"
+msgstr "Êrrór: {0} hås wróng tÿpé {1}, éxpéçtéd {2}"
+
+#: ../python3jail/static/_GRADER.py:70 ../python3jail/static/_GRADER.py:109
+msgid "Error: {0} has wrong value {1}, expected {2}"
+msgstr "Êrrór: {0} hås wróng vålùé {1}, éxpéçtéd {2}"
+
+#: ../python3jail/static/_GRADER.py:74
+msgid "its value is correct!"
+msgstr "îts vålùé îs çórréçt!"
+
+#: ../python3jail/static/_GRADER.py:80 ../python3jail/static/_GRADER.py:85
+msgid "finished!"
+msgstr "fînîshéd!"
+
+#: ../python3jail/static/_GRADER.py:82
+msgid "value "
+msgstr "vålùé "
+
+#: ../python3jail/static/_GRADER.py:87
+msgid "finished! (returned a value {} but did not need to return anything)"
+msgstr "fînîshéd! (rétùrnéd å vålùé {} bùt dîd nót nééd tó rétùrn ånÿthîng)"
+
+#: ../python3jail/static/_GRADER.py:95
+msgid "Error: list {0} has wrong length {1}, expected {2}"
+msgstr "Êrrór: lîst {0} hås wróng léngth {1}, éxpéçtéd {2}"
+
+#: ../python3jail/static/_GRADER.py:105 ../python3jail/static/_GRADER.py:107
+msgid " its value {} is correct!"
+msgstr " îts vålùé {} îs çórréçt!"
+
+#: ../python3jail/static/_GRADER.py:127 ../python3jail/static/_GRADER.py:141
+msgid "Running {} &hellip;"
+msgstr "Rùnnîng {} &hellip;"
+
+#: ../python3jail/static/_GRADER.py:133
+msgid "Error: function {} not defined"
+msgstr "Êrrór: fùnçtîón {} nót défînéd"
+
+#: ../python3jail/static/_GRADER.py:136
+msgid "Error: {0} should be defined as a function, but found type {1}"
+msgstr "Êrrór: {0} shóùld bé défînéd ås å fùnçtîón, bùt fóùnd tÿpé {1}"
+
+#: ../python3jail/static/_GRADER.py:155
+msgid ""
+"Your output is incorrect, but just barely. Whitespace characters (space, "
+"newline, tab) are either missing, or extra ones are present."
+msgstr ""
+"Ýóùr óùtpùt îs înçórréçt, bùt jùst bårélÿ. Whîtéspåçé çhåråçtérs (spåçé, "
+"néwlîné, tåb) åré éîthér mîssîng, ór éxtrå ónés åré présént."
+
+#: ../python3jail/static/_GRADER.py:157
+msgid "Your output is not correct."
+msgstr "Ýóùr óùtpùt îs nót çórréçt."
+
+#: ../python3jail/static/_GRADER.py:202
+msgid "Checking {} &hellip; "
+msgstr "Çhéçkîng {} &hellip; "
+
+#: ../python3jail/static/_GRADER.py:206
+msgid "Error: variable {} not defined"
+msgstr "Êrrór: vårîåblé {} nót défînéd"
+
+#: ../python3jail/static/_GRADER.py:211
+msgid "Setting {0} to {1}"
+msgstr "Séttîng {0} tó {1}"
+
+#: ../py_includes/graders/15b.degrees.py:3
+msgid "Error: Your output should consist of exactly 1 line."
+msgstr "Êrrór: Ýóùr óùtpùt shóùld çónsîst óf éxåçtlÿ 1 lîné."
+
+#: ../py_includes/graders/15b.degrees.py:6
+msgid "Error: Your output should not contain any spaces."
+msgstr "Êrrór: Ýóùr óùtpùt shóùld nót çóntåîn ånÿ spåçés."
+
+#: ../py_includes/graders/15b.degrees.py:8
+msgid "Error: The last character of your output is wrong."
+msgstr "Êrrór: Thé låst çhåråçtér óf ÿóùr óùtpùt îs wróng."
+
+#: ../py_includes/graders/15b.degrees.py:10
+msgid "Error: Could not interpret {} as a float."
+msgstr "Êrrór: Çóùld nót întérprét {} ås å flóåt."
+
+#: ../py_includes/graders/15b.degrees.py:13
+msgid "Error: Numbers are different."
+msgstr "Êrrór: Ñùmbérs åré dîfférént."
+
+#: ../py_includes/graders/anyorder.py:7
+msgid "Line {}: too many copies of '{}'"
+msgstr "Lîné {}: tóó månÿ çópîés óf '{}'"
+
+#: ../py_includes/graders/anyorder.py:8
+msgid "Line {}: not a correct output line: '{}'"
+msgstr "Lîné {}: nót å çórréçt óùtpùt lîné: '{}'"
+
+#: ../py_includes/graders/anyorder.py:11
+msgid "Missing at least one line of output: '{}'"
+msgstr "Mîssîng åt léåst óné lîné óf óùtpùt: '{}'"
+
+#: ../py_includes/graders/display-input-vars.py:10
+msgid "Your program produced no output."
+msgstr "Ýóùr prógråm pródùçéd nó óùtpùt."
+
+#: ../py_includes/graders/display-input-vars.py:14
+msgid ""
+"Your program produced more than one line of output.\n"
+"It should print exactly one line."
+msgstr ""
+"Ýóùr prógråm pródùçéd móré thån óné lîné óf óùtpùt.\n"
+"Ît shóùld prînt éxåçtlÿ óné lîné."
+
+#: ../py_includes/graders/display-input-vars.py:22
+msgid "In this test case we set"
+msgstr "În thîs tést çåsé wé sét"
+
+#: ../py_includes/graders/display-input-vars.py:30
+msgid "Your program printed "
+msgstr "Ýóùr prógråm prîntéd "
+
+#: ../py_includes/graders/display-input-vars.py:32
+msgid "Your answer is correct!"
+msgstr "Ýóùr ånswér îs çórréçt!"
+
+#: ../py_includes/graders/display-input-vars.py:34
+msgid "The correct answer is "
+msgstr "Thé çórréçt ånswér îs "
+
+#: ../py_includes/graders/real-per-line.py:4
+#: ../py_includes/graders/trim-lines.py:4
+msgid "Not enough lines of output: {0} expected, {1} found"
+msgstr "Ñót énóùgh lînés óf óùtpùt: {0} éxpéçtéd, {1} fóùnd"
+
+#: ../py_includes/graders/real-per-line.py:7
+msgid "Error: Output line {0} '{1}' was not a number"
+msgstr "Êrrór: Óùtpùt lîné {0} '{1}' wås nót å nùmbér"
+
+#: ../py_includes/graders/real-per-line.py:9
+msgid "Output line {0}, value {1}, did not match expected value {2}"
+msgstr "Óùtpùt lîné {0}, vålùé {1}, dîd nót måtçh éxpéçtéd vålùé {2}"
+
+#: ../py_includes/graders/real-per-line.py:12
+#: ../py_includes/graders/trim-lines.py:12
+msgid "Too many lines of output: {0} expected, {1} found"
+msgstr "Tóó månÿ lînés óf óùtpùt: {0} éxpéçtéd, {1} fóùnd"
+
+#: ../py_includes/graders/trim-lines.py:7
+msgid "Error: output line {0} {1} did not match expected line {2}"
+msgstr "Êrrór: óùtpùt lîné {0} {1} dîd nót måtçh éxpéçtéd lîné {2}"
+
+#: ../py_includes/graders/warmup.py:7
+msgid "Your program produced no output. Please try again."
+msgstr "Ýóùr prógråm pródùçéd nó óùtpùt. Pléåsé trÿ ågåîn."
+
+#: ../py_includes/graders/warmup.py:9
+msgid "Your program produced too many lines of output. Please try again."
+msgstr "Ýóùr prógråm pródùçéd tóó månÿ lînés óf óùtpùt. Pléåsé trÿ ågåîn."
+
+#: ../py_includes/graders/warmup.py:11
+msgid "Your program produced too few lines of output. Please try again."
+msgstr "Ýóùr prógråm pródùçéd tóó féw lînés óf óùtpùt. Pléåsé trÿ ågåîn."
+
+#: ../py_includes/graders/warmup.py:13
+msgid "Exactly correct, good job!"
+msgstr "Êxåçtlÿ çórréçt, góód jób!"
+
+#: ../py_includes/graders/warmup.py:15
+msgid "Almost correct but ensure you correctly use upper and lower case."
+msgstr "Ãlmóst çórréçt bùt énsùré ÿóù çórréçtlÿ ùsé ùppér ånd lówér çåsé."
+
+#: ../py_includes/graders/warmup.py:17
+msgid "Almost correct but ensure you correctly use punctuation and spacing."
+msgstr "Ãlmóst çórréçt bùt énsùré ÿóù çórréçtlÿ ùsé pùnçtùåtîón ånd spåçîng."
+
+#: ../py_includes/graders/warmup.py:19
+msgid ""
+"Partially correct; ensure upper/lower case, punctuation, and spacing are "
+"correct."
+msgstr ""
+"Pårtîållÿ çórréçt; ensure upper/lower case, punctuation, and spacing are "
+"correct."
+
+#: ../py_includes/graders/warmup.py:21
+msgid "Incorrect answer, please try again."
+msgstr "Înçórréçt ånswér, pléåsé trÿ ågåîn."
+
+#: ../wp-theme/404.php:19
+msgid "Error 404. Not enough internets."
+msgstr "Êrrór 404. Ñót énóùgh întérnéts."
+
+#: ../wp-theme/404.php:24
+#, php-format
+msgid "We cannot find anything at the address %s"
+msgstr "Wé çånnót fînd ånÿthîng åt thé åddréss %s"
+
+#: ../wp-theme/404.php:25
+#, php-format
+msgid ""
+"Try a different address, a <a %1$s>search</a>, or <a %2$s>contact us</a> if "
+"the website sent you here via a broken link."
+msgstr ""
+"Trÿ å dîfférént åddréss, å <a %1$s>séårçh</a>, ór <a %2$s>çóntåçt ùs</a> îf "
+"thé wébsîté sént ÿóù héré vîå å brókén lînk."
+
+#: ../wp-theme/footer.php:26
+#, php-format
+msgid ""
+"Computer Science Circles is a free service of the <a %1$s>Centre for "
+"Education in Mathematics and Computing</a> at the <a %2$s>University of "
+"Waterloo</a>."
+msgstr ""
+"Çómpùtér Sçîénçé Çîrçlés îs å fréé sérvîçé óf thé <a %1$s>Çéntré fór "
+"Êdùçåtîón în Måthémåtîçs ånd Çómpùtîng</a> åt thé <a %2$s>Ùnîvérsîtÿ óf "
+"Wåtérlóó</a>."
+
+#: ../wp-theme/footer.php:30
+msgid "CEMC"
+msgstr "ÇÊMÇ"
+
+#: ../wp-theme/footer.php:31
+msgid "University of Waterloo"
+msgstr "Ùnîvérsîtÿ óf Wåtérlóó"
+
+#: ../wp-theme/footer.php:32
+msgid "200 University Avenue West"
+msgstr "200 Ùnîvérsîtÿ Ãvénùé Wést"
+
+#: ../wp-theme/footer.php:33
+msgid "Waterloo, Ontario, Canada N2L 3G1"
+msgstr "Wåtérlóó, Óntårîó, Çånådå Ñ2L 3G1"
+
+#: ../wp-theme/footer.php:34
+msgid "Phone: 519 888 4808"
+msgstr "Phóné: 519 888 4808"
+
+#: ../wp-theme/footer.php:35
+msgid "contact us"
+msgstr "çóntåçt ùs"
+
+#: ../www/wordpress/wp-admin/user-edit.php:313
+msgid "How do you want your name displayed?"
+msgstr "Hów dó ÿóù wånt ÿóùr nåmé dîsplåÿéd?"
+
+#: ../www/wordpress/wp-admin/user-edit.php:383
+msgid "Change Password"
+msgstr "Çhångé Påsswórd"
+
+#: ../www/wordpress/wp-includes/admin-bar.php:143
+msgid "<p>Create free account / login</p><p>to save your progress</p>"
+msgstr "<p>Çréåté fréé åççóùnt / lógîn</p><p>tó såvé ÿóùr prógréss</p>"
+
+#: ../www/wordpress/wp-includes/admin-bar.php:150
+#, php-format
+msgid "%s's menu"
+msgstr "%s's ménù"
+
+#: ../www/wordpress/wp-includes/admin-bar.php:184
+#, php-format
+msgid "Hi, %s!"
+msgstr "Hî, %s!"
+
+#: ../www/wordpress/wp-includes/admin-bar.php:651
+msgid "click and type to search website"
+msgstr "çlîçk ånd tÿpé tó séårçh wébsîté"
+
+#: ../www/wordpress/wp-login.php:93
+msgid "Computer Science Circles"
+msgstr "Çómpùtér Sçîénçé Çîrçlés"
+
+#: ../www/wordpress/wp-login.php:93
+msgid "Log In or Create Account"
+msgstr "Lóg În ór Çréåté Ãççóùnt"

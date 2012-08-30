@@ -1,7 +1,6 @@
 <?php
 
-require_once("include-me.php");
-require_once(PWP_LOADER);
+require_once("include-me-and-load-wp.php");
 
 $problem = $_POST["problem"];
 

@@ -149,7 +149,7 @@ class TermsInterceptor_RS
 				$return['remap_parents'] = true;
 			}
 
-			if ( is_admin() && ( 's2' == $GLOBALS['plugin_page'] ) ) {
+			if ( is_admin() && array_key_exists('plugin_page', $GLOBALS) && ('s2' == $GLOBALS['plugin_page'] ) ) {
 				$return['required_operation'] = 'read';
 			}
 		}

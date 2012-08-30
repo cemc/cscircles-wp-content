@@ -1,5 +1,10 @@
 <?php
 
+class PyboxException extends Exception {}
+define('POSTLIMIT', 20000); //maximum size 'POST' that submit.php will accept
+define('WALLFACTOR', 2); 
+define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit is FACTOR*X + BUFFER
+
 $servername = $_SERVER['SERVER_NAME'];
 $currenturi = $_SERVER['REQUEST_URI'];
 
@@ -23,6 +28,12 @@ if (PB_DEV)
 define('PWP', PLOCALHOME . 'www/wordpress/');
 
 define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
+
+
+// string constants
+define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
+define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
+
 
 // path constants :: should exist, and in many cases be writable
 define('PJAIL', PLOCALHOME . 'python3jail/');
@@ -49,7 +60,7 @@ define('UWARN', UFILES . 'warning.png');
 
 define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
 
-define('UPYBOXJS', UPYBOX . 'pybox.js?14');
+define('UPYBOXJS', UPYBOX . 'pybox.js?16');
 define('UPYBOXCSS', UPYBOX . 'pybox.css?8');
 define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
 define('UOLDHISTORY', UPYBOX . 'pages/problem-history.php?p=');
@@ -66,14 +77,5 @@ define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
 
 define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
 
-define('UPROGRESS', UWPHOME . 'user-page/');
-define('USEARCH', UWPHOME . 'search/');
-define('UMAIL', UWPHOME . 'mail/');
-define('URESOURCES', UWPHOME . 'resources/');
-define('UCONSOLE', UWPHOME . 'console/'); /*last / is Important to get newlines right in GET */
-define('UVISUALIZE', UWPHOME . 'visualize/'); 
-define('UUSAGE', UWPHOME . 'using-this-website/');
-define('UCONTACT', UWPHOME . 'contact/');
-define('URUNATHOME', UWPHOME . 'run-at-home/');
 
 // end of file

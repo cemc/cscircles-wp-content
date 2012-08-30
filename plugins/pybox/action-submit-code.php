@@ -1,13 +1,6 @@
 <?php
 
-require_once("include-me.php");
-
-require_once(PWP_LOADER);
-// the latter is ONLY needed for: 
-//   if user is correct, then we see if logged in, and save completion
-//   check if user is an admin, to show debug info
-// is this a performance hit (from loading all of wordpress?) 
-
+require_once("include-me-and-load-wp.php");
 
 function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
 // execute the python $program using safeexec (here $program is a string or file reference)
@@ -250,9 +243,9 @@ function outputDescription($pass, $args) {
   if ($pass === TRUE) {
     if (($showoutput=='Y' || $showexpected=='Y') && $stdout != "") {
       if ($grader == "*nograder*" || $grader == '*inplace*')
-	return "Program gave the following output:" . preBox($stdout, $stdoutlen);
+	return __t("Program gave the following output:") . preBox($stdout, $stdoutlen);
       else
-	return "Program gave the following correct output:" . preBox($stdout, $stdoutlen);
+	return __t("Program gave the following correct output:") . preBox($stdout, $stdoutlen);
     }
     else
       return "";
@@ -261,26 +254,26 @@ function outputDescription($pass, $args) {
     if ($showoutput != "Y" || ($stdoutlen == 0 && (!$ok || $hideemptyoutput == 'Y')))
       return "";
     elseif ($stdoutlen == 0)
-      return "Program printed no output.<br>";
+      return __t("Program printed no output.")."<br>";
     else
-      return "Program gave the following output:" . preBox($stdout, $stdoutlen);
+      return __t("Program gave the following output:") . preBox($stdout, $stdoutlen);
   }
 
   // pass == FAIL
   if ($showoutput != 'Y')
     $part1 = "";
   elseif ($stdoutlen == 0) {
-    $part1 = "Program printed no output.";
+    $part1 = __t("Program printed no output.");
     if ($requiredStdout != "") {
-      $part1 .= " <i>(Did you forget to use </i><code>print</code><i>?)</i>";
+      $part1 .= " <i>".__t("(Did you forget to use </i><code>print</code><i>?)")."</i>";
     }
     $part1 .= "<br/>";
   }
   else
-    $part1 = "Program output:" . preBox($stdout, $stdoutlen);
+    $part1 = __t("Program output:") . preBox($stdout, $stdoutlen);
 
   if ($showexpected == 'Y' && $requiredStdout != "")
-    $part2 = "Expected this correct output:".preBox($requiredStdout);
+    $part2 = __t("Expected this correct output:").preBox($requiredStdout);
   else
     $part2 = "";
   
@@ -307,8 +300,13 @@ function doGrading($usercode, $TC) {
   $mainFile = "";
  
   $er = FALSE;
-
+  
   $mainFile .= "from _UTILITIES import *\n";
+
+  if (isSoft($_COOKIE, 'wordpress_polylang', 'fr'))
+    $mainFile .= "_setLanguage('fr_FR')\n";
+  else
+    $mainFile .= "_setLanguage('en_US')\n";
 
   $inputMaker = inputMaker($TC);
   $noInput = ($inputMaker === FALSE);
@@ -423,11 +421,11 @@ _user_stdout.close()
     $m .= $testDescription;
 
   if (!$inputInUse && $inplace && trim($outdata['graderpre']) != '')
-    $m .= '<i>Before running your code:</i> ' . $outdata['graderpre'] . '<br/>';
+    $m .= '<i>'.__t('Before running your code:').'</i> ' . $outdata['graderpre'] . '<br/>';
 
   if ($showinput=="Y" && !$inputInUse && !$noInput &&
       ($hideemptyinput=="N" || $outdata['stdincopy']!=""))
-    $m .= "Input:" . preBox($outdata['stdincopy']);
+    $m .= __t("Input:") . preBox($outdata['stdincopy']);
 
   $errnice = preBox(stderrNiceify($stderr), $stderrlen);
   if (userIsAdmin()) 
@@ -436,14 +434,14 @@ _user_stdout.close()
   if ($stderr=='')
     $errnice = '';
   else
-    $errnice = '<p>Error messages: ' . $errnice . '</p>';
+    $errnice = '<p>'.__t('Error messages: ') . $errnice . '</p>';
 
   if ($ok) 
-    $m .= "<p>Program executed without crashing.</p>";
+    $m .= "<p>".__t('Program executed without crashing.')."</p>";
   elseif (firstLine($safeexecOut) == 'Command exited with non-zero status (1)') 
-    $m .= "<p>Program crashed.</p>";
+    $m .= "<p>".__t("Program crashed.")."</p>";
   else
-    $m .= "<p>Program crashed &mdash; " . firstLine($safeexecOut) . ".</p>";
+    $m .= "<p>".__t("Program crashed &mdash; ") . firstLine($safeexecOut) . ".</p>";
 
   if ($showsafeexec=="Y")
     $m .= "Sandbox messages:" . preBox($safeexecOut);
@@ -463,9 +461,9 @@ _user_stdout.close()
   if ((!$ok) || $facultative) { // we don't care what's in stdout
     $graderreply = trim(getSoft($outdata, 'graderreply', ''));
     if (!$ok && !$inputInUse && $graderreply != '') 
-      $m .= "<i>The grader said:</i><div>" . $graderreply . "</div>";
+      $m .= "<i>".__t("The grader said:")."</i><div>" . $graderreply . "</div>";
     elseif ($inplace && $solver === FALSE & $graderreply != '')  
-      $m .= "<i>Automatic tests:</i><div>" . substr($graderreply, 0, -1) . "</div>";
+      $m .= "<i>".__t("Automatic tests:")."</i><div>" . substr($graderreply, 0, -1) . "</div>";
     $m .= $errnice . $simpleOutputDescription;
     return $ok ? tcpass($m) : tcfail($m);
   }
@@ -476,7 +474,7 @@ _user_stdout.close()
     $inplacereply = substr($GR, 0, -1);
 
     if ($inplacereply != '')
-      $inplacereply = "<i>The grader said:</i><div>$inplacereply</div>";
+      $inplacereply = "<i>".__t("The grader said:")."</i><div>$inplacereply</div>";
 
     if ($inplaceresult == 'Y') {
       if ($outdata['solverstdout'] == '')
@@ -499,7 +497,7 @@ _user_stdout.close()
   $m .= outputDescription($outGraderReply[0] == "Y", $outinfo) . $errnice;
 
   if (strlen(trim($outGraderReply)) > 1)
-    $m .= "<p>Result of grading: " . substr($outGraderReply, 1) . "</p>";
+    $m .= "<p>".__t("Result of grading: ") . substr($outGraderReply, 1) . "</p>";
 
   return ($outGraderReply[0]=="Y") ? tcpass($m) : tcfail($m);
 }
@@ -534,21 +532,21 @@ function saveCompletion() {
 function mpass($message) {
   global $facultative; 
   if (!$facultative) saveCompletion(); 
-  return ($facultative?"y":"Y<b>Success!</b><br/>") . $message;
+  return ($facultative?"y":"Y<b>".__t("Success!")."</b><br/>") . $message;
 } //helper
 function mfail($message) {
   global $facultative;
-  return ($facultative?"N":"N<b>Did not pass tests. Please check details below and try again.</b><br/>") . $message;
+  return ($facultative?"N":"N<b>".__t("Did not pass tests. Please check details below and try again.")."</b><br/>") . $message;
 } //helper
 function merror($message, $errmsg, $suppress = -1) {
   global $beginstamp;
   pyboxlog("[main error] " . $errmsg . " (partial message: " . $message . ")", $suppress);
   return "E"."<b>Internal error or HTTP error, details below. You can <a href=\"" 
-    . UCONTACT . "\">contact us</a>.</b> Timestamp: " . date("y-m-d H:i:s", $beginstamp) . "<br/>" . preBox($errmsg);
+    . cscurl('contact') . "\">contact us</a>.</b> Timestamp: " . date("y-m-d H:i:s", $beginstamp) . "<br/>" . preBox($errmsg);
 } //helper
 function msave() {
   global $userid;
-  return "S".(($userid==-1)?"You must log in to save data.":"Program saved.");
+  return "S".(($userid==-1)?__t("You must log in to save data."):__t("Program saved."));
 }
 
 function main() {
@@ -572,8 +570,8 @@ function main() {
 
   if (strlen(print_r($_POST, TRUE))>POSTLIMIT) {
     pyboxlog("submit.php got too many bytes of data:" . strlen(print_r($_POST, TRUE)));
-    return mfail('Submitted data (program and/or test input) too large.
-                  Reduce size or <a href = "' . URUNATHOME . '">run at home</a>.');
+    return mfail(sprintf(__t('Submitted data (program and/or test input) too large. Reduce size or <a href = "%s">run at home</a>.'), 
+			 cscurl('install')));
   }
   
   $id = getSoft($_POST, "pyId", "EMPTY");
@@ -602,7 +600,7 @@ function main() {
   $problemArgs = $wpdb->get_var($wpdb->prepare("
 SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   if ($problemArgs === NULL)
-    return merror("", "Pybox error: problem hash " . $hash . " not found. Try reloading the page.");
+    return merror("", sprintf(__t("Pybox error: problem hash %s not found. Try reloading the page."), $hash));
 
   $problemArgs = json_decode($problemArgs, TRUE);
 
@@ -693,7 +691,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
       }
       $match = preg_match("#.*".trim($regex).".*#", $usercode);
       if ($match != 0) {
-	return mfail("You cannot use <code>".trim($display)."</code> in this exercise.");
+	return mfail(sprintf(__t("You cannot use %s in this exercise."), "<code>".trim($display)."</code>"));
       }
     }
   }  
@@ -704,10 +702,9 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     $T = preg_replace('/\s+/', '', $problemOptions["originalcode"]);
     $s = strlen($S);
     $t = strlen($T);
-    $msg = "You are only allowed to change at most $k character" .(($k>1)?"s":"") 
-      ." compared to the original version of the code.";
+    $msg = sprintf(__t("You are only allowed to change at most %s characters compared to the original version of the code."), $k);
     if (abs($s-$t)>2*$k+5)
-      return mfail($msg) . " You changed " . (2*$k+5) . " or more.";
+      return mfail($msg) . " " . sprintf(__t("You changed %s or more."), 2*$k+5);
     else {
       $DP = array_fill(0, $s+1, NULL);
       for ($i=0; $i<=$s; $i++)
@@ -725,7 +722,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
 	  }
 	}
       if (($DP[$s][$t]) > (0+$k)) 
-	return mfail( $msg . " You changed " . ($DP[$s][$t]) . ".");
+	return mfail( $msg . " " . sprintf(__t("You changed %s."), $DP[$s][$t]));
     }
   }
   
@@ -750,7 +747,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     for ($i=0; $i<$spo["repeats"]; $i++) {      
       $tcCurrent++;
       if (!($inputInUse) && $tcTotal > 1)
-	$m .= "<b>Results for test case " . $tcCurrent . " out of " . $tcTotal . "</b><br/>";
+	$m .= "<b>".sprintf(__t('Results for test case %1$s out of %2$s'), $tcCurrent, $tcTotal) . "</b><br/>";
       try {
 	$tcOutcome = doGrading($usercode, $spo);
 	$m .= $tcOutcome["message"];

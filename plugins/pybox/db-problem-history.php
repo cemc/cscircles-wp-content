@@ -13,23 +13,23 @@ function dbProblemHistory($limit, $sortname, $sortorder, &$info, $req = NULL) {
    $problemname = getSoft($req, "p", ""); //which problem?
    $user = getSoft($req, "user", "");   
    if ($problemname=="")
-     return "You must enter a non-empty problem name.";
+     return __t("You must enter a non-empty problem name.");
    $info['problem'] = $problemname;
 
-   $resultdesc = array('y'=> 'Did not crash.', 
-		       'Y'=> 'Correct!', 
-		       'N'=> 'Incorrect.', 
-		       'E'=> 'Internal error.', 
-		       'S'=> 'Saved.',
-		       's'=> 'Saved.');
+   $resultdesc = array('y'=> __t('Did not crash.'), 
+		       'Y'=> __t('Correct!'), 
+		       'N'=> __t('Incorrect.'), 
+		       'E'=> __t('Internal error.'), 
+		       'S'=> __t('Saved.'),
+		       's'=> __t('Saved.'));
 
    if ( !is_user_logged_in() )
-     return "You must log in to view past submissions.";
+     return __t("You must log in to view past submissions.");
    
    if ( userIsAdmin() && $user != "") {
      $u = get_userdata($user);
      if ($u === false) 
-       return "User number $u not found.";
+       return sprintf(__t("User number %s not found."), $u);
      $info['viewuser'] = $user;
    }
    else
@@ -49,11 +49,13 @@ WHERE userid = %d AND problem = %s", $uid, $problemname), ARRAY_N);
    $showInputColumn = $counts[0][1] > 0;
    
    if ($count==0) 
-     return "We do not have record of any submissions from user $uid '$uname' for problem $problemname.";
+     return sprintf(__t('We do not have record of any submissions from user %1$s for problem %2$s.'),
+		    $uid.' '.$uname,
+		    $problemname);
    
 
-   $knownFields = array("time &amp; ID"=>"beginstamp", "user code"=>"usercode", 
-			"user input"=>"userinput", "result"=>"result");
+   $knownFields = array(__t("time &amp; ID")=>"beginstamp", __t("user code")=>"usercode", 
+			__t("user input")=>"userinput", __t("result")=>"result");
 
    if (array_key_exists($sortname, $knownFields)) {
      $sortString = $knownFields[$sortname] . " " . $sortorder . ", ";
@@ -66,11 +68,11 @@ WHERE userid = %d AND problem = %s ORDER BY $sortString ID DESC" . $limit, $uid,
    $flexirows = array();
    foreach ($wpdb->get_results( $prep, ARRAY_A ) as $r) {
      $cell = array();
-     $cell['user code'] = preBox($r['usercode'], -1, -1);
+     $cell[__t('user code')] = preBox($r['usercode'], -1, -1);
      if ($showInputColumn) 
-       $cell['user input'] = $r['userinput'] == NULL ? '<i>n/a</i>' : preBox($r['userinput'], -1, 100000);
-     $cell['result'] = $resultdesc[$r['result']];
-     $cell['time &amp; ID'] = str_replace(' ', '<br/>', $r['beginstamp']) . '<br/>#' . $r['ID'];
+       $cell[__t('user input')] = $r['userinput'] == NULL ? '<i>'.__t('n/a').'</i>' : preBox($r['userinput'], -1, 100000);
+     $cell[__t('result')] = $resultdesc[$r['result']];
+     $cell[__t('time &amp; ID')] = str_replace(' ', '<br/>', $r['beginstamp']) . '<br/>#' . $r['ID'];
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);
    }
    return array('total' => $count, 'rows' => $flexirows);

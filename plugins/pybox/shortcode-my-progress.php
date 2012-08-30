@@ -1,12 +1,12 @@
 <?php
 
-require_once("db-include.php");
+  //require_once("db-include.php");
 
 add_shortcode('pyUser', 'pyUser');
 
 function pyUser($options, $content) {
   if ( !is_user_logged_in() ) 
-    return "You must log in order to view your user page.";
+    return __t("You must log in order to view your user page.");
   
   global $wpdb;
   
@@ -26,11 +26,11 @@ function pyUser($options, $content) {
   if (userIsAdmin() || $cstudents>0) {
     $preamble = 
       "<div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
-       <h1 style='margin-top: 0px;'>Reload with a different view? (you have $cstudents students)</h1>
-       <form method='get'>Select different user?<br/>";
+       <h1 style='margin-top: 0px;'>".sprintf(__t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
+       <form method='get'>".__t("Select different user?")."<br/>";
     $options = array();
-    $options[''] = 'Show only me';
-    $options['all'] = 'Summary of all my students';
+    $options[''] = __t('Show only me');
+    $options['all'] = __t('Summary of all my students');
     
     //$preamble .= <option value=''>Show only me</option>
     //     <option value='all'>Summary of all my students</option>";
@@ -44,10 +44,10 @@ function pyUser($options, $content) {
     }
     
     $preamble .= optionsHelper($options, 'user')."<br/>";
-    $preamble .= __("Just show submissions for one problem?", "trans")."<br/>";
+    $preamble .= __t("Just show submissions for one problem?")."<br/>";
     $options = array();
-    $options[''] = 'Show all';
-    $options['console'] = 'Console';
+    $options[''] = __t('Show all');
+    $options['console'] = __t('Console');
     foreach ($problems as $problem) {
       if ($problem['type'] == 'code')
 	$options[$problem['slug']] = $problem['publicname'];
@@ -62,22 +62,22 @@ function pyUser($options, $content) {
 
   if (!$getall && array_key_exists('user', $_GET) && $_GET['user'] != '') {
     if (!is_numeric($_GET['user']))
-      return "User id must be numeric.";
+      return __t("User id must be numeric.");
     $getuid = (int)$_GET['user'];
     if (userIsAdmin()) {
       if (get_userdata($getuid) === FALSE)
-	return "Invalid user id.";
+	return __t("Invalid user id.");
     }
     else {
       if (!in_array($getuid, $students))
-	return "Invalid user id.";
+	return __t("Invalid user id.");
     }
     $uid = $getuid;
     $user = get_userdata($uid);
-    echo "<h1 style='color: red;'>Viewing as " . $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $uid . ")</h1>";
+    echo "<h1 style='color: red;'>".__t('Viewing as ') . $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $uid . ")</h1>";
   }
   if ($getall) {
-    echo "<h1 style='color: red;'>Viewing summary of all your students</h1>";
+    echo "<h1 style='color: red;'>".__t("Viewing summary of all your students")."</h1>";
   }
 
   $completed_table = $wpdb->prefix . "pb_completed";   
@@ -86,7 +86,7 @@ function pyUser($options, $content) {
     $recent = "";
     $completed = $wpdb->get_results
       ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC", ARRAY_A);
-    $recent .= '<h2>Latest Problems Completed</h2>';
+    $recent .= '<h2>'.__t("Latest Problems Completed").'</h2>';
     for ($i=0; $i<6 && $i<count($completed); $i++) {
       $p = getSoft($problemsByNumber, $completed[$i]['problem'], FALSE);
       if ($p !== FALSE)
@@ -100,7 +100,7 @@ function pyUser($options, $content) {
   }
 
   $subs = "";
-  $subs = '<h2>Submitted Code</h2>';
+  $subs = '<h2>'.__t("Submitted Code").'</h2>';
   $subs .= '<div id="recentsubs"></div>';
   $U = UFULLHISTORY;
   $dbparams = array();
@@ -119,7 +119,7 @@ function pyUser($options, $content) {
   foreach ($lessons as $lrow) 
     $lessonsByNumber[$lrow['ordering']] = $lrow;
 
-  $overview = '<h2>Overview</h2>';
+  $overview = '<h2>'.__t('Overview').'</h2>';
 
   $didIt = array();
   if ($getall) {

@@ -152,6 +152,7 @@ require_once("shortcode-db-profiling.php");
 require_once("plugin-footer-prevnext.php");
 require_once("plugin-hooks.php");
 require_once("plugin-profile-options.php");
+require_once("js-translation.php");
 #require_once("dbf-subs.php"); not in use
 #require_once("dbf-completed.php"); not in use
 

@@ -1,5 +1,10 @@
 $ = jQuery;
 
+function __t(s) {
+    if (translationArray == null) return s;
+    return translationArray[s];
+}
+
 function stylePybox(id, modeCharacter) {
     B = $("#pybox"+id);
     B.removeClass("modeNeutral modeCorrect modeInternalError");
@@ -12,25 +17,25 @@ function stylePybox(id, modeCharacter) {
 }
 
 function testingSI(fac, tni) {
-    if (fac) return "Hide input box";
-    return "Go back to grading";
+    if (fac) return __t("Hide input box");
+    return __t("Go back to grading");
 }
 function gradingSI(fac, tni) { 
-    if (fac) return "Enter input";
-    if (tni == "Y") return "Enter test statements";
-    return "Enter test input";
+    if (fac) return __t("Enter input");
+    if (tni == "Y") return __t("Enter test statements");
+    return __t("Enter test input");
 }
 
 function pbInputSwitch(id, tni) {
     var fac = $('#pybox'+id).hasClass('facultative');
     $('#pyinput'+id).toggle();
     if ($('#inputInUse'+id).val()=='N') {
-	setCommandLabel(id, 'submit', "Run test");
+	setCommandLabel(id, 'submit', __t("Run test"));
 	setCommandLabel(id, 'switch', testingSI(fac, tni));
 	$('#inputInUse'+id).val('Y');
     }
     else {
-	setCommandLabel(id, 'submit', "Run program");
+	setCommandLabel(id, 'submit', __t("Run program"));
 	setCommandLabel(id, 'switch', gradingSI(fac, tni));
 	$('#inputInUse'+id).val('N');
     }
@@ -84,7 +89,7 @@ function pbFormSubmit(event) {
 
     $('#submit'+id).attr('disabled', true);
     
-    $('#pbresults'+id).html("<p>Running...</p>");
+    $('#pbresults'+id).html("<p>"+__t("Running...")+'</p>');
     $.ajax({
 	type: "POST",
 	url: SUBMITURL,
@@ -102,10 +107,10 @@ function pbFormSubmit(event) {
 	    $('#submit'+id).attr('disabled', false);
 	    stylePybox(id, 'E');
 	    if (textStatus == "timeout") {
-		alert('timed out!' + timeoutMS);
+		alert(__t('timed out!') + timeoutMS);
 	    }
 	   
- 	    $('#pbresults'+id).html("Could not grade program because communication to the server was not possible. Ajax information: "+xhr.statusText+" "+xhr.status+" "+thrownError);
+ 	    $('#pbresults'+id).html(__t("Could not grade program because communication to the server was not possible. Ajax information: ")+xhr.statusText+" "+xhr.status+" "+thrownError);
         }
     });
     event.preventDefault(); 
@@ -113,7 +118,7 @@ function pbFormSubmit(event) {
 
 function happyFace(id) {
     $("#pybox" + id + " .pycheck").attr({
-	'title':'You have completed this problem at least once.',
+	'title':__t('You have completed this problem at least once.'),
 	'src':FILESURL+'checked.png'
     });
 }
@@ -124,7 +129,7 @@ function setCompleted(name) {
 	    type: "POST",
 	    url: SETCOMPLETEDURL,
 	    data: {"problem":name},
-	    error: function() {alert("Warning: unable to talk to server. Could not set 'completed' status for this problem.")}
+	    error: function() {alert(__t("Warning: unable to talk to server. Could not set 'completed' status for this problem."))}
 	});
     }
 }
@@ -139,22 +144,22 @@ function sendMessage(id, slug) {
     message = $("#pybox"+id+" .helpInner textarea").val();
     code = pbGetText(id);
     if (recipient==0) {
-	alert('Please select a recipient for the message.');
+	alert(__t('Please select a recipient for the message.'));
     }
     else if (message.replace('\s', '')=='') {
-	alert('Please enter a non-empty message.');
+	alert(__t('Please enter a non-empty message.'));
     }
     else if (code.replace('\s', '')=='') {
-	alert('The code box is empty. It should instead contain your best partial solution so far.');
+	alert(__t('The code box is empty. It should instead contain your best partial solution so far.'));
     }
     else {
 	$.ajax({
 	    type: "POST",
 	    url : MESSAGEURL,
 	    data: {"source":1,"slug":slug,"recipient":recipient,"message":message,"code":code},
-	    error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");}
+	    error: function() {alert(__t("Unable to process 'send message' request. You might have lost your internet connection."));}
 	});
-	alert("Your message was sent.");
+	alert(__t("Your message was sent."));
 	helpClick(id);
     }
 }
@@ -166,7 +171,7 @@ function mailReply(id, slug) {
     $('#mailform .recipient').each(function(i, item) {r = $(item);});
     if (r != null) {
 	if (r.val()==0) {
-	    alert('You need to select a recipient.');
+	    alert(__t('You need to select a recipient.'));
 	    return;
 	}
 	thedata['recipient'] = r.val();
@@ -175,10 +180,10 @@ function mailReply(id, slug) {
 	type: "POST",
 	url : MESSAGEURL,
 	data: thedata,
-	error: function() {alert("Unable to process 'send message' request. You might have lost your internet connection.");},
+	error: function() {alert(__t("Unable to process 'send message' request. You might have lost your internet connection."));},
 	success: function(data) {window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data+"#m";}
     });
-    alert("Your message was sent.");
+    alert(__t("Your message was sent."));
 }
 
 // three types of short answer question: short answer, multiple choice, scramble
@@ -186,7 +191,7 @@ function mailReply(id, slug) {
 function pbNoncodeShowResults(id, correct) { 
     name = $('#pybox'+id).find('input[name="slug"]').val();
     stylePybox(id, correct?"Y":"N");
-    $('#pybox'+id+' .pbresults').html((!correct)?"Incorrect, try again.":$('#pybox'+id+' .epilogue').html());
+    $('#pybox'+id+' .pbresults').html((!correct)?__t("Incorrect, try again."):$('#pybox'+id+' .epilogue').html());
     if (correct) {
 	happyFace(id);
 	setCompleted(name);
@@ -274,11 +279,11 @@ function pbUndoCodeMirror(id) {
 function pbToggleCodeMirror(id) {
     w = $('#pybox'+id+" .pyboxCodewrap");
     if (w.hasClass('CM')) {
-	$('#toggleCM'+id).val('Rich editor');
+	$('#toggleCM'+id).val(__t('Rich editor'));
 	pbUndoCodeMirror(id);
     }
     else {
-	$('#toggleCM'+id).val('Simple editor');
+	$('#toggleCM'+id).val(__t('Simple editor'));
 	pbCodeMirror(id);
     }
 }
@@ -304,7 +309,7 @@ function pbVisualize(id, tni) {
     if ($('#inputInUse'+id).val()=='Y') {
 	extrainput = $('#pybox'+id+' textarea.pyboxInput').val();
 	if (tni == 'Y') {
-	    usercode += '\n# end of main program\n\n# start of tests\n' + extrainput
+	    usercode += '\n# '+__t('end of main program')+'\n\n# '+__t('start of tests')+'\n' + extrainput;
 	}
 	else {
 	    params["userinput"] = extrainput;
@@ -332,7 +337,7 @@ function pbSelectChange(event) {
     id = getID(event);
     act = $('#pbSelect'+id+' :selected').attr('data-pbonclick');
     eval(act);
-    $('#pbSelect'+id).val('More actions...').blur();
+    $('#pbSelect'+id).val(__t('More actions...')).blur();
 }
 
 function stayHere(event) {
@@ -442,7 +447,7 @@ function pyflex(options) {
       url:options['url'],
       data:$.param('dbparams' in options ? options['dbparams'] : []),
       success:function(data){pyflexSuccess(options, data);},
-      failure:function(){$("#"+options['id']).html('Error: could not connect to database.');}
+      failure:function(){$("#"+options['id']).html(__t('Error: could not connect to database.'));}
      });
 }
 function pyflexSuccess(options, data) {
@@ -450,8 +455,8 @@ function pyflexSuccess(options, data) {
 
     if (!(data instanceof Object) || !("rows" in data) || data["rows"].length==0) {
 	hflexhelp[options['id']] = options;
-	msg = (!(data instanceof Object) || !("rows" in data)) ? data : 'The database connected but found no data.'; 
-	info = "<a onclick='pyflex(hflexhelp[\""+options['id']+"\"])'>Click to try again.</a>";
+	msg = (!(data instanceof Object) || !("rows" in data)) ? data : __t('The database connected but found no data.'); 
+	info = "<a onclick='pyflex(hflexhelp[\""+options['id']+"\"])'>"+__t("Click to try again.")+"</a>";
 	$('#'+options['id']).html('<span class="pyflexerror">' + msg + ' ' + info + '</span>');
 	//alert(msg);
 	return;
@@ -486,7 +491,11 @@ function pyflexSuccess(options, data) {
 	    onSuccess: flexfixall,
 	    onDragCol: flexfixall,
 	    params: xp,
-	    canRearrange: false
+	    canRearrange: false,
+            pagestat: __t('Displaying {from} to {to} of {total} items'),
+            pagetext: __t('Page'),
+	    outof: __t('out of'),
+            procmsg:__t( 'Processing, please wait ...')
 	};
 	if ('flparams' in options) 
 	    for (optname in options['flparams'])
@@ -504,9 +513,9 @@ function historyClick(id,thename) {
 	pyflex({'id':'pbhistory'+id, 'url':url, 'dbparams':{'p': thename}, 'flparams':{'showCloseBtn':true}});
     }
     if ($('#pbhistory'+id).is(":hidden")) 
-	setCommandLabel(id, 'history', 'History');
+	setCommandLabel(id, 'history', __t('History'));
     else {
-	setCommandLabel(id, 'history', 'Hide history');
+	setCommandLabel(id, 'history', __t('Hide history'));
 	if (!createNow) hflex['pbhistory'+id].flexReload();
     }
 }
@@ -563,6 +572,11 @@ $( // this call to $ makes it delay until the DOM is loaded
 	$('.wp-tabs > div').each(tabby);
 	$('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
+	$('#notice-trans').click(function() {
+	    alert("We're translating the site backend. If anything in English appears broken or different, please tell us on the contact page!");
+	    return false;
+	});
+	
 	if (window.location.hash) {
 	    setTimeout("window.scrollBy(0, -60)", 10); // so direct links aren't hidden by adminbar
 	} 

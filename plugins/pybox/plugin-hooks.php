@@ -16,7 +16,8 @@ function justemail_contactmethod( $contactmethods ) {
 add_filter('user_contactmethods','justemail_contactmethod',10,1);
 
 add_filter('login_headerurl','remove_wp_link');function remove_wp_link($var){return NULL;}
-add_filter('login_headertitle','pb_title');function pb_title($var){return 'Computer Science Circles, powered by WordPress';}
+add_filter('login_headertitle','pb_title');
+function pb_title($var){return __t('Computer Science Circles, powered by WordPress');}
 
 add_action('init', 'pyBoxInit');
 function pyBoxInit() {
@@ -40,15 +41,22 @@ function pybox_init_trans() {
 add_action('wp_head', 'pyBoxHead');
 function pyBoxHead() {
   echo "<script type='text/javascript'>\n";
+
+  // if language is english, define __t as doing nothing
+  if (get_locale() == 'fr_FR') {
+    echo sprintf("var translationArray = %s;", jsonTranslationArray());
+  }
+  else {
+    echo "var translationArray = null;";
+  }
   echo sprintf("var SUBMITURL = '%s';\n", USUBMIT);
   echo sprintf("var SETCOMPLETEDURL = '%s';\n", USETCOMPLETED);
-  echo sprintf("var CONSOLEURL = '%s';\n", UCONSOLE);
+  echo sprintf("var CONSOLEURL = '%s';\n", cscurl('console'));
   echo sprintf("var FILESURL = '%s';\n", UFILES);
   echo sprintf("var HISTORYURL = '%s';\n", UHISTORY);
-  echo sprintf("var OLDHISTORYURL = '%s';\n", UOLDHISTORY);
-  echo sprintf("var VISUALIZEURL = '%s';\n", UVISUALIZE);
+  echo sprintf("var VISUALIZEURL = '%s';\n", cscurl('visualize'));
   echo sprintf("var MESSAGEURL = '%s';\n", UMESSAGE);
-  echo sprintf("var MAILURL = '%s';\n", UMAIL);
+  echo sprintf("var MAILURL = '%s';\n", cscurl('mail'));
   echo sprintf("var DEFAULTTIMEOUTMS = '%s';\n", (WALLFACTOR*1 + WALLBUFFER)*1000);
 
   echo "</script>\n";
@@ -95,12 +103,15 @@ function footsy() {
   global $popupBoxen;
   echo $popupBoxen;
 
+  echo '<span id="pylangswitcher">';
+  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
+
   if (userIsAdmin() || userIsTranslator() || pll_current_language() != 'en') {
-    echo '<span id="pylangswitcher">'.pll_the_languages(array('echo'=>0,'display_names_as' => 'slug'));
+    echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug'));
     if (userIsAdmin() || userIsTranslator())
-      echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">Editor</a></li>';
-    echo '</span>';
+      echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
   }
+  echo '</span>';
 
 }
 
@@ -191,21 +202,21 @@ function msie($options, $content) {
 
 add_action('admin_bar_menu', 'pb_menu_items', 5);
 function pb_menu_items($wp_admin_bar) {
-  $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => UWPHOME . "user-page/", 'title'=>'My Progress', 'id'=>'up'));
-  $wp_admin_bar->add_menu( array( 'id'=>'snap', 'parent' => 'user-actions', 'title' => 'Console (new window)', 'href' => UCONSOLE, "meta" => array("target" => "_blank")));
-  $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => 'Resources (new window)', 'href' => URESOURCES, "meta" => array("target" => "_blank")));
-  $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => 'Contact Us (new window)', 'href' => UCONTACT, "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('progress'), 'title'=>__t('My Progress'), 'id'=>'up'));
+  $wp_admin_bar->add_menu( array( 'id'=>'snap', 'parent' => 'user-actions', 'title' => __t('Console (new window)'), 'href' => cscurl('console'), "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => __t('Resources (new window)'), 'href' => cscurl('resources'), "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => __t('Contact Us (new window)'), 'href' => cscurl('contact'), "meta" => array("target" => "_blank")));
 
   if (!is_admin())
     $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'totop', 
-				    'title' => '<img onclick="scrollToTop()" title="scroll to top"'.
+				    'title' => '<img onclick="scrollToTop()" title="'.__t('scroll to top').'"'.
 				    ' class="icon" src="'.UFILES . 'up.png"/>' ));
   
   global $wpdb;
 
   $students = getStudents();
   if (count($students)>0 || userIsAdmin()) {
-    $studentClause = "uto = " . getUserID();
+    $studentClause = "uto = " . getUserID() . ' ';
     if (userIsAdmin())
       $studentClause = "($studentClause OR uto = 0)";
     if (!userIsAdmin()) 
@@ -215,10 +226,10 @@ function pb_menu_items($wp_admin_bar) {
       $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM wp_pb_mail 
                              WHERE unanswered = 1 AND $studentClause ORDER BY ID ASC LIMIT 1", ARRAY_A);
 
-      $url = UMAIL . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
+      $url = cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
       
       $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'mail', 'href' => $url,
-				      'title' => '<img title="goto oldest unanswered mail"'.
+				      'title' => '<img title="'.__t('goto oldest unanswered mail').'"'.
 				      'class="icon" src="'.UFILES . "mail-icon.png\"/>($count)" ));
     }
   }
@@ -231,7 +242,7 @@ function pb_menu_items($wp_admin_bar) {
 				   'title'     => 'su',
 				   'meta'      => array(
 							'class'     => '',
-							'title'     => __('Admin Menu'),
+							'title'     => 'Admin Menu',
 							),
 				   ) );
 
@@ -257,6 +268,12 @@ function pb_menu_items($wp_admin_bar) {
     }
   }      
 
+}
+
+add_action( 'init', 'setup_translation' );
+
+function setup_translation() {
+  load_plugin_textdomain('cscircles', FALSE, dirname( plugin_basename( __FILE__ ) ));
 }
 
 // end of file

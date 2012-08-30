@@ -1,7 +1,6 @@
 <?php
 
-require_once("include-me.php");
-require_once(PWP_LOADER);
+require_once("include-me-and-load-wp.php");
 
 function send($problem_info, $from, $to, $student, $slug, $body) {
 
@@ -29,7 +28,7 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   
   $contents = $body."\n===\n";
   $contents .= "To send a reply message, please visit\n";
-  $contents .= USERVER . UMAIL . "?who=$student&what=$slug&which=$mailref#m\n";
+  $contents .= USERVER . cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m\n";
   $contents .= "Problem URL: " . $problem_info['url'] . "\n";
   $contents .= "[Sent by CS Circles http://cscircles.cemc.uwaterloo.ca]";
   
