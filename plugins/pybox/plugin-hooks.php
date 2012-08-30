@@ -64,10 +64,10 @@ function pyBoxHead() {
   echo '<link type="text/css" rel="stylesheet" href="'.UPYBOXCSS.'" />' . "\n";
   echo '<script type="text/javascript" src="'.UPYBOXJS.'"></script>'."\n";
 
-  echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror2/codemirrorwp.css'>\n";
-  echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror2/textmate.css'>\n";
-  echo "<script type='text/javascript' src='".UFILES."codemirror2/lib/codemirror.js'></script>\n";
-  echo "<script type='text/javascript' src='".UFILES."codemirror2/mode/python/python.js'></script>\n";
+  echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror/codemirrorwp.css'>\n";
+  echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror/textmate.css'>\n";
+  echo "<script type='text/javascript' src='".UFILES."codemirror/lib/codemirror.js'></script>\n";
+  echo "<script type='text/javascript' src='".UFILES."codemirror/mode/python/python.js'></script>\n";
 
   echo "<script type='text/javascript' src='".UFLEXIGRID."js/flexigrid.js'></script>\n";
   echo '<link type="text/css" rel="stylesheet" href="'.UFLEXIGRID.'css/flexigrid.css" />' . "\n";
