@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-08-31 18:58-0400\n"
+"PO-Revision-Date: 2012-08-31 19:05-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -738,7 +738,7 @@ msgstr "Vous n'avez pas encore completé ce problème."
 
 #: ../wp-plugin/shortcodes.php:150
 msgid "Short Answer Exercise"
-msgstr "Exercice à réponse courte"
+msgstr "Exercice à réponse courte "
 
 #: ../wp-plugin/shortcodes.php:153
 msgid "Your answer"
@@ -755,11 +755,11 @@ msgstr "Vérifier réponse"
 
 #: ../wp-plugin/shortcodes.php:192
 msgid "Multiple Choice Exercise"
-msgstr "Exercice à choix multiple"
+msgstr "Exercice à choix multiple "
 
 #: ../wp-plugin/shortcodes.php:196
 msgid "Your choice:"
-msgstr "Votre choix:"
+msgstr "Votre choix :"
 
 #: ../wp-plugin/shortcodes.php:196
 msgid "Select one"
@@ -767,7 +767,7 @@ msgstr "Sélectionnez"
 
 #: ../wp-plugin/shortcodes.php:241 ../wp-plugin/shortcodes.php:545
 msgid "Scramble Exercise"
-msgstr "Exercice mêlé"
+msgstr "Exercice mêlé "
 
 #: ../wp-plugin/shortcodes.php:294
 #, php-format
@@ -794,11 +794,11 @@ msgstr "Connectez-vous ou créez un compte"
 
 #: ../wp-plugin/shortcodes.php:542
 msgid "Example"
-msgstr "Exemple"
+msgstr "Exemple "
 
 #: ../wp-plugin/shortcodes.php:545
 msgid "Coding Exercise"
-msgstr "Exercice de code"
+msgstr "Exercice de code "
 
 #: ../wp-plugin/shortcodes.php:557
 msgid "You need to create an account and log in to ask a question."
