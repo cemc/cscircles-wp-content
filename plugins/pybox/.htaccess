@@ -30,3 +30,7 @@ Allow from All
 <files db-*.php>
 Allow from All
 </files>
+
+<files *.po>
+Allow from All
+</files>

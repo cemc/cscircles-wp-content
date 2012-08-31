@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-08-30 22:25-0400\n"
+"PO-Revision-Date: 2012-08-30 23:15-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1112,8 +1112,7 @@ msgstr "Nous ne pouvons pas trouver rien à l'adresse %s"
 msgid ""
 "Try a different address, a <a %1$s>search</a>, or <a %2$s>contact us</a> if "
 "the website sent you here via a broken link."
-msgstr "Essayez une autre adresse, un <a %1$s>recherche</a>, ou <a %2$s>nous contacter</a>"
-" si le site vous a envoyé ici par un lien cassé."
+msgstr "Essayez une autre adresse, <a %1$s>rechercher</a>, ou <a %2$s>nous contacter</a> si le site vous a envoyé ici par un lien cassé."
 
 #: ../wp-theme/footer.php:26
 #, php-format
