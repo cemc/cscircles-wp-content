@@ -23,7 +23,7 @@ showLocationHandler(); ?>
 
   <div id="site-generator">
   <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
-  <?php echo sprintf(__t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>.'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"') . "&copy; 2010&ndash;2012"; ?>
+  <?php echo sprintf(__t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>.'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"') . " &copy; 2010&ndash;2012"; ?>
 
 
    <div id="departmentaddress">

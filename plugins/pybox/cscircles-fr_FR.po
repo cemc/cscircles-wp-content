@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2012-08-30 22:17-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -774,8 +774,7 @@ msgstr "Exercice mêlé"
 msgid ""
 "New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
 "$s>click here to create an account or log in</a>."
-msgstr "Nouveau ici? Lire <a %1$s>comment utiliser Cercles informatiques</a>. Vous pouvez également <a %2$s>cliquez ici"
-" pour créer un compte ou se connecter </a>."
+msgstr "Nouveau ici? Lire <a %1$s>comment utiliser Cercles informatiques</a>. Vous pouvez également <a %2$s>cliquez ici pour créer un compte ou se connecter</a>."
 
 #: ../wp-plugin/shortcodes.php:339
 msgid "Search"
@@ -1159,7 +1158,7 @@ msgstr "Changer mon mot de passe"
 
 #: ../www/wordpress/wp-includes/admin-bar.php:143
 msgid "<p>Create free account / login</p><p>to save your progress</p>"
-msgstr "<p>Créer un compte gratuit / s'enregistrer </p><p> pour sauvegarder vos progrès </ p>"
+msgstr "<p>Créer compte gratuit, enregistrer,</p><p>sauvegarder vos progrès</p>"
 
 #: ../www/wordpress/wp-includes/admin-bar.php:150
 #, php-format
