@@ -116,14 +116,15 @@ function pbmailpage($options, $content) {
 
   $problemname = $problem['publicname'];
 
-  $r .= "<h2>Tools</h2>
-<a href='".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
+  $name = name($sid);
+  $r .= "<h2>Tools</h2>";
+  $r .= "<a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a>";
+  $r .= "<br><a href='".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
 <div class='collapseContain hiding'>
 <div class='collapseHead'><span class='icon'></span>Problem description for ".$problem['publicname']."</div>
 <div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
 </div>";
 
-  $name = name($sid);
   if (getUserID()!=$sid)
     $r .= niceFlex('us', sprintf(__t('%1$s\'s submissions for %2$s'), $name, $problemname),
 		   'problem-history', 'dbProblemHistory', array('user'=>$sid, 'p'=>$problem['slug']));
@@ -142,9 +143,6 @@ function pbmailpage($options, $content) {
     $r .= niceFlex('unread', __t("All unanswered messages by my students"),
 		   'mail', 'dbMail', array('unans'=>1));
   
-  $r .= "<a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a>";
-
-  $r .= '</ul>';
 
   return $r;
 }
