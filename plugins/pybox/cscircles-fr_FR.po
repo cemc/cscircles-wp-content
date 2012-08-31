@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-08-30 22:17-0400\n"
+"PO-Revision-Date: 2012-08-30 22:20-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "Programme a imprimé aucune sortie."
 
 #: ../wp-plugin/action-submit-code.php:268
 msgid "(Did you forget to use </i><code>print</code><i>?)"
-msgstr "(Avez-vous oublié d'utiliser </i><code>print</code><i>?)"
+msgstr "(Avez-vous oublié d'utiliser </i><code>print</code><i> ?)"
 
 #: ../wp-plugin/action-submit-code.php:273
 msgid "Program output:"
@@ -668,11 +668,11 @@ msgstr "Vous devez vous connecter pour voir votre page utilisateur."
 #: ../wp-plugin/shortcode-my-progress.php:29
 #, php-format
 msgid "Reload with a different view? (you have %s students)"
-msgstr "Recharger avec un point de vue différent? (Vous avez %s élèves)"
+msgstr "Recharger avec un point de vue différent ? (Vous avez %s élèves)"
 
 #: ../wp-plugin/shortcode-my-progress.php:30
 msgid "Select different user?"
-msgstr "Sélectionnez autre utilisateur?"
+msgstr "Sélectionnez autre utilisateur ?"
 
 #: ../wp-plugin/shortcode-my-progress.php:32
 msgid "Show only me"
@@ -684,7 +684,7 @@ msgstr "Résumé de tous mes élèves"
 
 #: ../wp-plugin/shortcode-my-progress.php:47
 msgid "Just show submissions for one problem?"
-msgstr "Il suffit de présenter des soumissions pour un problème?"
+msgstr "Il suffit de présenter des soumissions pour un problème ?"
 
 #: ../wp-plugin/shortcode-my-progress.php:49
 msgid "Show all"
@@ -774,7 +774,7 @@ msgstr "Exercice mêlé"
 msgid ""
 "New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
 "$s>click here to create an account or log in</a>."
-msgstr "Nouveau ici? Lire <a %1$s>comment utiliser Cercles informatiques</a>. Vous pouvez également <a %2$s>cliquez ici pour créer un compte ou se connecter</a>."
+msgstr "Nouveau ici ? Lire <a %1$s>comment utiliser Cercles informatiques</a>. Vous pouvez également <a %2$s>cliquez ici pour créer un compte ou se connecter</a>."
 
 #: ../wp-plugin/shortcodes.php:339
 msgid "Search"
@@ -1150,7 +1150,7 @@ msgstr "contactez-nous"
 
 #: ../www/wordpress/wp-admin/user-edit.php:313
 msgid "How do you want your name displayed?"
-msgstr "Comment voulez-vous votre nom affiché?"
+msgstr "Comment voulez-vous votre nom affiché ?"
 
 #: ../www/wordpress/wp-admin/user-edit.php:383
 msgid "Change Password"
