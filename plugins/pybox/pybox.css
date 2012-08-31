@@ -228,10 +228,10 @@ a:not(.open-same-window):hover  {
 	border-right: none !important;
 }
 
-#menu-item-122 { /* lesson 0 */
+#menu-item-122, #menu-item-4734 { /* lesson 0 */
     clear: left;
 }
-#menu-item-3391 { /* My Progress */
+#menu-item-3391, #menu-item-4733 { /* My Progress */
     float: right !important;
     font-weight: bold;
 }
