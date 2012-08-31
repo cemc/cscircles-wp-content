@@ -4,8 +4,13 @@
 remove_filter('the_content', 'do_shortcode', 11);
 add_filter('the_content', 'do_shortcode', 9);
 
-add_filter('no_texturize_tags', 'pyboxNTT'); function pyboxNTT($arg) {$arg[] = 'textarea'; $arg[] = 'input'; return $arg;}
+//add_filter('no_texturize_tags', 'pyboxNTT'); function pyboxNTT($arg) {$arg[] = 'textarea'; $arg[] = 'input'; return $arg;}
 //add_filter('no_texturize_tags', 'input'); old buggy version
+
+// texturize is too annoying once we have translations and code all mixed together
+foreach ( array( 'comment_author', 'term_name', 'link_name', 'link_description', 'link_notes', 'bloginfo', 'wp_title', 'widget_title', 'the_title', 'the_content', 'the_excerpt', 'comment_text', 'list_cats' ) as $filter ) {
+  remove_filter($filter, 'wptexturize');
+}
 
 function justemail_contactmethod( $contactmethods ) {
   unset($contactmethods['aim']);
