@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-08-31 12:32-0400\n"
+"PO-Revision-Date: 2012-08-31 14:31-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -373,7 +373,7 @@ msgstr "Page"
 
 #: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:689
 msgid "History"
-msgstr "Histoire"
+msgstr "Historique"
 
 #: ../wp-plugin/js-translation.php:28
 msgid "Your message was sent."
@@ -405,7 +405,7 @@ msgstr "Editeur simple"
 
 #: ../wp-plugin/js-translation.php:34
 msgid "Hide history"
-msgstr "Cacher l'histoire"
+msgstr "Cacher l'historique"
 
 #: ../wp-plugin/js-translation.php:35
 msgid "You need to select a recipient."
