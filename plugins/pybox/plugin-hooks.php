@@ -102,7 +102,7 @@ function footsy() {
   echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
 
   if (userIsAdmin() || userIsTranslator() || pll_current_language() != 'en') {
-    echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug'));
+    echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
     if (userIsAdmin() || userIsTranslator())
       echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
   }
