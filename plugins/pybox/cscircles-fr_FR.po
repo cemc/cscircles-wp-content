@@ -461,7 +461,7 @@ msgstr "%s existe! Ils sont votre gourou."
 msgid ""
 "Enter the username of your guru. After you press <i>Update profile</i> we'll "
 "see if they exist."
-msgstr "Entrez le nom de votre gourou. Après avoir appuyé sur <i>Mettre à jour le profil</ i>, nous verrons si elles existent."
+msgstr "Entrez le nom de votre gourou. Après avoir appuyé sur <i>Mettre à jour le profil</i>, nous verrons si elles existent."
 
 #: ../wp-plugin/plugin-profile-options.php:32
 msgid "Guru&apos;s <i>Username</i> (blank for none)"
@@ -817,7 +817,7 @@ msgid ""
 "automatically included with the message.</i>"
 msgstr "Entrez le texte pour le message ci-dessous."
 "<i>Expliquez d'où vous êtes bloqué et ce que vous avez essayé jusqu'à présent."
-"Votre solution partielle sera automatiquement inclus dans le message. </ I>"
+"Votre solution partielle sera automatiquement inclus dans le message.</i>"
 
 #: ../wp-plugin/shortcodes.php:579
 msgid "Send this message"
