@@ -22,7 +22,7 @@ get_header(); ?>
 				<div class="entry-content">
 					<p>
 <?php      echo sprintf(__t("We cannot find anything at the address %s"), $niceurl)." ".
-	   sprintf(__t('Try a different address, a <a %1$s>search</a>, or <a %2$s>contact us</a> if the website sent you here via a broken link.'), 'href="'.siteurl('search/').'"', 'href="'.siteurl('contact/').'"');
+	   sprintf(__t('Try a different address, a <a %1$s>search</a>, or <a %2$s>contact us</a> if the website sent you here via a broken link.'), 'href="'.cscurl('search').'"', 'href="'.cscurl('contact').'"');
 ?></p>
 
 <form id="searchform" action="<?php echo cscurl('search'); ?>">
