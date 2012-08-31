@@ -260,6 +260,16 @@ function pyProtectHandler($options, $content) {
   return $options['protect'];
 }
 
+function pyTranslate(&$options, $translations) {
+  $translations = explode("\n", $translations);
+  for ($i=0; $i<count($translations)/2; $i++) {
+    $en = $translations[2*$i];
+    $trans = $translations[2*$i+1];
+    foreach ($options as $key => $value)
+      $options[$key] = str_replace($en, $trans, $options[$key]);
+  }
+}
+
 function pyRecallHandler($options, $content) {
 
   if (!array_key_exists('slug', $options))
@@ -275,6 +285,8 @@ function pyRecallHandler($options, $content) {
     $content = $problem['content'];
 
   $mergedOptions = json_decode($problem['shortcodeArgs'], TRUE);
+  if (array_key_exists('translate', $options))
+    pyTranslate($mergedOptions, $options['translate']);
   foreach ($options as $o=>$v) {$mergedOptions[$o] = $v;}
 
   if ($problem['type'] == "code") return pyBoxHandler($mergedOptions, $content);
@@ -481,7 +493,7 @@ function pyBoxHandler($options, $content) {
 
   $cosmeticOptions = array('defaultcode', 'autocommentline', 'console', 
 			   'rows', 'disablericheditor', 'scramble', 'readonly',
-			   'showeditortoggle', 'title', 'placeholder');
+			   'showeditortoggle', 'title', 'placeholder', 'translate');
   $copyForGrader = array();
   foreach ($options as $optname => $optvalue) {
     if (!in_array($optname, $cosmeticOptions))
