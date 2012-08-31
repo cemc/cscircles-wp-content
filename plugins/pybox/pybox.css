@@ -745,18 +745,18 @@ ie7 #content .pybox textarea {
     overflow: inherit;
 } 
 
-#content .CodeMirror-scroll {
-    overflow-y: auto; /* recommended for autosize, but i like everywhere */
-    overflow-x: auto; /* recommended for autosize, but i like everywhere */
-    width: 100%; /* recommended for autosize, but i like everywhere */
+ #content .CodeMirror-scroll {
+  overflow-y: auto; /* recommended for autosize, but i like everywhere */
+  overflow-x: auto; /* recommended for autosize, but i like everywhere */
+  width: 100%; /* recommended for autosize, but i like everywhere */
 }
 
 #content .autoCMsize {
-    height: auto !important;
+  height: auto !important;
 }
 
 #content .autoCMsize .CodeMirror-scroll { /* more specific than #content .CodeMirror in codemirrorwp.css */
-    min-height: 50px;
+  min-height: 50px;
     height: auto;
     max-height: 300px;
 }
