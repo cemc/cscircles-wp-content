@@ -39,15 +39,15 @@ function user_pb_options_fields( $user ) {
        <tr>
 	     <th><label for="pbnocc"><?php echo __t("Don&apos;t Send Mail Copies");?></label></th>
        <td>
-     <input type="checkbox" name="pbnocc" id="pbnocc"<?php echo $nocc ." >".
+     <input type="checkbox" name="pbnocc" id="pbnocc"<?php echo $nocc ." > ".
      __t("(default: unchecked) If checked, you will not receive a carbon copy when you send a message."); ?></input>
        </td>
        </tr>
        <tr>
 														<th><label for="pboptout"><?php echo __t("Opt Out of Mass Emails"); ?></label></th>
        <td>
-     <input type="checkbox" name="optout" id="optout"<?php echo $optout; ?> >
-<?php echo __t("(default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.");?></input>
+     <input type="checkbox" name="optout" id="optout"<?php echo $optout . " > ".
+ __t("(default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.");?></input>
        </td>
        </tr>
        </table>
@@ -60,7 +60,7 @@ add_action( 'edit_user_profile', 'user_pb_options_fields' );
 function user_pb_options_fields_save( $user_id ) {
   //pyboxlog('save' . print_r($_POST, TRUE));
   if ( !current_user_can( 'edit_user', $user_id ) )
-   return false;
+    return false;
   /*  update_user_meta( $user_id, 'pbplain', ($_POST['pbplain']=='on')?'true':'false' );
    update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );*/
   update_user_meta( $user_id, 'pbguru', ($_POST['pbguru']));

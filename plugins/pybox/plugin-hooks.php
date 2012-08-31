@@ -32,11 +32,6 @@ function pyBoxInit() {
 }
 
 
-add_action('plugins_loaded', 'pybox_init_trans');
-
-function pybox_init_trans() {
-  load_plugin_textdomain( 'trans', false, basename(dirname(__FILE__)));
-}
 
 add_action('wp_head', 'pyBoxHead');
 function pyBoxHead() {
