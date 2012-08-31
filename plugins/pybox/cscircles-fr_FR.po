@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-08-30 23:15-0400\n"
+"PO-Revision-Date: 2012-08-31 12:32-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -185,7 +185,7 @@ msgstr "Problème %s est inconnu."
 #: ../wp-plugin/db-entire-history.php:68
 #: ../wp-plugin/db-entire-history.php:106
 msgid "userid"
-msgstr "Identifiant de l'utilisateur"
+msgstr "userid"
 
 #: ../wp-plugin/db-entire-history.php:68
 #: ../wp-plugin/db-entire-history.php:116
@@ -450,7 +450,7 @@ msgstr "la plus ancienne poste sans réponse"
 #: ../wp-plugin/plugin-profile-options.php:19
 #, php-format
 msgid "The username %s does not exist."
-msgstr "Utilisateur %s n'existe pas."
+msgstr "Identifiant %s n'existe pas."
 
 #: ../wp-plugin/plugin-profile-options.php:22
 #, php-format
@@ -465,7 +465,7 @@ msgstr "Entrez le nom de votre gourou. Après avoir appuyé sur <i>Mettre à jou
 
 #: ../wp-plugin/plugin-profile-options.php:32
 msgid "Guru&apos;s <i>Username</i> (blank for none)"
-msgstr "Nom d&apos;utilisateur de gourou (vide : aucun)"
+msgstr "Identifiant de gourou (vide : aucun)"
 
 #: ../wp-plugin/plugin-profile-options.php:34
 msgid ""
