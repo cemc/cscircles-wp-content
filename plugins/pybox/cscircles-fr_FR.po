@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-09-01 11:42-0400\n"
+"PO-Revision-Date: 2012-09-01 13:37-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -335,7 +335,7 @@ msgstr "Vous avez completé ce problème au moins une fois."
 
 #: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:723
 msgid "More actions..."
-msgstr "Autres options..."
+msgstr "Plus d'actions..."
 
 #: ../wp-plugin/js-translation.php:19
 msgid "Enter input"
@@ -860,7 +860,7 @@ msgstr "Nombre entier"
 
 #: ../python3jail/static/_GRADER.py:8
 msgid "String"
-msgstr "String"
+msgstr "Chaîne"
 
 #: ../python3jail/static/_GRADER.py:8
 msgid "Floating Point Number"
