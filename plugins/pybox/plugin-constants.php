@@ -77,5 +77,6 @@ define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
 
 define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
 
+global $pb_translation;
 
 // end of file

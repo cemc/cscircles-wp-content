@@ -214,9 +214,14 @@ function pyMultiHandler($options, $content) {
 }
 
 function pyExampleHandler($options, $content) {
+  if (array_key_exists('translate', $options)) {
+    $GLOBALS['pb_translation'] = $options['translate'];
+  }
   if ($options == FALSE) $options = array();
   $options['pyexample'] = 'Y';
-  return pyBoxHandler($options, $content);
+  $result = pyBoxHandler($options, $content);
+  $GLOBALS['pb_translation'] = NULL;
+  return $result;
 }
 
 function pyMultiScrambleHandler($options, $content) {
@@ -260,16 +265,6 @@ function pyProtectHandler($options, $content) {
   return $options['protect'];
 }
 
-function pyTranslate(&$options, $translations) {
-  $translations = explode("\n", $translations);
-  for ($i=0; $i<count($translations)/2; $i++) {
-    $en = $translations[2*$i];
-    $trans = $translations[2*$i+1];
-    foreach ($options as $key => $value)
-      $options[$key] = str_replace($en, $trans, $options[$key]);
-  }
-}
-
 function pyRecallHandler($options, $content) {
 
   if (!array_key_exists('slug', $options))
@@ -285,17 +280,28 @@ function pyRecallHandler($options, $content) {
     $content = $problem['content'];
 
   $mergedOptions = json_decode($problem['shortcodeArgs'], TRUE);
-  if (array_key_exists('translate', $options))
-    pyTranslate($mergedOptions, $options['translate']);
+  if (array_key_exists('translate', $options)) {
+    $GLOBALS['pb_translation'] = $options['translate'];
+    foreach ($mergedOptions as $key => $value)
+      $mergedOptions[$key] = translateOf($mergedOptions[$key], $options['translate']);
+  }
+
   foreach ($options as $o=>$v) {$mergedOptions[$o] = $v;}
+  
+  $result = NULL;
 
-  if ($problem['type'] == "code") return pyBoxHandler($mergedOptions, $content);
-  if ($problem['type'] == "scramble") return pyBoxHandler($mergedOptions, $content);
-  if ($problem['type'] == "short answer") return pyShortHandler($mergedOptions, $content);
-  if ($problem['type'] == "multiple choice") return pyMultiHandler($mergedOptions, $content);
-  if ($problem['type'] == "multichoice scramble") return pyMultiScrambleHandler($mergedOptions, $content);
+  if ($problem['type'] == "code") $result = pyBoxHandler($mergedOptions, $content);
+  if ($problem['type'] == "scramble") $result = pyBoxHandler($mergedOptions, $content);
+  if ($problem['type'] == "short answer") $result = pyShortHandler($mergedOptions, $content);
+  if ($problem['type'] == "multiple choice") $result = pyMultiHandler($mergedOptions, $content);
+  if ($problem['type'] == "multichoice scramble") $result = pyMultiScrambleHandler($mergedOptions, $content);
+  
+  $GLOBALS['pb_translation'] = NULL;
 
-  return "[pyRecall error: unknown type " . $problem['type'] . "]";
+  if ($result == NULL) 
+    return "[pyRecall error: unknown type " . $problem['type'] . "]";
+
+  return $result;
 }
 
 function newuserwelcome($options, $content) {
@@ -495,7 +501,7 @@ function pyBoxHandler($options, $content) {
 
   $cosmeticOptions = array('defaultcode', 'autocommentline', 'console', 
 			   'rows', 'disablericheditor', 'scramble', 'readonly',
-			   'showeditortoggle', 'title', 'placeholder', 'translate');
+			   'showeditortoggle', 'title', 'placeholder');
   $copyForGrader = array();
   foreach ($options as $optname => $optvalue) {
     if (!in_array($optname, $cosmeticOptions))

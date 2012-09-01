@@ -153,6 +153,7 @@ function optionsAndDefaults() {
 	       // UI //
 	       "allowinput" => "N",            # is input allowed?
 	       "usertni" => FALSE,             # are user tests allowed in place of user input?	       
+	       "translate" => FALSE,
 	       
 	       // etc //
 	       "haltonwrong" => "Y",           # halt after any incorrect sub-problem?
@@ -282,6 +283,7 @@ function outputDescription($pass, $args) {
 
 // main function for a test case
 function doGrading($usercode, $TC) {
+
   $files = array();
   if ($TC['showonly']!==FALSE) {
     $desired = explode(" ", $TC['showonly']);
@@ -749,7 +751,9 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
       if (!($inputInUse) && $tcTotal > 1)
 	$m .= "<b>".sprintf(__t('Results for test case %1$s out of %2$s'), $tcCurrent, $tcTotal) . "</b><br/>";
       try {
+	$GLOBALS['pb_translation'] = getSoft($spo, 'translate', NULL);
 	$tcOutcome = doGrading($usercode, $spo);
+	$GLOBALS['pb_translation'] = NULL;
 	$m .= $tcOutcome["message"];
 	if ($tcOutcome["result"]=="error") 
 	  return merror($m, $tcOutcome["errmsg"]);

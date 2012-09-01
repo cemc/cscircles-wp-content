@@ -7,6 +7,16 @@ function __t($en_string) {
   return __($en_string, 'cscircles');// . get_locale(); // for debugging
 }
 
+function translateOf($string, $translations) {
+  $translations = explode("\n", $translations);
+  for ($i=0; $i<count($translations)/2; $i++) {
+    $en = $translations[2*$i];
+    $trans = $translations[2*$i+1];
+    $string = str_replace($en, $trans, $string);
+  }
+  return $string;
+}
+
 function cscurl($slug) {
   
   $cscurlmap = array(
@@ -131,6 +141,9 @@ function safeDereference( $s, $which="", &$errtgt=NULL ) {
   
   if ($co === FALSE) 
     throw new PyboxException("Cannot find file " . $fn);
+
+  if (getSoft($GLOBALS, 'pb_translation', NULL) != NULL)
+    $co = translateOf($co, $GLOBALS['pb_translation']);
 
   return $co;
 }
