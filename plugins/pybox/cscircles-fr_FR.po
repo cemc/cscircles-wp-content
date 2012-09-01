@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-09-01 14:03-0400\n"
+"PO-Revision-Date: 2012-09-01 18:44-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -327,7 +327,7 @@ msgstr "Affichage de {from} à {to} de {total} articles"
 
 #: ../wp-plugin/js-translation.php:16
 msgid "Enter test input"
-msgstr "Tapez entrée de test"
+msgstr "Tape entrée de test"
 
 #: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:57
 msgid "You have completed this problem at least once."
@@ -339,7 +339,7 @@ msgstr "Plus d'actions..."
 
 #: ../wp-plugin/js-translation.php:19
 msgid "Enter input"
-msgstr "Tapez entrée"
+msgstr "Tape entrée"
 
 #: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:674
 msgid "Rich editor"
@@ -1168,7 +1168,7 @@ msgstr "Salut, %s !"
 
 #: ../www/wordpress/wp-includes/admin-bar.php:651
 msgid "click and type to search website"
-msgstr "cliquez et tapez pour recherchez"
+msgstr "cliquez et tapez pour rechercher"
 
 #: ../www/wordpress/wp-login.php:93
 msgid "Computer Science Circles"
