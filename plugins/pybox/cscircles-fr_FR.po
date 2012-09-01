@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-30 17:57-0400\n"
-"PO-Revision-Date: 2012-08-31 19:20-0400\n"
+"PO-Revision-Date: 2012-09-01 11:42-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -840,7 +840,7 @@ msgstr "Vous pouvez entrer des données pour le programme dans la boîte ci-dess
 
 #: ../wp-plugin/shortcodes.php:680
 msgid "Open in console"
-msgstr "Ouvrez dans la console"
+msgstr "Ouvrir en console"
 
 #: ../wp-plugin/shortcodes.php:683
 msgid "Visualize"
