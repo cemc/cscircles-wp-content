@@ -315,7 +315,9 @@ function sanitize_helper($matches) {
   if (array_key_exists('slug', $attr)) {
     if (!array_key_exists('title', $attr))
       echo 'Warning: ' . $attr['slug'] . ' has no title!';
-    return '[pyRecall slug="'.$attr['slug'].'" title="'.$attr['title'].'"]'. $matches[5] . '[/pyRecall]';
+    $epilogue = array_key_exists('epilogue', $attr) ? (' epilogue="' . $attr['epilogue'] . '"') : '';
+      echo 'Warning: ' . $attr['slug'] . ' has no title!';
+    return '[pyRecall slug="'.$attr['slug'].'" title="'.$attr['title'].'"'.$epilogue.']'. $matches[5] . '[/pyRecall]';
   }
   else return $matches[0];
 }
