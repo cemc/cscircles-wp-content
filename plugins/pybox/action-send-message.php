@@ -20,27 +20,27 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())
-    $header_from = 'From: "CS Circles Assistant" <'.CSCIRCLES_ASST_EMAIL.'>';
-  else
-    $header_from = 'From: "' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
+    $header_from = __t('From:').' '. __t("CS Circles Assistant") . '<'.CSCIRCLES_ASST_EMAIL.'>';
+  else 
+    $header_from = __t('From:'). '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
 
-  $subject = 'CS Circles - message about ' . $problem_info['publicname'];
+  $subject = __t('CS Circles') .' - '. __t('message about') . ' ' . $problem_info['publicname'];
   
   $contents = $body."\n===\n";
-  $contents .= "To send a reply message, please visit\n";
+  $contents .= __t("To send a reply message, please visit")."\n";
   $contents .= USERVER . cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m\n";
-  $contents .= "Problem URL: " . $problem_info['url'] . "\n";
-  $contents .= "[Sent by CS Circles http://cscircles.cemc.uwaterloo.ca]";
+  $contents .= __t("Problem URL:")." " . $problem_info['url'] . "\n";
+  $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
   
   if ($to == 0) {
     wp_mail(CSCIRCLES_ASST_EMAIL, $subject, $contents, $header_from);
     if (get_the_author_meta('pbnocc', getUserID())!='true')
-      wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to the CS Circles Assistant.\n\n" . $contents, $header_from);
+      wp_mail($current_user->user_email, __t("SENT:")." " . $subject, __t("THIS IS A COPY of a message you sent to the CS Circles Assistant.") ."\n\n" . $contents, $header_from);
   }
   else {
     wp_mail(get_user_by('id', $to)->user_email, $subject, $contents, $header_from);
     if (get_the_author_meta('pbnocc', getUserID())!='true')
-      wp_mail($current_user->user_email, "SENT: " . $subject, "THIS IS A COPY of a message you sent to ".get_user_by('id',$to)->user_login.".\n\n" . $contents, $header_from);
+      wp_mail($current_user->user_email, "SENT: " . $subject, __t("THIS IS A COPY of a message you sent to ").get_user_by('id',$to)->user_login.".\n\n" . $contents, $header_from);
   }
   return $mailref;
 }
@@ -76,7 +76,7 @@ if ($source == 1) {
 
   $code = stripcslashes($_POST["code"]);
   
-  $message .= "\n===\nThe user sent this code with the message:\n===\n" . $code;
+  $message .= "\n===\n".__t("The user sent this code with the message:")."\n===\n" . $code;
 
   echo send($problem_info, getUserID(), isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, getUserID(), $slug, $message);
  }

@@ -29,6 +29,7 @@ function cscurl($slug) {
 		     ('usage') => __t('<url>using-this-website/'),
 		     ('contact') => __t('<url>contact/'),
 		     ('install') => __t('<url>run-at-home/')
+		     ('homepage') => __t('<url>')
 		     );
   
   $s = $cscurlmap[$slug];
