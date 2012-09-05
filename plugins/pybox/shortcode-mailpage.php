@@ -81,9 +81,9 @@ function pbmailpage($options, $content) {
   foreach ($messages as $i=>$message) {
     $c =  ($message['ID']==$focus) ?  " showing" : " hiding";
     $r .= "<div class='collapseContain$c' style='border-radius: 5px;'>";
-    $title = "From ".name($message['ufrom']). ' to '.name($message['uto']).' on '.$message['time'];
-    if (count($messages)>1 && $i==0) $title = "(newest) " . $title;
-    if (count($messages)>1 && $i==count($messages)-1) $title = "(oldest) " . $title;
+    $title = __t("From")." ".name($message['ufrom']). ' '.__t('to').' '.name($message['uto']).', '.$message['time'];
+    if (count($messages)>1 && $i==0) $title = __t("(newest)")." " . $title;
+    if (count($messages)>1 && $i==count($messages)-1) $title = __t("(oldest)")." " . $title;
     $r .= "<div class='collapseHead'><span class='icon'></span>$title</div>";
     $r .= "<div class='collapseBody'><span class='quoth'>".__t("Quote/<br/>Reply")."</span>".preBox($message['body'], -1,10000,"font-size:12px; line-height:14px; white-space: pre-wrap;").'</div>';
     $r .= '</div>';
@@ -121,7 +121,7 @@ function pbmailpage($options, $content) {
   $r .= "<a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a>";
   $r .= "<br><a href='".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
 <div class='collapseContain hiding'>
-<div class='collapseHead'><span class='icon'></span>Problem description for ".$problem['publicname']."</div>
+<div class='collapseHead'><span class='icon'></span>".__t("Problem description for")." ".$problem['publicname']."</div>
 <div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
 </div>";
 

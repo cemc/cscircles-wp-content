@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 12:22-0400\n"
-"PO-Revision-Date: 2012-09-05 12:31-0400\n"
+"POT-Creation-Date: 2012-09-05 12:40-0400\n"
+"PO-Revision-Date: 2012-09-05 12:43-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +54,9 @@ msgstr "ENVOYE :"
 
 #: ../wp-plugin/action-send-message.php:38
 msgid "THIS IS A COPY of a message you sent to the CS Circles Assistant."
-msgstr "VOICI UNE COPIE d'un message que vous avez envoyé au assistant aux Cercles informatiques"
+msgstr ""
+"VOICI UNE COPIE d'un message que vous avez envoyé au assistant aux Cercles "
+"informatiques"
 
 #: ../wp-plugin/action-send-message.php:43
 msgid "THIS IS A COPY of a message you sent to "
@@ -307,6 +308,7 @@ msgid "from"
 msgstr "de"
 
 #: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:101
+#: ../wp-plugin/shortcode-mailpage.php:84
 msgid "to"
 msgstr "à"
 
@@ -661,6 +663,22 @@ msgstr "Remarque: cette élève a fait le problème à %s"
 msgid "Click on a message title to toggle the message open or closed."
 msgstr "Cliquez sur un titre de message pour l'ouvrir ou fermer."
 
+#: ../wp-plugin/shortcode-mailpage.php:84
+msgid "From"
+msgstr "De"
+
+#: ../wp-plugin/shortcode-mailpage.php:84
+msgid "on"
+msgstr "à"
+
+#: ../wp-plugin/shortcode-mailpage.php:85
+msgid "(newest)"
+msgstr "(le plus récent)"
+
+#: ../wp-plugin/shortcode-mailpage.php:86
+msgid "(oldest)"
+msgstr "(le plus ancien)"
+
 #: ../wp-plugin/shortcode-mailpage.php:88
 msgid "Quote/<br/>Reply"
 msgstr "Citer/<br/>Répondre"
@@ -700,17 +718,21 @@ msgstr "Envoyer ce message !"
 #: ../wp-plugin/shortcode-mailpage.php:121
 #, php-format
 msgid "%s's progress page (new window)"
-msgstr "page de progression de %s (nouvelle fenêtre)"
+msgstr "Page des progrès de %s (nouvelle fenêtre)"
 
 #: ../wp-plugin/shortcode-mailpage.php:122
 #, php-format
 msgid "Original lesson page containing %s (new window)"
 msgstr "Page de la leçon originale contenant %s (nouvelle fenêtre)"
 
+#: ../wp-plugin/shortcode-mailpage.php:124
+msgid "Problem description for"
+msgstr ""
+
 #: ../wp-plugin/shortcode-mailpage.php:129
 #, php-format
 msgid "%1$s's submissions for %2$s"
-msgstr "soumissions par %1$s pour %2$s"
+msgstr "Soumissions par %1$s pour %2$s"
 
 #: ../wp-plugin/shortcode-mailpage.php:131
 #, php-format
