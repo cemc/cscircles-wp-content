@@ -82,8 +82,8 @@ function pbmailpage($options, $content) {
     $c =  ($message['ID']==$focus) ?  " showing" : " hiding";
     $r .= "<div class='collapseContain$c' style='border-radius: 5px;'>";
     $title = __t("From")." ".name($message['ufrom']). ' '.__t('to').' '.name($message['uto']).', '.$message['time'];
-    if (count($messages)>1 && $i==0) $title = __t("(newest)")." " . $title;
-    if (count($messages)>1 && $i==count($messages)-1) $title = __t("(oldest)")." " . $title;
+    if (count($messages)>1 && $i==0) $title .= " ".__t("(newest)");
+    if (count($messages)>1 && $i==count($messages)-1) $title .= " " .__t("(oldest)");
     $r .= "<div class='collapseHead'><span class='icon'></span>$title</div>";
     $r .= "<div class='collapseBody'><span class='quoth'>".__t("Quote/<br/>Reply")."</span>".preBox($message['body'], -1,10000,"font-size:12px; line-height:14px; white-space: pre-wrap;").'</div>';
     $r .= '</div>';
