@@ -30,7 +30,7 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $contents .= __t("To send a reply message, please visit")."\n";
   $contents .= USERVER . cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m\n";
   $contents .= __t("Problem URL:")." " . $problem_info['url'] . "\n";
-  $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
+  $contents .= "[".__t("Sent by CS Circles")." ".USERVER.cscurl("homepage")."]";
   
   if ($to == 0) {
     wp_mail(CSCIRCLES_ASST_EMAIL, $subject, $contents, $header_from);
