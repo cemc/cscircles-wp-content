@@ -1,8 +1,8 @@
 10
 
 dir
-21157
-http://core.svn.wordpress.org/tags/3.4.1/wp-content/themes/twentyten/images/headers
+21802
+http://core.svn.wordpress.org/tags/3.4.2/wp-content/themes/twentyten/images/headers
 http://core.svn.wordpress.org
 
 
@@ -230,40 +230,6 @@ has-props
 
 4560
 
-cherryblossoms.jpg
-file
-
-
-
-
-2012-06-28T02:36:05.000000Z
-a2cf5d54bb08f81be4442d598cecc4f9
-2010-02-23T01:46:25.610190Z
-13319
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-82037
-
 concave.jpg
 file
 
@@ -297,6 +263,40 @@ has-props
 
 
 38532
+
+cherryblossoms.jpg
+file
+
+
+
+
+2012-06-28T02:36:05.000000Z
+a2cf5d54bb08f81be4442d598cecc4f9
+2010-02-23T01:46:25.610190Z
+13319
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+82037
 
 sunset.jpg
 file
