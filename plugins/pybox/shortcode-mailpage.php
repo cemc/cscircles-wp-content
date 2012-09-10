@@ -119,7 +119,7 @@ function pbmailpage($options, $content) {
   $name = name($sid);
   $r .= "<h2>Tools</h2>";
   $r .= "<a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a>";
-  $r .= "<br><a href='".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
+  $r .= "<br><a href=\"".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
 <div class='collapseContain hiding'>
 <div class='collapseHead'><span class='icon'></span>".__t("Problem description for")." ".$problem['publicname']."</div>
 <div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
