@@ -352,10 +352,10 @@ _stdincopy.close()
 	if (preg_match('|^(\s*)(\S.*)$|', $autotestline, $matches)===0) continue; //skip blank lines
 	$indentation = $matches[1];
 	$command = trim($matches[2]);
-	if (1 == preg_match('|^\w*$|', $command)) { // looks like just a variable name
+	if (1 == preg_match('|^\p{L}*$|u', $command)) { // looks like just a variable name -- \p{L} is unicode letter
 	  $testcode .= $indentation . "_G.checkVar('$command')\n";
 	}
-	elseif (1 == preg_match('|^(\w*)\s*\((.*)\)|', $command, $pieces)) {
+	elseif (1 == preg_match('|^(\p{L}*)\s*\((.*)\)|', $command, $pieces)) {
 	  if ((strpos($pieces[2], $pieces[1]))===FALSE) // looks like a non-nested function call
 	    $testcode .= $indentation . "_G.autotestCall('" . $pieces[1] . "',[" . $pieces[2] . "])\n";
 	  else { // something more complex

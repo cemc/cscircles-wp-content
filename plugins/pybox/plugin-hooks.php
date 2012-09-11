@@ -104,7 +104,7 @@ function footsy() {
   echo $popupBoxen;
 
   echo '<span id="pylangswitcher">';
-  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
+  //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
 
   if (userIsAdmin() || 
       userIsTranslator() || 
