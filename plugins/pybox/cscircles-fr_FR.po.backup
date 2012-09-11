@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 12:22-0400\n"
-"PO-Revision-Date: 2012-09-05 12:31-0400\n"
+"POT-Creation-Date: 2012-09-11 16:03-0400\n"
+"PO-Revision-Date: 2012-09-11 15:36-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -55,7 +54,9 @@ msgstr "ENVOYE :"
 
 #: ../wp-plugin/action-send-message.php:38
 msgid "THIS IS A COPY of a message you sent to the CS Circles Assistant."
-msgstr "VOICI UNE COPIE d'un message que vous avez envoyé au assistant aux Cercles informatiques"
+msgstr ""
+"VOICI UNE COPIE d'un message que vous avez envoyé au assistant aux Cercles "
+"informatiques"
 
 #: ../wp-plugin/action-send-message.php:43
 msgid "THIS IS A COPY of a message you sent to "
@@ -201,6 +202,7 @@ msgstr "Ne s'est pas planté."
 #: ../wp-plugin/db-problem-history.php:20 ../wp-plugin/shortcodes.php:164
 #: ../wp-plugin/shortcodes.php:210 ../wp-plugin/shortcodes.php:258
 #: ../py_includes/graders/anyorder.py:12
+#: ../py_includes/graders/pendulum-grader.py:16
 #: ../py_includes/graders/trim-lines.py:14
 msgid "Correct!"
 msgstr "Correct !"
@@ -307,6 +309,7 @@ msgid "from"
 msgstr "de"
 
 #: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:101
+#: ../wp-plugin/shortcode-mailpage.php:84
 msgid "to"
 msgstr "à"
 
@@ -661,6 +664,18 @@ msgstr "Remarque: cette élève a fait le problème à %s"
 msgid "Click on a message title to toggle the message open or closed."
 msgstr "Cliquez sur un titre de message pour l'ouvrir ou fermer."
 
+#: ../wp-plugin/shortcode-mailpage.php:84
+msgid "From"
+msgstr "De"
+
+#: ../wp-plugin/shortcode-mailpage.php:85
+msgid "(newest)"
+msgstr "(le plus récent)"
+
+#: ../wp-plugin/shortcode-mailpage.php:86
+msgid "(oldest)"
+msgstr "(le plus ancien)"
+
 #: ../wp-plugin/shortcode-mailpage.php:88
 msgid "Quote/<br/>Reply"
 msgstr "Citer/<br/>Répondre"
@@ -700,17 +715,21 @@ msgstr "Envoyer ce message !"
 #: ../wp-plugin/shortcode-mailpage.php:121
 #, php-format
 msgid "%s's progress page (new window)"
-msgstr "page de progression de %s (nouvelle fenêtre)"
+msgstr "Page des progrès de %s (nouvelle fenêtre)"
 
 #: ../wp-plugin/shortcode-mailpage.php:122
 #, php-format
 msgid "Original lesson page containing %s (new window)"
 msgstr "Page de la leçon originale contenant %s (nouvelle fenêtre)"
 
+#: ../wp-plugin/shortcode-mailpage.php:124
+msgid "Problem description for"
+msgstr "Texte de problème"
+
 #: ../wp-plugin/shortcode-mailpage.php:129
 #, php-format
 msgid "%1$s's submissions for %2$s"
-msgstr "soumissions par %1$s pour %2$s"
+msgstr "Soumissions par %1$s pour %2$s"
 
 #: ../wp-plugin/shortcode-mailpage.php:131
 #, php-format
@@ -1059,15 +1078,15 @@ msgstr ""
 msgid "Your output is not correct."
 msgstr "Votre sortie n'est pas correcte."
 
-#: ../python3jail/static/_GRADER.py:202
+#: ../python3jail/static/_GRADER.py:200
 msgid "Checking {} &hellip; "
 msgstr "Vérifiant {} &hellip; "
 
-#: ../python3jail/static/_GRADER.py:206
+#: ../python3jail/static/_GRADER.py:204
 msgid "Error: variable {} not defined"
 msgstr "Erreur: variable {} n'est pas défini"
 
-#: ../python3jail/static/_GRADER.py:211
+#: ../python3jail/static/_GRADER.py:209
 msgid "Setting {0} to {1}"
 msgstr "Mettant {0} à {1}"
 
@@ -1131,25 +1150,33 @@ msgstr "Votre réponse est correcte !"
 msgid "The correct answer is "
 msgstr "La bonne réponse est "
 
-#: ../py_includes/graders/real-per-line.py:4
+#: ../py_includes/graders/pendulum-grader.py:6
+#: ../py_includes/graders/real-per-line.py:5
 #: ../py_includes/graders/trim-lines.py:4
 msgid "Not enough lines of output: {0} expected, {1} found"
 msgstr "Pas assez de lignes de sortie: {0} attendus, {1} trouvé"
 
-#: ../py_includes/graders/real-per-line.py:7
+#: ../py_includes/graders/pendulum-grader.py:9
+#: ../py_includes/graders/real-per-line.py:8
 msgid "Error: Output line {0} '{1}' was not a number"
 msgstr "Erreur: sortie ligne {0} '{1}' n'est pas un nombre"
 
-#: ../py_includes/graders/real-per-line.py:9
+#: ../py_includes/graders/pendulum-grader.py:11
+#: ../py_includes/graders/real-per-line.py:10
 msgid "Output line {0}, value {1}, did not match expected value {2}"
 msgstr ""
 "Ligne de sortie {0}, avec valeur {1}, ne correspond pas à la valeur attendue "
 "{2}"
 
-#: ../py_includes/graders/real-per-line.py:12
+#: ../py_includes/graders/pendulum-grader.py:14
+#: ../py_includes/graders/real-per-line.py:13
 #: ../py_includes/graders/trim-lines.py:12
 msgid "Too many lines of output: {0} expected, {1} found"
 msgstr "Trop de lignes de sortie: {0} attendues, {1} trouvées"
+
+#: ../py_includes/graders/pendulum-grader.py:16
+msgid "Here is the plot of the output:"
+msgstr "Voici le graphe :"
 
 #: ../py_includes/graders/trim-lines.py:7
 msgid "Error: output line {0} {1} did not match expected line {2}"
@@ -1286,3 +1313,33 @@ msgstr "Cercles informatiques"
 #: ../www/wordpress/wp-login.php:93
 msgid "Log In or Create Account"
 msgstr "Se connecter ou créer un compte"
+
+#~ msgid "Not enough lines of output"
+#~ msgstr "Pas assez de lignes de sortie"
+
+#~ msgid "expected"
+#~ msgstr "attendues"
+
+#~ msgid "found"
+#~ msgstr "trouvées"
+
+#~ msgid "Error:"
+#~ msgstr "Erreur :"
+
+#~ msgid "Output line"
+#~ msgstr "Ligne de sortie"
+
+#~ msgid "was not a number"
+#~ msgstr "n'est pas un nombre"
+
+#~ msgid "value"
+#~ msgstr "valeur"
+
+#~ msgid "did not match expected value"
+#~ msgstr "ne correspond pas à la valeur attendue"
+
+#~ msgid "Too many lines of output:"
+#~ msgstr "Trop de lignes de sortie :"
+
+#~ msgid "on"
+#~ msgstr "à"
