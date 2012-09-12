@@ -137,7 +137,7 @@ function safeDereference( $s, $which="", &$errtgt=NULL ) {
 
   // exclude .. and force only alphanumerics plus /._-
   if (strstr($s, "..") != FALSE) return FALSE;
-  if (preg_match('@[^a-zA-Z0-9/_.-]@', $s)>0) return FALSE;
+  if (preg_match('@[^a-zA-Z0-9/_\-.]@', $s)>0) return FALSE;
 
   $fn = PDATADIR  . trim($s);
   $co = file_get_contents($fn);
