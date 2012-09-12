@@ -182,7 +182,7 @@ function preBox( $s, $len = -1, $lenlimit = 1000, $style = '' ) {
     $len = strlen($s);
   if ($lenlimit >= 0 && strlen($s) > $lenlimit) {
     $s = substr($s, 0, $lenlimit) . "\n" . 
-      sprintf(__t("[Too long; only first %1$s out of %2$s characters shown]"), $lenlimit, $len) . "\n";
+      sprintf(__t('[Too long; only first %1$s out of %2$s characters shown]'), $lenlimit, $len) . "\n";
   }
   $style = ($style=="")?"":" style='$style'";
   return "<pre class='prebox'$style>"."\n".htmlspecialchars($s).'</pre>';

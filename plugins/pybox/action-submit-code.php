@@ -348,16 +348,20 @@ _stdincopy.close()
     if ($autotests != FALSE) {
       $autotests = softSafeDereference($autotests);
 
+      $python_ident_regex = '(\p{L}|\p{Nl}|_)(\p{L}|\p{N}|\p{Mn}|\p{Mc}|\p{Pc})*';
+      // note: this is close to, but not technically, 100% the same as the formal Python definition
+      $py_regex_parens = 2;
+
       foreach (explode("\n", $autotests) as $autotestline) {
 	if (preg_match('|^(\s*)(\S.*)$|', $autotestline, $matches)===0) continue; //skip blank lines
 	$indentation = $matches[1];
 	$command = trim($matches[2]);
-	if (1 == preg_match('|^\p{L}*$|u', $command)) { // looks like just a variable name -- \p{L} is unicode letter
+	if (1 == preg_match('@^'.$python_ident_regex.'$@u', $command)) { // a variable name
 	  $testcode .= $indentation . "_G.checkVar('$command')\n";
 	}
-	elseif (1 == preg_match('|^(\p{L}*)\s*\((.*)\)|', $command, $pieces)) {
-	  if ((strpos($pieces[2], $pieces[1]))===FALSE) // looks like a non-nested function call
-	    $testcode .= $indentation . "_G.autotestCall('" . $pieces[1] . "',[" . $pieces[2] . "])\n";
+	elseif (1 == preg_match('@^('.$python_ident_regex.')\s*\((.*)\)$@u', $command, $pieces)) {
+	  if ((strpos($pieces[2], $pieces[1]))===FALSE) // looks like a non-self-nested function call
+	    $testcode .= $indentation . "_G.autotestCall('" . $pieces[1] . "',[" . $pieces[2+$py_regex_parens] . "])\n";
 	  else { // something more complex
 	    $testcode .= $indentation . "_G.sayRunning(\"" . $command . "\")\n";
 	    $testcode .= $indentation . "_G.autotestCompare(\"" . $command . "\", $command)\n";
