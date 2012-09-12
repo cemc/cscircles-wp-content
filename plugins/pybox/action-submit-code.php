@@ -29,7 +29,9 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    $loadLevel = $loadLevel[0];
 
    mkdir(PJAIL . $dir);  
-   chmod(PJAIL . $dir, 0710); //new scratch directory owned by user and group apache
+   chmod(PJAIL . $dir, 0711); 
+   // new scratch directory owned by user and group apache
+   // anyone can read from it, but not list its contents
 
    foreach ($files as $filename=>$contents) 
      if ($contents === NULL) { // file for output
