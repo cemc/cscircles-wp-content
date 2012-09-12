@@ -134,8 +134,11 @@ function safeDereference( $s, $which="", &$errtgt=NULL ) {
   $errtgt = FALSE;
   if (substr($s, 0, 6)!="@file:") return FALSE;
   $s = substr($s, 6);
-  if (preg_match(":\.\.:", $s)>0) return FALSE;
-  if (preg_match("[^A-Za-z0-9_\.\-]", $s)>0) return FALSE;
+
+  // exclude .. and force only alphanumerics plus /._-
+  if (strstr($s, "..") != FALSE) return FALSE;
+  if (preg_match('@[^a-zA-Z0-9/_.-]@', $s)>0) return FALSE;
+
   $fn = PDATADIR  . trim($s);
   $co = file_get_contents($fn);
 
@@ -151,12 +154,10 @@ function safeDereference( $s, $which="", &$errtgt=NULL ) {
 
 function softDump( $s, $target ) {
 // writes/copies $s to $target, where $s is a string or a @file:filename
-  if (substr($s, 0, 6)=="@file:") {
-    $s = substr($s, 6);
-    if (preg_match(":\.\.:", $s)>0) return FALSE;
-    if (preg_match("[^A-Za-z0-9_\.\-]", $s)>0) return FALSE;
-    return copy( PDATADIR . $s, $target );
-  }
+  pyboxlog($s .';' . $target, FALSE);
+  if (substr($s, 0, 6)=="@file:")
+    $s = softSafeDereference($s);
+  pyboxlog($s .';' . $target, FALSE);
   $file = fopen($target, "w");
   if ($file === FALSE) return FALSE;
   if (fwrite($file, $s) === FALSE) return FALSE;
