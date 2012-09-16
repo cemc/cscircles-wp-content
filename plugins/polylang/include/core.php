@@ -5,6 +5,7 @@ class Polylang_Core extends Polylang_base {
 	private $curlang; // current language
 	private $default_locale;
 	private $list_textdomains = array(); // all text domains
+	private $labels; // post types and taxonomies labels to translate
 	private $first_query = true;
 
 	// options often needed
@@ -25,14 +26,17 @@ class Polylang_Core extends Polylang_base {
 		add_action('pre_comment_on_post', array(&$this, 'pre_comment_on_post'));
 
 		// text domain management
-		$this->options['force_lang'] && get_option('permalink_structure') && PLL_LANG_EARLY ?
-			add_action('setup_theme', array(&$this, 'setup_theme'), 20) : // after Polylang::setup_theme
+		if ($this->options['force_lang'] && get_option('permalink_structure') && PLL_LANG_EARLY)
+			add_action('setup_theme', array(&$this, 'setup_theme'), 20); // after Polylang::setup_theme
+		else {
 			add_filter('override_load_textdomain', array(&$this, 'mofile'), 10, 3);
+			add_filter('gettext', array(&$this, 'gettext'), 10, 3);
+			add_filter('gettext_with_context', array(&$this, 'gettext_with_context'), 10, 4);
+		}
 
 		add_action('init', array(&$this, 'init'));
-		add_action('wp', array(&$this, 'load_textdomains'));
-		add_action('login_init', array(&$this, 'load_textdomains'));
-		add_action('admin_init', array(&$this, 'load_textdomains')); // Ajax thanks to g100g
+		foreach (array('wp', 'login_init', 'admin_init') as $filter) // admin_init for ajax thanks to g100g
+			add_action($filter, array(&$this, 'load_textdomains'), 5); // priority 5 for post types and taxonomies with registered with in wp hook with default priority
 
 		// filters the WordPress locale
 		add_filter('locale', array(&$this, 'get_locale'));
@@ -190,7 +194,7 @@ class Polylang_Core extends Polylang_base {
 		elseif (isset($_REQUEST['pll_load_front']))
 			$lang =  isset($_REQUEST['lang']) && $_REQUEST['lang'] ? $this->get_language($_REQUEST['lang']) : $this->get_preferred_language();
 
-		elseif ((is_single() || is_page() || is_attachment()) && ( ($var = get_queried_object_id()) || ($var = get_query_var('p')) || ($var = get_query_var('page_id')) || ($var = get_query_var('attachment_id')) ))
+		elseif ((is_single() || is_page() || (is_attachment() && PLL_MEDIA_SUPPORT)) && ( ($var = get_queried_object_id()) || ($var = get_query_var('p')) || ($var = get_query_var('page_id')) || ($var = get_query_var('attachment_id')) ))
 			$lang = $this->get_post_language($var);
 
 		else {
@@ -262,6 +266,27 @@ class Polylang_Core extends Polylang_base {
 		return true; // prevents WP loading text domains as we will load them all later
 	}
 
+	// saves post types and taxonomies labels for a later usage
+	function gettext($translation, $text, $domain) {
+		$this->labels[$text] =  array('domain' => $domain);
+		return $translation;
+	}
+
+	// saves post types and taxonomies labels for a later usage
+	function gettext_with_context($translation, $text, $context, $domain) {
+		$this->labels[$text] =  array('domain' => $domain, 'context' => $context);
+		return $translation;
+	}
+
+	// translates post types and taxonomies labels once the language is known
+	function translate_labels($type) {
+		foreach($type->labels as $key=>$label)
+			if (isset($this->labels[$label]))
+				$type->labels->$key = isset($this->labels[$label]['context']) ?
+					_x($label, $this->labels[$label]['context'], $this->labels[$label]['domain']) :
+					__($label, $this->labels[$label]['domain']);
+	}
+
 	// NOTE: I believe there are two ways for a plugin to force the WP language
 	// as done by xili_language: load text domains and reinitialize wp_locale with the action 'wp'
 	// as done by qtranslate: define the locale with the action 'plugins_loaded', but in this case, the language must be specified in the url.
@@ -270,12 +295,14 @@ class Polylang_Core extends Polylang_base {
 
 		// our override_load_textdomain filter has done its job. let's remove it before calling load_textdomain
 		remove_filter('override_load_textdomain', array(&$this, 'mofile'));
+		remove_filter('gettext', array(&$this, 'gettext'), 10, 3);
+		remove_filter('gettext_with_context', array(&$this, 'gettext_with_context'), 10, 4);
 
 		// check there is at least one language defined and sets the current language
 		if ($this->get_languages_list() && $this->curlang = $this->get_current_language()) {
 
 			// set a cookie to remember the language. check headers have not been sent to avoid ugly error
-			if (!headers_sent())
+			if (!headers_sent() && (!isset($_COOKIE['wordpress_polylang']) || $_COOKIE['wordpress_polylang'] != $this->curlang->slug))
 				setcookie('wordpress_polylang', $this->curlang->slug, time() + 31536000 /* 1 year */, COOKIEPATH, COOKIE_DOMAIN);
 
 			// set all our language filters and actions
@@ -290,6 +317,12 @@ class Polylang_Core extends Polylang_base {
 				// reinitializes wp_locale for weekdays and months, as well as for text direction				
 				$wp_locale->init();
 				$wp_locale->text_direction = get_metadata('term', $this->curlang->term_id, '_rtl', true) ? 'rtl' : 'ltr';
+
+				// translate labels of post types and taxonomies
+				foreach ($GLOBALS['wp_taxonomies'] as $tax)
+					$this->translate_labels($tax);
+				foreach ($GLOBALS['wp_post_types'] as $pt)
+					$this->translate_labels($pt);
 			}
 
 			// and finally load user defined strings
@@ -297,7 +330,7 @@ class Polylang_Core extends Polylang_base {
 		}
 
 		else {
-			// cant't work so load the text domains with WordPress default language
+			// can't work so load the text domains with WordPress default language
 			foreach ($this->list_textdomains as $textdomain)
 				load_textdomain($textdomain['domain'], $textdomain['mo']);
 		}
@@ -330,15 +363,16 @@ class Polylang_Core extends Polylang_base {
 	// filters posts according to the language
 	function pre_get_posts($query) {
 		// don't make anything if no language has been defined yet
-		// $this->post_types & $this->taxonomies are defined only once wp_loaded has been fired
-		if (!$this->get_languages_list() || !did_action('wp_loaded'))
-			return;
+		// $this->post_types & $this->taxonomies are defined only once the action 'wp_loaded' has been fired
+		// honor suppress_filters
+		if (!$this->get_languages_list() || !did_action('wp_loaded') || $query->get('suppress_filters'))
+			return $query;
 
 		$qvars = $query->query_vars;
 
 		// users may want to display content in a different language than the current one by setting it explicitely in the query
 		if (!$this->first_query && $this->curlang && isset($qvars['lang']) && $qvars['lang'])
-			return;
+			return $query;
 
 		$this->first_query = false;
 
@@ -346,23 +380,24 @@ class Polylang_Core extends Polylang_base {
 		// this test should be sufficient
 		if (isset($qvars['tax_query'][0]['taxonomy']) && $qvars['tax_query'][0]['taxonomy'] == 'language' &&
 			isset($qvars['tax_query'][0]['operator']) && $qvars['tax_query'][0]['operator'] == 'NOT IN')
-			return;
+			return $query;
 
 		// special case for wp-signup.php & wp-activate.php
 		if (is_home() && false === strpos($_SERVER['SCRIPT_NAME'], 'index.php')) {
 			$this->curlang = $this->get_preferred_language();
-			return;
+			return $query;
 		}
 
 		// homepage is requested, let's set the language
-		if (!$this->curlang && ((is_home() && !$this->page_for_posts) || (empty($query->query) && is_page() && $qvars['page_id'] == $this->page_on_front)))
+		// take care to avoid posts page for which is_home = 1
+		if (!$this->curlang && ((is_home() && !$qvars['page_id']) || (empty($query->query) && is_page() && $qvars['page_id'] == $this->page_on_front)))
 			$this->home_requested($query);
 
 		// redirect the language page to the homepage
 		if ($this->options['redirect_lang'] && is_tax('language') && $this->page_on_front && (count($query->query) == 1 || (is_paged() && count($query->query) == 2))) {
 			$qvars['page_id'] = $this->get_post($this->page_on_front, $this->get_language(get_query_var('lang')));
 			$query->parse_query($qvars);
-			return;
+			return $query;
 		}
 
 		// sets is_home on translated home page when it displays posts
@@ -442,6 +477,8 @@ class Polylang_Core extends Polylang_base {
 			foreach ($query->tax_query->queries as $tax)
 				if (in_array($tax['taxonomy'], $this->taxonomies))
 					unset ($query->query_vars['lang']);
+
+		return $query;
 	}
 
 	// filter sticky posts by current language
@@ -592,7 +629,7 @@ class Polylang_Core extends Polylang_base {
 		$hide = $this->options['default_lang'] == $language->slug && $this->options['hide_default'];
 
 		// post and attachment
-		if (is_single() && $id = $this->get_post($wp_query->queried_object_id, $language))
+		if (is_single() && (PLL_MEDIA_SUPPORT || !is_attachment()) && $id = $this->get_post($wp_query->queried_object_id, $language))
 			$url = get_permalink($id);
 
 		// page for posts
@@ -683,7 +720,7 @@ class Polylang_Core extends Polylang_base {
 
 	// filters the nav menus according to the current language when called from wp_nav_menus
 	function wp_nav_menu_args($args) {
-		if (!$args['menu'] && $args['theme_location']) {
+		if (/*!$args['menu'] &&*/ $args['theme_location']) {
 			$menu_lang = get_option('polylang_nav_menus');
 			if (isset($menu_lang[$args['theme_location']][$this->curlang->slug]))
 				$args['menu'] = $menu_lang[$args['theme_location']][$this->curlang->slug];
