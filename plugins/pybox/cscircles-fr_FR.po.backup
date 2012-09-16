@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 16:03-0400\n"
-"PO-Revision-Date: 2012-09-11 15:36-0400\n"
+"POT-Creation-Date: 2012-09-11 16:04-0400\n"
+"PO-Revision-Date: 2012-09-11 16:07-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -981,11 +981,11 @@ msgstr "Boolean"
 
 #: ../python3jail/static/_GRADER.py:10
 msgid "\"None\" Type"
-msgstr "\"Aucun\" Type"
+msgstr "Type \"Aucun\""
 
 #: ../python3jail/static/_GRADER.py:10
 msgid "Range Type"
-msgstr "Type de \"range\""
+msgstr "Type Range"
 
 #: ../python3jail/static/_GRADER.py:11
 msgid "List"
@@ -1313,33 +1313,3 @@ msgstr "Cercles informatiques"
 #: ../www/wordpress/wp-login.php:93
 msgid "Log In or Create Account"
 msgstr "Se connecter ou créer un compte"
-
-#~ msgid "Not enough lines of output"
-#~ msgstr "Pas assez de lignes de sortie"
-
-#~ msgid "expected"
-#~ msgstr "attendues"
-
-#~ msgid "found"
-#~ msgstr "trouvées"
-
-#~ msgid "Error:"
-#~ msgstr "Erreur :"
-
-#~ msgid "Output line"
-#~ msgstr "Ligne de sortie"
-
-#~ msgid "was not a number"
-#~ msgstr "n'est pas un nombre"
-
-#~ msgid "value"
-#~ msgstr "valeur"
-
-#~ msgid "did not match expected value"
-#~ msgstr "ne correspond pas à la valeur attendue"
-
-#~ msgid "Too many lines of output:"
-#~ msgstr "Trop de lignes de sortie :"
-
-#~ msgid "on"
-#~ msgstr "à"

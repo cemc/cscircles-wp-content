@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-11 16:04-0400\n"
+"POT-Creation-Date: 2012-09-16 16:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,120 +65,120 @@ msgstr ""
 msgid "The user sent this code with the message:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:247
-#: ../wp-plugin/action-submit-code.php:260
+#: ../wp-plugin/action-submit-code.php:249
+#: ../wp-plugin/action-submit-code.php:262
 msgid "Program gave the following output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:249
+#: ../wp-plugin/action-submit-code.php:251
 msgid "Program gave the following correct output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:258
-#: ../wp-plugin/action-submit-code.php:267
+#: ../wp-plugin/action-submit-code.php:260
+#: ../wp-plugin/action-submit-code.php:269
 msgid "Program printed no output."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:269
+#: ../wp-plugin/action-submit-code.php:271
 msgid "(Did you forget to use </i><code>print</code><i>?)"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:274
+#: ../wp-plugin/action-submit-code.php:276
 msgid "Program output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:277
+#: ../wp-plugin/action-submit-code.php:279
 msgid "Expected this correct output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:426
+#: ../wp-plugin/action-submit-code.php:432
 msgid "Before running your code:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:430
+#: ../wp-plugin/action-submit-code.php:436
 msgid "Input:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:439
+#: ../wp-plugin/action-submit-code.php:445
 msgid "Error messages: "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:442
+#: ../wp-plugin/action-submit-code.php:448
 msgid "Program executed without crashing."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:444
+#: ../wp-plugin/action-submit-code.php:450
 msgid "Program crashed."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:446
+#: ../wp-plugin/action-submit-code.php:452
 msgid "Program crashed &mdash; "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:466
-#: ../wp-plugin/action-submit-code.php:479
+#: ../wp-plugin/action-submit-code.php:472
+#: ../wp-plugin/action-submit-code.php:485
 msgid "The grader said:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:468
+#: ../wp-plugin/action-submit-code.php:474
 msgid "Automatic tests:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:502
+#: ../wp-plugin/action-submit-code.php:508
 msgid "Result of grading: "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:537
+#: ../wp-plugin/action-submit-code.php:543
 msgid "Success!"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:541
+#: ../wp-plugin/action-submit-code.php:547
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:551
+#: ../wp-plugin/action-submit-code.php:557
 msgid "You must log in to save data."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:551
+#: ../wp-plugin/action-submit-code.php:557
 msgid "Program saved."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:575
+#: ../wp-plugin/action-submit-code.php:581
 #, php-format
 msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
 "= \"%s\">run at home</a>."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:605
+#: ../wp-plugin/action-submit-code.php:611
 #, php-format
 msgid "Pybox error: problem hash %s not found. Try reloading the page."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:696
+#: ../wp-plugin/action-submit-code.php:702
 #, php-format
 msgid "You cannot use %s in this exercise."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:707
+#: ../wp-plugin/action-submit-code.php:713
 #, php-format
 msgid ""
 "You are only allowed to change at most %s characters compared to the "
 "original version of the code."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:709
+#: ../wp-plugin/action-submit-code.php:715
 #, php-format
 msgid "You changed %s or more."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:727
+#: ../wp-plugin/action-submit-code.php:733
 #, php-format
 msgid "You changed %s."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:752
+#: ../wp-plugin/action-submit-code.php:758
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
 msgstr ""
@@ -498,6 +498,14 @@ msgstr ""
 msgid "goto oldest unanswered mail"
 msgstr ""
 
+#: ../wp-plugin/plugin-hooks.php:292
+msgid "Filter Listed Pages"
+msgstr ""
+
+#: ../wp-plugin/plugin-hooks.php:295
+msgid "Show all visible"
+msgstr ""
+
 #: ../wp-plugin/plugin-profile-options.php:19
 #, php-format
 msgid "The username %s does not exist."
@@ -585,7 +593,12 @@ msgstr ""
 msgid "<url>"
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:308
+#: ../wp-plugin/plugin-utilities.php:185
+#, php-format
+msgid "[Too long; only first %1$s out of %2$s characters shown]"
+msgstr ""
+
+#: ../wp-plugin/plugin-utilities.php:309
 msgid "Return to Computer Science Circles"
 msgstr ""
 
