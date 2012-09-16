@@ -281,4 +281,20 @@ function setup_translation() {
   load_plugin_textdomain('cscircles', FALSE, dirname( plugin_basename( __FILE__ ) ));
 }
 
+add_action( 'wp_before_admin_bar_render', 'tweak_polylang_menu' );
+
+function tweak_polylang_menu() {
+  global $wp_admin_bar;
+  if (!(userIsTranslator() || userIsAdmin()))
+    $wp_admin_bar->remove_node('languages');
+  else {
+    $node = $wp_admin_bar->get_node('languages');
+    $node->title = __t('Filter Listed Pages'); // 'Languages' is confusing
+    $wp_admin_bar->add_node($node); // update   
+    $node = $wp_admin_bar->get_node('all');
+    $node->title = str_replace(__('Show all languages', 'polylang'), __t('Show all visible'), $node->title); // similar
+    $wp_admin_bar->add_node($node); // update   
+  }
+}
+
 // end of file
