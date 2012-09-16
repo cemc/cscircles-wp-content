@@ -318,14 +318,29 @@ function newuserwelcome($options, $content) {
 
 function sanitize_helper($matches) {
   $attr = shortcode_parse_atts( $matches[3] );
-  if (array_key_exists('slug', $attr)) {
-    if (!array_key_exists('title', $attr))
-      echo 'Warning: ' . $attr['slug'] . ' has no title!';
-    $epilogue = array_key_exists('epilogue', $attr) ? (' epilogue="' . $attr['epilogue'] . '"') : '';
-      echo 'Warning: ' . $attr['slug'] . ' has no title!';
-    return '[pyRecall slug="'.$attr['slug'].'" title="'.$attr['title'].'"'.$epilogue.']'. $matches[5] . '[/pyRecall]';
+
+  // anything which is not a slug is not an exercise and passes through unchanged.
+  if (!array_key_exists('slug', $attr)) 
+    return $matches[0]; 
+    
+  if (!array_key_exists('title', $attr)) {
+    pyboxlog('[in sanitize_helper] Warning: ' . $attr['slug'] . ' has no title!');
+    $attr['title'] = "";
   }
-  else return $matches[0];
+
+  $r = '[pyRecall slug="' . $attr['slug'] . '"';
+
+  $to_translate = array('title', 'epilogue', 'right', 'wrong', 'defaultcode');
+  foreach ($to_translate as $key) 
+    if (array_key_exists($key, $attr)) {
+      $r .= ' ' . $key .'="';
+      $r .= str_replace('"', '""', $attr[$key]);
+      $r .= '"';
+    }
+
+  $r .= ']' . $matches[5] . '[/pyRecall]';
+
+  return $r;
 }
 
 function sanitize($page) {
