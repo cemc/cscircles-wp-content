@@ -334,8 +334,10 @@ function sanitize_helper($matches) {
   foreach ($to_translate as $key) 
     if (array_key_exists($key, $attr)) {
       $r .= ' ' . $key .'="';
-      $r .= str_replace('"', '""', $attr[$key]);
-      $r .= '"';
+      $value = $attr[$key];
+      $value = str_replace('"', '""', $value);
+      $value = str_replace("\n", '\n', $value);
+      $r .= $value . '"';
     }
 
   $r .= ']' . $matches[5] . '[/pyRecall]';
@@ -344,6 +346,7 @@ function sanitize_helper($matches) {
 }
 
 function sanitize($page) {
+  $page = str_replace("\r", "", $page);
   $regex = '(\[?)\[(pyExample|pyShort|pyMulti|pyMultiScramble|pyBox)\b((?:[^\'"\\]]|' . "'[^']*'|" . '"[^"]*")*)(?:(\/))?\](?:(.+?)\[\/\2\])?(\]?)';
   return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
 }
