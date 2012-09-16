@@ -260,6 +260,7 @@ function pb_menu_items($wp_admin_bar) {
 			'AWS EC2 visualizer log' => 'http://107.22.148.206/trace-log.txt',
 			'AWS Management Console' => 'https://console.aws.amazon.com/s3/home',
 			'Daily submit-code usage' => get_permalink($ap).'/profiling/?frequency=10&activity=submit-code',
+			'[rebuild /export directory]' => '/nav/?export=Y',
 			'[listing of admin-manual follows]' => get_permalink($ap)
 			);
 
