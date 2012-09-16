@@ -350,25 +350,30 @@ function sanitize($page) {
 
 // for the navigation page
 function list_pybox_pages($options, $content) {
-  $out = get_pages();
+  $out = get_pages(array('parent'=>0, 'status'=>'publish'));
   $links = array();
+  global $polylang;
   foreach ($out as $page) {
-    $links[] = array("url"=>get_page_link( $page->ID), "title"=>$page->post_title);
-    if (isSoft($_GET, 'export', 'Y')) {
-      $p = get_page($page->ID);
-      $slug = $p->post_name;
-      $f = fopen(PEXPORT . $slug . ".txt", 'w');
-      fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
-      fwrite($f, sanitize($p->post_content));
-      fclose($f);
-    }
-    elseif (isSoft($_GET, 'export', 'raw')) {
-      $p = get_page($page->ID);
-      $slug = $p->post_name;
-      $f = fopen(PEXPORT . $slug . ".txt", 'w');
-      fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
-      fwrite($f, $p->post_content);
-      fclose($f);
+
+    if ($polylang->get_translation('post', $page->ID, 'en') == $page->ID) { //english only
+
+      $links[] = array("url"=>get_page_link( $page->ID), "title"=>$page->post_title);
+      if (isSoft($_GET, 'export', 'Y')) {
+	$p = get_page($page->ID);
+	$slug = $p->post_name;
+	$f = fopen(PEXPORT . $slug . ".txt", 'w');
+	fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
+	fwrite($f, sanitize($p->post_content));
+	fclose($f);
+      }
+      elseif (isSoft($_GET, 'export', 'raw')) {
+	$p = get_page($page->ID);
+	$slug = $p->post_name;
+	$f = fopen(PEXPORT . $slug . ".txt", 'w');
+	fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
+	fwrite($f, $p->post_content);
+	fclose($f);
+      }
     }
   }
   $links[] = array("url"=>cscurl('search'), 'title'=>__t('Search'));
