@@ -1,7 +1,6 @@
 <?php
 
-require_once("include-me.php");
-require_once(PWP_LOADER);
+require_once("include-me-and-load-wp.php");
 
 $message = $_REQUEST["message"];
 $millis = $_REQUEST["millis"];
