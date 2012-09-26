@@ -37,10 +37,13 @@ function cscurl($slug) {
   return UWPHOME . $s;
 }
 
-function userString($n) {
+function userString($n, $short = false) {
+  if ($n < 0) return "unregistered";
   $user = get_userdata($n);
   if ($user === FALSE) return FALSE;
-  return $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $n . ")";
+  if (!$short)
+    return $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $n . ")";
+  return $user->user_nicename . " #" . $n ;
 }
 
 function userIsAdmin() {

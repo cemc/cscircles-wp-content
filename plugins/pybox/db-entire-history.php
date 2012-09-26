@@ -54,6 +54,7 @@ echo dbFlexigrid
      $info['viewuser'] = $user;
 
    // make an associative array indexed by slug
+   
    $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM wp_pb_problems WHERE slug IS NOT NULL", OBJECT_K);
 
    $whereProblem = "1";
@@ -102,8 +103,9 @@ ORDER BY $sortString ID DESC " . $limit);
    $flexirows = array();
    foreach ($wpdb->get_results( $prep, ARRAY_A ) as $r) {
      $cell = array();
-     if ($u == "all")
-       $cell[__t('userid')] = $r['userid'];
+     if ($u == "all") {
+       $cell[__t('userid')] = str_replace(' ', "<br>", userString($r['userid'], true));
+     }
      $p = $r['problem'];
      if (array_key_exists($p, $problemTable)) 
        $cell[__t('problem')] = '<a class="open-same-window" href="' . $problemTable[$p]->url . '">'
