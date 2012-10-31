@@ -67,9 +67,7 @@ a:not(.open-same-window):hover  {
 }
 
 .userpage .lessoninfo {
-    width: 300px;
     text-align: right;
-    display: inline-block;
     font-weight: bold;
 }
 

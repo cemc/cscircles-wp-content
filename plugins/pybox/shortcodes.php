@@ -103,7 +103,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
     $wpdb->insert($table_name, $row);
   }
   else if ($hash != NULL) {
-    if ($wpdb->get_var("SELECT COUNT(1) from wp_pb_problems WHERE hash = '$hash'") == 0) {
+    if ($wpdb->get_var("SELECT COUNT(1) from wp_pb_problems WHERE hash = '$hash' AND lang='".pll_current_language()."'") == 0) {
       // hash is important, but not yet registered!
       // typically this would occur if we're editing a file
       // if the hash doesn't exist, add it so the grader knows what do to with submissions

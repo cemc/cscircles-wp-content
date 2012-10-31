@@ -141,6 +141,8 @@ function pyUser($options, $content) {
       $didIt[$crow['problem']] = TRUE;
   }
 
+  $overview .= '<table style="width:auto;border:none;margin:0px auto;">';
+
   $lesson = -1;
   $lrow = NULL;
   $llink = "";
@@ -148,17 +150,17 @@ function pyUser($options, $content) {
   foreach ($problems as $prow) {
     if ($prow['lesson'] != $lesson) {
       if (!$firstloop)
-	$overview .= "</div>\n";
+	$overview .= "</td></tr>\n";
       $firstloop = false;
-      $overview .= "<div>";
+      $overview .= "<tr><td class='lessoninfo'>";
       $lesson = $prow['lesson'];
       $lrow = $lessonsByNumber[$lesson];
-      $overview .= '<a class="lessoninfo open-same-window" href="';
+      $overview .= '<a class="open-same-window" href="';
       $llink = get_page_link($lrow['id']);
       $overview .= $llink;
       $overview .= '">';
       $overview .= $lrow['number'] . ": " . $lrow['title'];
-      $overview .= '</a>';
+      $overview .= '</a></td><td>';
     }
     $overview .= '<a class="open-same-window" href="' . $llink . '#pybox' . $prow['boxid'] . '">';
 
@@ -170,6 +172,8 @@ function pyUser($options, $content) {
 	(isSoft($didIt, $prow['slug'], TRUE) ? 'checked' : 'icon') . '.png"/></a>';
   }
   
+  $overview .= '</table>';
+
   return "<div class='userpage'>$subs $overview</div>";
 
 }
