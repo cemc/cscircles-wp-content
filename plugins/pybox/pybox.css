@@ -71,6 +71,10 @@ a:not(.open-same-window):hover  {
     font-weight: bold;
 }
 
+#content .userpage td {
+	padding: 1px;
+}
+
 .pybox .heading {
      text-align: center;
      font-size: 110%;
