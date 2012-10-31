@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-16 16:05-0400\n"
+"POT-Creation-Date: 2012-10-31 15:53-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,8 +24,8 @@ msgstr ""
 #: ../wp-plugin/action-send-message.php:23
 #: ../wp-plugin/shortcode-mailpage.php:38
 #: ../wp-plugin/shortcode-mailpage.php:99
-#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:587
-#: ../wp-plugin/shortcodes.php:591
+#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:611
+#: ../wp-plugin/shortcodes.php:615
 msgid "CS Circles Assistant"
 msgstr ""
 
@@ -65,120 +65,148 @@ msgstr ""
 msgid "The user sent this code with the message:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:249
-#: ../wp-plugin/action-submit-code.php:262
+#: ../wp-plugin/action-submit-code.php:282
+#: ../wp-plugin/action-submit-code.php:298
 msgid "Program gave the following output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:251
+#: ../wp-plugin/action-submit-code.php:285
 msgid "Program gave the following correct output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:260
-#: ../wp-plugin/action-submit-code.php:269
+#: ../wp-plugin/action-submit-code.php:296
+#: ../wp-plugin/action-submit-code.php:306
 msgid "Program printed no output."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:271
+#: ../wp-plugin/action-submit-code.php:309
 msgid "(Did you forget to use </i><code>print</code><i>?)"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:276
+#: ../wp-plugin/action-submit-code.php:314
 msgid "Program output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:279
+#: ../wp-plugin/action-submit-code.php:317
 msgid "Expected this correct output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:432
+#: ../wp-plugin/action-submit-code.php:492
 msgid "Before running your code:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:436
+#: ../wp-plugin/action-submit-code.php:497
 msgid "Input:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:445
+#: ../wp-plugin/action-submit-code.php:507
 msgid "Error messages: "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:448
+#: ../wp-plugin/action-submit-code.php:510
 msgid "Program executed without crashing."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:450
+#: ../wp-plugin/action-submit-code.php:513
 msgid "Program crashed."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:452
+#: ../wp-plugin/action-submit-code.php:515
 msgid "Program crashed &mdash; "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:472
-#: ../wp-plugin/action-submit-code.php:485
-msgid "The grader said:"
+#: ../wp-plugin/action-submit-code.php:519
+msgid "Memory Limit Exceeded"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:474
-msgid "Automatic tests:"
+#: ../wp-plugin/action-submit-code.php:519
+msgid "Time Limit Exceeded"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:508
-msgid "Result of grading: "
+#: ../wp-plugin/action-submit-code.php:520
+msgid "Command exited with non-zero status"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:543
-msgid "Success!"
+#: ../wp-plugin/action-submit-code.php:521
+msgid "Command terminated by signal"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:521
+msgid "Output Limit Exceeded"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:522
+msgid "Invalid Function"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:522
+msgid "Internal Error"
 msgstr ""
 
 #: ../wp-plugin/action-submit-code.php:547
+#: ../wp-plugin/action-submit-code.php:562
+msgid "The grader said:"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:550
+msgid "Automatic tests:"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:592
+msgid "Result of grading: "
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:633
+msgid "Success!"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:639
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:557
+#: ../wp-plugin/action-submit-code.php:656
 msgid "You must log in to save data."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:557
+#: ../wp-plugin/action-submit-code.php:657
 msgid "Program saved."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:581
+#: ../wp-plugin/action-submit-code.php:683
 #, php-format
 msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
 "= \"%s\">run at home</a>."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:611
+#: ../wp-plugin/action-submit-code.php:715
 #, php-format
 msgid "Pybox error: problem hash %s not found. Try reloading the page."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:702
+#: ../wp-plugin/action-submit-code.php:808
 #, php-format
 msgid "You cannot use %s in this exercise."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:713
+#: ../wp-plugin/action-submit-code.php:820
 #, php-format
 msgid ""
 "You are only allowed to change at most %s characters compared to the "
 "original version of the code."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:715
+#: ../wp-plugin/action-submit-code.php:825
 #, php-format
 msgid "You changed %s or more."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:733
+#: ../wp-plugin/action-submit-code.php:844
 #, php-format
 msgid "You changed %s."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:758
+#: ../wp-plugin/action-submit-code.php:871
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
 msgstr ""
@@ -189,8 +217,8 @@ msgid "Did not crash."
 msgstr ""
 
 #: ../wp-plugin/db-entire-history.php:20
-#: ../wp-plugin/db-problem-history.php:20 ../wp-plugin/shortcodes.php:164
-#: ../wp-plugin/shortcodes.php:210 ../wp-plugin/shortcodes.php:258
+#: ../wp-plugin/db-problem-history.php:20 ../wp-plugin/shortcodes.php:166
+#: ../wp-plugin/shortcodes.php:212 ../wp-plugin/shortcodes.php:260
 #: ../py_includes/graders/anyorder.py:12
 #: ../py_includes/graders/pendulum-grader.py:16
 #: ../py_includes/graders/trim-lines.py:14
@@ -227,55 +255,55 @@ msgstr ""
 msgid "User %s does not have you as their guru."
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:62
+#: ../wp-plugin/db-entire-history.php:63
 #, php-format
 msgid "Problem %s is unknown."
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:68
-#: ../wp-plugin/db-entire-history.php:106
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:107
 msgid "userid"
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:68
-#: ../wp-plugin/db-entire-history.php:116
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:118
 #: ../wp-plugin/db-problem-history.php:57
 #: ../wp-plugin/db-problem-history.php:75
 msgid "time &amp; ID"
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:68
-#: ../wp-plugin/db-entire-history.php:109
-#: ../wp-plugin/db-entire-history.php:112 ../wp-plugin/db-mail.php:89
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:111
+#: ../wp-plugin/db-entire-history.php:114 ../wp-plugin/db-mail.php:89
 msgid "problem"
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:69
-#: ../wp-plugin/db-entire-history.php:113
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:115
 #: ../wp-plugin/db-problem-history.php:57
 #: ../wp-plugin/db-problem-history.php:71
 msgid "user code"
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:69
-#: ../wp-plugin/db-entire-history.php:114
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:116
 #: ../wp-plugin/db-problem-history.php:58
 #: ../wp-plugin/db-problem-history.php:73
 msgid "user input"
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:69
-#: ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:117
 #: ../wp-plugin/db-problem-history.php:58
 #: ../wp-plugin/db-problem-history.php:74
 msgid "result"
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:94
+#: ../wp-plugin/db-entire-history.php:95
 msgid "We do not have record of any submissions."
 msgstr ""
 
-#: ../wp-plugin/db-entire-history.php:114
+#: ../wp-plugin/db-entire-history.php:116
 #: ../wp-plugin/db-problem-history.php:73
 msgid "n/a"
 msgstr ""
@@ -364,7 +392,7 @@ msgstr ""
 msgid "Click to try again."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:764
+#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:788
 msgid "Run program"
 msgstr ""
 
@@ -384,7 +412,7 @@ msgstr ""
 msgid "You have completed this problem at least once."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:743
+#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:767
 msgid "More actions..."
 msgstr ""
 
@@ -392,7 +420,7 @@ msgstr ""
 msgid "Enter input"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:694
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:718
 msgid "Rich editor"
 msgstr ""
 
@@ -422,7 +450,7 @@ msgstr ""
 msgid "Page"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:709
+#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:733
 msgid "History"
 msgstr ""
 
@@ -462,8 +490,12 @@ msgstr ""
 msgid "You need to select a recipient."
 msgstr ""
 
-#: ../wp-plugin/plugin-footer-prevnext.php:43
+#: ../wp-plugin/plugin-footer-prevnext.php:47
 msgid "(goes to top of current page)"
+msgstr ""
+
+#: ../wp-plugin/plugin-footer-prevnext.php:50
+msgid "Next"
 msgstr ""
 
 #: ../wp-plugin/plugin-hooks.php:25
@@ -498,11 +530,11 @@ msgstr ""
 msgid "goto oldest unanswered mail"
 msgstr ""
 
-#: ../wp-plugin/plugin-hooks.php:292
+#: ../wp-plugin/plugin-hooks.php:294
 msgid "Filter Listed Pages"
 msgstr ""
 
-#: ../wp-plugin/plugin-hooks.php:295
+#: ../wp-plugin/plugin-hooks.php:297
 msgid "Show all visible"
 msgstr ""
 
@@ -553,52 +585,12 @@ msgid ""
 "Circles. They are pretty infrequent, about once per year."
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:23
-msgid "<url>user-page/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:24
-msgid "<url>search/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:25
-msgid "<url>mail/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:26
-msgid "<url>resources/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:27
-msgid "<url>console/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:28
-msgid "<url>visualize/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:29
-msgid "<url>using-this-website/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:30
-msgid "<url>contact/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:31
-msgid "<url>run-at-home/"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:32
-msgid "<url>"
-msgstr ""
-
-#: ../wp-plugin/plugin-utilities.php:185
+#: ../wp-plugin/plugin-utilities.php:194
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:309
+#: ../wp-plugin/plugin-utilities.php:318
 msgid "Return to Computer Science Circles"
 msgstr ""
 
@@ -664,22 +656,22 @@ msgstr ""
 msgid "Quote/<br/>Reply"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:97 ../wp-plugin/shortcodes.php:586
-#: ../wp-plugin/shortcodes.php:590
+#: ../wp-plugin/shortcode-mailpage.php:97 ../wp-plugin/shortcodes.php:610
+#: ../wp-plugin/shortcodes.php:614
 msgid "Send a question by e-mail to: "
 msgstr ""
 
 #: ../wp-plugin/shortcode-mailpage.php:99
-#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:587
-#: ../wp-plugin/shortcodes.php:591
+#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:611
+#: ../wp-plugin/shortcodes.php:615
 msgid "Select one..."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:99 ../wp-plugin/shortcodes.php:587
+#: ../wp-plugin/shortcode-mailpage.php:99 ../wp-plugin/shortcodes.php:611
 msgid "My guru"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:591
+#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:615
 msgid "My guru (you don't have one)"
 msgstr ""
 
@@ -813,121 +805,117 @@ msgstr ""
 msgid "You have not yet completed this problem."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:150
+#: ../wp-plugin/shortcodes.php:152
 msgid "Short Answer Exercise"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:153
+#: ../wp-plugin/shortcodes.php:155
 msgid "Your answer"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:154
+#: ../wp-plugin/shortcodes.php:156
 msgid "enter a number"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:161 ../wp-plugin/shortcodes.php:207
-#: ../wp-plugin/shortcodes.php:254
+#: ../wp-plugin/shortcodes.php:163 ../wp-plugin/shortcodes.php:209
+#: ../wp-plugin/shortcodes.php:256
 msgid "Check answer"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:192
+#: ../wp-plugin/shortcodes.php:194
 msgid "Multiple Choice Exercise"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:196
+#: ../wp-plugin/shortcodes.php:198
 msgid "Your choice:"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:196
+#: ../wp-plugin/shortcodes.php:198
 msgid "Select one"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:246 ../wp-plugin/shortcodes.php:565
+#: ../wp-plugin/shortcodes.php:248 ../wp-plugin/shortcodes.php:589
 msgid "Scramble Exercise"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:312
+#: ../wp-plugin/shortcodes.php:314
 #, php-format
 msgid ""
 "New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
 "$s>click here to create an account or log in</a>."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:359
-msgid "Search"
-msgstr ""
-
-#: ../wp-plugin/shortcodes.php:366
+#: ../wp-plugin/shortcodes.php:390
 msgid "Edit my profile"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:367
+#: ../wp-plugin/shortcodes.php:391
 msgid "Log out now"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:370
+#: ../wp-plugin/shortcodes.php:394
 msgid "Log in or create a new account"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:562
+#: ../wp-plugin/shortcodes.php:586
 msgid "Example"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:565
+#: ../wp-plugin/shortcodes.php:589
 msgid "Coding Exercise"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:577
+#: ../wp-plugin/shortcodes.php:601
 msgid "You need to create an account and log in to ask a question."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:593
+#: ../wp-plugin/shortcodes.php:617
 #, php-format
 msgid "(name a guru on <a %s>your Profile Page</a>)"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:597
+#: ../wp-plugin/shortcodes.php:621
 msgid ""
 "Enter text for the message below. <i>Be sure to explain where you're stuck "
 "and what you've tried so far. Your partial solution code will be "
 "automatically included with the message.</i>"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:599
+#: ../wp-plugin/shortcodes.php:623
 msgid "Send this message"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:600
+#: ../wp-plugin/shortcodes.php:624
 msgid "Cancel"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:619
+#: ../wp-plugin/shortcodes.php:643
 msgid "# delete this comment and enter your code here"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:671
+#: ../wp-plugin/shortcodes.php:695
 msgid ""
 "Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> "
 "below."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:674
+#: ../wp-plugin/shortcodes.php:698
 msgid "You may enter input for the program in the box below."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:700
+#: ../wp-plugin/shortcodes.php:724
 msgid "Open in console"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:703
+#: ../wp-plugin/shortcodes.php:727
 msgid "Visualize"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:717
+#: ../wp-plugin/shortcodes.php:741
 msgid "Reset code to default"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:722
+#: ../wp-plugin/shortcodes.php:746
 msgid "Help"
 msgstr ""
 

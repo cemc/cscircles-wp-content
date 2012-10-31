@@ -48,6 +48,7 @@ function makedb($content, $options) {
 
   $currlang = 'xx';
   $i = -1;
+  $gets = array();
   foreach ($lessons as $l) {
     if ($currlang != $l['lang']) {
       $currlang = $l['lang'];
@@ -61,15 +62,29 @@ function makedb($content, $options) {
     $url = get_page_link($l['id']);
     $url = str_replace('/dev', '', $url);
     $index = $l['number'] == NULL?-1:$i;
-    echo '<script type="text/javascript">
-jQuery.ajax({type:"GET",
-             url:"'.$url.'",
-             data:jQuery.param({"makeproblemdb":'.$index,',"lessonlang":"'.$currlang.'","lessonnumber":"'.$l['number'].'"}),
-             success:function(data){jQuery("#x'.$currlang . $i.'").append("<br/>retrieved, "+data.length+" bytes</br>");}});
-</script>';
+    $gets[] = array('url'=>$url, 'makeproblemdb'=>$index, 'lessonlang'=>$currlang, 'lessonnumber'=>$l['number'],
+		    'id'=>'#x'.$currlang .$i);
     $i++;
   }
-  
+  echo '<script type="text/javascript">
+var gets = '.json_encode($gets).';
+foo = function(a, asynch) {
+   jQuery.ajax({type:"GET",
+               url:a["url"],
+               async:asynch,
+               data:jQuery.param({"makeproblemdb":a["makeproblemdb"],
+                                  "lessonlang":a["lessonlang"],
+                                  "lessonnumber":a["lessonnumber"]}),
+               success:function(data){jQuery(a["id"]).append("<br/>retrieved, "+data.length+" bytes</br>");}});
+}
+for (var i=0; i<gets.length; i++)
+  if (gets[i]["lessonlang"]=="en")
+    foo(gets[i], false);  
+for (var i=0; i<gets.length; i++)
+  if (gets[i]["lessonlang"]!="en")
+    foo(gets[i], true);  
+</script>';
+
 }
 
 // end of file
