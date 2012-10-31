@@ -3,19 +3,24 @@
 require_once("include-me-and-load-wp.php");
 
 function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
-// execute the python $program using safeexec (here $program is a string or file reference)
+// execute the python $program using safeexec (here $program is a
+// string or file reference)
+//
 // $stdin is the standard input for the program
 //
-// safepython will copy all relevant files to a new jail subdirectory and clean it up after
-// only permanent side effect should be a log entry
+// safepython will copy all relevant files to a new jail subdirectory
+// and clean it up after
+// the only permanent side effect should be a log entry
 //
 // $files is an associative array of (filename => NULL | <string>)
 // <string>: the file is created non-writeable and filled with <string>
 // NULL: the file is create writeable and empty
 //
 // outputs in array format: see end of code
-   if (!is_numeric($cpulimit) || !is_int($cpulimit+0) || $cpulimit <= 0 || $cpulimit > 10) 
-     throw new PyboxException('invalid cpulimit ' . var_export($cpulimit, TRUE));
+   if (!is_numeric($cpulimit) || !is_int($cpulimit+0) || $cpulimit <= 0 
+       || $cpulimit > 10) 
+     throw new PyboxException('invalid cpulimit ' . 
+			      var_export($cpulimit, TRUE));
    
    $clocklimit = intval($cpulimit)*WALLFACTOR + WALLBUFFER;
 
@@ -25,7 +30,8 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    //pyboxlog("[safepython] job id " . $id . " starting", TRUE);
    $dir = PSCRATCHDIRMODJAIL . $id . "/";
 
-   $loadLevel = explode(" ", trim(exec("ls -al " . PJAIL . PSCRATCHDIRMODJAIL . " | grep $prefix | wc")));
+   $loadLevel = explode(" ", trim(exec
+      ("ls -al " . PJAIL . PSCRATCHDIRMODJAIL . " | grep $prefix | wc")));
    $loadLevel = $loadLevel[0];
 
    mkdir(PJAIL . $dir);  
@@ -53,12 +59,14 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    $env = array(); // array('some_option' => 'aeiou');
 
    // you need plenty of memory for Python. 50000k is not enough!
-   $command = PSAFEEXEC . " --fsize 100 --env_vars PY --gid 1000 --uidplus 10000 " . 
-     " --cpu $cpulimit --mem 100000 --clock $clocklimit --report_file $safeexecOutFile " .
-     " --chroot_dir " . PJAIL . " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S $mainfile";
+   $command = PSAFEEXEC . " --fsize 100 --env_vars PY --gid 1000" . 
+     " --uidplus 10000 --cpu $cpulimit --mem 100000 --clock $clocklimit" . 
+     " --report_file $safeexecOutFile --chroot_dir " . PJAIL . 
+     " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S $mainfile";
 
    global $mainProfilingID;
-   $minorProfilingID = beginProfilingEntry(array("activity"=>"safeexec", "parent"=>$mainProfilingID));
+   $minorProfilingID = beginProfilingEntry(array("activity"=>"safeexec", 
+						 "parent"=>$mainProfilingID));
 
    $process = proc_open($command, $descriptorspec, $pipes, $cwd, $env);
    
@@ -80,10 +88,14 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
 
    $safeexecOut = file_get_contents($safeexecOutFile);
 
-   $cpuTime = preg_match('|(cpu.usage:.)([\d\.]*)(.seconds)|', $safeexecOut, $matches) === 1 ? $matches[2] : "unavailable"; // e.g., if killed
+   $cpuTime = preg_match('|(cpu.usage:.)([\d\.]*)(.seconds)|', 
+			 $safeexecOut, $matches) 
+     === 1 ? $matches[2] : "unavailable"; // e.g., if killed
 
    endProfilingEntry($minorProfilingID, 
-		     array("meta"=>array("loadLevel"=>$loadLevel,"safeexec reported cputime"=>$cpuTime)));
+		     array("meta"=>
+			   array("loadLevel"=>$loadLevel,
+				 "safeexec reported cputime"=>$cpuTime)));
 
    $outdata = array();
    foreach ($files as $filename=>$data) 
@@ -100,28 +112,33 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
      rmdir(PJAIL . $dir);  
    }
    
-   //pyboxlog("[safepython] job id $id ending. wall time: $wallTime; cpu time $cpuTime; load level $loadLevel", 
+   //pyboxlog("[safepython] job id $id ending. wall time: $wallTime; 
+   // cpu time $cpuTime; load level $loadLevel", 
    //    ($loadLevel == 0 || PB_DEV) ? "suppress" : -1);
    //send an email if the load level is >0 and we're not on the debug site
 
-// 'safeexecOut' is the output remarks of safeexec
-// 'stdout' is the stdout of the actual program, 'stdoutlen' is its length since it might have been trimmed
-// 'stderr' is the stderr of the actual program, 'stderrlen'
+// 'safeexecOut': output remarks of safeexec
+// 'stdout': stdout of the actual program, 'stdoutlen' its original length
+// 'stderr': stderr of the actual program, 'stderrlen'
 // 'outdata' is an associative array of what was written to the writable files
 // 'ok' is a boolean: did the program run okay, or crash?
-   return array('outdata'=>$outdata, 'safeexecOut'=>$safeexecOut, 'stdout'=>$output['data'], 'stdoutlen'=>$output['length'], 
-		'stderr'=>$errors['data'], 'stderrlen'=>$errors['length'], 'ok'=>(substr($safeexecOut, 0, 2)=="OK"));
+   return array('outdata'=>$outdata, 'safeexecOut'=>$safeexecOut, 
+		'stdout'=>$output['data'], 'stdoutlen'=>$output['length'], 
+		'stderr'=>$errors['data'], 'stderrlen'=>$errors['length'], 
+		'ok'=>(substr($safeexecOut, 0, 2)=="OK"));
 }
 
 // the following are global defaults in absence of overwritten settings
 function optionsAndDefaults() {
-  // note: these should be all lower case, there was once a bug in wordpress' shortcode processing otherwise
+  // note: these should be all lower case, there can be a bug in
+  // wordpress' shortcode processing otherwise
   return array( 
-	       "slug" => FALSE,                # important unless it's a pyExample or facultative
-	       "facultative" => "N",           # does this exercise not have a checkmark?
+	       "slug" => FALSE,          # needed unless pyExample/facultative
+	       "facultative" => "N",     # does it not have a checkmark?
+	       "translate" => FALSE,     # list of translation strings
 
 	       // stuff affecting what the pybox shows upon submission //
-	       "showinput" => "Y",             
+	       "showinput" => "Y",
 	       "showoutput" => "Y",
 	       "showstderr" => "N",            
 	       "showexpected" => "Y",
@@ -132,13 +149,13 @@ function optionsAndDefaults() {
 
 	       // elementary things for constructing test cases //     
 	       "input" => FALSE,
-	       "answer" => FALSE,              # rarely used: solver is preferred
+	       "answer" => FALSE,        # rarely used: solver is preferred
 	       "grader" => "*diff*",
 	       "solver" => FALSE,
 	       "repeats" => "1",   
 	       "generator" => FALSE,
 
-	       // additional things which run in Python along with the user code //
+	       // additional things which run in Python with the user code //
 	       "precode" => FALSE,
 	       "autotests" => FALSE,
 	       "rawtests" => FALSE,
@@ -148,19 +165,19 @@ function optionsAndDefaults() {
 	       "cpulimit" => "1",              # in seconds; maximum 10
 
 	       // restrictions on source code //
-	       "taboo" => FALSE,               # forbidden substrings/regexes for user code
-	       "maxeditdistance" => FALSE,     # is there a limit on edit distance from original code? (number)
+	       "taboo" => FALSE,               # forbidden substrings/regexes
+	       "maxeditdistance" => FALSE,     # limit # on edit distance?
 	       "originalcode" => FALSE,        # used with maxeditdistance
 
 	       // UI //
 	       "allowinput" => "N",            # is input allowed?
-	       "usertni" => FALSE,             # are user tests allowed in place of user input?	       
-	       "translate" => FALSE,
+	       "usertni" => FALSE,             # user tests (not user input)?
 	       
 	       // etc //
-	       "haltonwrong" => "Y",           # halt after any incorrect sub-problem?
-	       "nolog" => FALSE,               # don't generate a DB entry... used for pyExample, scramble
-	       "desirederror" => FALSE         # what error message must be produced?
+	       "haltonwrong" => "Y",           # halt after failed sub-problem?
+	       "desirederror" => FALSE,        # want user to cause error?
+	       "nolog" => FALSE,               # don't generate DB entry...
+	                                       # ...e.g for pyExample, scramble
 	       );
 }
 
@@ -170,7 +187,8 @@ function stderrNiceify($S) {
   $r = $lines[0];
   for ($i=1; $i<count($lines); $i++) {
     $line = $lines[$i];
-    if (preg_match('|(\s*)File "mainfile", line ([\d]*), in |', $line, $matches)) {
+    if (preg_match('|(\s*)File "mainfile", line ([\d]*), in |', 
+		   $line, $matches)) {
       $nextLine = $lines[$i+1]; //process two lines at a time
       $i++;
       if (preg_match('|\s*exec\(compile\(open\(\'usercode*|', $nextLine) || 
@@ -191,17 +209,25 @@ function stderrNiceify($S) {
     else if (preg_match('|(\s*)File "/static|', $line)) {
       $i++;
     }
-    else if (preg_match('|(\s*)File "usercode", line ([\d]*), in <module>\s*|', $line, $matches)) {
-      $r .= "\n" . $matches[1] . "In line $matches[2] of the code you submitted:";
+    else if (preg_match('|(\s*)File "usercode", line ([\d]*), in <module>\s*|',
+			$line, $matches)) {
+      $r .= "\n" . $matches[1] . 
+	"In line $matches[2] of the code you submitted:";
     }
-    else if (preg_match('|(\s*)File "usercode", line ([\d]*)\s*|', $line, $matches)) {
-      $r .= "\n" . $matches[1] . "In line $matches[2] of the code you submitted:";
+    else if (preg_match('|(\s*)File "usercode", line ([\d]*)\s*|', 
+			$line, $matches)) {
+      $r .= "\n" . $matches[1] . 
+	"In line $matches[2] of the code you submitted:";
     }
-    else if (preg_match('|(\s*)File "usertests", line ([\d]*), in <module>\s*|', $line, $matches)) {
-      $r .= "\n" . $matches[1] . "In line $matches[2] of the tests you submitted:";
+    else if (preg_match('|(\s*)File "usertests", line ([\d]*), in <module>\s*|'
+			, $line, $matches)) {
+      $r .= "\n" . $matches[1] . 
+	"In line $matches[2] of the tests you submitted:";
     }
-    else if (preg_match('|(\s*)File "usertests", line ([\d]*)\s*|', $line, $matches)) {
-      $r .= "\n" . $matches[1] . "In line $matches[2] of the tests you submitted:";
+    else if (preg_match('|(\s*)File "usertests", line ([\d]*)\s*|', 
+			$line, $matches)) {
+      $r .= "\n" . $matches[1] . 
+	"In line $matches[2] of the tests you submitted:";
     }
     else {
       $r .= "\n" . $line;
@@ -210,14 +236,20 @@ function stderrNiceify($S) {
   return $r;
 }
 
-// in next procedure, $testCaseDescription is an array with the same keys as optionsAndDefaults()
+// in next procedure, $testCaseDescription is an array with 
+// the same keys as optionsAndDefaults()
 // returns an associative array with values:
-// "result" => one of {"pass", "fail", "error"}, here "error" means something was wrong with the CEMC site or problem settings
+// "result" => one of {"pass", "fail", "error"}, 
+// where "error" means something was wrong with the CEMC site/problem settings
 // "message" => message to user in case of pass/fail
 // "errmsg" => error messagef
 // helper functions
-  function tcpass($message) {return array("result" => "pass", "message" => $message, "errmsg" => FALSE);}
-  function tcfail($message) {return array("result" => "fail", "message" => $message, "errmsg" => FALSE);}
+  function tcpass($message) {
+    return array("result" => "pass", "message" => $message, "errmsg" => FALSE);
+  }
+  function tcfail($message) {
+    return array("result" => "fail", "message" => $message, "errmsg" => FALSE);
+  }
 
 function inputMaker($TC) {
   global $inputInUse, $userinput, $usertni;
@@ -237,7 +269,8 @@ function inputMaker($TC) {
 
   return "def _genstdin():\n" 
     . " _stdout = _sys.stdout\n _sys.stdout = mystdout = _StringIO()\n"
-    . str_replace("\n", "\n ", "\n" . $generator) . "\n _sys.stdout = _stdout\n return mystdout.getvalue()\n"
+    . str_replace("\n", "\n ", "\n" . $generator)  
+    . "\n _sys.stdout = _stdout\n return mystdout.getvalue()\n"
     . "\n_stdin = _genstdin()";
 }
 
@@ -246,20 +279,24 @@ function outputDescription($pass, $args) {
   if ($pass === TRUE) {
     if (($showoutput=='Y' || $showexpected=='Y') && $stdout != "") {
       if ($grader == "*nograder*" || $grader == '*inplace*')
-	return __t("Program gave the following output:") . preBox($stdout, $stdoutlen);
+	return __t("Program gave the following output:") 
+	  . preBox($stdout, $stdoutlen);
       else
-	return __t("Program gave the following correct output:") . preBox($stdout, $stdoutlen);
+	return __t("Program gave the following correct output:") 
+	  . preBox($stdout, $stdoutlen);
     }
     else
       return "";
   }
   if ($pass === NULL) {
-    if ($showoutput != "Y" || ($stdoutlen == 0 && (!$ok || $hideemptyoutput == 'Y')))
+    if ($showoutput != "Y" || ($stdoutlen == 0 && 
+			       (!$ok || $hideemptyoutput == 'Y')))
       return "";
     elseif ($stdoutlen == 0)
       return __t("Program printed no output.")."<br>";
     else
-      return __t("Program gave the following output:") . preBox($stdout, $stdoutlen);
+      return __t("Program gave the following output:") 
+	. preBox($stdout, $stdoutlen);
   }
 
   // pass == FAIL
@@ -268,7 +305,8 @@ function outputDescription($pass, $args) {
   elseif ($stdoutlen == 0) {
     $part1 = __t("Program printed no output.");
     if ($requiredStdout != "") {
-      $part1 .= " <i>".__t("(Did you forget to use </i><code>print</code><i>?)")."</i>";
+      $part1 .= " <i>"
+	. __t("(Did you forget to use </i><code>print</code><i>?)")."</i>";
     }
     $part1 .= "<br/>";
   }
@@ -341,7 +379,8 @@ _stdincopy.close()
     $files['graderreply'] = NULL;
     $files['graderpre'] = NULL;
     $files['solverstdout'] = NULL;
-    $mainFile .= "_GRADER.runSolverWithTests()\n"; // run the solver before usercode, lest they mess up our globals.
+    // run the solver before usercode, lest they mess up our globals.
+    $mainFile .= "_GRADER.runSolverWithTests()\n"; 
     
     $testcode = "";
     if ($rawtests !== FALSE)
@@ -350,29 +389,40 @@ _stdincopy.close()
     if ($autotests != FALSE) {
       $autotests = softSafeDereference($autotests);
 
-      $python_ident_regex = '(\p{L}|\p{Nl}|_)(\p{L}|\p{N}|\p{Mn}|\p{Mc}|\p{Pc})*';
-      // note: this is close to, but not technically, 100% the same as the formal Python definition
+      $python_ident_regex = 
+	'(\p{L}|\p{Nl}|_)(\p{L}|\p{N}|\p{Mn}|\p{Mc}|\p{Pc})*';
+      // note: this is close to, but not technically, 100% the 
+      // same as the formal Python definition of an identifier
+
       $py_regex_parens = 2;
 
       foreach (explode("\n", $autotests) as $autotestline) {
-	if (preg_match('|^(\s*)(\S.*)$|', $autotestline, $matches)===0) continue; //skip blank lines
+	if (preg_match('|^(\s*)(\S.*)$|', $autotestline, $matches)===0) 
+	  continue; //skip blank lines
 	$indentation = $matches[1];
 	$command = trim($matches[2]);
-	if (1 == preg_match('@^'.$python_ident_regex.'$@u', $command)) { // a variable name
+	if (1 == preg_match('@^'.$python_ident_regex.'$@u', $command)) { 
+	  //varname
 	  $testcode .= $indentation . "_G.checkVar('$command')\n";
 	}
-	elseif (1 == preg_match('@^('.$python_ident_regex.')\s*\((.*)\)$@u', $command, $pieces)) {
-	  if ((strpos($pieces[2], $pieces[1]))===FALSE) // looks like a non-self-nested function call
-	    $testcode .= $indentation . "_G.autotestCall('" . $pieces[1] . "',[" . $pieces[2+$py_regex_parens] . "])\n";
+	elseif (1 == preg_match('@^('.$python_ident_regex.')\s*\((.*)\)$@u', 
+				$command, $pieces)) {
+	  if ((strpos($pieces[2], $pieces[1]))===FALSE)
+	    // looks like a non-self-nested function call
+	    $testcode .= $indentation . "_G.autotestCall('" . $pieces[1] 
+	      . "',[" . $pieces[2+$py_regex_parens] . "])\n";
 	  else { // something more complex
-	    $testcode .= $indentation . "_G.sayRunning(\"" . $command . "\")\n";
-	    $testcode .= $indentation . "_G.autotestCompare(\"" . $command . "\", $command)\n";
+	    $testcode .= $indentation . "_G.sayRunning(\"" . $command 
+	      . "\")\n";
+	    $testcode .= $indentation . "_G.autotestCompare(\"" . $command 
+	      . "\", $command)\n";
 	  }
 	}
 	else $testcode .= $autotestline . "\n"; // just leave it alone
       }
     }
-    $files['testcode'] = $testcode === FALSE ? "" : softSafeDereference($testcode) . "\n";
+    $files['testcode'] = 
+      $testcode === FALSE ? "" : softSafeDereference($testcode) . "\n";
   }
 
   $mainFile .= '
@@ -380,12 +430,15 @@ _orig_std = (_sys.stdin, _sys.stdout)
 _user_stdout = _StringIO()
 _sys.stdout = _TeeOut(_user_stdout, _orig_std[1])
 _sys.stdin = _StringIO(_stdin)
-exec(compile(open(\'usercode\', encoding="utf-8").read(), \'usercode\', \'exec\'))
+exec(compile(open(\'usercode\', encoding="utf-8").read(), '
+.'\'usercode\', \'exec\'))
 ';
   if (!$inputInUse) { // lesson 18, part 2: may do this even if facultative
     if ($inplace) {
-      $mainFile .= "exec(compile(open('testcode', encoding='utf-8').read(), 'testcode', 'exec'))\n";
-      $mainFile .= "_G.say('Y', 'noend')\n"; // success if none of the tests crash
+      $mainFile .= "exec(compile(open('testcode', encoding='utf-8').read(),"
+	. " 'testcode', 'exec'))\n";
+      $mainFile .= "_G.say('Y', 'noend')\n"; 
+      // success if none of the tests crash
     }
   }
   // we've got all the user stdout necessary for testing
@@ -396,10 +449,12 @@ _user_stdout.close()
 ';
   if (!$facultative && !$inputInUse) {
     if ($answer !== FALSE) {
-      $mainFile .= "_G._solver_stdout = " . pythonEscape(softSafeDereference($answer)) . "\n";
+      $mainFile .= "_G._solver_stdout = " 
+	. pythonEscape(softSafeDereference($answer)) . "\n";
     }
     if ($grader !== '*nograder*' && ($answer !== FALSE || $solver !== FALSE)) {
-      $mainFile .= "_G.stdoutGrading(_stdin, __user_stdout, _G._solver_stdout, " .pythonEscape(softSafeDereference($grader))." )\n";
+      $mainFile .= "_G.stdoutGrading(_stdin,__user_stdout,_G._solver_stdout, "
+	. pythonEscape(softSafeDereference($grader))." )\n";
       $files['stdoutgraderreply'] = NULL;
     }
   }
@@ -411,14 +466,19 @@ _user_stdout.close()
   global $usertni;
 
   if ($inputInUse && $usertni) {
-    $mainFile .= "\n" . "exec(compile(open('usertests', encoding='utf-8').read(), 'usertests', 'exec'))\n";
+    $mainFile .= "\n"  
+      . "exec(compile(open('usertests', encoding='utf-8').read(), "
+      . "'usertests', 'exec'))\n";
     global $userinput;
     $files['usertests'] = $userinput;
   }
 
   $files["mainfile"] = $mainFile;
 
-  $userResult = safepython($files, "mainfile", "" /* stdin is simulated */, $cpulimit);
+  $userResult = safepython($files, 
+			   "mainfile", 
+			   "" /* stdin is simulated */, 
+			   $cpulimit);
 
   extract($userResult);
 
@@ -429,7 +489,8 @@ _user_stdout.close()
     $m .= $testDescription;
 
   if (!$inputInUse && $inplace && trim($outdata['graderpre']) != '')
-    $m .= '<i>'.__t('Before running your code:').'</i> ' . $outdata['graderpre'] . '<br/>';
+    $m .= '<i>'.__t('Before running your code:').'</i> ' 
+      . $outdata['graderpre'] . '<br/>';
 
   if ($showinput=="Y" && !$inputInUse && !$noInput &&
       ($hideemptyinput=="N" || $outdata['stdincopy']!=""))
@@ -437,7 +498,8 @@ _user_stdout.close()
 
   $errnice = preBox(stderrNiceify($stderr), $stderrlen);
   if (userIsAdmin()) 
-    $errnice .= JQpopUp("Debug: view unsanitized", preBox($stderr, $stderrlen));
+    $errnice .= JQpopUp("Debug: view unsanitized", 
+			preBox($stderr, $stderrlen));
 
   if ($stderr=='')
     $errnice = '';
@@ -446,22 +508,35 @@ _user_stdout.close()
 
   if ($ok) 
     $m .= "<p>".__t('Program executed without crashing.')."</p>";
-  elseif (firstLine($safeexecOut) == 'Command exited with non-zero status (1)') 
+  elseif (firstLine($safeexecOut) == 
+	  'Command exited with non-zero status (1)') 
     $m .= "<p>".__t("Program crashed.")."</p>";
   else
-    $m .= "<p>".__t("Program crashed &mdash; ") . firstLine($safeexecOut) . ".</p>";
+    $m .= "<p>".__t("Program crashed &mdash; ") 
+      . firstLine($safeexecOut) . ".</p>";
+
+  if (1 === 2) {   // these lines are just to trick gettext
+    __t("Memory Limit Exceeded") . __t("Time Limit Exceeded") 
+      . __t("Command exited with non-zero status") 
+      . __t("Command terminated by signal") . __t("Output Limit Exceeded")
+      . __t("Invalid Function") . __t("Internal Error");
+  }
 
   if ($showsafeexec=="Y")
     $m .= "Sandbox messages:" . preBox($safeexecOut);
 
   $simpleOutputDescription = outputDescription
-    (NULL, array('showoutput'=>$showoutput, 'stdoutlen'=>$stdoutlen, 'hideemptyoutput'=>$hideemptyoutput,
-		 'stdout'=>$stdout, 'ok'=>$ok));
+    (NULL, array('showoutput'=>$showoutput, 
+		 'stdoutlen'=>$stdoutlen, 
+		 'hideemptyoutput'=>$hideemptyoutput,
+		 'stdout'=>$stdout, 
+		 'ok'=>$ok));
 
   if ($desirederror !== FALSE) {
     $m .= $simpleOutputDescription;
     $lines = explode("\n", trim($userResult["stderr"]));
-    $goodFail = (count($lines)>0) && ($lines[count($lines)-1]) == $desirederror;
+    $goodFail = (count($lines)>0) && 
+      ($lines[count($lines)-1]) == $desirederror;
     $m .= $errnice;
     return $goodFail ? tcpass($m) : tcfail($m);
   }
@@ -469,9 +544,11 @@ _user_stdout.close()
   if ((!$ok) || $facultative) { // we don't care what's in stdout
     $graderreply = trim(getSoft($outdata, 'graderreply', ''));
     if (!$ok && !$inputInUse && $graderreply != '') 
-      $m .= "<i>".__t("The grader said:")."</i><div>" . $graderreply . "</div>";
+      $m .= "<i>".__t("The grader said:")."</i>"
+	. "<div>" . $graderreply . "</div>";
     elseif ($inplace && $solver === FALSE & $graderreply != '')  
-      $m .= "<i>".__t("Automatic tests:")."</i><div>" . substr($graderreply, 0, -1) . "</div>";
+      $m .= "<i>".__t("Automatic tests:")."</i>"
+        . "<div>" . substr($graderreply, 0, -1) . "</div>";
     $m .= $errnice . $simpleOutputDescription;
     return $ok ? tcpass($m) : tcfail($m);
   }
@@ -482,11 +559,13 @@ _user_stdout.close()
     $inplacereply = substr($GR, 0, -1);
 
     if ($inplacereply != '')
-      $inplacereply = "<i>".__t("The grader said:")."</i><div>$inplacereply</div>";
+      $inplacereply = "<i>".__t("The grader said:")."</i>"
+	."<div>$inplacereply</div>";
 
     if ($inplaceresult == 'Y') {
       if ($outdata['solverstdout'] == '')
-	return tcpass($m . $inplacereply . $errnice . $simpleOutputDescription);
+	return tcpass($m . $inplacereply . $errnice 
+		      . $simpleOutputDescription);
     }
     elseif ($inplaceresult == 'N')
       return tcfail($m . $inplacereply . $errnice . $simpleOutputDescription);
@@ -496,23 +575,30 @@ _user_stdout.close()
 
   // the user's code did not crash. what did the stdout grader say?
   $outGraderReply = $outdata['stdoutgraderreply'];
-  if ($outGraderReply=="" || !( $outGraderReply[0] == "Y" || $outGraderReply[0] == "N") )
-    throw new PyboxException("Grader error 2 [" . $outGraderReply .'|' . $outdata['graderreply'] . "|" . ord(substr($outdata['graderreply'], -1)) . "| $m ]");
+  if ($outGraderReply=="" || !( $outGraderReply[0] == "Y" 
+				|| $outGraderReply[0] == "N") )
+    throw new PyboxException("Grader error 2 [" . $outGraderReply 
+			     .'|' . $outdata['graderreply'] . "|" 
+			     . ord(substr($outdata['graderreply'], -1)) 
+			     . "| $m ]");
 
   $outinfo = array('stdout'=>$stdout, 'stdoutlen'=>$stdoutlen,
-		   'requiredStdout'=>getSoft($outdata, 'solverstdout', $answer),
-		   'showoutput'=>$showoutput, 'showexpected'=>$showexpected, 'grader'=>$grader);
+		   'requiredStdout'=>getSoft($outdata,'solverstdout', $answer),
+		   'showoutput'=>$showoutput, 'showexpected'=>$showexpected, 
+		   'grader'=>$grader);
   $m .= outputDescription($outGraderReply[0] == "Y", $outinfo) . $errnice;
 
   if (strlen(trim($outGraderReply)) > 1)
-    $m .= "<p>".__t("Result of grading: ") . substr($outGraderReply, 1) . "</p>";
+    $m .= "<p>".__t("Result of grading: ") . substr($outGraderReply, 1) 
+      . "</p>";
 
   return ($outGraderReply[0]=="Y") ? tcpass($m) : tcfail($m);
 }
 // end of doGrading
 
 
-// this is only for saving completed coding exercises; short answer etc work differently.
+// this is only for saving completed coding exercises; 
+// short answer etc work differently.
 function saveCompletion() {
   global $facultative, $slug;
   if ( !is_user_logged_in() || $facultative || $slug === NULL) 
@@ -521,7 +607,8 @@ function saveCompletion() {
   global $wpdb;
   $uid = wp_get_current_user()->ID;
   $table_name = $wpdb->prefix . "pb_completed";
-  $sqlcmd = "SELECT COUNT(1) FROM $table_name WHERE userid = %d AND problem = %s";
+  $sqlcmd = "SELECT COUNT(1) FROM $table_name WHERE "
+    ."userid = %d AND problem = %s";
   $count = $wpdb->get_var($wpdb->prepare($sqlcmd, $uid, $slug));
   if ($count==0) {
     $wpdb->insert( $table_name, 
@@ -530,9 +617,12 @@ function saveCompletion() {
   }
 }
 
-//return string of submit.php: 1st character indicates status and the rest is html for the pybox. character codes:
+//return string of submit.php: 1st character indicates status and
+//the rest is html for the pybox. 
+//**character codes**
 //Y: correct/success! the user completed the exercise.
-//y: correct/success! but read-only or user input, so it would be wrong to say exercise is complete.
+//y: correct/success! but read-only or user input or facultative,
+//   so it would be wrong to say exercise is complete.
 //E: error
 //N: incorrect/fail
 
@@ -542,19 +632,29 @@ function mpass($message) {
   if (!$facultative) saveCompletion(); 
   return ($facultative?"y":"Y<b>".__t("Success!")."</b><br/>") . $message;
 } //helper
+
 function mfail($message) {
   global $facultative;
-  return ($facultative?"N":"N<b>".__t("Did not pass tests. Please check details below and try again.")."</b><br/>") . $message;
+  return ($facultative?"N":"N<b>"
+	  .__t("Did not pass tests. "
+	       . "Please check details below and try again.")."</b><br/>") 
+    . $message;
 } //helper
+
 function merror($message, $errmsg, $suppress = -1) {
   global $beginstamp;
-  pyboxlog("[main error] " . $errmsg . " (partial message: " . $message . ")", $suppress);
-  return "E"."<b>Internal error or HTTP error, details below. You can <a href=\"" 
-    . cscurl('contact') . "\">contact us</a>.</b> Timestamp: " . date("y-m-d H:i:s", $beginstamp) . "<br/>" . preBox($errmsg);
+  pyboxlog("[main error] " . $errmsg 
+	   . " (partial message: " . $message . ")", $suppress);
+  return "E"."<b>Internal error or HTTP error, details below. "
+    . "You can <a href=\"" . cscurl('contact') . "\">contact us</a>."
+    . "</b> Timestamp: " . date("y-m-d H:i:s", $beginstamp) . "<br/>" 
+    . preBox($errmsg);
 } //helper
+
 function msave() {
   global $userid;
-  return "S".(($userid==-1)?__t("You must log in to save data."):__t("Program saved."));
+  return "S".(($userid==-1)?__t("You must log in to save data.")
+	      :__t("Program saved."));
 }
 
 function main() {
@@ -574,11 +674,15 @@ function main() {
 		  '" was requested instead of "POST"', 'suppress');
 
   if (count($_POST)==0)
-    return merror('', 'HTTP mangling: POST request contained no data', 'suppress');
+    return merror('', 'HTTP mangling: POST request contained no data', 
+		  'suppress');
 
   if (strlen(print_r($_POST, TRUE))>POSTLIMIT) {
-    pyboxlog("submit.php got too many bytes of data:" . strlen(print_r($_POST, TRUE)));
-    return mfail(sprintf(__t('Submitted data (program and/or test input) too large. Reduce size or <a href = "%s">run at home</a>.'), 
+    pyboxlog("submit.php got too many bytes of data:" 
+	     . strlen(print_r($_POST, TRUE)));
+    return mfail(sprintf(__t('Submitted data (program and/or test input) '
+			     .'too large. Reduce size or <a href = "%s">'
+			     .'run at home</a>.'), 
 			 cscurl('install')));
   }
   
@@ -586,11 +690,11 @@ function main() {
   $usercode = getSoft($_POST, "usercode" . $id, -1);
   if (!is_string($usercode))
     return merror("", "No usercode" . $id . "!" . print_r($_POST, TRUE));
-  $usercode = stripslashes($usercode);                         // php magic quotes!
-  $usercode = preg_replace('|\xc2\xa0|', ' ', $usercode);      // non-breaking spaces introduced by editors
+  $usercode = stripslashes($usercode);                    // php magic quotes!
+  $usercode = preg_replace('|\xc2\xa0|', ' ', $usercode); // nbsp
 
-  $userinput = stripslashes(getSoft($_POST, "userinput", "")); // damn you, php magic quotes!
-  $userinput = preg_replace('|\xc2\xa0|', ' ', $userinput);    // non-breaking spaces introduced by editors
+  $userinput = stripslashes(getSoft($_POST, "userinput", "")); //magic quotes
+  $userinput = preg_replace('|\xc2\xa0|', ' ', $userinput);    //nbsp
 
   $hash = $_POST["hash"];
   
@@ -608,12 +712,14 @@ function main() {
   $problemArgs = $wpdb->get_var($wpdb->prepare("
 SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   if ($problemArgs === NULL)
-    return merror("", sprintf(__t("Pybox error: problem hash %s not found. Try reloading the page."), $hash));
+    return merror("", sprintf(__t("Pybox error: problem hash %s not found. "
+				  . "Try reloading the page."), $hash));
 
   $problemArgs = json_decode($problemArgs, TRUE);
 
   //  if ($problemArgs != $problemArgsNew)
-  //  pyboxlog("different: " . var_export($problemArgs, TRUE) . var_export($problemArgsNew, TRUE));
+  //  pyboxlog("different: " . var_export($problemArgs, TRUE) 
+  // . var_export($problemArgsNew, TRUE));
   //else
   //  pyboxlog("same", TRUE);
 
@@ -655,7 +761,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
 
   $slug = getSoft($problemArgs, 'slug', NULL);
 
-  //most of the submit logging preparation. anything quitting earlier is not logged in DB
+  //most of submit logging preparation. quitting earlier => not logged in DB
   if (!isSoft($problemOptions, "nolog", "Y")) {
     $postmisc = $_POST;
     unset($postmisc['usercode' . $id]);
@@ -699,7 +805,8 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
       }
       $match = preg_match("#.*".trim($regex).".*#", $usercode);
       if ($match != 0) {
-	return mfail(sprintf(__t("You cannot use %s in this exercise."), "<code>".trim($display)."</code>"));
+	return mfail(sprintf(__t("You cannot use %s in this exercise."), 
+			     "<code>".trim($display)."</code>"));
       }
     }
   }  
@@ -710,9 +817,12 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     $T = preg_replace('/\s+/', '', $problemOptions["originalcode"]);
     $s = strlen($S);
     $t = strlen($T);
-    $msg = sprintf(__t("You are only allowed to change at most %s characters compared to the original version of the code."), $k);
+    $msg = sprintf(__t("You are only allowed to change at most %s "
+		       . "characters compared to the original version "
+		       . "of the code."), $k);
     if (abs($s-$t)>2*$k+5)
-      return mfail($msg) . " " . sprintf(__t("You changed %s or more."), 2*$k+5);
+      return mfail($msg) . " " . 
+	sprintf(__t("You changed %s or more."), 2*$k+5);
     else {
       $DP = array_fill(0, $s+1, NULL);
       for ($i=0; $i<=$s; $i++)
@@ -726,11 +836,13 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
 	    $DP[$i][$j] = $DP[$i-1][$j-1];
 	    if ($S[$i-1] != $T[$j-1])
 	      $DP[$i][$j]++;
-	    $DP[$i][$j] = min($DP[$i][$j], 1+min($DP[$i][$j-1], $DP[$i-1][$j]));
+	    $DP[$i][$j] = min($DP[$i][$j], 1+min($DP[$i][$j-1], 
+						 $DP[$i-1][$j]));
 	  }
 	}
       if (($DP[$s][$t]) > (0+$k)) 
-	return mfail( $msg . " " . sprintf(__t("You changed %s."), $DP[$s][$t]));
+	return mfail( $msg . " " . sprintf(__t("You changed %s."), 
+					   $DP[$s][$t]));
     }
   }
   
@@ -751,11 +863,13 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   $allCorrect = TRUE; 
   $m = ''; //the result string, built a bit at a time.
   ///*********************************************** main grading loop ***/
-  foreach ($subproblemOptions as $N=>$spo) { // spo: subproblemOptions for current subproblem
+  foreach ($subproblemOptions as $N=>$spo) { 
+    // spo: subproblemOptions for current subproblem
     for ($i=0; $i<$spo["repeats"]; $i++) {      
       $tcCurrent++;
       if (!($inputInUse) && $tcTotal > 1)
-	$m .= "<b>".sprintf(__t('Results for test case %1$s out of %2$s'), $tcCurrent, $tcTotal) . "</b><br/>";
+	$m .= "<b>".sprintf(__t('Results for test case %1$s out of %2$s'), 
+			    $tcCurrent, $tcTotal) . "</b><br/>";
       try {
 	$GLOBALS['pb_translation'] = getSoft($spo, 'translate', NULL);
 	$tcOutcome = doGrading($usercode, $spo);
@@ -792,7 +906,8 @@ if ($logRow != FALSE) {
  }
 
 $meta['ipaddress'] = $_SERVER['REMOTE_ADDR'];
-endProfilingEntry($mainProfilingID, array("crossref"=>$crossref, "meta"=>$meta));
+endProfilingEntry($mainProfilingID, 
+		  array("crossref"=>$crossref, "meta"=>$meta));
 
 
 // end of file

@@ -56,7 +56,8 @@ minor text,
 ordering integer,
 title text,
 id integer,
-number text
+number text,
+lang text
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
   }
@@ -75,7 +76,8 @@ graderArgs text,
 hash text,
 url text,
 publicname text,
-content text
+content text,
+lang text
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
   }

@@ -4,56 +4,68 @@ add_shortcode('makedb', 'makedb');
 
 function makedb($content, $options) {
 
-  global $wpdb;
-
-  if (PB_DEV || strpos($_SERVER['REQUEST_URI'], '~cscircles') === true) {
-    echo "<b>WARNING: You must visit from the canonical site location to get the links to be correct.</b>";
-  }
-
-  pyboxlog('[makedb] Rebuilding problem and lesson db', TRUE);
-
   $out = get_pages();
   $lessons = array();
 
   foreach ($out as $page) {
     $s = $page->post_title;
     $m = preg_match('/^([0-9]+)([A-Z]?)\: (.*)$/', $s, $matches);
-    $lang = reset(get_the_terms($page->ID, 'language'));
-    $lang = $lang->slug;
-    if ($lang=='en' && ($m >= 1))
-      $lessons[] = array('number'=>$matches[1].$matches[2], 'title'=>$matches[3], 
-			 'major'=>$matches[1], 'minor'=>$matches[2], 'id'=>$page->ID);
+    global $polylang;
+    $lang = $polylang->get_post_language($page->ID)->slug;
+    if ($m >= 1) 
+      $lessons[] = array('number'=>$matches[1].$matches[2], 
+			 'title'=>$matches[3], 
+			 'major'=>$matches[1], 
+			 'minor'=>$matches[2], 
+			 'id'=>$page->ID,
+			 'lang'=>$lang); 
+    elseif (get_page_by_path('console')->ID == pll_get_post($page->ID, 'en'))
+      $lessons[] = array('id'=>$page->ID, 'number'=>NULL, 'lang'=>$lang);
+    // go through the console page too, mainly to set up the right url in history grids,
+    // it does not get added to pb_lessons but its contents do get added to pb_problems
   }
 
   function cmp($l1, $l2) {
+    $c = strcmp($l1['lang'], $l2['lang']);
+    if ($c != 0) return $c;
+    if ($l1['number'] == NULL ^ $l2['number'] == NULL) {
+      return $l1['number'] == NULL ? 1 : -1;
+    }
     $c = $l1['major'] - $l2['major'];
     if ($c != 0) return $c;
     return strcmp($l1['minor'], $l2['minor']);
   }
   usort($lessons, 'cmp');
 
+  pyboxlog('[makedb] Rebuilding problem and lesson db', TRUE);
+
+  global $wpdb;
+
   $lesson_table_name = $wpdb->prefix . "pb_lessons";
   $problem_table_name = $wpdb->prefix . "pb_problems";
   $wpdb->query("TRUNCATE TABLE $problem_table_name;");
   $wpdb->query("TRUNCATE TABLE $lesson_table_name;");
 
-  // go through the console page too, mainly to set up the right url in history grids
-  $lessons[] = array('id'=>'126', 'number'=>NULL); 
-
-  $i=0;
+  $currlang = 'xx';
+  $i = -1;
   foreach ($lessons as $l) {
+    if ($currlang != $l['lang']) {
+      $currlang = $l['lang'];
+      $i = 0;
+    }
     $l['ordering'] = $i;    
-    echo "<div id='x$i'>";
+    echo "<div id='x$currlang$i'>";
     if ($l['number'] != NULL)
       echo ($wpdb->insert($lesson_table_name, $l)!=1?'insert bad':'insert ok');
     echo ' ' . json_encode($l) . "</div>\n";
     $url = get_page_link($l['id']);
+    $url = str_replace('/dev', '', $url);
     $index = $l['number'] == NULL?-1:$i;
     echo '<script type="text/javascript">
 jQuery.ajax({type:"GET",
              url:"'.$url.'",
-             data:jQuery.param({"makeproblemdb":'.$index.',"lessonnumber":"'.$l['number'].'"}),
-             success:function(data){jQuery("#x'.$i.'").append("<br/>retrieved, "+data.length+" bytes</br>");}});
+             data:jQuery.param({"makeproblemdb":'.$index,',"lessonlang":"'.$currlang.'","lessonnumber":"'.$l['number'].'"}),
+             success:function(data){jQuery("#x'.$currlang . $i.'").append("<br/>retrieved, "+data.length+" bytes</br>");}});
 </script>';
     $i++;
   }

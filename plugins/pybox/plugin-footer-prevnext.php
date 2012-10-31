@@ -19,7 +19,9 @@ function showLocationHandler() {
   $lo = $thisrow->ordering - 1;
   $hi = $thisrow->ordering + 2;
 
-  $results = $wpdb->get_results("SELECT * FROM $table_name WHERE ordering >= $lo AND ordering <= $hi ORDER BY ordering ASC");
+  $results = $wpdb->get_results("SELECT * FROM $table_name WHERE "
+				."ordering >= $lo AND ordering <= $hi AND lang LIKE '".pll_current_language()."' "
+				."ORDER BY ordering ASC");
   
   echo '<div class="locator">';
   echo '<table class="locator"><tr>';
@@ -35,15 +37,17 @@ function showLocationHandler() {
     $factor = 100-10*$factor;
     $longname = $row->number.': '.$row->title;
 
-    echo '<a style="font-size:'.$factor.'%" class="open-same-window locator locator-'.$s.'" ';
+    echo '<a style="font-size:'.$factor.'%" '
+      .'class="open-same-window locator locator-'.$s.'" ';
     
     if ($s != 'c') 
       echo ' title="'.$longname.'" href="'.get_page_link($row->id).'">'; 
     else 
-      echo ' title="'.$longname.' '.__t('(goes to top of current page)').'" onclick="scrollToTop()">';
+      echo ' title="'.$longname.' '
+	.__t('(goes to top of current page)').'" onclick="scrollToTop()">';
     echo "<span class='buttn'>";
     if ($thisrow->ordering == $row->ordering-1) 
-      echo "<span class='nextlesson'>Next</span> ";
+      echo "<span class='nextlesson'>".__t("Next")."</span> ";
     echo $longname;
     echo '</span></a>';
   }

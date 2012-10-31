@@ -99,6 +99,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
     if ($graderOptions != NULL) {
       $row['graderArgs'] = $graderOptions;
     }
+    $row['lang'] = $_GET['lessonlang'];
     $wpdb->insert($table_name, $row);
   }
   else if ($hash != NULL) {
@@ -114,7 +115,8 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
 		   'url' => get_page_link($post->ID) . '#pybox' . $id,
 		   'shortcodeArgs' => $args,
 		   'graderArgs' => $graderOptions,
-		   'hash' => $hash);
+		   'hash' => $hash,
+		   'lang' => pll_current_language());
       if ($slug != 'NULL')  $row['slug'] = $slug;
       $wpdb->insert("wp_pb_problems", $row);
     }
@@ -379,7 +381,6 @@ function list_pybox_pages($options, $content) {
       }
     }
   }
-  $links[] = array("url"=>cscurl('search'), 'title'=>__t('Search'));
 
   $user_id      = get_current_user_id();
   $current_user = wp_get_current_user();

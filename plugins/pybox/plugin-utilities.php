@@ -18,23 +18,27 @@ function translateOf($string, $translations) {
 }
 
 function cscurl($slug) {
+
+  if ($slug == 'visualize' || $slug == 'search') 
+    return UWPHOME . $slug . '/';
+  if ($slug == 'homepage') 
+    return is_admin() ? "/" : pll_home_url();
   
-  $cscurlmap = array(
-		     ('progress') => __t('<url>user-page/'),
-		     ('search') => __t('<url>search/'),
-		     ('mail') => __t('<url>mail/'),
-		     ('resources') => __t('<url>resources/'),
-		     ('console') => __t('<url>console/'),
-		     ('visualize') => __t('<url>visualize/'),
-		     ('usage') => __t('<url>using-this-website/'),
-		     ('contact') => __t('<url>contact/'),
-		     ('install') => __t('<url>run-at-home/'),
-		     ('homepage') => __t('<url>')
+  $cscslugmap = array(
+		     ('progress') => 'user-page',
+		     ('mail') => 'mail',
+		     ('resources') => 'resources',
+		     ('console') => 'console',
+		     ('usage') => 'using-this-website',
+		     ('contact') => 'contact',
+		     ('install') => 'run-at-home',
 		     );
   
-  $s = $cscurlmap[$slug];
-  if (substr($s, 0, 5)=='<url>') $s = substr($s, 5);
-  return UWPHOME . $s;
+  $s = $cscslugmap[$slug];
+  $res = get_page_by_path($s)->ID;
+  if (!is_admin())
+    $res = pll_get_post($res);
+  return get_permalink($res);
 }
 
 function userString($n, $short = false) {
@@ -42,7 +46,9 @@ function userString($n, $short = false) {
   $user = get_userdata($n);
   if ($user === FALSE) return FALSE;
   if (!$short)
-    return $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $n . ")";
+    return $user->display_name . " (" 
+      . $user->user_nicename . " " 
+      . $user->user_email . " #" . $n . ")";
   return $user->user_nicename . " #" . $n ;
 }
 
