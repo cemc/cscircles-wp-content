@@ -67,7 +67,8 @@ function wpcf7() {
 		'processing_within' => '',
 		'widget_count' => 0,
 		'unit_count' => 0,
-		'global_unit_count' => 0 );
+		'global_unit_count' => 0,
+		'result' => array() );
 }
 
 function wpcf7_load_plugin_textdomain() {
@@ -141,9 +142,35 @@ function wpcf7_convert_to_cpt( $new_ver, $old_ver ) {
 			$metas = array( 'form', 'mail', 'mail_2', 'messages', 'additional_settings' );
 
 			foreach ( $metas as $meta ) {
-				update_post_meta( $post_id, $meta,
+				update_post_meta( $post_id, '_' . $meta,
 					wpcf7_normalize_newline_deep( maybe_unserialize( $row->{$meta} ) ) );
 			}
+		}
+	}
+}
+
+add_action( 'wpcf7_upgrade', 'wpcf7_prepend_underscore', 10, 2 );
+
+function wpcf7_prepend_underscore( $new_ver, $old_ver ) {
+	if ( version_compare( $old_ver, '3.0-dev', '<' ) )
+		return;
+
+	if ( ! version_compare( $old_ver, '3.3-dev', '<' ) )
+		return;
+
+	$posts = WPCF7_ContactForm::find( array(
+		'post_status' => 'any',
+		'posts_per_page' => -1 ) );
+
+	foreach ( $posts as $post ) {
+		$props = $post->get_properties();
+
+		foreach ( $props as $prop => $value ) {
+			if ( metadata_exists( 'post', $post->id, '_' . $prop ) )
+				continue;
+
+			update_post_meta( $post->id, '_' . $prop, $value );
+			delete_post_meta( $post->id, $prop );
 		}
 	}
 }

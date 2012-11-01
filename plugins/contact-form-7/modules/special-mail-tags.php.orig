@@ -74,18 +74,6 @@ function wpcf7_special_mail_tag_for_post_data( $output, $name ) {
 	elseif ( '_post_author_email' == $name )
 		$output = $user->user_email;
 
-	elseif ( 'user_info' == $name ) {
-	  if ( is_user_logged_in() ) {
-	    $output = 'logged in';
-	    $user = wp_get_current_user();
-	        $output = '#' . $user->ID . ' ' . $user->user_login
-		        . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">" 
-		        . " " . $user->display_name
-		  . " " . $user->user_email;
-	  }
-	  else $output = 'User not logged in.';
-	}
-
 	return $output;
 }
 
