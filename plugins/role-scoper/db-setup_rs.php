@@ -159,7 +159,7 @@ function scoper_update_schema($last_db_ver) {
 	 assignment_id bigint(20) unsigned NOT NULL auto_increment,
 	 user_id bigint(20) unsigned NULL,
 	 group_id bigint(20) unsigned NULL,
-	 role_name varchar(32) NOT NULL default '',
+	 role_name varchar(64) NOT NULL default '',
 	 role_type enum('rs', 'wp', 'wp_cap') NOT NULL default 'rs',
 	 scope enum('blog', 'term', 'object') NOT NULL,
 	 src_or_tx_name varchar(32) NOT NULL default '',
@@ -183,7 +183,7 @@ function scoper_update_schema($last_db_ver) {
 	
 	$tabledefs .= "CREATE TABLE $wpdb->role_scope_rs (
 	 requirement_id bigint(20) NOT NULL auto_increment,
-	 role_name varchar(32) NOT NULL default '',
+	 role_name varchar(64) NOT NULL default '',
 	 role_type enum('rs', 'wp', 'wp_cap') NOT NULL default 'rs',
 	 topic enum('blog', 'term', 'object') NOT NULL,
 	 src_or_tx_name varchar(32) NOT NULL default '',

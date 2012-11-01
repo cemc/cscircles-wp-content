@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Role Scoper 1.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 01:29-0500\n"
+"POT-Creation-Date: 2012-08-04 01:28-0500\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Kevin Behrens <kevin@agapetry.net>\n"
 "Language-Team: agapetry <kevin@agapetry.net>\n"
@@ -2954,8 +2954,7 @@ msgid "Role Scoper Extensions are available for the following plugins: %s"
 msgstr ""
 
 #: E:\www\wp34\wp-content\plugins\role-scoper/admin/misc/version_notice_rs.php:128
-#, php-format
-msgid "Interested in tigher WP integration, custom privacy and moderation statuses, bbPress roles, BuddyPress role groups and professional support? Step up to %s."
+msgid "Interested in tigher WP integration, custom privacy and moderation statuses, bbPress roles, BuddyPress role groups and professional support? Step up to <a href='http://presspermit.com'>Press&nbsp;Permit</a>."
 msgstr ""
 
 #: E:\www\wp34\wp-content\plugins\role-scoper/hardway/cache-persistent.php:200

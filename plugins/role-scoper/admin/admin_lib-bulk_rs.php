@@ -225,7 +225,7 @@ class ScoperAdminBulkLib {
 			} 
 			
 			$js_call = "agp_display_if('role_duration_inputs', 'set_role_duration')";
-			echo "<label for='set_role_duration'><input type='checkbox' id='set_role_duration' name='set_role_duration' value='1' $checked onclick=\"$js_call\" /><strong>";
+			echo "<label for='set_role_duration'><input type='checkbox' id='set_role_duration' name='set_role_duration' value='1' $checked onclick=\"$js_call\" /> <strong>";
 			_e( 'Modify Role Duration', 'scoper' );
 			echo '</strong></label><br />';
 			

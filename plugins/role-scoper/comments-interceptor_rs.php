@@ -1,7 +1,6 @@
 <?php
 add_filter( 'comments_clauses', array( 'CommentsInterceptor_RS', 'flt_comments_clauses' ), 10, 2 );
-add_filter( 'wp_count_comments', array( 'CommentsInterceptor_RS', 'wp_count_comments_override'), 99 );
-
+add_filter( 'wp_count_comments', array( 'CommentsInterceptor_RS', 'wp_count_comments_override'), 99, 2 );
 
 class CommentsInterceptor_RS {
 	function flt_comments_clauses( $clauses, &$qry_obj ) {

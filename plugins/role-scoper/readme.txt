@@ -4,7 +4,7 @@ Donate link: http://agapetry.net/news/introducing-role-scoper/#role-scoper-downl
 Tags: restrict, access, permissions, cms, user, members, admin, category, categories, pages, posts, page, Post, privacy, private, attachment, files, rss, feed
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable Tag: 1.3.56
+Stable Tag: 1.3.57
 
 CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
 
@@ -112,6 +112,23 @@ Yes, at this point I plan to keep Role Scoper compatible with upcoming WP versio
 
 == Changelog ==
 
+= 1.3.57 - 10 Oct 2012 =
+* Fixed : Fatal error on first-time installation (Call to undefined function cr_role_caps)
+* Fixed : XML-RPC publishing error with Windows Live Writer, under some configurations
+* Fixed : XML-RPC connection failure with some external apps (including Lightbox NGG Exporter)
+* Fixed : RS Roles and Restrictions were not effective for post types or taxonomies with long names (>13 characters for Private Reader role, 20 to 24 for others)
+* Fixed : Default Roles were not assigned when post was created by a non-Editor
+* Fixed : Incorrect comment counts for non-Editors
+* Fixed : PHP 5.4 - warning "Creating default object from empty value" on front end access (sporadically or when internal cache not enabled)
+* Fixed : PHP warning for improper is_404() call
+* Fixed : Various PHP warnings
+* Change : If constant SCOPER_NO_HTACCESS is defined, eliminate all .htaccess file manipulations and rewrite rules insertions
+* Change : When deactivating or turning off file filtering, don't alter the .htaccess file if it does not contain a Role Scoper block
+* Compat : Relevanssi - teaser text always displayed for all search results (when Hidden Content Teaser enabled)
+* Compat : NextGen Gallery - Flash Uploader failure for non-Administrators
+* Compat : Revisionary - "Edit Pages" search results were displayed as uneditable under some configurations
+* Compat : Revisionary and other plugins which call users_who_can() - invalid empty array response under some configurations
+
 = 1.3.56 - 3 Aug 2012 =
 
 = WP 3.4 / PHP 5.4 =
@@ -131,7 +148,6 @@ Yes, at this point I plan to keep Role Scoper compatible with upcoming WP versio
 = Other Fixes =
 * Fixed : Other user's unattached uploads were always available in Media Library, regardless of RS option setting
 * Fixed : XML-RPC (ScribeFire) posting failure in some configurations, due to PHP warning
-* Fixed : Non-Editors could not see newly added link in link-manager.php until RS cache is flushed
 * Fixed : SCOPER_NO_ATTACHMENT_COMMENTS constant definition was ineffective for Administrators
 * Fixed : If "Users CSV Entry" option enabled, Group Members could not be added via rs_group_members > edit
 * Fixed : Categories / terms were filtered even if removed from Realm > Taxonomy Usage
@@ -141,6 +157,7 @@ Yes, at this point I plan to keep Role Scoper compatible with upcoming WP versio
 = Links / Link Categories =
 * Fixed : Link Editor restrictions did not limit category selection
 * Fixed : Link Editor role did not permit viewing widget on front end
+* Fixed : Non-Editors could not see newly added link in link-manager.php until RS cache is flushed
 
 = Page Editing =
 * Feature : New option Roles > Options > Advanced > Page Structure > "no Page Parent filter", means anyone who can edit submit or publish a page can select any parent

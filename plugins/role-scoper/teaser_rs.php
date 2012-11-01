@@ -14,6 +14,9 @@ class ScoperTeaser {
 		global $wpdb, $scoper, $wp_query;
 		global $query_interceptor;
 		
+		if ( ! $results )
+			return $results;
+		
 		if ( did_action('wp_meta') && ! did_action('wp_head') )
 			return $results;
 
@@ -33,6 +36,14 @@ class ScoperTeaser {
 				$request = $query_interceptor->last_request['post'];
 		}
 
+		if ( strpos( $request, 'WHERE 1=2' ) ) {
+			$ids = array();
+			foreach( array_keys($results) as $key ) {
+				$ids []= $results[$key]->ID;
+			}
+			$request = "SELECT * FROM $wpdb->posts WHERE ID IN ('" . implode("','", $ids) . "')";
+		}
+		
 		// Pagination could be broken by subsequent query for filtered ids, so buffer current paging parameters
 		// ( this code mimics WP_Query::get_posts() )
 		if ( ! empty( $wp_query->query_vars['posts_per_page'] ) ) {
@@ -74,7 +85,7 @@ class ScoperTeaser {
 
 		if ( $limitpos = strpos($request, ' LIMIT ') )
 			$request = substr($request, 0, $limitpos);
-
+			
 		$args['skip_teaser'] = true;
 
 		$filtered_request = $query_interceptor->flt_objects_request($request, 'post', $object_type, $args);
@@ -180,6 +191,9 @@ class ScoperTeaser {
 		}
 
 		global $scoper_teaser_filtered_ids;
+		
+		if ( ! isset($scoper_teaser_filtered_ids) )
+			self::posts_teaser_prep_results( $results, $tease_otypes, $args );
 		
 		if ( ! isset($scoper->teaser_ids) )
 			$scoper->teaser_ids = array();

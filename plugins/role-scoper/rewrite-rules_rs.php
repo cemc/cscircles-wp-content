@@ -19,8 +19,15 @@ class ScoperRewrite {
 				return;
 		}
 
-		if ( $insertion || file_exists($file_path) )	
+		if ( $insertion || file_exists($file_path) ) {
+			if ( ! $insertion ) { // if no insertion and no existing entry, don't mess
+				$htcontent = file_get_contents($file_path);
+				if ( false === strpos( $htcontent, $marker_text ) )
+					return;
+			}
+		
 			insert_with_markers( $file_path, $marker_text, explode( "\n", $insertion ) );
+		}
 	}
 	
 	
@@ -127,6 +134,9 @@ class ScoperRewrite {
 	function update_blog_file_rules( $include_rs_rules = true ) {
 		global $blog_id;
 		
+		if ( defined( 'SCOPER_NO_HTACCESS' ) )
+			return;
+		
 		// avoid file collision by skipping if another flush was initiated < 5 seconds ago
 		if ( $last_regen = scoper_get_option( 'file_htaccess_date' ) ) {
 			if ( intval($last_regen) > agp_time_gmt() - 5  ) {
@@ -157,6 +167,9 @@ class ScoperRewrite {
 	}
 	
 	function &build_blog_file_rules() {
+		if ( defined( 'SCOPER_NO_HTACCESS' ) )
+			return '';
+		
 		$new_rules = '';
 
 		require_once( dirname(__FILE__).'/analyst_rs.php' );
@@ -273,6 +286,9 @@ class ScoperRewrite {
 	
 	// called by agp_return_file() in abnormal cases where file access is approved, but key for protected file is lost/corrupted in postmeta record or .htaccess file
 	function resync_file_rules() {
+		if ( defined( 'SCOPER_NO_HTACCESS' ) )
+			return;
+	
 		// Don't allow this to execute too frequently, to prevent abuse or accidental recursion
 		if ( agp_time_gmt() - get_option( 'last_htaccess_resync_rs' ) > 30 ) {
 			update_option( 'last_htaccess_resync_rs', agp_time_gmt() );

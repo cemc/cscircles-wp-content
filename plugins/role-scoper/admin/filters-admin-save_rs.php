@@ -69,9 +69,9 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
 			
-		if ( 'post' == $src_name ) {		
-			global $scoper_admin_filters;
-			$is_new_object = empty($scoper_admin_filters->last_post_status[$object_id]) || ( 'new' == $scoper_admin_filters->last_post_status[$object_id] ) || ( 'auto-draft' == $scoper_admin_filters->last_post_status[$object_id] );
+		if ( 'post' == $src_name ) {
+			global $wpdb;
+			$is_new_object = ! get_post_meta($object_id, '_scoper_custom', true) && ! $wpdb->get_var( "SELECT COUNT(*) FROM $wpdb->user2role2object_rs WHERE scope = 'object' AND src_or_tx_name = 'post' AND obj_or_term_id = '$object_id'" );
 		} else
 			$is_new_object = true;  // for other data sources, we have to assume object is new unless it has a role or restriction stored already.
 
@@ -837,6 +837,11 @@ function scoper_inherit_parent_roles($obj_or_term_id, $scope, $src_or_tx_name, $
 }
 
 function cr_get_posted_object_terms( $taxonomy ) {
+	if ( defined('XMLRPC_REQUEST') ) {
+		require_once( dirname(__FILE__).'/filters-admin-xmlrpc_rs.php' );
+		return _rs_get_posted_xmlrpc_terms( $taxonomy );
+	}
+
 	if ( 'category' == $taxonomy ) {
 		if ( ! empty($_POST['post_category']) )
 			return $_POST['post_category'];

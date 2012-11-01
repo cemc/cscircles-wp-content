@@ -6,7 +6,7 @@ class Relevanssi_Search_Filter_RS {
 	function Relevanssi_Search_Filter_RS() {
 		$this->valid_stati = array_merge( get_post_stati( array( 'public' => true ) ), get_post_stati( array( 'private' => true ) ) );
 
-		if ( ! empty($GLOBALS['relevanssi_free_plugin_version']) || ! empty($GLOBALS['relevanssi_plugin_version']) ) {
+		if ( ! empty($GLOBALS['relevanssi_variables']) || ! empty($GLOBALS['relevanssi_free_plugin_version']) || ! empty($GLOBALS['relevanssi_plugin_version']) ) {
 			remove_filter( 'relevanssi_post_ok', 'relevanssi_default_post_ok', 10, 2 );
 			add_filter( 'relevanssi_post_ok', array( &$this, 'relevanssi_post_ok' ), 10, 2 );
 		} else {

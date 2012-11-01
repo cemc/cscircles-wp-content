@@ -119,8 +119,23 @@ class CR_Data_Sources extends AGP_Config_Items {
 			if ( $it = $this->get_from_func($what, $src) )
 				return $it;
 		} else {
-			if ( defined('XMLRPC_REQUEST') && ! empty( $GLOBALS['xmlrpc_post_id_rs'] ) )
-				return $GLOBALS['xmlrpc_post_id_rs'];
+			if ( defined('XMLRPC_REQUEST') ) {
+				if ( ! empty( $GLOBALS['xmlrpc_post_id_rs'] ) )
+					return $GLOBALS['xmlrpc_post_id_rs'];
+				else {
+					global $wp_xmlrpc_server;
+					
+					if ( ! empty( $wp_xmlrpc_server->message->params) ) {
+						if ( in_array( $wp_xmlrpc_server->message->methodName, array( 'mt.setPostCategories', 'metaWeblog.editPost', 'metaWeblog.getPost' ) ) ) {
+							if ( ! empty( $wp_xmlrpc_server->message->params[0] ) ) {
+								return $wp_xmlrpc_server->message->params[0];
+							}
+						}
+					}
+					
+					return 0;
+				}
+			}
 				
 			if ( 'post' == $src->name && ! empty($GLOBALS['post']) ) {
 				if ( ! is_object($GLOBALS['post']) )
@@ -233,8 +248,24 @@ class CR_Data_Sources extends AGP_Config_Items {
 	
 	// determines, using cfg->data_sources config, the http POST variable for desired information, then returns its value if present
 	function get_from_http_post($what, $src, $object_type = '') {
-		if ( empty($_POST) )
+		if ( empty($_POST) ) {
+			if ( defined( 'XMLRPC_REQUEST' ) ) {
+				if ( ! empty($GLOBALS['scoper_xmlrpc_post_status'] ) ) {
+					return $GLOBALS['scoper_xmlrpc_post_status'];
+				} 
+				else {
+					global $wp_xmlrpc_server;
+					
+					if ( ! empty( $wp_xmlrpc_server->message->params) ) {
+						if ( 'metaWeblog.newPost' == $wp_xmlrpc_server->message->methodName ) {	 // TODO: move to function
+							return ( ! empty( $wp_xmlrpc_server->message->params[4] ) ) ? 'publish' : 'draft';
+						}
+					}
+				}
+			} 
+
 			return;
+		}
 		
 		if ( ! $src = $this->get($src) )
 			return;

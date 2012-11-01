@@ -3,7 +3,7 @@
 Plugin Name: Role Scoper
 Plugin URI: http://agapetry.net/
 Description: CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
-Version: 1.3.56
+Version: 1.3.57
 Author: Kevin Behrens
 Author URI: http://agapetry.net/
 Min WP Version: 3.0
@@ -41,7 +41,7 @@ if ( defined( 'SCOPER_VERSION' ) ) {
 	return;
 }
 
-define ('SCOPER_VERSION', '1.3.56');
+define ('SCOPER_VERSION', '1.3.57');
 define ('SCOPER_DB_VERSION', '1.1.4');
 
 // No filtering on dashboard Ajax or plugin installation/update, but run this check after defining version to prevent nuisance error message from Role Scoping for NGG
@@ -248,6 +248,16 @@ if ( ! $bail ) {
 		}
 	}
 
+	if ( ! defined( 'SCOPER_EARLY_INIT' ) ) {
+		$early_init_uri = ( defined( 'NGGVERSION' ) ) ? array('/wp-admin/?nggupload') : array();
+		foreach ( apply_filters( 'scoper_force_early_init_uris', $early_init_uri ) as $uri ) {
+			if ( $uri && strpos( $_SERVER['REQUEST_URI'], $uri ) ) {
+				define( 'SCOPER_EARLY_INIT', true );
+				break;
+			}
+		}
+	}
+	
 	// since sequence of set_current_user and init actions seems unreliable, make sure our current_user is loaded first
 	$priority = ( defined( 'SCOPER_EARLY_INIT' ) ) ? 1 : 50;
 	add_action('init', 'scoper_log_init_action', $priority);

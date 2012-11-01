@@ -645,27 +645,27 @@ class UsersInterceptor_RS
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
 		
+		if ( 'id' === $cols )
+			$cols = COL_ID_RS;
+		
 		if ( ! $orderby ) {
-			if ( ( COLS_ALL_RS == $cols ) || ( COLS_ID_DISPLAYNAME_RS == $cols ) )
+			if ( ( COLS_ALL_RS === $cols ) || ( COLS_ID_DISPLAYNAME_RS === $cols ) )
 				$orderby = " ORDER BY display_name";
-			elseif ( COLS_ID_NAME_RS == $cols )
+			elseif ( COLS_ID_NAME_RS === $cols )
 				$orderby = " ORDER BY user_login AS display_name";	// calling code assumes display_name property for user or group object
 		}
-		
-		if ( 'id' == $cols )
-			$cols = COL_ID_RS;
 
-		if ( COL_ID_RS == $cols ) {
+		if ( COL_ID_RS === $cols ) {
 			if ( $force_all_users )
 				$qry = "SELECT ID FROM $wpdb->users";
 			else
 				$qry = "SELECT DISTINCT uro.user_id AS ID FROM $wpdb->user2role2object_rs AS uro";
 		} else {
-			if ( COLS_ID_DISPLAYNAME_RS == $cols )
+			if ( COLS_ID_DISPLAYNAME_RS === $cols )
 				$qcols = "$wpdb->users.ID, $wpdb->users.display_name";
-			elseif ( COLS_ID_NAME_RS == $cols )
+			elseif ( COLS_ID_NAME_RS === $cols )
 				$qcols = "$wpdb->users.ID, $wpdb->users.user_login AS display_name";	// calling code assumes display_name property for user or group object
-			elseif ( COLS_ALL_RS == $cols )
+			elseif ( COLS_ALL_RS === $cols )
 				$qcols = "$wpdb->users.*";
 			else
 				$qcols = $cols;
@@ -675,7 +675,7 @@ class UsersInterceptor_RS
 		}
 
 		if ( $reqd_caps || ! $force_all_users ) {
-			if ( COL_ID_RS != $cols )
+			if ( COL_ID_RS !== $cols )
 				$qry .= " INNER JOIN $wpdb->user2role2object_rs AS uro ON uro.user_id = $wpdb->users.ID";
 
 			if ( ! is_array($args) )
@@ -709,7 +709,7 @@ class UsersInterceptor_RS
 		if ( empty($disable_memcache) && isset($this->user_cache[$qry_key]) )
 			return $this->user_cache[$qry_key];
 		
-		if ( COL_ID_RS == $cols )
+		if ( COL_ID_RS === $cols )
 			$users = scoper_get_col($qry);
 		else
 			$users = scoper_get_results($qry);
@@ -740,7 +740,7 @@ class UsersInterceptor_RS
 				}
 			}
 
-			if ( COL_ID_RS == $cols )
+			if ( COL_ID_RS === $cols )
 				$users = array_unique( $users );
 			else
 				$users = agp_array_unique_md( $users );

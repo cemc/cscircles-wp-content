@@ -248,7 +248,7 @@ foreach ( $scoper->data_sources->get_all() as $src_name => $src) {
 					$cap_safename = str_replace( ' ', '_', $cap_name );
 
 					echo "<li><input type='checkbox' name='{$rs_role_handle}_caps[]' id='{$rs_role_handle}_{$cap_safename}' value='$cap_name' $checked $disabled />"
-						. "<label for='{$rs_role_handle}_{$cap_safename}' title='$cap_name' $style>" . str_replace( ' ', '&nbsp;', ucwords( str_replace('_', ' ', $display) ) ) . '</label></li>';
+						. "<label for='{$rs_role_handle}_{$cap_safename}' title='$cap_name' $style> " . str_replace( ' ', '&nbsp;', ucwords( str_replace('_', ' ', $display) ) ) . '</label></li>';
 				}
 
 				echo '</ul></td></tr>';

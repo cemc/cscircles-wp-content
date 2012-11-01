@@ -213,6 +213,9 @@ class QueryInterceptor_RS
 		}
 		
 		// prevent hardway-admin filtering of any queries which may be triggered by this filter
+		if ( ! isset( $GLOBALS['scoper_status'] ) )
+			$GLOBALS['scoper_status'] = (object) array();
+		
 		$GLOBALS['scoper_status']->querying_db = true;
 		
 		// Note that term management capabilities (i.e. "manage_categories") are implemented via Term Roles on the Posts data source, with taxonomy as the object type

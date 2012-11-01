@@ -85,7 +85,7 @@ class ScoperRewriteMU {
 	function build_blog_file_redirects() {
 		global $wpdb, $blog_id, $base;
 		
-		if ( ! ScoperRewrite::site_config_supports_rewrite() )
+		if ( ! ScoperRewrite::site_config_supports_rewrite() || defined( 'SCOPER_NO_HTACCESS' ) )
 			return '';
 
 		$new_rules = '';
@@ -137,6 +137,9 @@ class ScoperRewriteMU {
 	
 	// remove RS rules from every .htaccess file in the wp-MU "files" folders
 	function clear_all_file_rules() {
+		if ( defined( 'SCOPER_NO_HTACCESS' ) )
+			return;
+		
 		global $wpdb, $blog_id;
 		$blog_ids = scoper_get_col( "SELECT blog_id FROM $wpdb->blogs ORDER BY blog_id" );
 		$orig_blog_id = $blog_id;

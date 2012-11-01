@@ -17,7 +17,7 @@
 		
 		if ( ! $src = $scoper->data_sources->get($tx->object_source) )
 			return $selected_terms;
-
+			
 		if ( ! isset($src->statuses) || (count($src->statuses) < 2) )
 			return $selected_terms;
 			
@@ -26,12 +26,9 @@
 		
 		if ( ! $status ) {
 			// determine current post status
-			if ( defined( 'XMLRPC_REQUEST' ) && ! empty($GLOBALS['scoper_xmlrpc_post_status'] ) ) {
-				$status = $GLOBALS['scoper_xmlrpc_post_status'];
-			} else {
-				if ( ! $status = $scoper->data_sources->get_from_http_post('status', $src) )
-					if ( $object_id )
-						$status = $scoper->data_sources->get_from_db('status', $src, $object_id);
+			if ( ! $status = $scoper->data_sources->get_from_http_post('status', $src) ) {
+				if ( $object_id )
+					$status = $scoper->data_sources->get_from_db('status', $src, $object_id);
 			}
 		}
 

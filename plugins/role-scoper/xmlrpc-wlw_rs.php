@@ -11,7 +11,7 @@ if ( isset($HTTP_RAW_POST_DATA) && $pos = strpos($HTTP_RAW_POST_DATA, '<string>'
 		if ( strpos($HTTP_RAW_POST_DATA, '<methodName>metaWeblog.newPost</methodName>') )
 			$post_id = 0;
 	}
-	
+
 if ( ! empty($post_id) ) {
 	global $xmlrpc_post_id_rs;
 	$xmlrpc_post_id_rs = $post_id;

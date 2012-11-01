@@ -1,7 +1,7 @@
 polylang : no customizations
+role-scoper : no customizations (previous ones were accepeted upstream)
 wp-ui : don't upgrade! the latest versions break compared to the current, old one.
 contact-form-7 : use contact-form-7.patch
-role-scoper : use role-scoper.patch ... or not did the author upstream? see also /terms-interceptor_rs.php on line 152 
 all others : ask Dave
 
 ==== PATCHING INFO ====
@@ -17,7 +17,8 @@ let's say that the old version was 1.3.55, and the new version is 1.3.56. arrang
 
 inside the hacked version (b)
 find . | grep '~'
-delete any emacs temp files you want to kill
+find . | grep 'orig'
+delete any emacs temp files or pre-patched backups you want to kill
 
 CREATE PATCH:
 cd into the 1.3.55 copy (a)
