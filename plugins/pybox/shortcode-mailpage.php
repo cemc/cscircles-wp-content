@@ -21,7 +21,8 @@ function validate() {
   if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin() ) )
     return array("error", __t("Access denied. You may need to log in first."));
 
-  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug like %s", $p), ARRAY_A);
+  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug like %s AND lang like '"
+ . pll_current_language() . "'", $p), ARRAY_A);
 
   if ($problem === null)
     return array("error", __t("No such problem exists."));
