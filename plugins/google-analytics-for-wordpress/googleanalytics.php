@@ -4,7 +4,7 @@ Plugin Name: Google Analytics for WordPress
 Plugin URI: http://yoast.com/wordpress/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v420
 Description: This plugin makes it simple to add Google Analytics to your WordPress blog, adding lots of features, eg. custom variables and automatic clickout and download tracking. 
 Author: Joost de Valk
-Version: 4.2.5
+Version: 4.2.8
 Requires at least: 3.0
 Author URI: http://yoast.com/
 License: GPL v3
@@ -28,18 +28,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This plugin was originally based on Rich Boakes' Analytics plugin: http://boakes.org/analytics
 
-define( 'GAWP_VERSION', '4.2.5' );
+define( 'GAWP_VERSION', '4.2.8' );
 
 /*
  * Admin User Interface
  */
 
-$options = get_option( 'Yoast_Google_Analytics' );
-
 if ( is_admin() && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) && !class_exists( 'GA_Admin' ) ) {
 
 	require_once plugin_dir_path( __FILE__ ) . 'yst_plugin_tools.php';
 	require_once plugin_dir_path( __FILE__ ) . '/wp-gdata/wp-gdata.php';
+
+	$options = get_option( 'Yoast_Google_Analytics' );
 
 	global $wp_version;
 	if ( version_compare( $wp_version, '3.3', '>=' ) && !isset( $options['tracking_popup'] ) )
@@ -875,7 +875,7 @@ if ( is_admin() && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) && !class_exists(
 
 
 		function authenticate() {
-			if ( isset( $_REQUEST['oauth_token'] ) ) {
+			if ( isset( $_REQUEST['ga_oauth_callback'] ) ) {
 				$o = get_option( $this->optionname );
 				if ( isset( $o['gawp_oauth']['oauth_token'] ) && $o['gawp_oauth']['oauth_token'] == $_REQUEST['oauth_token'] ) {
 					$gdata = new WP_GData(
@@ -907,7 +907,8 @@ if ( is_admin() && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) && !class_exists(
 					)
 				);
 
-				$request_token = $gdata->get_request_token( menu_page_url( 'google-analytics-for-wordpress', false ) );
+				$oauth_callback = add_query_arg( array( 'ga_oauth_callback' => 1 ), menu_page_url( 'google-analytics-for-wordpress', false ) );
+				$request_token  = $gdata->get_request_token( $oauth_callback );
 
 				$options = get_option( $this->optionname );
 				unset( $options['ga_token'] );
@@ -1182,7 +1183,11 @@ if ( !class_exists( 'GA_Filter' ) ) {
 			else
 				preg_match( $domainPatternUS, $host, $matches );
 
-			return array( "domain"=> $matches[0], "host"=> $host );
+			if ( isset($matches[0]) ) {
+				return array( "domain"=> $matches[0], "host"=> $host );
+			} else {
+				return false;
+			}
 		}
 
 		function ga_parse_link( $category, $matches ) {
@@ -1569,11 +1574,13 @@ function yoast_analytics() {
 		echo '<!-- Please set Google Analytics position to "manual" in the settings, or remove this call to yoast_analytics(); -->';
 }
 
-$gaf = new GA_Filter();
+$options = get_option( 'Yoast_Google_Analytics' );
 
 if ( !is_array( $options ) ) {
 	$options = get_option( 'GoogleAnalyticsPP' );
 	if ( !is_array( $options ) ) {
+		if ( !isset( $ga_admin ) )
+			$ga_admin = new GA_Admin();
 		$ga_admin->set_defaults();
 	} else {
 		delete_option( 'GoogleAnalyticsPP' );
@@ -1586,6 +1593,12 @@ if ( !is_array( $options ) ) {
 		update_option( 'Yoast_Google_Analytics', $options );
 	}
 } else {
+
+	if ( !isset( $options['uastring'] ) || $options['uastring'] == '' )
+		return;
+
+	$gaf = new GA_Filter();
+
 	if ( isset( $options['allowanchor'] ) && $options['allowanchor'] ) {
 		add_action( 'init', 'ga_utm_hashtag_redirect', 1 );
 	}
