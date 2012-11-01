@@ -100,8 +100,8 @@ if (isset($post)) {
 ?></div>
 
 	<div style="width: 100%; background: black;  height:40px;">
-	  <a href="http://www.uwaterloo.ca"><img src="<?php echo UFILES . 'wordmark-uw.gif';?>" style="margin: 0px;"/></a>
-	  <a href="http://cemc.uwaterloo.ca"><img src="<?php echo UFILES . 'wordmark-cemc.png';?>" style="margin: 0px; position: absolute; right: 0px;"></a>
+  <a href="http://www.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-uw.gif');?>" style="margin: 0px;"/></a>
+<a href="http://cemc.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-cemc.png');?>" style="margin: 0px; position: absolute; right: 0px;"></a>
 	  </div>
 	<header id="branding" role="banner">
 <?php 

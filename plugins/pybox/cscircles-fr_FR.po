@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-31 15:53-0400\n"
-"PO-Revision-Date: 2012-10-31 15:57-0400\n"
+"POT-Creation-Date: 2012-11-01 12:32-0400\n"
+"PO-Revision-Date: 2012-11-01 12:35-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,9 @@ msgid "From:"
 msgstr "De :"
 
 #: ../wp-plugin/action-send-message.php:23
-#: ../wp-plugin/shortcode-mailpage.php:38
-#: ../wp-plugin/shortcode-mailpage.php:99
-#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:611
+#: ../wp-plugin/shortcode-mailpage.php:39
+#: ../wp-plugin/shortcode-mailpage.php:100
+#: ../wp-plugin/shortcode-mailpage.php:103 ../wp-plugin/shortcodes.php:611
 #: ../wp-plugin/shortcodes.php:615
 msgid "CS Circles Assistant"
 msgstr "Assistant aux cercles informatiques"
@@ -337,7 +337,7 @@ msgid "from"
 msgstr "de"
 
 #: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:101
-#: ../wp-plugin/shortcode-mailpage.php:84
+#: ../wp-plugin/shortcode-mailpage.php:85
 msgid "to"
 msgstr "à"
 
@@ -522,39 +522,39 @@ msgstr "Suivant"
 msgid "Computer Science Circles, powered by WordPress"
 msgstr "Cercles informatiques, propulsé par WordPress"
 
-#: ../wp-plugin/plugin-hooks.php:117
+#: ../wp-plugin/plugin-hooks.php:125
 msgid "Editor"
 msgstr "Éditeur"
 
-#: ../wp-plugin/plugin-hooks.php:210
+#: ../wp-plugin/plugin-hooks.php:217
 msgid "My Progress"
 msgstr "Mes progrès"
 
-#: ../wp-plugin/plugin-hooks.php:211
+#: ../wp-plugin/plugin-hooks.php:218
 msgid "Console (new window)"
 msgstr "Console (+fenêtre)"
 
-#: ../wp-plugin/plugin-hooks.php:212
+#: ../wp-plugin/plugin-hooks.php:219
 msgid "Resources (new window)"
 msgstr "Ressources (+fenêtre)"
 
-#: ../wp-plugin/plugin-hooks.php:213
+#: ../wp-plugin/plugin-hooks.php:220
 msgid "Contact Us (new window)"
 msgstr "Contactez-nous (+fenêtre)"
 
-#: ../wp-plugin/plugin-hooks.php:217
+#: ../wp-plugin/plugin-hooks.php:224
 msgid "scroll to top"
 msgstr "défiler en haut de page"
 
-#: ../wp-plugin/plugin-hooks.php:237
+#: ../wp-plugin/plugin-hooks.php:244
 msgid "goto oldest unanswered mail"
 msgstr "la plus ancienne poste sans réponse"
 
-#: ../wp-plugin/plugin-hooks.php:294
+#: ../wp-plugin/plugin-hooks.php:301
 msgid "Filter Listed Pages"
 msgstr "Filtre pages listées"
 
-#: ../wp-plugin/plugin-hooks.php:297
+#: ../wp-plugin/plugin-hooks.php:304
 msgid "Show all visible"
 msgstr "Voir toutes visibles"
 
@@ -640,123 +640,123 @@ msgstr "Aucun étudiant."
 msgid "Access denied. You may need to log in first."
 msgstr "Accès refusé. Vous devrez peut-être vous se connecter."
 
-#: ../wp-plugin/shortcode-mailpage.php:27
+#: ../wp-plugin/shortcode-mailpage.php:28
 msgid "No such problem exists."
 msgstr "Aucun tel problème existe."
 
-#: ../wp-plugin/shortcode-mailpage.php:45
+#: ../wp-plugin/shortcode-mailpage.php:46
 msgid "You must log in order to view the mail page."
 msgstr "Vous devez vous connecter pour visualiser cette page."
 
-#: ../wp-plugin/shortcode-mailpage.php:62
+#: ../wp-plugin/shortcode-mailpage.php:63
 #, php-format
 msgid "Messages about %1$s for user %2$s"
 msgstr "Les messages sur %1$s pour l'utilisateur %2$s"
 
-#: ../wp-plugin/shortcode-mailpage.php:67
+#: ../wp-plugin/shortcode-mailpage.php:68
 msgid " has completed this problem."
 msgstr " a complété ce problème."
 
-#: ../wp-plugin/shortcode-mailpage.php:69
+#: ../wp-plugin/shortcode-mailpage.php:70
 msgid " has not completed this problem."
 msgstr " n'a pas complété ce problème."
 
-#: ../wp-plugin/shortcode-mailpage.php:74
+#: ../wp-plugin/shortcode-mailpage.php:75
 #, php-format
 msgid "Note: this student completed the problem at %s"
 msgstr "Remarque: cette élève a fait le problème à %s"
 
-#: ../wp-plugin/shortcode-mailpage.php:76
+#: ../wp-plugin/shortcode-mailpage.php:77
 msgid "Click on a message title to toggle the message open or closed."
 msgstr "Cliquez sur un titre de message pour l'ouvrir ou fermer."
 
-#: ../wp-plugin/shortcode-mailpage.php:84
+#: ../wp-plugin/shortcode-mailpage.php:85
 msgid "From"
 msgstr "De"
 
-#: ../wp-plugin/shortcode-mailpage.php:85
+#: ../wp-plugin/shortcode-mailpage.php:86
 msgid "(newest)"
 msgstr "(le plus récent)"
 
-#: ../wp-plugin/shortcode-mailpage.php:86
+#: ../wp-plugin/shortcode-mailpage.php:87
 msgid "(oldest)"
 msgstr "(le plus ancien)"
 
-#: ../wp-plugin/shortcode-mailpage.php:88
+#: ../wp-plugin/shortcode-mailpage.php:89
 msgid "Quote/<br/>Reply"
 msgstr "Citer/<br/>Répondre"
 
-#: ../wp-plugin/shortcode-mailpage.php:97 ../wp-plugin/shortcodes.php:610
+#: ../wp-plugin/shortcode-mailpage.php:98 ../wp-plugin/shortcodes.php:610
 #: ../wp-plugin/shortcodes.php:614
 msgid "Send a question by e-mail to: "
 msgstr "Envoyer une question par e-mail à: "
 
-#: ../wp-plugin/shortcode-mailpage.php:99
-#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:611
+#: ../wp-plugin/shortcode-mailpage.php:100
+#: ../wp-plugin/shortcode-mailpage.php:103 ../wp-plugin/shortcodes.php:611
 #: ../wp-plugin/shortcodes.php:615
 msgid "Select one..."
 msgstr "Sélectionnez..."
 
-#: ../wp-plugin/shortcode-mailpage.php:99 ../wp-plugin/shortcodes.php:611
+#: ../wp-plugin/shortcode-mailpage.php:100 ../wp-plugin/shortcodes.php:611
 msgid "My guru"
 msgstr "Mon gourou"
 
-#: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:615
+#: ../wp-plugin/shortcode-mailpage.php:103 ../wp-plugin/shortcodes.php:615
 msgid "My guru (you don't have one)"
 msgstr "Mon gourou (vous n'en avez pas)"
 
-#: ../wp-plugin/shortcode-mailpage.php:104
+#: ../wp-plugin/shortcode-mailpage.php:105
 #, php-format
 msgid "(name a guru on <a href='%s'>your Profile Page</a>)"
 msgstr "(Nommer un gourou sur <a href = '%s'> votre page de profil </a>)"
 
-#: ../wp-plugin/shortcode-mailpage.php:111
+#: ../wp-plugin/shortcode-mailpage.php:112
 msgid "Type here to send a reply about this problem"
 msgstr "Tapez ici pour envoyer une réponse à ce problème"
 
-#: ../wp-plugin/shortcode-mailpage.php:114
+#: ../wp-plugin/shortcode-mailpage.php:115
 msgid "Send this message!"
 msgstr "Envoyer ce message !"
 
-#: ../wp-plugin/shortcode-mailpage.php:121
+#: ../wp-plugin/shortcode-mailpage.php:122
 #, php-format
 msgid "%s's progress page (new window)"
 msgstr "Page des progrès de %s (nouvelle fenêtre)"
 
-#: ../wp-plugin/shortcode-mailpage.php:122
+#: ../wp-plugin/shortcode-mailpage.php:123
 #, php-format
 msgid "Original lesson page containing %s (new window)"
 msgstr "Page de la leçon originale contenant %s (nouvelle fenêtre)"
 
-#: ../wp-plugin/shortcode-mailpage.php:124
+#: ../wp-plugin/shortcode-mailpage.php:125
 msgid "Problem description for"
 msgstr "Texte de problème"
 
-#: ../wp-plugin/shortcode-mailpage.php:129
+#: ../wp-plugin/shortcode-mailpage.php:130
 #, php-format
 msgid "%1$s's submissions for %2$s"
 msgstr "Soumissions par %1$s pour %2$s"
 
-#: ../wp-plugin/shortcode-mailpage.php:131
+#: ../wp-plugin/shortcode-mailpage.php:132
 #, php-format
 msgid "My previous submissions for %s"
 msgstr "Mes soumissions précédentes pour %s"
 
-#: ../wp-plugin/shortcode-mailpage.php:135
+#: ../wp-plugin/shortcode-mailpage.php:136
 #, php-format
 msgid "My other messages about %s"
 msgstr "Mes autres messages sur %s"
 
-#: ../wp-plugin/shortcode-mailpage.php:138
+#: ../wp-plugin/shortcode-mailpage.php:139
 msgid "My messages for other programs"
 msgstr "Mes messages pour d'autres programmes"
 
-#: ../wp-plugin/shortcode-mailpage.php:139
+#: ../wp-plugin/shortcode-mailpage.php:140
 #, php-format
 msgid "Messages to/from %s for other problems"
 msgstr "Messages vers / à partir de %s pour d'autres problèmes"
 
-#: ../wp-plugin/shortcode-mailpage.php:143
+#: ../wp-plugin/shortcode-mailpage.php:144
 msgid "All unanswered messages by my students"
 msgstr "Tous les messages sans réponses par mes élèves"
 
@@ -1282,6 +1282,14 @@ msgstr "Téléphone: 519 888 4808"
 msgid "contact us"
 msgstr "contactez-nous"
 
+#: ../wp-theme/header.php:103
+msgid "wordmark-uw.gif"
+msgstr "wordmark-uw.gif"
+
+#: ../wp-theme/header.php:104
+msgid "wordmark-cemc.png"
+msgstr "wordmark-cemi.png"
+
 #: ../www/wordpress/wp-admin/user-edit.php:315
 msgid "How do you want your name displayed?"
 msgstr "Comment voulez-vous votre nom affiché ?"
@@ -1318,7 +1326,7 @@ msgid "Log In or Create Account"
 msgstr "Se connecter ou créer un compte"
 
 #~ msgid "<url>user-page/"
-#~ msgstr "<url>progres/"
+#~ msgstr ""
 
 #~ msgid "<url>search/"
 #~ msgstr "<url>search/"
