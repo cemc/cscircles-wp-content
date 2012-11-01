@@ -106,16 +106,23 @@ function footsy() {
   echo '<span id="pylangswitcher">';
   //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
 
-  if (userIsAdmin() || 
-      userIsTranslator() || 
-      pll_current_language() != 'en' ||
-      strcasecmp("bricec", get_the_author_meta('pbguru', 
-					       get_current_user_id()))==0
-      ) {
-    echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
-    if (userIsAdmin() || userIsTranslator())
-      echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
+  foreach (array('en', 'fr') as $lang) {
+    if ($lang != pll_current_language()) 
+      echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
   }
+
+  if ((userIsAdmin() || 
+       userIsTranslator()) &&
+      pll_current_language() != 'de') {
+    foreach (array('de') as $lang) {
+      if ($lang != pll_current_language()) 
+	echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
+      
+      //    echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
+   }
+  }
+  if (userIsAdmin() || userIsTranslator())
+    echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
   echo '</span>';
 
 }
