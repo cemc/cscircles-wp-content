@@ -1,5 +1,6 @@
 polylang : no customizations
 role-scoper : no customizations (previous ones were accepeted upstream)
+list-pages-shortcode : no customizations (previous ones were accepeted upstream)
 wp-ui : don't upgrade! the latest versions break compared to the current, old one.
 contact-form-7 : use contact-form-7.patch
 all others : ask Dave
