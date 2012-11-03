@@ -20,7 +20,7 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())
-    $header_from = __t('From:').' '. __t("CS Circles Assistant") . '<'.CSCIRCLES_ASST_EMAIL.'>';
+    $header_from = __t('From:').' "'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
   else 
     $header_from = __t('From:'). '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
 
