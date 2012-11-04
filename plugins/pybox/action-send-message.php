@@ -2,6 +2,22 @@
 
 require_once("include-me-and-load-wp.php");
 
+function pb_mail($from, $to, $subject, $body) {
+  $ensemble = "$from\n$to\n$subject\n$body";
+  $cmd = "./send-email.py";
+  $descriptorspec = array(
+			  0 => array("pipe", "r"), 
+			  1 => array("pipe", "w"), 
+			  2 => array("pipe", "w")
+			  );
+  $process = proc_open($cmd, $descriptorspec, $pipes);
+  if (is_resource($process)) {
+    fwrite($pipes[0], $ensemble);
+    fclose($pipes[0]);
+    proc_close($process);
+  }
+}
+
 function send($problem_info, $from, $to, $student, $slug, $body) {
 
   global $wpdb, $current_user;
@@ -20,10 +36,9 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())
-    $header_from = array('From:'.' "'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>',
-			 'Reply-to:'.CSCIRCLES_BOUNCE_EMAIL);
+    $mFrom = '"'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
   else 
-    $header_from = 'From:'. '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
+    $mFrom = '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
 
   $subject = __t('CS Circles') .' - '. __t('message about') . ' ' . $problem_info['publicname'];
   
@@ -34,14 +49,14 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
   
   if ($to == 0) {
-    wp_mail(CSCIRCLES_ASST_EMAIL, $subject, $contents, $header_from);
+    pb_mail($mFrom, CSCIRCLES_ASST_EMAIL, $subject, $contents);
     if (get_the_author_meta('pbnocc', getUserID())!='true')
-      wp_mail($current_user->user_email, __t("SENT:")." " . $subject, __t("THIS IS A COPY of a message you sent to the CS Circles Assistant.") ."\n\n" . $contents, $header_from);
+      pb_mail($mFrom, $current_user->user_email, __t("SENT:")." " . $subject, __t("THIS IS A COPY of a message you sent to the CS Circles Assistant.") ."\n\n" . $contents);
   }
   else {
-    wp_mail(get_user_by('id', $to)->user_email, $subject, $contents, $header_from);
+    pb_mail($mFrom, get_user_by('id', $to)->user_email, $subject, $contents);
     if (get_the_author_meta('pbnocc', getUserID())!='true')
-      wp_mail($current_user->user_email, "SENT: " . $subject, __t("THIS IS A COPY of a message you sent to ").get_user_by('id',$to)->user_login.".\n\n" . $contents, $header_from);
+      pb_mail($mFrom, $current_user->user_email, "SENT: " . $subject, __t("THIS IS A COPY of a message you sent to ").get_user_by('id',$to)->user_login.".\n\n" . $contents);
   }
   return $mailref;
 }
