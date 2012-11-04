@@ -20,9 +20,10 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
   $mailref = $wpdb->insert_id;
 
   if (userIsAdmin())
-    $header_from = __t('From:').' "'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
+    $header_from = array('From:'.' "'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>',
+			 'Reply-to:'.CSCIRCLES_BOUNCE_EMAIL);
   else 
-    $header_from = __t('From:'). '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
+    $header_from = 'From:'. '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
 
   $subject = __t('CS Circles') .' - '. __t('message about') . ' ' . $problem_info['publicname'];
   
