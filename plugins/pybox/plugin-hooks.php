@@ -111,16 +111,14 @@ function footsy() {
       echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
   }
 
-  if ((userIsAdmin() || 
-       userIsTranslator()) &&
-      pll_current_language() != 'de') {
-    foreach (array('de') as $lang) {
-      if ($lang != pll_current_language()) 
+  if (userIsAdmin() || 
+      userIsTranslator())
+    foreach (array('de', 'nl') as $lang) {
+      if ($lang != pll_current_language()) {
 	echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
-      
-      //    echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
    }
   }
+      // old method:  echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
   if (userIsAdmin() || userIsTranslator())
     echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
   echo '</span>';
