@@ -18,7 +18,7 @@ function pb_mail($from, $to, $subject, $body) {
   }
 }
 
-function send($problem_info, $from, $to, $student, $slug, $body) {
+function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
 
   global $wpdb, $current_user;
 
@@ -28,7 +28,10 @@ function send($problem_info, $from, $to, $student, $slug, $body) {
     $wpdb->update('wp_pb_mail',
 		  array('unanswered' => 0),
 		  array('unanswered' => 1, 'ustudent' => $student, 'problem' => $slug));
-  
+
+  if ($noreply != 'false') // don't redirect
+    return "#";   
+
   $wpdb->insert('wp_pb_mail', 
 		array('ufrom' => $from, 'uto' => $to, 'ustudent' => $student, 'problem' => $slug, 'body' => $body, 
 		      'unanswered' => $unanswered), 
@@ -85,6 +88,7 @@ if ($problem_info === NULL) {
  }
 
 $message = stripcslashes($_POST["message"]);
+$noreply = getSoft($_POST, 'noreply', false);
 
 if ($source == 1) {
   $guru_login = get_the_author_meta('pbguru', get_current_user_id()); // '' if does not exist
@@ -94,7 +98,7 @@ if ($source == 1) {
   
   $message .= "\n===\n".__t("The user sent this code with the message:")."\n===\n" . $code;
 
-  echo send($problem_info, getUserID(), isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, getUserID(), $slug, $message);
+  echo send($problem_info, getUserID(), isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, getUserID(), $slug, $message, $noreply);
  }
 elseif ($source == 2) {
   $id = $_POST['id'];  
@@ -102,11 +106,11 @@ elseif ($source == 2) {
   $guru = get_user_by('login', $guru_login);        // FALSE if does not exist
   if (userIsAdmin() || getUserID() == $guru->ID) {
     // from {guru or CSC Asst.} to student
-    echo send($problem_info, userIsAdmin()?0:getUserID(), $id, $id, $slug, $message);
+    echo send($problem_info, userIsAdmin()?0:getUserID(), $id, $id, $slug, $message, $noreply);
   }
   elseif ($id == getUserID()) {
     // from student to {guru or CSC Asst.}
-    echo send($problem_info, $id, isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, $id, $slug, $message);
+    echo send($problem_info, $id, isSoft($_POST, 'recipient', '1') ? $guru->ID : 0, $id, $slug, $message, $noreply);
   }
   
 }

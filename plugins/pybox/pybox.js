@@ -165,8 +165,13 @@ function sendMessage(id, slug) {
 }
 
 function mailReply(id, slug) {
+    var noreplyval = false;
+    if (typeof noreply !== 'undefined')
+	noreplyval = noreply.checked;
     var thedata = {"source":2,"id":id,"slug":slug,
-		   "message":$('#mailform textarea').val()};
+		   "message":$('#mailform textarea').val(),
+		   "noreply":noreplyval};
+
     var r = null;
     $('#mailform .recipient').each(function(i, item) {r = $(item);});
     if (r != null) {
@@ -181,9 +186,9 @@ function mailReply(id, slug) {
 	url : MESSAGEURL,
 	data: thedata,
 	error: function() {alert(__t("Unable to process 'send message' request. You might have lost your internet connection."));},
-	success: function(data) {window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data+"#m";}
+	success: function(data) {if (data == '#') location.reload(true); else window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data+"#m";}
     });
-    alert(__t("Your message was sent."));
+    alert(noreplyval?__t("All messages about from this student about this problem will be marked as answered."):__t("Your message was sent."));
 }
 
 // three types of short answer question: short answer, multiple choice, scramble

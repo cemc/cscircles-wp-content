@@ -111,8 +111,13 @@ function pbmailpage($options, $content) {
 <div class="pyboxTextwrap">
 <textarea name="body" class="resizy" placeholder="'.__t('Type here to send a reply about this problem').'" style="width:100%; white-space: pre-wrap; font-size: 11px; line-height:13px" rows=12></textarea>
 </div>
-'.$to.'
-<button onclick="mailReply('.$sid.',\''.$problem['slug'].'\');">'.__t('Send this message!').'</button>
+'.$to;
+
+  if (getUserID() != $sid) 
+    $r .= '<input style="position:relative; top:2px" type="checkbox" id="noreply">'.
+      ' <label style="font-size:75%" for="noreply">Just mark as read without replying (reply text is ignored)</label><br>';
+
+  $r .= '<button onclick="mailReply('.$sid.',\''.$problem['slug'].'\');">'.__t('Send this message!').'</button>
 </div>';
 
   $problemname = $problem['publicname'];
