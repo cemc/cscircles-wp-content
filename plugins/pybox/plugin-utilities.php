@@ -54,13 +54,11 @@ function pb_mail($from, $to, $subject, $body) {
   if (is_resource($process)) {
     fwrite($pipes[0], $ensemble);
     fclose($pipes[0]);
-    pyboxlog("message sent [$from|$to|$subject|" . stream_get_contents($pipes[1]) .']', 1);
-    //    pyboxlog('stderr [' . stream_get_contents($pipes[2]) .']', 1);
+    pyboxlog("message sent [$from|$to|$subject|" . stream_get_contents($pipes[1]) .'|'.stream_get_contents($pipes[2]).']', 1);
     fclose($pipes[1]);
-    fclose($pipes[1]);
+    fclose($pipes[2]);
     proc_close($process);
   }
-  
 }
 
 function userString($n, $short = false) {
