@@ -163,10 +163,10 @@ function safeDereference( $s, $which="", &$errtgt=NULL ) {
 
 function softDump( $s, $target ) {
 // writes/copies $s to $target, where $s is a string or a @file:filename
-  pyboxlog($s .';' . $target, FALSE);
+  //pyboxlog($s .';' . $target, FALSE);
   if (substr($s, 0, 6)=="@file:")
     $s = softSafeDereference($s);
-  pyboxlog($s .';' . $target, FALSE);
+  //pyboxlog($s .';' . $target, FALSE);
   $file = fopen($target, "w");
   if ($file === FALSE) return FALSE;
   if (fwrite($file, $s) === FALSE) return FALSE;
