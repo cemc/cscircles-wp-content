@@ -2,22 +2,6 @@
 
 require_once("include-me-and-load-wp.php");
 
-function pb_mail($from, $to, $subject, $body) {
-  $ensemble = "$from\n$to\n$subject\n$body";
-  $cmd = "./send-email.py";
-  $descriptorspec = array(
-			  0 => array("pipe", "r"), 
-			  1 => array("pipe", "w"), 
-			  2 => array("pipe", "w")
-			  );
-  $process = proc_open($cmd, $descriptorspec, $pipes);
-  if (is_resource($process)) {
-    fwrite($pipes[0], $ensemble);
-    fclose($pipes[0]);
-    proc_close($process);
-  }
-}
-
 function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
 
   global $wpdb, $current_user;

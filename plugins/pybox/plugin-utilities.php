@@ -41,6 +41,28 @@ function cscurl($slug) {
   return get_permalink($res);
 }
 
+function pb_mail($from, $to, $subject, $body) {
+  $ensemble = "$from\n$to\n$subject\n$body";
+  pyboxlog('[pb_mail]'.$ensemble, 1);
+  $cmd = PPYBOXDIR . "send-email.py";
+  $descriptorspec = array(
+			  0 => array("pipe", "r"), 
+			  1 => array("pipe", "w"), 
+			  2 => array("pipe", "w")
+			  );
+  $process = proc_open($cmd, $descriptorspec, $pipes, '.', array('PYTHONIOENCODING'=>"utf_8"));
+  if (is_resource($process)) {
+    fwrite($pipes[0], $ensemble);
+    fclose($pipes[0]);
+    pyboxlog("message sent [$from|$to|$subject|" . stream_get_contents($pipes[1]) .']', 1);
+    //    pyboxlog('stderr [' . stream_get_contents($pipes[2]) .']', 1);
+    fclose($pipes[1]);
+    fclose($pipes[1]);
+    proc_close($process);
+  }
+  
+}
+
 function userString($n, $short = false) {
   if ($n < 0) return "unregistered";
   $user = get_userdata($n);

@@ -11,6 +11,7 @@ function jsonTranslationArray() {
 "The code box is empty. It should instead contain your best partial solution so far." => __t("The code box is empty. It should instead contain your best partial solution so far."),
 "Click to try again." => __t("Click to try again."),
 "Run program" => __t("Run program"),
+"All messages about from this student about this problem will be marked as answered." => __t("All messages about from this student about this problem will be marked as answered."),
 "Incorrect, try again." => __t("Incorrect, try again."),
 "Displaying {from} to {to} of {total} items" => __t("Displaying {from} to {to} of {total} items"),
 "Enter test input" => __t("Enter test input"),
