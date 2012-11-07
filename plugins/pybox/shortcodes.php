@@ -66,27 +66,35 @@ function generateId() {
   return $id;
 }
 
+function isMakingDatabases() {
+  global $lesson_reg_info;
+  return isset($lesson_reg_info);
+}
+
 function registerPybox($id, $slug, $type, $facultative, $title, $content, $args = NULL, $hash = NULL, $graderOptions = NULL) {
   if (is_array($args))
     $args = json_encode($args);
-  global $wpdb, $post;
-  if (userIsAdmin() && array_key_exists("makeproblemdb", $_GET)) {
+  global $wpdb, $lesson_reg_info;
+  if (isMakingDatabases()) {
+    if (!userIsAdmin()) {
+      echo "Error: must be admin to rebuild DB.";
+      return;
+    }
+    $curr_post = get_post($lesson_reg_info['id']);
      $table_name = $wpdb->prefix . "pb_problems";
     $row = array();
-    $row['postid'] = $post->ID;
-    if ($_GET["makeproblemdb"] >= 0) {
-      $row['lesson'] = $_GET["makeproblemdb"];
-    }
+    $row['postid'] = $lesson_reg_info['id'];
+    $row['lesson'] = $lesson_reg_info['index'];
     $row['boxid'] = $id;
     if ($slug != 'NULL')
       $row['slug'] = $slug;
     $row['type'] = $type;
-    $row['content'] = $content;
     $row['facultative'] = $facultative;
-    $row['url'] = get_page_link($post->ID) . '#pybox' . $id;
+    $row['url'] = $lesson_reg_info['url'] . '#pybox' . $id;
+    $row['lang'] = $lesson_reg_info['lang'];
     if ($title != NULL) {
-      if ($_GET["makeproblemdb"] >= 0) 
-	$row['publicname'] = $_GET["lessonnumber"] . ': ' . $title;
+      if ($lesson_reg_info['index'] >= 0) 
+	$row['publicname'] = $lesson_reg_info["fullnumber"] . ': ' . $title;
       else
 	$row['publicname'] = $title; //e.g., for the console, which is not part of any lesson
     }
@@ -99,14 +107,17 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
     if ($graderOptions != NULL) {
       $row['graderArgs'] = $graderOptions;
     }
-    $row['lang'] = $_GET['lessonlang'];
-    $wpdb->insert($table_name, $row);
+    $row['content'] = $content;
+    echo "<br>About to insert problem: " . rowSummary($row); 
+    if (!$GLOBALS['SKIP_DB_REBUILD']) 
+      echo ($wpdb->insert($table_name, $row)!=1?'<br>insert bad':' insert ok');
   }
   else if ($hash != NULL) {
     if ($wpdb->get_var("SELECT COUNT(1) from wp_pb_problems WHERE hash = '$hash' AND lang='".pll_current_language()."'") == 0) {
       // hash is important, but not yet registered!
-      // typically this would occur if we're editing a file
+      // typically this would occur if we're editing a problem and viewing it before rebuilding db
       // if the hash doesn't exist, add it so the grader knows what do to with submissions
+      global $post;
       $row = array(
 		   'type'=>$type,
 		   'postid'=>$post->ID,
@@ -145,6 +156,7 @@ function pyShortHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
   registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content, $options);
+  if (isMakingDatabases()) return ""; // faster db generation
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -187,6 +199,7 @@ function pyMultiHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
   registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content, $options);
+  if (isMakingDatabases()) return ""; // faster db generation
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -241,6 +254,7 @@ function pyMultiScrambleHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral multiscramble' id='pybox$id'>\n";
   registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content, $options);
+  if (isMakingDatabases()) return ""; // faster db generation
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -473,9 +487,12 @@ function pyBoxHandler($options, $content) {
     if (preg_match('|tests|', $optname)>0)
       $options["inplace"] = "Y"; 
 
-  global $post;                                        // $lessonNumber is numeric (major) part of lesson number
-  if (preg_match('|^(\\d+).*|', 
-		 $post->post_name, $matches)==0)      
+  global $post, $lesson_reg_info;                      // $lessonNumber is numeric (major) part of lesson number
+  // if lesson_reg_info is set we don't really care about displaying the pybox, 
+  // but we'll do things for consistency anyway. NB: when displaying a problem
+  // in a place other than its original page (e.g., mail) this needs ot be fixed
+  $post_title = isset($lesson_reg_info) ? get_the_title($lesson_reg_info['id']) : $post->post_name;
+  if (preg_match('|^(\\d+).*|', $post_title, $matches)==0)      
     $lessonNumber = -1; 
   else
     $lessonNumber = $matches[1];
@@ -540,6 +557,7 @@ function pyBoxHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
 
   registerPybox($id, $slug, $scramble?"scramble":"code", $facultative, getSoft($options, 'title', NULL), $content, $shortcodeOptions, $hash, $optionsJson);
+  if (isMakingDatabases()) return ""; // faster db generation
 
   /// we've delivered options to the grader. get on with producing html
 

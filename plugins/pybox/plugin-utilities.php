@@ -181,6 +181,14 @@ function ensureNewlineTerminated( $s ) {
 }
 
 
+function rowSummary($arr) {
+  foreach ($arr as $i => $v) {
+    if (!isset($r)) $r = '['; else $r .= ', ';
+    $r .= htmlspecialchars($i.':'.substr(json_encode($v), 0, 20));
+  }
+  return $r.']';
+}
+
 function preBox( $s, $len = -1, $lenlimit = 1000, $style = '' ) {
 // takes any long string, trims if needed, converts special html chars, and wraps in pre tag
 // the result can be directly inserted in html safely
