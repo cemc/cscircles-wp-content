@@ -72,7 +72,7 @@ if ($problem_info === NULL) {
  }
 
 $message = stripcslashes($_POST["message"]);
-$noreply = getSoft($_POST, 'noreply', false);
+$noreply = getSoft($_POST, 'noreply', 'false');
 
 if ($source == 1) {
   $guru_login = get_the_author_meta('pbguru', get_current_user_id()); // '' if does not exist
