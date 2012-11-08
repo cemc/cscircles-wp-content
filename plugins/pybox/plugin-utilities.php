@@ -104,7 +104,7 @@ function pyboxlog($message, $suppressemail = -1) {
   $userid = getUserID();
 
   if ($suppressemail === -1) {
-    $to = CSCIRCLES_EMAIL;
+    $to = CSCIRCLES_DEVELOPER_EMAIL;
     $subject = 'pyboxlog';
     $emailm  = $message . "\n" . "\n" 
       . "\n" . "REQUEST: " . print_r($_REQUEST, TRUE) . "\n" 

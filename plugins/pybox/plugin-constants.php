@@ -34,6 +34,7 @@ define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
 define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
 define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca');
+define('CSCIRCLES_DEVELOPER_EMAIL', 'daveagp@gmail.com');
 
 
 // path constants :: should exist, and in many cases be writable
