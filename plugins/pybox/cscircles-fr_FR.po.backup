@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 01:41-0500\n"
-"PO-Revision-Date: 2012-11-09 01:46-0500\n"
+"POT-Creation-Date: 2012-11-09 09:14-0500\n"
+"PO-Revision-Date: 2012-11-09 09:14-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -429,57 +429,50 @@ msgid "Run program"
 msgstr "Exécuter le programme"
 
 #: ../wp-plugin/js-translation.php:14
-msgid ""
-"All messages about from this student about this problem will be marked as "
-"answered."
-msgstr ""
-"Tous messages de cet étudiant à propos de ce problème sera marqué répondu."
-
-#: ../wp-plugin/js-translation.php:15
 msgid "Incorrect, try again."
 msgstr "Incorrecte, essayez à nouveau."
 
-#: ../wp-plugin/js-translation.php:16
+#: ../wp-plugin/js-translation.php:15
 msgid "Displaying {from} to {to} of {total} items"
 msgstr "Affichage de {from} à {to} de {total} articles"
 
-#: ../wp-plugin/js-translation.php:17
+#: ../wp-plugin/js-translation.php:16
 msgid "Enter test input"
 msgstr "Tape entrée de test"
 
-#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:57
+#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:57
 msgid "You have completed this problem at least once."
 msgstr "Vous avez completé ce problème au moins une fois."
 
-#: ../wp-plugin/js-translation.php:19 ../wp-plugin/shortcodes.php:785
+#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:785
 msgid "More actions..."
 msgstr "Plus d'actions..."
 
-#: ../wp-plugin/js-translation.php:20
+#: ../wp-plugin/js-translation.php:19
 msgid "Enter input"
 msgstr "Tape entrée"
 
-#: ../wp-plugin/js-translation.php:21 ../wp-plugin/shortcodes.php:736
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:736
 msgid "Rich editor"
 msgstr "Éditeur riche"
 
-#: ../wp-plugin/js-translation.php:22
+#: ../wp-plugin/js-translation.php:21
 msgid "Please enter a non-empty message."
 msgstr "S'il vous plaît entrer un message non vide."
 
-#: ../wp-plugin/js-translation.php:23
+#: ../wp-plugin/js-translation.php:22
 msgid "Run test"
 msgstr "Exécuter le test"
 
-#: ../wp-plugin/js-translation.php:24
+#: ../wp-plugin/js-translation.php:23
 msgid "Running..."
 msgstr "Exécutant..."
 
-#: ../wp-plugin/js-translation.php:25
+#: ../wp-plugin/js-translation.php:24
 msgid "out of"
 msgstr "sur"
 
-#: ../wp-plugin/js-translation.php:26
+#: ../wp-plugin/js-translation.php:25
 msgid ""
 "Unable to process 'send message' request. You might have lost your internet "
 "connection."
@@ -487,19 +480,19 @@ msgstr ""
 "Impossible de traiter demande d'envoyage. Vous pourriez avoir perdu votre "
 "connexion à Internet."
 
-#: ../wp-plugin/js-translation.php:27
+#: ../wp-plugin/js-translation.php:26
 msgid "Page"
 msgstr "Page"
 
-#: ../wp-plugin/js-translation.php:28 ../wp-plugin/shortcodes.php:751
+#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:751
 msgid "History"
 msgstr "Historique"
 
-#: ../wp-plugin/js-translation.php:29
+#: ../wp-plugin/js-translation.php:28
 msgid "Your message was sent."
 msgstr "Votre message a été envoyé."
 
-#: ../wp-plugin/js-translation.php:30
+#: ../wp-plugin/js-translation.php:29
 msgid ""
 "Could not grade program because communication to the server was not "
 "possible. Ajax information: "
@@ -507,9 +500,14 @@ msgstr ""
 "Ne pouvait pas grader parce que la communication avec le serveur n'a pas été "
 "possible. Informations ajax : "
 
-#: ../wp-plugin/js-translation.php:31
+#: ../wp-plugin/js-translation.php:30
 msgid "Enter test statements"
 msgstr "Entrez instructions de test"
+
+#: ../wp-plugin/js-translation.php:31
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+"Tous messages de cet étudiant à propos de ce problème sera marqué répondu."
 
 #: ../wp-plugin/js-translation.php:32
 msgid ""

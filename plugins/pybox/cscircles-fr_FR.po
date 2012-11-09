@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-09 09:14-0500\n"
-"PO-Revision-Date: 2012-11-09 09:14-0500\n"
+"POT-Creation-Date: 2012-11-09 09:52-0500\n"
+"PO-Revision-Date: 2012-11-09 09:53-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -215,6 +215,17 @@ msgstr "Vous avez changé %s."
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
 msgstr "Résultats pour test %1$s de %2$s"
+
+#: ../wp-plugin/bounce_email_strings.php:3
+msgid ""
+"Your e-mail to {0} will not be read. If you are replying to ask for follow-"
+"up help about a problem, you must use the link in the previous email{1} \n"
+"A copy of your e-mail follows."
+msgstr "Votre e-mail à {0} ne sera pas lu. Si vous avez répondu à pour l'aide sur un problème, vous devez utiliser le lien{1}dans le courriel précédent. \\nUne copie de votre e-mail est copiée ci-dessous."
+
+#: ../wp-plugin/bounce_email_strings.php:4
+msgid "\"CS Circles Bouncer\" <bounces@cscircles.cemc.uwaterloo.ca>"
+msgstr "\"Rebondeur Cercles informatiques\" <bounces@cscircles.cemc.uwaterloo.ca>"
 
 #: ../wp-plugin/db-entire-history.php:19
 #: ../wp-plugin/db-problem-history.php:19

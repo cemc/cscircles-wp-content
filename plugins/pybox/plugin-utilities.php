@@ -44,7 +44,7 @@ function cscurl($slug) {
 function pb_mail($from, $to, $subject, $body) {
   $ensemble = "$from\n$to\n$subject\n$body";
   pyboxlog('[pb_mail]'.$ensemble, 1);
-  $cmd = PPYBOXDIR . "send-email.py";
+  $cmd = PPYBOXDIR . "send_email.py";
   $descriptorspec = array(
 			  0 => array("pipe", "r"), 
 			  1 => array("pipe", "w"), 
