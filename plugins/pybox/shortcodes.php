@@ -156,7 +156,7 @@ function pyShortHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
   registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content, $options);
-  if (isMakingDatabases()) return ""; // faster db generation
+  if (isMakingDatabases()) return do_shortcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -199,7 +199,7 @@ function pyMultiHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
   registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content, $options);
-  if (isMakingDatabases()) return ""; // faster db generation
+  if (isMakingDatabases()) return do_shortcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -254,7 +254,7 @@ function pyMultiScrambleHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral multiscramble' id='pybox$id'>\n";
   registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content, $options);
-  if (isMakingDatabases()) return ""; // faster db generation
+  if (isMakingDatabases()) return do_shortcode($content);; // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -557,7 +557,7 @@ function pyBoxHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
 
   registerPybox($id, $slug, $scramble?"scramble":"code", $facultative, getSoft($options, 'title', NULL), $content, $shortcodeOptions, $hash, $optionsJson);
-  if (isMakingDatabases()) return ""; // faster db generation
+  if (isMakingDatabases()) return do_shortcode($content); // faster db generation with accurate count
 
   /// we've delivered options to the grader. get on with producing html
 
