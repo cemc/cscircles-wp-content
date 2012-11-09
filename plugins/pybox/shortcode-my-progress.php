@@ -19,9 +19,15 @@ function pyUser($options, $content) {
   $problem_table = $wpdb->prefix . "pb_problems";
   $problems = $wpdb->get_results
     ("SELECT * FROM $problem_table WHERE facultative = 0 AND lang LIKE '".pll_current_language()."' AND lesson IS NOT NULL ORDER BY lesson ASC, boxid ASC", ARRAY_A);
-  $problemsByName = array();
+  $problemsByNumber = array();
   foreach ($problems as $prow) 
     $problemsByNumber[$prow['slug']] = $prow;
+
+  $gp = getSoft($_GET, "problem", "");
+  if ($gp != "" && $gp != "console" && !array_key_exists($gp, $problemsByNumber)) {
+    echo sprintf(__t("Problem %s not found (at least in current language)"), $gp);
+    return;
+  }
 
   if (userIsAdmin() || $cstudents>0) {
     $preamble = 
@@ -54,7 +60,7 @@ function pyUser($options, $content) {
     }
     $preamble .= optionsHelper($options, 'problem');
 
-    $preamble .= "<br/><input type='submit'/></form></div>";
+    $preamble .= "<br/><input type='submit' value='".__t('Submit')."'/></form></div>";
     echo $preamble;
   }
   
@@ -80,7 +86,13 @@ function pyUser($options, $content) {
     echo "<h1 style='color: red;'>".__t("Viewing summary of all your students")."</h1>";
   }
 
-  $completed_table = $wpdb->prefix . "pb_completed";   
+  if ($getall && $gp != "" && $gp != "console") {
+    echo niceFlex('perstudent',  sprintf(__t("Solutions by my students for %s"), 
+					 $problemsByNumber[$_GET['problem']]['publicname']),
+		  'problem-summary', 'dbProblemSummary', array('p'=>$_GET['problem']));
+  }
+
+  $completed_table = $wpdb->prefix . "pb_completed";
 
   if (!$getall) {
     $recent = "";
