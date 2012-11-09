@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-07 15:44-0500\n"
-"PO-Revision-Date: 2012-11-07 15:42-0500\n"
+"POT-Creation-Date: 2012-11-07 18:48-0500\n"
+"PO-Revision-Date: 2012-11-07 18:50-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -512,7 +512,7 @@ msgstr "Cacher l'historique"
 msgid "You need to select a recipient."
 msgstr "Vous devez choisir un destinataire."
 
-#: ../wp-plugin/newuseremail.php:9
+#: ../wp-plugin/newuseremail.php:10
 msgid ""
 "An account has been created for you on the Computer Science Circles website, "
 "with a randomly generated password.\n"
@@ -522,29 +522,32 @@ msgid ""
 "\n"
 "Please visit\n"
 "%loginurl%\n"
-"and change your password to something you will remember. Press \"Update "
-"Profile\" once you are done.\n"
+"and change your password to something you will remember. \n"
+"Press \"%upprof%\" once you are done.\n"
 "\n"
 "Thanks from the Computer Science Circles team!\n"
 "%siteurl%"
 msgstr ""
-"Un compte a été créé pour vous sur le site Cercles informatiques avec un mot "
-"de passe aléatoire.\n"
+"Un compte a été créé pour vous sur le site Cercles informatiques avec un mot de passe aléatoire.\n"
 "\n"
 "Nom d'utilisateur: %username%\n"
 "Mot de passe aléatoire (actuel): %password%\n"
 "\n"
 "S'il vous plaît visitez\n"
 "%loginurl%\n"
-"et changer votre mot de passe à quelque chose dont vous vous souviendrez. "
-"Appuyez sur \"Mettre à jour le profil\" lorsque vous avez terminé.\n"
+"et changer votre mot de passe à quelque chose dont vous vous souviendrez.\n"
+"Appuyez sur \"%upprof%\" lorsque vous avez terminé.\n"
 "\n"
 "Merci de l'équipe Cercles informatiques!\n"
 "%siteurl%"
 
-#: ../wp-plugin/newuseremail.php:21
+#: ../wp-plugin/newuseremail.php:24
 msgid "Computer Science Circles: New account"
 msgstr "Cercles informatiques: nouveau compte"
+
+#: ../wp-plugin/newuseremail.php:30
+msgid "Update Profile"
+msgstr "Mettre à jour le profil"
 
 #: ../wp-plugin/plugin-footer-prevnext.php:47
 msgid "(goes to top of current page)"
@@ -650,13 +653,13 @@ msgstr ""
 "(Par défaut: non cochée) Si elle est cochée, vous ne recevrez pas de "
 "messages Cercles CS. Ils sont assez peu fréquentes, environ une fois par an."
 
-#: ../wp-plugin/plugin-utilities.php:218
+#: ../wp-plugin/plugin-utilities.php:224
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
 "[Trop long; seulement les premiers %1$s de %2$s caractères sont illustré]"
 
-#: ../wp-plugin/plugin-utilities.php:342
+#: ../wp-plugin/plugin-utilities.php:348
 msgid "Return to Computer Science Circles"
 msgstr "Retour au Cercles informatique"
 
@@ -1365,6 +1368,3 @@ msgstr "Se connecter ou créer un compte"
 #: ../www/wordpress/wp-login.php:557 ../www/wordpress/wp-login.php:706
 msgid "Create a new account"
 msgstr "Créez un compte"
-
-#~ msgid "Search"
-#~ msgstr "Rechercher"

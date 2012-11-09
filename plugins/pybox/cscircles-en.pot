@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-11-07 18:48-0500\n"
+"POT-Creation-Date: 2012-11-09 01:41-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,6 +238,7 @@ msgstr ""
 
 #: ../wp-plugin/db-entire-history.php:31
 #: ../wp-plugin/db-problem-history.php:27
+#: ../wp-plugin/db-problem-summary.php:14
 msgid "You must log in to view past submissions."
 msgstr ""
 
@@ -335,6 +336,7 @@ msgid "message"
 msgstr ""
 
 #: ../wp-plugin/db-problem-history.php:16
+#: ../wp-plugin/db-problem-summary.php:19
 msgid "You must enter a non-empty problem name."
 msgstr ""
 
@@ -347,6 +349,27 @@ msgstr ""
 #, php-format
 msgid ""
 "We do not have record of any submissions from user %1$s for problem %2$s."
+msgstr ""
+
+#: ../wp-plugin/db-problem-summary.php:29
+#: ../wp-plugin/shortcode-my-progress.php:28
+#, php-format
+msgid "Problem %s not found (at least in current language)"
+msgstr ""
+
+#: ../wp-plugin/db-problem-summary.php:69
+#: ../wp-plugin/db-problem-summary.php:75
+msgid "latest correct"
+msgstr ""
+
+#: ../wp-plugin/db-problem-summary.php:70
+#: ../wp-plugin/db-problem-summary.php:76
+msgid "last time"
+msgstr ""
+
+#: ../wp-plugin/db-problem-summary.php:71
+#: ../wp-plugin/db-problem-summary.php:77
+msgid "first time"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:4
@@ -611,12 +634,12 @@ msgid ""
 "Circles. They are pretty infrequent, about once per year."
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:224
+#: ../wp-plugin/plugin-utilities.php:222
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:348
+#: ../wp-plugin/plugin-utilities.php:346
 msgid "Return to Computer Science Circles"
 msgstr ""
 
@@ -760,61 +783,70 @@ msgstr ""
 msgid "You must log in order to view your user page."
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:29
+#: ../wp-plugin/shortcode-my-progress.php:35
 #, php-format
 msgid "Reload with a different view? (you have %s students)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:30
+#: ../wp-plugin/shortcode-my-progress.php:36
 msgid "Select different user?"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:32
+#: ../wp-plugin/shortcode-my-progress.php:38
 msgid "Show only me"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:33
+#: ../wp-plugin/shortcode-my-progress.php:39
 msgid "Summary of all my students"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:47
+#: ../wp-plugin/shortcode-my-progress.php:53
 msgid "Just show submissions for one problem?"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:49
+#: ../wp-plugin/shortcode-my-progress.php:55
 msgid "Show all"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:50
+#: ../wp-plugin/shortcode-my-progress.php:56
 msgid "Console"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:65
+#: ../wp-plugin/shortcode-my-progress.php:63
+msgid "Submit"
+msgstr ""
+
+#: ../wp-plugin/shortcode-my-progress.php:71
 msgid "User id must be numeric."
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:69
-#: ../wp-plugin/shortcode-my-progress.php:73
+#: ../wp-plugin/shortcode-my-progress.php:75
+#: ../wp-plugin/shortcode-my-progress.php:79
 msgid "Invalid user id."
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:77
+#: ../wp-plugin/shortcode-my-progress.php:83
 msgid "Viewing as "
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:80
+#: ../wp-plugin/shortcode-my-progress.php:86
 msgid "Viewing summary of all your students"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:89
+#: ../wp-plugin/shortcode-my-progress.php:90
+#, php-format
+msgid "Solutions by my students for %s"
+msgstr ""
+
+#: ../wp-plugin/shortcode-my-progress.php:101
 msgid "Latest Problems Completed"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:103
+#: ../wp-plugin/shortcode-my-progress.php:115
 msgid "Submitted Code"
 msgstr ""
 
-#: ../wp-plugin/shortcode-my-progress.php:122
+#: ../wp-plugin/shortcode-my-progress.php:134
 msgid "Overview"
 msgstr ""
 
