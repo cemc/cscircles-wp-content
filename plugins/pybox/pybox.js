@@ -5,6 +5,10 @@ function __t(s) {
     return translationArray[s];
 }
 
+function toggleVisibility(id) {
+    $('#' + id).toggle();
+}
+
 function stylePybox(id, modeCharacter) {
     B = $("#pybox"+id);
     B.removeClass("modeNeutral modeCorrect modeInternalError");
@@ -188,7 +192,8 @@ function mailReply(id, slug) {
 	error: function() {alert(__t("Unable to process 'send message' request. You might have lost your internet connection."));},
 	success: function(data) {if (data == '#') location.reload(true); else window.location = MAILURL + '?who='+id+"&what="+slug+"&which="+data+"#m";}
     });
-    alert(noreplyval?__t("All messages about from this student about this problem will be marked as answered."):__t("Your message was sent."));
+    alert(noreplyval?__t("Marking all messages from this student about this problem as answered.")
+	  :__t("Your message was sent."));
 }
 
 // three types of short answer question: short answer, multiple choice, scramble

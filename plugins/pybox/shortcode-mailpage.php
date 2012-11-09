@@ -108,14 +108,14 @@ function pbmailpage($options, $content) {
   }
 
   $r .= '<div class="pybox fixsresize mailform" id="mailform">
-<div class="pyboxTextwrap">
+<div id="bodyarea" class="pyboxTextwrap">
 <textarea name="body" class="resizy" placeholder="'.__t('Type here to send a reply about this problem').'" style="width:100%; white-space: pre-wrap; font-size: 11px; line-height:13px" rows=12></textarea>
 </div>
 '.$to;
 
   if (getUserID() != $sid) 
-    $r .= '<input style="position:relative; top:2px" type="checkbox" id="noreply">'.
-      ' <label style="font-size:75%" for="noreply">Just mark as read without replying (reply text is ignored)</label><br>';
+    $r .= '<input style="position:relative; top:2px" type="checkbox" id="noreply" onclick="toggleVisibility(\'bodyarea\')">'.
+      ' <label style="font-size:75%" for="noreply">Just mark as read without replying</label><br>';
 
   $r .= '<button onclick="mailReply('.$sid.',\''.$problem['slug'].'\');">'.__t('Send this message!').'</button>
 </div>';
