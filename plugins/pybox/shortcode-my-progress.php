@@ -18,7 +18,7 @@ function pyUser($options, $content) {
 
   $problem_table = $wpdb->prefix . "pb_problems";
   $problems = $wpdb->get_results
-    ("SELECT * FROM $problem_table WHERE facultative = 0 AND lang LIKE '".pll_current_language()."' AND lesson IS NOT NULL ORDER BY lesson ASC, boxid ASC", ARRAY_A);
+    ("SELECT * FROM $problem_table WHERE facultative = 0 AND lang = '".pll_current_language()."' AND lesson IS NOT NULL ORDER BY lesson ASC, boxid ASC", ARRAY_A);
   $problemsByNumber = array();
   foreach ($problems as $prow) 
     $problemsByNumber[$prow['slug']] = $prow;
@@ -125,7 +125,7 @@ function pyUser($options, $content) {
 
   $lessons_table = $wpdb->prefix . "pb_lessons";
   $lessons = $wpdb->get_results
-    ("SELECT * FROM $lessons_table WHERE lang LIKE '" . pll_current_language() . "'", ARRAY_A);
+    ("SELECT * FROM $lessons_table WHERE lang = '" . pll_current_language() . "'", ARRAY_A);
 
   $lessonsByNumber = array();
   foreach ($lessons as $lrow) 

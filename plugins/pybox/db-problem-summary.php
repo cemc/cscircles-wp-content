@@ -22,7 +22,7 @@ function dbProblemSummary($limit, $sortname, $sortorder, &$info, $req = NULL) {
    $problem_table = $wpdb->prefix . "pb_problems";
    $problemname = $wpdb->get_var
      ($wpdb->prepare
-      ("SELECT publicname FROM $problem_table WHERE lang LIKE '%s' AND slug LIKE '%s'",
+      ("SELECT publicname FROM $problem_table WHERE lang = '%s' AND slug = '%s'",
        pll_current_language(), $problemslug));
    
    if ($problemname == null) 

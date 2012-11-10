@@ -287,7 +287,7 @@ function pyRecallHandler($options, $content) {
     return "[pyRecall error: no slug given]";
   
   global $wpdb;
-  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug is %s", $options['slug']), ARRAY_A);
+  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s", $options['slug']), ARRAY_A);
 
   if ($problem == NULL) 
     return "[pyRecall error: slug " . $options['slug'] . " not found]";

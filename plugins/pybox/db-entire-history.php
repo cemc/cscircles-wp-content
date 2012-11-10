@@ -55,7 +55,7 @@ echo dbFlexigrid
 
    // make an associative array indexed by slug
    
-   $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM wp_pb_problems WHERE slug IS NOT NULL AND lang LIKE '".pll_current_language() ."'", 
+   $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM wp_pb_problems WHERE slug IS NOT NULL AND lang = '".pll_current_language() ."'", 
 				      OBJECT_K);
 
    $whereProblem = "1";

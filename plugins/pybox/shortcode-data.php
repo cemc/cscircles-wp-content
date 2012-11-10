@@ -4,7 +4,7 @@ add_shortcode('pbgraph', 'pbgraph');
 
 function pbgraph($options, $content) {
   global $wpdb;
-  $res = $wpdb->get_results('SELECT ustudent, problem, time FROM `wp_pb_mail` where ustudent > 2 and ufrom LIKE ustudent group by ustudent order by count(1) desc');
+  $res = $wpdb->get_results('SELECT ustudent, problem, time FROM `wp_pb_mail` where ustudent > 2 and ufrom = ustudent group by ustudent order by count(1) desc');
   //  foreach ($res as $ask) {
   //    $replyTime = $wpdb->
   //  }
