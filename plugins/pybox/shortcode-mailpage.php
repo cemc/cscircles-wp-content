@@ -125,7 +125,7 @@ function pbmailpage($options, $content) {
     
     if (getUserID() != $sid) 
       $r .= '<input style="position:relative; top:2px" type="checkbox" id="noreply" onclick="toggleVisibility(\'bodyarea\')">'.
-	' <label style="font-size:75%" for="noreply">Just mark as read without replying</label><br>';
+	' <label style="font-size:75%" for="noreply">'.__t('Just mark as read without replying').'</label><br>';
     
     $r .= '<button onclick="mailReply('.$sid.',\''.$problem['slug'].'\');">'.__t('Send this message!').'</button>
 </div>';
