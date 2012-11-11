@@ -28,11 +28,11 @@ function xname($uid) {
 }
 
 function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
-  $who = getSoft(($req==NULL?$_REQUEST:$req), "who", "");
-  $xwho = getSoft(($req==NULL?$_REQUEST:$req), "xwho", "");
-  $what = getSoft(($req==NULL?$_REQUEST:$req), "what", "");
-  $xwhat = getSoft(($req==NULL?$_REQUEST:$req), "xwhat", "");
-  $unans = getSoft(($req==NULL?$_REQUEST:$req), "unans", "");
+  $who = getSoft(($req===NULL?$_REQUEST:$req), "who", "");
+  $xwho = getSoft(($req===NULL?$_REQUEST:$req), "xwho", "");
+  $what = getSoft(($req===NULL?$_REQUEST:$req), "what", "");
+  $xwhat = getSoft(($req===NULL?$_REQUEST:$req), "xwhat", "");
+  $unans = getSoft(($req===NULL?$_REQUEST:$req), "unans", "");
 
    $info['type'] = 'mail-history';
    $info['who'] = $who;
@@ -51,12 +51,15 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
      $students[] = getUserID();
      $where .= ' AND ustudent IN ('.implode(',', $students).')';
    }
+   else {
+     $where .= ' AND (uto = '. getUserID() . ' OR uto = 0 OR ufrom = '. getUserID() . ' OR ufrom = 0)';
+   }
 
    if ($who != '') {
      if (!is_numeric($who))
        return sprintf(__t("%s must be numeric."), "'who'");
      $who = (int)$who;
-     if (userIsAdmin() || getUserID() == $who || getUserID() == guruIDID(getUserID()))
+     if (userIsAdmin() || getUserID() == $who || getUserID() == guruIDID($who))
        $where .= ' AND ustudent = '.$who;
      else
        return __t("Access denied.");
@@ -81,12 +84,13 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
      $where .= $wpdb->prepare(' AND problem = %s', $what);
    if ($xwhat != '') 
      $where .= $wpdb->prepare(' AND problem != %s', $xwhat);
+
    
    $table_name = $wpdb->prefix . "pb_mail";
 
    $knownFields = array(__t("from")=>"ufrom", __t("to")=>"uto", 
 			__t("when")=>"time", __t("message")=>"body",
-			__t("problem")=>"problem");
+			__t("problem")=>"problem", __t("replied?")=>"unanswered");
 
    $sortString = (array_key_exists($sortname, $knownFields)) ?
      ($knownFields[$sortname] . " " . $sortorder . ", ") : "";
@@ -94,16 +98,20 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
    $count = $wpdb->get_var("SELECT COUNT(1) from $table_name $where");
    $prep = $wpdb->prepare("SELECT * from $table_name $where ORDER BY $sortString ID DESC" . $limit);
 
+   //   pyboxlog($prep);
+   
    $flexirows = array();
    foreach ($wpdb->get_results( $prep, ARRAY_A ) as $r) {
      $cell = array();
      $cell[__t('from')] = xname($r['ufrom']);
      $cell[__t('to')] = xname($r['uto']);
      $url =  cscurl('mail') . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m\n";
-     $cell[__t('message')] = "<a href='$url'>".preBox($r['body'])."</a>";
-     $cell[__t('when')] = $r['time'];
+     $cell[__t('when')] = str_replace(' ', '<br>', $r['time']);
      if ($what=='')
-       $cell['problem'] = $r['problem'];
+       $cell[__t('problem')] = $r['problem'];
+     if ($unans == '')
+       $cell[__t('replied?')] = ($r['unanswered'] == 1) ? __t('no') : __t('yes');
+     $cell[__t('message')] = "<a href='$url'>".preBox($r['body'])."</a>";
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);
    }
    return array('total' => $count, 'rows' => $flexirows);

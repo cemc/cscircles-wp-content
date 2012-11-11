@@ -64,7 +64,8 @@ get_currentuserinfo();
 $user_email = $current_user->user_email;
 
 global $wpdb;
-$problem_info = $wpdb->get_row($wpdb->prepare('SELECT * from wp_pb_problems where slug = %s', $slug), ARRAY_A);
+$problem_info = $wpdb->get_row($wpdb->prepare('SELECT * from wp_pb_problems where slug = %s and lang = %s', 
+					      $slug, pll_current_language()), ARRAY_A);
 
 if ($problem_info === NULL) {
   header('HTTP/1.1 404 Not Found');

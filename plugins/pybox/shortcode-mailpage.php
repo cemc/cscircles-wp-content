@@ -3,10 +3,11 @@
 add_shortcode('pbmailpage', 'pbmailpage');
 
 function validate() {
-  if (!array_key_exists('who', $_GET) || !array_key_exists('what', $_GET))
-    return array("error", __t("Mandatory arguments are missing."));
-  $s = $_GET['who'];
-  $p = $_GET['what'];
+  /*  if (!array_key_exists('who', $_GET) || !array_key_exists('what', $_GET))
+   return array("error", __t("Mandatory arguments are missing."));*/
+  $s = getSoft($_GET, 'who', getUserID());
+  if ($s === '') $s = getUserID();
+  $p = getSoft($_GET, 'what', '');
   if (!is_numeric($s))
     return array("error", __t("Student ID must be a number."));
   $s = (int)$s;
@@ -21,15 +22,17 @@ function validate() {
   if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin() ) )
     return array("error", __t("Access denied. You may need to log in first."));
 
-  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",
-					   $p, pll_current_language()), ARRAY_A);
-
-  if ($problem === null)
-    return array("error", __t("No such problem exists."));
+  if ($p != '') {
+    $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",
+					     $p, pll_current_language()), ARRAY_A);
+    
+    if ($problem === null)
+      return array("error", __t("No such problem exists."));
+  }
 
   $f = (int)getSoft($_GET, 'which', -1);
 
-  return array("success", array("student"=>$student, "sid"=>$s, "problem"=>$problem, "focus"=>$f));
+  return array("success", array("student"=>$student, "sid"=>$s, "problem"=>($p==''?NULL:$problem), "focus"=>$f));
 }
 
 function name($uid) {
@@ -52,9 +55,16 @@ function pbmailpage($options, $content) {
 
   extract($v[1]); // $student, $problem, $focus, $sid
 
+  $name = name($sid);
+
   $r = '';
 
   global $wpdb;
+
+  $students = getStudents();
+  $cstudents = count($students);
+
+  if ($problem !== NULL) {
   
   $finished = $wpdb->get_var($wpdb->prepare("SELECT time FROM wp_pb_completed WHERE userid = %d AND problem = %s",
 					    $sid, $problem['slug']));
@@ -122,7 +132,6 @@ function pbmailpage($options, $content) {
 
   $problemname = $problem['publicname'];
 
-  $name = name($sid);
   $r .= "<h2>Tools</h2>";
   $r .= "<a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a>";
   $r .= "<br><a href=\"".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
@@ -130,6 +139,7 @@ function pbmailpage($options, $content) {
 <div class='collapseHead'><span class='icon'></span>".__t("Problem description for")." ".$problem['publicname']."</div>
 <div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
 </div>";
+
 
   if (getUserID()!=$sid)
     $r .= niceFlex('us', sprintf(__t('%1$s\'s submissions for %2$s'), $name, $problemname),
@@ -145,12 +155,68 @@ function pbmailpage($options, $content) {
 		 sprintf(__t("Messages to/from %s for other problems"), $name), 
 		 'mail', 'dbMail', array('who'=>$sid, 'xwhat'=>$problem['slug']));
 
-  if (getUserID()!=$sid)
-    $r .= niceFlex('unread', __t("All unanswered messages by my students"),
-		   'mail', 'dbMail', array('unans'=>1));
-  
+  }
+
+  if ($cstudents > 0)
+    $r .= niceFlex('allstu', sprintf(__t("All messages ever about %s's work"), $name),
+		   'mail', 'dbMail', array('who'=>$sid));
+
+  $r .= niceFlex('allme', __t("All messages ever to or from me"),
+		 'mail', 'dbMail', array());
+
+  $r .= reselector($students, $cstudents);
 
   return $r;
+}
+
+function reselector(&$students, $cstudents) {
+
+  global $wpdb;
+
+  $problem_table = $wpdb->prefix . "pb_problems";
+  $problems = $wpdb->get_results
+    ("SELECT * FROM $problem_table WHERE facultative = 0 AND lang = '".pll_current_language()."' AND lesson IS NOT NULL ORDER BY lesson ASC, boxid ASC", ARRAY_A);
+  $problemsByNumber = array();
+  foreach ($problems as $prow) 
+    $problemsByNumber[$prow['slug']] = $prow;
+  
+  $gp = getSoft($_GET, "which", "");
+  if ($gp != "" && $gp != "console" && !array_key_exists($gp, $problemsByNumber)) {
+    echo sprintf(__t("Problem %s not found (at least in current language)"), $gp);
+    return;
+  }  
+
+  $preamble = 
+    "<br><div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
+       <h1 style='margin-top: 0px;'>".sprintf(__t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
+       <form method='get'>".__t("Select different user?")."<br/>";
+  $options = array();
+  $options[''] = __t('Me');
+  
+  //$preamble .= <option value=''>Show only me</option>
+  //     <option value='all'>Summary of all my students</option>";
+  if (userIsAdmin()) {
+    foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
+      $options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
+  }
+  else foreach ($students as $student) {
+    $info = get_userdata($student);
+    $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")";
+  }
+  
+  $preamble .= optionsHelper($options, 'who')."<br/>";
+
+  $preamble .= __t("Mail for which problem?")."<br/>";
+  $options = array();
+  $options[''] = '';
+  foreach ($problems as $problem) {
+    if ($problem['type'] == 'code')
+      $options[$problem['slug']] = $problem['publicname'];
+  }
+  $preamble .= optionsHelper($options, 'what');
+  
+  $preamble .= "<br/><input type='submit' value='".__t('Submit')."'/></form></div>";
+  return $preamble;
 }
 
 function niceFlex($id, $title, $fileSuffix, $functionName, $dbparams) {
