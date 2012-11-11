@@ -103,9 +103,13 @@ class WP_Scoped_User extends WP_User {
 		
 		$arr = array();
 		
-		if ( GROUP_ROLES_RS && $this->groups )
-			$arr []= "{$table_alias}group_id IN ('" . implode("', '", array_keys($this->groups) ) . "')";
-		
+		if ( GROUP_ROLES_RS && $this->groups ) {
+		  if ( count($this->groups) > 1)
+		    $arr []= "{$table_alias}group_id IN ('" . implode("', '", array_keys($this->groups) ) . "')";
+		  else
+		    $arr []= "{$table_alias}group_id = '" . implode("", array_keys($this->groups) ) . "'";
+		}
+	
 		if ( USER_ROLES_RS || empty($arr) ) // too risky to allow query with no user or group clause
 			$arr []= "{$table_alias}user_id = '$this->ID'";
 			
