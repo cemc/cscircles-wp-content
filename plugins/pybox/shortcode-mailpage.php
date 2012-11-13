@@ -180,7 +180,7 @@ function reselector(&$students, $cstudents) {
   foreach ($problems as $prow) 
     $problemsByNumber[$prow['slug']] = $prow;
   
-  $gp = getSoft($_GET, "which", "");
+  $gp = getSoft($_GET, "what", "");
   if ($gp != "" && $gp != "console" && !array_key_exists($gp, $problemsByNumber)) {
     echo sprintf(__t("Problem %s not found (at least in current language)"), $gp);
     return;
