@@ -179,8 +179,8 @@ function scoper_update_schema($last_db_ver) {
 	 	KEY role_rs (date_limited,role_type,role_name,scope,assign_for,src_or_tx_name,group_id,user_id,obj_or_term_id),
 	 	KEY role_assignments (role_name,role_type,scope,assign_for,src_or_tx_name,group_id,user_id,obj_or_term_id,inherited_from,assignment_id),
                 KEY content_date_limited (content_date_limited),
-                KEY group_id (group_id),
-                KEY user_id (user_id)
+                KEY group_id (scope, role_type, group_id),
+                KEY user_id (scope, role_type, user_id)
 	);
 	";
 	
