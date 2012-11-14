@@ -69,7 +69,7 @@ class Polylang_List_Table extends WP_List_Table {
 */
 
 	function prepare_items($data = array()) {
-		$per_page = 10; // 10 languages per page
+		$per_page = $this->get_items_per_page('pll_lang_per_page');
 		$columns = $this->get_columns();
 		$hidden = array();
 		$sortable = $this->get_sortable_columns();
@@ -106,7 +106,7 @@ class Polylang_String_Table extends WP_List_Table {
 	}
 
 	function column_default($item, $column_name) {
-		return $item[$column_name];
+		return $column_name == 'string' ? format_to_edit($item[$column_name]) : $item[$column_name]; // don't interpret special chars for the string column
 	}
 
 	function column_translations($item) {
@@ -115,11 +115,11 @@ class Polylang_String_Table extends WP_List_Table {
 			$input_type = $item['multiline'] ?
 				'<textarea name="translation[%1$s][%2$s]" id="%1$s-%2$s">%4$s</textarea>' :
 				'<input name="translation[%1$s][%2$s]" id="%1$s-%2$s" value="%4$s" />';
-			$out .= sprintf('<div class="translation"><label for="%1$s-%2$s">%3$s</label>'.$input_type.'</div>',
+			$out .= sprintf('<div class="translation"><label for="%1$s-%2$s">%3$s</label>'.$input_type.'</div>'."\n",
 				esc_attr($key),
 				esc_attr($item['row']),
 				esc_html($key),
-				$item['multiline'] ? esc_textarea($translation) : esc_html($translation));
+				format_to_edit($translation)); // don't interpret special chars
 		}
 		return $out;
 	}
@@ -140,7 +140,7 @@ class Polylang_String_Table extends WP_List_Table {
 	}
 
 	function prepare_items($data = array()) {
-		$per_page = 10; // 10 strings per page
+		$per_page = $this->get_items_per_page('pll_strings_per_page');
 		$columns = $this->get_columns();
 		$hidden = array();
 		$sortable = $this->get_sortable_columns();

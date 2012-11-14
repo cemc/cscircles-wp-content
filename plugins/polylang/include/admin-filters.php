@@ -2,6 +2,8 @@
 
 // all modifications of the WordPress admin ui
 class Polylang_Admin_Filters extends Polylang_Admin_Base {
+	private $pre_term_name; // used to store the term name before creating a slug if needed
+
 	function __construct() {
 		parent::__construct();
 
@@ -96,6 +98,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		add_filter('wp_dropdown_cats', array(&$this, 'wp_dropdown_cats'));
 		add_action('create_term', array(&$this, 'save_term'), 10, 3);
 		add_action('edit_term', array(&$this, 'save_term'), 10, 3);
+		add_filter('pre_term_name', array(&$this, 'pre_term_name'));
+		add_filter('pre_term_slug', array(&$this, 'pre_term_slug'), 10, 2);
 
 		// ajax response for edit term form
 		add_action('wp_ajax_term_lang_choice', array(&$this,'term_lang_choice'));
@@ -486,6 +490,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 					foreach ($terms as $term) {
 						if ($term_id = $this->get_term($term->term_id, $_POST['post_lang_choice']))
 							$newterms[] = (int) $term_id; // cast is important otherwise we get 'numeric' tags
+						elseif (!is_wp_error($term_info = wp_insert_term($term->name, $tax))) // create the term in the correct language
+							$newterms[] = (int) $term_info['term_id'];
 					}
 					wp_set_object_terms($post_id, $newterms, $tax);
 				}
@@ -875,6 +881,17 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		}
 	}
 
+	// stores the term name for use in pre_term_slug
+	function pre_term_name($name) {
+		return $this->pre_term_name = $name;
+	}
+
+	// creates the term slug in case the term already exists in another language
+	function pre_term_slug($slug, $taxonomy) {
+		return !$slug && in_array($taxonomy, $this->taxonomies) && ($name = sanitize_title($this->pre_term_name)) && term_exists($name, $taxonomy) ?
+			$name.'-'.$this->get_language($_POST['term_lang_choice'])->slug : $slug;
+	}
+
 	// called when a category or post tag is deleted
 	function delete_term($term_id) {
 		$this->delete_term_language($term_id);
@@ -942,10 +959,14 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		if ('publish' != $new_status || 'publish' == $old_status || 'page' != $post->post_type || ! empty($post->post_parent))
 			return;
 
-		// get all the menus in the post language
-		$menus = array();
 		$lang = $this->get_post_language($post->ID);
 		$menu_lang = get_option('polylang_nav_menus');
+
+		if (!$lang || !$menu_lang)
+			return;
+
+		// get all the menus in the post language
+		$menus = array();
 		foreach ($menu_lang as $menu) {
 			if (isset($menu[$lang->slug]))
 				$menus[] = $menu[$lang->slug];

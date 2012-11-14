@@ -4,7 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, i18n, international, l10n, localization
 Requires at least: 3.1
 Tested up to: 3.4.2
-Stable tag: 0.9.4
+Stable tag: 0.9.5
+License: GPLv2 or later
 
 Polylang adds multilingual content management support to WordPress.
 
@@ -91,6 +92,21 @@ If you like Polylang, you can spread the word... Rating the plugin is very easy,
 Every suggestions are welcome.
 
 == Changelog ==
+
+= 0.9.5 (2012-11-13) =
+
+* The user can now choose the number of languages and strings translations to display
+* Add compatibility with the 'icl_object_id' function and ICL_LANGUAGE_CODE and ICL_LANGUAGE_NAME constants from the WPML API
+* Add 17 languages to the predefined list (automatic download and update of language files won't work)
+* Bug correction: post preview does not work when adding the language code to all urls
+* Bug correction: redirect to front page in default language when posting a comment on static front page
+* Bug correction: impossible to create terms with the same name in different languages
+* Bug correction: query string added by other plugins is erased when adding the language code to all urls
+* Bug correction: redirect erase 'POST' variables on homepage when adding the language code to all urls
+* Bug correction: English (en_US) loads rtl style when using a localized WordPress package with an rtl language
+* Bug correction: on some installation strings translations do not work with some special characters
+* Bug correction: incoming links are not redirected to canonical url when adding the language code to all urls and hiding the code for the default language
+* Bug correction: search form does not work in non default language when using permalinks without trailing slash
 
 = 0.9.4 (2012-10-23) =
 
