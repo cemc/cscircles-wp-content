@@ -65,7 +65,6 @@ define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
 define('UPYBOXJS', UPYBOX . 'pybox.js?25');
 define('UPYBOXCSS', UPYBOX . 'pybox.css?9');
 define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
-define('UOLDHISTORY', UPYBOX . 'pages/problem-history.php?p=');
 
 define('USUBMIT', UPYBOX . 'action-submit-code.php');
 define('USETCOMPLETED', UPYBOX . 'action-notify-complete.php');
