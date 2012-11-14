@@ -1,20 +1,17 @@
 <?php
 
-require_once("db-include.php");
-
 /* 
 inner function returns either a string in case of error,
 or an array-pair (total, array of (id, cell) array-pairs),
 where each cell is an array representing a row.
 */
 
-echo dbFlexigrid
-(
- function ($limit, $sortname, $sortorder, &$info) {
+function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
+   if ($req == NULL) $req = $_REQUEST;
    $info['type'] = 'entire-history';
 
-   $user = getSoft($_POST, "user", "");   
-   $problem = getSoft($_POST, "problemhash", "");   
+   $user = getSoft($req, "user", "");   
+   $problem = getSoft($req, "problemhash", "");   
 
    $resultdesc = array('y'=> __t('Did not crash.'), 
 		       'Y'=> __t('Correct!'), 
@@ -120,7 +117,12 @@ ORDER BY $sortString ID DESC " . $limit);
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);
    }
    return array('total' => $count, 'rows' => $flexirows);
+ };
+
+// only do this if calld directly
+if(strpos($_SERVER["SCRIPT_FILENAME"], '/db-entire-history.php')!=FALSE) {
+  require_once("db-include.php");
+  echo dbFlexigrid('dbEntireHistory');
  }
- );
 
 // paranoid against newline error

@@ -97,9 +97,9 @@ function pyUser($options, $content) {
   if (!$getall) {
     $recent = "";
     $completed = $wpdb->get_results
-      ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC", ARRAY_A);
+      ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC LIMIT 6", ARRAY_A);
     $recent .= '<h2>'.__t("Latest Problems Completed").'</h2>';
-    for ($i=0; $i<6 && $i<count($completed); $i++) {
+    for ($i=0; $i<count($completed); $i++) {
       $p = getSoft($problemsByNumber, $completed[$i]['problem'], FALSE);
       if ($p !== FALSE)
 	$recent .= '<a class="open-same-window problem-completed" href="' . $p['url'] 
@@ -111,17 +111,14 @@ function pyUser($options, $content) {
     echo $recent;
   }
 
-  $subs = "";
-  $subs = '<h2>'.__t("Submitted Code").'</h2>';
-  $subs .= '<div id="recentsubs"></div>';
-  $U = UFULLHISTORY;
   $dbparams = array();
   if (getSoft($_GET, 'user', '')!='')
     $dbparams['user'] = $_GET['user'];
   if (getSoft($_GET, 'problem', '')!='')
     $dbparams['problemhash'] = $_GET['problem'];
 
-  $subs .= "<script type='text/javascript'>\npyflex({'id':'recentsubs','url':'$U','dbparams':".json_encode($dbparams)."})\n</script>\n";
+  $subs = niceFlex('submittedcode',  __t("Submitted Code"),
+		'entire-history', 'dbEntireHistory', $dbparams); 
 
   $lessons_table = $wpdb->prefix . "pb_lessons";
   $lessons = $wpdb->get_results
