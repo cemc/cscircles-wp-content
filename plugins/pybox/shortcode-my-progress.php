@@ -96,10 +96,11 @@ function pyUser($options, $content) {
 
   if (!$getall) {
     $recent = "";
+    // queries more than 6 in order to fill out progress table of all problems
     $completed = $wpdb->get_results
-      ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC LIMIT 6", ARRAY_A);
+      ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC", ARRAY_A);
     $recent .= '<h2>'.__t("Latest Problems Completed").'</h2>';
-    for ($i=0; $i<count($completed); $i++) {
+    for ($i=0; $i<count($completed) && $i < 6; $i++) {
       $p = getSoft($problemsByNumber, $completed[$i]['problem'], FALSE);
       if ($p !== FALSE)
 	$recent .= '<a class="open-same-window problem-completed" href="' . $p['url'] 
