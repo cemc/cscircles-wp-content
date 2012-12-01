@@ -67,7 +67,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			add_action('wp_ajax_media_lang_choice', array(&$this,'media_lang_choice'));
 
 			// adds actions related to languages when creating, saving or deleting media
-			add_filter('attachment_fields_to_save', array(&$this, 'save_media'));
+			add_filter('attachment_fields_to_save', array(&$this, 'save_media'), 10, 2);
 			add_action('delete_attachment', array(&$this, 'delete_post'));
 			add_filter('wp_delete_file', array(&$this, 'wp_delete_file'));
 
@@ -217,7 +217,9 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		}
 
 		// filters the list of media by language when uploading from post
-		if ($GLOBALS['pagenow'] == 'media-upload.php' && isset($_GET['post_id']) && $lang = $this->get_post_language($_GET['post_id']))
+		if (($GLOBALS['pagenow'] == 'media-upload.php' || // WP < 3.5
+			($GLOBALS['pagenow'] == 'admin-ajax.php' && isset($_REQUEST['action']) && $_REQUEST['action'] == 'query-attachments')) && // WP 3.5+
+			isset($_REQUEST['post_id']) && $lang = $this->get_post_language($_REQUEST['post_id']))
 			$query->set('lang', $lang->slug);
 
 		if (!isset($qvars['lang']) && $lg = get_user_meta(get_current_user_id(), 'pll_filter_content', true))
@@ -229,9 +231,9 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		return $query;
 	}
 
-	// adds the Language box in the 'Edit Post' and 'Edit Page' panels (as well as in custom post types panels)
+	// adds the Language box in the 'Edit Post' and 'Edit Page' panels (as well as in custom post types panels) but not in the 'Edit media' panel
 	function add_meta_boxes($post_type) {
-		if (in_array($post_type, $this->post_types))
+		if (in_array($post_type, array_diff($this->post_types, array('attachment'))))
 			add_meta_box('ml_box', __('Languages','polylang'), array(&$this,'post_language'), $post_type, 'side', 'high');
 
 		// replace tag metabox by our own
@@ -508,7 +510,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		$this->save_translations('post', $post_id, $translations);
 
 		// STOP synchronisation if unwanted
-		if (!$this->options['sync'])
+		if (!isset($this->options['sync']) || !$this->options['sync'])
 			return;
 
 		// synchronise terms and metas in translations
@@ -541,7 +543,6 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 	// adds the language field and translations tables in the 'Edit Media' panel
 	function attachment_fields_to_edit($fields, $post) {
-		$screen = get_current_screen();
 		$post_id = $post->ID;
 		$lang = $this->get_post_language($post_id);
 
@@ -560,7 +561,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		);
 
 		// don't show translations except on edit media panel
-		if ($screen->base == 'media') {
+		// media.php for WP < 3.5 and post.php for WP 3.5+
+		if (in_array($GLOBALS['pagenow'], array('media.php', 'post.php'))) {
 		if ($lang) {
 				ob_start();
 				include PLL_INC . '/media-translations.php';
@@ -626,8 +628,9 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	}
 
 	// called when a media is saved
-	// the language is automatically saved by WP
-	function save_media($post) {
+	function save_media($post, $attachment) {
+		$this->set_post_language($post['ID'], $attachment['language']); // FIXME the language is no more automatically saved by WP since WP 3.5 (just a bug?)
+
 		$this->delete_translation('post', $post['ID']);
 
 		// save translations after checking the translated media is in the right language
@@ -665,6 +668,10 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			if (!in_array($tax, $this->taxonomies))
 				return $clauses;
 		}
+
+		// if get_terms is queried with a 'lang' parameter
+		if (isset($args['lang']) && $args['lang'])
+			return $this->_terms_clauses($clauses, $args['lang']);
 
 		if (function_exists('get_current_screen'))
 			$screen = get_current_screen(); // since WP 3.1, may not be available the first time(s) get_terms is called
@@ -836,7 +843,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		// synchronize translations of this term in all posts
 
 		// STOP synchronisation if unwanted
-		if (!$this->options['sync'])
+		if (!isset($this->options['sync']) || !$this->options['sync'])
 			return;
 
 		// get all posts associated to this term
