@@ -191,27 +191,32 @@ function reselector(&$students, $cstudents) {
        <h1 style='margin-top: 0px;'>".sprintf($cstudents == 0 ? __t("View a different problem?") : __t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
        <form method='get'>";
   if ($cstudents > 0) {
-    $preamble .= __t("Select different user?")."<br/>";
+    $preamble .= __t("Select different user?");
     $options = array();
     $options[''] = __t('Me');
     
     //$preamble .= <option value=''>Show only me</option>
     //     <option value='all'>Summary of all my students</option>";
     if (userIsAdmin()) {
-      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
-	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
+      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
+      //	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
     }
     else foreach ($students as $student) {
       $info = get_userdata($student);
-      $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")";
+      $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")<br/>";
     }
     
-    $preamble .= optionsHelper($options, 'who')."<br/>";
+    if (userIsAdmin()) {
+      $preamble .= ' &mdash; blank: you; id#: user (<a href="'.cscurl('allusers').'">list</a>) <input style = "text-align: right; width:60px" type="text" name="who" value="'.getSoft($_REQUEST, 'who', '').'"><br/>';
+    }
+    else {
+      $preamble .= '<br/>'.optionsHelper($options, 'who')."<br/>";
+    }
   }
   
   $preamble .= __t("Mail for which problem?")."<br/>";
   $options = array();
-  $options[''] = '';
+  $options[''] = 'all problems';
   foreach ($problems as $problem) {
     if ($problem['type'] == 'code')
       $options[$problem['slug']] = $problem['publicname'];

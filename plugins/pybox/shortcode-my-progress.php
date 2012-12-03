@@ -33,7 +33,7 @@ function pyUser($options, $content) {
     $preamble = 
       "<div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
        <h1 style='margin-top: 0px;'>".sprintf(__t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
-       <form method='get'>".__t("Select different user?")."<br/>";
+       <form method='get'>".__t("Select different user?");
     $options = array();
     $options[''] = __t('Show only me');
     $options['all'] = __t('Summary of all my students');
@@ -41,15 +41,20 @@ function pyUser($options, $content) {
     //$preamble .= <option value=''>Show only me</option>
     //     <option value='all'>Summary of all my students</option>";
     if (userIsAdmin()) {
-      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
-	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
+      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
+      //	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
     }
     else foreach ($students as $student) {
       $info = get_userdata($student);
       $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")";
     }
     
-    $preamble .= optionsHelper($options, 'user')."<br/>";
+    if (userIsAdmin()) {
+      $preamble .= ' &mdash; blank: you; "all": all; id#: user (<a href="'.cscurl('allusers').'">list</a>) <input style = "text-align: right; width:60px" type="text" name="user" value="'.getSoft($_REQUEST, 'user', '').'"><br/>';
+    }
+    else {
+      $preamble .= "<br/>".optionsHelper($options, 'user')."<br/>";
+    }
     $preamble .= __t("Just show submissions for one problem?")."<br/>";
     $options = array();
     $options[''] = __t('Show all');

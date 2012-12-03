@@ -32,6 +32,7 @@ function cscurl($slug) {
 		     ('usage') => 'using-this-website',
 		     ('contact') => 'contact',
 		     ('install') => 'run-at-home',
+		     ('allusers') => 'admin-user-list',
 		     );
   
   $s = $cscslugmap[$slug];

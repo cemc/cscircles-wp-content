@@ -161,6 +161,7 @@ require_once("shortcode-youtube.php");
 require_once("shortcode-mailpage.php");
 require_once("shortcode-style.php");
 require_once("shortcode-db-profiling.php");
+require_once("shortcode-admin-user-list.php");
 require_once("plugin-footer-prevnext.php");
 require_once("plugin-hooks.php");
 require_once("plugin-profile-options.php");
