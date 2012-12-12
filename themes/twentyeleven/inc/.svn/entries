@@ -1,15 +1,15 @@
 10
 
 dir
-21802
-http://core.svn.wordpress.org/tags/3.4.2/wp-content/themes/twentyeleven/inc
+23174
+http://core.svn.wordpress.org/tags/3.5/wp-content/themes/twentyeleven/inc
 http://core.svn.wordpress.org
 
 
 
-2012-05-26T18:44:31.432500Z
-20936
-koopersmith
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
 
 
 
@@ -32,12 +32,12 @@ file
 
 
 
-2012-06-18T16:27:49.000000Z
+2012-12-12T00:52:06.000000Z
 ef0cafa99e300bc69d1b4a091ddb0eb2
-2012-05-25T21:50:01.160669Z
-20916
-koopersmith
-
+2012-10-26T23:24:23.722185Z
+22316
+lancewillett
+has-props
 
 
 
@@ -171,11 +171,11 @@ file
 
 
 
-2012-04-11T17:25:24.000000Z
-889cd631e6a67ef93d8fba9943d6f068
-2011-11-16T00:08:29.650649Z
-19308
-nacin
+2012-12-12T00:52:06.000000Z
+35e0dcbb7eea579b95cadfca1a94a92e
+2012-10-11T21:30:42.559556Z
+22199
+lancewillett
 has-props
 
 
@@ -197,5 +197,5 @@ has-props
 
 
 
-6049
+6069
 

@@ -1,7 +1,9 @@
 
 /*********************** general stuff **********************/
 
-
+.screen-reader-shortcut {
+  display: none;
+}
 
 input.wpcf7-text, textarea.wpcf7-textarea {
   width: 100%;

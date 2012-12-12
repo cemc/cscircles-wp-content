@@ -290,8 +290,8 @@ function getCompleted($problem) {
   //pyboxlog($uid.' '.$problem); 
   $table_name = $wpdb->prefix . "pb_completed";
   $uname = $current_user->user_login;
-  $sqlcmd = "SELECT COUNT(*) FROM $table_name WHERE userid = '$uid' AND problem = '$problem'";
-  $count = $wpdb->get_var($wpdb->prepare($sqlcmd));
+  $sqlcmd = "SELECT COUNT(*) FROM $table_name WHERE userid = '$uid' AND problem = %s";
+  $count = $wpdb->get_var($wpdb->prepare($sqlcmd, $problem));
   //pyboxlog("getcompleted " . $problem . $uid . $count);
   return ($count > 0)?TRUE:FALSE;
 }

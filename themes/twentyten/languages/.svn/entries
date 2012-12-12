@@ -1,14 +1,14 @@
 10
 
 dir
-21802
-http://core.svn.wordpress.org/tags/3.4.2/wp-content/themes/twentyten/languages
+23174
+http://core.svn.wordpress.org/tags/3.5/wp-content/themes/twentyten/languages
 http://core.svn.wordpress.org
 
 
 
-2012-06-10T15:18:09.590813Z
-21044
+2012-12-07T21:19:05.873371Z
+23128
 potbot
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2012-06-28T02:36:05.000000Z
-835567fbf0ced356ecc7d3ee0411724a
-2012-06-10T15:18:09.590813Z
-21044
+2012-12-12T00:52:01.000000Z
+9f0edb234dc43c4ae9784b44af57a3a8
+2012-12-07T21:19:05.873371Z
+23128
 potbot
 has-props
 
@@ -58,5 +58,5 @@ has-props
 
 
 
-8734
+8583
 
