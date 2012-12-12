@@ -1,6 +1,25 @@
 
 /*********************** general stuff **********************/
 
+#wpadminbar .ab-top-menu > li:hover > .ab-item {
+background: none !important;
+color: darkGreen !important;
+background-image: inherit !important;
+}
+#wpadminbar .ab-top-menu > li.hover > .ab-item,
+#wpadminbar .ab-top-menu > li > .ab-item:focus,
+#wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus {
+color: green !important;
+background: white !important;
+background-image: inherit !important;
+}
+
+#wpadminbar a.ab-item:hover,
+#wpadminbar #wp-admin-bar-site-name a.ab-item:hover
+{
+background: none !important;
+}
+
 .screen-reader-shortcut {
   display: none;
 }
