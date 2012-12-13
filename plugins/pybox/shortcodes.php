@@ -261,6 +261,8 @@ function pyMultiScrambleHandler($options, $content) {
 
   $r .= heading(__t('Scramble Exercise'), $options);
 
+  $r .= "<b>Note (Dec 13)</b>: scramble exercises are temporarily broken &mdash; sorry!<br>";
+
   $r .= $content;
   $r .= '<ul class="pyscramble" name="pyscramble" id="pyscramble' . $id . '">' . "\n";
   foreach ($answer as $a) 
@@ -606,6 +608,8 @@ function pyBoxHandler($options, $content) {
   else {
     $r .= checkbox($slug);
     $r .= heading($scramble ? __t('Scramble Exercise') : __t('Coding Exercise'), $options);
+    if ($scramble) 
+  $r .= "<b>Note (Dec 13)</b>: scramble exercises are temporarily broken &mdash; sorry!<br>";
   }
 
   
