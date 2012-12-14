@@ -113,15 +113,22 @@ class WP_Cap_Helper_CR {
 		//scoper_refresh_default_otype_options();
 		
 		$use_post_types = scoper_get_option( 'use_post_types' );
+		$force_create_posts_cap = awp_ver( '3.5-beta' ) && scoper_get_option('define_create_posts_cap');
 		
 		$generic_caps = array();
-		foreach( array( 'post', 'page' ) as $post_type )
+		foreach( array( 'post', 'page' ) as $post_type ) {
+			if ( $force_create_posts_cap && ( $wp_post_types[$post_type]->cap->create_posts == $wp_post_types[$post_type]->cap->edit_posts ) )
+				$wp_post_types[$post_type]->cap->create_posts = "create_{$post_type}s";
+
 			$generic_caps[$post_type] = (array) $wp_post_types[$post_type]->cap;
+		}
+
+		$skip_caps = array( 'read_post', 'edit_post', 'delete_post' );
 
 		foreach( array_keys($wp_post_types) as $post_type ) {
 			if ( empty( $use_post_types[$post_type] ) )
 				continue;
-				
+
 			if ( 'post' === $wp_post_types[$post_type]->capability_type )
 				$wp_post_types[$post_type]->capability_type = $post_type;
 
@@ -131,28 +138,32 @@ class WP_Cap_Helper_CR {
 			
 			// don't allow any capability defined for this type to match any capability defined for post or page (unless this IS post or page type)
 			foreach( $type_caps as $cap_property => $type_cap ) {
-				if ( in_array( $cap_property, array( 'read_post', 'edit_post', 'delete_post' ) ) ) {
+				if ( in_array( $cap_property, $skip_caps ) ) {
 					continue;
 				}
 			
 				foreach( array( 'post', 'page' ) as $generic_type )
 					if ( ( $post_type != $generic_type ) && in_array( $type_cap, $generic_caps[$generic_type] ) && ( 'read' != $type_cap ) ) {
-						$type_caps[$cap_property] = str_replace( $generic_type, $post_type, $cap_property );
+						if ( 'create_posts' == $cap_property )
+							$type_caps[$cap_property] = str_replace( "_$generic_type", "_$post_type", $generic_caps[$generic_type][$cap_property] );
+						else
+							$type_caps[$cap_property] = str_replace( $generic_type, $post_type, $cap_property );
+
 						$customized[$post_type] = true;
 					}
 			}
 			
+			$wp_post_types[$post_type]->cap = (object) $type_caps;
+			
 			// This simplifies map_meta_cap handling. Actual attachment or revision editing access is still based on access to the parent post
 			if ( ! defined( 'SCOPER_RETAIN_CUSTOM_METACAPS' ) ) {
-				$type_caps['attachment']['read_post'] = 'read_attachment';
-				$type_caps['attachment']['edit_post'] = 'edit_attachment';
-				$type_caps['attachment']['delete_post'] = 'delete_attachment';
-				$type_caps['revision']['read_post'] = 'read_revision';
-				$type_caps['revision']['edit_post'] = 'edit_revision';
-				$type_caps['revision']['delete_post'] = 'delete_revision';
+				$wp_post_types['attachment']->cap->read_post = 'read_attachment';
+				$wp_post_types['attachment']->cap->edit_post = 'read_attachment';
+				$wp_post_types['attachment']->cap->delete_post = 'read_attachment';
+				$wp_post_types['revision']->cap->read_post = 'read_revision';
+				$wp_post_types['revision']->cap->edit_post = 'read_revision';
+				$wp_post_types['revision']->cap->delete_post = 'read_revision';
 			}
-			
-			$wp_post_types[$post_type]->cap = (object) $type_caps;
 		}
 
 		// One-time message alerting Administrators that custom types were auto-enabled for RS filtering

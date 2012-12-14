@@ -27,7 +27,7 @@ function _rs_is_active_widget_prefix( $id_prefix ) {
 	foreach ( (array) wp_get_sidebars_widgets() as $sidebar => $widgets ) {
 		if ( 'wp_inactive_widgets' != $sidebar && is_array($widgets) ) {
 			foreach ( $widgets as $widget ) {
-				if ( 0 === strpos( $wp_registered_widgets[$widget]['id'], $id_prefix ) )
+				if ( isset($wp_registered_widgets[$widget]['id']) && 0 === strpos( $wp_registered_widgets[$widget]['id'], $id_prefix ) )
 					return $sidebar;
 			}
 		}

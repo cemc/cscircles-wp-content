@@ -75,6 +75,7 @@ function scoper_default_options() {
 		'auto_private' => 1,
 		'admin_nav_menu_filter_items' => 0,
 		'require_moderate_comments_cap' => 0,
+		'define_create_posts_cap' => 0,
 		'dismissals' => array(),
 	);
 	

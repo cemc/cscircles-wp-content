@@ -83,4 +83,10 @@ function agp_get_lambda_argstring($num_args) {
 	return $arg_str;
 }
 
+if( ! function_exists( 'agp_is_plugin_network_active' ) ) {
+	function agp_is_plugin_network_active( $plugin_file ) {
+		return ( array_key_exists( $plugin_file, maybe_unserialize( get_site_option( 'active_sitewide_plugins') ) ) );
+	}
+}
+
 ?>

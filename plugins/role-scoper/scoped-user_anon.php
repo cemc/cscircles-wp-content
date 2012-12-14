@@ -36,19 +36,12 @@ class WP_Scoped_User_Anon extends WP_User { // Special skeleton class for ANONYM
 
 		// initialize blog_roles arrays
 		$this->blog_roles[ANY_CONTENT_DATE_RS] = array();
-	
-		if ( defined('DEFINE_GROUPS_RS') && defined( 'SCOPER_ANON_METAGROUP' ) )
-			$this->groups = $this->_get_usergroups();
 	}
 
 	// should not be used for anon user, but leave to maintain API
 	function get_user_clause($table_alias) {
 		$table_alias = ( $table_alias ) ? "$table_alias." : '';
-		
-		if ( GROUP_ROLES_RS && defined( 'SCOPER_ANON_METAGROUP' )  )
-			return " AND {$table_alias}group_id IN ('" . implode("', '", array_keys($this->groups) ) . "')";
-		else
-			return " AND {$table_alias}user_id = '-1'";  // use -1 here to ignore accidental storage of other groups for zero user_id
+		return " AND {$table_alias}user_id = '-1'";  // use -1 here to ignore accidental storage of other groups for zero user_id
 	}
 	
 	function cache_get($cache_flag) {
@@ -70,8 +63,7 @@ class WP_Scoped_User_Anon extends WP_User { // Special skeleton class for ANONYM
 	}
 	
 	function get_groups_for_user( $user_id, $args = array() ) {
-		if ( ! defined( 'SCOPER_ANON_METAGROUP' ) )
-			return array();
+		return array();
 		
 		if ( empty($args['no_cache']) ) {
 			// use -1 here to ignore accidental storage of other groups for zero user_id

@@ -176,7 +176,7 @@ class Scoper_Submittee {
 		if ( in_array( 'do_teaser', $options_sitewide ) )
 			$options_sitewide = array_merge( $options_sitewide, $teaser_options );
 
-			
+		delete_site_option( 'scoper_options_sitewide' );
 		add_site_option( "scoper_options_sitewide_reviewed", $reviewed_options );
 		add_site_option( "scoper_options_sitewide", $options_sitewide );
 	}

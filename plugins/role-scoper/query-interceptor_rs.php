@@ -709,7 +709,7 @@ class QueryInterceptor_RS
 				$check_otype = ( count($tease_otypes) && in_array('post', $tease_otypes) ) ? 'post' : $tease_otypes[0];
 
 			// extra line of defense: even if upstream logic goes wrong, never disclose a private item to anon user (but if the where clause was passed in with explicit status=private, must include our condition)
-			if ( ('private' == $status_name) && ! $force_single_status && empty($GLOBALS['current_user']->ID) && ( ! $tease_otypes || scoper_get_otype_option('teaser_hide_private', $src_name, $check_otype) ) )
+			if ( ('private' == $status_name) && ! $force_single_status && empty($GLOBALS['current_user']->ID) && ! defined( 'SCOPER_ANON_METAGROUP' ) && ( ! $tease_otypes || scoper_get_otype_option('teaser_hide_private', $src_name, $check_otype) ) )
 				unset( $status_where[$status_name] );
 			else
 				$status_where[$status_name] = agp_implode(' ) OR ( ', $status_where[$status_name], ' ( ', ' ) ');
@@ -1188,10 +1188,12 @@ class QueryInterceptor_RS
 					// which are non-restricted (i.e. blend in blog assignments) for a qualifying role which the user has blog-wide 
 					//
 					// note: $reqd_caps function arg is used; qualify_terms will ignore reqd_caps element in args array
-					if ( $user_terms = $this->scoper->qualify_terms_daterange($reqd_caps, $taxonomy, $role_handle_arg, $args) ) {
-						if ( ! isset($term_count[$taxonomy]) )
-							$term_count[$taxonomy] = $this->scoper->get_terms($taxonomy, UNFILTERED_RS, COL_COUNT_RS);
-							
+					if ( ! isset($term_count[$taxonomy]) )
+						$term_count[$taxonomy] = $this->scoper->get_terms($taxonomy, UNFILTERED_RS, COL_COUNT_RS);
+
+					if ( ! $term_count[$taxonomy] ) {
+						$all_terms_qualified[''][$taxonomy] = true;
+					} elseif ( $user_terms = $this->scoper->qualify_terms_daterange($reqd_caps, $taxonomy, $role_handle_arg, $args) ) {
 						foreach ( array_keys($user_terms) as $date_key ) {
 							if ( count($user_terms[$date_key]) ) {
 								// don't bother applying term requirements if user has cap for all terms in this taxonomy
@@ -1268,7 +1270,7 @@ class QueryInterceptor_RS
 
 		// since object roles are not pre-loaded prior to this call, role date limits are handled via subselect, within the date_key = '' iteration
 		$object_roles_duration_clause = scoper_get_duration_clause();
-				
+
 				
 		// implode the array of where criteria into a query as concisely as possible 
 		foreach ( $where as $date_key => $objscope_clauses ) {

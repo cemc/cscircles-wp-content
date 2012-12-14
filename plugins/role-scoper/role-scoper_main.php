@@ -82,7 +82,7 @@ class Scoper
 		global $current_rs_user;
 		
 		if ( $current_rs_user ) {
-			if ( empty($current_rs_user->assigned_blog_roles) ) {
+			if ( empty($current_rs_user->ID) ) {
 				foreach ( $this->role_defs->filter_keys( -1, array( 'anon_user_blogrole' => true ) ) as $role_handle) {
 					$current_rs_user->assigned_blog_roles[ANY_CONTENT_DATE_RS][$role_handle] = true;
 					$current_rs_user->blog_roles[ANY_CONTENT_DATE_RS][$role_handle] = true;
@@ -111,7 +111,7 @@ class Scoper
 				$GLOBALS['current_user']->$var = $current_rs_user->$var;
 		}
 
-		if ( $current_rs_user->ID ) {
+		if ( $current_rs_user->ID || defined( 'SCOPER_ANON_METAGROUP' ) ) {
 			foreach ( array_keys($current_rs_user->assigned_blog_roles) as $date_key )
 				$current_rs_user->blog_roles[$date_key] = $this->role_defs->add_contained_roles( $current_rs_user->assigned_blog_roles[$date_key] );
 		}

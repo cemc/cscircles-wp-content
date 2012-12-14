@@ -67,6 +67,22 @@ class ScoperAdmin
 
 			add_action( 'admin_notices', array( &$this, 'dashboard_notice' ) );
 		}
+
+		if ( in_array( $pagenow, array( 'edit.php', 'post.php' ) ) && awp_ver( '3.5-beta' ) ) {
+			add_action( 'admin_menu', array( &$this, 'reinstate_solo_submenus' ) );
+			add_action( 'network_admin_menu', array( &$this, 'reinstate_solo_submenus' ) );
+		}
+	}
+	
+	function reinstate_solo_submenus() {
+		global $submenu;
+		
+		// Add a dummy submenu item to prevent WP from stripping out solitary submenus.  Otherwise menu access loses type sensitivity and requires "edit_posts" cap for all types.
+		foreach( $submenu as $key => $data ) {
+			if ( 1 == count( $submenu[$key] ) && ( 0 === strpos( $key, 'edit.php' ) ) ) {
+				$submenu[$key][999] =  array( '', 'read', $key );
+			}
+		}
 	}
 
 	function dashboard_notice() {

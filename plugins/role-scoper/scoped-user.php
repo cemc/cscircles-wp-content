@@ -45,7 +45,7 @@ class WP_Scoped_User extends WP_User {
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
 
-		if ( $this->ID ) {
+		if ( $this->ID || defined( 'SCOPER_ANON_METAGROUP' ) ) {
 			if ( ! $disable_wp_roles ) {
 				// include both WP roles and custom caps, which are treated as a hidden single-cap role capable of satisfying single-cap current_user_can calls
 				$this->assigned_blog_roles[ANY_CONTENT_DATE_RS] = $this->caps;
@@ -103,10 +103,9 @@ class WP_Scoped_User extends WP_User {
 		
 		$arr = array();
 		
-		if ( GROUP_ROLES_RS && $this->groups ) {
-		  $arr []= "{$table_alias}group_id IN ('" . implode("', '", array_keys($this->groups) ) . "')";
-		}
-	
+		if ( GROUP_ROLES_RS && $this->groups )
+			$arr []= "{$table_alias}group_id IN ('" . implode("', '", array_keys($this->groups) ) . "')";
+		
 		if ( USER_ROLES_RS || empty($arr) ) // too risky to allow query with no user or group clause
 			$arr []= "{$table_alias}user_id = '$this->ID'";
 			
@@ -171,6 +170,11 @@ class WP_Scoped_User extends WP_User {
 		if ( ! $wpdb->user2group_rs )
 			return array();
 
+		if ( ! $user_id ) {
+			// include WP metagroup for anonymous user
+			return array_fill_keys( scoper_get_col( "SELECT $wpdb->groups_id_col FROM $wpdb->groups_rs WHERE {$wpdb->groups_rs}.{$wpdb->groups_meta_id_col} = 'wp_anon'" ), 'true' );
+		}
+			
 		$status_clause = ( $status ) ? "AND status = '$status'" : '';	
 
 		$query = "SELECT $wpdb->user2group_gid_col FROM $wpdb->user2group_rs WHERE $wpdb->user2group_uid_col = '$user_id' $status_clause ORDER BY $wpdb->user2group_gid_col";
@@ -206,7 +210,7 @@ class WP_Scoped_User extends WP_User {
 	
 	// return group_id as array keys
 	function _get_usergroups($args = array()) {
-		if ( ! $this->ID )
+		if ( ! $this->ID && ! defined( 'SCOPER_ANON_METAGROUP' ) )
 			return array();
 
 		$args = (array) $args;

@@ -279,6 +279,7 @@ $ui->option_captions = array(
 	'disabled_access_types' => __('settings', 'scoper'),
 	/* disabled_role_caps' => __('settings', 'scoper'), */
 	'user_role_caps' => __('settings', 'scoper'),	/* NOTE: submitee.php must sync disabled_role_caps and user_role_caps scope setting */
+	'define_create_posts_cap' => __( 'Require create_posts capability', 'scoper' ),
 	'require_moderate_comments_cap' => __( 'Require moderate_comments capability', 'scoper' ),
 );
 
@@ -289,7 +290,7 @@ $ui->form_options = array(
 	'front_end' 	=> 		array( 'strip_private_caption', 'no_frontend_admin' ),
 	'pages_listing' => 		array( 'private_items_listable', 'remap_page_parents', 'enforce_actual_page_depth', 'remap_thru_excluded_page_parent' ),
 	'categories_listing' =>	array( 'remap_term_parents', 'enforce_actual_term_depth', 'remap_thru_excluded_term_parent' ),
-	'content_maintenance'=> array( 'default_private', 'sync_private', 'filter_users_dropdown', 'require_moderate_comments_cap' ),
+	'content_maintenance'=> array( 'default_private', 'sync_private', 'filter_users_dropdown', 'define_create_posts_cap', 'require_moderate_comments_cap' ),
 	'nav_menu_management' => array( 'admin_nav_menu_filter_items' ),
 	'role_assignment' =>	array( 'role_admin_blogwide_editor_only' ),
 	'media_library' =>		array( 'admin_others_attached_files', 'admin_others_unattached_files' ),
@@ -332,7 +333,7 @@ $ui->form_options = array(
 );
 	
 
-if ( IS_MU_RS ) {
+if ( IS_MU_RS && agp_is_plugin_network_active( SCOPER_BASENAME ) ) {
 	if ( $sitewide )
 		$available_form_options = $ui->form_options;
 		
@@ -659,6 +660,9 @@ if ( ! empty( $ui->form_options[$tab][$section] ) ) :?>
 	
 	$hint = __('If enabled, Post Author and Page Author selection dropdowns will be filtered based on scoped roles.', 'scoper');
 	$ret = $ui->option_checkbox( 'filter_users_dropdown', $tab, $section, $hint, '<br />' );
+	
+	$hint = __('If enabled, the create_posts, create_pages, etc. capabilities will be enforced for all post types enabled for RS filtering.', 'scoper' );
+	$ret = $ui->option_checkbox( 'define_create_posts_cap', $tab, $section, $hint, '' );
 	
 	$hint = __('If enabled, Post Author / Editors cannot moderate comments unless their assigned role(s) include the moderate_comments capability.', 'scoper' );
 	$ret = $ui->option_checkbox( 'require_moderate_comments_cap', $tab, $section, $hint, '' );

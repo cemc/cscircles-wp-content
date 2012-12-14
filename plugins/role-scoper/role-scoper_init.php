@@ -55,7 +55,7 @@ function scoper_act_set_current_user() {
 		scoper_version_check();
 	}
 
-	if ( $id ) {
+	if ( $id || defined( 'SCOPER_ANON_METAGROUP' ) ) {
 		require_once( dirname(__FILE__).'/scoped-user.php');
 		$GLOBALS['current_rs_user'] = new WP_Scoped_User($id);
 		
@@ -90,7 +90,7 @@ function scoper_init() {
 			$GLOBALS['wp_taxonomies'][$taxonomy]->public = true;
 	}
 	
-	if ( IS_MU_RS ) {
+	if ( IS_MU_RS && agp_is_plugin_network_active( SCOPER_BASENAME ) ) {
 		global $scoper_sitewide_options;
 		$scoper_sitewide_options = apply_filters( 'sitewide_options_rs' , $scoper_sitewide_options );	
 	}
@@ -178,7 +178,7 @@ function scoper_get_init_options() {
 }
 
 function scoper_refresh_options() {
-	if ( IS_MU_RS ) {
+	if ( IS_MU_RS && agp_is_plugin_network_active( SCOPER_BASENAME ) ) {
 		scoper_retrieve_options(true);
 		scoper_refresh_options_sitewide();
 	}
@@ -202,7 +202,7 @@ function scoper_refresh_default_options() {
 	require_once( dirname(__FILE__).'/defaults_rs.php');
 	$scoper_default_options = apply_filters( 'default_options_rs', scoper_default_options() );
 	
-	if ( IS_MU_RS )
+	if ( IS_MU_RS && agp_is_plugin_network_active( SCOPER_BASENAME ) )
 		scoper_apply_custom_default_options( 'scoper_default_options' );
 }
 
@@ -216,7 +216,7 @@ function scoper_refresh_default_otype_options() {
 	if ( isset( $scoper_default_otype_options['use_term_roles']['ngg_gallery:ngg_gallery'] ) && ( ! is_array($scoper_default_otype_options['use_term_roles']['ngg_gallery:ngg_gallery']) ) )
 		$scoper_default_otype_options['use_term_roles']['ngg_gallery:ngg_gallery'] = array( 'ngg_album' => 1 );
 		
-	if ( IS_MU_RS )
+	if ( IS_MU_RS && agp_is_plugin_network_active( SCOPER_BASENAME ) )
 		scoper_apply_custom_default_options( 'scoper_default_otype_options' );
 }
 

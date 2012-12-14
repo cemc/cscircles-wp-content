@@ -305,6 +305,9 @@ function cr_post_cap_defs() {
 			$cap->publish_posts => 			(object) array( 'src_name' => 'post', 'op_type' => OP_PUBLISH_RS )
 		);
 
+		if ( awp_ver( '3.5-beta' ) && isset($cap->create_posts) && ( $cap->create_posts != $cap->edit_posts ) )
+			$post_caps[ $cap->create_posts ] = (object) array( 'src_name' => 'post', 'op_type' => OP_EDIT_RS );
+
 		if ( $post_type_obj->hierarchical ) {
 			$plural_name = plural_name_from_cap_rs( $post_type_obj );
 			$post_caps["create_child_{$plural_name}"] = (object) array( 'src_name' => 'post', 'op_type' => OP_ASSOCIATE_RS, 'no_custom_add' => true, 'no_custom_remove' => true, 'defining_module' => 'role-scoper', 'src_name' => 'post', 'object_types' => array( $name ) );
@@ -384,6 +387,8 @@ function cr_post_role_caps() {
 
 	$use_post_types = scoper_get_option( 'use_post_types' );
 
+	$force_create_posts_cap = awp_ver( '3.5-beta' && scoper_get_option( 'define_create_posts_cap' ) );
+	
 	foreach ( $post_types as $name => $post_type_obj ) {
 		if ( empty( $use_post_types[$name] ) )
 			continue;
@@ -397,11 +402,14 @@ function cr_post_role_caps() {
 			$cap->read_private_posts => true,
 			"read" => true
 		);
+		
 		$arr["rs_{$name}_contributor"] = array(
 			$cap->edit_posts => true,
 			$cap->delete_posts => true,
 			"read" => true
 		);
+		if ( $force_create_posts_cap )
+			$arr["rs_{$name}_contributor"][$cap->create_posts] = true;
 		
 		if ( defined( 'RVY_VERSION' ) ) {
 			$arr["rs_{$name}_revisor"] = array(
@@ -412,6 +420,8 @@ function cr_post_role_caps() {
 				$cap->edit_others_posts => true
 			);
 		}
+		if ( $force_create_posts_cap )
+			$arr["rs_{$name}_revisor"][$cap->create_posts] = true;
 	
 		$arr["rs_{$name}_author"] = array(
 			"upload_files" => true,
@@ -422,6 +432,9 @@ function cr_post_role_caps() {
 			$cap->delete_posts => true,
 			"read" => true
 		);
+		if ( $force_create_posts_cap )
+			$arr["rs_{$name}_author"][$cap->create_posts] = true;
+		
 		$arr["rs_{$name}_editor"] = array(
 			"moderate_comments" => true,
 			$cap->delete_others_posts => true,
@@ -438,6 +451,8 @@ function cr_post_role_caps() {
 			$cap->read_private_posts => true,
 			"read" => true
 		);
+		if ( $force_create_posts_cap )
+			$arr["rs_{$name}_editor"][$cap->create_posts] = true;
 		
 		// Note: create_child_pages should only be present in associate role, which is used as an object-assigned alternate to blog-wide edit role
 		// This way, blog-assignment of author role allows user to create new pages, but only as subpages of pages they can edit (or for which Associate role is object-assigned)
