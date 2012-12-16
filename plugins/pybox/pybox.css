@@ -214,6 +214,8 @@ opening one will close the other open ones
     display:block;
     border: 1px solid #AAF;
     border-radius: 4px;
+    padding: 2px 4px;
+    background-color: white;
 }
 .collapseContain.hiding .collapseBody {
     display:none;
