@@ -4,34 +4,21 @@ add_action('admin_head', 'pybox_admin_css');
 
 function pybox_admin_css() {
   echo '<style type="text/css">
-#login h1, #login h2 {text-align: center; margin-bottom: 10px;}
-
-#login {padding-top: 50px !important;}
-
-.returnfromprofile {
-        font-size: 18px;
-        margin: 10px;
-        font-weight: 700;
-}
-
-.returnfromprofile a {
-        padding: 3px 7px;
-        text-decoration: none;
-        border: 1px solid green;
-        border-radius: 12px;
-        background:green;
-        color: white;
-}
-
-#your-profile p.submit input#submit.button-primary{
-        margin: 10px;
-        font-size: 18px !important;
+.wp-admin .button-primary{
+        margin-top: 10px;
+        font-size: 14px !important;
+        font-weight: bold;
         padding: 7px;
+        height: auto;
+}</style>';
 }
 
-.returnfromprofile a:hover {
-        color: #dfd;
-        border-color: palegreen;
-        border-style: inset;
-}';
+add_action('login_head', 'pybox_login_css');
+
+function pybox_login_css() {
+  echo '<style type="text/css">
+#login h1, #login h2 {text-align: center; margin-bottom: 10px;}
+</style>';
 }
+
+

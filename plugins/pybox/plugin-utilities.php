@@ -344,7 +344,7 @@ function returnfromprofile() {
     $u = $_POST['redirect'];
   }
 
-  return "<div class='returnfromprofile'><a href='$u'>".__t("Return to Computer Science Circles")."</a></div>";
+  return "<div><a class='button button-primary' href='$u'>".__t("Return to Computer Science Circles")."</a></div>";
 }
 
 function getSoft($array, $key, $default) {
