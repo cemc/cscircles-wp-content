@@ -351,11 +351,13 @@ function pbSelectChange(event) {
 }
 
 function stayHere(event) {
+    console.log('a');
     if (!
 	($(event.target).hasClass('open-same-window')
 	 || $(event.target).parents('.open-same-window').length > 0)
        )
 	$(event.target).attr('target', '_blank');
+    console.log('A');
     return true;
 }
 
@@ -462,7 +464,7 @@ function pyflex(options) {
 }
 function pyflexSuccess(options, data) {
     $('#'+options['id']+' .pyflexerror').remove();
-
+    console.log('b');
     if (!(data instanceof Object) || !("rows" in data) || data["rows"].length==0) {
 	hflexhelp[options['id']] = options;
 	msg = (!(data instanceof Object) || !("rows" in data)) ? data : __t('The database connected but found no data.'); 
@@ -471,7 +473,7 @@ function pyflexSuccess(options, data) {
 	//alert(msg);
 	return;
     }
-
+    console.log('B');
     firstRow = data['rows'][0]['cell'];
     model = new Array();
     for (colname in firstRow) {
@@ -480,6 +482,7 @@ function pyflexSuccess(options, data) {
 	    colModel['attrs'] = {'class': 'usercodecol', 'title': 'double-click to reload version'};
 	model.push(colModel);
     }
+    console.log('Z');
     xp = new Array();
     if ('dbparams' in options)
 	for (paramname in options['dbparams']) 
@@ -517,7 +520,9 @@ function pyflexSuccess(options, data) {
 
 function historyClick(id,thename) {
     $('#pbhistory'+id).toggle();
+    console.log('c');
     createNow = !$('#pbhistory'+id).is(":hidden") && ($('#pbhistory' + id + ' .flexigrid').length == 0);
+    console.log('C');
     if (createNow) {
 	var url = HISTORYURL;
 	pyflex({'id':'pbhistory'+id, 'url':url, 'dbparams':{'p': thename}, 'flparams':{'showCloseBtn':true}});
@@ -542,9 +547,13 @@ function descape(S) {
 $('.collapseHead').live('click', toggleSibling);
 function toggleSibling(event) {
     var con = $(this).parents('.collapseContain'); // .collapseContain
-    console.log(con.size(), con);
+//    console.log(con.size(), con);
     var hideNow = con.hasClass("showing");
     if (!hideNow) {
+	var accord = $(this).parents('.accordion').find('.collapseContain.showing');
+	accord.children('.collapseBody').slideUp();
+	accord.removeClass('showing');
+	accord.addClass('hiding');
 	con.children('.collapseBody').slideDown();
 	con.removeClass('hiding');
 	con.addClass('showing');

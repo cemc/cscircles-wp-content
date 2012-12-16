@@ -9,8 +9,6 @@ add_shortcode('pyExample', 'pyExampleHandler');
 add_shortcode('pyProtect', 'pyProtectHandler');
 add_shortcode('pyMultiScramble', 'pyMultiScrambleHandler');
 add_shortcode('newuserwelcome', 'newuserwelcome');
-add_shortcode('br', 'printbr');
-
 add_shortcode('pyRecall', 'pyRecallHandler');
 
 function loadMostRecent($slug) {
@@ -23,8 +21,6 @@ function loadMostRecent($slug) {
   $sqlcmd = "SELECT usercode FROM $table_name WHERE userid = %d AND problem = %s ORDER BY beginstamp DESC LIMIT 1";
   return $wpdb->get_var( $wpdb->prepare($sqlcmd, $uid, $slug));
 }
-
-function printbr($o ,$c){return '<br/>';}
 
 add_shortcode('pyDebug', 'pyDebug');
 function pyDebug($o, $c){

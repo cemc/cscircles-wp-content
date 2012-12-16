@@ -156,6 +156,7 @@ function domo_arigato($output) {
 
 
 require_once("shortcodes.php");
+require_once("shortcodes-layout.php");
 require_once("shortcode-my-progress.php");
 require_once("shortcode-make-databases.php");
 require_once("shortcode-youtube.php");

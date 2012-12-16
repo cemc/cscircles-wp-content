@@ -96,7 +96,7 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
      ($knownFields[$sortname] . " " . $sortorder . ", ") : "";
 
    $count = $wpdb->get_var("SELECT COUNT(1) from $table_name $where");
-   $prep = $wpdb->prepare("SELECT * from $table_name $where ORDER BY $sortString ID DESC" . $limit);
+   $prep = "SELECT * from $table_name $where ORDER BY $sortString ID DESC" . $limit;
 
    //   pyboxlog($prep);
    
