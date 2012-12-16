@@ -8,7 +8,10 @@ function printbr($o,$c){
 add_shortcode('collapsible', 'print_collapsible');
 function print_collapsible($options, $content) {
   $caption = $options['caption'];
-  return "<div class='collapseContain hiding'>
+  $style = "hiding";
+  if (array_key_exists('show', $options) || in_array('show', $options))
+    $style = "showing";
+  return "<div class='collapseContain $style'>
 <div class='collapseHead'><span class='icon'></span>
 $caption
 </div>
