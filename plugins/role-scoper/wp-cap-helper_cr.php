@@ -156,6 +156,7 @@ class WP_Cap_Helper_CR {
 			$wp_post_types[$post_type]->cap = (object) $type_caps;
 			
 			// This simplifies map_meta_cap handling. Actual attachment or revision editing access is still based on access to the parent post
+			/*
 			if ( ! defined( 'SCOPER_RETAIN_CUSTOM_METACAPS' ) ) {
 				$wp_post_types['attachment']->cap->read_post = 'read_attachment';
 				$wp_post_types['attachment']->cap->edit_post = 'read_attachment';
@@ -164,6 +165,7 @@ class WP_Cap_Helper_CR {
 				$wp_post_types['revision']->cap->edit_post = 'read_revision';
 				$wp_post_types['revision']->cap->delete_post = 'read_revision';
 			}
+			*/
 		}
 
 		// One-time message alerting Administrators that custom types were auto-enabled for RS filtering

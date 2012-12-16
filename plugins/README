@@ -2,9 +2,10 @@ polylang : no customizations
 google-analytics : no customizations
 role-scoper : use role-scoper.patch
 list-pages-shortcode : no customizations (previous ones were accepeted upstream)
-wp-ui : we have 0.8.2 but it's "fake 0.8.5.0.1" since we had incompatibilities with that upgrade
 contact-form-7 : use contact-form-7.patch
 all others : ask Dave
+
+DEPRECATED: wp-ui : we have 0.8.2 but it's "fake 0.8.5.0.1" since we had incompatibilities with that upgrade
 
 ==== PATCHING INFO ====
 situation: i have a custom hacked version of a plugin (role-scoper) and now i need to upgrade it.

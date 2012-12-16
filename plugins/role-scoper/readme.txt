@@ -4,7 +4,7 @@ Donate link: http://agapetry.net/news/introducing-role-scoper/#role-scoper-downl
 Tags: restrict, access, permissions, cms, user, members, admin, category, categories, pages, posts, page, Post, privacy, private, attachment, files, rss, feed
 Requires at least: 3.0
 Tested up to: 3.5
-Stable Tag: 1.3.58
+Stable Tag: 1.3.59
 
 CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
 
@@ -111,6 +111,9 @@ Yes, at this point I plan to keep Role Scoper compatible with upcoming WP versio
 8. [View more screenshots](http://agapetry.net/news/introducing-role-scoper/)
 
 == Changelog ==
+
+= 1.3.59 - 14 Dec 2012 =
+* Fixed : Could not add/edit media library items on WP 3.5 (since 1.3.58)
 
 = 1.3.58 - 12 Dec 2012 =
 * Compat : WP 3.5 - Custom posts could not be created or edited when post type enabled for RS filtering
