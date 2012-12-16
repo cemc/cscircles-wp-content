@@ -22,10 +22,13 @@ def send_unicode_email(mFrom, mTo, mSubject, mBody):
     sender_name, sender_addr = parseaddr(mFrom)
     recipient_name, recipient_addr = parseaddr(mTo)
 
-    composed = email.mime.text.MIMEText(mBody.encode('UTF-8'), _charset='UTF-8')
-    composed['from'] = format_address(sender_name, sender_addr)
-    composed['to'] = format_address(recipient_name, recipient_addr)
-    composed['subject'] = Header(mSubject, 'UTF-8')
+    composed = email.mime.text.MIMEText(mBody.encode('UTF-8'),
+                                        _charset='UTF-8')
+    composed['Reply-To'] = format_address(sender_name, sender_addr)
+    composed['To'] = format_address(recipient_name, recipient_addr)
+    composed['Subject'] = Header(mSubject, 'UTF-8')
+    composed['From'] = format_address(sender_name,
+                                      'bounces@cscircles.cemc.uwaterloo.ca')
 
     srv = smtplib.SMTP('localhost')
     srv.send_message(composed)
