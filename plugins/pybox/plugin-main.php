@@ -173,4 +173,11 @@ require_once("newuseremail.php");
 #require_once("dbf-completed.php"); not in use
 require_once("css-admin.php");
 
+
+add_action( 'wp_enqueue_scripts', 'add_button_stylesheet' );
+function add_button_stylesheet() {
+  // Respects SSL, Style.css is relative to the current file
+  wp_register_style( 'button-style', includes_url('css/buttons.css') );
+  wp_enqueue_style( 'button-style' );
+}
 // end of file

@@ -107,12 +107,18 @@ function pbmailpage($options, $content) {
       $to .= '<div style="text-align: center">';
       $to .= __t('Send a question by e-mail to: ');
       if ($guru !== FALSE) {
-	$to .= "<select class='recipient'><option value='0'>".__t("Select one...")."</option><option value='1'>".__t("My guru")." ($guru_login)</option><option value='-1'>".__t("CS Circles Assistant")."</option></select></div>";
+	$to .= "<select class='recipient'>
+<option value='1'>".__t("My guru")." ($guru_login)</option>
+<option value='-1'>".__t("CS Circles Assistant")."</option>
+</select></div>";
       } 
       else {
-	$to .= "<select class='recipient'><option value='0'>".__t("Select one...")."</option><option value='0' disabled='disabled'>".__t("My guru (you don't have one)")."</option><option value='-1'>".__t("CS Circles Assistant")."</option></select>";
+	$to .= "<select class='recipient'>
+<option value='-1'>".__t("CS Circles Assistant")."</option>
+<option value='0' disabled='disabled'>".__t("My guru (you don't have one)")."</option>
+</select>";
 	$url = get_edit_profile_url(get_current_user_id());
-	$to .= "<i>".sprintf(__t("(name a guru on <a href='%s'>your Profile Page</a>)"), $url)."</i><br/>";
+	$to .= "<i>".sprintf(__t("(guru can be specified on <a href='%s'>your Profile Page</a>)"), $url)."</i><br/>";
 	$to .= '</div>';
       }
     }
