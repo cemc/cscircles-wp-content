@@ -84,19 +84,19 @@ function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
    }     
 
    $count = 
-     $wpdb->get_var($wpdb->prepare("
+     $wpdb->get_var("
 SELECT COUNT(1)
 FROM wp_pb_submissions 
-WHERE $whereStudent AND $whereProblem"));
+WHERE $whereStudent AND $whereProblem");
 
    if ($count==0) 
      return __t("We do not have record of any submissions.");
 
-   $prep = $wpdb->prepare("
+   $prep = "
 SELECT userid, ID, beginstamp, usercode, userinput, result, problem
 FROM wp_pb_submissions 
 WHERE $whereStudent AND $whereProblem
-ORDER BY $sortString ID DESC " . $limit);
+ORDER BY $sortString ID DESC " . $limit;
  
    $flexirows = array();
    foreach ($wpdb->get_results( $prep, ARRAY_A ) as $r) {

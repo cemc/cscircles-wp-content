@@ -636,13 +636,9 @@ if (!$facultative && !$scramble) {
       $r .= __t('Send a question by e-mail to: ');
       $r .= "<select class='recipient'>
 <option value='-1'>".__t("CS Circles Assistant")."</option>
-<option value='0' disabled='disabled'>".__t("My guru (you don't have one)")."</option>
+<option value='0'>".__t("(No guru is specified)")."</option>
 </select>";
-      $r .= "<i>".
-	sprintf(__t("(guru can be specified on <a href='%s'>your Profile Page</a>)"),
-"href='".get_edit_profile_url(get_current_user_id())."'")
-	."</i><br/>";
-      $r .= '</div>';
+      $r .= '<br/></div>';
     }
     $r .= __t("Enter text for the message below. <i>Be sure to explain where you're stuck and what you've tried so far. Your partial solution code will be automatically included with the message.</i>");
     $r .= "<textarea style='font-family: serif'></textarea>";

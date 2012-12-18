@@ -115,11 +115,9 @@ function pbmailpage($options, $content) {
       else {
 	$to .= "<select class='recipient'>
 <option value='-1'>".__t("CS Circles Assistant")."</option>
-<option value='0' disabled='disabled'>".__t("My guru (you don't have one)")."</option>
+<option value='0'>".__t("(No guru is specified)")."</option>
 </select>";
-	$url = get_edit_profile_url(get_current_user_id());
-	$to .= "<i>".sprintf(__t("(guru can be specified on <a href='%s'>your Profile Page</a>)"), $url)."</i><br/>";
-	$to .= '</div>';
+	$to .= '<br/></div>';
       }
     }
     

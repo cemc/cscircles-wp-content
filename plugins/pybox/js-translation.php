@@ -5,9 +5,9 @@ function jsonTranslationArray() {
 "Error: could not connect to database." => __t("Error: could not connect to database."),
 "Go back to grading" => __t("Go back to grading"),
 "Hide input box" => __t("Hide input box"),
-"Please select a recipient for the message." => __t("Please select a recipient for the message."),
 "end of main program" => __t("end of main program"),
 "timed out!" => __t("timed out!"),
+"Please select a valid recipient for the message. If you are working with a teacher or friend, select them as a guru on your Profile (available within the user menu, in the top right corner of the page)." => __t("Please select a valid recipient for the message. If you are working with a teacher or friend, select them as a guru on your Profile (available within the user menu, in the top right corner of the page)."),
 "The code box is empty. It should instead contain your best partial solution so far." => __t("The code box is empty. It should instead contain your best partial solution so far."),
 "Click to try again." => __t("Click to try again."),
 "Run program" => __t("Run program"),
@@ -33,5 +33,4 @@ function jsonTranslationArray() {
 "start of tests" => __t("start of tests"),
 "Simple editor" => __t("Simple editor"),
 "Hide history" => __t("Hide history"),
-"You need to select a recipient." => __t("You need to select a recipient."),
 ));}

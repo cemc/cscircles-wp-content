@@ -148,7 +148,7 @@ function sendMessage(id, slug) {
     message = $("#pybox"+id+" .helpInner textarea").val();
     code = pbGetText(id);
     if (recipient==0) {
-	alert(__t('Please select a recipient for the message.'));
+	alert(__t('Please select a valid recipient for the message. If you are working with a teacher or friend, select them as a guru on your Profile (available within the user menu, in the top right corner of the page).'));
     }
     else if (message.replace('\s', '')=='') {
 	alert(__t('Please enter a non-empty message.'));
@@ -180,7 +180,7 @@ function mailReply(id, slug) {
     $('#mailform .recipient').each(function(i, item) {r = $(item);});
     if (r != null) {
 	if (r.val()==0) {
-	    alert(__t('You need to select a recipient.'));
+	    alert(__t('Please select a valid recipient for the message. If you are working with a teacher or friend, select them as a guru on your Profile (available within the user menu, in the top right corner of the page).'));
 	    return;
 	}
 	thedata['recipient'] = r.val();
