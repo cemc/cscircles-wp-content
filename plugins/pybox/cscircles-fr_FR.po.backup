@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-18 16:52-0500\n"
-"PO-Revision-Date: 2012-11-11 13:54-0500\n"
+"POT-Creation-Date: 2012-12-18 17:17-0500\n"
+"PO-Revision-Date: 2012-12-18 17:14-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -392,7 +392,7 @@ msgstr ""
 "pour le problème %2$s ."
 
 #: ../wp-plugin/db-problem-summary.php:29
-#: ../wp-plugin/shortcode-mailpage.php:191
+#: ../wp-plugin/shortcode-mailpage.php:189
 #: ../wp-plugin/shortcode-my-progress.php:28
 #, php-format
 msgid "Problem %s not found (at least in current language)"
@@ -430,16 +430,23 @@ msgid "Hide input box"
 msgstr "Masquer le champ d'entrée"
 
 #: ../wp-plugin/js-translation.php:8
-msgid "Please select a recipient for the message."
-msgstr "S'il vous plaît sélectionner un destinataire pour le message."
-
-#: ../wp-plugin/js-translation.php:9
 msgid "end of main program"
 msgstr "fin du programme principal"
 
-#: ../wp-plugin/js-translation.php:10
+#: ../wp-plugin/js-translation.php:9
 msgid "timed out!"
 msgstr "délai dépassé !"
+
+#: ../wp-plugin/js-translation.php:10
+msgid ""
+"Please select a valid recipient for the message. If you are working with a "
+"teacher or friend, select them as a guru on your Profile (available within "
+"the user menu, in the top right corner of the page)."
+msgstr ""
+"SVP sélectionner un destinataire valide pour le message. Si vous travaillez "
+"avec un(e) professeur(e) ou un(e) ami(e), sélectionnez-les comme un gourou "
+"sur votre profil (disponible dans le menu de l'utilisateur, dans le coin "
+"supérieur droit de la page)."
 
 #: ../wp-plugin/js-translation.php:11
 msgid ""
@@ -453,7 +460,7 @@ msgstr ""
 msgid "Click to try again."
 msgstr "Cliquez ici pour essayer à nouveau."
 
-#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:814
+#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:810
 msgid "Run program"
 msgstr "Exécuter le programme"
 
@@ -473,7 +480,7 @@ msgstr "Tape entrée de test"
 msgid "You have completed this problem at least once."
 msgstr "Vous avez completé ce problème au moins une fois."
 
-#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:793
+#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:789
 msgid "More actions..."
 msgstr "Plus d'actions..."
 
@@ -481,7 +488,7 @@ msgstr "Plus d'actions..."
 msgid "Enter input"
 msgstr "Tape entrée"
 
-#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:744
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:740
 msgid "Rich editor"
 msgstr "Éditeur riche"
 
@@ -513,7 +520,7 @@ msgstr ""
 msgid "Page"
 msgstr "Page"
 
-#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:759
+#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:755
 msgid "History"
 msgstr "Historique"
 
@@ -557,10 +564,6 @@ msgstr "Editeur simple"
 #: ../wp-plugin/js-translation.php:35
 msgid "Hide history"
 msgstr "Cacher l'historique"
-
-#: ../wp-plugin/js-translation.php:36
-msgid "You need to select a recipient."
-msgstr "Vous devez choisir un destinataire."
 
 #: ../wp-plugin/newuseremail.php:10
 msgid ""
@@ -786,97 +789,92 @@ msgid "My guru"
 msgstr "Mon gourou"
 
 #: ../wp-plugin/shortcode-mailpage.php:118 ../wp-plugin/shortcodes.php:639
-msgid "My guru (you don't have one)"
-msgstr "Mon gourou (vous n'en avez pas)"
+msgid "(No guru is specified)"
+msgstr "(pas de gourou est spécifié)"
 
-#: ../wp-plugin/shortcode-mailpage.php:121 ../wp-plugin/shortcodes.php:642
-#, fuzzy, php-format
-msgid "(guru can be specified on <a href='%s'>your Profile Page</a>)"
-msgstr "(Nommer un gourou sur <a href = '%s'> votre page de profil </a>)"
-
-#: ../wp-plugin/shortcode-mailpage.php:128
+#: ../wp-plugin/shortcode-mailpage.php:126
 msgid "Type here to send a reply about this problem"
 msgstr "Tapez ici pour envoyer une réponse à ce problème"
 
-#: ../wp-plugin/shortcode-mailpage.php:134
+#: ../wp-plugin/shortcode-mailpage.php:132
 msgid "Just mark as read without replying"
 msgstr "Marquer comme lu sans réponse"
 
-#: ../wp-plugin/shortcode-mailpage.php:136
+#: ../wp-plugin/shortcode-mailpage.php:134
 msgid "Send this message!"
 msgstr "Envoyer ce message !"
 
-#: ../wp-plugin/shortcode-mailpage.php:142
+#: ../wp-plugin/shortcode-mailpage.php:140
 #, php-format
 msgid "%s's progress page (new window)"
 msgstr "Page des progrès de %s (nouvelle fenêtre)"
 
-#: ../wp-plugin/shortcode-mailpage.php:143
+#: ../wp-plugin/shortcode-mailpage.php:141
 #, php-format
 msgid "Original lesson page containing %s (new window)"
 msgstr "Page de la leçon originale contenant %s (nouvelle fenêtre)"
 
-#: ../wp-plugin/shortcode-mailpage.php:145
+#: ../wp-plugin/shortcode-mailpage.php:143
 msgid "Problem description for"
 msgstr "Texte de problème"
 
-#: ../wp-plugin/shortcode-mailpage.php:151
+#: ../wp-plugin/shortcode-mailpage.php:149
 #, php-format
 msgid "%1$s's submissions for %2$s"
 msgstr "Soumissions par %1$s pour %2$s"
 
-#: ../wp-plugin/shortcode-mailpage.php:153
+#: ../wp-plugin/shortcode-mailpage.php:151
 #, php-format
 msgid "My previous submissions for %s"
 msgstr "Mes soumissions précédentes pour %s"
 
-#: ../wp-plugin/shortcode-mailpage.php:157
+#: ../wp-plugin/shortcode-mailpage.php:155
 #, php-format
 msgid "My other messages about %s"
 msgstr "Mes autres messages sur %s"
 
-#: ../wp-plugin/shortcode-mailpage.php:160
+#: ../wp-plugin/shortcode-mailpage.php:158
 msgid "My messages for other programs"
 msgstr "Mes messages pour d'autres programmes"
 
-#: ../wp-plugin/shortcode-mailpage.php:161
+#: ../wp-plugin/shortcode-mailpage.php:159
 #, php-format
 msgid "Messages to/from %s for other problems"
 msgstr "Messages vers / à partir de %s pour d'autres problèmes"
 
-#: ../wp-plugin/shortcode-mailpage.php:167
+#: ../wp-plugin/shortcode-mailpage.php:165
 #, php-format
 msgid "All messages ever about %s's work"
 msgstr "Mes autres messages sur le travail de %s"
 
-#: ../wp-plugin/shortcode-mailpage.php:170
+#: ../wp-plugin/shortcode-mailpage.php:168
 msgid "All messages ever to or from me"
 msgstr "Tous les messages à ou de moi"
 
-#: ../wp-plugin/shortcode-mailpage.php:197
+#: ../wp-plugin/shortcode-mailpage.php:195
 msgid "View a different problem?"
 msgstr "Voir un autre problème ?"
 
-#: ../wp-plugin/shortcode-mailpage.php:197
+#: ../wp-plugin/shortcode-mailpage.php:195
 #: ../wp-plugin/shortcode-my-progress.php:35
 #, php-format
 msgid "Reload with a different view? (you have %s students)"
 msgstr "Recharger avec un point de vue différent ? (Vous avez %s élèves)"
 
-#: ../wp-plugin/shortcode-mailpage.php:200
+#: ../wp-plugin/shortcode-mailpage.php:198
 #: ../wp-plugin/shortcode-my-progress.php:36
 msgid "Select different user?"
 msgstr "Sélectionnez autre utilisateur ?"
 
-#: ../wp-plugin/shortcode-mailpage.php:202
+#: ../wp-plugin/shortcode-mailpage.php:200
 msgid "Me"
 msgstr "Moi"
 
-#: ../wp-plugin/shortcode-mailpage.php:223
+#: ../wp-plugin/shortcode-mailpage.php:221
 msgid "Mail for which problem?"
 msgstr "Messages pour quel problème ?"
 
-#: ../wp-plugin/shortcode-mailpage.php:232
+#: ../wp-plugin/shortcode-mailpage.php:230
 #: ../wp-plugin/shortcode-my-progress.php:68
 msgid "Submit"
 msgstr "Soumettre"
@@ -1022,7 +1020,7 @@ msgid "You need to create an account and log in to ask a question."
 msgstr ""
 "Vous devez créer un compte et vous connecter avant de poser une question."
 
-#: ../wp-plugin/shortcodes.php:647
+#: ../wp-plugin/shortcodes.php:643
 msgid ""
 "Enter text for the message below. <i>Be sure to explain where you're stuck "
 "and what you've tried so far. Your partial solution code will be "
@@ -1032,19 +1030,19 @@ msgstr ""
 "bloqué et ce que vous avez essayé jusqu'à présent. Votre solution partielle "
 "sera automatiquement inclus dans le message.</i>"
 
-#: ../wp-plugin/shortcodes.php:649
+#: ../wp-plugin/shortcodes.php:645
 msgid "Send this message"
 msgstr "Envoyer ce message"
 
-#: ../wp-plugin/shortcodes.php:650
+#: ../wp-plugin/shortcodes.php:646
 msgid "Cancel"
 msgstr "Annuler"
 
-#: ../wp-plugin/shortcodes.php:669
+#: ../wp-plugin/shortcodes.php:665
 msgid "# delete this comment and enter your code here"
 msgstr "# Supprimer ce commentaire et entrez votre code ici"
 
-#: ../wp-plugin/shortcodes.php:721
+#: ../wp-plugin/shortcodes.php:717
 msgid ""
 "Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> "
 "below."
@@ -1052,24 +1050,24 @@ msgstr ""
 "Entrez instructions de test comme <tt>print(mafonction(\"argument de test\"))"
 "</tt> ci-dessous."
 
-#: ../wp-plugin/shortcodes.php:724
+#: ../wp-plugin/shortcodes.php:720
 msgid "You may enter input for the program in the box below."
 msgstr ""
 "Vous pouvez entrer des données pour le programme dans la boîte ci-dessous."
 
-#: ../wp-plugin/shortcodes.php:750
+#: ../wp-plugin/shortcodes.php:746
 msgid "Open in console"
 msgstr "Ouvrir en console"
 
-#: ../wp-plugin/shortcodes.php:753
+#: ../wp-plugin/shortcodes.php:749
 msgid "Visualize"
 msgstr "Visualiser"
 
-#: ../wp-plugin/shortcodes.php:767
+#: ../wp-plugin/shortcodes.php:763
 msgid "Reset code to default"
 msgstr "Réinitialiser code"
 
-#: ../wp-plugin/shortcodes.php:772
+#: ../wp-plugin/shortcodes.php:768
 msgid "Help"
 msgstr "Aide"
 
@@ -1441,9 +1439,3 @@ msgstr "Se connecter ou créer un compte"
 #: ../www/wordpress/wp-login.php:565 ../www/wordpress/wp-login.php:714
 msgid "Create a new account"
 msgstr "Créez un compte"
-
-#~ msgid "Select one..."
-#~ msgstr "Sélectionnez..."
-
-#~ msgid "(name a guru on <a %s>your Profile Page</a>)"
-#~ msgstr "(nommer un gourou sur <a %s>votre page de profil</a>)"
