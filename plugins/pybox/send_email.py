@@ -1,6 +1,12 @@
 #!/usr/bin/python3
 
-"""this program is being used instead of php's built-in mailer because
+"""Usage:
+- first line is sender in the format: full name <address@doma.in>
+- second line is the recipient in the same format
+- third line is the subject
+- fourth+ lines are the body
+
+NB: this program is being used instead of php's built-in mailer because
 the latter is not sending the domain correctly for the sender"""
 
 import email.message, email.mime.text, smtplib, sys
