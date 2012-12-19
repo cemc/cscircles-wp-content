@@ -210,7 +210,7 @@ function rowSummary($arr) {
   return $r.']';
 }
 
-function preBox( $s, $len = -1, $lenlimit = 1000, $style = '' ) {
+function preBox( $s, $len = -1, $lenlimit = 2000, $style = '' ) {
 // takes any long string, trims if needed, converts special html chars, and wraps in pre tag
 // the result can be directly inserted in html safely
 // $len: if this is a smaller version of an original string, what was the original length?
