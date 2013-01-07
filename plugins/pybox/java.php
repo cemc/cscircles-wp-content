@@ -3,7 +3,7 @@
 function java_parse($rawtext) {
   /*********************************************************************
    Procedure to check whether a snippet of Java 7 text represents
-   a single line, a properly nested block structure, or none of the above.
+   a single line, a properly nested {} block structure, or none of the above.
 
    A single line is defined as having no \r\n; outside of comments/quotes.
    This is not the absolute best definition as you could write something like
@@ -12,25 +12,26 @@ function java_parse($rawtext) {
    expression sequences. If you solve an exercise in such a crazy way,
    props to you!
 
-   We also check for a single line with a terminator, meaning a single line
-   followed by ; then whitespace and/or comments.
+   The text is said to be well-terminated if the last non-comment character
+   is ; or }. Otherwise it returns a "terminated badly" flag. This is
+   mostly to avoid students doing sneaky things where we ask them to
+   fill in a spot and then they get it to interact with surrounding fixed
+   text. E.g., "x =" on one line followed by our "y = input()" on the next.
 
-   A properly nested block is defined as having all { and } outside of
-   comments/quotes as properly nested.
+   Reference:
+   http://docs.oracle.com/javase/specs/jls/se7/html/index.html
+  *******************/
 
+  /**************
    Java allows you to write \uABCD where ABCD are hex digits as a
-   replacement for any part of your source text, including but not limited
-   to comments, quotes, and actual language structures. For example you
+   replacement for any part of your source text, including comments, javadoc,
+   quotes, and actual language structures. For example you
    can start a comment with \* and end it with \u002a\ since unicode code
    point 42 is an asterisk. This makes our job harder. The first thing is to 
    take care of this with preprocessing. We'll only deal with true ASCII (code
    points < 128) since all meaningful Java language characters lie in this
    range, and since dealing with higher ones is a pain in PHP.
-
-   Reference for details:
-   http://docs.oracle.com/javase/specs/jls/se7/html/index.html
-  *******************/
-
+  ****************/
   $regex = "(?<!\\\\)((\\\\\\\\)*)\\\\u+00([0-7][[:xdigit:]])";
   // not a backslash, followed by 2k+1 backslashes, u's, 00, two hex digits
   // nb: backslash duplication both for PHP escaping and regex escaping
@@ -47,7 +48,8 @@ function java_parse($rawtext) {
   // characters
   $bs = "\\"; $sq = "'"; $dq = "\"";
   // outputs
-  $oneline = True; $oneline_with_terminator = False;
+  $oneline = True; $oneline_with_semicolon = False;
+  $lastchar = NULL;
   $errmsg = "";
 
   // initialize
@@ -70,12 +72,15 @@ function java_parse($rawtext) {
     
     if ($state === $java) {
       $is_inline_whitespace = ($ch == "\t") || ($ch == "\f") || ($ch == " ");
-      $oneline_with_terminator = $oneline_with_terminator &&
+      if (!($is_newline || $is_inline_whitespace || $digram == "//"
+	    || $digram == "/*"))
+	$lastchar = $ch;
+      $oneline_with_semicolon = $oneline_with_semicolon &&
 	($is_inline_whitespace || ($digram == "//") || ($digram == "/*"));
       if (($is_newline || $ch == ";") && $oneline) {
 	$oneline = False;
 	if ($ch == ";")
-	  $oneline_with_terminator = True;
+	  $oneline_with_semicolon = True;
       }
       if ($ch == '{') 
 	$depth++;
@@ -112,7 +117,7 @@ function java_parse($rawtext) {
     }
     else if ($state === $squote) {
       if ($is_newline && $errmsg == "")
-	$errmsg = "Character delimeter (\') followed by end of line.";
+	$errmsg = "Character delimeter (') followed by end of line.";
       if ($digram == $bs.$bs || $digram == $bs.$sq) {
 	$next++;
       }
@@ -136,7 +141,7 @@ function java_parse($rawtext) {
 
   if ($errmsg == "") {
     if ($state === $squote)
-      $errmsg = "Character delimeter (\') followed by end of input.";
+      $errmsg = "Character delimeter (') followed by end of input.";
     else if ($state === $dquote)
       $errmsg = "String delimeter (\") followed by end of input.";
     else if ($state === $mcomment)
@@ -149,8 +154,10 @@ function java_parse($rawtext) {
   $valid = ($errmsg == "");
   return array("valid" => $valid, "text" => $text, "errmsg" => $errmsg, 
 	       "oneline" => $oneline,
-	       "oneline_with_terminator" => $oneline_with_terminator, 
-	       "ends_with_scomment" => $ends_with_scomment); 
+	       "oneline_with_semicolon" => $oneline_with_semicolon, 
+	       "ends_with_scomment" => $ends_with_scomment,
+	       "empty" => ($lastchar === NULL),
+	       "terminated_badly" => !($lastchar == ";" || $lastchar == "}")); 
 }
 
 add_shortcode
@@ -200,10 +207,10 @@ add_shortcode
        if ($value === True) 
 	 $r .= "[$key] ";
      }
-     if ($result["errmsg"] != "")
-       $r .= "and error message:<br/>".$result["errmsg"]."<br/>";
      if ($result["text"] == $test) $r .= "<br/>";
      else $r .= "and returns changed text:<br/>".$result["text"]."<br/>";
+     if ($result["errmsg"] != "")
+       $r .= "and error message:<br/>".$result["errmsg"]."<br/>";
      //break; // for debugging
    }
    return $r;
