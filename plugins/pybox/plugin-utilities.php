@@ -438,4 +438,10 @@ function pythonEscape($string) {
 }
 
 
+function allSolvedCount() {
+  global $wpdb;
+  return $wpdb->get_var("select count(1) from wp_pb_completed;");
+}
+
+
 // end of file

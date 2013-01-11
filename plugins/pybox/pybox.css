@@ -422,6 +422,7 @@ a.locator:hover {
     background-image: url("css-images/cemc_logo.gif");
     width: 73px;
     height: 64px;
+    margin-top: 5px;
 }
 
 

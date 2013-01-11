@@ -25,7 +25,10 @@ showLocationHandler(); ?>
   <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
   <?php echo sprintf("<a href='http://cemc.math.uwaterloo.ca/copyright.html'>&copy; 2010&mdash;.</a> " . __t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>.'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"'); ?>
 
-
+  <div> 
+  <?php echo sprintf(__t("Total number of exercises completed by all users: %s"),
+		     "<b>" . allSolvedCount() . "</b>"); ?>
+  </div>
    <div id="departmentaddress">
   <?php echo __t('CEMC');?> |
   <?php echo __t('University of Waterloo');?>, MC 5104 |

@@ -63,7 +63,7 @@ define('UWARN', UFILES . 'warning.png');
 define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
 
 define('UPYBOXJS', UPYBOX . 'pybox.js?27');
-define('UPYBOXCSS', UPYBOX . 'pybox.css?12');
+define('UPYBOXCSS', UPYBOX . 'pybox.css?13');
 define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
 
 define('USUBMIT', UPYBOX . 'action-submit-code.php');
