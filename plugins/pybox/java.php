@@ -51,6 +51,7 @@ function java_parse($rawtext) {
   $oneline = True; $oneline_with_semicolon = False;
   $lastchar = NULL;
   $errmsg = "";
+  $text_nocomments = "";
 
   // initialize
   $next = 0;
@@ -58,6 +59,7 @@ function java_parse($rawtext) {
   $depth = 0;
   $oldstate = -1; // for debugging
   while ($next < strlen($text)) {
+    $oldnext = $next;
     $ch = $text[$next];
     $is_newline = ($ch == "\n" || $ch == "\r");
     $nextch = ($next+1 == strlen($text)) ? "NA" : $text[$next+1];
@@ -66,8 +68,8 @@ function java_parse($rawtext) {
     /* //for debugging
     //if ($oldstate != $state && $oldstate != -1) 
     echo "[$next $digram $oneline ".$state_name[$state]."]";
-    $oldstate = $state;
     // */
+    $oldstate = $state;
     $next++;
     
     if ($state === $java) {
@@ -137,6 +139,10 @@ function java_parse($rawtext) {
       }
     }
     // continue parsing the next iteration!
+    if (($state != $scomment) and ($state != $mcomment) and ($oldstate != $scomment) and ($oldstate != $mcomment)) {
+      for ($i=$oldnext; $i<$next; $i++)
+	$text_nocomments .= $text[$i];
+    }
   }
 
   if ($errmsg == "") {
@@ -153,12 +159,16 @@ function java_parse($rawtext) {
   $ends_with_scomment = (($errmsg == "") && ($state === $scomment));
   $valid = ($errmsg == "");
   return array("valid" => $valid, "text" => $text, "errmsg" => $errmsg, 
+	       "text_nocomments" => $text_nocomments,
 	       "oneline" => $oneline,
 	       "oneline_with_semicolon" => $oneline_with_semicolon, 
 	       "ends_with_scomment" => $ends_with_scomment,
 	       "empty" => ($lastchar === NULL),
 	       "terminated_badly" => !($lastchar == ";" || $lastchar == "}")); 
 }
+
+if (!function_exists('add_shortcode'))
+  return;
 
 add_shortcode
 ('javaTest', function($options, $content) 
@@ -212,6 +222,8 @@ add_shortcode
      if ($result["errmsg"] != "")
        $r .= "and error message:<br/>".$result["errmsg"]."<br/>";
      //break; // for debugging
+     if ($result["text_nocomments"] != $result["text"])
+       $r .= "Stripped text: " . $result["text_nocomments"]."<br/>";
    }
    return $r;
  });
