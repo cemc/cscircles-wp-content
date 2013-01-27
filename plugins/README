@@ -1,4 +1,4 @@
-polylang : no customizations
+polylang : maybe? reported issue: (array_key_exists('media_support', $this->options))
 google-analytics : no customizations
 role-scoper : use role-scoper.patch
 list-pages-shortcode : no customizations (previous ones were accepeted upstream)

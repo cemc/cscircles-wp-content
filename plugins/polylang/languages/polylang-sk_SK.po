@@ -4,49 +4,44 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: F. Demarle\n"
 "Language-Team: \n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=2: nplural=n>1;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-KeywordsList: _e;__;_x\n"
 "X-Poedit-Basepath: .\n"
-"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPath-1: ../include\n"
 
-# @ polylang
 #: include/about.php:3
 #, php-format
 msgid "Polylang is provided with an extensive %sdocumentation%s (in English only). It includes information on how to set up your multilingual site and use it on a daily basis, a FAQ, as well as a documentation for programmers to adapt their plugins and themes."
-msgstr ""
+msgstr "Polylang je vybavený rozsiahlymi % sdocumentation % s (iba v angličtine). Obsahuje informácie o tom, ako nastaviť svoje viacjazyčné stránky a použiť ho na dennej báze, FAQ, ako aj dokumentáciu pre programátorov prispôsobiť ich pluginy a motívy."
 
-# @ polylang
 #: include/about.php:9
 #, php-format
 msgid "You will also find useful information in the %ssupport forum%s. However don't forget to make a search before posting a new topic."
-msgstr ""
+msgstr "Nájdete tu aj užitočné informácie vo fóre % ssupport % s. Avšak nezabudnite urobiť vyhľadávanie pred zaúčtovaním novú tému."
 
-# @ polylang
 #: include/about.php:16
 #, php-format
 msgid "Polylang is free of charge and is released under the same license as WordPress, the %sGPL%s."
-msgstr ""
+msgstr "Polylang je zadarmo a je uvoľnená pod rovnakou licenciou ako WordPress, % sGPL % s."
 
-# @ polylang
 #: include/about.php:22
 #, php-format
 msgid "If you wonder how you can help the project, just %sread this%s."
-msgstr ""
+msgstr "Ak by vás zaujímalo, ako môžete pomôcť projektu, len % sread tejto % s."
 
-# @ polylang
 #: include/about.php:27
 msgid "Finally if you like this plugin or if it helps your business, donations to the author are greatly appreciated."
-msgstr ""
+msgstr "Nakoniec Ak máte radi tento plugin, alebo ak to pomôže vašej firme, autorovi dary sú veľmi ocenil."
 
-# @ polylang
 #: include/admin-base.php:55
 #: include/admin-base.php:185
 #: include/admin-filters.php:250
@@ -55,55 +50,45 @@ msgstr ""
 #: include/list-table.php:46
 #: polylang.php:270
 msgid "Languages"
-msgstr "Języki"
+msgstr "Jazyky"
 
-# @ polylang
 #: include/admin-base.php:154
 msgid "Displays language names"
-msgstr "Wyświetla nazwy języków"
+msgstr "Zobrazí názvy jazyk"
 
-# @ polylang
 #: include/admin-base.php:155
 msgid "Displays flags"
-msgstr "Wyświetla flagi"
+msgstr "Vlajkami displeja"
 
-# @ polylang
 #: include/admin-base.php:156
 msgid "Forces link to front page"
-msgstr "Wymusza link do strony głównej"
+msgstr "Forces odkaz na prednej strane"
 
-# @ polylang
 #: include/admin-base.php:157
 msgid "Hides the current language"
-msgstr "Ukrywa aktualny język"
+msgstr "Skryje aktuálny jazyk"
 
-# @ polylang
 #: include/admin-base.php:161
 msgid "Displays a language switcher at the end of the menu"
-msgstr "Wyświetla przełącznik języków na końcu menu"
+msgstr "Prepínač jazykov sa zobrazuje na konci menu"
 
-# @ polylang
 #: include/admin-base.php:162
 msgid "Displays as dropdown"
-msgstr "Wyświetla się jako menu rozwijane"
+msgstr "Zobrazí ako rozbaľovací zoznam"
 
-# @ polylang
 #: include/admin-base.php:186
 msgid "Filters content by language"
-msgstr ""
+msgstr "Filtruje obsah podľa jazyka"
 
-# @ polylang
 #: include/admin-base.php:193
 msgid "Show all languages"
-msgstr "Pokaż wszystkie języki"
+msgstr "Zobraziť všetky jazyky"
 
-# @ polylang
 #: include/admin-filters.php:188
 #: include/admin-filters.php:884
 msgid "Add new translation"
-msgstr "Dodaj nowe tłumaczenie"
+msgstr "Pridanie nového prekladu"
 
-# @ polylang
 #: include/admin-filters.php:216
 #: include/admin-filters.php:274
 #: include/admin-filters.php:608
@@ -116,9 +101,8 @@ msgstr "Dodaj nowe tłumaczenie"
 #: include/term-translations.php:15
 #: polylang.php:271
 msgid "Language"
-msgstr "Język"
+msgstr "Jazyk"
 
-# @ polylang
 #: include/admin-filters.php:623
 #: include/admin-filters.php:658
 #: include/list-table.php:120
@@ -126,108 +110,89 @@ msgstr "Język"
 #: include/term-translations.php:6
 #: include/term-translations.php:11
 msgid "Translations"
-msgstr "Tłumaczenia"
+msgstr "Preklady"
 
-# @ polylang
 #: include/admin-filters.php:826
 #: include/admin-filters.php:845
 msgid "Sets the language"
-msgstr "Ustawia język"
+msgstr "Nastaví jazyk"
 
-# @ polylang
 #: include/admin-filters.php:1078
 msgid "Theme locations and languages"
-msgstr "Lokalizacje motywów i języki"
+msgstr "Téma miest a jazykov"
 
-# @ polylang
 #: include/admin-filters.php:1084
 #, php-format
 msgid "Please go to the %slanguages page%s to set theme locations and languages"
-msgstr "Proszę idź do %sstrony języka%s aby ustawić lokalizacje motywu i języki"
+msgstr "Prosím, choďte na slanguages % stránku %s nastaviť tému lokality a jazyky"
 
-# @ polylang
 #: include/admin-filters.php:1102
 msgid "The widget is displayed for:"
-msgstr "Widget wyświetlany jest dla:"
+msgstr "Widget zobrazí pre:"
 
-# @ polylang
 #: include/admin-filters.php:1106
 #: polylang.php:272
 msgid "All languages"
-msgstr "Wszystkie języki"
+msgstr "Všetky jazyky"
 
-# @ polylang
 #: include/admin-filters.php:1130
 msgid "Admin language"
-msgstr "Język administratora"
+msgstr "Admin jazyk"
 
 #: include/admin-filters.php:1135
 msgid "Wordpress default"
-msgstr ""
+msgstr "Predvolené WordPress"
 
-# @ default
-# @ polylang
 #: include/admin-filters.php:1161
 #: include/admin.php:326
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr "Nastavenia"
 
-# @ polylang
 #: include/admin-filters.php:1167
 msgid "Upgrading language files&#8230;"
-msgstr "Uaktualnianie pliku językowego&#8230;"
+msgstr "Modernizácia jazykové súbory &amp;#8230;"
 
-# @ polylang
 #: include/admin.php:22
 msgid "About Polylang"
-msgstr ""
+msgstr "O Polylang"
 
-# @ polylang
 #: include/admin.php:27
 #: include/list-table.php:92
 msgid "Strings translations"
-msgstr "Tłumaczenia ciągów tekstowych"
+msgstr "Preklady reťazcov"
 
-# @ polylang
 #: include/admin.php:323
 msgid "Menus"
 msgstr "Menu"
 
-# @ polylang
 #: include/admin.php:325
 #: include/list-table.php:91
 msgid "Strings translation"
-msgstr "Tłumaczenie ciągów tekstowych"
+msgstr "Preklad reťazcov"
 
-# @ polylang
 #: include/admin.php:345
 msgid "Enter a valid WorPress locale"
-msgstr "Wpisz prawidłową lokalizację WordPress"
+msgstr "Zadajte platný WorPress locale"
 
-# @ polylang
 #: include/admin.php:346
 msgid "The language code must be 2 characters long"
-msgstr "Kod języka musi się składać z 2 znaków"
+msgstr "Kód jazyka musí byť 2 znakov"
 
-# @ polylang
 #: include/admin.php:347
 msgid "The language code must be unique"
-msgstr "Kod języka musi być unikalny"
+msgstr "Kód jazyka musí byť jedinečný"
 
-# @ polylang
 #: include/admin.php:348
 msgid "The language must have a name"
-msgstr "Język musi mieć nazwę"
+msgstr "Jazyk musí mať názov"
 
-# @ polylang
 #: include/admin.php:349
 msgid "The language was created, but the WordPress language file was not downloaded. Please install it manually."
-msgstr "Język został dodany, ale plik językowy WordPress nie został załadowany. Proszę zainstalować go manualnie."
+msgstr "Jazyk bol vytvorený, ale WordPress jazykový súbor sa neprevzal. Prosím ho nainštalovať manuálne."
 
-# @ polylang
 #: include/admin.php:468
 msgid "Widget title"
-msgstr "Nazwa widgeta"
+msgstr "Widget titul"
 
 # @ polylang
 #: include/base.php:339
@@ -264,7 +229,6 @@ msgstr ""
 msgid "Post format"
 msgstr ""
 
-# @ default
 #: include/base.php:346
 msgid "Page parent"
 msgstr ""
@@ -274,7 +238,6 @@ msgstr ""
 msgid "Page template"
 msgstr ""
 
-# @ polylang
 #: include/base.php:348
 msgid "Page order"
 msgstr ""
@@ -284,158 +247,130 @@ msgstr ""
 msgid "Featured image"
 msgstr ""
 
-# @ polylang
 #: include/languages-form.php:43
 msgid "Edit language"
-msgstr "Edytuj język"
+msgstr "Upraviť jazyk"
 
-# @ polylang
 #: include/languages-form.php:43
 #: include/languages-form.php:124
 msgid "Add new language"
-msgstr "Dodaj nowy język"
+msgstr "Pridať nový jazyk"
 
-# @ polylang
 #: include/languages-form.php:65
 msgid "Choose a language"
-msgstr "Wybierz język"
+msgstr "Vyberte jazyk"
 
-# @ polylang
 #: include/languages-form.php:79
 msgid "You can choose a language in the list or directly edit it below."
-msgstr "Możesz wybrać język z listy lub edytować go bezpośrednio poniżej"
+msgstr "Môžete si zvoliť ľubovoľný jazyk v zozname alebo priamo upraviť nižšie."
 
-# @ polylang
 #: include/languages-form.php:83
 #: include/list-table.php:63
 msgid "Full name"
-msgstr "Pełna nazwa"
+msgstr "Celé meno"
 
-# @ polylang
 #: include/languages-form.php:85
 msgid "The name is how it is displayed on your site (for example: English)."
-msgstr "Nazwa, tak jak będzie wyświetlana na stronie (np. English)"
+msgstr "Meno je, ako je zobrazené na vašich stránkach (napríklad: angličtina)."
 
-# @ polylang
 #: include/languages-form.php:89
 #: include/list-table.php:64
 msgid "Locale"
-msgstr "Lokalizacja"
+msgstr "Locale"
 
-# @ polylang
 #: include/languages-form.php:94
 msgid "Wordpress Locale for the language (for example: en_US). You will need to install the .mo file for this language."
-msgstr "Lokalizacja WordPress dla języka (np. en_US). Dla tego języka będziesz musiał zainstalować plik .mo."
+msgstr "WordPress Locale jazyka (napríklad: en_US). Budete musieť nainštalovať .mo súbor pre tento jazyk."
 
-# @ polylang
 #: include/languages-form.php:98
 msgid "Language code"
-msgstr "Kod języka"
+msgstr "Kód jazyka"
 
-# @ polylang
 #: include/languages-form.php:100
 msgid "2-letters ISO 639-1 language code (for example: en)"
-msgstr "2-literowy kod języka w ISO 639-1 (np. en)"
+msgstr "2-listy kód ISO 639-1 jazyk (napríklad: en)"
 
-# @ polylang
 #: include/languages-form.php:104
 msgid "Text direction"
-msgstr "Kierunek zapisu języka"
+msgstr "Smer textu"
 
-# @ polylang
 #: include/languages-form.php:108
 msgid "left to right"
-msgstr "od lewej do prawej"
+msgstr "zľava doprava"
 
-# @ polylang
 #: include/languages-form.php:113
 msgid "right to left"
-msgstr "od prawej do lewej"
+msgstr "sprava doľava"
 
-# @ polylang
 #: include/languages-form.php:115
 msgid "Choose the text direction for the language"
-msgstr "Wybierz kierunek zapisu języka"
+msgstr "Výber smeru textu pre jazyk"
 
-# @ polylang
 #: include/languages-form.php:119
 #: include/list-table.php:66
 msgid "Order"
-msgstr "Kolejność"
+msgstr "Objednávky"
 
-# @ polylang
 #: include/languages-form.php:121
 msgid "Position of the language in the language switcher"
-msgstr "Pozycja języka w przełączniku języka"
+msgstr "Pozícii jazyka v prepínač jazykov"
 
-# @ polylang
 #: include/languages-form.php:180
 msgid "Language switcher"
-msgstr "Przełącznik języka"
+msgstr "Prepínač jazykov"
 
-# @ polylang
 #: include/languages-form.php:206
 msgid "Search translations"
 msgstr ""
 
-# @ polylang
 #: include/languages-form.php:215
 msgid "Clean strings translation database"
-msgstr ""
+msgstr "Čisté struny preklad databázy"
 
-# @ polylang
 #: include/languages-form.php:231
 msgid "Default language"
-msgstr "Domyślny język"
+msgstr "Predvolený jazyk"
 
-# @ polylang
 #: include/languages-form.php:243
 msgid "There are posts, pages, categories or tags without language set. Do you want to set them all to default language ?"
-msgstr "Istnieją wpisy, strony, kategorie i tagi bez określonego języka. Czy chcesz ustawić dla nich domyślny język?"
+msgstr "Tam sú príspevky, stránky, kategórie alebo značky bez jazyk nastaviť. Chcete nastaviť všetky predvolené jazyk?"
 
-# @ polylang
 #: include/languages-form.php:251
 msgid "Detect browser language"
-msgstr "Wykryj język przeglądarki"
+msgstr "Detekovať jazyk prehliadača"
 
-# @ polylang
 #: include/languages-form.php:257
 msgid "When the front page is visited, set the language according to the browser preference"
-msgstr "Przy wejściu na stronę domową, ustaw język zgodnie z ustawieniami przeglądarki"
+msgstr "Keď je navštívil prednej strane, nastaviť jazyk podľa prehliadača preferencie"
 
-# @ polylang
 #: include/languages-form.php:264
 msgid "URL modifications"
-msgstr "Modyfikacje URL"
+msgstr "URL úpravy"
 
-# @ polylang
 #: include/languages-form.php:270
 msgid "The language is set from content. Posts, pages, categories and tags urls are not modified."
-msgstr ""
+msgstr "Jazyk je nastavená od obsahu. Príspevkov, stránok, kategórií a značiek URL sa nemenia."
 
 #: include/languages-form.php:278
 msgid "The language code, for example /en/, is added to all urls when using pretty permalinks."
-msgstr ""
+msgstr "Kód jazyka, napríklad/en /, sa pridá do všetky adresy URL, pri použití pekná permalinks."
 
-# @ polylang
 #: include/languages-form.php:287
 msgid "Remove /language/ in pretty permalinks. Example:"
-msgstr "Usuń /language/ z przyjaznych permalinków. Np.:"
+msgstr "Odstráňte /language/ pekná permalinks. Príklad:"
 
-# @ polylang
 #: include/languages-form.php:296
 msgid "Keep /language/ in pretty permalinks. Example:"
-msgstr "Zachowaj /language/ w przyjaznych permalinkach. Np.:"
+msgstr "Majte /language/ na docela permalinks. Príklad:"
 
-# @ polylang
 #: include/languages-form.php:305
 msgid "Hide URL language information for default language"
-msgstr "Ukryj informację o języku w URL dla domyślnego języka"
+msgstr "Skryť URL jazyk informácie pre predvolený jazyk"
 
 #: include/languages-form.php:315
 #, php-format
 msgid "When using static front page, redirect the language page (example: %s) to the front page in the right language"
-msgstr ""
+msgstr "Pri použití statické predná strana, presmerovať stránku jazyka (príklad: % s) na prednej strane v správneho jazyka"
 
 # @ polylang
 #: include/languages-form.php:324
@@ -449,7 +384,7 @@ msgstr ""
 
 #: include/languages-form.php:337
 msgid "Synchronization"
-msgstr ""
+msgstr "Synchronizácia"
 
 # @ polylang
 #: include/languages-form.php:351
@@ -471,7 +406,6 @@ msgstr ""
 msgid "Activate languages and translations for custom taxonomies."
 msgstr ""
 
-# @ polylang
 #: include/list-table.php:55
 #: include/media-translations.php:22
 #: include/media-translations.php:60
@@ -480,92 +414,76 @@ msgstr ""
 #: include/term-translations.php:18
 #: include/term-translations.php:80
 msgid "Edit"
-msgstr "Edytuj"
+msgstr "Upraviť"
 
-# @ polylang
 #: include/list-table.php:56
 msgid "Delete"
-msgstr "Usuń"
+msgstr "Odstrániť"
 
-# @ polylang
 #: include/list-table.php:65
 msgid "Code"
-msgstr "Kod"
+msgstr "Kód"
 
-# @ polylang
 #: include/list-table.php:67
 msgid "Flag"
-msgstr "Flaga"
+msgstr "Vlajka"
 
-# @ polylang
 #: include/list-table.php:68
 msgid "Posts"
-msgstr "Wpisy"
+msgstr "Príspevky"
 
-# @ polylang
 #: include/list-table.php:118
 msgid "Name"
-msgstr "Nazwa"
+msgstr "meno"
 
-# @ polylang
 #: include/list-table.php:119
 msgid "String"
-msgstr "Ciąg tekstowy"
+msgstr "Reťazec"
 
-# @ polylang
 #: include/media-translations.php:6
 #: include/media-translations.php:44
 #: include/term-translations.php:16
 msgid "Translation"
-msgstr "Tłumaczenie"
+msgstr "Preklad"
 
-# @ polylang
 #: include/media-translations.php:31
 #: include/media-translations.php:68
 #: include/post-translations.php:38
 #: include/term-translations.php:60
 msgid "Add new"
-msgstr "Dodaj nowy"
+msgstr "Pridať nové"
 
-# @ polylang
 #: include/post-translations.php:5
 msgid "ID of pages in other languages:"
-msgstr "ID stron w innych językach"
+msgstr "ID stránok v iných jazykoch:"
 
-# @ polylang
 #: include/post-translations.php:5
 msgid "ID of posts in other languages:"
-msgstr "ID wpisów w innych językach"
+msgstr "Identifikácia miest v iných jazykoch:"
 
-# @ polylang
 #: include/post-translations.php:9
 msgid "Page ID"
-msgstr "ID strony"
+msgstr "Identifikácia stránky"
 
-# @ polylang
 #: include/post-translations.php:9
 msgid "Post ID"
-msgstr "ID wpisu"
+msgstr "Post ID"
 
-# @ polylang
 #: include/term-translations.php:48
 msgid "No untranslated term"
-msgstr "Brak nieprzetłumaczonego terminu"
+msgstr "Žiadne nepreložené obdobie"
 
-# @ polylang
 #: include/widget.php:6
 msgid "Language Switcher"
-msgstr "Przełącznik języka"
+msgstr "Prepínač jazykov"
 
-# @ polylang
 #: include/widget.php:6
 msgid "Displays a language switcher"
-msgstr "Wyświetla przełącznik języka"
+msgstr "Zobrazí prepínač jazykov"
 
-# @ polylang
 #: include/widget.php:69
 msgid "Title:"
-msgstr "Tytuł:"
+msgstr "Názov:"
 
 # @ polylang
 #. translators: plugin header field 'Description'
@@ -573,16 +491,14 @@ msgstr "Tytuł:"
 msgid "Adds multilingual capability to WordPress"
 msgstr ""
 
-# @ polylang
 #: polylang.php:118
 #, php-format
 msgid "You are using WordPress %s. Polylang requires at least WordPress %s."
-msgstr "Używasz WordPress %s. Polylang wymaga przynajmniej WordPress %s."
+msgstr "Používate WordPress % s. Polylang vyžaduje minimálne WordPress % s."
 
-# @ polylang
 #: polylang.php:159
 msgid "For some reasons, Polylang could not create a table in your database."
-msgstr ""
+msgstr "Pre niektoré dôvody, Polylang by mohlo vytvoriť tabuľku v databáze."
 
 # @ polylang
 #: polylang.php:220
@@ -595,3 +511,45 @@ msgstr ""
 msgid "Please upgrade first to %s before ugrading to %s."
 msgstr ""
 
+#~ msgid "Error: Restore of local flags failed!"
+#~ msgstr "Chyba: Obnovenie miestnej vlajok zlyhalo!"
+
+#~ msgid "Please move your local flags from %s to %s"
+#~ msgstr "Prosím presunúť svoje miestne vlajky od %s do %s"
+
+#~ msgid "%1$s %2$s"
+#~ msgstr "%1$ s %2$ s"
+
+#~ msgid "View posts for %1$s %2$s"
+#~ msgstr "Zobraziť príspevky pre %1$ s %2$ s"
+
+#~ msgid "Site Title"
+#~ msgstr "Názov lokality"
+
+#~ msgid "Tagline"
+#~ msgstr "Slogan"
+
+#~ msgid "&mdash; No Change &mdash;"
+#~ msgstr "&amp;mdash; Žiadna zmena &amp;mdash;"
+
+#~ msgid "Page's language:"
+#~ msgstr "Stránky jazyka:"
+
+#~ msgid "Post's language:"
+#~ msgstr "Príspevok jazyk:"
+
+#~ msgid "None"
+#~ msgstr "Žiadny"
+
+#~ msgid "Update"
+#~ msgstr "Aktualizácia"
+
+#~ msgid ""
+#~ "Allow to synchronize categories, tags, featured image and other metas "
+#~ "between translations of a post or page"
+#~ msgstr ""
+#~ "Umožňujú synchronizovať kategórie, značky, Odporúčané image a ostatné "
+#~ "metas medzi preklady príspevok alebo stránku"
+
+#~ msgid "Search"
+#~ msgstr "Hľadať"
