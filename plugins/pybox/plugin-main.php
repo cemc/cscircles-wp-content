@@ -172,8 +172,10 @@ require_once("newuseremail.php");
 #require_once("dbf-subs.php"); not in use
 #require_once("dbf-completed.php"); not in use
 require_once("css-admin.php");
-require_once("java.php");
 
+add_shortcode('javaTest', function($o, $c) {
+		passthru("/home/cscircles/java-syntax/tests.py");
+	      });
 
 add_action( 'wp_enqueue_scripts', 'add_button_stylesheet' );
 function add_button_stylesheet() {
