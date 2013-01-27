@@ -162,6 +162,12 @@ class CapInterceptor_RS
 		if ( empty($user->blog_roles ) || empty($user->blog_roles[''] ) )
 			$this->scoper->refresh_blogroles();
 			
+		if ( ( $user->ID == $current_rs_user->ID ) && $user->allcaps !== $current_rs_user->allcaps ) {
+			global $current_user;
+			$current_user->allcaps = array_intersect( array_merge( $current_user->allcaps, $current_rs_user->allcaps ), array(true,1,'1') );
+			$user = $current_user;
+		}
+
 		$object_id = ( isset($args[2]) ) ? (int) $args[2] : 0;
 		
 		// WP passes comment ID with 'edit_comment' metacap

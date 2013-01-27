@@ -387,7 +387,7 @@ function cr_post_role_caps() {
 
 	$use_post_types = scoper_get_option( 'use_post_types' );
 
-	$force_create_posts_cap = awp_ver( '3.5-beta' && scoper_get_option( 'define_create_posts_cap' ) );
+	$force_create_posts_cap = awp_ver( '3.5-beta' ) && scoper_get_option( 'define_create_posts_cap' );
 	
 	foreach ( $post_types as $name => $post_type_obj ) {
 		if ( empty( $use_post_types[$name] ) )
