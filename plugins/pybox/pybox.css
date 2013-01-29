@@ -1,6 +1,10 @@
 
 /*********************** general stuff **********************/
 
+#wp-admin-bar-updates .screen-reader-text {
+    display: none;
+}
+
 .wp-core-ui .button {
  font-size: 16px;
  font-weight: bold;

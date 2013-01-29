@@ -64,9 +64,10 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
      " --report_file $safeexecOutFile --chroot_dir " . PJAIL . 
      " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S $mainfile";
 
-   global $mainProfilingID;
-   $minorProfilingID = beginProfilingEntry(array("activity"=>"safeexec", 
-						 "parent"=>$mainProfilingID));
+   global $log_it, $mainProfilingID;
+   if ($log_it)
+     $minorProfilingID = beginProfilingEntry(array("activity"=>"safeexec", 
+						   "parent"=>$mainProfilingID));
 
    $process = proc_open($command, $descriptorspec, $pipes, $cwd, $env);
    
@@ -92,10 +93,11 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
 			 $safeexecOut, $matches) 
      === 1 ? $matches[2] : "unavailable"; // e.g., if killed
 
-   endProfilingEntry($minorProfilingID, 
-		     array("meta"=>
-			   array("loadLevel"=>$loadLevel,
-				 "safeexec reported cputime"=>$cpuTime)));
+   if ($log_it)
+     endProfilingEntry($minorProfilingID, 
+		       array("meta"=>
+			     array("loadLevel"=>$loadLevel,
+				   "safeexec reported cputime"=>$cpuTime)));
 
    $outdata = array();
    foreach ($files as $filename=>$data) 
@@ -496,6 +498,10 @@ _user_stdout.close()
       ($hideemptyinput=="N" || $outdata['stdincopy']!=""))
     $m .= __t("Input:") . preBox($outdata['stdincopy']);
 
+  global $submit_code_stderr, $submit_code_errnice;
+  $submit_code_stderr = $stderr;
+  $submit_code_errnice = stderrNiceify($stderr);
+
   $errnice = preBox(stderrNiceify($stderr), $stderrlen);
   if (userIsAdmin()) 
     $errnice .= JQpopUp("Debug: view unsanitized", 
@@ -657,46 +663,48 @@ function msave() {
 	      :__t("Program saved."));
 }
 
-function main() {
+// the main part of the work
+function run_submission($post) {
   /**************************************************
     part 0 : initialization and checking that a valid problem is selected 
   ************************************************/
   global $logRow, $beginstamp, $userid, $userinput, $meta, $wpdb,
-    $inputInUse, $facultative, $usertni, $mainProfilingID, $slug;
+    $inputInUse, $facultative, $usertni, $mainProfilingID, $slug, $log_it;
   $beginstamp = time();
   $logRow = FALSE;
   $meta = array();
 
-  $mainProfilingID = beginProfilingEntry(array("activity"=>"submit-code"));
+  if ($log_it)
+    $mainProfilingID = beginProfilingEntry(array("activity"=>"submit-code"));
 
-  if ($_SERVER['REQUEST_METHOD'] != 'POST')
+  /*if ($_SERVER['REQUEST_METHOD'] != 'POST')
     return merror('', 'HTTP mangling: method "' . $_SERVER['REQUEST_METHOD'] .
-		  '" was requested instead of "POST"', 'suppress');
+    '" was requested instead of "POST"', 'suppress');*/
 
-  if (count($_POST)==0)
-    return merror('', 'HTTP mangling: POST request contained no data', 
+  if (count($post)==0)
+    return merror('', 'HTTP mangling: request contained no data', 
 		  'suppress');
 
-  if (strlen(print_r($_POST, TRUE))>POSTLIMIT) {
+  if (strlen(print_r($post, TRUE))>POSTLIMIT) {
     pyboxlog("submit.php got too many bytes of data:" 
-	     . strlen(print_r($_POST, TRUE)));
+	     . strlen(print_r($post, TRUE)));
     return mfail(sprintf(__t('Submitted data (program and/or test input) '
 			     .'too large. Reduce size or <a href = "%s">'
 			     .'run at home</a>.'), 
 			 cscurl('install')));
   }
   
-  $id = getSoft($_POST, "pyId", "EMPTY");
-  $usercode = getSoft($_POST, "usercode" . $id, -1);
+  $id = getSoft($post, "pyId", "EMPTY");
+  $usercode = getSoft($post, "usercode" . $id, -1);
   if (!is_string($usercode))
-    return merror("", "No usercode" . $id . "!" . print_r($_POST, TRUE));
-  $usercode = stripslashes($usercode);                    // php magic quotes!
+    return merror("", "No usercode" . $id . "!" . print_r($post, TRUE));
+
   $usercode = preg_replace('|\xc2\xa0|', ' ', $usercode); // nbsp
 
-  $userinput = stripslashes(getSoft($_POST, "userinput", "")); //magic quotes
+  $userinput = getSoft($post, "userinput", "");
   $userinput = preg_replace('|\xc2\xa0|', ' ', $userinput);    //nbsp
 
-  $hash = $_POST["hash"];
+  $hash = $post["hash"];
   
   //$graderArgsString = safeDereference("@file:" . $hash, 'hashes');
   //if (!is_string($graderArgsString)) 
@@ -745,9 +753,9 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     }
   }
 
-  $inputInUse = isSoft($_POST, "inputInUse", "Y");
-  /*  var_dump( $_POST, TRUE);
-  echo "eq: " .(($_POST["inputInUse"] === "Y") ? "T":"F");
+  $inputInUse = isSoft($post, "inputInUse", "Y");
+  /*  var_dump( $post, TRUE);
+  echo "eq: " .(($post["inputInUse"] === "Y") ? "T":"F");
   echo "inputinuse: " . ($inputInUse ? "T":"F");*/
   if ($inputInUse && !isSoft($problemOptions, "allowinput", "Y")) 
     return merror("", "Pybox error: input not actually allowed");
@@ -762,8 +770,8 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   $slug = getSoft($problemArgs, 'slug', NULL);
 
   //most of submit logging preparation. quitting earlier => not logged in DB
-  if (!isSoft($problemOptions, "nolog", "Y")) {
-    $postmisc = $_POST;
+  if ($log_it and !isSoft($problemOptions, "nolog", "Y")) {
+    $postmisc = $post;
     unset($postmisc['usercode' . $id]);
     unset($postmisc['userinput']);
     unset($postmisc['hash']);
@@ -784,9 +792,10 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     //pyboxlog('nameless problem that is not read-only!', TRUE);
   }
 
-  $justsave = array_key_exists('justsave', $_POST);
-  if ($justsave)
-    return msave();
+  // old feature:
+  //  $justsave = array_key_exists('justsave', $post);
+  //if ($justsave)
+  //  return msave();
 
   /**************************************************
     part 2 : grading
@@ -890,24 +899,54 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     if ($inputInUse) break;
   }
   return $allCorrect ? mpass($m) : mfail($m);
+} // end of main
+
+// this method can be called from exterior code,
+// normally with _log_it=false, and using the available
+// globals afterwards
+function submit_code_main($post, $_log_it) {
+  global $log_it;
+  $log_it = $_log_it;
+  global $submit_code_stderr, $submit_code_errnice;
+  $submit_code_stderr = NULL;
+  $submit_code_errnice = NULL;
+
+  $result = run_submission($post);
+
+  if ($log_it) {
+    //rest of the query logging
+    global $wpdb, $logRow, $mainProfilingID, $meta;
+    $crossref = NULL;
+    if ($logRow != FALSE) {
+      $logRow['result'] = $result[0];
+      $table_name = $wpdb->prefix . "pb_submissions";
+      $wpdb->insert( $table_name, $logRow);
+      $crossref = $wpdb->insert_id;
+    }
+
+    $meta['ipaddress'] = $_SERVER['REMOTE_ADDR'];
+    endProfilingEntry($mainProfilingID, 
+		      array("crossref"=>$crossref, "meta"=>$meta));
+  }
+  return $result;
 }
 
-$result = main();
-echo $result;
+// check if the requested url was action-submit-code.php
+// since we might be just including it instead... so
+// consider this the "main()" method
+if (realpath(__FILE__) == realpath($_SERVER["SCRIPT_FILENAME"])) {
+  $post = $_POST;
+  // you should do the next two lines iff magic quotes are enabled
+  if (true) { //get_magic_quotes_gpc() is not working for us??
+    $post = array();
+    foreach ($_POST as $k => $v) {$post[$k] = stripslashes($_POST[$k]);}
+  }
+  echo submit_code_main($post, true);
+}
 
-//rest of the query logging
-global $wpdb, $logRow, $mainProfilingID, $meta;
-$crossref = NULL;
-if ($logRow != FALSE) {
-  $logRow['result'] = $result[0];
-  $table_name = $wpdb->prefix . "pb_submissions";
-  $wpdb->insert( $table_name, $logRow);
-  $crossref = $wpdb->insert_id;
- }
-
-$meta['ipaddress'] = $_SERVER['REMOTE_ADDR'];
-endProfilingEntry($mainProfilingID, 
-		  array("crossref"=>$crossref, "meta"=>$meta));
-
+function sanity_check() {
+  echo "<br>__FILE__: " . realpath(__FILE__) ;
+  echo "<br>SCRIPT_FILENAME: " . realpath($_SERVER["SCRIPT_FILENAME"]) . "<br>";
+}
 
 // end of file
