@@ -6,7 +6,7 @@ require_once('action-submit-code.php');
 
 function export_submissions($content, $options) {
   if ($options == '') $options = array();
-  $lim = getSoft($options, "limit", 20);
+  $lim = getSoft($options, "limit", 10);
   global $wpdb;
 
 
