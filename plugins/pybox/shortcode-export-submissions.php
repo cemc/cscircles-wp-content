@@ -54,7 +54,7 @@ function export_submissions($content, $options) {
 
     echo "<pre>";
     foreach ($output as $k => $v) {
-      echo "$k: \"".addcslashes($v, "\\\n\r\'\"")."\"\n";
+      echo "$k: ".addcslashes($v, "\\\n\r")."\n";
     }
     echo "</pre>";
   }
