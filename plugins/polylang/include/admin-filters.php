@@ -30,7 +30,6 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			return;
 
 		// add the language and translations columns in 'All Posts', 'All Pages' and 'Media library' panels
-		if (array_key_exists('media_support', $this->options))
 		foreach ($this->options['media_support'] ? array('posts', 'pages', 'media') : array('posts', 'pages') as $type) {
 			add_filter('manage_'.$type.'_columns', array(&$this, 'add_post_column'), 10, 2);
 			add_action('manage_'.$type.'_custom_column', array(&$this, 'post_column'), 10, 2);
@@ -60,7 +59,6 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		add_action('save_post', array(&$this, 'save_post'), 10, 2);
 		add_action('before_delete_post', array(&$this, 'delete_post'));
 
-		if (array_key_exists('media_support', $this->options))
 		if ($this->options['media_support']) {
 			// adds the language field and translations tables in the 'Edit Media' panel
 			add_filter('attachment_fields_to_edit', array(&$this, 'attachment_fields_to_edit'), 10, 2);
@@ -234,7 +232,6 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		}
 
 		// filters the list of media by language when uploading from post
-		if (array_key_exists('media_support', $this->options))
 		if ($this->options['media_support'] && ($GLOBALS['pagenow'] == 'media-upload.php' || // WP < 3.5
 			($GLOBALS['pagenow'] == 'admin-ajax.php' && isset($_REQUEST['action']) && $_REQUEST['action'] == 'query-attachments')) && // WP 3.5+
 			isset($_REQUEST['post_id']) && $lang = $this->get_post_language($_REQUEST['post_id']))
