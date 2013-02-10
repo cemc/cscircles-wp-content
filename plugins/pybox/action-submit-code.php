@@ -695,7 +695,7 @@ function run_submission($post) {
   }
   
   $id = getSoft($post, "pyId", "EMPTY");
-  $usercode = getSoft($post, "usercode" . $id, -1);
+  $usercode = tabs_to_spaces(3, getSoft($post, "usercode" . $id, -1));
   if (!is_string($usercode))
     return merror("", "No usercode" . $id . "!" . print_r($post, TRUE));
 

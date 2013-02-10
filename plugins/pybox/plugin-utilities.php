@@ -17,6 +17,25 @@ function translateOf($string, $translations) {
   return $string;
 }
 
+function tabs_to_spaces($width, $text) {
+  if (strpos($text, "\t") === FALSE) return $text;
+  $lines = explode("\n", $text); // thankfully this works for \r\n too
+  $result = "";
+  foreach ($lines as $line) {
+    $i = 0;
+    $indent = 0;
+    while ($i < strlen($line) and ($line[$i] == ' ' or $line[$i] == "\t")) {
+      if ($line[$i] == " ") $indent++;
+      else {$indent += $width; $indent -= $indent % $width;}
+      $i++;
+    }
+    $result .= str_repeat(' ', $indent);
+    $result .= substr($line, $i);
+    $result .= "\n";
+  }
+  return $result;
+}
+
 function cscurl($slug) {
 
   if ($slug == 'visualize' || $slug == 'search') 

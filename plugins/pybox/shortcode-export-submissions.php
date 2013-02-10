@@ -5,8 +5,8 @@ add_shortcode('export_submissions', 'export_submissions');
 require_once('action-submit-code.php');
 
 function export_submissions($content, $options) {
-  if ($options == '') $options = array();
-  $lim = getSoft($options, "limit", 10);
+  $chunkSize = 500;
+  $numChunks = 3250; // bigger is ok too i think
   global $wpdb;
 
 
@@ -18,16 +18,26 @@ function export_submissions($content, $options) {
   foreach ($problems as $prow) 
     $problemsByNumber[$prow['slug']] = $prow;
 
-
+  file_put_contents("/home/cscircles/export.txt", "");
+  $outfile = fopen("/home/cscircles/export.txt", 'w');
+  if ($outfile === FALSE) return "could not open file";
+  echo strftime('%c');
+  
+  $last_id = 9999999999;
+  
+  for ($i=0; $i<$numChunks; $i++) {
   $results = 
     $wpdb->get_results
     ($wpdb->prepare
      ("SELECT problem, usercode, userinput, hash, ID FROM wp_pb_submissions
+       WHERE ID < %d 
        ORDER by ID DESC
-       LIMIT %d", $lim),
+       LIMIT %d", $last_id, $chunkSize),
      ARRAY_A);
   foreach ($results as $row) {
+    set_time_limit(30); // keeps going as long as needed
     $output = array();
+    $last_id = $row["ID"];
     $output["id"] = $row["ID"];
     $output["problem"] = $row["problem"];
     $problemInfo = getSoft($problemsByNumber, $row["problem"], NULL);
@@ -52,10 +62,27 @@ function export_submissions($content, $options) {
     $output["raw_errors"] = $submit_code_stderr === NULL ? "" : $submit_code_stderr;
     $output["nice_errors"] = $submit_code_errnice === NULL ? "" : $submit_code_errnice;
 
-    echo "<pre>";
     foreach ($output as $k => $v) {
-      echo "$k: ".addcslashes($v, "\\\n\r")."\n";
+      $maxSize = 1000; // should be even
+      $u = $v;
+      if (strlen($u) > $maxSize) {
+	$u = substr($u, 0, $maxSize/2)
+	  ."...("
+	  .(strlen($u)-$maxSize)
+	  ." characters skipped)..."
+	  .substr($u, strlen($u)-$maxSize/2, $maxSize/2);
+      }
+      fwrite($outfile, "$k: ".addcslashes($u, "\\\n\r")."\n");
+      //      if ($k == 'id' and rand(1, 10000)==1) {
+      //echo strftime('%c');
+      //echo "<pre>";    
+      //echo "$k: ".addcslashes($u, "\\\n\r")."\n";
+      //echo "</pre>";
+      //}
     }
-    echo "</pre>";
+    fwrite($outfile, "\n");
   }
+  }
+  echo strftime('%c');
+  fclose($outfile);
 }
