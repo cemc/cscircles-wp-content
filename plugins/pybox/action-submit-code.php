@@ -634,17 +634,17 @@ function saveCompletion() {
 
 // 3 helper functions for main
 function mpass($message) {
-  global $facultative; 
+  global $facultative, $appendix; 
   if (!$facultative) saveCompletion(); 
-  return ($facultative?"y":"Y<b>".__t("Success!")."</b><br/>") . $message;
+  return ($facultative?"y":"Y<b>".__t("Success!")."</b><br/>") . $message . $appendix;
 } //helper
 
 function mfail($message) {
-  global $facultative;
+  global $facultative, $appendix;
   return ($facultative?"N":"N<b>"
 	  .__t("Did not pass tests. "
 	       . "Please check details below and try again.")."</b><br/>") 
-    . $message;
+    . $message . $appendix;
 } //helper
 
 function merror($message, $errmsg, $suppress = -1) {
@@ -669,7 +669,9 @@ function run_submission($post) {
     part 0 : initialization and checking that a valid problem is selected 
   ************************************************/
   global $logRow, $beginstamp, $userid, $userinput, $meta, $wpdb,
-    $inputInUse, $facultative, $usertni, $mainProfilingID, $slug, $log_it;
+    $inputInUse, $facultative, $usertni, $mainProfilingID, $slug, $log_it,
+    $appendix;
+
   $beginstamp = time();
   $logRow = FALSE;
   $meta = array();
@@ -759,6 +761,13 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   echo "inputinuse: " . ($inputInUse ? "T":"F");*/
   if ($inputInUse && !isSoft($problemOptions, "allowinput", "Y")) 
     return merror("", "Pybox error: input not actually allowed");
+
+  if ($inputInUse) {
+    $appendix = '<div class="testing-warning">'.
+      __t('Ran with user input/tests. To go back to the grader\'s automatic tests, click the button under the input area.').
+      '</div>';
+  }
+  else $appendix = '';
 
   $facultative = isSoft($problemOptions, "facultative", "Y") || $inputInUse;
   $usertni = isSoft($problemOptions, "usertni", "Y");
@@ -867,10 +876,11 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   foreach ($subproblemOptions as $N=>$spo) 
     $tcTotal += $spo["repeats"];
 
+  $m = ''; //the result string, built a bit at a time.
+
   ksort($subproblemOptions); //test case 1, then 2, ...   
   $tcCurrent = 0;
   $allCorrect = TRUE; 
-  $m = ''; //the result string, built a bit at a time.
   ///*********************************************** main grading loop ***/
   foreach ($subproblemOptions as $N=>$spo) { 
     // spo: subproblemOptions for current subproblem
@@ -898,6 +908,7 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
     }
     if ($inputInUse) break;
   }
+
   return $allCorrect ? mpass($m) : mfail($m);
 } // end of main
 
