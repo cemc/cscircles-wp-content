@@ -3,12 +3,8 @@
 
 .testing-warning
 {
-font-size: 75%; 
-font-weight: bold; 
+font-style: italic;
 color: blue; 
-background: lightblue; 
-line-height: 1em; 
-padding: 2px;
 }
 
 #wp-admin-bar-updates .screen-reader-text {

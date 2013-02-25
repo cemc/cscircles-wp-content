@@ -762,13 +762,6 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
   if ($inputInUse && !isSoft($problemOptions, "allowinput", "Y")) 
     return merror("", "Pybox error: input not actually allowed");
 
-  if ($inputInUse) {
-    $appendix = '<div class="testing-warning">'.
-      __t('Ran with user input/tests. To go back to the grader\'s automatic tests, click the button under the input area.').
-      '</div>';
-  }
-  else $appendix = '';
-
   $facultative = isSoft($problemOptions, "facultative", "Y") || $inputInUse;
   $usertni = isSoft($problemOptions, "usertni", "Y");
 
@@ -863,7 +856,25 @@ SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
 					   $DP[$s][$t]));
     }
   }
-  
+
+  /*************** done preprocessing source code,
+   time to execute some things ************************/  
+  if ($inputInUse && $slug != 'console') {
+    global $usertni;
+    $appendix = '<div class="testing-warning">';
+    if ($usertni)
+      $appendix .= 
+	__t('Note: ran with user tests.');
+    else 
+      $appendix .= 
+	__t('Note: ran with user inputs.');
+    if (!isSoft($problemOptions, "facultative", "Y"))
+      $appendix .= ' '.__t(' Click "Go back to grading" to switch back.');
+    else
+      $appendix .= ' '.__t(' Click "Hide input box" to switch back.');
+  }
+  else $appendix = '';
+
   if (count($subproblemOptions)==0) {
     //    if ($problemOptions['grader'] == '*nograder*')
       $subproblemOptions["1"] = $problemOptions;
