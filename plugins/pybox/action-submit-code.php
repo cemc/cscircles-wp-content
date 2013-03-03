@@ -347,7 +347,8 @@ function doGrading($usercode, $TC) {
   
   $mainFile .= "from _UTILITIES import *\n";
 
-  if (isSoft($_COOKIE, 'wordpress_polylang', 'fr'))
+  if (pll_current_language('slug')=='fr')
+    //isSoft($_COOKIE, 'pll_language', 'fr'))
     $mainFile .= "_setLanguage('fr_FR')\n";
   else
     $mainFile .= "_setLanguage('en_US')\n";

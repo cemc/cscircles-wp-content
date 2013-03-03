@@ -30,9 +30,11 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			return;
 
 		// add the language and translations columns in 'All Posts', 'All Pages' and 'Media library' panels
-		foreach ($this->options['media_support'] ? array('posts', 'pages', 'media') : array('posts', 'pages') as $type) {
-			add_filter('manage_'.$type.'_columns', array(&$this, 'add_post_column'), 10, 2);
-			add_action('manage_'.$type.'_custom_column', array(&$this, 'post_column'), 10, 2);
+		foreach ($this->post_types as $type) {
+			// use the latest filter late as some plugins purely overwrite what's done by others :(
+			// specific case for media
+			add_filter('manage_'. ($type == 'attachment' ? 'upload' : 'edit-'. $type) .'_columns', array(&$this, 'add_post_column'), 100);
+			add_action('manage_'. ($type == 'attachment' ? 'media' : $type .'_posts') .'_custom_column', array(&$this, 'post_column'), 10, 2);
 		}
 
 		// quick edit and bulk edit
@@ -56,7 +58,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		// adds actions and filters related to languages when creating, saving or deleting posts and pages
 		add_filter('wp_insert_post_parent', array(&$this, 'wp_insert_post_parent'));
 		add_action('dbx_post_advanced', array(&$this, 'dbx_post_advanced'));
-		add_action('save_post', array(&$this, 'save_post'), 10, 2);
+		add_action('save_post', array(&$this, 'save_post'), 200, 2); // priority 200 to come after advanced custom fields (20) and custom fields template (100)
 		add_action('before_delete_post', array(&$this, 'delete_post'));
 
 		if ($this->options['media_support']) {
@@ -155,8 +157,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	// test of $columns avoids to add columns (in screen options) in the edit media form which calls the filter too
 	// see get_column_headers in wp-admin/screen.php
 	// FIXME I have the same issue for terms but WP adds columns too
-	function add_post_column($columns, $post_type = '') {
-		return $columns && ($post_type == '' || in_array($post_type, $this->post_types)) ? $this->add_column($columns, 'comments') : $columns;
+	function add_post_column($columns) {
+		return $this->add_column($columns, 'comments');
 	}
 
 	// fills the language and translations columns in the posts, pages and media library tables
@@ -247,7 +249,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	// adds the Language box in the 'Edit Post' and 'Edit Page' panels (as well as in custom post types panels)
 	function add_meta_boxes($post_type) {
 		if (in_array($post_type, $this->post_types))
-			add_meta_box('ml_box', __('Languages','polylang'), array(&$this,'post_language'), $post_type, 'side', 'high');
+			add_meta_box('ml_box', __('Languages','polylang'), array(&$this, 'post_language'), $post_type, 'side', 'high');
 
 		// replace tag metabox by our own
 		foreach (get_object_taxonomies($post_type) as $tax_name) {
@@ -1154,7 +1156,10 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 	// filters comments by language
 	function comments_clauses($clauses, $query) {
-		if (!empty($_GET['lang']) && $_GET['lang'] != 'all')
+		if (!empty($query->query_vars['lang']))
+			$lang = $query->query_vars['lang'];
+
+		elseif (!empty($_GET['lang']) && $_GET['lang'] != 'all')
 			$lang = $this->get_language($_GET['lang']);
 
 		elseif ($lg = get_user_meta(get_current_user_id(), 'pll_filter_content', true))

@@ -2,7 +2,7 @@
 /*
 Plugin Name: Polylang
 Plugin URI: http://polylang.wordpress.com/
-Version: 1.0.1
+Version: 1.0.2
 Author: F. Demarle
 Description: Adds multilingual capability to WordPress
 Text Domain: polylang
@@ -29,7 +29,7 @@ Domain Path: /languages
  *
  */
 
-define('POLYLANG_VERSION', '1.0.1');
+define('POLYLANG_VERSION', '1.0.2');
 define('PLL_MIN_WP_VERSION', '3.1');
 
 define('POLYLANG_DIR', dirname(__FILE__)); // our directory
@@ -47,7 +47,7 @@ if (!defined('PLL_LOCAL_URL'))
 	define('PLL_LOCAL_URL', WP_CONTENT_URL.'/polylang'); // default url to access user data such as custom flags
 
 if (!defined('PLL_COOKIE'))
-	define('PLL_COOKIE', 'pll_language');
+	define('PLL_COOKIE', 'pll_language'); // cookie name. no cookie will be used if set to false
 
 require_once(PLL_INC.'/base.php');
 
@@ -182,13 +182,12 @@ class Polylang extends Polylang_Base {
 			$options['taxonomies'] = array_values(get_taxonomies(array('_builtin' => false, 'show_ui => true')));
 		}
 		$options['version'] = POLYLANG_VERSION;
+		update_option('polylang', $options);
 
-		if (update_option('polylang', $options)) {
-			// add our rewrite rules
-			$this->add_post_types_taxonomies();
-			$this->prepare_rewrite_rules();
-			flush_rewrite_rules();
-		}
+		// add our rewrite rules
+		$this->add_post_types_taxonomies();
+		$this->prepare_rewrite_rules();
+		flush_rewrite_rules();
 	}
 
 	// plugin deactivation for multisite
@@ -253,6 +252,11 @@ class Polylang extends Polylang_Base {
 
 				flush_rewrite_rules(); // rewrite rules have been modified in 1.0
 			}
+
+			if (version_compare($options['version'], '1.0.2', '<'))
+				// set the option again in case it was not in 1.0
+				if (!isset($options['media_support']))
+					$options['media_support'] = defined('PLL_MEDIA_SUPPORT') && !PLL_MEDIA_SUPPORT ? 0 : 1;
 
 			$options['version'] = POLYLANG_VERSION;
 			update_option('polylang', $options);

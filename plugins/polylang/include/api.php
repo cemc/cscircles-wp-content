@@ -22,9 +22,9 @@ function pll_current_language($args = 'slug') {
 /*
  * returns the default language
  */
-function pll_default_language($arg = 'slug') {
+function pll_default_language($args = 'slug') {
 	global $polylang;
-	return !(isset($polylang) && ($options = get_options('polylang')) && isset($options['default-lang']) && $lang = $polylang->get_language($options['default-lang'])) ? false :
+	return !(isset($polylang) && ($options = get_option('polylang')) && isset($options['default_lang']) && $lang = $polylang->get_language($options['default_lang'])) ? false :
 		($args == 'name' ? $lang->name :
 		($args == 'locale' ? $lang->description :
 		$lang->slug));
@@ -59,7 +59,7 @@ function pll_home_url() {
  */
 function pll_register_string($name, $string, $multiline = false) {
 	global $polylang;
-	if (isset($polylang) && is_admin())
+	if (class_exists('Polylang_Admin_Base') && $polylang instanceof Polylang_Admin_Base)
 		$polylang->register_string($name, $string, $multiline);
 }
 
@@ -79,17 +79,19 @@ function pll_e($string) {
 
 /*
  * returns true if Polylang manages languages and translation for this post type
+ * won't work before the action 'wp_loaded' has been fired
  */
 function pll_is_translated_post_type($post_type) {
 	global $polylang;
-	return isset($polylang) && in_array($post_type, $polylang->post_types);
+	return isset($polylang) && is_array($polylang->post_types) && in_array($post_type, $polylang->post_types);
 }
 
 /*
  * returns true if Polylang manages languages and translation for this taxonomy
+ * won't work before the action 'wp_loaded' has been fired
  */
 function pll_is_translated_taxonomy($tax) {
 	global $polylang;
-	return isset($polylang) && in_array($tax, $polylang->taxonomies);
+	return isset($polylang) && is_array($polylang->taxonomies) && in_array($tax, $polylang->taxonomies);
 }
 

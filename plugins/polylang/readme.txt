@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, i18n, international, l10n, localization
 Requires at least: 3.1
 Tested up to: 3.5
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 
 Polylang adds multilingual content management support to WordPress.
@@ -24,7 +24,7 @@ You write posts, pages and create categories and post tags as usual, and then de
 
 = Translators =
 
-The plugin admin interface is currently available in 23 languages: English, French, German contributed by [Christian Ries](http://www.singbyfoot.lu), Russian contributed by [yoyurec](http://yoyurec.in.ua) and unostar, Greek contributed by [theodotos](http://www.ubuntucy.org), Dutch contributed by [AlbertGn](http://wordpress.org/support/profile/albertgn), Hebrew contributed by [ArielK](http://www.arielk.net), Polish contributed by [Peter Paciorkiewicz](http://www.paciorkiewicz.pl), Latvian contributed by [@AndyDeGroo](http://twitter.com/AndyDeGroo), Italian contributed by [Luca Barbetti](http://wordpress.org/support/profile/lucabarbetti), Danish contributed by [Compute](http://wordpress.org/support/profile/compute), Spanish contributed by Curro, Portuguese contributed by [Vitor Carvalho](http://vcarvalho.com/), Lithuanian contributed by [Naglis Jonaitis](http://najo.lt/), Turkish contributed by [darchws](http://darch.ws/), Finnish contributed by [Jani Alha](http://www.wysiwyg.fi), Bulgarian contributed by [pavelsof](http://wordpress.org/support/profile/pavelsof), Belarusian contributed by [Alexander Markevitch](http://fourfeathers.by/), Afrikaans contributed by [Kobus Joubert](http://translate3d.com/), Hungarian contributed by Csaba Erdei, Norwegian contributed by [Tom Boersma](http://www.oransje.com/), Slovak contributed by [Branco (WebHostingGeeks.com)](http://webhostinggeeks.com/user-reviews/), Swedish contributed by [matsii](http://wordpress.org/support/profile/matsii) 
+The plugin admin interface is currently available in 24 languages: English, French, German contributed by [Christian Ries](http://www.singbyfoot.lu), Russian contributed by [yoyurec](http://yoyurec.in.ua) and unostar, Greek contributed by [theodotos](http://www.ubuntucy.org), Dutch contributed by [AlbertGn](http://wordpress.org/support/profile/albertgn), Hebrew contributed by [ArielK](http://www.arielk.net), Polish contributed by [Peter Paciorkiewicz](http://www.paciorkiewicz.pl), Latvian contributed by [@AndyDeGroo](http://twitter.com/AndyDeGroo), Italian contributed by [Luca Barbetti](http://wordpress.org/support/profile/lucabarbetti), Danish contributed by [Compute](http://wordpress.org/support/profile/compute), Spanish contributed by Curro, Portuguese contributed by [Vitor Carvalho](http://vcarvalho.com/), Lithuanian contributed by [Naglis Jonaitis](http://najo.lt/), Turkish contributed by [darchws](http://darch.ws/), Finnish contributed by [Jani Alha](http://www.wysiwyg.fi), Bulgarian contributed by [pavelsof](http://wordpress.org/support/profile/pavelsof), Belarusian contributed by [Alexander Markevitch](http://fourfeathers.by/), Afrikaans contributed by [Kobus Joubert](http://translate3d.com/), Hungarian contributed by Csaba Erdei, Norwegian contributed by [Tom Boersma](http://www.oransje.com/), Slovak contributed by [Branco (WebHostingGeeks.com)](http://webhostinggeeks.com/user-reviews/), Swedish contributed by [matsii](http://wordpress.org/support/profile/matsii), Catalan contributed by [Núria Martínez Berenguer](http://nuriamb.capa.webfactional.com)
 
 
 Other [contributions](http://wordpress.org/extend/plugins/polylang/other_notes/) are welcome !
@@ -75,7 +75,7 @@ You can subscribe to the tag ['polylang-dev'](http://wordpress.org/tags/polylang
 
 = Translate the admin interface =
 
-Polylang is already available in 23 languages. It's very easy to add a new one! Download [poedit](http://www.poedit.net/download.php) (available for Windows, Mac OS X and Linux). Rename the file polylang.pot found in the polylang/languages directory into something like polylang-your_locale.po. Open the file with poedit and start translating (keeping strange codes such as %s, %1$s as is). Once done, just save and you will get two files polylang-your_locale.po and polylang-your_locale.mo that you can send to the author. The translation will be included with the next release and will be covered by the same license as Polylang (GPLv2 or later).
+Polylang is already available in 24 languages. It's very easy to add a new one! Download [poedit](http://www.poedit.net/download.php) (available for Windows, Mac OS X and Linux). Rename the file polylang.pot found in the polylang/languages directory into something like polylang-your_locale.po. Open the file with poedit and start translating (keeping strange codes such as %s, %1$s as is). Once done, just save and you will get two files polylang-your_locale.po and polylang-your_locale.mo that you can send to the author. The translation will be included with the next release and will be covered by the same license as Polylang (GPLv2 or later).
 
 = Communicate =
 
@@ -92,9 +92,28 @@ If you are using a version older than 0.8, please ugrade to 0.9.8 before ugradin
 
 == Changelog ==
 
+= 1.0.2 (2013-02-26) =
+
+* Add Catalan translation contributed by [Núria Martínez Berenguer](http://nuriamb.capa.webfactional.com)
+* Add the possibility to query comments by language
+* Add the possibility not to set a cookie by defining PLL_COOKIE to false (Polylang may not work as expected on some pages)
+* Now a returning visitor is redirected to its preferred language when visiting the front page in the default language
+* Add compatibility with the plugin Custom field template (copy and synchronize custom fields)
+* Improve compatibility with plugins or themes which overwrite columns in posts list table
+* Add the filter 'pll_get_flag'
+* Add support of 'icl_unregister_string' function from the WPML API
+* Bug correction: synchronizing custom fields breaks the plugin Advanced Custom Fields
+* Bug correction: 'pll_default_language' broken
+* Bug correction: rewrite rules are not flushed when re-activating the plugin
+* Bug correction: feed urls are not correctly escaped when using default permalinks
+* Bug correction: notice Undefined index: media_support
+* Bug correction: custom post types and taxonomies set in wpml-config.xml are not hidden
+* Bug correction: get_terms cannot query multiple languages
+* Bug correction: 'icl_register_string' is now persistant as in WPML (fixes Nextgen gallery translations which were not working)
+
 = 1.0.1 (2013-01-28) =
 
-* Add Swedish translation contributed by [matsii](http://wordpress.org/support/profile/matsii) 
+* Add Swedish translation contributed by [matsii](http://wordpress.org/support/profile/matsii)
 * Add 2 new API functions : 'pll_is_translated_post_type' and 'pll_is_translated_taxonomy'
 * Bug correction: when using a static front page, the posts page is not filtered by language (introduced in 1.0)
 * Bug correction: disable translation for hard coded menu as it creates more problems than it solves (introduced in 1.0)
@@ -116,7 +135,7 @@ If you are using a version older than 0.8, please ugrade to 0.9.8 before ugradin
 * Add support of the WPML config file
 * Add support of 'icl_get_languages' and 'icl_link_to_element' functions from the WPML API
 * Add compatibility with YARPP and improve compatibility with WordPress SEO
-* Change cookie name which conflicts with Quick cache and allow users to overwrite it by defining the constant PLL_COOKIE 
+* Change cookie name which conflicts with Quick cache and allow users to overwrite it by defining the constant PLL_COOKIE
 * Bug correction: again the canonical redirection
 * Bug correction: the languages are not correctly displayed after they have been modified using quick edit
 * Bug correction: undefined index notice when saving strings translation when the admin language filter is active

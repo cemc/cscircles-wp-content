@@ -345,7 +345,8 @@ class Polylang_Core extends Polylang_base {
 				setcookie('wordpress_polylang', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN);
 
 			// set a cookie to remember the language. check headers have not been sent to avoid ugly error
-			if (!headers_sent() && (!isset($_COOKIE[PLL_COOKIE]) || $_COOKIE[PLL_COOKIE] != $this->curlang->slug))
+			// possibility to set PLL_COOKIE to false will disable cookie although it will break some functionalities
+			if (!headers_sent() && PLL_COOKIE !== false && (!isset($_COOKIE[PLL_COOKIE]) || $_COOKIE[PLL_COOKIE] != $this->curlang->slug))
 				setcookie(PLL_COOKIE, $this->curlang->slug, time() + 31536000 /* 1 year */, COOKIEPATH, COOKIE_DOMAIN);
 
 			if (!($this->options['force_lang'] && $GLOBALS['wp_rewrite']->using_permalinks())) {
@@ -395,9 +396,11 @@ class Polylang_Core extends Polylang_base {
 			add_filter('_get_page_link', array(&$this, 'post_link'), 10, 2);
 
 		// FIXME cookie wordpress_polylang removed since 1.0
-		$this->curlang = $this->options['hide_default'] && (isset($_COOKIE['wordpress_polylang']) || isset($_COOKIE[PLL_COOKIE])) ?
+		// test referer in case PLL_COOKIE is set to false
+		// thanks to Ov3rfly http://wordpress.org/support/topic/enhance-feature-when-front-page-is-visited-set-language-according-to-browser
+		$this->curlang = $this->options['hide_default'] && ((isset($_SERVER['HTTP_REFERER']) && strpos($_SERVER['HTTP_REFERER'], $this->home) !== false)) ?
 			$this->get_language($this->options['default_lang']) :
-			$this->curlang = $this->get_preferred_language(); // sets the language according to browser preference or default language
+			$this->get_preferred_language(); // sets the language according to browser preference or default language
 
 		// we are already on the right page
 		if ($this->options['default_lang'] == $this->curlang->slug && $this->options['hide_default']) {
@@ -422,14 +425,20 @@ class Polylang_Core extends Polylang_base {
 	function pre_get_posts($query) {
 		// don't make anything if no language has been defined yet
 		// $this->post_types & $this->taxonomies are defined only once the action 'wp_loaded' has been fired
-		// honor suppress_filters
-		if (!$this->get_languages_list() || !did_action('wp_loaded') || $query->get('suppress_filters'))
+		// FIXME honoring suppress_filters breaks adjacent_image_link when post_parent == 0
+		if (!$this->get_languages_list() || !did_action('wp_loaded') /*|| $query->get('suppress_filters')*/)
 			return;
 
 		$qv = $query->query_vars;
 
 		// users may want to display content in a different language than the current one by setting it explicitely in the query
 		if (!$this->first_query && $this->curlang && !empty($qv['lang']))
+			return;
+
+		// detect our exclude pages query and returns to avoid conflicts
+		// this test should be sufficient
+		if (isset($qv['tax_query'][0]['taxonomy']) && $qv['tax_query'][0]['taxonomy'] == 'language' &&
+			isset($qv['tax_query'][0]['operator']) && $qv['tax_query'][0]['operator'] == 'NOT IN')
 			return;
 
 		global $wp_rewrite;
@@ -707,8 +716,8 @@ class Polylang_Core extends Polylang_base {
 	}
 
 	// filters the comments according to the current language mainly for the recent comments widget
-	function comments_clauses($clauses, $comment_query) {
-		return $this->_comments_clauses($clauses, $this->curlang);
+	function comments_clauses($clauses, $query) {
+		return $this->_comments_clauses($clauses, !empty($query->query_vars['lang']) ? $query->query_vars['lang'] : $this->curlang);
 	}
 
 	// modifies the sql request for wp_get_archives an get_adjacent_post to filter by the current language
@@ -964,7 +973,7 @@ class Polylang_Core extends Polylang_base {
 
 				$url = isset($url) ? $url : $this->get_home_url($language); // if the page is not translated, link to the home page
 
-				$class .= 'lang-item lang-item-'.esc_attr($language->term_id);
+				$class .= sprintf('lang-item lang-item-%d lang-item-%s', esc_attr($language->term_id), esc_attr($language->slug));
 				$class .= $language->term_id == $this->curlang->term_id ? ' current-lang' : '';
 				$class .= $menu ? ' menu-item' : '';
 
