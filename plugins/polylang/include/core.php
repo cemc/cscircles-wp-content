@@ -416,7 +416,7 @@ class Polylang_Core extends Polylang_base {
 		// don't redirect if $_POST is not empty as it could break other plugins
 		// don't forget the query string which may be added by plugins
 		elseif (is_string($redirect = $this->get_home_url($this->curlang)) && empty($_POST)) {
-			wp_redirect($_SERVER['QUERY_STRING'] ? $redirect . ($wp_rewrite->using_permalinks() ? '?' : '&') . $_SERVER['QUERY_STRING'] : $redirect);
+			wp_redirect(empty($_SERVER['QUERY_STRING']) ? $redirect : $redirect . ($wp_rewrite->using_permalinks() ? '?' : '&') . $_SERVER['QUERY_STRING']);
 			exit;
 		}
 	}
@@ -425,20 +425,27 @@ class Polylang_Core extends Polylang_base {
 	function pre_get_posts($query) {
 		// don't make anything if no language has been defined yet
 		// $this->post_types & $this->taxonomies are defined only once the action 'wp_loaded' has been fired
-		// FIXME honoring suppress_filters breaks adjacent_image_link when post_parent == 0
-		if (!$this->get_languages_list() || !did_action('wp_loaded') /*|| $query->get('suppress_filters')*/)
+		// don't honor suppress_filters as it breaks adjacent_image_link when post_parent == 0
+		if (!$this->get_languages_list() || !did_action('wp_loaded'))
 			return;
 
 		$qv = $query->query_vars;
+
+		// do not filter if lang is set to an empty value
+		if (isset($qv['lang']) && !$qv['lang'])
+			return;
 
 		// users may want to display content in a different language than the current one by setting it explicitely in the query
 		if (!$this->first_query && $this->curlang && !empty($qv['lang']))
 			return;
 
-		// detect our exclude pages query and returns to avoid conflicts
-		// this test should be sufficient
-		if (isset($qv['tax_query'][0]['taxonomy']) && $qv['tax_query'][0]['taxonomy'] == 'language' &&
-			isset($qv['tax_query'][0]['operator']) && $qv['tax_query'][0]['operator'] == 'NOT IN')
+		$is_post_type = isset($qv['post_type']) && (
+			in_array($qv['post_type'], $this->post_types) ||
+			(is_array($qv['post_type']) && array_intersect($qv['post_type'], $this->post_types))
+		);
+
+		// don't filters post types not in our list
+		if (isset($qv['post_type']) && !$is_post_type)
 			return;
 
 		global $wp_rewrite;
@@ -446,7 +453,7 @@ class Polylang_Core extends Polylang_base {
 
 		// special case for wp-signup.php & wp-activate.php
 		// stripos for case insensitive file systems
-		if (is_home() && false === stripos($_SERVER['SCRIPT_NAME'], $wp_rewrite->index)) {
+		if (false === stripos($_SERVER['SCRIPT_NAME'], $wp_rewrite->index)) {
 			$this->curlang = $this->get_preferred_language();
 			return;
 		}
@@ -497,14 +504,9 @@ class Polylang_Core extends Polylang_base {
 			}
 		}
 
-		$is_post_type = isset($qv['post_type']) && (
-			in_array($qv['post_type'], $this->post_types) ||
-			(is_array($qv['post_type']) && array_intersect($qv['post_type'], $this->post_types))
-		);
-
 		// FIXME to generalize as I probably forget things
 		$is_archive = (count($query->query) == 1 && !empty($qv['paged'])) ||
-			!empty($qv['m']) ||
+			!empty($qv['m']) || !empty($qv['year']) || // need to test year due to post rewrite rule conflict when using date and name permalinks
 			!empty($qv['author']) ||
 			(isset($qv['post_type']) && is_post_type_archive() && $is_post_type);
 
@@ -513,7 +515,7 @@ class Polylang_Core extends Polylang_base {
 			$query->set_404();
 
 		// sets the language in case we hide the default language
-		if ($this->options['hide_default'] && !isset($qv['lang']) && ($is_archive || is_search() || (count($query->query) == 1 && !empty($qv['feed'])) ))
+		if ($this->options['hide_default'] && !isset($qv['lang']) && ($is_archive || $query->is_search || (count($query->query) == 1 && !empty($qv['feed'])) ))
 			$query->set('lang', $this->options['default_lang']);
 
 		// allow filtering recent posts and secondary queries by the current language
@@ -577,7 +579,7 @@ class Polylang_Core extends Polylang_base {
 		}
 
 		// adds our clauses to filter by language
-		return $this->_terms_clauses($clauses, !empty($args['lang']) ? $args['lang'] : $this->curlang);
+		return $this->_terms_clauses($clauses, isset($args['lang']) ? $args['lang'] : $this->curlang);
 	}
 
 	// meta in the html head section
@@ -717,7 +719,7 @@ class Polylang_Core extends Polylang_base {
 
 	// filters the comments according to the current language mainly for the recent comments widget
 	function comments_clauses($clauses, $query) {
-		return $this->_comments_clauses($clauses, !empty($query->query_vars['lang']) ? $query->query_vars['lang'] : $this->curlang);
+		return $this->_comments_clauses($clauses, isset($query->query_vars['lang']) ? $query->query_vars['lang'] : $this->curlang);
 	}
 
 	// modifies the sql request for wp_get_archives an get_adjacent_post to filter by the current language

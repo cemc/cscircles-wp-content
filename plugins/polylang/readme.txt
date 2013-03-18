@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, i18n, international, l10n, localization
 Requires at least: 3.1
 Tested up to: 3.5
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 
 Polylang adds multilingual content management support to WordPress.
@@ -24,10 +24,10 @@ You write posts, pages and create categories and post tags as usual, and then de
 
 = Translators =
 
-The plugin admin interface is currently available in 24 languages: English, French, German contributed by [Christian Ries](http://www.singbyfoot.lu), Russian contributed by [yoyurec](http://yoyurec.in.ua) and unostar, Greek contributed by [theodotos](http://www.ubuntucy.org), Dutch contributed by [AlbertGn](http://wordpress.org/support/profile/albertgn), Hebrew contributed by [ArielK](http://www.arielk.net), Polish contributed by [Peter Paciorkiewicz](http://www.paciorkiewicz.pl), Latvian contributed by [@AndyDeGroo](http://twitter.com/AndyDeGroo), Italian contributed by [Luca Barbetti](http://wordpress.org/support/profile/lucabarbetti), Danish contributed by [Compute](http://wordpress.org/support/profile/compute), Spanish contributed by Curro, Portuguese contributed by [Vitor Carvalho](http://vcarvalho.com/), Lithuanian contributed by [Naglis Jonaitis](http://najo.lt/), Turkish contributed by [darchws](http://darch.ws/), Finnish contributed by [Jani Alha](http://www.wysiwyg.fi), Bulgarian contributed by [pavelsof](http://wordpress.org/support/profile/pavelsof), Belarusian contributed by [Alexander Markevitch](http://fourfeathers.by/), Afrikaans contributed by [Kobus Joubert](http://translate3d.com/), Hungarian contributed by Csaba Erdei, Norwegian contributed by [Tom Boersma](http://www.oransje.com/), Slovak contributed by [Branco (WebHostingGeeks.com)](http://webhostinggeeks.com/user-reviews/), Swedish contributed by [matsii](http://wordpress.org/support/profile/matsii), Catalan contributed by [Núria Martínez Berenguer](http://nuriamb.capa.webfactional.com)
+The plugin admin interface is currently available in 25 languages: English, French, German contributed by [Christian Ries](http://www.singbyfoot.lu), Russian contributed by [yoyurec](http://yoyurec.in.ua) and unostar, Greek contributed by [theodotos](http://www.ubuntucy.org), Dutch contributed by [AlbertGn](http://wordpress.org/support/profile/albertgn), Hebrew contributed by [ArielK](http://www.arielk.net), Polish contributed by [Peter Paciorkiewicz](http://www.paciorkiewicz.pl), Latvian contributed by [@AndyDeGroo](http://twitter.com/AndyDeGroo), Italian contributed by [Luca Barbetti](http://wordpress.org/support/profile/lucabarbetti), Danish contributed by [Compute](http://wordpress.org/support/profile/compute), Spanish contributed by Curro, Portuguese contributed by [Vitor Carvalho](http://vcarvalho.com/), Lithuanian contributed by [Naglis Jonaitis](http://najo.lt/), Turkish contributed by [darchws](http://darch.ws/), Finnish contributed by [Jani Alha](http://www.wysiwyg.fi), Bulgarian contributed by [pavelsof](http://wordpress.org/support/profile/pavelsof), Belarusian contributed by [Alexander Markevitch](http://fourfeathers.by/), Afrikaans contributed by [Kobus Joubert](http://translate3d.com/), Hungarian contributed by Csaba Erdei, Norwegian contributed by [Tom Boersma](http://www.oransje.com/), Slovak contributed by [Branco (WebHostingGeeks.com)](http://webhostinggeeks.com/user-reviews/), Swedish contributed by [matsii](http://wordpress.org/support/profile/matsii), Catalan contributed by [Núria Martínez Berenguer](http://nuriamb.capa.webfactional.com), Ukrainian contributed by [cmd soft](http://www.cmd-soft.com/)
 
 
-Other [contributions](http://wordpress.org/extend/plugins/polylang/other_notes/) are welcome !
+Other [contributions](http://polylang.wordpress.com/documentation/contribute/) are welcome !
 
 = Feedback or ideas =
 
@@ -71,11 +71,11 @@ Don't hesitate to report bugs on the [support forum](http://wordpress.org/suppor
 
 = Test new versions =
 
-You can subscribe to the tag ['polylang-dev'](http://wordpress.org/tags/polylang-dev) that I use to announce development versions and then, test the new versions and report bugs before the final release. It helps a lot!
+You can subscribe to the [blog](http://polylang.wordpress.com/) that I use to announce development versions and then, test the new versions and report bugs before the final release. It helps a lot!
 
 = Translate the admin interface =
 
-Polylang is already available in 24 languages. It's very easy to add a new one! Download [poedit](http://www.poedit.net/download.php) (available for Windows, Mac OS X and Linux). Rename the file polylang.pot found in the polylang/languages directory into something like polylang-your_locale.po. Open the file with poedit and start translating (keeping strange codes such as %s, %1$s as is). Once done, just save and you will get two files polylang-your_locale.po and polylang-your_locale.mo that you can send to the author. The translation will be included with the next release and will be covered by the same license as Polylang (GPLv2 or later).
+Polylang is already available in 25 languages. It's very easy to add a new one! Download [poedit](http://www.poedit.net/download.php) (available for Windows, Mac OS X and Linux). Rename the file polylang.pot found in the polylang/languages directory into something like polylang-your_locale.po. Open the file with poedit and start translating (keeping strange codes such as %s, %1$s as is). Once done, just save and you will get two files polylang-your_locale.po and polylang-your_locale.mo that you can send to the author. The translation will be included with the next release and will be covered by the same license as Polylang (GPLv2 or later).
 
 = Communicate =
 
@@ -92,9 +92,24 @@ If you are using a version older than 0.8, please ugrade to 0.9.8 before ugradin
 
 == Changelog ==
 
-= 1.0.2 (2013-02-26) =
+= 1.0.3 (2013-03-17) =
 
 * Add Catalan translation contributed by [Núria Martínez Berenguer](http://nuriamb.capa.webfactional.com)
+* Add Ukrainian translation contributed by [cmd soft](http://www.cmd-soft.com/)
+* Improve compatibility with WordPress SEO (sitemap for categories and tags)
+* A query is no more filtered by language when setting the parameter 'lang' to an empty value
+* Add the possibility to create a custom wpml-config.xml file in wp-content/polylang/
+* Bug correction: custom menus are not displayed on search page (introduced in 1.0.2)
+* Bug correction: sql error when filtering terms by language (introduced in 1.0.2)
+* Bug correction: SSL doesn't work properly
+* Bug correction: php notice on IIS servers
+* Bug correction: clicking on the radio buttons in the admin language switcher does not work in Chrome
+* Bug correction: on multisite, the signup page is redirected to the home page
+* Bug correction: date archives are not correctly filtered for the default language when hiding the language code and using date and name permalinks
+* Bug correction: only one wpml-config.xml file is parsed
+
+= 1.0.2 (2013-02-26) =
+
 * Add the possibility to query comments by language
 * Add the possibility not to set a cookie by defining PLL_COOKIE to false (Polylang may not work as expected on some pages)
 * Now a returning visitor is redirected to its preferred language when visiting the front page in the default language

@@ -276,7 +276,7 @@ abstract class Polylang_Base {
 		global $wpdb;
 		// the query is coming from Polylang and the $lang is an object
 		if (is_object($lang))
-			return $lang->$field;
+			return $field == 'term_id' ? "'" . $lang->$field . "'" : $lang->$field;
 
 		// the query is coming from outside with 'lang' parameter and $lang is a comma separated list of slugs (or an array of slugs)
 		$languages = is_array($lang) ? $lang : explode(',', $lang);
@@ -286,6 +286,10 @@ abstract class Polylang_Base {
 			INNER JOIN $wpdb->terms USING (term_id)
 			WHERE taxonomy = 'language' AND $wpdb->terms.slug IN ($languages)
 		"); // get ids from slugs
+
+		if ($field == 'term_id')
+			$languages = array_map(create_function('$v', 'return "\'" . $v . "\'";'), $languages);
+
 		return implode(',', $languages);
 	}
 
@@ -315,14 +319,14 @@ abstract class Polylang_Base {
 
 	// returns all page ids *not in* language defined by $lang_id
 	function exclude_pages($lang_id) {
-		// 'suppress_filter' is true by default so this query is not filtered by our pre_get_post filter in core.php
 		return get_posts(array(
+			'lang' => 0, // so this query is not filtered by our pre_get_post filter in core.php
 			'numberposts' => -1,
+			'nopaging'    => true,
 			'post_type'   => array_intersect(get_post_types(array('hierarchical' => 1)), $this->post_types),
 			'fields'      => 'ids',
 			'tax_query'   => array(array(
 				'taxonomy' => 'language',
-				'fields'   => 'id',
 				'terms'    => $lang_id,
 				'operator' => 'NOT IN'
 			))

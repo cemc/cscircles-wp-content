@@ -38,12 +38,13 @@ class Polylang_Uninstall {
 
 		// delete posts translations
 		$ids = get_posts(array(
-			'numberposts'=> -1,
-			'fields' => 'ids',
-			'meta_key'=>'_translations',
-			'post_type'=>'any',
-			'post_status'=>'any'
-			));
+			'numberposts' => -1,
+			'nopaging'    => true,
+			'fields'      => 'ids',
+			'meta_key'    => '_translations',
+			'post_type'   => 'any',
+			'post_status' => 'any'
+		));
 
 		foreach ($ids as $id)
 			delete_post_meta($id, '_translations');
@@ -73,7 +74,7 @@ class Polylang_Uninstall {
 		delete_option('polylang_nav_menus');
 		delete_option('polylang_widgets');
 		delete_option('widget_polylang'); // automatically created by WP
-		delete_option('polylang_wpml_strings');
+		delete_option('polylang_wpml_strings'); // strings registered with icl_register_string
 	}
 }
 
