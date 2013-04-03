@@ -1,0 +1,155 @@
+# Translation of the WordPress plugin Log Deprecated Notices 0.1-beta-4 by Andrew Nacin.
+# Copyright (C) 2010 Andrew Nacin
+# This file is distributed under the same license as the Log Deprecated Notices package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Log Deprecated Notices 0.1-beta-4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/log-deprecated-notices\n"
+"POT-Creation-Date: 2010-06-28 12:29+0000\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: log-deprecated-notices.php:103
+msgid "Unregistered Setting"
+msgstr ""
+
+#: log-deprecated-notices.php:176
+#, php-format
+msgid "Functionality: %s"
+msgstr ""
+
+#: log-deprecated-notices.php:179
+#, php-format
+msgid "Constant: %s"
+msgstr ""
+
+#: log-deprecated-notices.php:182
+#, php-format
+msgid "Function: %s"
+msgstr ""
+
+#: log-deprecated-notices.php:185
+#, php-format
+msgid "File: %s"
+msgstr ""
+
+#: log-deprecated-notices.php:188
+#, php-format
+msgid "Argument in %s"
+msgstr ""
+
+#. translators: %s is name of function.
+#: log-deprecated-notices.php:195
+#, php-format
+msgid "Use %s instead."
+msgstr ""
+
+#: log-deprecated-notices.php:199
+msgid "No alternative available."
+msgstr ""
+
+#: log-deprecated-notices.php:200
+#, php-format
+msgid "Deprecated in version %s."
+msgstr ""
+
+#: log-deprecated-notices.php:203
+#, php-format
+msgid "Attached to the %1$s hook, fired in %2$s on line %3$d."
+msgstr ""
+
+#: log-deprecated-notices.php:205
+msgid ""
+"An admin menu page is using user levels instead of capabilities. There is "
+"likely a related log item with specifics."
+msgstr ""
+
+#: log-deprecated-notices.php:207
+#, php-format
+msgid "Used in %1$s on line %2$d."
+msgstr ""
+
+#. translators: %s is file name.
+#: log-deprecated-notices.php:210
+#, php-format
+msgid "Used in %s."
+msgstr ""
+
+#: log-deprecated-notices.php:247 log-deprecated-notices.php:322
+msgid "Delete"
+msgstr ""
+
+#: log-deprecated-notices.php:255
+msgid "Y/m/d g:i:s A"
+msgstr ""
+
+#: log-deprecated-notices.php:277 log-deprecated-notices.php:383
+msgid "Deprecated Call"
+msgstr ""
+
+#: log-deprecated-notices.php:278
+msgid "Version"
+msgstr ""
+
+#: log-deprecated-notices.php:279
+msgid "Alternative"
+msgstr ""
+
+#: log-deprecated-notices.php:280
+msgid "Count"
+msgstr ""
+
+#: log-deprecated-notices.php:281
+msgid "Last Used"
+msgstr ""
+
+#: log-deprecated-notices.php:345
+msgid "Clear Log"
+msgstr ""
+
+#: log-deprecated-notices.php:357
+msgid "Invalid post type."
+msgstr ""
+
+#: log-deprecated-notices.php:373 log-deprecated-notices.php:382
+msgid "Deprecated Calls"
+msgstr ""
+
+#: log-deprecated-notices.php:385
+msgid "Search Logs"
+msgstr ""
+
+#: log-deprecated-notices.php:386
+msgid "Nothing in the log! Your plugins are oh so fine."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Log Deprecated Notices"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/log-deprecated-notices/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Logs the usage of deprecated files, functions, and function arguments, "
+"offers the alternative if available, and identifies where the deprecated "
+"functionality is being used. WP_DEBUG not required (but its general use is "
+"strongly recommended)."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Andrew Nacin"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://andrewnacin.com/"
+msgstr ""
