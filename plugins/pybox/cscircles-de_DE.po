@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-04 18:33-0400\n"
-"PO-Revision-Date: 2013-04-04 18:19-0400\n"
+"POT-Creation-Date: 2013-04-04 18:48-0400\n"
+"PO-Revision-Date: 2013-04-04 18:53-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
@@ -425,87 +425,66 @@ msgstr ""
 msgid "first time"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:4 ../wp-plugin/shortcodes.php:810
+#: ../wp-plugin/js-translation.php:4
+msgid "Enter input"
+msgstr "Gib eine Eingaben an"
+
+#: ../wp-plugin/js-translation.php:5
+msgid "end of main program"
+msgstr "Ende des Programms"
+
+#: ../wp-plugin/js-translation.php:6 ../wp-plugin/shortcodes.php:810
 msgid "Run program"
 msgstr "Programm ausführen"
 
-#: ../wp-plugin/js-translation.php:5
-msgid "Run test"
-msgstr "Test ausführen"
-
-#: ../wp-plugin/js-translation.php:6
-msgid ""
-"Could not grade program because communication to the server was not "
-"possible. Ajax information: "
-msgstr ""
-"Dein Programm konnte nicht geprüft werden, da die Verbindung zum Server "
-"fehlschlug. Fehlerinformation: "
-
 #: ../wp-plugin/js-translation.php:7
-msgid "Displaying {from} to {to} of {total} items"
-msgstr "Zeige {from} bis {to} von {total} Elementen"
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
 
 #: ../wp-plugin/js-translation.php:8
-msgid "Enter test statements"
-msgstr "Testbefehl eingeben"
+msgid ""
+"Please select a valid recipient for the message. If you are working with a "
+"teacher or friend, select them as a guru on your Profile (available within "
+"the user menu, in the top right corner of the page)."
+msgstr ""
 
 #: ../wp-plugin/js-translation.php:9
 msgid "Running..."
 msgstr "Läuft..."
 
 #: ../wp-plugin/js-translation.php:10
-msgid "Simple editor"
-msgstr "Einfacher Editor"
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Error: could not connect to database."
-msgstr "Fehler: kann keine Datenbankverbindung aufbauen."
-
-#: ../wp-plugin/js-translation.php:12
-msgid "Please enter a non-empty message."
-msgstr "Gib eine nicht-leere Nachricht ein."
-
-#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:53
-msgid "You have completed this problem at least once."
-msgstr "Du hast dieses Problem bereits gelöst."
-
-#: ../wp-plugin/js-translation.php:14
 msgid "Hide input box"
 msgstr "Eingabebox verstecken"
 
+#: ../wp-plugin/js-translation.php:11
+msgid "Click to try again."
+msgstr "Klicke hier, um es noch einmal zu versuchen."
+
+#: ../wp-plugin/js-translation.php:12
+msgid "start of tests"
+msgstr "Start der Tests"
+
+#: ../wp-plugin/js-translation.php:13
+msgid "Page"
+msgstr "Seite"
+
+#: ../wp-plugin/js-translation.php:14
+msgid "Hide history"
+msgstr "Chronik verstecken"
+
 #: ../wp-plugin/js-translation.php:15
-msgid "Enter test input"
-msgstr "Testeingabe"
+msgid "Incorrect, try again."
+msgstr "Nicht richtig, versuche es nochmal."
 
 #: ../wp-plugin/js-translation.php:16
-msgid "end of main program"
-msgstr "Ende des Programms"
+msgid "Your message was sent."
+msgstr "Deine Nachricht wurde gesendet."
 
 #: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:789
 msgid "More actions..."
 msgstr "Mehr Optionen..."
 
 #: ../wp-plugin/js-translation.php:18
-msgid "Your message was sent."
-msgstr "Deine Nachricht wurde gesendet."
-
-#: ../wp-plugin/js-translation.php:19
-msgid "timed out!"
-msgstr "Zeitüberschreitung!"
-
-#: ../wp-plugin/js-translation.php:20
-msgid ""
-"The code box is empty. It should instead contain your best partial solution "
-"so far."
-msgstr ""
-"Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste "
-"Teillösung enthalten."
-
-#: ../wp-plugin/js-translation.php:21
-msgid "Click to try again."
-msgstr "Klicke hier, um es noch einmal zu versuchen."
-
-#: ../wp-plugin/js-translation.php:22
 msgid ""
 "Unable to process 'send message' request. You might have lost your internet "
 "connection."
@@ -513,38 +492,31 @@ msgstr ""
 "Kann Anfrage nicht senden. Möglicherweise ist deine Internet-Verbindung "
 "abgebrochen."
 
-#: ../wp-plugin/js-translation.php:23
-msgid "The database connected but found no data."
-msgstr "Datenbank verbunden, keine Daten."
-
-#: ../wp-plugin/js-translation.php:24
-msgid "Incorrect, try again."
-msgstr "Nicht richtig, versuche es nochmal."
-
-#: ../wp-plugin/js-translation.php:25
-msgid "Go back to grading"
-msgstr "Zurück"
-
-#: ../wp-plugin/js-translation.php:26
-msgid "Hide history"
-msgstr "Chronik verstecken"
-
-#: ../wp-plugin/js-translation.php:27
-msgid ""
-"Please select a valid recipient for the message. If you are working with a "
-"teacher or friend, select them as a guru on your Profile (available within "
-"the user menu, in the top right corner of the page)."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:28
+#: ../wp-plugin/js-translation.php:19
 msgid "out of"
 msgstr "von"
 
-#: ../wp-plugin/js-translation.php:29
-msgid "Marking all messages from this student about this problem as answered."
-msgstr ""
+#: ../wp-plugin/js-translation.php:20
+msgid "Run test"
+msgstr "Test ausführen"
 
-#: ../wp-plugin/js-translation.php:30
+#: ../wp-plugin/js-translation.php:21
+msgid "The database connected but found no data."
+msgstr "Datenbank verbunden, keine Daten."
+
+#: ../wp-plugin/js-translation.php:22
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Zeige {from} bis {to} von {total} Elementen"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Enter test statements"
+msgstr "Testbefehl eingeben"
+
+#: ../wp-plugin/js-translation.php:24
+msgid "Go back to grading"
+msgstr "Zurück"
+
+#: ../wp-plugin/js-translation.php:25
 msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
@@ -552,25 +524,53 @@ msgstr ""
 "Warnung: konnte Server nicht kontaktieren. Problem konnte nicht als "
 "'erledigt' markiert werden."
 
-#: ../wp-plugin/js-translation.php:31
-msgid "start of tests"
-msgstr "Start der Tests"
-
-#: ../wp-plugin/js-translation.php:32 ../wp-plugin/shortcodes.php:740
+#: ../wp-plugin/js-translation.php:26 ../wp-plugin/shortcodes.php:740
 msgid "Rich editor"
 msgstr "Erweiterter Editor"
 
-#: ../wp-plugin/js-translation.php:33
-msgid "Enter input"
-msgstr "Gib eine Eingaben an"
+#: ../wp-plugin/js-translation.php:27
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr ""
+"Dein Programm konnte nicht geprüft werden, da die Verbindung zum Server "
+"fehlschlug. Fehlerinformation: "
 
-#: ../wp-plugin/js-translation.php:34 ../wp-plugin/shortcodes.php:755
+#: ../wp-plugin/js-translation.php:28
+msgid "Please enter a non-empty message."
+msgstr "Gib eine nicht-leere Nachricht ein."
+
+#: ../wp-plugin/js-translation.php:29
+msgid "timed out!"
+msgstr "Zeitüberschreitung!"
+
+#: ../wp-plugin/js-translation.php:30
+msgid "Error: could not connect to database."
+msgstr "Fehler: kann keine Datenbankverbindung aufbauen."
+
+#: ../wp-plugin/js-translation.php:31 ../wp-plugin/shortcodes.php:755
 msgid "History"
 msgstr "Chronik"
 
-#: ../wp-plugin/js-translation.php:35
-msgid "Page"
-msgstr "Seite"
+#: ../wp-plugin/js-translation.php:32
+msgid "Simple editor"
+msgstr "Einfacher Editor"
+
+#: ../wp-plugin/js-translation.php:33
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr ""
+"Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste "
+"Teillösung enthalten."
+
+#: ../wp-plugin/js-translation.php:34
+msgid "Enter test input"
+msgstr "Testeingabe"
+
+#: ../wp-plugin/js-translation.php:35 ../wp-plugin/shortcodes.php:53
+msgid "You have completed this problem at least once."
+msgstr "Du hast dieses Problem bereits gelöst."
 
 #: ../wp-plugin/newuseremail.php:10
 msgid ""
@@ -1340,44 +1340,40 @@ msgstr ""
 "Versuche eine andere URL, <a %1$s>nutze die Suche</a> oder <a %2"
 "$s>kontaktiere uns</a>, wenn du denkst, dass wir schuld sind."
 
-#: ../wp-theme/footer.php:26
-#, php-format
+#: ../wp-theme/footer.php:28
+#, fuzzy, php-format
 msgid ""
 "Computer Science Circles is a free service of the <a %1$s>Centre for "
 "Education in Mathematics and Computing</a> at the <a %2$s>University of "
-"Waterloo</a>."
+"Waterloo</a>. <br> Total number of exercises completed by all users: %3$s"
 msgstr ""
-"Computer Science Circles ist ein kostenfreier Dienst des <a %1$s>Centre for "
-"Education in Mathematics and Computing</a> der <a %2$s>University of "
-"Waterloo</a>. Die deutsche Version wird betrieben von der Initiative "
-"Bundesweit Informatik Fördern."
+"Computer Science Circles ist ein kostenfreier Dienst des\n"
+" <a %1$s>Centre for Education in Mathematics and Computing</a>\n"
+" der <a %2$s>University of Waterloo</a>.\n"
+" <br> Die deutsche Version wird betrieben von der\n"
+" Initiative Bundesweit Informatik Fördern. TODO: TOTAL NUMBER THINGY (NOT TOO LONG)"
 
-#: ../wp-theme/footer.php:29
-#, php-format
-msgid "Total number of exercises completed by all users: %s"
-msgstr ""
-
-#: ../wp-theme/footer.php:33
+#: ../wp-theme/footer.php:31
 msgid "CEMC"
 msgstr "CEMC"
 
-#: ../wp-theme/footer.php:34
+#: ../wp-theme/footer.php:32
 msgid "University of Waterloo"
 msgstr "University of Waterloo"
 
-#: ../wp-theme/footer.php:35
+#: ../wp-theme/footer.php:33
 msgid "200 University Avenue West"
 msgstr "200 University Avenue West"
 
-#: ../wp-theme/footer.php:36
+#: ../wp-theme/footer.php:34
 msgid "Waterloo, Ontario, Canada N2L 3G1"
 msgstr "Waterloo, Ontario, Canada N2L 3G1"
 
-#: ../wp-theme/footer.php:37
+#: ../wp-theme/footer.php:35
 msgid "Phone: 519 888 4808"
 msgstr "Telefon: (+1) 519 888 4808"
 
-#: ../wp-theme/footer.php:38
+#: ../wp-theme/footer.php:36
 msgid "contact us"
 msgstr "Kontaktiere uns"
 
