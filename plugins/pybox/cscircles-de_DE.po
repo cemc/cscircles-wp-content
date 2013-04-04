@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-11 16:04-0400\n"
-"PO-Revision-Date: 2012-09-19 11:01+0100\n"
+"PO-Revision-Date: 2013-04-04 18:19-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.3\n"
+"X-Generator: Poedit 1.5.4\n"
 "Language: de_DE\n"
 
 #: ../wp-plugin/action-send-message.php:23
@@ -40,7 +40,7 @@ msgstr "Nachricht über"
 
 #: ../wp-plugin/action-send-message.php:30
 msgid "To send a reply message, please visit"
-msgstr "Zum antworten, gehe bitte auf"
+msgstr "Um zu antworten, gehe bitte auf"
 
 #: ../wp-plugin/action-send-message.php:32
 msgid "Problem URL:"
@@ -84,7 +84,7 @@ msgstr "Das Programm hat keine Ausgabe erzeugt."
 
 #: ../wp-plugin/action-submit-code.php:269
 msgid "(Did you forget to use </i><code>print</code><i>?)"
-msgstr "(Hast du vergessen </i><code>print</code><i> zu benutzen?)"
+msgstr "(Hast du vergessen, </i><code>print</code><i> zu benutzen?)"
 
 #: ../wp-plugin/action-submit-code.php:274
 msgid "Program output:"
@@ -121,7 +121,7 @@ msgstr "Programmabsturz &mdash; "
 #: ../wp-plugin/action-submit-code.php:466
 #: ../wp-plugin/action-submit-code.php:479
 msgid "The grader said:"
-msgstr "The grader said:"
+msgstr "Der Bewerter sagte:"
 
 #: ../wp-plugin/action-submit-code.php:468
 msgid "Automatic tests:"
@@ -137,9 +137,7 @@ msgstr "Richtig!"
 
 #: ../wp-plugin/action-submit-code.php:541
 msgid "Did not pass tests. Please check details below and try again."
-msgstr ""
-"Test nicht bestanden. Schaue die die Details unten an und probiere es "
-"nachmal."
+msgstr "Test nicht bestanden. Schaue die die Details unten an und probiere es nochmal."
 
 #: ../wp-plugin/action-submit-code.php:551
 msgid "You must log in to save data."
@@ -154,9 +152,7 @@ msgstr "Programm gespeichert."
 msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
 "= \"%s\">run at home</a>."
-msgstr ""
-"Das Programm ist zu groß. Verkleiner es oder <a href=\"%s\">führe es auf "
-"deinem Rechner aus</a>."
+msgstr "Das Programm ist zu groß. Verkleinere es oder <a href=\"%s\">führe es auf deinem Rechner aus</a>."
 
 #: ../wp-plugin/action-submit-code.php:605
 #, php-format
@@ -367,12 +363,11 @@ msgstr "Zeitüberschreitung!"
 msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
-msgstr ""
-"Die Codebox ist leer. Sie sollte deine zur Zeit beste Lösung enthalten."
+msgstr "Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste Teillösung enthalten."
 
 #: ../wp-plugin/js-translation.php:12
 msgid "Click to try again."
-msgstr "Klicke hier um es noch einmal zu versuchen."
+msgstr "Klicke hier, um es noch einmal zu versuchen."
 
 #: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:764
 msgid "Run program"
@@ -554,9 +549,7 @@ msgstr "Keine Kopie(n) der Nachricht(en) per Mail schicken"
 msgid ""
 "(default: unchecked) If checked, you will not receive a carbon copy when you "
 "send a message."
-msgstr ""
-"(Standard: inaktiv) Wenn du hier einen Haken machst, wirst du keine Koie der "
-"Nachrichten erhalten, die du gesendet hast."
+msgstr "(Standard: inaktiv) Wenn du hier einen Haken machst, wirst du keine Kopie der Nachrichten erhalten, die du gesendet hast."
 
 #: ../wp-plugin/plugin-profile-options.php:47
 msgid "Opt Out of Mass Emails"
@@ -658,8 +651,7 @@ msgstr "Hinweis: Der Nutzer hat das Problem am/um %s gelöst"
 
 #: ../wp-plugin/shortcode-mailpage.php:76
 msgid "Click on a message title to toggle the message open or closed."
-msgstr ""
-"Klicke auf den Titel einer Nachricht um sie anzuzeigen oder zu verstecken."
+msgstr "Klicke auf den Titel einer Nachricht, um sie anzuzeigen oder zu verstecken."
 
 #: ../wp-plugin/shortcode-mailpage.php:84
 msgid "From"
@@ -680,7 +672,7 @@ msgstr "Zitieren/<br/>Antworten"
 #: ../wp-plugin/shortcode-mailpage.php:97 ../wp-plugin/shortcodes.php:586
 #: ../wp-plugin/shortcodes.php:590
 msgid "Send a question by e-mail to: "
-msgstr "Schicke ein Frage per e-Mail an: "
+msgstr "Schicke eine Frage per e-Mail an: "
 
 #: ../wp-plugin/shortcode-mailpage.php:99
 #: ../wp-plugin/shortcode-mailpage.php:102 ../wp-plugin/shortcodes.php:587
@@ -703,7 +695,7 @@ msgstr "(Name des Gurus auf <a href = '%s'> deiner Profilseite </a>)"
 
 #: ../wp-plugin/shortcode-mailpage.php:111
 msgid "Type here to send a reply about this problem"
-msgstr "Tippe hier um eine Anwrot zu dem Problem zu senden"
+msgstr "Tippe hier, um eine Antwort zu dem Problem zu senden"
 
 #: ../wp-plugin/shortcode-mailpage.php:114
 msgid "Send this message!"
@@ -762,7 +754,7 @@ msgstr "Mit neuer Ansicht erneut laden? (Du hast %s Schüler)"
 
 #: ../wp-plugin/shortcode-my-progress.php:30
 msgid "Select different user?"
-msgstr "Anderen Nutze auswählen?"
+msgstr "Anderen Nutzer auswählen?"
 
 #: ../wp-plugin/shortcode-my-progress.php:32
 msgid "Show only me"
@@ -816,9 +808,7 @@ msgstr "Übersicht"
 #: ../wp-plugin/shortcodes.php:39
 #, php-format
 msgid "Internal error, details below; please <a href='%s'>contact staff</a>."
-msgstr ""
-"Interner Fahler, Details siehe unten. Bitte <a href = '%s'>kontaktiere uns</"
-"a>."
+msgstr "Interner Fehler, Details siehe unten. Bitte <a href = '%s'>kontaktiere uns</a>."
 
 #: ../wp-plugin/shortcodes.php:39
 msgid "Timestamp:"
@@ -864,11 +854,9 @@ msgstr "Sortierübung"
 #: ../wp-plugin/shortcodes.php:312
 #, php-format
 msgid ""
-"New around here? Read <a %1$s>Using this Website</a>. You can also <a "
-"%2$s>click here to create an account or log in</a>."
-msgstr ""
-"Neu hier? Lese <a %1$s>Informationen zum nutzen dieser Seite</a>. Du kannst "
-"<a %2$s>hier klicken, um einen Account zu erstellen</a>."
+"New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
+"$s>click here to create an account or log in</a>."
+msgstr "Neu hier? Lese <a %1$s>Informationen zum Nutzen dieser Seite</a>. Du kannst <a %2$s>hier klicken, um einen Account zu erstellen</a>."
 
 #: ../wp-plugin/shortcodes.php:359
 msgid "Search"
@@ -909,10 +897,7 @@ msgid ""
 "Enter text for the message below. <i>Be sure to explain where you're stuck "
 "and what you've tried so far. Your partial solution code will be "
 "automatically included with the message.</i>"
-msgstr ""
-"Gib den Text für die Nachricht unten ein. <i>Erkläre, wo dein Problem liegt "
-"und was du bereits versucht hast. Deine aktuelle Teillüsung wird automatisch "
-"mit dieser Nachricht verschickt.</i>"
+msgstr "Gib den Text für die Nachricht unten ein. <i>Erkläre, wo dein Problem liegt und was du bereits versucht hast. Deine aktuelle Teillösung wird automatisch mit dieser Nachricht verschickt.</i>"
 
 #: ../wp-plugin/shortcodes.php:599
 msgid "Send this message"
@@ -972,7 +957,7 @@ msgstr "Funktionstyp"
 
 #: ../python3jail/static/_GRADER.py:10
 msgid "Boolean"
-msgstr "Boolean"
+msgstr "Boolesche/s"
 
 #: ../python3jail/static/_GRADER.py:10
 msgid "\"None\" Type"
@@ -1063,9 +1048,7 @@ msgstr "Fehler: {0} sollte eine Funktion sein, der Typ ist jedoch {1}"
 msgid ""
 "Your output is incorrect, but just barely. Whitespace characters (space, "
 "newline, tab) are either missing, or extra ones are present."
-msgstr ""
-"Die Ausgabe ist falsch, aber nur ganz wenig. Whitespaces (Leerzeichen, neue "
-"Zeile, Tabulator) sind zu viel oder zu wenig vorhanden."
+msgstr "Die Ausgabe ist falsch, aber nur ganz knapp. Whitespaces (Leerzeichen, neue Zeile, Tabulator) sind zu viel oder zu wenig vorhanden."
 
 #: ../python3jail/static/_GRADER.py:157
 msgid "Your output is not correct."
@@ -1085,7 +1068,7 @@ msgstr "Setze {0} auf {1}"
 
 #: ../py_includes/graders/15b.degrees.py:3
 msgid "Error: Your output should consist of exactly 1 line."
-msgstr "Fehler: Deine Ausgabe solle exakt eine Zeile lang sein."
+msgstr "Fehler: Deine Ausgabe sollte exakt eine Zeile lang sein."
 
 #: ../py_includes/graders/15b.degrees.py:6
 msgid "Error: Your output should not contain any spaces."
@@ -1187,7 +1170,7 @@ msgstr "Dein Programm hat zu wenig Ausgabe erzeugt. Versuch es nochmal."
 
 #: ../py_includes/graders/warmup.py:13
 msgid "Exactly correct, good job!"
-msgstr "Genau richtg, bravo!"
+msgstr "Genau richtig, bravo!"
 
 #: ../py_includes/graders/warmup.py:15
 msgid "Almost correct but ensure you correctly use upper and lower case."
@@ -1223,9 +1206,7 @@ msgstr "Wir konnten nichts unter der Adresse %s finden"
 msgid ""
 "Try a different address, a <a %1$s>search</a>, or <a %2$s>contact us</a> if "
 "the website sent you here via a broken link."
-msgstr ""
-"Versuche eine andere URL, <a %1$s>nutze die Suche</a> oder <a "
-"%2$s>kontaktiere und</a>, wenn du meinst, das wir schuld sind."
+msgstr "Versuche eine andere URL, <a %1$s>nutze die Suche</a> oder <a %2$s>kontaktiere uns</a>, wenn du denkst, dass wir schuld sind."
 
 #: ../wp-theme/footer.php:26
 #, php-format
@@ -1233,10 +1214,7 @@ msgid ""
 "Computer Science Circles is a free service of the <a %1$s>Centre for "
 "Education in Mathematics and Computing</a> at the <a %2$s>University of "
 "Waterloo</a>."
-msgstr ""
-"Computer Science Circles ist ein kostenfreier Dienst des <a %1$s>Centre for "
-"Education in Mathematics and Computing</a> der <a %2$s>University of "
-"Waterloo</a>."
+msgstr "Computer Science Circles ist ein kostenfreier Dienst des <a %1$s>Centre for Education in Mathematics and Computing</a> der <a %2$s>University of Waterloo</a>. Die deutsche Version wird betrieben von der Initiative Bundesweit Informatik Fördern."
 
 #: ../wp-theme/footer.php:30
 msgid "CEMC"
@@ -1272,8 +1250,7 @@ msgstr "Passwort ändern"
 
 #: ../www/wordpress/wp-includes/admin-bar.php:143
 msgid "<p>Create free account / login</p><p>to save your progress</p>"
-msgstr ""
-"<p>Registireren / Anmelden</p><p>um deinen Fortschritt zu speichern</p>"
+msgstr "<p>Kostenlos registrieren, anmelden</p><p>und deinen Fortschritt speichern</p>"
 
 #: ../www/wordpress/wp-includes/admin-bar.php:150
 #, php-format
@@ -1287,7 +1264,7 @@ msgstr "Hallo, %s!"
 
 #: ../www/wordpress/wp-includes/admin-bar.php:651
 msgid "click and type to search website"
-msgstr "Klicke und tippe um die Webseite zu durchsuchen"
+msgstr "Klicke und tippe, um die Webseite zu durchsuchen"
 
 #: ../www/wordpress/wp-login.php:93
 msgid "Computer Science Circles"
