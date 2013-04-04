@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-04 18:48-0400\n"
-"PO-Revision-Date: 2013-04-04 18:53-0400\n"
+"PO-Revision-Date: 2013-04-04 18:54-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
@@ -1341,7 +1341,7 @@ msgstr ""
 "$s>kontaktiere uns</a>, wenn du denkst, dass wir schuld sind."
 
 #: ../wp-theme/footer.php:28
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Computer Science Circles is a free service of the <a %1$s>Centre for "
 "Education in Mathematics and Computing</a> at the <a %2$s>University of "
