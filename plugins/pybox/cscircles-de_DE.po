@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-04-04 18:48-0400\n"
-"PO-Revision-Date: 2013-04-04 18:54-0400\n"
+"PO-Revision-Date: 2013-04-04 19:08-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
@@ -134,14 +134,12 @@ msgid "Output Limit Exceeded"
 msgstr ""
 
 #: ../wp-plugin/action-submit-code.php:529
-#, fuzzy
 msgid "Invalid Function"
-msgstr "eine Funktion"
+msgstr ""
 
 #: ../wp-plugin/action-submit-code.php:529
-#, fuzzy
 msgid "Internal Error"
-msgstr "Interner Fehler."
+msgstr ""
 
 #: ../wp-plugin/action-submit-code.php:554
 #: ../wp-plugin/action-submit-code.php:569
@@ -411,9 +409,8 @@ msgstr ""
 
 #: ../wp-plugin/db-problem-summary.php:69
 #: ../wp-plugin/db-problem-summary.php:75
-#, fuzzy
 msgid "latest correct"
-msgstr "Der Wert ist richtig!"
+msgstr ""
 
 #: ../wp-plugin/db-problem-summary.php:70
 #: ../wp-plugin/db-problem-summary.php:76
@@ -590,14 +587,12 @@ msgid ""
 msgstr ""
 
 #: ../wp-plugin/newuseremail.php:24
-#, fuzzy
 msgid "Computer Science Circles: New account"
-msgstr "Computer Science Circles"
+msgstr ""
 
 #: ../wp-plugin/newuseremail.php:30
-#, fuzzy
 msgid "Update Profile"
-msgstr "Profil bearbeiten"
+msgstr ""
 
 #: ../wp-plugin/plugin-footer-prevnext.php:47
 msgid "(goes to top of current page)"
@@ -648,9 +643,8 @@ msgid "Filter Listed Pages"
 msgstr ""
 
 #: ../wp-plugin/plugin-hooks.php:303
-#, fuzzy
 msgid "Show all visible"
-msgstr "Alles zeigen"
+msgstr ""
 
 #: ../wp-plugin/plugin-profile-options.php:19
 #, php-format
@@ -840,9 +834,9 @@ msgid "Messages to/from %s for other problems"
 msgstr "Nachrichten von/an %s wegen anderer Probleme"
 
 #: ../wp-plugin/shortcode-mailpage.php:165
-#, fuzzy, php-format
+#, php-format
 msgid "All messages ever about %s's work"
-msgstr "Meine anderen Nachrichten über %s"
+msgstr ""
 
 #: ../wp-plugin/shortcode-mailpage.php:168
 msgid "All messages ever to or from me"
@@ -873,9 +867,8 @@ msgstr ""
 
 #: ../wp-plugin/shortcode-mailpage.php:230
 #: ../wp-plugin/shortcode-my-progress.php:68
-#, fuzzy
 msgid "Submit"
-msgstr "Programm-Einsendungen"
+msgstr ""
 
 #: ../wp-plugin/shortcode-my-progress.php:9
 msgid "You must log in order to view your user page."
@@ -1423,9 +1416,8 @@ msgstr "Anmelden oder Registrieren"
 
 #: ../www/wordpress/wp-login.php:455 ../www/wordpress/wp-login.php:514
 #: ../www/wordpress/wp-login.php:565 ../www/wordpress/wp-login.php:714
-#, fuzzy
 msgid "Create a new account"
-msgstr "Anmelden oder Registrieren"
+msgstr ""
 
 #~ msgid "From:"
 #~ msgstr "Von:"
