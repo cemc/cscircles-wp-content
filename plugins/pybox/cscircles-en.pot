@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-18 17:18-0500\n"
+"POT-Creation-Date: 2013-04-04 18:33-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,148 +60,164 @@ msgstr ""
 msgid "The user sent this code with the message:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:282
-#: ../wp-plugin/action-submit-code.php:298
+#: ../wp-plugin/action-submit-code.php:284
+#: ../wp-plugin/action-submit-code.php:300
 msgid "Program gave the following output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:285
+#: ../wp-plugin/action-submit-code.php:287
 msgid "Program gave the following correct output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:296
-#: ../wp-plugin/action-submit-code.php:306
+#: ../wp-plugin/action-submit-code.php:298
+#: ../wp-plugin/action-submit-code.php:308
 msgid "Program printed no output."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:309
+#: ../wp-plugin/action-submit-code.php:311
 msgid "(Did you forget to use </i><code>print</code><i>?)"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:314
+#: ../wp-plugin/action-submit-code.php:316
 msgid "Program output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:317
+#: ../wp-plugin/action-submit-code.php:319
 msgid "Expected this correct output:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:492
+#: ../wp-plugin/action-submit-code.php:495
 msgid "Before running your code:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:497
+#: ../wp-plugin/action-submit-code.php:500
 msgid "Input:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:507
+#: ../wp-plugin/action-submit-code.php:514
 msgid "Error messages: "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:510
+#: ../wp-plugin/action-submit-code.php:517
 msgid "Program executed without crashing."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:513
+#: ../wp-plugin/action-submit-code.php:520
 msgid "Program crashed."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:515
+#: ../wp-plugin/action-submit-code.php:522
 msgid "Program crashed &mdash; "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:519
+#: ../wp-plugin/action-submit-code.php:526
 msgid "Memory Limit Exceeded"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:519
+#: ../wp-plugin/action-submit-code.php:526
 msgid "Time Limit Exceeded"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:520
+#: ../wp-plugin/action-submit-code.php:527
 msgid "Command exited with non-zero status"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:521
+#: ../wp-plugin/action-submit-code.php:528
 msgid "Command terminated by signal"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:521
+#: ../wp-plugin/action-submit-code.php:528
 msgid "Output Limit Exceeded"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:522
+#: ../wp-plugin/action-submit-code.php:529
 msgid "Invalid Function"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:522
+#: ../wp-plugin/action-submit-code.php:529
 msgid "Internal Error"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:547
-#: ../wp-plugin/action-submit-code.php:562
+#: ../wp-plugin/action-submit-code.php:554
+#: ../wp-plugin/action-submit-code.php:569
 msgid "The grader said:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:550
+#: ../wp-plugin/action-submit-code.php:557
 msgid "Automatic tests:"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:592
+#: ../wp-plugin/action-submit-code.php:599
 msgid "Result of grading: "
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:633
+#: ../wp-plugin/action-submit-code.php:640
 msgid "Success!"
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:639
+#: ../wp-plugin/action-submit-code.php:646
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:656
+#: ../wp-plugin/action-submit-code.php:663
 msgid "You must log in to save data."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:657
+#: ../wp-plugin/action-submit-code.php:664
 msgid "Program saved."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:683
+#: ../wp-plugin/action-submit-code.php:694
 #, php-format
 msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
 "= \"%s\">run at home</a>."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:715
+#: ../wp-plugin/action-submit-code.php:726
 #, php-format
 msgid "Pybox error: problem hash %s not found. Try reloading the page."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:808
+#: ../wp-plugin/action-submit-code.php:820
 #, php-format
 msgid "You cannot use %s in this exercise."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:820
+#: ../wp-plugin/action-submit-code.php:832
 #, php-format
 msgid ""
 "You are only allowed to change at most %s characters compared to the "
 "original version of the code."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:825
+#: ../wp-plugin/action-submit-code.php:837
 #, php-format
 msgid "You changed %s or more."
 msgstr ""
 
-#: ../wp-plugin/action-submit-code.php:844
+#: ../wp-plugin/action-submit-code.php:856
 #, php-format
 msgid "You changed %s."
 msgstr ""
 
+#: ../wp-plugin/action-submit-code.php:868
+msgid "Note: ran with user tests."
+msgstr ""
+
 #: ../wp-plugin/action-submit-code.php:871
+msgid "Note: ran with user inputs."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:873
+msgid " Click \"Go back to grading\" to switch back."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:875
+msgid " Click \"Hide input box\" to switch back."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:902
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
 msgstr ""
@@ -397,143 +413,143 @@ msgstr ""
 msgid "first time"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:4
-msgid "The database connected but found no data."
+#: ../wp-plugin/js-translation.php:4 ../wp-plugin/shortcodes.php:810
+msgid "Run program"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:5
-msgid "Error: could not connect to database."
+msgid "Run test"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:6
-msgid "Go back to grading"
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:7
-msgid "Hide input box"
+msgid "Displaying {from} to {to} of {total} items"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:8
-msgid "end of main program"
+msgid "Enter test statements"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:9
-msgid "timed out!"
+msgid "Running..."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:10
+msgid "Simple editor"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:11
+msgid "Error: could not connect to database."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Please enter a non-empty message."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:53
+msgid "You have completed this problem at least once."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:14
+msgid "Hide input box"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Enter test input"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:16
+msgid "end of main program"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:789
+msgid "More actions..."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:18
+msgid "Your message was sent."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:19
+msgid "timed out!"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:20
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Click to try again."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:22
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:23
+msgid "The database connected but found no data."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:24
+msgid "Incorrect, try again."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:25
+msgid "Go back to grading"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:26
+msgid "Hide history"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:27
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
 "the user menu, in the top right corner of the page)."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:11
-msgid ""
-"The code box is empty. It should instead contain your best partial solution "
-"so far."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:12
-msgid "Click to try again."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:810
-msgid "Run program"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Incorrect, try again."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Displaying {from} to {to} of {total} items"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Enter test input"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:53
-msgid "You have completed this problem at least once."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:789
-msgid "More actions..."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:19
-msgid "Enter input"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:740
-msgid "Rich editor"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:21
-msgid "Please enter a non-empty message."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:22
-msgid "Run test"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:23
-msgid "Running..."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:24
+#: ../wp-plugin/js-translation.php:28
 msgid "out of"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:25
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:26
-msgid "Page"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:27 ../wp-plugin/shortcodes.php:755
-msgid "History"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:28
-msgid "Your message was sent."
-msgstr ""
-
 #: ../wp-plugin/js-translation.php:29
-msgid ""
-"Could not grade program because communication to the server was not "
-"possible. Ajax information: "
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:30
-msgid "Enter test statements"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:31
 msgid "Marking all messages from this student about this problem as answered."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:32
+#: ../wp-plugin/js-translation.php:30
 msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:33
+#: ../wp-plugin/js-translation.php:31
 msgid "start of tests"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:34
-msgid "Simple editor"
+#: ../wp-plugin/js-translation.php:32 ../wp-plugin/shortcodes.php:740
+msgid "Rich editor"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:33
+msgid "Enter input"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:34 ../wp-plugin/shortcodes.php:755
+msgid "History"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:35
-msgid "Hide history"
+msgid "Page"
 msgstr ""
 
 #: ../wp-plugin/newuseremail.php:10
@@ -660,12 +676,12 @@ msgid ""
 "Circles. They are pretty infrequent, about once per year."
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:223
+#: ../wp-plugin/plugin-utilities.php:242
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:347
+#: ../wp-plugin/plugin-utilities.php:366
 msgid "Return to Computer Science Circles"
 msgstr ""
 
@@ -1055,82 +1071,82 @@ msgstr ""
 msgid " equal to "
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:47
+#: ../python3jail/static/_GRADER.py:50
 #: ../py_includes/graders/display-input-vars.py:27
 msgid " and "
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:49
+#: ../python3jail/static/_GRADER.py:52
 msgid ", and "
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:51
+#: ../python3jail/static/_GRADER.py:54
 msgid "We defined "
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:65 ../python3jail/static/_GRADER.py:89
+#: ../python3jail/static/_GRADER.py:68 ../python3jail/static/_GRADER.py:92
 msgid "Error: {0} has wrong type {1}, expected {2}"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:70 ../python3jail/static/_GRADER.py:109
+#: ../python3jail/static/_GRADER.py:73 ../python3jail/static/_GRADER.py:112
 msgid "Error: {0} has wrong value {1}, expected {2}"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:74
+#: ../python3jail/static/_GRADER.py:77
 msgid "its value is correct!"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:80 ../python3jail/static/_GRADER.py:85
+#: ../python3jail/static/_GRADER.py:83 ../python3jail/static/_GRADER.py:88
 msgid "finished!"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:82
+#: ../python3jail/static/_GRADER.py:85
 msgid "value "
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:87
+#: ../python3jail/static/_GRADER.py:90
 msgid "finished! (returned a value {} but did not need to return anything)"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:95
+#: ../python3jail/static/_GRADER.py:98
 msgid "Error: list {0} has wrong length {1}, expected {2}"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:105 ../python3jail/static/_GRADER.py:107
+#: ../python3jail/static/_GRADER.py:108 ../python3jail/static/_GRADER.py:110
 msgid " its value {} is correct!"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:127 ../python3jail/static/_GRADER.py:141
+#: ../python3jail/static/_GRADER.py:130 ../python3jail/static/_GRADER.py:144
 msgid "Running {} &hellip;"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:133
+#: ../python3jail/static/_GRADER.py:136
 msgid "Error: function {} not defined"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:136
+#: ../python3jail/static/_GRADER.py:139
 msgid "Error: {0} should be defined as a function, but found type {1}"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:155
+#: ../python3jail/static/_GRADER.py:158
 msgid ""
 "Your output is incorrect, but just barely. Whitespace characters (space, "
 "newline, tab) are either missing, or extra ones are present."
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:157
+#: ../python3jail/static/_GRADER.py:160
 msgid "Your output is not correct."
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:200
+#: ../python3jail/static/_GRADER.py:203
 msgid "Checking {} &hellip; "
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:204
+#: ../python3jail/static/_GRADER.py:207
 msgid "Error: variable {} not defined"
 msgstr ""
 
-#: ../python3jail/static/_GRADER.py:209
+#: ../python3jail/static/_GRADER.py:212
 msgid "Setting {0} to {1}"
 msgstr ""
 
@@ -1280,27 +1296,32 @@ msgid ""
 "Waterloo</a>."
 msgstr ""
 
-#: ../wp-theme/footer.php:30
-msgid "CEMC"
-msgstr ""
-
-#: ../wp-theme/footer.php:31
-msgid "University of Waterloo"
-msgstr ""
-
-#: ../wp-theme/footer.php:32
-msgid "200 University Avenue West"
+#: ../wp-theme/footer.php:29
+#, php-format
+msgid "Total number of exercises completed by all users: %s"
 msgstr ""
 
 #: ../wp-theme/footer.php:33
-msgid "Waterloo, Ontario, Canada N2L 3G1"
+msgid "CEMC"
 msgstr ""
 
 #: ../wp-theme/footer.php:34
-msgid "Phone: 519 888 4808"
+msgid "University of Waterloo"
 msgstr ""
 
 #: ../wp-theme/footer.php:35
+msgid "200 University Avenue West"
+msgstr ""
+
+#: ../wp-theme/footer.php:36
+msgid "Waterloo, Ontario, Canada N2L 3G1"
+msgstr ""
+
+#: ../wp-theme/footer.php:37
+msgid "Phone: 519 888 4808"
+msgstr ""
+
+#: ../wp-theme/footer.php:38
 msgid "contact us"
 msgstr ""
 
