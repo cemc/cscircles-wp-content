@@ -292,7 +292,7 @@ opening one will close the other open ones
 #wpadminbar {
     background: url("css-images/banner.png") paleGreen;
     border-bottom: 1px solid black;
-    box-shadow: 0px 0px 15px #777;
+    box-shadow: 0px 3px 15px -3px #777; 
 }
 
 #wpadminbar li.new-or-login * {
