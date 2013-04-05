@@ -286,7 +286,7 @@ function pyRecallHandler($options, $content) {
   
   global $wpdb;
   $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",
-					   $options['slug'], pll_current_language()), ARRAY_A);
+					   $options['slug'], 'en'), ARRAY_A);
 
   if ($problem == NULL) 
     return "[pyRecall error: slug " . $options['slug'] . " not found]";
