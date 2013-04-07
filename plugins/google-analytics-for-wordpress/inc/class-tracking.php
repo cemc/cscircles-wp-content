@@ -9,7 +9,11 @@ if ( !defined( 'GAWP_VERSION' ) ) {
 }
 
 /**
- * Class that creates the tracking functionality for Yoast Plugins, as the core class might be used in more plugins, it's checked for existence first.
+ * Class that creates the tracking functionality for WP SEO, as the core class might be used in more plugins,
+ * it's checked for existence first.
+ *
+ * NOTE: this functionality is opt-in. Disabling the tracking in the settings or saying no when asked will cause
+ * this file to not even be loaded.
  */
 if ( !class_exists( 'Yoast_Tracking' ) ) {
 	class Yoast_Tracking {
@@ -31,7 +35,7 @@ if ( !class_exists( 'Yoast_Tracking' ) ) {
 		 */
 		function tracking() {
 			// Start of Metrics
-			global $wpdb;
+			global $blog_id, $wpdb;
 
 			$hash = get_option( 'Yoast_Tracking_Hash' );
 
@@ -61,8 +65,7 @@ if ( !class_exists( 'Yoast_Tracking' ) ) {
 						'author'     => $theme_data->display( 'Author', false, false ),
 						'author_uri' => $theme_data->display( 'AuthorURI', false, false ),
 					);
-					$parent_theme = $theme_data->__get('parent_theme');
-					if ( isset( $parent_theme ) && !empty( $parent_theme ) && $theme_data->parent() ) {
+					if ( isset( $theme_data->template ) && !empty( $theme_data->template ) && $theme_data->parent() ) {
 						$theme['template'] = array(
 							'version'    => $theme_data->parent()->display( 'Version', false, false ),
 							'name'       => $theme_data->parent()->display( 'Name', false, false ),
@@ -85,6 +88,9 @@ if ( !class_exists( 'Yoast_Tracking' ) ) {
 
 				$plugins = array();
 				foreach ( get_option( 'active_plugins' ) as $plugin_path ) {
+					if ( !function_exists( 'get_plugin_data' ) )
+						require_once ABSPATH . 'wp-admin/includes/admin.php';
+
 					$plugin_info = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_path );
 
 					$slug           = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
@@ -104,7 +110,7 @@ if ( !class_exists( 'Yoast_Tracking' ) ) {
 						'name'      => get_bloginfo( 'name' ),
 						'version'   => get_bloginfo( 'version' ),
 						'multisite' => is_multisite(),
-						'users'     => count( get_users() ),
+						'users'     => $wpdb->get_var( "SELECT COUNT(*) FROM wp_users INNER JOIN wp_usermeta ON (wp_users.ID = wp_usermeta.user_id) WHERE 1 = 1 AND ( wp_usermeta.meta_key = 'wp_{$blog_id}_capabilities' ) " ),
 						'lang'      => get_locale(),
 					),
 					'pts'      => $pts,

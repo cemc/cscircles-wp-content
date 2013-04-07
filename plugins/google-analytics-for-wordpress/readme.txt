@@ -4,7 +4,7 @@ Donate link: http://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 4.3.2
+Stable tag: 4.3.3
 
 Track your WordPress site easily and with lots of metadata: views per author & category, automatic tracking of outbound clicks and pageviews.
 
@@ -58,10 +58,14 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 4.3.3 =
+
+* Fix a possible fatal error in tracking.
+
 = 4.3.2 =
 
 * Bugfix: Google Analytics crappy API output is different when you have a single GA account versus multiple. Annoying, but fixed now.
- 
+
 = 4.3.1 =
 
 * Removes a left over JS alert.

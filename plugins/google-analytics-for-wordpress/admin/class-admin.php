@@ -286,17 +286,15 @@ class GA_Admin extends Yoast_GA_Plugin_Admin {
 				}
 
 				$args         = array(
-					'scope'              => 'https://www.google.com/analytics/feeds/',
+					'scope'              => 'https://www.googleapis.com/auth/analytics.readonly',
 					'xoauth_displayname' => 'Google Analytics for WordPress by Yoast'
 				);
 				$access_token = $options['gawp_oauth']['access_token'];
 				$gdata        = new WP_Gdata( $args, $access_token['oauth_token'], $access_token['oauth_token_secret'] );
 
-
 				$response  = $gdata->get( 'https://www.googleapis.com/analytics/v2.4/management/accounts/~all/webproperties/~all/profiles' );
 				$http_code = wp_remote_retrieve_response_code( $response );
 				$response  = wp_remote_retrieve_body( $response );
-
 
 				if ( $http_code == 200 ) {
 					$options['ga_api_responses'][$token] = array(
