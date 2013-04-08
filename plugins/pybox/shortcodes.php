@@ -284,9 +284,14 @@ function pyRecallHandler($options, $content) {
   if (!array_key_exists('slug', $options))
     return "[pyRecall error: no slug given]";
   
-  if (isMakingDatabases()) {
-    pyboxlog(pll_current_language() . " options: " . print_r($options, TRUE), FALSE);
-  }
+  /*  if (isMakingDatabases()) {
+    $r = '';
+    foreach ($options as $k => $v) {
+      $r .= $k . '=';
+      $r .= "'" . str_replace("\n", "\\n", str_replace("'", "''", $v)) . "' ";
+    }
+    pyboxlog($r, FALSE);
+    } */
 
   global $wpdb;
   $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",

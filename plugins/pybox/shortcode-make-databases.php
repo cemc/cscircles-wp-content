@@ -82,8 +82,8 @@ function makedb($content, $options) {
     $lesson_reg_info = array('index'=>$index, 'lang'=>$currlang, 'fullnumber'=>$l['number'],
 			   'url'=>str_replace('/dev','', get_page_link($l['id'])), 'id'=>$l['id']);
 
-    pyboxlog($currlang . ' ' . $lesson_reg_info['url'], FALSE);
-
+    // pyboxlog($currlang . ' ' . $lesson_reg_info['url'], FALSE);  // was used Apr. 7 to help transl.
+    
     // render! the following line is not just cosmetic as it registers the problems.
     echo '<br>Snippet: ' . htmlspecialchars(substr(do_shortcode(get_page($l['id'])->post_content), 0, 50));
     $pyRenderCount = 0; // to get problem links working
