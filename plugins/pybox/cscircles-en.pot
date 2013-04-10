@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-04 18:48-0400\n"
+"POT-Creation-Date: 2013-04-09 23:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,47 +16,47 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../wp-plugin/action-send-message.php:26
-#: ../wp-plugin/shortcode-mailpage.php:42
-#: ../wp-plugin/shortcode-mailpage.php:112
-#: ../wp-plugin/shortcode-mailpage.php:117 ../wp-plugin/shortcodes.php:632
-#: ../wp-plugin/shortcodes.php:638
+#: ../wp-plugin/action-send-message.php:30
+#: ../wp-plugin/plugin-utilities.php:113 ../wp-plugin/plugin-utilities.php:489
+#: ../wp-plugin/shortcode-mailpage.php:109
+#: ../wp-plugin/shortcode-mailpage.php:114 ../wp-plugin/shortcodes.php:641
+#: ../wp-plugin/shortcodes.php:647
 msgid "CS Circles Assistant"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:30
+#: ../wp-plugin/action-send-message.php:34
 msgid "CS Circles"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:30
+#: ../wp-plugin/action-send-message.php:34
 msgid "message about"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:33
+#: ../wp-plugin/action-send-message.php:37
+#: ../wp-plugin/plugin-utilities.php:501
 msgid "To send a reply message, please visit"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:35
+#: ../wp-plugin/action-send-message.php:39
+#: ../wp-plugin/plugin-utilities.php:503
 msgid "Problem URL:"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:36
+#: ../wp-plugin/action-send-message.php:40
+#: ../wp-plugin/plugin-utilities.php:504
 msgid "Sent by CS Circles"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:41
+#: ../wp-plugin/action-send-message.php:58
 msgid "SENT:"
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:41
-msgid "THIS IS A COPY of a message you sent to the CS Circles Assistant."
+#: ../wp-plugin/action-send-message.php:59
+#, php-format
+msgid "THIS IS A COPY of a message you sent to %s."
 msgstr ""
 
-#: ../wp-plugin/action-send-message.php:46
-msgid "THIS IS A COPY of a message you sent to "
-msgstr ""
-
-#: ../wp-plugin/action-send-message.php:84
+#: ../wp-plugin/action-send-message.php:100
 msgid "The user sent this code with the message:"
 msgstr ""
 
@@ -297,8 +297,8 @@ msgstr ""
 
 #: ../wp-plugin/db-entire-history.php:67
 #: ../wp-plugin/db-entire-history.php:109
-#: ../wp-plugin/db-entire-history.php:112 ../wp-plugin/db-mail.php:93
-#: ../wp-plugin/db-mail.php:111
+#: ../wp-plugin/db-entire-history.php:112 ../wp-plugin/db-mail.php:84
+#: ../wp-plugin/db-mail.php:102
 msgid "problem"
 msgstr ""
 
@@ -329,49 +329,50 @@ msgstr ""
 
 #: ../wp-plugin/db-entire-history.php:114
 #: ../wp-plugin/db-problem-history.php:73
+#: ../wp-plugin/shortcode-mailpage.php:238
 msgid "n/a"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:45
+#: ../wp-plugin/db-mail.php:36
 msgid "You must log in to view past mail."
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:60 ../wp-plugin/db-mail.php:69
-#: ../wp-plugin/db-mail.php:76
+#: ../wp-plugin/db-mail.php:51 ../wp-plugin/db-mail.php:60
+#: ../wp-plugin/db-mail.php:67
 #, php-format
 msgid "%s must be numeric."
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:65
+#: ../wp-plugin/db-mail.php:56
 msgid "Access denied."
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:91 ../wp-plugin/db-mail.php:106
+#: ../wp-plugin/db-mail.php:82 ../wp-plugin/db-mail.php:97
 msgid "from"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:91 ../wp-plugin/db-mail.php:107
-#: ../wp-plugin/shortcode-mailpage.php:95
+#: ../wp-plugin/db-mail.php:82 ../wp-plugin/db-mail.php:98
+#: ../wp-plugin/shortcode-mailpage.php:92
 msgid "to"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:92 ../wp-plugin/db-mail.php:109
+#: ../wp-plugin/db-mail.php:83 ../wp-plugin/db-mail.php:100
 msgid "when"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:92 ../wp-plugin/db-mail.php:114
+#: ../wp-plugin/db-mail.php:83 ../wp-plugin/db-mail.php:105
 msgid "message"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:93 ../wp-plugin/db-mail.php:113
+#: ../wp-plugin/db-mail.php:84 ../wp-plugin/db-mail.php:104
 msgid "replied?"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:113
+#: ../wp-plugin/db-mail.php:104
 msgid "no"
 msgstr ""
 
-#: ../wp-plugin/db-mail.php:113
+#: ../wp-plugin/db-mail.php:104
 msgid "yes"
 msgstr ""
 
@@ -392,7 +393,7 @@ msgid ""
 msgstr ""
 
 #: ../wp-plugin/db-problem-summary.php:29
-#: ../wp-plugin/shortcode-mailpage.php:189
+#: ../wp-plugin/shortcode-mailpage.php:186
 #: ../wp-plugin/shortcode-my-progress.php:28
 #, php-format
 msgid "Problem %s not found (at least in current language)"
@@ -414,19 +415,19 @@ msgid "first time"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:4
-msgid "Enter input"
+msgid "timed out!"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:5
+msgid "Hide history"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:6
 msgid "end of main program"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:6 ../wp-plugin/shortcodes.php:810
-msgid "Run program"
-msgstr ""
-
 #: ../wp-plugin/js-translation.php:7
-msgid "Marking all messages from this student about this problem as answered."
+msgid "Click to try again."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:8
@@ -437,57 +438,57 @@ msgid ""
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:9
-msgid "Running..."
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:10
-msgid "Hide input box"
+msgid "The database connected but found no data."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:11
-msgid "Click to try again."
+msgid "Error: could not connect to database."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:12
-msgid "start of tests"
+#: ../wp-plugin/js-translation.php:12 ../wp-plugin/shortcodes.php:53
+msgid "You have completed this problem at least once."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:13
-msgid "Page"
+msgid "Hide input box"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:14
-msgid "Hide history"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Incorrect, try again."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:16
 msgid "Your message was sent."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:789
+#: ../wp-plugin/js-translation.php:15 ../wp-plugin/shortcodes.php:798
 msgid "More actions..."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:18
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
+#: ../wp-plugin/js-translation.php:16
+msgid "Go back to grading"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:17
+msgid "Enter input"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:749
+msgid "Rich editor"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:19
-msgid "out of"
+msgid "Incorrect, try again."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:20
-msgid "Run test"
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:819
+msgid "Run program"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:21
-msgid "The database connected but found no data."
+msgid "Enter test input"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:22
@@ -495,61 +496,61 @@ msgid "Displaying {from} to {to} of {total} items"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:23
-msgid "Enter test statements"
+msgid "Running..."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:24
-msgid "Go back to grading"
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:25
-msgid ""
-"Warning: unable to talk to server. Could not set 'completed' status for this "
-"problem."
+msgid "Page"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:26 ../wp-plugin/shortcodes.php:740
-msgid "Rich editor"
+#: ../wp-plugin/js-translation.php:26 ../wp-plugin/shortcodes.php:764
+msgid "History"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:27
+msgid "Please enter a non-empty message."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:28
+msgid "Run test"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:29
+msgid "start of tests"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:30
+msgid "Simple editor"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:31
+msgid "out of"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:32
 msgid ""
 "Could not grade program because communication to the server was not "
 "possible. Ajax information: "
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:28
-msgid "Please enter a non-empty message."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:29
-msgid "timed out!"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:30
-msgid "Error: could not connect to database."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:31 ../wp-plugin/shortcodes.php:755
-msgid "History"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:32
-msgid "Simple editor"
-msgstr ""
-
 #: ../wp-plugin/js-translation.php:33
 msgid ""
-"The code box is empty. It should instead contain your best partial solution "
-"so far."
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:34
-msgid "Enter test input"
+msgid "Enter test statements"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:35 ../wp-plugin/shortcodes.php:53
-msgid "You have completed this problem at least once."
+#: ../wp-plugin/js-translation.php:35
+msgid "Marking all messages from this student about this problem as answered."
 msgstr ""
 
 #: ../wp-plugin/newuseremail.php:10
@@ -617,15 +618,15 @@ msgstr ""
 msgid "scroll to top"
 msgstr ""
 
-#: ../wp-plugin/plugin-hooks.php:243
+#: ../wp-plugin/plugin-hooks.php:244
 msgid "goto oldest unanswered mail"
 msgstr ""
 
-#: ../wp-plugin/plugin-hooks.php:300
+#: ../wp-plugin/plugin-hooks.php:301
 msgid "Filter Listed Pages"
 msgstr ""
 
-#: ../wp-plugin/plugin-hooks.php:303
+#: ../wp-plugin/plugin-hooks.php:304
 msgid "Show all visible"
 msgstr ""
 
@@ -676,12 +677,20 @@ msgid ""
 "Circles. They are pretty infrequent, about once per year."
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:242
+#: ../wp-plugin/plugin-utilities.php:111
+msgid "me"
+msgstr ""
+
+#: ../wp-plugin/plugin-utilities.php:113
+msgid "Asst."
+msgstr ""
+
+#: ../wp-plugin/plugin-utilities.php:255
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
 
-#: ../wp-plugin/plugin-utilities.php:366
+#: ../wp-plugin/plugin-utilities.php:379
 msgid "Return to Computer Science Circles"
 msgstr ""
 
@@ -697,148 +706,148 @@ msgstr ""
 msgid "Access denied. You may need to log in first."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:30
+#: ../wp-plugin/shortcode-mailpage.php:35
 msgid "No such problem exists."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:49
+#: ../wp-plugin/shortcode-mailpage.php:45
 msgid "You must log in order to view the mail page."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:73
+#: ../wp-plugin/shortcode-mailpage.php:69
 #, php-format
 msgid "Messages about %1$s for user %2$s"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:78
+#: ../wp-plugin/shortcode-mailpage.php:74
 msgid " has completed this problem."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:80
+#: ../wp-plugin/shortcode-mailpage.php:76
 msgid " has not completed this problem."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:85
+#: ../wp-plugin/shortcode-mailpage.php:81
 #, php-format
 msgid "Note: this student completed the problem at %s"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:87
+#: ../wp-plugin/shortcode-mailpage.php:83
 msgid "Click on a message title to toggle the message open or closed."
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:95
+#: ../wp-plugin/shortcode-mailpage.php:92
 msgid "From"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:96
+#: ../wp-plugin/shortcode-mailpage.php:93
 msgid "(newest)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:97
+#: ../wp-plugin/shortcode-mailpage.php:94
 msgid "(oldest)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:99
+#: ../wp-plugin/shortcode-mailpage.php:96
 msgid "Quote/<br/>Reply"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:108 ../wp-plugin/shortcodes.php:629
-#: ../wp-plugin/shortcodes.php:636
+#: ../wp-plugin/shortcode-mailpage.php:105 ../wp-plugin/shortcodes.php:638
+#: ../wp-plugin/shortcodes.php:645
 msgid "Send a question by e-mail to: "
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:111 ../wp-plugin/shortcodes.php:631
+#: ../wp-plugin/shortcode-mailpage.php:108 ../wp-plugin/shortcodes.php:640
 msgid "My guru"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:118 ../wp-plugin/shortcodes.php:639
+#: ../wp-plugin/shortcode-mailpage.php:115
 msgid "(No guru is specified)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:126
+#: ../wp-plugin/shortcode-mailpage.php:123
 msgid "Type here to send a reply about this problem"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:132
+#: ../wp-plugin/shortcode-mailpage.php:129
 msgid "Just mark as read without replying"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:134
+#: ../wp-plugin/shortcode-mailpage.php:131
 msgid "Send this message!"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:140
+#: ../wp-plugin/shortcode-mailpage.php:137
 #, php-format
 msgid "%s's progress page (new window)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:141
+#: ../wp-plugin/shortcode-mailpage.php:138
 #, php-format
 msgid "Original lesson page containing %s (new window)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:143
+#: ../wp-plugin/shortcode-mailpage.php:140
 msgid "Problem description for"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:149
+#: ../wp-plugin/shortcode-mailpage.php:146
 #, php-format
 msgid "%1$s's submissions for %2$s"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:151
+#: ../wp-plugin/shortcode-mailpage.php:148
 #, php-format
 msgid "My previous submissions for %s"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:155
+#: ../wp-plugin/shortcode-mailpage.php:152
 #, php-format
 msgid "My other messages about %s"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:158
+#: ../wp-plugin/shortcode-mailpage.php:155
 msgid "My messages for other programs"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:159
+#: ../wp-plugin/shortcode-mailpage.php:156
 #, php-format
 msgid "Messages to/from %s for other problems"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:165
+#: ../wp-plugin/shortcode-mailpage.php:162
 #, php-format
 msgid "All messages ever about %s's work"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:168
+#: ../wp-plugin/shortcode-mailpage.php:165
 msgid "All messages ever to or from me"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:195
+#: ../wp-plugin/shortcode-mailpage.php:192
 msgid "View a different problem?"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:195
+#: ../wp-plugin/shortcode-mailpage.php:192
 #: ../wp-plugin/shortcode-my-progress.php:35
 #, php-format
 msgid "Reload with a different view? (you have %s students)"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:198
+#: ../wp-plugin/shortcode-mailpage.php:195
 #: ../wp-plugin/shortcode-my-progress.php:36
 msgid "Select different user?"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:200
+#: ../wp-plugin/shortcode-mailpage.php:197
 msgid "Me"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:221
+#: ../wp-plugin/shortcode-mailpage.php:218
 msgid "Mail for which problem?"
 msgstr ""
 
-#: ../wp-plugin/shortcode-mailpage.php:230
+#: ../wp-plugin/shortcode-mailpage.php:227
 #: ../wp-plugin/shortcode-my-progress.php:68
 msgid "Submit"
 msgstr ""
@@ -943,83 +952,87 @@ msgstr ""
 msgid "Select one"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:258 ../wp-plugin/shortcodes.php:606
+#: ../wp-plugin/shortcodes.php:258 ../wp-plugin/shortcodes.php:615
 msgid "Scramble Exercise"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:327
+#: ../wp-plugin/shortcodes.php:336
 #, php-format
 msgid ""
 "New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
 "$s>click here to create an account or log in</a>."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:403
+#: ../wp-plugin/shortcodes.php:412
 msgid "Edit my profile"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:404
+#: ../wp-plugin/shortcodes.php:413
 msgid "Log out now"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:407
+#: ../wp-plugin/shortcodes.php:416
 msgid "Log in or create a new account"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:603
+#: ../wp-plugin/shortcodes.php:612
 msgid "Example"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:606
+#: ../wp-plugin/shortcodes.php:615
 msgid "Coding Exercise"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:620
+#: ../wp-plugin/shortcodes.php:629
 msgid "You need to create an account and log in to ask a question."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:643
+#: ../wp-plugin/shortcodes.php:648
+msgid "(No guru specified in your profile)"
+msgstr ""
+
+#: ../wp-plugin/shortcodes.php:652
 msgid ""
 "Enter text for the message below. <i>Be sure to explain where you're stuck "
 "and what you've tried so far. Your partial solution code will be "
 "automatically included with the message.</i>"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:645
+#: ../wp-plugin/shortcodes.php:654
 msgid "Send this message"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:646
+#: ../wp-plugin/shortcodes.php:655
 msgid "Cancel"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:665
+#: ../wp-plugin/shortcodes.php:674
 msgid "# delete this comment and enter your code here"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:717
+#: ../wp-plugin/shortcodes.php:726
 msgid ""
 "Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> "
 "below."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:720
+#: ../wp-plugin/shortcodes.php:729
 msgid "You may enter input for the program in the box below."
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:746
+#: ../wp-plugin/shortcodes.php:755
 msgid "Open in console"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:749
+#: ../wp-plugin/shortcodes.php:758
 msgid "Visualize"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:763
+#: ../wp-plugin/shortcodes.php:772
 msgid "Reset code to default"
 msgstr ""
 
-#: ../wp-plugin/shortcodes.php:768
+#: ../wp-plugin/shortcodes.php:777
 msgid "Help"
 msgstr ""
 
