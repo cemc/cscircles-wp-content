@@ -503,9 +503,9 @@ function resendEmails() {
     $contents .= __t("Problem URL:")." " . $purl . "\n";
     $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
 
-    $contents .= "\n\n" . $to;
+    //    $contents .= "\n\n" . $to;
 
-    pb_mail($mFrom, "daveagp@gmail.com", $subject, $contents);
+    pb_mail($mFrom, $to, $subject, $contents);
   }
 }  
 
