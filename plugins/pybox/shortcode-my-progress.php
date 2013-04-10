@@ -29,7 +29,7 @@ function pyUser($options, $content) {
     return;
   }
 
-  if (userIsAdmin() || $cstudents>0) {
+  if (userIsAdmin() || userIsAssistant() || $cstudents>0) {
     $preamble = 
       "<div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
        <h1 style='margin-top: 0px;'>".sprintf(__t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
@@ -75,7 +75,7 @@ function pyUser($options, $content) {
     if (!is_numeric($_GET['user']))
       return __t("User id must be numeric.");
     $getuid = (int)$_GET['user'];
-    if (userIsAdmin()) {
+    if (userIsAdmin() || userIsAssistant()) {
       if (get_userdata($getuid) === FALSE)
 	return __t("Invalid user id.");
     }
@@ -140,7 +140,7 @@ function pyUser($options, $content) {
   if ($getall) {
     foreach ($didIt as $index) 
       $didIt[$index] = 0;
-    if (userIsAdmin())
+    if (userIsAdmin() || userIsAssistant())
       $completed = $wpdb->get_results
 	("SELECT count(userid), problem from $completed_table GROUP BY problem", ARRAY_A);
     else {

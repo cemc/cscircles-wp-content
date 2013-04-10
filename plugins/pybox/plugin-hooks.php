@@ -112,14 +112,14 @@ function footsy() {
   }
 
   if (userIsAdmin() || 
-      userIsTranslator())
+      userIsTranslator() || userIsAssistant())
     foreach (array('de', 'nl') as $lang) {
       if ($lang != pll_current_language()) {
 	echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
    }
   }
       // old method:  echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
-  if (userIsAdmin() || userIsTranslator())
+  if (userIsAdmin() || userIsTranslator() || userIsAssistant())
     echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
   echo '</span>';
 
@@ -226,16 +226,17 @@ function pb_menu_items($wp_admin_bar) {
   global $wpdb;
 
   $students = getStudents();
-  if (count($students)>0 || userIsAdmin()) {
-    $studentClause = "uto = " . getUserID() . ' ';
+  if (count($students)>0 || userIsAdmin() || userIsAssistant()) {
     if (userIsAdmin())
-      $studentClause = "($studentClause OR uto = 0)";
-    if (!userIsAdmin()) 
-      $studentClause .= "AND ustudent IN (".implode(',', $students).")";
-    $count = $wpdb->get_var("SELECT COUNT(1) FROM wp_pb_mail WHERE unanswered = 1 AND $studentClause");
+      $where = "(uto = ".getUserID() . " OR uto = 0)";
+    else {
+      $where = "(uto = " .getUserID() . ")";//"AND ustudent IN (".implode(',', $students)."))";
+    }
+    $where = $where . "AND unanswered = 1";
+    $count = $wpdb->get_var("SELECT COUNT(1) FROM wp_pb_mail WHERE $where");
     if ($count > 0) {
       $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM wp_pb_mail 
-                             WHERE unanswered = 1 AND $studentClause ORDER BY ID ASC LIMIT 1", ARRAY_A);
+                             WHERE $where ORDER BY ID ASC LIMIT 1", ARRAY_A);
 
       $url = cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
       
@@ -293,7 +294,7 @@ add_action( 'wp_before_admin_bar_render', 'tweak_polylang_menu' );
 function tweak_polylang_menu() {
   global $wp_admin_bar;
   if (is_admin()) {
-    if (!(userIsTranslator() || userIsAdmin()))
+    if (!(userIsTranslator() || userIsAdmin() || userIsAssistant()))
       $wp_admin_bar->remove_node('languages');
     else {
       $node = $wp_admin_bar->get_node('languages');

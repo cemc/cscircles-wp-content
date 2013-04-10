@@ -18,15 +18,6 @@ only view messages that are to/from themselves and their students
 
 */
 
-function xname($uid) {
-  if ($uid === 0 && userIsAdmin() || $uid === getUserID()) 
-    return 'me';
-  elseif ($uid == 0)
-    return 'TA';
-  else
-    return get_userdata($uid)->user_login;
-}
-
 function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
   $who = getSoft(($req===NULL?$_REQUEST:$req), "who", "");
   $xwho = getSoft(($req===NULL?$_REQUEST:$req), "xwho", "");
@@ -46,20 +37,20 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
 
    $where = 'WHERE 1';
 
-   if (!userIsAdmin()) {
-     $students = getStudents();
-     $students[] = getUserID();
-     $where .= ' AND ustudent IN ('.implode(',', $students).')';
+   if (userIsAdmin()) {
+     $where .= ' AND (uto = '. getUserID() . ' OR uto = 0 OR ufrom = '. getUserID() . ' OR ufrom = 0)';
    }
    else {
-     $where .= ' AND (uto = '. getUserID() . ' OR uto = 0 OR ufrom = '. getUserID() . ' OR ufrom = 0)';
+     $students = getStudents();
+     $students[] = getUserID();
+     $where .= ' AND (ustudent IN ('.implode(',', $students).') OR uto = '. getUserID() . ' OR ufrom = '. getUserID() .' )';
    }
 
    if ($who != '') {
      if (!is_numeric($who))
        return sprintf(__t("%s must be numeric."), "'who'");
      $who = (int)$who;
-     if (userIsAdmin() || getUserID() == $who || getUserID() == guruIDID($who))
+     if (userIsAdmin() || getUserID() == $who || getUserID() == guruIDID($who) || userIsAssistant())
        $where .= ' AND ustudent = '.$who;
      else
        return __t("Access denied.");
@@ -103,8 +94,8 @@ function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
    $flexirows = array();
    foreach ($wpdb->get_results( $prep, ARRAY_A ) as $r) {
      $cell = array();
-     $cell[__t('from')] = xname($r['ufrom']);
-     $cell[__t('to')] = xname($r['uto']);
+     $cell[__t('from')] = nicefiedUsername($r['ufrom']);
+     $cell[__t('to')] = nicefiedUsername($r['uto']);
      $url =  cscurl('mail') . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m\n";
      $cell[__t('when')] = str_replace(' ', '<br>', $r['time']);
      if ($what=='')

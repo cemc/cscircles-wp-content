@@ -33,7 +33,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
    elseif ($user == "") {
      $u = $current_user;
    }
-   elseif ( userIsAdmin() ) {
+   elseif ( userIsAdmin() || userIsAssistant() ) {
      $u = get_userdata($user);
      if ($u === false) 
        return __t("User number not found.");

@@ -26,7 +26,7 @@ function dbProblemHistory($limit, $sortname, $sortorder, &$info, $req = NULL) {
    if ( !is_user_logged_in() )
      return __t("You must log in to view past submissions.");
    
-   if ( userIsAdmin() && $user != "") {
+   if ( (userIsAdmin() || userIsAssistant()) && $user != "") {
      $u = get_userdata($user);
      if ($u === false) 
        return sprintf(__t("User number %s not found."), $u);
@@ -50,7 +50,7 @@ WHERE userid = %d AND problem = %s", $uid, $problemname), ARRAY_N);
    
    if ($count==0) 
      return sprintf(__t('We do not have record of any submissions from user %1$s for problem %2$s.'),
-		    $uid.' '.$uname,
+		    $uname . ' (#'.$uid.')',
 		    $problemname);
    
 

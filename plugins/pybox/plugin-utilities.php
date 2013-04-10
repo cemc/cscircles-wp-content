@@ -96,10 +96,23 @@ function userIsAdmin() {
   return is_user_logged_in() && current_user_can('level_10');
 }
 
+function userIsAssistant() {
+  return userIsAdmin() || (getUserID() == CSCIRCLES_ASST_ID_DE);
+}
+
 function userIsTranslator() {
   if (!is_user_logged_in()) return false;
   global $wpdb;
   return 1==$wpdb->get_var("select count(1) from wp_user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);
+}
+
+function nicefiedUsername($uid, $short = TRUE) {
+  if (($uid == 0 && userIsAdmin()) || ($uid == getUserID())) 
+    return __t('me');
+  elseif ($uid == 0 || $uid == CSCIRCLES_ASST_ID_DE)
+    return $short ? __t('Asst.') : __t('CS Circles Assistant');
+  else
+    return get_userdata($uid)->user_login;
 }
 
 function guruIDID($id) {

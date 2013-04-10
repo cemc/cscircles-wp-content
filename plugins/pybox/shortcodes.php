@@ -645,7 +645,7 @@ if (!$facultative && !$scramble) {
       $r .= __t('Send a question by e-mail to: ');
       $r .= "<select class='recipient'>
 <option value='-1'>".__t("CS Circles Assistant")."</option>
-<option value='0'>".__t("(No guru is specified)")."</option>
+<option value='0'>".__t("(No guru specified in your profile)")."</option>
 </select>";
       $r .= '<br/></div>';
     }

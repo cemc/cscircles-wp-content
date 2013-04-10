@@ -12,16 +12,21 @@ function validate() {
     return array("error", __t("Student ID must be a number."));
   $s = (int)$s;
   
-  global $wpdb;
+  global $wpdb, $mailcond;
   
   $student = get_userdata($s);
   
   if ($student === False)
     return array("error", __t("No such student exists."));
   
-  if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin() ) )
+  if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin() || userIsAssistant()) )
     return array("error", __t("Access denied. You may need to log in first."));
-  
+
+  if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin()))
+    $mailcond = "(uto = ".getUserID()." OR ufrom = ".getUserID().")";
+  else // if viewing as foreign-language assistant, only can view problems to/from self
+    $mailcond = "1";
+
   if ($p != '') {
     $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",
 					     $p, pll_current_language()), ARRAY_A);
@@ -35,15 +40,6 @@ function validate() {
   return array("success", array("student"=>$student, "sid"=>$s, "problem"=>($p==''?NULL:$problem), "focus"=>$f));
 }
 
-function name($uid) {
-  if ($uid === 0 && userIsAdmin() || $uid === getUserID()) 
-    return 'me';
-  elseif ($uid == 0)
-    return __t('CS Circles Assistant');
-  else
-    return get_userdata($uid)->user_login;
-}
-
 function pbmailpage($options, $content) {
   if ( !is_user_logged_in() ) 
     return __t("You must log in order to view the mail page.");
@@ -55,7 +51,7 @@ function pbmailpage($options, $content) {
   
   extract($v[1]); // $student, $problem, $focus, $sid
   
-  $name = name($sid);
+  $name = nicefiedUsername($sid, FALSE);
   
   $r = '';
   
@@ -86,13 +82,14 @@ function pbmailpage($options, $content) {
     
     $r .= '<i>'.__t('Click on a message title to toggle the message open or closed.').'</i>';
     
-    $messages = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_pb_mail WHERE ustudent = %d AND problem = %s ORDER BY ID desc",
+    global $mailcond;
+    $messages = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_pb_mail WHERE ustudent = %d AND problem = %s AND $mailcond ORDER BY ID desc",
 						  $sid, $problem['slug']), ARRAY_A);
     
     foreach ($messages as $i=>$message) {
       $c =  ($message['ID']==$focus) ?  " showing" : " hiding";
       $r .= "<div class='collapseContain$c' style='border-radius: 5px;'>";
-      $title = __t("From")." ".name($message['ufrom']). ' '.__t('to').' '.name($message['uto']).', '.$message['time'];
+      $title = __t("From")." ".nicefiedUsername($message['ufrom'], FALSE). ' '.__t('to').' '.nicefiedUsername($message['uto'], FALSE).', '.$message['time'];
       if (count($messages)>1 && $i==0) $title .= " ".__t("(newest)");
       if (count($messages)>1 && $i==count($messages)-1) $title .= " " .__t("(oldest)");
       $r .= "<div class='collapseHead'><span class='icon'></span>$title</div>";
@@ -161,7 +158,7 @@ function pbmailpage($options, $content) {
     
   }
   
-  if ($cstudents > 0)
+  if ($cstudents > 0 || userIsAssistant())
     $r .= niceFlex('allstu', sprintf(__t("All messages ever about %s's work"), $name),
 		   'mail', 'dbMail', array('who'=>$sid));
   
@@ -194,7 +191,7 @@ function reselector(&$students, $cstudents) {
     "<br><div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
        <h1 style='margin-top: 0px;'>".sprintf($cstudents == 0 ? __t("View a different problem?") : __t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
        <form method='get'>";
-  if ($cstudents > 0) {
+  if ($cstudents > 0 || userIsAssistant()) { // slightly leaky but assistants will want to see progress
     $preamble .= __t("Select different user?");
     $options = array();
     $options[''] = __t('Me');
@@ -236,8 +233,11 @@ function niceFlex($id, $title, $fileSuffix, $functionName, $dbparams) {
   include_once("db-$fileSuffix.php");
   $url = UDBPREFIX . $fileSuffix . ".php";
   $bar = array();
-  $foo = call_user_func($functionName," limit 0,0", '', '', &$bar, $dbparams);
-  $rows = $foo['total'];
+  $query_result = call_user_func($functionName," limit 0,0", '', '', &$bar, $dbparams);
+  if (is_string($query_result))
+    $rows = __t("n/a");
+  else
+    $rows = $query_result['total'];
 
   return "<div class='collapseContain hiding' id='cc$id'>
 <div class='collapseHead' id='ch$id'><span class='icon'></span>$title ($rows)</div>
