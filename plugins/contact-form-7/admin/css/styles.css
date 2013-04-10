@@ -67,6 +67,7 @@ div.actions-link input {
 	border: none;
 	font-size: 11px;
 	cursor: pointer;
+	background: inherit;
 }
 
 div.actions-link input.copy {
@@ -150,6 +151,11 @@ label.disabled {
 	color: #777;
 }
 
+#messagesdiv div.inside {
+	height: 28em;
+	overflow: auto;
+}
+
 div.tag-generator {
 	position: relative;
 	background: transparent;
@@ -219,12 +225,13 @@ div.tg-pane input.tg-name {
 }
 
 div.tg-pane input.oneline {
-	width: 98%;
+	width: 94%;
 	font-size: smaller;
+	-moz-box-sizing: border-box;
 }
 
 div.tg-pane textarea {
-	width: 98%;
+	width: 94%;
 	height: 100px;
 	font-size: smaller;
 }

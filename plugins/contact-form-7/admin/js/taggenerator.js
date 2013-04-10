@@ -129,7 +129,7 @@
 
 		pane.find(':input.numeric').each(function(i) {
 			var val = $(this).val();
-			val = val.replace(/[^0-9]/g, '');
+			val = val.replace(/[^0-9.-]/g, '');
 			$(this).val(val);
 		});
 
@@ -168,7 +168,7 @@
 
 		pane.find(':input.date').each(function(i) {
 			var val = $(this).val();
-			if (! val.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) // 'yyyy-mm-dd' ISO 8601 format
+			if (! val.match(/^\d{4}-\d{2}-\d{2}$/)) // 'yyyy-mm-dd' ISO 8601 format
 				$(this).val('');
 		});
 
@@ -192,18 +192,22 @@
 
 			var options = [];
 
-			var size = scope.find(':input[name="size"]').val();
-			var maxlength = scope.find(':input[name="maxlength"]').val();
-			if (size || maxlength)
+			var size = scope.find(':input[name="size"]').val() || '';
+			var maxlength = scope.find(':input[name="maxlength"]').val() || '';
+			var cols = scope.find(':input[name="cols"]').val() || '';
+			var rows = scope.find(':input[name="rows"]').val() || '';
+
+			if ((cols || rows) && maxlength)
+				options.push(cols + 'x' + rows + '/' + maxlength);
+			else if (cols || rows)
+				options.push(cols + 'x' + rows);
+			else if (size || maxlength)
 				options.push(size + '/' + maxlength);
 
-			var cols = scope.find(':input[name="cols"]').val();
-			var rows = scope.find(':input[name="rows"]').val();
-			if (cols || rows)
-				options.push(cols + 'x' + rows);
+			scope.find('input.option').not(':checkbox,:radio').each(function(i) {
+				var excluded = ['size', 'maxlength', 'cols', 'rows'];
 
-			scope.find('input:text.option').each(function(i) {
-				if (-1 < $.inArray($(this).attr('name'), ['size', 'maxlength', 'cols', 'rows']))
+				if (-1 < $.inArray($(this).attr('name'), excluded))
 					return;
 
 				var val = $(this).val();
