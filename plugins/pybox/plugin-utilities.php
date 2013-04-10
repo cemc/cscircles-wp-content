@@ -475,5 +475,38 @@ function allSolvedCount() {
   return $wpdb->get_var("select count(1) from wp_pb_completed;");
 }
 
+function resendEmails() {
+  global $wpdb;
+  foreach ($wpdb->get_results("SELECT * FROM wp_pb_mail WHERE ID >= 3343 and ID <= 3377 and uto != 0", ARRAY_A) as $r) {
+    $problem = $r['problem'];
+    $pname = $wpdb->get_var("SELECT publicname FROM wp_pb_problems WHERE slug like '$problem'");
+    $purl = $wpdb->get_var("SELECT url FROM wp_pb_problems WHERE slug like '$problem'");
+    
+    $subject = "CS Circles - Message about $pname";
+    $to = get_user_by('id', $r['uto'])->user_email;
+
+    if ($r['ufrom'] == 0)
+      $mFrom = '"'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
+    else {
+      $user = get_user_by('id', $r['ufrom']);
+      $mFrom = '"' . $user->user_nicename . '" <' . $user->user_email . '>';
+    }
+
+
+    $student = $r['ustudent'];
+    $slug = $problem;
+    $mailref = $r['ID'];
+
+    $contents = $r['body']."\n===\n";
+    $contents .= __t("To send a reply message, please visit")."\n";
+    $contents .= cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m\n";
+    $contents .= __t("Problem URL:")." " . $purl . "\n";
+    $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
+
+    $contents .= "\n\n" . $to;
+
+    pb_mail($mFrom, "daveagp@gmail.com", $subject, $contents);
+  }
+}  
 
 // end of file
