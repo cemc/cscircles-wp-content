@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 23:44-0400\n"
+"POT-Creation-Date: 2013-04-15 11:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,6 +223,7 @@ msgid "Results for test case %1$s out of %2$s"
 msgstr ""
 
 #: ../wp-plugin/bounce_email_strings.php:3
+#: ../wp-plugin/plugin-utilities.php:513
 msgid ""
 "Your e-mail to {0} will not be read. If you are replying to ask for follow-"
 "up help about a problem, you must use the link in the previous email{1} \n"
@@ -415,110 +416,112 @@ msgid "first time"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:4
-msgid "timed out!"
+msgid "Marking all messages from this student about this problem as answered."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:5
-msgid "Hide history"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:6
-msgid "end of main program"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:7
 msgid "Click to try again."
 msgstr ""
 
+#: ../wp-plugin/js-translation.php:6 ../wp-plugin/shortcodes.php:764
+msgid "History"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:7 ../wp-plugin/shortcodes.php:53
+msgid "You have completed this problem at least once."
+msgstr ""
+
 #: ../wp-plugin/js-translation.php:8
+msgid "Hide history"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:9 ../wp-plugin/shortcodes.php:819
+msgid "Run program"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Incorrect, try again."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:11
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Running..."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:13
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:14 ../wp-plugin/shortcodes.php:798
+msgid "More actions..."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Go back to grading"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:16
+msgid "Your message was sent."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:17
+msgid "Error: could not connect to database."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:18
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
 "the user menu, in the top right corner of the page)."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:9
-msgid ""
-"The code box is empty. It should instead contain your best partial solution "
-"so far."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:10
-msgid "The database connected but found no data."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Error: could not connect to database."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:12 ../wp-plugin/shortcodes.php:53
-msgid "You have completed this problem at least once."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:13
-msgid "Hide input box"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Your message was sent."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:15 ../wp-plugin/shortcodes.php:798
-msgid "More actions..."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Go back to grading"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter input"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:749
-msgid "Rich editor"
-msgstr ""
-
 #: ../wp-plugin/js-translation.php:19
-msgid "Incorrect, try again."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:819
-msgid "Run program"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:21
 msgid "Enter test input"
 msgstr ""
 
+#: ../wp-plugin/js-translation.php:20
+msgid "Hide input box"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Run test"
+msgstr ""
+
 #: ../wp-plugin/js-translation.php:22
-msgid "Displaying {from} to {to} of {total} items"
+msgid "Enter input"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:23
-msgid "Running..."
+msgid "out of"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:24
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
+msgid "end of main program"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:25
-msgid "Page"
+msgid "Displaying {from} to {to} of {total} items"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:26 ../wp-plugin/shortcodes.php:764
-msgid "History"
+#: ../wp-plugin/js-translation.php:26
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:27
 msgid "Please enter a non-empty message."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:28
-msgid "Run test"
+#: ../wp-plugin/js-translation.php:28 ../wp-plugin/shortcodes.php:749
+msgid "Rich editor"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:29
@@ -526,31 +529,29 @@ msgid "start of tests"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:30
-msgid "Simple editor"
+msgid "timed out!"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:31
-msgid "out of"
+msgid "Page"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:32
-msgid ""
-"Could not grade program because communication to the server was not "
-"possible. Ajax information: "
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:33
 msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
 msgstr ""
 
+#: ../wp-plugin/js-translation.php:33
+msgid "Simple editor"
+msgstr ""
+
 #: ../wp-plugin/js-translation.php:34
-msgid "Enter test statements"
+msgid "The database connected but found no data."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:35
-msgid "Marking all messages from this student about this problem as answered."
+msgid "Enter test statements"
 msgstr ""
 
 #: ../wp-plugin/newuseremail.php:10

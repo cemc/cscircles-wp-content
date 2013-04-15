@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-09 23:44-0400\n"
+"POT-Creation-Date: 2013-04-15 11:25-0400\n"
 "PO-Revision-Date: 2013-04-04 19:08-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
@@ -230,6 +230,7 @@ msgid "Results for test case %1$s out of %2$s"
 msgstr "Ergebnisse für Test %1$s von %2$s"
 
 #: ../wp-plugin/bounce_email_strings.php:3
+#: ../wp-plugin/plugin-utilities.php:513
 msgid ""
 "Your e-mail to {0} will not be read. If you are replying to ask for follow-"
 "up help about a problem, you must use the link in the previous email{1} \n"
@@ -422,93 +423,34 @@ msgid "first time"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:4
-msgid "timed out!"
-msgstr "Zeitüberschreitung!"
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
 
 #: ../wp-plugin/js-translation.php:5
-msgid "Hide history"
-msgstr "Chronik verstecken"
-
-#: ../wp-plugin/js-translation.php:6
-msgid "end of main program"
-msgstr "Ende des Programms"
-
-#: ../wp-plugin/js-translation.php:7
 msgid "Click to try again."
 msgstr "Klicke hier, um es noch einmal zu versuchen."
 
-#: ../wp-plugin/js-translation.php:8
-msgid ""
-"Please select a valid recipient for the message. If you are working with a "
-"teacher or friend, select them as a guru on your Profile (available within "
-"the user menu, in the top right corner of the page)."
-msgstr ""
+#: ../wp-plugin/js-translation.php:6 ../wp-plugin/shortcodes.php:764
+msgid "History"
+msgstr "Chronik"
 
-#: ../wp-plugin/js-translation.php:9
-msgid ""
-"The code box is empty. It should instead contain your best partial solution "
-"so far."
-msgstr ""
-"Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste "
-"Teillösung enthalten."
-
-#: ../wp-plugin/js-translation.php:10
-msgid "The database connected but found no data."
-msgstr "Datenbank verbunden, keine Daten."
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Error: could not connect to database."
-msgstr "Fehler: kann keine Datenbankverbindung aufbauen."
-
-#: ../wp-plugin/js-translation.php:12 ../wp-plugin/shortcodes.php:53
+#: ../wp-plugin/js-translation.php:7 ../wp-plugin/shortcodes.php:53
 msgid "You have completed this problem at least once."
 msgstr "Du hast dieses Problem bereits gelöst."
 
-#: ../wp-plugin/js-translation.php:13
-msgid "Hide input box"
-msgstr "Eingabebox verstecken"
+#: ../wp-plugin/js-translation.php:8
+msgid "Hide history"
+msgstr "Chronik verstecken"
 
-#: ../wp-plugin/js-translation.php:14
-msgid "Your message was sent."
-msgstr "Deine Nachricht wurde gesendet."
-
-#: ../wp-plugin/js-translation.php:15 ../wp-plugin/shortcodes.php:798
-msgid "More actions..."
-msgstr "Mehr Optionen..."
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Go back to grading"
-msgstr "Zurück"
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter input"
-msgstr "Gib eine Eingaben an"
-
-#: ../wp-plugin/js-translation.php:18 ../wp-plugin/shortcodes.php:749
-msgid "Rich editor"
-msgstr "Erweiterter Editor"
-
-#: ../wp-plugin/js-translation.php:19
-msgid "Incorrect, try again."
-msgstr "Nicht richtig, versuche es nochmal."
-
-#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:819
+#: ../wp-plugin/js-translation.php:9 ../wp-plugin/shortcodes.php:819
 msgid "Run program"
 msgstr "Programm ausführen"
 
-#: ../wp-plugin/js-translation.php:21
-msgid "Enter test input"
-msgstr "Testeingabe"
+#: ../wp-plugin/js-translation.php:10
+msgid "Incorrect, try again."
+msgstr "Nicht richtig, versuche es nochmal."
 
-#: ../wp-plugin/js-translation.php:22
-msgid "Displaying {from} to {to} of {total} items"
-msgstr "Zeige {from} bis {to} von {total} Elementen"
-
-#: ../wp-plugin/js-translation.php:23
-msgid "Running..."
-msgstr "Läuft..."
-
-#: ../wp-plugin/js-translation.php:24
+#: ../wp-plugin/js-translation.php:11
 msgid ""
 "Unable to process 'send message' request. You might have lost your internet "
 "connection."
@@ -516,35 +458,11 @@ msgstr ""
 "Kann Anfrage nicht senden. Möglicherweise ist deine Internet-Verbindung "
 "abgebrochen."
 
-#: ../wp-plugin/js-translation.php:25
-msgid "Page"
-msgstr "Seite"
+#: ../wp-plugin/js-translation.php:12
+msgid "Running..."
+msgstr "Läuft..."
 
-#: ../wp-plugin/js-translation.php:26 ../wp-plugin/shortcodes.php:764
-msgid "History"
-msgstr "Chronik"
-
-#: ../wp-plugin/js-translation.php:27
-msgid "Please enter a non-empty message."
-msgstr "Gib eine nicht-leere Nachricht ein."
-
-#: ../wp-plugin/js-translation.php:28
-msgid "Run test"
-msgstr "Test ausführen"
-
-#: ../wp-plugin/js-translation.php:29
-msgid "start of tests"
-msgstr "Start der Tests"
-
-#: ../wp-plugin/js-translation.php:30
-msgid "Simple editor"
-msgstr "Einfacher Editor"
-
-#: ../wp-plugin/js-translation.php:31
-msgid "out of"
-msgstr "von"
-
-#: ../wp-plugin/js-translation.php:32
+#: ../wp-plugin/js-translation.php:13
 msgid ""
 "Could not grade program because communication to the server was not "
 "possible. Ajax information: "
@@ -552,7 +470,86 @@ msgstr ""
 "Dein Programm konnte nicht geprüft werden, da die Verbindung zum Server "
 "fehlschlug. Fehlerinformation: "
 
-#: ../wp-plugin/js-translation.php:33
+#: ../wp-plugin/js-translation.php:14 ../wp-plugin/shortcodes.php:798
+msgid "More actions..."
+msgstr "Mehr Optionen..."
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Go back to grading"
+msgstr "Zurück"
+
+#: ../wp-plugin/js-translation.php:16
+msgid "Your message was sent."
+msgstr "Deine Nachricht wurde gesendet."
+
+#: ../wp-plugin/js-translation.php:17
+msgid "Error: could not connect to database."
+msgstr "Fehler: kann keine Datenbankverbindung aufbauen."
+
+#: ../wp-plugin/js-translation.php:18
+msgid ""
+"Please select a valid recipient for the message. If you are working with a "
+"teacher or friend, select them as a guru on your Profile (available within "
+"the user menu, in the top right corner of the page)."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Enter test input"
+msgstr "Testeingabe"
+
+#: ../wp-plugin/js-translation.php:20
+msgid "Hide input box"
+msgstr "Eingabebox verstecken"
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Run test"
+msgstr "Test ausführen"
+
+#: ../wp-plugin/js-translation.php:22
+msgid "Enter input"
+msgstr "Gib eine Eingaben an"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "out of"
+msgstr "von"
+
+#: ../wp-plugin/js-translation.php:24
+msgid "end of main program"
+msgstr "Ende des Programms"
+
+#: ../wp-plugin/js-translation.php:25
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Zeige {from} bis {to} von {total} Elementen"
+
+#: ../wp-plugin/js-translation.php:26
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr ""
+"Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste "
+"Teillösung enthalten."
+
+#: ../wp-plugin/js-translation.php:27
+msgid "Please enter a non-empty message."
+msgstr "Gib eine nicht-leere Nachricht ein."
+
+#: ../wp-plugin/js-translation.php:28 ../wp-plugin/shortcodes.php:749
+msgid "Rich editor"
+msgstr "Erweiterter Editor"
+
+#: ../wp-plugin/js-translation.php:29
+msgid "start of tests"
+msgstr "Start der Tests"
+
+#: ../wp-plugin/js-translation.php:30
+msgid "timed out!"
+msgstr "Zeitüberschreitung!"
+
+#: ../wp-plugin/js-translation.php:31
+msgid "Page"
+msgstr "Seite"
+
+#: ../wp-plugin/js-translation.php:32
 msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
@@ -560,13 +557,17 @@ msgstr ""
 "Warnung: konnte Server nicht kontaktieren. Problem konnte nicht als "
 "'erledigt' markiert werden."
 
+#: ../wp-plugin/js-translation.php:33
+msgid "Simple editor"
+msgstr "Einfacher Editor"
+
 #: ../wp-plugin/js-translation.php:34
-msgid "Enter test statements"
-msgstr "Testbefehl eingeben"
+msgid "The database connected but found no data."
+msgstr "Datenbank verbunden, keine Daten."
 
 #: ../wp-plugin/js-translation.php:35
-msgid "Marking all messages from this student about this problem as answered."
-msgstr ""
+msgid "Enter test statements"
+msgstr "Testbefehl eingeben"
 
 #: ../wp-plugin/newuseremail.php:10
 msgid ""
