@@ -123,9 +123,15 @@ if ( ! empty( $header_image ) ) :
     // Houston, we have a new header image!
     echo get_the_post_thumbnail( $post->ID, 'post-thumbnail' );
 
- else : ?>
-   <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
-      <?php endif; // end check for featured image or standard header ?>
+ else : 
+   if (pll_current_language()=='de') {
+     echo '<img src="http://cscircles.cemc.uwaterloo.ca/wp-content/uploads/GermanHeader.jpg" width="1000" height="150" />';
+   }
+   else {?>
+     <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
+   <?php
+       }
+   endif; // end check for featured image or standard header ?>
 </a>
 <?php   if (stripos($_SERVER["HTTP_USER_AGENT"], 'MSIE')===FALSE)  echo '</div>'; ?>
 <?php endif; // end check for removed header image ?>
