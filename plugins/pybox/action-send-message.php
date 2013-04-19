@@ -42,7 +42,7 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
   if ($to == 0) {
     $to_emailaddr = CSCIRCLES_ASST_EMAIL;
     if (pll_current_language()=='de')
-      $to_emailaddr = CSCIRCLES_ASST_EMAIL_DE;
+      $to_emailaddr = get_user_by('id', CSCIRCLES_ASST_ID_DE)->user_email;
   }
   else {
     $to_emailaddr = get_user_by('id', $to)->user_email;

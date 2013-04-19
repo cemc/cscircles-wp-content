@@ -33,8 +33,7 @@ define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 // string constants
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
 define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
-define('CSCIRCLES_ASST_EMAIL_DE', 'daveagp@gmail.com');
-define('CSCIRCLES_ASST_ID_DE', 2);
+define('CSCIRCLES_ASST_ID_DE', 11351);
 define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca');
 define('CSCIRCLES_DEVELOPER_EMAIL', 'daveagp@gmail.com');
 
