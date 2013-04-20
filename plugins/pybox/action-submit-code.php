@@ -960,7 +960,8 @@ function submit_code_main($post, $_log_it) {
 if (realpath(__FILE__) == realpath($_SERVER["SCRIPT_FILENAME"])) {
   $post = $_POST;
   // you should do the next two lines iff magic quotes are enabled
-  if (true) { //get_magic_quotes_gpc() is not working for us??
+  $phpv = explode('.', PHP_VERSION);
+  if ($phpv[1] < 4) { // is not working for us??
     $post = array();
     foreach ($_POST as $k => $v) {$post[$k] = stripslashes($_POST[$k]);}
   }
