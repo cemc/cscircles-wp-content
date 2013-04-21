@@ -43,7 +43,7 @@ function pyBoxHead() {
   echo "<script type='text/javascript'>\n";
 
   // if language is english, define __t as doing nothing
-  if (get_locale() == 'fr_FR') {
+  if (get_locale() == 'fr_FR' || get_locale() == 'de_DE') {
     echo sprintf("var translationArray = %s;", jsonTranslationArray());
   }
   else {
