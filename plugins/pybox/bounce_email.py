@@ -36,8 +36,8 @@ if (link != None and link.group(1) == 'poste'): # french
    bodytemplate = "Votre e-mail à {0} ne sera pas lu. Si vous avez répondu à pour l'aide sur un problème, vous devez utiliser le lien{1}dans le courriel précédent. \nUne copie de votre e-mail est copiée ci-dessous."
    mFrom = '"Rebondeur Cercles informatiques" <bounces@cscircles.cemc.uwaterloo.ca>'
 elif (link != None and link.group(1) == 'post'): # german
-   bodytemplate = "TBD"
-   mFrom = 'TBD'
+   bodytemplate = "Deine Email an {0} wird nicht gelesen werden. Wenn du antwortest, um weitere Hilfsstellungen zu einem Problem zu erfragen, musst du den Link aus der vorherigen Email verwendenl \n{1}\nEs folgt eine Kopie deiner Email."
+   mFrom = '\"EI:CSC (no-reply)\" <bounces@cscircles.cemc.uwaterloo.ca>'
 else:
    bodytemplate = "Your e-mail to {0} will not be read. If you are replying to ask for follow-up help about a problem, you must use the link in the previous email{1} \nA copy of your e-mail follows."
    mFrom = '"CS Circles Bouncer" <bounces@cscircles.cemc.uwaterloo.ca>'
