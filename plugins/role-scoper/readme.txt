@@ -3,8 +3,8 @@ Contributors: kevinB
 Donate link: http://agapetry.net/news/introducing-role-scoper/#role-scoper-download
 Tags: restrict, access, permissions, cms, user, members, admin, category, categories, pages, posts, page, Post, privacy, private, attachment, files, rss, feed
 Requires at least: 3.0
-Tested up to: 3.5
-Stable Tag: 1.3.60
+Tested up to: 3.5.1
+Stable Tag: 1.3.61
 
 CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
 
@@ -111,6 +111,16 @@ Yes, at this point I plan to keep Role Scoper compatible with upcoming WP versio
 8. [View more screenshots](http://agapetry.net/news/introducing-role-scoper/)
 
 == Changelog ==
+
+= 1.3.61 - 26 Apr 2013 =
+* Fixed : If a custom post type is hierarchical, non-Administrators could not create new post if "Lock Top Pages" enabled for any roles
+* Fixed : RS roles were ineffective in some situations
+* Fixed : Assignment of term to a Media item did not cause it to be included in get_terms query results
+* Fixed : Multisite - Database error under some configurations when deleting or removing a user
+* Fixed : Multisite - Database error under some configurations when viewing user profile
+* Fixed? : PHP warning "mysql_real_escape_string() expects parameter 1 to be string" on post creation / update, under some configurations
+* Fixed : PHP warnings on activation
+* Lang : Dropped Italian translation due to reported inaccuracy
 
 = 1.3.60 - 23 Jan 2013 =
 * Fixed : Non-Administrators could not edit posts unless create_posts capability is defined for post type and included in their role (since 1.3.58)

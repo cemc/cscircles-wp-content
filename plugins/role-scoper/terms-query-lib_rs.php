@@ -75,12 +75,12 @@ function rs_tally_term_counts(&$terms, $taxonomy, $args = array()) {
 
 	$enabled_types = array();
 	foreach ( $post_types as $_post_type )
-		if ( scoper_get_otype_option( 'use_term_roles', 'post', $_post_type ) )
+		if ( scoper_get_otype_option( 'use_term_roles', 'post', $_post_type ) || ( 'attachment' == $_post_type ) )
 			$enabled_types []= $_post_type;
 			
 	if ( ! $enabled_types )
 		return;
-			
+
 	if ( $post_type ) {
 		$post_type = (array) $post_type;
 		$enabled_types = array_intersect( $enabled_types, $post_type );

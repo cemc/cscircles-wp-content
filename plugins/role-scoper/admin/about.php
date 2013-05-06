@@ -45,8 +45,6 @@ printf(__('Spanish by %1$s, technical revision by %2$s', 'scoper'), "<a href='ht
 echo '</li><li>';
 printf(__('French by %s', 'scoper'), "<a href='http://chryjs.free.fr' target='_blank'>Chryjs</a>");
 echo '</li><li>';
-printf(__('Italian by %s', 'scoper' ), "<a href='http://obertfsp.com' target='_blank'>Alberto Ramacciotti</a>");
-echo '</li></ul><p>';
 _e( 'I do try to be translator-friendly, but any untranslated captions are likely due to a flurry of recent additions and changes by the plugin developer.  Now there must be someone else who wants Role Scoper in their language...', 'scoper');
 echo '</p><p>';
 printf(__( 'Role Scoper is open source software released under the %1$s General Public License (GPL)%2$s. Due to limitations, obligations and non-technical aspirations common to most human beings, I will probably never again pursue uncommissioned plugin development on the scale Role Scoper has required. However, I do plan to provide some free support, correct bugs which emerge and revise the plugin for future WordPress versions. If it adds value to your website or saves you time and money, you can express appreciation in several ways:', 'scoper'), '<a href="http://www.opensource.org/licenses/gpl-license.php">', '</a>');

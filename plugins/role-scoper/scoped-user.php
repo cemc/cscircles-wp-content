@@ -86,6 +86,8 @@ class WP_Scoped_User extends WP_User {
 			// as long as the object or its terms are not configured to require that role to be term-assigned or object-assigned.
 
 			//log_mem_usage_rs( 'new Scoped User done' );
+			
+			add_filter('user_has_cap', array(&$this, 'reinstate_caps'), 99, 3);
 		}
 	}
 	
@@ -389,6 +391,16 @@ class WP_Scoped_User extends WP_User {
 		}
 		
 		$this->allcaps['is_scoped_user'] = true; // use this to detect when something tampers with scoped allcaps array
+	}
+	
+	function reinstate_caps( $wp_blogcaps, $orig_reqd_caps, $args ) {
+		global $current_user, $current_rs_user;
+	
+		if ( ( $args[1] == $current_rs_user->ID ) && array_diff_key( $current_rs_user->allcaps, $current_user->allcaps ) ) {
+			$current_user->allcaps = array_intersect( array_merge( $current_user->allcaps, $current_rs_user->allcaps ), array(true,1,'1') );
+		}
+		
+		return $wp_blogcaps;
 	}
 
 } // end class WP_Scoped_User

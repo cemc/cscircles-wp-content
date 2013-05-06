@@ -160,7 +160,10 @@ function scoper_sync_wproles($user_ids = '', $role_name_arg = '', $blog_id_arg =
 	
 	$wp_rolenames = array_keys($wp_roles->role_objects);
 
-	$uro_table = ( $blog_id_arg ) ? $wpdb->base_prefix . $blog_id_arg . '_' . 'user2role2object_rs' : $wpdb->user2role2object_rs;
+	if ( $blog_id_arg )
+		$uro_table = ( $blog_id_arg > 1 ) ? $wpdb->base_prefix . $blog_id_arg . '_' . 'user2role2object_rs' : $wpdb->base_prefix . 'user2role2object_rs';
+	else
+		$uro_table = $wpdb->user2role2object_rs;
 
 	$groups_table = $wpdb->groups_rs;
 	$user2group_table = $wpdb->user2group_rs;
@@ -480,7 +483,7 @@ function scoper_set_default_rs_roledefs() {
 		return;
 
 	require_once( SCOPER_ABSPATH . '/definitions_cr.php');	
-	$default_role_caps = cr_role_caps();
+	$default_role_caps = (array) cr_role_caps();
 
 	$wp_role_sync = array( 
 		'rs_post_contributor' 	=> 'contributor',
@@ -494,9 +497,12 @@ function scoper_set_default_rs_roledefs() {
 	$disable_caps = array();
 	
 	foreach ( $wp_role_sync as $rs_role_handle => $wp_role_name ) {
-		if ( isset( $wp_roles->role_objects[ $wp_role_name ] ) )
-			if ( $wp_missing_caps = array_diff_key( $default_role_caps[$rs_role_handle], $wp_roles->role_objects[$wp_role_name]->capabilities ) )
+		if ( isset( $wp_roles->role_objects[ $wp_role_name ] ) ) {
+			$def_caps = ( isset($default_role_caps[$rs_role_handle]) ) ? (array) $default_role_caps[$rs_role_handle] : array();
+			
+			if ( $wp_missing_caps = array_diff_key( $def_caps, $wp_roles->role_objects[$wp_role_name]->capabilities ) )
 				$disable_caps[$rs_role_handle] = $wp_missing_caps;
+		}
 	}
 
 	if ( $disable_caps ) {

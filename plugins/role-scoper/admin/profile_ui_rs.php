@@ -321,6 +321,9 @@ class ScoperProfileUI {
 					if ( count($blog_ids) > 1 )
 						switch_to_blog( $id );
 
+					if ( ! $wpdb->get_results( "SHOW TABLES LIKE '$wpdb->user2role2object_rs'" ) )
+						continue;
+					
 					ScoperProfileUI::display_ui_user_roles($user, true);  //arg: groups only
 				}
 				

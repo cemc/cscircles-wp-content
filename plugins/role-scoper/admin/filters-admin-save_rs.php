@@ -431,27 +431,27 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 	// Enforce any page parent filtering which may have been dictated by the flt_post_status filter, which executes earlier.
 	function scoper_flt_page_parent ($parent_id) {
 		if ( 'no_parent_filter' == scoper_get_option( 'lock_top_pages' ) )
-			return $parent_id;
+			return (int) $parent_id;
 	
 		if ( ! empty($_REQUEST['post_ID']) ) 
 			$post_id = $_REQUEST['post_ID'];
 		elseif ( ! empty($_REQUEST['post_id']) )
 			$post_id = $_REQUEST['post_id'];
 		else
-			return $parent_id;
+			return (int) $parent_id;
 			
 		if ( ! empty( $post_id ) )
 			if ( $parent_id == $post_id )	// normal revision save
-				return $parent_id;
+				return (int) $parent_id;
 		
 		if ( defined( 'RVY_VERSION' ) ) {
 			global $revisionary;
 			if ( ! empty($revisionary->admin->revision_save_in_progress) )
-				return $parent_id;
+				return (int) $parent_id;
 		}
 		
 		if ( empty($_POST['post_type']) )
-			return $parent_id;
+			return (int) $parent_id;
 		
 		// Make sure the selected parent is valid.  Merely an anti-hacking precaution to deal with manually fudged POST data		
 		global $scoper, $wpdb;
@@ -491,13 +491,13 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 				} elseif ( $valid_parents ) {
 					// otherwise default to a valid parent
 					sort( $valid_parents );
-					$parent_id = current($valid_parents);
-					$_POST['parent_id'] = $parent_id; // for subsequent post_status filter
+					$parent_id = reset($valid_parents);
+					$_POST['parent_id'] = (int) $parent_id; // for subsequent post_status filter
 				}
 			}
 		}
 			
-		return $parent_id;
+		return (int) $parent_id;
 	}
 	
 	function scoper_get_page_descendant_ids($page_id, $pages = '' ) {

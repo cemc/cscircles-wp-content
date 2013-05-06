@@ -728,7 +728,7 @@ class ScoperAdminFilters
 			
 		if ( ! $post_type_obj->hierarchical )
 			return true;
-			
+
 		// currently used only for page type, or for all if constant is set
 		$top_pages_locked = scoper_get_option( 'lock_top_pages' );
 			
@@ -743,7 +743,8 @@ class ScoperAdminFilters
 				$roles = $GLOBALS['scoper']->role_defs->qualify_roles($reqd_caps);
 				return array_intersect_key($roles, $GLOBALS['current_rs_user']->blog_roles[ANY_CONTENT_DATE_RS]);
 			}
-		}
+		} else
+			return true;
 	}		
 } // end class
 
