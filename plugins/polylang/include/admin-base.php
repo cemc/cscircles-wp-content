@@ -127,19 +127,27 @@ class Polylang_Admin_Base extends Polylang_Base {
 			// try to download the file
 			foreach ($versions as $version) {
 				$resp = wp_remote_get($base."$version/messages/$locale.mo", $args + array('filename' => $mofile));
-				if (is_wp_error($resp) || 200 != $resp['response']['code'])
+				if (is_wp_error($resp) || 200 != $resp['response']['code']) {
+					unlink($mofile); // otherwise we download a gzipped 404 page
 					continue;
-
+				}
 				// try to download ms and continents-cities files if exist (will not return false if failed)
 				// with new files introduced in WP 3.4
-				foreach (array('ms', 'continent-cities', 'admin', 'admin-network') as $file)
-					wp_remote_get($base."$version/messages/$file-$locale.mo", $args + array('filename' => WP_LANG_DIR."/$file-$locale.mo"));
-
+				foreach (array('ms', 'continents-cities', 'admin', 'admin-network') as $file) {
+					$resp = wp_remote_get($base."$version/messages/$file-$locale.mo", $args + array('filename' => WP_LANG_DIR."/$file-$locale.mo"));
+					if (is_wp_error($resp) || 200 != $resp['response']['code'])
+						unlink(WP_LANG_DIR."/$file-$locale.mo");
+				}
 				// try to download theme files if exist (will not return false if failed)
 				// FIXME not updated when the theme is updated outside a core update
-				foreach (array('twentyten', 'twentyeleven', 'twentytwelve', 'twentythirteen') as $theme)
-					wp_remote_get($base."$version/messages/$theme/$locale.mo", $args + array('filename' => get_theme_root()."/$theme/languages/$locale.mo"));
+				foreach (array('twentyten', 'twentyeleven', 'twentytwelve', 'twentythirteen') as $theme) {
+					if (!is_dir($theme_dir = get_theme_root()."/$theme/languages"))
+						continue; // the theme is not present
 
+					$resp = wp_remote_get($base."$version/messages/$theme/$locale.mo", $args + array('filename' => "$theme_dir/$locale.mo"));
+					if (is_wp_error($resp) || 200 != $resp['response']['code'])
+						unlink("$theme_dir/$locale.mo");
+				}
 				return true;
 			}
 		}
@@ -148,7 +156,6 @@ class Polylang_Admin_Base extends Polylang_Base {
 	}
 
 	// returns options available for the language switcher (menu or widget)
-	// FIXME do not include the dropdown in menu yet since I need to work on js
 	function get_switcher_options($type = 'widget', $key ='string') {
 		$options = array(
 			'show_names'   => array('string' => __('Displays language names', 'polylang'), 'default' => 1),
@@ -157,16 +164,21 @@ class Polylang_Admin_Base extends Polylang_Base {
 			'hide_current' => array('string' => __('Hides the current language', 'polylang'), 'default' => 0),
 		);
 
-		$options = ($type == 'menu') ?
-			array_merge(array('switcher' => array('string' => __('Displays a language switcher at the end of the menu', 'polylang'), 'default' => 0)), $options) :
-			array_merge($options, array('dropdown' => array('string' => __('Displays as dropdown', 'polylang'), 'default' => 0)));
+		if ($type != 'menu')
+			$options['dropdown'] = array('string' => __('Displays as dropdown', 'polylang'), 'default' => 0);
 
 		return array_map(create_function('$v', "return \$v['$key'];"), $options);
 	}
 
 	// register strings for translation making sure it is not duplicate or empty
-	function register_string($name, $string, $multiline = false) {
-		$to_register = array('name'=> $name, 'string' => $string, 'multiline' => $multiline);
+	function register_string($name, $string, $context = 'polylang', $multiline = false) {
+		// backward compatibility with Polylang older than 1.1
+		if (is_bool($context)) {
+			$multiline = $context;
+			$context = 'polylang';
+		}
+
+		$to_register = compact('name', 'string', 'context', 'multiline');
 		if (!in_array($to_register, $this->strings) && $to_register['string'])
 			$this->strings[] = $to_register;
 	}

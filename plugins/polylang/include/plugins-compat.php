@@ -2,19 +2,20 @@
 
 class Polylang_Plugins_Compat {
 	function __construct() {
+		global $polylang;
+
 		// YARPP
 		// just makes YARPP aware of the language taxonomy (after Polylang registered it)
 		add_action('init', create_function('',"\$GLOBALS['wp_taxonomies']['language']->yarpp_support = 1;"), 20);
 
 		// WordPress SEO by Yoast
-		if (is_admin())
+		if ($polylang->is_admin)
 			add_filter('override_load_textdomain', array(&$this, 'wpseo_override_load_textdomain'), 10, 2);
 
 		add_filter('get_terms_args', array(&$this, 'wpseo_remove_terms_filter'));
 
 		// Custom field template
 		add_action('dbx_post_advanced', array(&$this, 'cft_copy'));
-
 	}
 
 	// Unfortunately WPSEO loads the text domain before Polylang is able to modify the locale
@@ -40,7 +41,6 @@ class Polylang_Plugins_Compat {
 		if (isset($custom_field_template) && !empty($post) && isset($_REQUEST['from_post']) && isset($_REQUEST['new_lang']))
 			$_REQUEST['post'] = $post->ID;
 	}
-
 }
 
 new Polylang_Plugins_Compat();
