@@ -477,7 +477,8 @@ function allSolvedCount() {
 
 function resendEmails() {
   global $wpdb;
-  foreach ($wpdb->get_results("SELECT * FROM wp_pb_mail WHERE ID >= 3343 and ID <= 3377 and uto != 0", ARRAY_A) as $r) {
+  $return;
+  foreach ($wpdb->get_results("SELECT * FROM wp_pb_mail WHERE ID >= 3818 and ID <= 3835 and uto != 0", ARRAY_A) as $r) {
     $problem = $r['problem'];
     $pname = $wpdb->get_var("SELECT publicname FROM wp_pb_problems WHERE slug like '$problem'");
     $purl = $wpdb->get_var("SELECT url FROM wp_pb_problems WHERE slug like '$problem'");
@@ -497,7 +498,9 @@ function resendEmails() {
     $slug = $problem;
     $mailref = $r['ID'];
 
-    $contents = $r['body']."\n===\n";
+    $contents = "[Please accept our apologies for the delay in this message, which was caused by a mail daemon problem.]\n\n";
+    
+    $contents .= $r['body']."\n===\n";
     $contents .= __t("To send a reply message, please visit")."\n";
     $contents .= cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m\n";
     $contents .= __t("Problem URL:")." " . $purl . "\n";
@@ -505,7 +508,9 @@ function resendEmails() {
 
     //    $contents .= "\n\n" . $to;
 
+    pyboxlog("Trying to resend message $mailref:$mFrom|$to|$subject|$contents", TRUE);
     pb_mail($mFrom, $to, $subject, $contents);
+    pyboxlog("Resent message $mailref", TRUE);
   }
 }  
 
