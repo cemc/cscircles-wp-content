@@ -72,7 +72,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			add_filter('wp_delete_file', array(&$this, 'wp_delete_file'));
 
 			// creates a media translation
-			if (isset($_GET['action']) && $_GET['action'] == 'translate_media' && isset($_GET['new_lang']) && isset($_GET['from_media']))
+			if (isset($_GET['action'], $_GET['new_lang'], $_GET['from_media']) && $_GET['action'] == 'translate_media')
 				$this->translate_media();
 		}
 
@@ -165,7 +165,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 		// hidden field containing the post language for quick edit
 		if ($column == $this->get_first_language_column())
-			printf('<input type="hidden" name="lang_%d" value="%s" />', esc_attr($post_id), esc_attr($lang->slug));
+			printf('<div class="hidden" id="lang_%d">%s</div>', esc_attr($post_id), esc_html($lang->slug));
+
 
 		// link to edit post (or a translation)
 		if ($id = ($inline && $lang->slug != $_POST['old_lang']) ? ($language->slug == $lang->slug ? $post_id : 0) : $this->get_post($post_id, $language))
@@ -219,8 +220,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 		// do not filter post types such as nav_menu_item
 		if (isset($qvars['post_type']) && !in_array($qvars['post_type'], $this->post_types)) {
-			if (isset($qvars['lang']))
-				unset ($qvars['lang']);
+			unset ($qvars['lang']);
 			return;
 		}
 
@@ -393,8 +393,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 	// translate post parent if exists when using "Add new" (translation)
 	function wp_insert_post_parent($post_parent) {
-		return isset($_GET['from_post']) && isset($_GET['new_lang']) && ($id = wp_get_post_parent_id($_GET['from_post'])) &&
-			($parent = $this->get_translation('post', $id, $_GET['new_lang'])) ? $parent : $post_parent;
+		return isset($_GET['from_post'], $_GET['new_lang']) && ($id = wp_get_post_parent_id($_GET['from_post'])) && ($parent = $this->get_translation('post', $id, $_GET['new_lang'])) ? $parent : $post_parent;
 	}
 
 	// copy page template, menu order, comment and ping status when using "Add new" (translation)
@@ -402,7 +401,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	// copy the meta '_wp_page_template' in save_post is not sufficient (the dropdown list in the metabox is not updated)
 	// We need to set $post->page_template (and so need to wait for the availability of $post)
 	function dbx_post_advanced() {
-		if (isset($_GET['from_post']) && isset($_GET['new_lang'])) {
+		if (isset($_GET['from_post'], $_GET['new_lang'])) {
 			global $post;
 			$post->page_template = get_post_meta($_GET['from_post'], '_wp_page_template', true);
 
@@ -517,7 +516,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 		// the hook is called when the post is created
 		// let's use it translate terms and copy metas when using "Add new" (translation)
-		if (isset($_GET['from_post']) && isset($_GET['new_lang']))
+		if (isset($_GET['from_post'], $_GET['new_lang']))
 			$this->copy_post_metas($_GET['from_post'], $post_id, $_GET['new_lang']);
 
 		if (!isset($_POST['post_lang_choice']))
@@ -864,7 +863,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		$language = $this->get_language(substr($column, 9));
 
 		if ($column == $this->get_first_language_column())
-			printf('<input type="hidden" name="lang_%d" value="%s" />', $term_id, esc_attr($lang->slug));
+			printf('<div class="hidden" id="lang_%d">%s</div>', esc_attr($term_id), esc_html($lang->slug));
 
 		// link to edit term (or a translation)
 		if ($id = ($inline && $lang->slug != $_POST['old_lang']) ? ($language->slug == $lang->slug ? $term_id : 0) : $this->get_term($term_id, $language))
@@ -884,7 +883,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 	// translate term parent if exists when using "Add new" (translation)
 	function wp_dropdown_cats($output) {
-		if (isset($_GET['taxonomy']) && isset($_GET['from_tag']) && isset($_GET['new_lang']) && $id = get_term($_GET['from_tag'], $_GET['taxonomy'])->parent) {
+		if (isset($_GET['taxonomy'], $_GET['from_tag'], $_GET['new_lang']) && $id = get_term($_GET['from_tag'], $_GET['taxonomy'])->parent) {
 			if ($parent = $this->get_translation('term', $id, $_GET['new_lang']))
 				return str_replace('"'.$parent.'"', '"'.$parent.'" selected="selected"', $output);
 		}
