@@ -36,11 +36,32 @@ def send_unicode_email(mFrom, mTo, mSubject, mBody):
     composed['From'] = format_address(sender_name,
                                       'bounces@cscircles.cemc.uwaterloo.ca')
 
-    srv = smtplib.SMTP('localhost')
-    srv.send_message(composed)
-    srv.quit()
+    try:
+        srv = smtplib.SMTP('localhost')
+        srv.send_message(composed)
+        srv.quit()
+    except:
+        report_error([mFrom, mTo, mSubject, mBody])
 
-
+def report_error(msgArray):
+    import os, json, traceback
+    from time import localtime, strftime
+    log_filename = "send_email_errors_log.txt"
+    logged = False
+    errmsg = 'Failed at '+strftime("%a, %d %b %Y %H:%M:%S", localtime())+': '+json.dumps(msgArray)
+    try:
+        if os.path.isfile(log_filename):
+            with open(log_filename, 'a', encoding='utf-8') as f:
+                print(errmsg, file=f)
+                traceback.print_exc(file=f)
+                logged = True
+    except:
+        pass
+    if (not logged):
+        print('Could not write to ' + log_filename)
+        print(errmsg)
+        traceback.print_exc()
+                
 def main():
     lines = sys.stdin.readlines()
     mFrom = mohel(lines[0])
