@@ -107,10 +107,15 @@ function pyUser($options, $content) {
     $recent .= '<h2>'.__t("Latest Problems Completed").'</h2>';
     for ($i=0; $i<count($completed) && $i < 6; $i++) {
       $p = getSoft($problemsByNumber, $completed[$i]['problem'], FALSE);
-      if ($p !== FALSE)
-	$recent .= '<a class="open-same-window problem-completed" href="' . $p['url'] 
+      if ($p !== FALSE) {
+        if (getSoft($_GET, 'user', '')!='')
+          $url = '.?user='.$_GET['user'].'&problem='.$p['slug']; // if viewing someone else, link to problem-specific page
+        else
+          $url = $p['url'];
+	$recent .= '<a class="open-same-window problem-completed" href="' . $url
 	  . '" title="'. $completed[$i]['time'] .'">' 
 	  . $p['publicname'] . '</a>';
+      }
       else
 	$recent .= '['.$completed[$i]['problem'].']';
     }
@@ -177,7 +182,13 @@ function pyUser($options, $content) {
       $overview .= $lrow['number'] . ": " . $lrow['title'];
       $overview .= '</a></td><td>';
     }
-    $overview .= '<a class="open-same-window" href="' . $llink . '#pybox' . $prow['boxid'] . '">';
+
+    if (getSoft($_GET, 'user', '')!='')
+      $url = '.?user='.$_GET['user'].'&problem='.$prow['slug']; // if viewing someone else, link to problem-specific page
+    else
+      $url = $prow['url'];
+
+    $overview .= '<a class="open-same-window" href="' . $url . '">';
 
     if ($getall) 
       $overview .= '<img title="' . $prow['publicname'] . '" src="' . UFILES . 'icon.png"/>'.
