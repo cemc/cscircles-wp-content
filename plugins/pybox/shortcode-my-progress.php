@@ -91,36 +91,55 @@ function pyUser($options, $content) {
     echo "<h1 style='color: red;'>".__t("Viewing summary of all your students")."</h1>";
   }
 
+  if (getSoft($_GET, 'user', '')!='') {
+    echo "<p style='text-align:center'>
+Click on a problem name or <img style='height:1em' src='".UFILES."/icon.png'> icon to view the history for that problem, if available.
+</p>";
+  }
+  if (getSoft($_GET, 'problem', '')!='') {
+    echo "<p style='text-align:center'>
+<a href='".$problemsByNumber[$gp]['url']."'>Click here for \"".$problemsByNumber[$gp]['publicname'] ."\" problem statement</a>
+</p>";
+  }
+
+  $completed_table = $wpdb->prefix . "pb_completed";
+
+  $recent = "";
+  if (!$getall) {
+    // queries more than 6 in order to fill out progress table of all problems
+    $completed = $wpdb->get_results
+      ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC", ARRAY_A);
+    $recent .= '<h2>'.__t("Latest Problems Completed").'</h2>';
+    // but for now we only use 6 entries for "most recently completed" section
+    for ($i=0; $i<count($completed) && $i < 6; $i++) {
+      $p = getSoft($problemsByNumber, $completed[$i]['problem'], FALSE);
+      if ($p !== FALSE) {
+        if (getSoft($_GET, 'user', '')!='') {
+          if ($problemsByNumber[$p['slug']]['type'] == 'code')
+            $url = '.?user='.$_GET['user'].'&problem='.$p['slug']; // if viewing someone else, link to problem-specific page
+          else
+            $url = null;
+        }
+        else
+          $url = $p['url'];
+        $recent .= '<a class="open-same-window problem-completed" ';
+        if ($url != null)
+          $recent .= ' href="' . $url . '" ';
+        $recent .= ' title="'. $completed[$i]['time'] .'">' 
+            . $p['publicname'] . '</a>';
+      }
+      else
+	$recent .= '['.$completed[$i]['problem'].']';
+    }
+  }
+
   if ($getall && $gp != "" && $gp != "console") {
     echo niceFlex('perstudent',  sprintf(__t("Solutions by my students for %s"), 
 					 $problemsByNumber[$_GET['problem']]['publicname']),
 		  'problem-summary', 'dbProblemSummary', array('p'=>$_GET['problem']));
   }
 
-  $completed_table = $wpdb->prefix . "pb_completed";
-
-  if (!$getall) {
-    $recent = "";
-    // queries more than 6 in order to fill out progress table of all problems
-    $completed = $wpdb->get_results
-      ("SELECT * FROM $completed_table WHERE userid = $uid ORDER BY time DESC", ARRAY_A);
-    $recent .= '<h2>'.__t("Latest Problems Completed").'</h2>';
-    for ($i=0; $i<count($completed) && $i < 6; $i++) {
-      $p = getSoft($problemsByNumber, $completed[$i]['problem'], FALSE);
-      if ($p !== FALSE) {
-        if (getSoft($_GET, 'user', '')!='')
-          $url = '.?user='.$_GET['user'].'&problem='.$p['slug']; // if viewing someone else, link to problem-specific page
-        else
-          $url = $p['url'];
-	$recent .= '<a class="open-same-window problem-completed" href="' . $url
-	  . '" title="'. $completed[$i]['time'] .'">' 
-	  . $p['publicname'] . '</a>';
-      }
-      else
-	$recent .= '['.$completed[$i]['problem'].']';
-    }
-    echo $recent;
-  }
+  echo $recent;
 
   $dbparams = array();
   if (getSoft($_GET, 'user', '')!='')
@@ -183,12 +202,17 @@ function pyUser($options, $content) {
       $overview .= '</a></td><td>';
     }
 
-    if (getSoft($_GET, 'user', '')!='')
-      $url = '.?user='.$_GET['user'].'&problem='.$prow['slug']; // if viewing someone else, link to problem-specific page
+    if (getSoft($_GET, 'user', '')!='') {
+      if ($prow['type'] == 'code')
+        $url = '.?user='.$_GET['user'].'&problem='.$prow['slug']; // if viewing someone else, link to problem-specific page
+      else $url = null;
+    }
     else
       $url = $prow['url'];
 
-    $overview .= '<a class="open-same-window" href="' . $url . '">';
+    $overview .= '<a class="open-same-window" ';
+    if ($url != null) $overview .= ' href="' . $url . '" ';
+    $overview .= '>';
 
     if ($getall) 
       $overview .= '<img title="' . $prow['publicname'] . '" src="' . UFILES . 'icon.png"/>'.
