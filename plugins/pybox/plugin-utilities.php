@@ -303,9 +303,9 @@ function popUp($linkText, $popup, $class = "") {
 
 function JQpopUp($linkText, $popup) {
   return
-    "<div class='hintOuter'>"
-    . "<div class='hintLink'><a>$linkText</a></div>"
-    . "<div class='hintContent' style='display: none;'>$popup</div>"
+    "<div class='jqpHintOuter'>"
+    . "<div class='jqpHintLink'><a>$linkText</a></div>"
+    . "<div class='jqpHintContent' style='display: none;'>$popup</div>"
     . "</div>";
 }
 

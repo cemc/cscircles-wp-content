@@ -397,8 +397,8 @@ $('.flexigrid pre').live('dblclick', function (e) {
     var decoded = div.firstChild.nodeValue;
     pbSetText(id, decoded);
 });
-$('div.hintLink a').live('click', function (e) {
-    $(e.target).closest('.hintOuter').find('.hintContent').dialog({'dialogClass' : 'wp-dialog','width':800});
+$('div.jqpHintLink a').live('click', function (e) {
+    $(e.target).closest('.jqpHintOuter').find('.jqpHintContent').dialog({'dialogClass' : 'wp-dialog','width':800});
 });
 
 function vtabby(wptabsdiv) {

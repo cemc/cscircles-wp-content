@@ -503,15 +503,14 @@ _user_stdout.close()
   $submit_code_stderr = $stderr;
   $submit_code_errnice = stderrNiceify($stderr);
 
-  $errnice = preBox(stderrNiceify($stderr), $stderrlen);
   if (userIsAdmin()) 
-    $errnice .= JQpopUp("Debug: view unsanitized", 
-			preBox($stderr, $stderrlen));
+    $m .= JQpopUp("Debug: view unsanitized", 
+                  preBox($stderr, $stderrlen));
 
   if ($stderr=='')
     $errnice = '';
   else
-    $errnice = '<p>'.__t('Error messages: ') . $errnice . '</p>';
+    $errnice = '<p>'.__t('Error messages: ') . preBox(stderrNiceify($stderr), $stderrlen) . '</p>';
 
   if ($ok) 
     $m .= "<p>".__t('Program executed without crashing.')."</p>";
