@@ -3,8 +3,6 @@
 add_shortcode('pyVis', 'pyVisHandler');
 
 function pyVisHandler($options, $content) {
-  global $pyRenderCount;
-  $id = $pyRenderCount++;
   $res = ' ';
   $content = html_entity_decode(str_replace("\xC2\xA0", ' ', str_replace('<br/>', "\n", $content)));
   $content = trim($content);
@@ -20,8 +18,8 @@ function pyVisHandler($options, $content) {
   $content = trim(substr($content, 5, strlen($content)-11));
   return
     //    '<pre>'.$content.'</pre>'.
-    '<iframe id="the_iframe'.$id.'" width="100%" height="480" frameborder="0" src="../static/OnlinePythonTutor/v3/iframe-embed.html#'
+    '<iframe width="100%" height="480" frameborder="0" src="../static/OnlinePythonTutor/v3/iframe-embed.html#'
     .'code='.urlencode($content)
-    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&containerID=the_iframe'.$id.'"> </iframe>';
+    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true"> </iframe>';
 }
 
