@@ -20,6 +20,6 @@ function pyVisHandler($options, $content) {
     //    '<pre>'.$content.'</pre>'.
     '<iframe width="100%" height="480" frameborder="0" src="../static/OnlinePythonTutor/v3/iframe-embed.html#'
     .'code='.urlencode($content)
-    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true"> </iframe>';
+    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true&highlightLines"> </iframe>';
 }
 
