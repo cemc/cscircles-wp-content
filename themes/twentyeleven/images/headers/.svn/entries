@@ -1,8 +1,8 @@
 10
 
 dir
-23348
-http://core.svn.wordpress.org/tags/3.5.1/wp-content/themes/twentyeleven/images/headers
+24522
+http://core.svn.wordpress.org/tags/3.5.2/wp-content/themes/twentyeleven/images/headers
 http://core.svn.wordpress.org
 
 
@@ -162,14 +162,14 @@ has-props
 
 6385
 
-willow.jpg
+chessboard.jpg
 file
 
 
 
 
 2012-12-12T00:52:05.000000Z
-81097b6a2792cd8b04cc3e84a190a3f8
+020d2468a38f4691892e2c8b396d9077
 2012-11-07T18:49:10.703842Z
 22425
 markjaquith
@@ -194,7 +194,7 @@ has-props
 
 
 
-64681
+52548
 
 pine-cone.jpg
 file
@@ -230,14 +230,14 @@ has-props
 
 38272
 
-chessboard.jpg
+willow.jpg
 file
 
 
 
 
 2012-12-12T00:52:05.000000Z
-020d2468a38f4691892e2c8b396d9077
+81097b6a2792cd8b04cc3e84a190a3f8
 2012-11-07T18:49:10.703842Z
 22425
 markjaquith
@@ -262,7 +262,7 @@ has-props
 
 
 
-52548
+64681
 
 hanoi-thumbnail.jpg
 file
@@ -434,14 +434,14 @@ has-props
 
 62046
 
-pine-cone-thumbnail.jpg
+chessboard-thumbnail.jpg
 file
 
 
 
 
 
-a1e42527148d57970fcb064d5a1a8e97
+1c162276d2183cf69f9831402969700f
 2012-10-26T23:24:23.722185Z
 22316
 lancewillett
@@ -466,7 +466,7 @@ has-props
 
 
 
-3770
+6420
 
 hanoi.jpg
 file
@@ -502,14 +502,14 @@ has-props
 
 39868
 
-chessboard-thumbnail.jpg
+pine-cone-thumbnail.jpg
 file
 
 
 
 
 
-1c162276d2183cf69f9831402969700f
+a1e42527148d57970fcb064d5a1a8e97
 2012-10-26T23:24:23.722185Z
 22316
 lancewillett
@@ -534,7 +534,7 @@ has-props
 
 
 
-6420
+3770
 
 willow-thumbnail.jpg
 file

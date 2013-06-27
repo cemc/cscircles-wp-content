@@ -1,14 +1,14 @@
 10
 
 dir
-23348
-http://core.svn.wordpress.org/tags/3.5.1/wp-content/themes/twentytwelve
+24522
+http://core.svn.wordpress.org/tags/3.5.2/wp-content/themes/twentytwelve
 http://core.svn.wordpress.org
 
 
 
-2013-01-01T00:19:44.749852Z
-23244
+2013-04-26T13:58:47.148992Z
+24108
 potbot
 
 
@@ -675,9 +675,6 @@ has-props
 
 987
 
-css
-dir
-
 rtl.css
 file
 
@@ -711,6 +708,9 @@ has-props
 
 
 4712
+
+css
+dir
 
 content-quote.php
 file
@@ -919,6 +919,9 @@ has-props
 languages
 dir
 
+page-templates
+dir
+
 image.php
 file
 
@@ -952,9 +955,6 @@ has-props
 
 
 4079
-
-page-templates
-dir
 
 inc
 dir

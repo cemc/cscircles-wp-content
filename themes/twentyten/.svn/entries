@@ -1,8 +1,8 @@
 10
 
 dir
-23348
-http://core.svn.wordpress.org/tags/3.5.1/wp-content/themes/twentyten
+24522
+http://core.svn.wordpress.org/tags/3.5.2/wp-content/themes/twentyten
 http://core.svn.wordpress.org
 
 
@@ -128,40 +128,6 @@ has-props
 
 23340
 
-author.php
-file
-
-
-
-
-2012-06-28T02:36:05.000000Z
-240b8e7f734a86ce4dab1ada222cfbc3
-2010-06-11T16:55:41.131338Z
-15226
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1950
-
 rtl.css
 file
 
@@ -196,14 +162,14 @@ has-props
 
 4387
 
-search.php
+author.php
 file
 
 
 
 
 2012-06-28T02:36:05.000000Z
-4b23519c6fbcf41b994c6f0d21d159b5
+240b8e7f734a86ce4dab1ada222cfbc3
 2010-06-11T16:55:41.131338Z
 15226
 nacin
@@ -228,7 +194,7 @@ has-props
 
 
 
-1190
+1950
 
 sidebar-footer.php
 file
@@ -264,16 +230,16 @@ has-props
 
 1742
 
-index.php
+search.php
 file
 
 
 
 
 2012-06-28T02:36:05.000000Z
-ffe6b0bae4e69246b6815b732d2c1535
-2010-11-19T05:37:47.971224Z
-16480
+4b23519c6fbcf41b994c6f0d21d159b5
+2010-06-11T16:55:41.131338Z
+15226
 nacin
 has-props
 
@@ -296,7 +262,7 @@ has-props
 
 
 
-883
+1190
 
 404.php
 file
@@ -332,6 +298,40 @@ has-props
 
 841
 
+index.php
+file
+
+
+
+
+2012-06-28T02:36:05.000000Z
+ffe6b0bae4e69246b6815b732d2c1535
+2010-11-19T05:37:47.971224Z
+16480
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+883
+
 functions.php
 file
 
@@ -365,74 +365,6 @@ has-props
 
 
 19263
-
-loop.php
-file
-
-
-
-
-2012-12-12T00:52:01.000000Z
-6408aa211fc69d9e22f4d90d1c903d1a
-2012-10-11T20:12:40.677708Z
-22197
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9032
-
-onecolumn-page.php
-file
-
-
-
-
-2012-06-28T02:36:05.000000Z
-192f1d8d59f7bf5313058e0930fcef8b
-2010-10-09T09:17:42.620840Z
-15762
-nacin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-700
 
 sidebar.php
 file
@@ -468,16 +400,50 @@ has-props
 
 1503
 
-screenshot.png
+onecolumn-page.php
+file
+
+
+
+
+2012-06-28T02:36:05.000000Z
+192f1d8d59f7bf5313058e0930fcef8b
+2010-10-09T09:17:42.620840Z
+15762
+nacin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+700
+
+loop.php
 file
 
 
 
 
 2012-12-12T00:52:01.000000Z
-d04c5be9de11eb79fd0a69e4a6b587e7
-2012-10-26T23:25:08.215000Z
-22317
+6408aa211fc69d9e22f4d90d1c903d1a
+2012-10-11T20:12:40.677708Z
+22197
 lancewillett
 has-props
 
@@ -500,7 +466,7 @@ has-props
 
 
 
-256242
+9032
 
 license.txt
 file
@@ -535,6 +501,40 @@ has-props
 
 
 15129
+
+screenshot.png
+file
+
+
+
+
+2012-12-12T00:52:01.000000Z
+d04c5be9de11eb79fd0a69e4a6b587e7
+2012-10-26T23:25:08.215000Z
+22317
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+256242
 
 tag.php
 file

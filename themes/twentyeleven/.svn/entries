@@ -1,14 +1,14 @@
 10
 
 dir
-23348
-http://core.svn.wordpress.org/tags/3.5.1/wp-content/themes/twentyeleven
+24522
+http://core.svn.wordpress.org/tags/3.5.2/wp-content/themes/twentyeleven
 http://core.svn.wordpress.org
 
 
 
-2013-01-01T00:19:40.832342Z
-23242
+2013-04-26T13:58:43.923079Z
+24106
 potbot
 
 
@@ -552,40 +552,6 @@ has-props
 images
 dir
 
-archive.php
-file
-
-
-
-
-2012-04-11T17:25:24.000000Z
-b51974e6dee1e246d5a9bd6e2e48df98
-2011-11-10T18:37:20.249817Z
-19241
-ryan
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2426
-
 single.php
 file
 
@@ -619,6 +585,40 @@ has-props
 
 
 948
+
+archive.php
+file
+
+
+
+
+2012-04-11T17:25:24.000000Z
+b51974e6dee1e246d5a9bd6e2e48df98
+2011-11-10T18:37:20.249817Z
+19241
+ryan
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2426
 
 sidebar-page.php
 file
@@ -654,40 +654,6 @@ has-props
 
 563
 
-editor-style-rtl.css
-file
-
-
-
-
-2012-04-11T17:25:24.000000Z
-1d4c5b554f111b92b82040400d1b7b9a
-2011-10-29T00:17:37.746630Z
-19085
-azaozz
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-317
-
 content-page.php
 file
 
@@ -721,6 +687,40 @@ has-props
 
 
 777
+
+editor-style-rtl.css
+file
+
+
+
+
+2012-04-11T17:25:24.000000Z
+1d4c5b554f111b92b82040400d1b7b9a
+2011-10-29T00:17:37.746630Z
+19085
+azaozz
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+317
 
 js
 dir
@@ -840,40 +840,6 @@ has-props
 
 10976
 
-sidebar-footer.php
-file
-
-
-
-
-2012-04-11T17:25:24.000000Z
-4efba9f1ccb4f58dad23a04190d88b4b
-2011-05-15T08:54:32.307501Z
-17933
-dd32
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1233
-
 content-quote.php
 file
 
@@ -908,17 +874,17 @@ has-props
 
 3191
 
-content-gallery.php
+sidebar-footer.php
 file
 
 
 
 
-2012-12-12T00:52:06.000000Z
-88b9291321c52831c279bc6567bc06fa
-2012-10-11T21:30:42.559556Z
-22199
-lancewillett
+2012-04-11T17:25:24.000000Z
+4efba9f1ccb4f58dad23a04190d88b4b
+2011-05-15T08:54:32.307501Z
+17933
+dd32
 has-props
 
 
@@ -940,7 +906,7 @@ has-props
 
 
 
-3991
+1233
 
 index.php
 file
@@ -975,6 +941,40 @@ has-props
 
 
 1491
+
+content-gallery.php
+file
+
+
+
+
+2012-12-12T00:52:06.000000Z
+88b9291321c52831c279bc6567bc06fa
+2012-10-11T21:30:42.559556Z
+22199
+lancewillett
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3991
 
 functions.php
 file

@@ -1,8 +1,8 @@
 10
 
 dir
-23348
-http://core.svn.wordpress.org/tags/3.5.1/wp-content/themes/twentyeleven/images
+24522
+http://core.svn.wordpress.org/tags/3.5.2/wp-content/themes/twentyeleven/images
 http://core.svn.wordpress.org
 
 
@@ -94,17 +94,17 @@ has-props
 
 272
 
-comment-bubble-dark-rtl.png
+comment-arrow-bypostauthor-dark-rtl.png
 file
 
 
 
 
-2012-12-12T00:52:05.000000Z
-1acac122161b958ad01c94c0227c4285
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
+
+b0fdc3c57b3593cd0a95d4229eec528d
+2012-10-26T23:24:23.722185Z
+22316
+lancewillett
 has-props
 
 
@@ -126,7 +126,7 @@ has-props
 
 
 
-856
+255
 
 comment-arrow-dark.png
 file
@@ -162,48 +162,14 @@ has-props
 
 348
 
-comment-arrow-bypostauthor-dark-rtl.png
-file
-
-
-
-
-
-b0fdc3c57b3593cd0a95d4229eec528d
-2012-10-26T23:24:23.722185Z
-22316
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-255
-
-comment-bubble-dark.png
+comment-bubble-dark-rtl.png
 file
 
 
 
 
 2012-12-12T00:52:05.000000Z
-82284abf5a3c8c004f41b606d6adae2c
+1acac122161b958ad01c94c0227c4285
 2012-11-07T18:49:10.703842Z
 22425
 markjaquith
@@ -228,7 +194,7 @@ has-props
 
 
 
-872
+856
 
 comment-arrow-bypostauthor-dark.png
 file
@@ -264,6 +230,43 @@ has-props
 
 237
 
+comment-bubble-dark.png
+file
+
+
+
+
+2012-12-12T00:52:05.000000Z
+82284abf5a3c8c004f41b606d6adae2c
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+872
+
+headers
+dir
+
 wordpress.png
 file
 
@@ -297,9 +300,6 @@ has-props
 
 
 794
-
-headers
-dir
 
 comment-arrow-rtl.png
 file
@@ -335,17 +335,17 @@ has-props
 
 271
 
-comment-bubble-rtl.png
+comment-arrow-bypostauthor-rtl.png
 file
 
 
 
 
-2012-12-12T00:52:05.000000Z
-7b74133efd809fd905ea6d390cbfa3c9
-2012-11-07T18:49:10.703842Z
-22425
-markjaquith
+
+c68fa620eeb4546c2d4a3548c148bb9f
+2012-10-26T23:24:23.722185Z
+22316
+lancewillett
 has-props
 
 
@@ -367,7 +367,7 @@ has-props
 
 
 
-783
+257
 
 comment-arrow.png
 file
@@ -403,48 +403,14 @@ has-props
 
 250
 
-comment-arrow-bypostauthor-rtl.png
-file
-
-
-
-
-
-c68fa620eeb4546c2d4a3548c148bb9f
-2012-10-26T23:24:23.722185Z
-22316
-lancewillett
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-257
-
-comment-bubble.png
+comment-bubble-rtl.png
 file
 
 
 
 
 2012-12-12T00:52:05.000000Z
-d057503f43c87876f0304338bcd73a81
+7b74133efd809fd905ea6d390cbfa3c9
 2012-11-07T18:49:10.703842Z
 22425
 markjaquith
@@ -469,7 +435,7 @@ has-props
 
 
 
-791
+783
 
 comment-arrow-bypostauthor.png
 file
@@ -504,4 +470,38 @@ has-props
 
 
 239
+
+comment-bubble.png
+file
+
+
+
+
+2012-12-12T00:52:05.000000Z
+d057503f43c87876f0304338bcd73a81
+2012-11-07T18:49:10.703842Z
+22425
+markjaquith
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+791
 
