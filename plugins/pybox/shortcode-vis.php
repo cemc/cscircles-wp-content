@@ -16,10 +16,12 @@ function pyVisHandler($options, $content) {
   if (strlen($content) < 11 || substr($content, 0, 5) != '<pre>' || substr($content, -6) != "</pre>")
     return "Error: interior of pyVis must be <pre><pre>...</pre></pre>Found <pre>".substr($content, 0, 5).' '.substr($content, strlen($content)-6, 6)."</pre>";
   $content = trim(substr($content, 5, strlen($content)-11));
-  return
-    //    '<pre>'.$content.'</pre>'.
-    '<iframe width="100%" height="480" frameborder="0" src="../static/OnlinePythonTutor/v3/iframe-embed.html#'
+  $tag = 'iframe'; $urlname = 'src';
+  //$tag = 'object'; $urlname = 'data'; // doesn't seem to be different
+  $url = '../static/OnlinePythonTutor/v3/iframe-embed.html#'
     .'code='.urlencode($content)
-    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true&highlightLines"> </iframe>';
+    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true&highlightLines"';
+  return 
+    "<$tag width='100%' height='480' frameborder='0' $urlname='$url'></$tag>";
 }
 
