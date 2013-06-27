@@ -3,6 +3,7 @@
 // used only for frontend
 class Polylang_Core extends Polylang_base {
 	public $curlang; // current language
+	public $index = 'index.php'; // need this before $wp_rewrite is created, also harcoded in wp-includes/rewrite.php
 
 	private $default_locale;
 	private $list_textdomains = array(); // all text domains
@@ -240,8 +241,7 @@ class Polylang_Core extends Polylang_base {
 		// this function was hooked to setup_theme with priority 5 (after Polylang::init)
 		// has been moved to plugins_loaded, 1 due to WPSEO and to be consistent with WPML
 		// but $wp_rewrite is not defined yet, so let register our taxonomy partially
-		$index = 'index.php'; // $wp_rewrite->index is hardcoded in wp-includes/rewrite.php
-		register_taxonomy('language', null , array('label' => false, 'query_var'=>'lang', 'rewrite'=>false));
+		register_taxonomy('language', null , array('label' => false, 'query_var'=>'lang', 'rewrite'=>false)); // FIXME put this in base.php ?
 
 		if (!$languages_list = $this->get_languages_list())
 			return;
@@ -263,7 +263,7 @@ class Polylang_Core extends Polylang_base {
 			// some PHP setups turn requests for / into /index.php in REQUEST_URI
 			// thanks to Gonçalo Peres for pointing out the issue with queries unknown to WP
 			// http://wordpress.org/support/topic/plugin-polylang-language-homepage-redirection-problem-and-solution-but-incomplete?replies=4#post-2729566
-			if (str_replace('www.', '', home_url('/')) == trailingslashit((is_ssl() ? 'https://' : 'http://').str_replace('www.', '', $_SERVER['HTTP_HOST']).str_replace(array($index, '?'.$_SERVER['QUERY_STRING']), array('', ''), $_SERVER['REQUEST_URI']))) {
+			if (str_replace('www.', '', home_url('/')) == trailingslashit((is_ssl() ? 'https://' : 'http://').str_replace('www.', '', $_SERVER['HTTP_HOST']).str_replace(array($this->index, '?'.$_SERVER['QUERY_STRING']), array('', ''), $_SERVER['REQUEST_URI']))) {
 				// take care to post & page preview http://wordpress.org/support/topic/static-frontpage-url-parameter-url-language-information
 				if (isset($_GET['preview']) && ( (isset($_GET['p']) && $id = $_GET['p']) || (isset($_GET['page_id']) && $id = $_GET['page_id']) ))
 					$this->curlang = ($lg = $this->get_post_language($id)) ? $lg : $this->get_language($this->options['default_lang']);
@@ -282,7 +282,7 @@ class Polylang_Core extends Polylang_base {
 
 			// first test for wp-login, wp-signup, wp-activate
 			// stripos for case insensitive file systems
-			elseif (false === stripos($_SERVER['SCRIPT_NAME'], $index) || !$this->options['hide_default'])
+			elseif (false === stripos($_SERVER['SCRIPT_NAME'], $this->index) || !$this->options['hide_default'])
 				$this->curlang = $this->get_preferred_language();
 
 			else
@@ -475,8 +475,7 @@ class Polylang_Core extends Polylang_base {
 
 		// special case for wp-signup.php & wp-activate.php
 		// stripos for case insensitive file systems
-		// $wp_rewrite->index is hardcoded in wp-includes/rewrite.php
-		if (false === stripos($_SERVER['SCRIPT_NAME'], 'index.php')) {
+		if (false === stripos($_SERVER['SCRIPT_NAME'], $GLOBALS['wp_rewrite']->index)) {
 			$this->curlang = $this->get_preferred_language();
 			return;
 		}
@@ -586,7 +585,7 @@ class Polylang_Core extends Polylang_base {
 	function option_sticky_posts($posts) {
 		if ($this->curlang && !empty($posts)) {
 			foreach ($posts as $key=>$post_id) {
-				if ($this->get_post_language($post_id)->term_id != $this->curlang->term_id)
+				if ($this->get_post_language($post_id)->term_id != $this->curlang->term_id) // FIXME query in foreach
 					unset($posts[$key]);
 			}
 		}
@@ -596,10 +595,8 @@ class Polylang_Core extends Polylang_base {
 	// filters categories and post tags by language when needed
 	function terms_clauses($clauses, $taxonomies, $args) {
 		// does nothing except on taxonomies which are filterable
-		foreach ($taxonomies as $tax) {
-			if (!in_array($tax, $this->taxonomies))
-				return $clauses;
-		}
+		if (!array_intersect($taxonomies, $this->taxonomies))
+			return $clauses;
 
 		// adds our clauses to filter by language
 		return $this->_terms_clauses($clauses, isset($args['lang']) ? $args['lang'] : $this->curlang);
@@ -610,7 +607,7 @@ class Polylang_Core extends Polylang_base {
 		// outputs references to translated pages (if exists) in the html head section
 		foreach ($this->get_languages_list() as $language) {
 			if ($language->slug != $this->curlang->slug && $url = $this->get_translation_url($language))
-				printf("<link hreflang='%s' href='%s' rel='alternate' />\n", esc_attr($language->slug), esc_url($url));
+				printf('<link hreflang="%s" href="%s" rel="alternate" />'."\n", esc_attr($language->slug), esc_url($url));
 		}
 	}
 
@@ -753,7 +750,7 @@ class Polylang_Core extends Polylang_base {
 	function posts_where($sql) {
 		global $wpdb;
 		preg_match("#post_type = '([^']+)'#", $sql, $matches);	// find the queried post type
-		return !empty($matches[1]) && in_array($matches[1], $this->post_types) ? $sql . $wpdb->prepare(" AND pll_tr.term_taxonomy_id IN (%s)", $this->curlang->term_taxonomy_id) : $sql;
+		return !empty($matches[1]) && in_array($matches[1], $this->post_types) ? $sql . $wpdb->prepare(" AND pll_tr.term_taxonomy_id = %d", $this->curlang->term_taxonomy_id) : $sql;
 	}
 
 	// modifies the author and date links to add the language parameter (as well as feed link)
@@ -842,7 +839,7 @@ class Polylang_Core extends Polylang_base {
 		elseif (is_home() || is_tax('language') )
 			$url = $this->get_home_url($language);
 
-		return $this->translation_url[$language->slug] = (isset($url) && !is_wp_error($url) ? $url : null);
+		return $this->translation_url[$language->slug] = apply_filters('pll_translation_url', (isset($url) && !is_wp_error($url) ? $url : null), $language->slug);
 	}
 
 	// filters the widgets according to the current language
@@ -868,28 +865,32 @@ class Polylang_Core extends Polylang_base {
 		if (!(did_action('template_redirect') || did_action('login_init')) || rtrim($url,'/') != $this->home)
 			return $url;
 
-		$theme = get_theme_root();
-		$is_get_search_form = false;
+		$white_list = apply_filters('pll_home_url_white_list',  array(
+			array('file' => get_theme_root()),
+			array('function' => 'wp_nav_menu'),
+			array('function' => 'login_footer')
+		));
 
-		// FIXME can I decrease the size of the array to improve speed?
+		$black_list = apply_filters('pll_home_url_black_list',  array(array('function' => 'get_search_form')));
+
 		foreach (array_reverse(debug_backtrace(/*!DEBUG_BACKTRACE_PROVIDE_OBJECT|DEBUG_BACKTRACE_IGNORE_ARGS*/)) as $trace) {
 			// searchform.php is not passed through get_search_form filter prior to WP 3.6
 			if (isset($trace['file']) && strpos($trace['file'], 'searchform.php'))
 				return $this->using_permalinks && version_compare($GLOBALS['wp_version'], '3.6', '<') ? $this->get_home_url($this->curlang, true) : $url;
 
-			// don't interfere with get_search_form filter which I prefer to use when possible
-			if ($trace['function'] == 'get_search_form')
-				$is_get_search_form = true;
+			foreach ($black_list as $v) {
+				if ((isset($trace['file'], $v['file']) && strpos($trace['file'], $v['file']) !== false) || (isset($trace['function'], $v['function']) && $trace['function'] == $v['function']))
+					return $url;
+			}
 
-
-			if ($trace['function'] == 'wp_nav_menu' || $trace['function'] == 'login_footer' ||
-				// direct call from the theme
-				( !$is_get_search_form && isset($trace['file']) && strpos($trace['file'], $theme) !== false && in_array($trace['function'], array('home_url', 'get_home_url', 'bloginfo', 'get_bloginfo')) ))
-				// remove trailing slash if there is none in requested url
-				return empty($path) ? rtrim($this->get_home_url($this->curlang), '/') : $this->get_home_url($this->curlang);
+			foreach ($white_list as $v) {
+				if ((isset($trace['function'], $v['function']) && $trace['function'] == $v['function']) ||
+					(isset($trace['file'], $v['file']) && strpos($trace['file'], $v['file']) !== false && in_array($trace['function'], array('home_url', 'get_home_url', 'bloginfo', 'get_bloginfo'))))
+					$ok = true;
+			}
 		}
 
-		return $url;
+		return empty($ok) ? $url : (empty($path) ? rtrim($this->get_home_url($this->curlang), '/') : $this->get_home_url($this->curlang));
 	}
 
 	// returns the home url in the right language
@@ -924,6 +925,9 @@ class Polylang_Core extends Polylang_base {
 			elseif ($this->get_post_language($post_id))
 				{}
 
+			elseif (($parent_id = wp_get_post_parent_id($post_id)) && $parent_lang = $this->get_post_language($parent_id))
+				$this->set_post_language($post_id, $parent_lang);
+
 			else
 				$this->set_post_language($post_id, $this->get_current_language());
 		}
@@ -938,6 +942,9 @@ class Polylang_Core extends Polylang_base {
 
 			elseif ($this->get_term_language($term_id))
 				{}
+
+			elseif (($term = get_term($term_id, $taxonomy)) && !empty($term->parent) && $parent_lang = $this->get_term_language($term->parent))
+				$this->set_term_language($term_id, $parent_lang);
 
 			else
 				$this->set_term_language($term_id, $this->get_current_language());
@@ -958,6 +965,7 @@ class Polylang_Core extends Polylang_base {
 			'hide_if_no_translation' => 0, // don't hide the link if there is no translation
 			'hide_current'           => 0, // don't hide current language
 			'post_id'                => null, // if not null, link to translations of post defined by post_id
+			'raw'                    => 0, // set this to true to build your own custom language switcher
 		);
 		extract(wp_parse_args($args, $defaults));
 
@@ -965,51 +973,49 @@ class Polylang_Core extends Polylang_base {
 			$output = $this->dropdown_languages(array('hide_empty' => $hide_if_empty, 'selected' => $this->curlang->slug));
 
 		else {
-			$output = '';
+			$output = !empty($raw) ? array() : '';
 
 			foreach ($this->get_languages_list(array('hide_empty' => $hide_if_empty)) as $language) {
-				$classes = array();
+				$id = (int) $language->term_id;
+				$slug = $language->slug;
 
 				// hide current language
-				if ($this->curlang->term_id == $language->term_id && $hide_current)
+				if ($this->curlang->term_id == $id && $hide_current)
 					continue;
 
 				$url = $post_id !== null && ($tr_id = $this->get_post($post_id, $language)) ? get_permalink($tr_id) :
 					$post_id === null && !$force_home ? $this->get_translation_url($language) : null;
 
-				if (!isset($url))
-					$classes[] = 'no-translation ';
-
-				$url = apply_filters('pll_the_language_link', $url, $language->slug, $language->description);
+				$no_translation = empty($url); // keep this for future
+				$url = apply_filters('pll_the_language_link', $url, $slug, $language->description);
 
 				// hide if no translation exists
-				if (!isset($url) && $hide_if_no_translation)
+				if (empty($url) && $hide_if_no_translation)
 					continue;
 
-				$url = isset($url) ? $url : $this->get_home_url($language); // if the page is not translated, link to the home page
+				$url = empty($url) ? $this->get_home_url($language) : $url ; // if the page is not translated, link to the home page
 
-				array_push($classes, 'lang-item', 'lang-item-' . esc_attr($language->term_id), 'lang-item-' . esc_attr($language->slug));
-				if ($language->term_id == $this->curlang->term_id)
+				$name = $show_names || !$show_flags || $raw ? esc_html($display_names_as == 'slug' ? $slug : $language->name) : '';
+				$flag = $show_flags || $raw ? $this->get_flag($language, $raw && !$show_flags) : '';
+				$current_lang = $id == $this->curlang->term_id;
+
+				// classes
+				$classes = array('lang-item', 'lang-item-' . esc_attr($id), 'lang-item-' . esc_attr($slug));
+				if ($no_translation)
+					$classes[] = 'no-translation';
+				if ($current_lang)
 					$classes[] = 'current-lang';
 
-				$flag = $show_flags ? $this->get_flag($language) : '';
-				$name = $show_names || !$show_flags ? esc_html($display_names_as == 'slug' ? $language->slug : $language->name) : '';
+				if (!empty($raw))
+					$output[] = compact('id', 'slug', 'name', 'url', 'flag', 'current_lang', 'no_translation', 'classes');
 
-				if (isset($item)) {
-					$i = clone $item;
-					$i->title = $show_flags && $show_names ? $flag.'&nbsp;'.$name : $flag.$name;
-					$i->url = $url;
-					$i->lang = $language->slug; // save this for use in nav_menu_link_attributes
-					$i->classes = $classes;
-					$output[] = $i;
-				}
 				else {
 					if ($menu)
-						$classes[] = 'menu-item'; // backward compatibility
+						$classes[] = 'menu-item'; // backward compatibility < 1.1
 
-					$output .= sprintf("<li class='%s'><a hreflang='%s' href='%s'>%s</a></li>\n",
+					$output .= sprintf('<li class="%s"><a hreflang="%s" href="%s">%s</a></li>'."\n",
 						implode(' ', $classes),
-						esc_attr($language->slug),
+						esc_attr($slug),
 						esc_url($url),
 						$show_flags && $show_names ? $flag.'&nbsp;'.$name : $flag.$name
 					);
@@ -1019,7 +1025,7 @@ class Polylang_Core extends Polylang_base {
 
 		$output = apply_filters('pll_the_languages', $output, $args);
 
-		if (!$echo || isset($item))
+		if (!$echo || !empty($raw))
 			return $output;
 		echo $output;
 	}

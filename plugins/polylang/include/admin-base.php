@@ -26,19 +26,17 @@ class Polylang_Admin_Base extends Polylang_Base {
 
 	// set user preferences
 	function admin_init_base() {
-		if (!$this->get_languages_list())
+		if (!$languages = $this->get_languages_list())
 			return;
 
 		// set text direction if the user set its own language
-		global $wpdb, $wp_locale;
-		$lang_id = $wpdb->get_var($wpdb->prepare("
-			SELECT t.term_id FROM $wpdb->terms AS t
-			INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
-			WHERE tt.taxonomy = 'language' AND tt.description = %s LIMIT 1",
-			get_locale()
-		)); // no function exists to get term by description
-		if ($lang_id)
-			$wp_locale->text_direction = get_metadata('term', $lang_id, '_rtl', true) ? 'rtl' : 'ltr';
+		$locale = get_locale();
+		foreach($languages as $lang) {
+			if ($locale == $lang->description) {
+				$GLOBALS['wp_locale']->text_direction = get_metadata('term', $lang->term_id, '_rtl', true) ? 'rtl' : 'ltr';
+				break;
+			}
+		}
 
 		// set user meta when choosing to filter content by language
  		// $_GET[lang] is used in ajax 'tag suggest' and is numeric when editing a language
@@ -200,12 +198,12 @@ class Polylang_Admin_Base extends Polylang_Base {
 		));
 
 		foreach (array_merge($all_item, $this->get_languages_list()) as $lang) {
-			$href = add_query_arg('lang', $lang->slug, $url);
+			$href = esc_url(add_query_arg('lang', $lang->slug, $url));
 			$wp_admin_bar->add_menu(array(
 				'parent' => 'languages',
 				'id'     => $lang->slug,
 				'title'  => sprintf(
-					'<input name="language" type="radio" onclick="location.href=%s" value="%s" %s /> %s',
+					'<input name="language" type="radio" onclick="location.href=%s" value="%s" %s /> %s', // FIXME this works but produces invalid html
 					"'" . $href . "'", // onclick is needed for Chrome browser, thanks to RavanH for the bug report and fix
 					esc_attr($lang->slug),
 					$selected == $lang->slug ? 'checked="checked"' : '',

@@ -55,7 +55,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		// adds actions and filters related to languages when creating, saving or deleting posts and pages
 		add_filter('wp_insert_post_parent', array(&$this, 'wp_insert_post_parent'));
 		add_action('dbx_post_advanced', array(&$this, 'dbx_post_advanced'));
-		add_action('save_post', array(&$this, 'save_post'), 200, 2); // priority 200 to come after advanced custom fields (20) and custom fields template (100)
+		add_action('save_post', array(&$this, 'save_post'), 21, 2); // priority 21 to come after advanced custom fields (20) and before the event calendar which breaks everything after 25
 		add_action('before_delete_post', array(&$this, 'delete_post'));
 
 		if ($this->options['media_support']) {
@@ -263,7 +263,10 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			$this->get_preferred_language());
 
 		// NOTE: the class "tags-input" allows to include the field in the autosave $_POST (see autosave.js)
-		printf("<p><em>%s</em></p>\n<p>%s<br /></p>\n<div id='post-translations' class='translations'>",
+		printf('
+			<p><em>%s</em></p>
+			<p>%s<br /></p>
+			<div id="post-translations" class="translations">',
 			__('Language', 'polylang'),
 			$this->dropdown_languages(array(
 				'name'     => $post_type == 'attachment' ? sprintf('attachments[%d][language]', $post_ID) : 'post_lang_choice',
@@ -273,7 +276,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		);
 		if ($lang)
 			include(PLL_INC.'/'.($post_type == 'attachment' ? 'media' : 'post').'-translations.php');
-		echo "</div>\n";
+		echo '</div>'."\n";
 	}
 
 	// ajax response for changing the language in the post metabox
@@ -369,8 +372,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 		$lang = $this->get_language($_GET['lang']);
 
-		$results = $wpdb->get_col( $wpdb->prepare(
-			"SELECT t.name FROM $wpdb->term_taxonomy AS tt
+		$results = $wpdb->get_col( $wpdb->prepare("
+			SELECT t.name FROM $wpdb->term_taxonomy AS tt
 			INNER JOIN $wpdb->terms AS t ON tt.term_id = t.term_id
 			INNER JOIN $wpdb->termmeta AS tm ON tm.term_id = t.term_id
 			WHERE tt.taxonomy = %s AND t.name LIKE (%s) AND tm.meta_key = '_language' AND tm.meta_value = %d",
@@ -396,14 +399,13 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		return isset($_GET['from_post'], $_GET['new_lang']) && ($id = wp_get_post_parent_id($_GET['from_post'])) && ($parent = $this->get_translation('post', $id, $_GET['new_lang'])) ? $parent : $post_parent;
 	}
 
-	// copy page template, menu order, comment and ping status when using "Add new" (translation)
+	// copy post metas, menu order, comment and ping status when using "Add new" (translation)
 	// the hook was probably not intended for that but did not find a better one
-	// copy the meta '_wp_page_template' in save_post is not sufficient (the dropdown list in the metabox is not updated)
-	// We need to set $post->page_template (and so need to wait for the availability of $post)
 	function dbx_post_advanced() {
 		if (isset($_GET['from_post'], $_GET['new_lang'])) {
 			global $post;
-			$post->page_template = get_post_meta($_GET['from_post'], '_wp_page_template', true);
+
+			$this->copy_post_metas($_GET['from_post'], $post->ID, $_GET['new_lang']);
 
 			$from_post = get_post($_GET['from_post']);
 			foreach (array('menu_order', 'comment_status', 'ping_status') as $property)
@@ -418,6 +420,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	function copy_post_metas($from, $to, $lang, $sync = false) {
 		// copy or synchronize terms
 		if (!$sync || in_array('taxonomies', $this->options['sync'])) {
+			// FIXME quite a lot of query in foreach
 			foreach ($this->taxonomies as $tax) {
 				$newterms = array();
 				$terms = get_the_terms($from, $tax);
@@ -511,19 +514,18 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		elseif ($this->get_post_language($post_id))
 			{} // avoids breaking the language if post is updated outside the edit post page (thanks to Gonçalo Peres)
 
+		elseif (($parent_id = wp_get_post_parent_id($post_id)) && $parent_lang = $this->get_post_language($parent_id))
+			$this->set_post_language($post_id, $parent_lang);
+
 		else
 			$this->set_post_language($post_id, $this->get_preferred_language());
-
-		// the hook is called when the post is created
-		// let's use it translate terms and copy metas when using "Add new" (translation)
-		if (isset($_GET['from_post'], $_GET['new_lang']))
-			$this->copy_post_metas($_GET['from_post'], $post_id, $_GET['new_lang']);
 
 		if (!isset($_POST['post_lang_choice']))
 			return;
 
 		// make sure we get save terms in the right language (especially tags with same name in different languages)
 		if ($_POST['post_lang_choice']) {
+			// FIXME quite a lot of query in foreach
 			foreach ($this->taxonomies as $tax) {
 				$terms = get_the_terms($post_id, $tax);
 				if (is_array($terms)) {
@@ -603,8 +605,8 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 			'label' => __('Language', 'polylang'),
 			'input' => 'html',
 			'html'  => $this->dropdown_languages(array(
-				'name'     => "attachments[$post_id][language]",
-				'class'    => "media_lang_choice",
+				'name'     => sprintf('attachments[%d][language]', $post_id),
+				'class'    => 'media_lang_choice',
 				'selected' => $lang ? $lang->slug : ''
 			))
 		);
@@ -641,15 +643,15 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 			// Special case for WP < 3.5, first add the html generated by WP if non AJAX, then our translation table
 			if (version_compare($GLOBALS['wp_version'], '3.5', '<'))
-				$data = sprintf("
-					<th valign='top' scope='row' class='label'>
-						<label for='attachments[%d][translations]'>
-							<span class='alignleft'>%s</span><br class='clear' />
+				$data = sprintf('
+					<th scope="row" class="label">
+						<label for="attachments[%d][translations]">
+							<span class="alignleft">%s</span><br class="clear" />
 						</label>
 					</th>
-					<td class='field'>
+					<td class="field">
 						%s
-					</td>",
+					</td>',
 					$post_id, __('Translations', 'polylang'), $data
 				);
 		}
@@ -722,9 +724,9 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	function wp_delete_file($file) {
 		global $wpdb;
 		$uploadpath = wp_upload_dir();
-		$ids = $wpdb->get_col($wpdb->prepare(
-			"SELECT `post_id` FROM $wpdb->postmeta
-			WHERE `meta_key` = '_wp_attached_file' AND `meta_value` = '%s'",
+		$ids = $wpdb->get_col($wpdb->prepare("
+			SELECT post_id FROM $wpdb->postmeta
+			WHERE meta_key = '_wp_attached_file' AND meta_value = '%s'",
 			ltrim($file, $uploadpath['basedir'])
 		));
 
@@ -756,13 +758,12 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		if (isset($screen) && in_array($screen->base, array('toplevel_page_mlang', 'dashboard')))
 			return $clauses;
 
-		// FIXME this complex test allows not to filter the 'get_terms_not_translated'
-		// maybe it's more robust to add a new arg to the function in polylang and to test it
-		if (isset($screen) && $screen->base == 'edit-tags' && !isset($args['page']) && $args['fields'] != 'count' && !isset($args['class']) && !$args['hide_empty'])
+		// do not filter 'get_terms_not_translated'
+		if (!empty($args['pll_get_terms_not_translated']))
 			return $clauses;
 
 		// The only ajax response I want to deal with is when changing the language in post metabox
-		if (isset($_POST['action']) && $_POST['action'] != 'post_lang_choice' && $_POST['action'] != 'term_lang_choice' && $_POST['action'] != 'get-tagcloud')
+		if (isset($_POST['action']) && !in_array($_POST['action'], array('post_lang_choice', 'term_lang_choice', 'get-tagcloud')))
 			return $clauses;
 
 		// I only want to filter the parent dropdown list when editing a term in a hierarchical taxonomy
@@ -815,17 +816,22 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		$taxonomy = $_GET['taxonomy'];
 		$lang = isset($_GET['new_lang']) ? $this->get_language($_GET['new_lang']) : $this->get_preferred_language();
 
-		printf("<div class='form-field'><label for='term_lang_choice'>%s</label>\n%s<p>%s</p>\n</div>",
+		printf('
+			<div class="form-field">
+				<label for="term_lang_choice">%s</label>
+				%s
+				<p>%s</p>
+			</div>',
 			__('Language', 'polylang'),
 			$this->dropdown_languages(array('name' => 'term_lang_choice', 'value' => 'term_id', 'selected' => $lang ? $lang->term_id : '')),
 			__('Sets the language', 'polylang')
 		);
 
 		// adds translation fields
-		echo "<div id='term-translations' class='form-field'>";
+		echo '<div id="term-translations" class="form-field">';
 		if ($lang)
 			include(PLL_INC.'/term-translations.php');
-		echo "</div>\n";
+		echo '</div>'."\n";
 	}
 
 	// adds the language field and translations tables in the 'Edit Category' and 'Edit Tag' panels
@@ -834,16 +840,25 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		$lang = $this->get_term_language($term_id);
 		$taxonomy = $tag->taxonomy;
 
-		printf("<tr class='form-field'><th scope='row' valign='top'><label for='term_lang_choice'>%s</label></th>", __('Language', 'polylang'));
-		printf("<td>%s<br /><span class='description'>%s</span></td></tr>",
+		printf('
+			<tr class="form-field">
+				<th scope="row">
+					<label for="term_lang_choice">%s</label>
+				</th>
+				<td>
+					%s<br />
+					<span class="description">%s</span>
+				</td>
+			</tr>',
+			__('Language', 'polylang'),
 			$this->dropdown_languages(array('name' => 'term_lang_choice', 'value' => 'term_id', 'selected' => $lang ? $lang->term_id : '')),
 			__('Sets the language', 'polylang')
 		);
 
-		echo "<tr id='term-translations' class='form-field'>";
+		echo '<tr id="term-translations" class="form-field">';
 		if ($lang)
 			include(PLL_INC.'/term-translations.php');
-		echo "</tr>\n";
+		echo '</tr>'."\n";
 	}
 
 	// adds the language column (before the posts column) in the 'Categories' or 'Post Tags' table
@@ -908,6 +923,16 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		elseif (isset($_POST['post_lang_choice']))
 			$this->set_term_language($term_id, $_POST['post_lang_choice']);
 
+		elseif ($this->get_term_language($term_id))
+			{} // avoids breaking the language if the term is updated outside the edit post or edit tag pages
+
+		// sets language from term parent if exists thanks to Scott Kingsley Clark
+		elseif (($term = get_term($term_id, $taxonomy)) && !empty($term->parent) && $parent_lang = $this->get_term_language($term->parent))
+			$this->set_term_language($term_id, $parent_lang);
+
+		else
+			$this->set_term_language($term_id, $this->get_preferred_language());
+
 		if (!isset($_POST['term_tr_lang']))
 			return;
 
@@ -940,6 +965,7 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 		));
 
 		// associate translated term to translated post
+		// FIXME quite a lot of query in foreach
 		foreach ($this->get_languages_list() as $language) {
 			if ($translated_term = $this->get_term($term_id, $language)) {
 				foreach ($posts as $post_id) {
@@ -995,7 +1021,9 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 	// returns all terms in the $taxonomy in the $term_language which have no translation in the $translation_language
 	function get_terms_not_translated($taxonomy, $term_language, $translation_language) {
 		$new_terms = array();
-		foreach (get_terms($taxonomy, 'hide_empty=0') as $term) {
+		// it is more efficient to use one common query for all languages as son as there are more than 2
+		// pll_get_terms_not_translated arg to identify this query in terms_clauses filter
+		foreach (get_terms($taxonomy, 'hide_empty=0&pll_get_terms_not_translated=1') as $term) {
 			$lang = $this->get_term_language($term->term_id);
 			if ($lang && $lang->name == $term_language->name && !$this->get_translation('term', $term->term_id, $translation_language))
 				$new_terms[] = $term;
@@ -1078,7 +1106,11 @@ class Polylang_Admin_Filters extends Polylang_Admin_Base {
 
 	// form for language user preference
 	function personal_options($profileuser) {
-		printf('<tr><th><label for="user_lang">%s</label></th><td>%s</td></tr>',
+		printf('
+			<tr>
+				<th><label for="user_lang">%s</label></th>
+				<td>%s</td>
+			</tr>',
 			__('Admin language', 'polylang'),
 			$this->dropdown_languages(array(
 				'name'        => 'user_lang',

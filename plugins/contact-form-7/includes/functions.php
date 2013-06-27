@@ -96,7 +96,7 @@ function wpcf7_default_mail_template() {
 	$body = sprintf( __( 'From: %s', 'wpcf7' ), '[your-name] <[your-email]>' ) . "\n"
 		. sprintf( __( 'Subject: %s', 'wpcf7' ), '[your-subject]' ) . "\n\n"
 		. __( 'Message Body:', 'wpcf7' ) . "\n" . '[your-message]' . "\n\n" . '--' . "\n"
-		. sprintf( __( 'This mail is sent via contact form on %1$s %2$s', 'wpcf7' ),
+		. sprintf( __( 'This e-mail was sent from a contact form on %1$s (%2$s)', 'wpcf7' ),
 			get_bloginfo( 'name' ), get_bloginfo( 'url' ) );
 	$recipient = get_option( 'admin_email' );
 	$additional_headers = '';
@@ -110,7 +110,7 @@ function wpcf7_default_mail_2_template() {
 	$subject = '[your-subject]';
 	$sender = '[your-name] <[your-email]>';
 	$body = __( 'Message Body:', 'wpcf7' ) . "\n" . '[your-message]' . "\n\n" . '--' . "\n"
-		. sprintf( __( 'This mail is sent via contact form on %1$s %2$s', 'wpcf7' ),
+		. sprintf( __( 'This e-mail was sent from a contact form on %1$s (%2$s)', 'wpcf7' ),
 			get_bloginfo( 'name' ), get_bloginfo( 'url' ) );
 	$recipient = '[your-email]';
 	$additional_headers = '';
@@ -170,6 +170,7 @@ function wpcf7_l10n() {
 		'fi' => __( 'Finnish', 'wpcf7' ),
 		'fr_FR' => __( 'French', 'wpcf7' ),
 		'gl_ES' => __( 'Galician', 'wpcf7' ),
+		'gu_IN' => __( 'Gujarati', 'wpcf7' ),
 		'ka_GE' => __( 'Georgian', 'wpcf7' ),
 		'de_DE' => __( 'German', 'wpcf7' ),
 		'el' => __( 'Greek', 'wpcf7' ),

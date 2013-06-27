@@ -44,14 +44,14 @@ if (!function_exists('icl_get_languages')) {
 		foreach ($polylang->get_languages_list(array('hide_empty' => true, 'orderby' => $orderby, 'order' => $order)) as $lang) {
 			$url = $polylang->get_translation_url($lang);
 
-			if (!$url && !empty($skip_missing))
+			if (empty($url) && !empty($skip_missing))
 				continue;
 
 			$arr[] = array(
 				'id' => $lang->term_id,
 				'active' => isset($polylang->curlang->slug) && $polylang->curlang->slug == $lang->slug ? 1 : 0,
 				'native_name' => $lang->name,
-				'missing' => $url ? 0 : 1,
+				'missing' => empty($url) ? 1 : 0,
 				'translated_name' => '', // does not exist in Polylang
 				'language_code' => $lang->slug,
 				'country_flag_url' => $polylang->get_flag($lang, true),
@@ -114,7 +114,6 @@ if (!function_exists('icl_object_id')) {
 
 /*
  * registers a string for translation in the "strings translation" panel
- * the parameter $context is not used by Polylang
  */
 if (!function_exists('icl_register_string')) {
 	function icl_register_string($context, $name, $string) {
@@ -124,7 +123,6 @@ if (!function_exists('icl_register_string')) {
 
 /*
  * removes a string from the "strings translation" panel
- * the parameter $context is not used by Polylang
  */
 if (!function_exists('icl_unregister_string')) {
 	function icl_unregister_string($context, $name) {
@@ -146,11 +144,35 @@ if (!function_exists('icl_t')) {
  * undocumented function used by NextGen Gallery
  * seems to be used to both register and translate a string
  * the parameters $context and $bool are not used by Polylang
+ * FIXME: tested only with NextGen gallery
  */
 if (!function_exists('icl_translate')) {
 	function icl_translate($context, $name, $string, $bool) {
 		$GLOBALS['polylang_wpml_compat']->register_string($context, $name, $string);
 		return pll__($string);
+	}
+}
+
+/*
+ * undocumented function used by Types
+ * FIXME: tested only with Types
+ * probably incomplete as Types locks the custom fields for a new post, but not when edited
+ * this is probably linked to the fact that WPML has always an original post in the default language and not Polylang :)
+ */
+if (!function_exists('wpml_get_copied_fields_for_post_edit')) {
+	function wpml_get_copied_fields_for_post_edit() {
+		if (empty($_GET['from_post']))
+			return array();
+
+		// don't know what WPML does but Polylang does copy all public meta keys by default
+		foreach ($keys = array_unique(array_keys(get_post_custom($_GET['from_post']))) as $k => $meta_key)
+			if (is_protected_meta($meta_key))
+				unset ($keys[$k]);
+
+		// apply our filter and fill the expected output (see /types/embedded/includes/fields-post.php)
+		$arr['fields'] = array_unique(apply_filters('pll_copy_post_metas', empty($keys) ? array() : $keys, false));
+		$arr['original_post_id'] = (int) $_GET['from_post'];
+		return $arr;
 	}
 }
 
