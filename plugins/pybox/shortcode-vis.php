@@ -20,7 +20,7 @@ function pyVisHandler($options, $content) {
   //$tag = 'object'; $urlname = 'data'; // doesn't seem to be different
   $url = '../static/OnlinePythonTutor/v3/iframe-embed.html#'
     .'code='.urlencode($content)
-    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true&highlightLines"';
+    .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true&highlightLines';
   return 
     "<$tag width='100%' height='480' frameborder='0' $urlname='$url'></$tag>";
 }
