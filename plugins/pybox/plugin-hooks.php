@@ -93,7 +93,7 @@ function faviconlinks() {
 
 add_action('admin_head', 'tinymce_wsfix');
 function tinymce_wsfix() {
-  echo "<script type='text/javascript' src='".UPYBOX."editor-ws.js'></script>\n";
+  echo "<script type='text/javascript' src='".UPYBOX."customizations-wordpress-rich-editor/editor-ws.js'></script>\n";
 }
 
 add_filter( 'previous_post_rel_link', 'disable_stuff' );
@@ -141,7 +141,6 @@ function pb_mce_buttons($buttons) {
 }
 function pb_mce_external_plugins($plugin_array) {
   $plugin_array['pybuttons']  =  plugins_url('/pybox/customizations-wordpress-rich-editor/pybuttons.js');
-  $plugin_array['preelementfix']  =  plugins_url('/pybox/customizations-wordpress-rich-editor/pre-fix/editor_plugin.js');
   return $plugin_array;
 }
 

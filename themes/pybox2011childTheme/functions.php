@@ -9,6 +9,10 @@ function my_adminbar_cb(){
   //empty function
 }
 
+add_action('init', 'add_the_dang_es');
+function add_the_dang_es() {
+  add_editor_style("editor-pybox-style.css");
+}
 
 
 // end of file

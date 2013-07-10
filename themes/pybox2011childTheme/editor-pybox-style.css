@@ -1,0 +1,14 @@
+#tinymce pre
+{
+    background-color: #eee !important;
+    font-family: Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', Consolas, monospace;
+    color: #001B4C;
+    border: 1px solid orange;
+    font-size: 14px;
+    margin: 1em 0em;
+}
+
+#tinymce p {    
+    margin: 1em 0em;
+}
+
