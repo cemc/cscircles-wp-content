@@ -91,6 +91,11 @@ function faviconlinks() {
   echo '<link rel="shortcut icon" href="'.UFAVICON.'"/>';
 }
 
+add_action('admin_head', 'tinymce_wsfix');
+function tinymce_wsfix() {
+  echo "<script type='text/javascript' src='".UPYBOX."editor-ws.js'></script>\n";
+}
+
 add_filter( 'previous_post_rel_link', 'disable_stuff' );
 add_filter( 'next_post_rel_link', 'disable_stuff' );
 function disable_stuff( $data ) {
