@@ -24,11 +24,11 @@ page contents needs to be aware that a space may be represented by
 
 function fix_ws(i) {
   // this can't be done until after editor.js is loaded
-  if (i < 20 && typeof switchEditors === "undefined") {
+  if (typeof switchEditors === "undefined") {
     // try again soon, at most 20 times, maybe editor.js wasn't loaded?
     window.setTimeout("fix_ws("+(i+1)+");", 250); 
   }
-  else { // shadow the logic in editor.js
+  else if (i < 20) { // shadow the logic in editor.js
     switchEditors.original_go = switchEditors.go;
     switchEditors.go = function(id, mode) {
       var ed = tinyMCE.get(id); 
@@ -47,10 +47,10 @@ fix_ws(0);
 
 // similar, but for wp-fullscreen.js instead of editor.js
 function fix_ws_fullscreen(i) {
-  if (i < 20 && typeof fullscreen === "undefined") {
+  if (typeof fullscreen === "undefined") {
     window.setTimeout("fix_ws_fullscreen("+(i+1)+");", 250);
   }
-  else {
+  else if (i < 20) {
     fullscreen.original_switchmode = fullscreen.switchmode;
     fullscreen.switchmode = function(to) {
       if (to == 'tinymce' && fullscreen.settings.mode == 'html') {
