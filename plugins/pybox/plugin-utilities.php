@@ -36,11 +36,13 @@ function tabs_to_spaces($width, $text) {
   return $result;
 }
 
-function cscurl($slug) {
+// given a term describing a link to a special page,
+// get the URL to the (properly translated) real location
+function cscurl($desc) {
 
-  if ($slug == 'visualize' || $slug == 'search') 
-    return UWPHOME . $slug . '/';
-  if ($slug == 'homepage') 
+  if ($desc == 'visualize' || $desc == 'search') 
+    return UWPHOME . $desc . '/';
+  if ($desc == 'homepage') 
     return is_admin() ? "/" : pll_home_url();
   
   $cscslugmap = array(
@@ -53,9 +55,10 @@ function cscurl($slug) {
 		     ('install') => 'run-at-home',
 		     ('allusers') => 'admin-user-list',
 		     );
-  
-  $s = $cscslugmap[$slug];
-  $res = get_page_by_path($s)->ID;
+
+  $s = $cscslugmap[$desc];
+  global $wpdb;
+  $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
   if (!is_admin())
     $res = pll_get_post($res);
   return get_permalink($res);
