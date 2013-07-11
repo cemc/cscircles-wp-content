@@ -198,6 +198,10 @@ opening one will close the other open ones
 	margin: 0px;
 }
 
+.collapseHead code {
+    background: none;
+}
+
 .quoth {
     position: absolute;
     font: bold 14px 'Segoe UI', 'Lucida Grande', 'Arial', sans-serif;

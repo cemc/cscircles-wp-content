@@ -88,10 +88,7 @@
 						$header_image_width = HEADER_IMAGE_WIDTH;
 					}
 					?>
-
-				  <!--<a href="<?php echo esc_url( home_url( '/' ) ); ?>"> changed by dave to link to acknowledgements-->
-			   <a href="">
-
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
 				<?php
 					// The header image
 					// Check if this is a post or page, if it has a thumbnail, and if it's a big one

@@ -9,12 +9,6 @@ function my_adminbar_cb(){
   //empty function
 }
 
-// editor style
-add_action('init', 'add_the_dang_es');
-function add_the_dang_es() {
-  add_editor_style("editor-pybox-style.css");
-}
-
 // removes the profile.php admin color scheme options
 remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 

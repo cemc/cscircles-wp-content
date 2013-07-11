@@ -193,7 +193,7 @@ body {
 
 /* One column */
 .one-column #page {
-	max-width: 1000px;
+	max-width: 690px;
 }
 .one-column #content {
 	margin: 0 7.6%;
@@ -403,8 +403,7 @@ pre {
 	padding: 0.75em 1.625em;
 }
 code, kbd, samp, var {
-//	font: 13px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
-	font: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	font: 13px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 abbr, acronym, dfn {
 	border-bottom: 1px dotted #666;

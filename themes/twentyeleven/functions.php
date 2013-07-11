@@ -144,11 +144,6 @@ function twentyeleven_setup() {
 		add_custom_background();
 	}
 
-
-	//define( 'HEADER_IMAGE_WIDTH', apply_filters( 'twentyeleven_header_image_width', 1000 ) );
-	//define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'twentyeleven_header_image_height', 288 ) );
-	//define( 'HEADER_IMAGE', '' ); // overridden by child theme argh
-
 	// We'll be using post thumbnails for custom header images on posts and pages.
 	// We want them to be the size of the header image that we just defined
 	// Larger images will be auto-cropped to fit, smaller ones will be ignored. See header.php.
