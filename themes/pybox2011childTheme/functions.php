@@ -45,4 +45,14 @@ function tweak_dashboard_page( $subject ) {
   return preg_replace ( '/<div class="wrap">/', returnfromprofile() . '<div class="wrap">', $subject);
 }
 
+function my_function_admin_bar(){ return true; }
+add_filter( 'show_admin_bar' , 'my_function_admin_bar');
+
+
+add_action('get_header', 'my_filter_head');
+
+function my_filter_head() {
+  remove_action('wp_head', '_admin_bar_bump_cb');
+}
+
 // end of file

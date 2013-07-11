@@ -10,7 +10,11 @@ function pybox_admin_css() {
         font-weight: bold;
         padding: 7px;
         height: auto;
-}</style>';
+}
+
+.wp-admin #wpadminbar #wp-toolbar #wp-admin-bar-user-actions .ab-item
+{padding: 0px;}
+</style>';
 }
 
 add_action('login_head', 'pybox_login_css');
