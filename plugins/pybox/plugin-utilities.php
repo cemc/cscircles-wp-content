@@ -367,15 +367,8 @@ function bounded_stream_get_contents($strm, $maxlen) {
 }
 
 function returnfromprofile() {
-  $u = site_url();
+  $u = getSoft($_REQUEST, 'wp_http_referer', site_url());
   
-  if (array_key_exists("redirect", $_GET)) {
-    $u = $_GET['redirect'];
-  }
-  if (array_key_exists("redirect", $_POST)) {
-    $u = $_POST['redirect'];
-  }
-
   return "<div><a class='button button-primary' href='$u'>".__t("Return to Computer Science Circles")."</a></div>";
 }
 
