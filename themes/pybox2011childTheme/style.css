@@ -273,3 +273,14 @@ input[type=text] {
 
 
 .entry-content {padding: 5px 0 0;}
+
+#wpadminbar .menupop .menupop > .ab-item, 
+#wpadminbar .ab-top-secondary .menupop .menupop > .ab-item,
+#wpadminbar #adminbarsearch .adminbar-input,
+#wp-admin-bar-wp-logo > .ab-item .ab-icon,
+#wp-admin-bar-updates > .ab-item .ab-icon,
+#wp-admin-bar-comments > .ab-item .ab-icon,
+#wpadminbar #wp-admin-bar-new-content > .ab-item .ab-icon
+{
+        background-image: url(./images/admin-bar-sprite-green.png) !important;
+}

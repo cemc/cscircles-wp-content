@@ -311,9 +311,12 @@ opening one will close the other open ones
 
 #wp-admin-bar-my-account div.ab-sub-wrapper {
     padding-top: 10px !important;
-    padding-bottom: 20px !important;
+    padding-bottom: 10px !important;
 }
 
+div.ab-sub-wrapper {
+    margin-right: 0px !important; /* why does wordpress put -1 here? maybe related to border. */
+}
 
 /* .content matches normal page views and search results, but not the admin menu/dashboard. */
 /* .profile-php is the reverse */

@@ -14,7 +14,14 @@ function pybox_admin_css() {
 
 .wp-admin #wpadminbar #wp-toolbar #wp-admin-bar-user-actions .ab-item
 {padding: 0px;}
-</style>';
+
+#wp-admin-bar-my-account div.ab-sub-wrapper {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    margin-left: 0px !important;
+}
+</style>
+';
 }
 
 add_action('login_head', 'pybox_login_css');

@@ -311,4 +311,89 @@ function tweak_polylang_menu() {
   }
 }
 
+function tweak_admin_bar_actions() {
+  // remove completely
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_wp_menu', 10 );
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_my_sites_menu', 20 );
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_edit_menu', 80 );
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_comments_menu', 60 );
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_new_content_menu', 70 );
+
+  // change ordering
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_my_account_menu', 0 ); 
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_search_menu', 4 ); 
+  remove_action( 'admin_bar_menu', 'wp_admin_bar_my_account_item', 7 ); 
+
+  add_action( 'admin_bar_menu', 'wp_admin_bar_create_account_item_tweak', 0 ); // new 
+  add_action( 'admin_bar_menu', 'wp_admin_bar_my_account_item', 0 ); 
+  add_action( 'admin_bar_menu', 'wp_admin_bar_my_account_menu', 4 ); 
+  add_action( 'admin_bar_menu', 'wp_admin_bar_search_menu', 7 ); 
+  add_action( 'admin_bar_menu', 'wp_admin_bar_sitename_tweak', 31 ); // new
+}
+add_action( 'init', 'tweak_admin_bar_actions' );
+
+// create this for non-logged-in users; change title/href for logged-in
+function wp_admin_bar_sitename_tweak( $wp_admin_bar) {
+  $wp_admin_bar->add_menu( array(
+                                 'id'    => 'site-name',
+                                 'title' => get_bloginfo('name'),
+                                 'href' => cscurl('homepage')
+                                 ) );
+}
+
+// call to action in top right
+function wp_admin_bar_create_account_item_tweak( $wp_admin_bar ) {
+  if ( ! get_current_user_id() ) // if not logged in 
+    {
+      $wp_admin_bar->add_menu( array( 
+                                     'id' => 'new-or-login', 
+                                     'parent' => 'top-secondary', 
+                                     'title' => __t('<p>Create free account / login</p><p>to save your progress</p>'), 
+                                     'href' => wp_login_url( $_SERVER['REQUEST_URI'] ), //
+                                     'meta' => array( 'class' => 'new-or-login'))); 
+    }
+}
+
+// bunch of small changes
+function tweak_admin_bar() {
+  $user_id      = get_current_user_id();
+  $current_user = wp_get_current_user();
+  $profile_url  = get_edit_profile_url( $user_id );
+  
+  if ( $user_id ) { // if logged in
+    global $wp_admin_bar;
+
+    $howdy  = sprintf( __t("%s's menu"), $current_user->display_name );
+
+    $wp_admin_bar->remove_node('user-info');
+    $wp_admin_bar->remove_node('dashboard');
+    $wp_admin_bar->remove_node('appearance');
+
+    // note! add_node can be used to update information
+    $wp_admin_bar->add_node(array('id'=>'logout', 'href' => wp_logout_url( $_SERVER['REQUEST_URI'] )));
+    $wp_admin_bar->add_node(array('id'=>'my-account', 'href' => null, 'title' => $howdy ));
+    $wp_admin_bar->add_node(array('id'=>'edit-profile', 'href' => $profile_url . '?wp_http_referer=' . urlencode($_SERVER['REQUEST_URI'])));
+
+    if ( is_admin() ) { // proper language redirect on admin pages
+      $wp_admin_bar->add_node(array('id'=>'view-site', 'href' => cscurl('homepage')));
+    }
+
+    if ( !is_admin() ) { // search box
+      $form = "<form id='adminbarsearch' action='".cscurl('search')."'>\n" 
+        . '<input class="adminbar-input" name="q" id="adminbar-search" title="'.__t('click and type to search website').'" tabindex="10" type="text" value="" maxlength="150" />'
+	. '<input name="sa" type="submit" class="adminbar-button" value="' . __('Search') . '"/>'
+	. '<input type="hidden" name="cx" value="007230231723983473694:r0-95non7ri">'
+        ."\n".'<input type="hidden" name="cof" value="FORID:9">'
+        ."\n".'<input type="hidden" name="ie" value="UTF-8">'
+        ."\n".'<input type="hidden" name="nojs" value="1">'
+	. '</form>';
+
+      $wp_admin_bar->add_node(array('id'=>'search', 'title'=>$form));
+      
+    }
+    
+  }  
+}
+add_action( 'wp_before_admin_bar_render', 'tweak_admin_bar' ); 
+
 // end of file

@@ -42,7 +42,7 @@ function cscurl($desc) {
 
   if ($desc == 'visualize' || $desc == 'search') 
     return UWPHOME . $desc . '/';
-  if ($desc == 'homepage') 
+  if ($desc == 'homepage') // due to a bug, we can't translate during 'is_admin'
     return is_admin() ? "/" : pll_home_url();
   
   $cscslugmap = array(
