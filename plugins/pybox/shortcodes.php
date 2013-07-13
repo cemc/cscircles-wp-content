@@ -10,6 +10,8 @@ add_shortcode('pyProtect', 'pyProtectHandler');
 add_shortcode('pyMultiScramble', 'pyMultiScrambleHandler');
 add_shortcode('newuserwelcome', 'newuserwelcome');
 add_shortcode('pyRecall', 'pyRecallHandler');
+add_shortcode('pyDebug', 'pyDebug');
+add_shortcode( 'list-pybox-pages', 'list_pybox_pages' );
 
 function loadMostRecent($slug) {
   if ( !is_user_logged_in() ) 
@@ -22,13 +24,10 @@ function loadMostRecent($slug) {
   return $wpdb->get_var( $wpdb->prepare($sqlcmd, $uid, $slug));
 }
 
-add_shortcode('pyDebug', 'pyDebug');
 function pyDebug($o, $c){
   if (PB_DEV)
     return do_shortcode($c);
 }
-
-add_shortcode( 'list-pybox-pages', 'list_pybox_pages' );
 
 function pberror( $errmsg) {
   pyboxlog("[pyBoxHandler] " . $errmsg);
