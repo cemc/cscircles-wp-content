@@ -396,10 +396,37 @@ function tweak_admin_bar() {
 }
 add_action( 'wp_before_admin_bar_render', 'tweak_admin_bar' ); 
 
-
+// help prevent sender warnings   
 add_action('phpmailer_init', 'set_mail_sender');
-  
-function wp_mail_to_smtp(&$phpmailer) {
+function set_mail_sender(&$phpmailer) {
   $phpmailer->Sender = 'bounces@cscircles.cemc.uwaterloo.ca';
 }
+
+// Don't like the default header
+add_action( 'login_enqueue_scripts', 'login_style' );
+function login_style() {
+  echo "<style type='text/css'>#login h1 a {display:none;}</style>";
+}
+function login_subtitle( $message ) {
+  //this is a good time to print a new header
+  echo "<h1>".__t("Computer Science Circles")."</h1>";
+  echo "<h2 style='text-align:center;margin:0.5em'>".__t("Log In or Create Account")."</h2>";
+
+  return $message; //no-op
+}
+add_filter( 'login_message', 'login_subtitle' );
+
+// We found "register" was confusing for users
+add_action( 'login_footer', 'change_login_text' );
+function change_login_text() {
+  $msg = __t('Create a new account');
+  $htmltext = htmlspecialchars($msg, ENT_QUOTES);
+  $attrtext = addslashes($msg);
+  echo "<script type='text/javascript'>
+jQuery('a').each(function(){if(this.href.indexOf('action=register')!=-1)this.innerHTML='$htmltext'})
+jQuery('#registerform #wp-submit.button').each(function(){this.value = '$attrtext'});
+</script>";
+}
+
+
 // end of file
