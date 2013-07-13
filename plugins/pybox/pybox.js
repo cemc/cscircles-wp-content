@@ -351,13 +351,13 @@ function pbSelectChange(event) {
 }
 
 function stayHere(event) {
-    console.log('a');
+  //console.log('a');
     if (!
 	($(event.target).hasClass('open-same-window')
 	 || $(event.target).parents('.open-same-window').length > 0)
        )
 	$(event.target).attr('target', '_blank');
-    console.log('A');
+   // console.log('A');
     return true;
 }
 

@@ -19,8 +19,8 @@ we need to define the filter between lines 66 and 155. This db.php
 drop-in happens to do just that.
   */
 
-add_filter ( 'pre_option_home', 'test_localhosts' );
-add_filter ( 'pre_option_siteurl', 'test_localhosts' );
+  //add_filter ( 'pre_option_home', 'test_localhosts' );
+  //add_filter ( 'pre_option_siteurl', 'test_localhosts' );
 
 function test_localhosts( ) {
   if (strcasecmp($_SERVER['REQUEST_URI'], '/dev') == 0
