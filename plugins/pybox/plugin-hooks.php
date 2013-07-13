@@ -396,4 +396,10 @@ function tweak_admin_bar() {
 }
 add_action( 'wp_before_admin_bar_render', 'tweak_admin_bar' ); 
 
+
+add_action('phpmailer_init', 'set_mail_sender');
+  
+function wp_mail_to_smtp(&$phpmailer) {
+  $phpmailer->Sender = 'bounces@cscircles.cemc.uwaterloo.ca';
+}
 // end of file
