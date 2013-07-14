@@ -40,14 +40,15 @@ define('CSCIRCLES_DEVELOPER_EMAIL', 'daveagp@gmail.com');
 
 // path constants :: should exist, and in many cases be writable
 define('PJAIL', PLOCALHOME . 'python3jail/');
+define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
+
 define('PPYTHON3MODJAIL', '/python3');
 define('PSCRATCHDIRMODJAIL', 'scratch/');
 
-define('PDATADIR', PLOCALHOME . 'py_includes/');
 define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
 
 define('PPYBOXDIR', PWP . 'wp-content/plugins/pybox/');
-define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
+define('PDATADIR', PPYBOXDIR . 'py_includes/');
 
 define('PEXPORT', PLOCALHOME . 'export/');
 
@@ -56,7 +57,7 @@ define('PWP_LOADER', PWP . 'wp-load.php');
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
 // URL constants
-define('UFILES', UWPHOME . 'static/');
+define('UFILES', UWPHOME . 'wp-content/plugins/pybox/static/');
 
 define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');

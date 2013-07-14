@@ -11,6 +11,10 @@ Allow from All
 Allow from All
 </files>
 
+<files *.jpg>
+Allow from All
+</files>
+
 <files *.gif>
 Allow from All
 </files>
