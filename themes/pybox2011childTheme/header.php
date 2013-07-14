@@ -78,7 +78,7 @@ if (stripos($_SERVER["HTTP_USER_AGENT"], 'MSIE 8')!==FALSE ||
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed">
-	  <div id="bumper"><?php 
+	  <div id="bumper"><span><?php 
 $blurb = array(
 	       "Python Programming Tutorials",
 	       "Interactive Python Textbook",
@@ -97,7 +97,7 @@ if (isset($post)) {
   $i =  (2+$post->ID) % count($blurb);
   echo '['.$blurb[$i].']'; //spit out a random phrase for all the search engines in the house
 }
-?></div>
+?></span></div>
 
 	<div style="width: 100%; background: black;  height:40px;">
   <a href="http://www.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-uw.gif');?>" style="margin: 0px;"/></a>
