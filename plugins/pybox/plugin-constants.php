@@ -48,7 +48,7 @@ define('PSCRATCHDIRMODJAIL', 'scratch/');
 define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
 
 define('PPYBOXDIR', PWP . 'wp-content/plugins/pybox/');
-define('PDATADIR', PWP . 'wp-content/pb_includes/');
+define('PDATADIR', PWP . 'wp-content/lesson_files/');
 
 define('PEXPORT', PLOCALHOME . 'export/');
 
@@ -57,12 +57,16 @@ define('PWP_LOADER', PWP . 'wp-load.php');
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
 // URL constants
-define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
+define('UWPCONTENT', UWPHOME . 'wp-content/');
+
+define('UCODEMIRROR2', UWPCONTENT . 'CodeMirror2/');
+
+define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
+
+define('UPYBOX', UWPCONTENT . 'plugins/pybox/');
 define('UFILES', UPYBOX . 'files/');
 define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');
-
-define('UCODEMIRROR2', UWPHOME . 'static/codemirror/');
 
 define('UPYBOXJS', UPYBOX . 'pybox.js?28');
 define('UPYBOXCSS', UPYBOX . 'pybox.css?16');
@@ -77,8 +81,6 @@ define('UHISTORY', UPYBOX . 'db-problem-history.php');
 define('UDBMAIL', UPYBOX . 'db-mail.php');
 define('UDBPREFIX', UPYBOX . 'db-');
 define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
-
-define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
 
 global $pb_translation;
 

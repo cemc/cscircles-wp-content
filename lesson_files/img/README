@@ -1,0 +1,19 @@
+There are two kinds of source files here, and .png
+files used on the website.
+
+(1) PDF files, created by IPE.
+Run the convert.sh in each directory to render them.
+
+(2) PPTX files, created by Microsoft PowerPoint.
+You have to render these manually in Windows... you
+can export to .png and then crop them manually, this
+gives the right size (there are only 2 such files).
+
+If you're translating, feel free to leave some of this
+to Dave, but editing the PDFs in IPE yourself helps a 
+lot. In Lesson 17 make sure the text fits inside the boxes
+or change all slides uniformly otherwise. If you do
+change things in such a way that affects the image size,
+make sure you also edit the height attribute of the img
+tags in lesson 17, otherwise the slides won't show
+correctly.
