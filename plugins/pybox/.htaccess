@@ -27,6 +27,10 @@ Allow from All
 Allow from All
 </files>
 
+<files *.pdf>
+Allow from All
+</files>
+
 <files action-*.php>
 Allow from All
 </files>
