@@ -1,0 +1,3 @@
+Antislashes \\ et apostrophes \' et guillemets \" et dièses # sont géniaux!
+génère une erreur
+ et dièses 

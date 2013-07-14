@@ -1,0 +1,3 @@
+Backslashes \\ and single quotes \' and double quotes \" and pound signs # are awesome!
+Causes an error
+ and pound signs 

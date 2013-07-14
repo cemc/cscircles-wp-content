@@ -1,0 +1,10 @@
+Correct !
+L'ordre des opérations le rend équivalent à
+<pre>A or ((not B) and C)</pre>
+en remplaçant les valeurs, nous avons
+<pre>False or ((not True) and True)</pre>
+et maintenant, simplifiant une étape à la fois donne
+<pre>False or ((not True) and True)
+= False or (False and True)
+= False or False
+= False</pre>

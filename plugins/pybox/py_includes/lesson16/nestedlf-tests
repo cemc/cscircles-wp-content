@@ -1,0 +1,7 @@
+nestedListContains([2, 3, 5, 7, 9], 7)
+nestedListContains([2, 3, 5, 7, 9], 8)
+nestedListContains([[9, 4, 5], [3, 8]], 3)
+nestedListContains([[9, 4, 5], [3, 8]], 6)
+nestedListContains([[[[[[[5]]]], 4]]], 3)
+nestedListContains([[[[[[[7]]]], 8]]], 7)
+

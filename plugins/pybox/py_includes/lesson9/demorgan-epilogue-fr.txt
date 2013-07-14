@@ -1,0 +1,17 @@
+Correct!
+Voici une façon d'arriver à cette réponse.
+Tout d'abord, <code>not (A or B) </code> n'est vrai que lorsque les deux
+<code>A</code> et <code>B</code> sont fausses.
+Notez également que <code>(not A) and (not B)</code> n'est vrai que si les deux
+<code>not A</code> et <code>not B</code> sont vraies,
+c.-à-d. que si les deux <code>A</code> et <code>B</code> sont fausses.
+Donc, nous avons l'égalité suivante:
+<pre>(not A) and (not B) = not (A or B)</pre>
+Mettez un <code>not</code> autour des deux côtés, donc on en déduit
+<pre>not ((not A) and (not B)) = not (not (A or B))</pre>
+et observez que <code> not (not X)</code> toujours égale
+<code>X</code>, alors
+<pre>not ((not A) and (not B)) = not (not (A or B)) = A or B</pre>
+Cette façon de réécrire une expression booléenne est un des
+<a href='http://fr.wikipedia.org/wiki/Lois_de_De_Morgan'>
+lois de De Morgan</a>.

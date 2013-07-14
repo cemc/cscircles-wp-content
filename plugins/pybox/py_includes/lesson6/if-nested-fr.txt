@@ -1,0 +1,3 @@
+<pre>
+if password=='ouvreToiSésame':  <div style="margin-left: 18px; margin-right: 18px; background: #CCF; border: solid blue 1px;">print('Utilisateur enregistré.')<br/>if heure&gt;17:
+<div style="margin-left: 36px; margin-right: 18px; background: #FCC; border: solid red 1px;">print('Bonsoir!')</div>print('Entrez une commande:')</div></pre>

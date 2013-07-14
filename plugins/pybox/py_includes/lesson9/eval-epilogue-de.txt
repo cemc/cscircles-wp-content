@@ -1,0 +1,1 @@
+﻿Richtig! Die Ausführungsreihenfolge macht dies equivalent zu<pre>A or ((not B) and C)</pre>Durch einsetzen der Werte, erhalten wir<pre>False or ((not True) and True)</pre>und durch vereinfachen erhalten wir dann<pre>False or ((not True) and True)<br/>= False or (False and True)<br/>= False or False<br/>= False</pre>

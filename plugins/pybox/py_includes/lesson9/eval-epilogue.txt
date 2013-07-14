@@ -1,0 +1,1 @@
+Correct! The order of operations makes this equivalent to<pre>A or ((not B) and C)</pre>substituting the values, we have<pre>False or ((not True) and True)</pre>and now simplifying one step at a time gives<pre>False or ((not True) and True)<br/>= False or (False and True)<br/>= False or False<br/>= False</pre>

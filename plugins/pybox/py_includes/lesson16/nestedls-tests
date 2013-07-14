@@ -1,0 +1,5 @@
+nestedListSum([1, 2, 3])
+nestedListSum([[1, 10], [100, 10]])
+nestedListSum([[3], [[5, [4]], 2, 1]])
+nestedListSum([[[[54238]]]])
+nestedListSum([1, [2, [3, [4, [5]]]]])

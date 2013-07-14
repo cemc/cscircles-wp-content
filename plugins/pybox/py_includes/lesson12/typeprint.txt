@@ -1,0 +1,4 @@
+<i>&laquo;blank line&raquo;</i>
+None
+&lt;class 'type'&gt;
+&lt;class 'NoneType'&gt;
