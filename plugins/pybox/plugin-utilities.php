@@ -40,8 +40,9 @@ function tabs_to_spaces($width, $text) {
 // get the URL to the (properly translated) real location
 function cscurl($desc) {
 
-  if ($desc == 'visualize' || $desc == 'search') 
-    return UWPHOME . $desc . '/';
+  if ($desc == 'visualize') return UVISUALIZER;
+  if ($desc == 'search') return USEARCH; 
+
   if ($desc == 'homepage') // due to a bug, we can't translate during 'is_admin'
     return is_admin() ? "/" : pll_home_url();
   

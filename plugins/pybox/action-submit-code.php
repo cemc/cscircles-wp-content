@@ -24,7 +24,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    
    $clocklimit = intval($cpulimit)*WALLFACTOR + WALLBUFFER;
 
-   $prefix = PB_DEV?"D":"L";
+   $prefix = WP_DEBUG?"D":"L";
 
    $id = $prefix.rand(100000000, 999999999);
    //pyboxlog("[safepython] job id " . $id . " starting", TRUE);
@@ -116,7 +116,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    
    //pyboxlog("[safepython] job id $id ending. wall time: $wallTime; 
    // cpu time $cpuTime; load level $loadLevel", 
-   //    ($loadLevel == 0 || PB_DEV) ? "suppress" : -1);
+   //    ($loadLevel == 0 || WP_DEBUG) ? "suppress" : -1);
    //send an email if the load level is >0 and we're not on the debug site
 
 // 'safeexecOut': output remarks of safeexec

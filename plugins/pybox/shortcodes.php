@@ -32,7 +32,7 @@ function do_short_and_sweetcode($x) {
 }
 
 function pyDebug($o, $c){
-  if (PB_DEV)
+  if (WP_DEBUG)
     return do_short_and_sweetcode($c);
 }
 

@@ -5,63 +5,55 @@ define('POSTLIMIT', 20000); //maximum size 'POST' that submit.php will accept
 define('WALLFACTOR', 2); 
 define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit is FACTOR*X + BUFFER
 
-$servername = $_SERVER['SERVER_NAME'];
-$currenturi = $_SERVER['REQUEST_URI'];
 
-if (strcasecmp($servername, 'cscircles.cemc.uwaterloo.ca') == 0) {
-  if (strcasecmp($currenturi, '/dev') == 0 
-      || strcasecmp(substr($currenturi, 0, 5), '/dev/') == 0) {
-    define('UWPHOME', '/dev/');
-    define('PB_DEV', TRUE);
-  }
-  else {
-    define('UWPHOME', '/');
-    define('PB_DEV', FALSE);
-  }
-}
+// P: path constant; U: url constant
 
-if (PB_DEV) 
-  define('PLOCALHOME', '/home/cscircles/dev/');
- else
-   define('PLOCALHOME', '/home/cscircles/live/');
-
+// UWPHOME, url to wordpress base (server part optional)
+// PWP, local path to wordpress base
+// PLOCALHOME, used just by cemc for our setup, optional
+define('UWPHOME', WP_DEBUG ? '/dev/' : '/');
+define('PLOCALHOME', '/home/cscircles/' . (WP_DEBUG ? 'dev/' : 'live/'));
 define('PWP', PLOCALHOME . 'www/wordpress/');
 
-define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
+// if UWPHOME is right, this should be ok too
+define('UWPCONTENT', UWPHOME . 'wp-content/');
 
+define('UVISUALIZER', UWPHOME . 'visualize/');
+define('USEARCH', UWPHOME . 'search/');
 
-// string constants
+// where are safeexec and python3jail installed? 
+define('PJAIL', PLOCALHOME . 'python3jail/');
+define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
+
+// misc constants
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
 define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
 define('CSCIRCLES_ASST_ID_DE', 11351);
 define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca');
 define('CSCIRCLES_DEVELOPER_EMAIL', 'daveagp@gmail.com');
+define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 
+// normally the rest of this file should work without modifying below this line
 
-// path constants :: should exist, and in many cases be writable
-define('PJAIL', PLOCALHOME . 'python3jail/');
-define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
+// optional reporting
+if (defined('PLOCALHOME')) {
+  define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
+  define('PEXPORT', PLOCALHOME . 'export/');
+ }
 
+// according to default python3jail setup
 define('PPYTHON3MODJAIL', '/python3');
 define('PSCRATCHDIRMODJAIL', 'scratch/');
 
-define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
-
 define('PPYBOXDIR', PWP . 'wp-content/plugins/pybox/');
 define('PDATADIR', PWP . 'wp-content/lesson_files/');
-
-define('PEXPORT', PLOCALHOME . 'export/');
 
 define('PWP_LOADER', PWP . 'wp-load.php');
 // PWP_LOADER is used for external access to wordpress functions
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
 // URL constants
-define('UWPCONTENT', UWPHOME . 'wp-content/');
-
 define('UCODEMIRROR2', UWPCONTENT . 'CodeMirror2/');
-
-define('USERVER' , 'http://cscircles.cemc.uwaterloo.ca');
 
 define('UPYBOX', UWPCONTENT . 'plugins/pybox/');
 define('UFILES', UPYBOX . 'files/');
