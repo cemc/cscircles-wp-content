@@ -1,9 +1,6 @@
 <?php
 // see also hacks.txt for documentation of changes to core wordpress code
 
-remove_filter('the_content', 'do_shortcode', 11);
-add_filter('the_content', 'do_shortcode', 9);
-
 //add_filter('no_texturize_tags', 'pyboxNTT'); function pyboxNTT($arg) {$arg[] = 'textarea'; $arg[] = 'input'; return $arg;}
 //add_filter('no_texturize_tags', 'input'); old buggy version
 
@@ -153,15 +150,15 @@ function fixwpautop($text) {
 	$text = preg_replace('|<p>\s*<div(.*)</div>\s*</p>|s', "<div$1</div>", $text);
 	$text = preg_replace('|</div>\s*</p>|s', "</div>", $text);
 	$text = preg_replace('|</pre>\s*<p>|s', "</pre>", $text);
-	$text = preg_replace('|</pre>\s*<br\s*/>|s', "</pre>", $text);
-	$text = preg_replace('|</pre>\s*<br>|s', "</pre>", $text);
-	$text = preg_replace('|<br/>\s*<pre>|s', "<pre>", $text);
+	$text = preg_replace('|</pre>\s*<br( )(/)>|s', "</pre>", $text);
+	$text = preg_replace('|<br( )(/)>\s*<pre>|s', "<pre>", $text);
+        $text = preg_replace('|<br( )(/)>\s*<div|s', "<div", $text);
 	$text = preg_replace('|tt>|', "code>", $text);
 
 	return $text;
 }
 
-function preprocesscallback1($m) {
+/*function preprocesscallback1($m) {
   return str_replace("\n", "<br/>", $m[0]);
 }
 function preprocesscallback($m) {
@@ -176,7 +173,7 @@ function preprocess($text) {
   $f = '@'.$f.'@s';
   $text = preg_replace_callback($f, "preprocesscallback", $text);
   return $text;
-}
+  }*/
 function postprocesscallback($m) {
   //pyboxlog("called pyraw callback on ".$m);
   //pyboxlog($m[1]);  pyboxlog($m[0]); pyboxlog($m[2]);
@@ -188,11 +185,22 @@ function postprocess($text) {
   return $text;
 }
 
+// this is needed to support complex nested shortcodes which may 
+// sometimes include <pre> inside of shortcode arguments
 
-remove_filter ('the_content',  'wpautop');
-add_filter ('the_content',  'wpautop', 6);
+// default: wpautop (10), shortcode_unautop (10), do_shortcode (11)
+
+// us: 
+// kill all literal newlines in shortcodes (except in <pre>)
+//add_filter ('the_content',  'preprocess', 1);
+// do wpautop, which will not affect interior of shortcodes
+//remove_filter ('the_content',  'wpautop'); // by default, 10
+//add_filter ('the_content',  'wpautop', 6); // now, 6
+//remove_filter('the_content', 'do_shortcode', 11); // by default, 11
+//add_filter('the_content', 'do_shortcode', 9); // now, 9
+// shortcode_unautop is 10
 add_filter ('the_content',  'fixwpautop', 20);
-add_filter ('the_content',  'preprocess', 1);
+// now allow raw material we don't want touched
 add_filter ('the_content',  'postprocess', 100);
 
 add_shortcode('msie', 'msie');

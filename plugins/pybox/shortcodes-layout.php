@@ -5,7 +5,7 @@ function printbr($o,$c){
   return '<br/>';
 }
 
-add_shortcode('collapsible', 'print_collapsible');
+add_sweetcode('collapsible', 'print_collapsible', true);
 function print_collapsible($options, $content) {
   $caption = $options['caption'];
   $style = "hiding";
@@ -16,13 +16,13 @@ function print_collapsible($options, $content) {
 $caption
 </div>
 <div class='collapseBody'>"
-  . do_shortcode($content)
+  . do_short_and_sweetcode($content)
   . '</div></div>';
 }
 
-add_shortcode('accordion', 'print_accordion');
+add_sweetcode('accordion', 'print_accordion', true);
 function print_accordion($options, $content) {
   return '<div class="accordion">'
-  . do_shortcode($content)
+  . do_short_and_sweetcode($content)
   . '</div>';
 }

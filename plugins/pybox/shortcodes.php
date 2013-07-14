@@ -1,16 +1,19 @@
 <?php
-add_shortcode('pyBox', 'pyBoxHandler');
-add_shortcode('pyLink', 'pyLinkHandler');
-add_shortcode('pyHint', 'pyHintHandler');
-add_shortcode('pyShort', 'pyShortHandler');
-add_shortcode('pyWarn', 'pyWarnHandler');
-add_shortcode('pyMulti', 'pyMultiHandler');
-add_shortcode('pyExample', 'pyExampleHandler');
-add_shortcode('pyProtect', 'pyProtectHandler');
-add_shortcode('pyMultiScramble', 'pyMultiScrambleHandler');
-add_shortcode('newuserwelcome', 'newuserwelcome');
-add_shortcode('pyRecall', 'pyRecallHandler');
+require_once('sweetcodes.php');
+
+add_sweetcode('pyBox', 'pyBoxHandler', true);
+add_sweetcode('pyLink', 'pyLinkHandler', true);
+add_sweetcode('pyHint', 'pyHintHandler', true);
+add_sweetcode('pyShort', 'pyShortHandler', true);
+add_sweetcode('pyWarn', 'pyWarnHandler', true);
+add_sweetcode('pyMulti', 'pyMultiHandler', true);
+add_sweetcode('pyExample', 'pyExampleHandler', true);
+add_sweetcode('pyProtect', 'pyProtectHandler', true);
+add_sweetcode('pyMultiScramble', 'pyMultiScrambleHandler', true);
+add_sweetcode('pyRecall', 'pyRecallHandler', true);
+
 add_shortcode('pyDebug', 'pyDebug');
+add_shortcode('newuserwelcome', 'newuserwelcome');
 add_shortcode( 'list-pybox-pages', 'list_pybox_pages' );
 
 function loadMostRecent($slug) {
@@ -24,9 +27,13 @@ function loadMostRecent($slug) {
   return $wpdb->get_var( $wpdb->prepare($sqlcmd, $uid, $slug));
 }
 
+function do_short_and_sweetcode($x) {
+  return do_shortcode(do_sweetcode($x));
+}
+
 function pyDebug($o, $c){
   if (PB_DEV)
-    return do_shortcode($c);
+    return do_short_and_sweetcode($c);
 }
 
 function pberror( $errmsg) {
@@ -43,7 +50,7 @@ function pyLinkHandler($options, $content) {
 }
 
 function pyHintHandler($options, $content) {
-  return popUp($content, do_shortcode($options["hint"]),
+  return popUp($content, do_short_and_sweetcode($options["hint"]),
 	       getSoft($options, "class", ""));
 }
 
@@ -151,14 +158,14 @@ function pyShortHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
   registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content, $options);
-  if (isMakingDatabases()) return do_shortcode($content); // faster db generation with accurate count
+  if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
 
   $r .= heading(__t('Short Answer Exercise'), $options);
 
-  $r .= do_shortcode($content);
+  $r .= do_short_and_sweetcode($content);
   $r .= '<br><label for="pyShortAnswer'.$id.'">'.__t('Your answer');
   if ($type=="number") $r .= ' ('.__t('enter a number').')';
   $r .= ': </label><input type="text" onkeypress="{if (event.keyCode==13) pbShortCheck('.$id.')}" id="pyShortAnswer'.$id.'">';
@@ -177,7 +184,7 @@ function pyShortHandler($options, $content) {
 } 
 
 function pyWarnHandler($options, $content) {
-  $scontent = do_shortcode($content);
+  $scontent = do_short_and_sweetcode($content);
   return "<table class='pywarn'><tr><td class='pywarnleft'><img src='".UWARN."'/></td>".
     "<td class='pywarnright'><span> $scontent </span></td></table>";
 }
@@ -194,7 +201,7 @@ function pyMultiHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral' id='pybox$id'>\n";
   registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content, $options);
-  if (isMakingDatabases()) return do_shortcode($content); // faster db generation with accurate count
+  if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -202,7 +209,7 @@ function pyMultiHandler($options, $content) {
   $r .= heading(__t('Multiple Choice Exercise'), $options);
 
   $r .= '<div>';
-  $r .= do_shortcode($content);
+  $r .= do_short_and_sweetcode($content);
   $r .= '</div><label>'.__t('Your choice:').' </label><select id="pyselect' . $id . '"><option value="d" selected>'.__t('Select one').'</option>';
   foreach ($shuff as $s) {
     if ($s==-1)
@@ -249,7 +256,7 @@ function pyMultiScrambleHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
   $r .= "<div class='pybox modeNeutral multiscramble' id='pybox$id'>\n";
   registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content, $options);
-  if (isMakingDatabases()) return do_shortcode($content);; // faster db generation with accurate count
+  if (isMakingDatabases()) return do_short_and_sweetcode($content);; // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
     $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
@@ -451,7 +458,7 @@ function list_pybox_pages($options, $content) {
     return $res . ">" . $atts['value'] . "</option>\n"; }
 
 function pyBoxHandler($options, $content) {
-
+  //echo "PB[[[".$content."]]]";
   // given a shortcode, print out the html for the user, 
   // and save the relevant grader options in a hash file.
   $id = generateId();
@@ -564,7 +571,7 @@ function pyBoxHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
 
   registerPybox($id, $slug, $scramble?"scramble":"code", $facultative, getSoft($options, 'title', NULL), $content, $shortcodeOptions, $hash, $optionsJson);
-  if (isMakingDatabases()) return do_shortcode($content); // faster db generation with accurate count
+  if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
 
   /// we've delivered options to the grader. get on with producing html
 
@@ -617,7 +624,7 @@ function pyBoxHandler($options, $content) {
   }
 
   
-  $r .= do_shortcode($content); //instructions, problem description. process any shortcodes inside.
+  $r .= do_short_and_sweetcode($content); //instructions, problem description. process any shortcodes inside.
 
 
   // part 1.5: help box
