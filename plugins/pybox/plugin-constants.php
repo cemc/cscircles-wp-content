@@ -48,7 +48,7 @@ define('PSCRATCHDIRMODJAIL', 'scratch/');
 define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
 
 define('PPYBOXDIR', PWP . 'wp-content/plugins/pybox/');
-define('PDATADIR', PPYBOXDIR . 'py_includes/');
+define('PDATADIR', PWP . 'wp-content/pb_includes/');
 
 define('PEXPORT', PLOCALHOME . 'export/');
 
