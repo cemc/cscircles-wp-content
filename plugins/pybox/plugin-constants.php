@@ -11,8 +11,11 @@ define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit 
 // UWPHOME, url to wordpress base (server part optional)
 // PWP, local path to wordpress base
 // PLOCALHOME, used just by cemc for our setup, optional
-define('UWPHOME', WP_DEBUG ? '/dev/' : '/');
-define('PLOCALHOME', '/home/cscircles/' . (WP_DEBUG ? 'dev/' : 'live/'));
+
+$dev = preg_match('_^/dev(/|$)_i', $_SERVER['REQUEST_URI']);
+
+define('UWPHOME',  $dev ? '/dev/' : '/');
+define('PLOCALHOME', '/home/cscircles/' . ($dev ? 'dev/' : 'live/'));
 define('PWP', PLOCALHOME . 'www/wordpress/');
 
 // if UWPHOME is right, this should be ok too
