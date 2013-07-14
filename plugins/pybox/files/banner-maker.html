@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<head>
+<style type="text/css">
+<!--
+.big {width:100px; height: 100px; border-radius: 50px;}
+.med {width:50px; height: 50px; border-radius: 25px;}
+.small {width:20px; height: 20px; border-radius: 10px;}
+.tiny {width:10px; height: 10px; border-radius: 5px;}
+div {position: absolute;}
+.emb {box-shadow: 1px 1px 0px darkGreen, -1px -1px 0px #CFC;}
+.drop {box-shadow: inset 1px 1px 10px #9D9;}
+-->
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">$(function() {
+
+function invertbasic(x, y, r, R) {return {"x": R*R*x/(x*x+y*y-r*r), "y": R*R*y/(x*x+y*y-r*r), "r": R*R*r/(x*x+y*y-r*r)};};
+
+function invert(x, y, r) {
+ix = -1000.0;
+iy = -60.0;
+ir = 1600.0;
+tmp = invertbasic(x-ix, y-iy, r, ir);
+tmp['x'] = tmp['x']+ix;
+tmp['y'] = tmp['y']+iy;
+return tmp;
+}
+
+function circ(x, y, r) {
+elt = 
+$("<div></div>").css({
+	"height": 2*r, 
+	"width" : 2*r,
+	"border-radius": r,
+	"top": y-r, 
+	"left": x-r});
+$('body').append(elt);
+return elt;
+}
+
+for (i=-30; i<=40; i++)  
+  for (j=-10; j<=20; j++)
+    if (Math.random()<0.9) {
+	  R = Math.floor(0x98 + 30*(Math.random()-0.5));
+	  G = Math.min(255, Math.floor(0xFB + 30*(Math.random()-0.5)));
+	  B = Math.floor(0x98 + 30*(Math.random()-0.5));
+      data = invert(600+i*20+j*10+5, 50+j*10*Math.sqrt(3)+5, 10);
+      circ(data['x'], data['y'], data['r']-0.5).css({
+	    "background": "rgb("+R+","+G+","+B+")"
+	  });
+	 }
+
+//$('body').append(($("<div></div>").addClass("tiny").css({"background": "green", "top": 120, "left": 240})));
+
+});</script>
+<body>
+<div id="bar" style="z-index: -1; position: absolute; width:1010px; height: 62px; left: 100px; top: 100px; background: #98FB98;"></div>
+<!--<div class="big emb" style="background: #99DE89; top: 120px; left: 155px;"></div>
+<div class="med emb" style="background: none; border: 3px solid #DFD; top: 112px; left: 355px;"></div>
+<div class="big drop" style="background: paleGreen; top: 70px; left: 895px;"></div>
+-->
+<div style="z-index: 10; position: absolute; width:2000px; height: 100px; top: 0px; left: 00px; background: white;"></div>
+<div style="z-index: 10; position: absolute; width:2000px; height: 1000px; top: 162px; left: 00px; background: white;"></div>
+<div style="z-index: 10; position: absolute; width:100px; height: 300px; top: 0px; left: 1110px; background: white;"></div>
+<div style="z-index: 10; position: absolute; width:100px; height: 300px; top: 0px; left: 0px; background: white;"></div>
+
+</body>
+</html> 
