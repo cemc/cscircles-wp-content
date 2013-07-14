@@ -63,8 +63,8 @@ function pyBoxHead() {
 
   echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror/codemirrorwp.css'>\n";
   echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror/textmate.css'>\n";
-  echo "<script type='text/javascript' src='".UFILES."codemirror/lib/codemirror.js'></script>\n";
-  echo "<script type='text/javascript' src='".UFILES."codemirror/mode/python/python.js'></script>\n";
+  echo "<script type='text/javascript' src='".UCODEMIRROR2."lib/codemirror.js'></script>\n";
+  echo "<script type='text/javascript' src='".UCODEMIRROR2."mode/python/python.js'></script>\n";
 
   echo "<script type='text/javascript' src='".UFLEXIGRID."js/flexigrid.js'></script>\n";
   echo '<link type="text/css" rel="stylesheet" href="'.UFLEXIGRID.'css/flexigrid.css" />' . "\n";

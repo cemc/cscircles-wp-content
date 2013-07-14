@@ -57,11 +57,12 @@ define('PWP_LOADER', PWP . 'wp-load.php');
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
 // URL constants
+define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
+define('UFILES', UPYBOX . 'files/');
 define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');
 
-define('UPYBOX', UWPHOME . 'wp-content/plugins/pybox/');
-define('UFILES', UPYBOX . 'files/');
+define('UCODEMIRROR2', UWPHOME . 'static/codemirror/');
 
 define('UPYBOXJS', UPYBOX . 'pybox.js?28');
 define('UPYBOXCSS', UPYBOX . 'pybox.css?16');
