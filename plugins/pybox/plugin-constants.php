@@ -57,7 +57,7 @@ define('PWP_LOADER', PWP . 'wp-load.php');
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
 // URL constants
-define('UFILES', UWPHOME . 'wp-content/plugins/pybox/static/');
+define('UFILES', UWPHOME . 'static/');
 
 define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');
