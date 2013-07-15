@@ -350,6 +350,8 @@ function doGrading($usercode, $TC) {
   if (pll_current_language('slug')=='fr')
     //isSoft($_COOKIE, 'pll_language', 'fr'))
     $mainFile .= "_setLanguage('fr_FR')\n";
+  else if (pll_current_language('slug')=='de')
+    $mainFile .= "_setLanguage('de_DE')\n";
   else
     $mainFile .= "_setLanguage('en_US')\n";
 
