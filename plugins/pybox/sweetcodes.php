@@ -202,7 +202,6 @@ function preprocesscallback1($m) {
   return str_replace("\n", "<br/>", $m[0]);
 }
 function preprocesscallback($m) {
-  echo $m[0];
   $res = $m[0];
   $res = preg_replace_callback("|<pre>.*</pre>|sU", "preprocesscallback1", $res);
   $res = str_replace(array("\n", "\r"), "", $res);
