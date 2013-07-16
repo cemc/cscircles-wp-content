@@ -43,11 +43,12 @@ function cscurl($desc) {
   if ($desc == 'visualize') return UVISUALIZER;
   if ($desc == 'search') return USEARCH; 
 
-  if ($desc == 'homepage') // due to a bug, we can't translate during 'is_admin'
-    return is_admin() ? "/" : pll_home_url();
+  //  if ($desc == 'homepage') // due to a bug, we can't translate during 'is_admin'
+  //return is_admin() ? "/" : pll_home_url();
   
   $cscslugmap = array(
 		     ('progress') => 'user-page',
+		     ('homepage') => '0-introduction',
 		     ('mail') => 'mail',
 		     ('resources') => 'resources',
 		     ('console') => 'console',
@@ -62,6 +63,8 @@ function cscurl($desc) {
   $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
   if (!is_admin())
     $res = pll_get_post($res);
+  else
+    $res = pll_get_post($res, substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2));
   return get_permalink($res);
 }
 
