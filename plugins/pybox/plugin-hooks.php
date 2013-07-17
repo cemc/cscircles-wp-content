@@ -105,26 +105,27 @@ function footsy() {
   global $popupBoxen;
   echo $popupBoxen;
 
-  echo '<span id="pylangswitcher">';
-  //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
-
-  foreach (array('en', 'fr') as $lang) {
-    if ($lang != pll_current_language()) 
-      echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
+  if (class_exists('Polylang_Core')) {
+    echo '<span id="pylangswitcher">';
+    //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
+    
+    foreach (array('en', 'fr') as $lang) {
+      if ($lang != pll_current_language()) 
+        echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
+    }
+    
+    if (userIsAdmin() || 
+        userIsTranslator() || userIsAssistant())
+      foreach (array('de', 'nl') as $lang) {
+        if ($lang != pll_current_language()) {
+          echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
+        }
+      }
+    // old method:  echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
+    if (userIsAdmin() || userIsTranslator() || userIsAssistant())
+      echo '<li><a href="'.admin_url('edit.php?post_type=page').'">'.__t('Editor').'</a></li>';
+    echo '</span>';
   }
-
-  if (userIsAdmin() || 
-      userIsTranslator() || userIsAssistant())
-    foreach (array('de', 'nl') as $lang) {
-      if ($lang != pll_current_language()) {
-	echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
-   }
-  }
-      // old method:  echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
-  if (userIsAdmin() || userIsTranslator() || userIsAssistant())
-    echo '<li><a href="'.admin_url('edit.php?post_type=page').'">'.__t('Editor').'</a></li>';
-  echo '</span>';
-
 }
 
 // adapted from http://www.ilovecolors.com.ar/tinymce-plugin-wordpress/

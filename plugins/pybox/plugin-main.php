@@ -14,8 +14,8 @@
 require_once("include-me.php");
 
 function pybox_database_install () {
+  echo "running pybox_database_install";
   global $wpdb;
-  pyboxlog("running pybox_database_install");
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
   $table_name = $wpdb->prefix . "pb_completed";
