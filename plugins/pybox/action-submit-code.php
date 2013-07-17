@@ -722,7 +722,7 @@ function run_submission($post) {
   //  $problemArgs[$key] = stripcslashes($value);
 
   $problemArgs = $wpdb->get_var($wpdb->prepare("
-SELECT graderArgs from wp_pb_problems WHERE hash = %s", $hash));
+SELECT graderArgs from ".$wpdb->prefix."pb_problems WHERE hash = %s", $hash));
   if ($problemArgs === NULL)
     return merror("", sprintf(__t("Pybox error: problem hash %s not found. "
 				  . "Try reloading the page."), $hash));

@@ -41,7 +41,7 @@ function pyUser($options, $content) {
     //$preamble .= <option value=''>Show only me</option>
     //     <option value='all'>Summary of all my students</option>";
     if (userIsAdmin()) {
-      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
+      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM ".$wpdb->prefix."users") as $row) 
       //	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
     }
     else foreach ($students as $student) {

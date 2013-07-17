@@ -13,7 +13,7 @@ function user_pb_options_fields( $user ) {
   $gurucheck = '';
   if (trim($guru_login) != '') {
     global $wpdb;
-    $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from wp_users WHERE user_login = %s', $guru_login));
+    $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from '.$wpdb->prefix.'users WHERE user_login = %s', $guru_login));
     if ($guruid === NULL) 
       $gurucheck = 
 	"<b>".sprintf(__t("The username %s does not exist."), "<code>" . htmlspecialchars($guru_login) . "</code>")."</b>";

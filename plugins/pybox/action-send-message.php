@@ -9,7 +9,7 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
   $unanswered = (getUserID() == $student) ? 1 : 0;
 
   if (getUserID() != $student) 
-    $wpdb->update('wp_pb_mail',
+    $wpdb->update($wpdb->prefix.'pb_mail',
 		  array('unanswered' => 0),
 		  array('unanswered' => 1, 'ustudent' => $student, 'problem' => $slug));
 
@@ -20,7 +20,7 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
   if ($to == 0 && pll_current_language()=='de')
     $insert_to = CSCIRCLES_ASST_ID_DE;
 
-  $wpdb->insert('wp_pb_mail', 
+  $wpdb->insert($wpdb->prefix.'pb_mail', 
 		array('ufrom' => $from, 'uto' => $insert_to, 'ustudent' => $student, 'problem' => $slug, 'body' => $body, 
 		      'unanswered' => $unanswered), 
 		array('%d','%d','%d','%s','%s', '%d'));
@@ -80,7 +80,7 @@ get_currentuserinfo();
 $user_email = $current_user->user_email;
 
 global $wpdb;
-$problem_info = $wpdb->get_row($wpdb->prepare('SELECT * from wp_pb_problems where slug = %s and lang = %s', 
+$problem_info = $wpdb->get_row($wpdb->prepare('SELECT * from '.$wpdb->prefix.'pb_problems where slug = %s and lang = %s', 
 					      $slug, pll_current_language()), ARRAY_A);
 
 if ($problem_info === NULL) {

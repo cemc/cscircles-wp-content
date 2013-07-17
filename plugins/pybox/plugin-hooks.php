@@ -245,9 +245,9 @@ function pb_menu_items($wp_admin_bar) {
       $where = "(uto = " .getUserID() . ")";//"AND ustudent IN (".implode(',', $students)."))";
     }
     $where = $where . "AND unanswered = 1";
-    $count = $wpdb->get_var("SELECT COUNT(1) FROM wp_pb_mail WHERE $where");
+    $count = $wpdb->get_var("SELECT COUNT(1) FROM ".$wpdb->prefix."pb_mail WHERE $where");
     if ($count > 0) {
-      $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM wp_pb_mail 
+      $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM ".$wpdb->prefix."pb_mail 
                              WHERE $where ORDER BY ID ASC LIMIT 1", ARRAY_A);
 
       $url = cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';

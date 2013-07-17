@@ -31,12 +31,12 @@ echo dbFlexigrid
 
    $count = $wpdb->get_var("
 SELECT count(distinct activity, substring(start, 1, $L))
-FROM wp_pb_profiling
+FROM ".$wpdb->prefix."pb_profiling
 $where");
 
    $query = "
 SELECT substring(start, 1, $L) as period, count(1), sum(duration), activity
-FROM wp_pb_profiling
+FROM ".$wpdb->prefix."pb_profiling
 $where
 GROUP BY activity, period
 ORDER BY $sortString period DESC

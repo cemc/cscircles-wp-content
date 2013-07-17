@@ -115,7 +115,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
       echo ($wpdb->insert($table_name, $row)!=1?'<br>insert bad':' insert ok');
   }
   else if ($hash != NULL) {
-    if ($wpdb->get_var("SELECT COUNT(1) from wp_pb_problems WHERE hash = '$hash' AND lang='".pll_current_language()."'") == 0) {
+    if ($wpdb->get_var("SELECT COUNT(1) from ".$wpdb->prefix."pb_problems WHERE hash = '$hash' AND lang='".pll_current_language()."'") == 0) {
       // hash is important, but not yet registered!
       // typically this would occur if we're editing a problem and viewing it before rebuilding db
       // if the hash doesn't exist, add it so the grader knows what do to with submissions
@@ -131,7 +131,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
 		   'hash' => $hash,
 		   'lang' => pll_current_language());
       if ($slug != 'NULL')  $row['slug'] = $slug;
-      $wpdb->insert("wp_pb_problems", $row);
+      $wpdb->insert($wpdb->prefix."pb_problems", $row);
     }
   }
 }
@@ -300,7 +300,7 @@ function pyRecallHandler($options, $content) {
     } */
 
   global $wpdb;
-  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",
+  $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."pb_problems WHERE slug = %s AND lang = %s",
 					   $options['slug'], 'en'), ARRAY_A);
 
   if ($problem == NULL) 
@@ -638,7 +638,7 @@ if (!$facultative && !$scramble) {
     global $wpdb;
     $guru_login = get_the_author_meta('pbguru', get_current_user_id());
     if ($guru_login != '')
-      $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from wp_users WHERE user_login = %s', $guru_login));
+      $guruid = $wpdb->get_var($wpdb->prepare('SELECT ID from '.$wpdb->prefix.'users WHERE user_login = %s', $guru_login));
     $r .= '<div style="text-align: center">';
     if ($guru_login != '' and $guruid !== NULL) {
       $r .= __t('Send a question by e-mail to: ');

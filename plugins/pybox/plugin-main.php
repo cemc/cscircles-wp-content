@@ -26,8 +26,8 @@ problem text,
 time timestamp
 );";
       $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on wp_pb_completed (userid, problem (16));");
-      $result = dbDelta("create index pb_index_problem on wp_pb_completed (problem (16));");
+      $result = dbDelta("create index pb_index on ".$wpdp->prefix."pb_completed (userid, problem (16));");
+      $result = dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_completed (problem (16));");
   }
 
   $table_name = $wpdb->prefix . "pb_submissions";
@@ -48,8 +48,8 @@ referer text,
 PRIMARY KEY (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on wp_pb_submissions (userid, problem (16), beginstamp);");
-      $result = dbDelta("create index pb_index_problem on wp_pb_submissions (problem (16));");
+      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
+      $result = dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
   }
 
   $table_name = $wpdb->prefix . "pb_lessons";
@@ -64,7 +64,7 @@ number text,
 lang text,
 PRIMARY KEY (id)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-      $result = dbDelta("create index pb_index on wp_pb_lessons (lang (2), ordering);");
+      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_lessons (lang (2), ordering);");
       $result = dbDelta($sql);
   }
 
@@ -86,8 +86,8 @@ content text,
 lang text
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on wp_pb_problems (hash (32));");
-      $result = dbDelta("create index pb_index_named on wp_pb_problems (lang (2), slug (16));");
+      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_problems (hash (32));");
+      $result = dbDelta("create index pb_index_named on ".$wpdb->prefix."pb_problems (lang (2), slug (16));");
   }
   
   $table_name = $wpdb->prefix . "pb_profiling";
@@ -122,9 +122,9 @@ unanswered boolean,
 primary key (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
       $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on wp_pb_mail (uto, unanswered);");
-      $result = dbDelta("create index pb_index_subject on wp_pb_mail (ustudent, problem (16), ID);");
-      $result = dbDelta("create index pb_index_problem on wp_pb_mail (problem (16));");
+      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
+      $result = dbDelta("create index pb_index_subject on ".$wpdb->prefix."pb_mail (ustudent, problem (16), ID);");
+      $result = dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_mail (problem (16));");
   }
 
 }

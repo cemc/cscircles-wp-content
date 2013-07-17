@@ -6,7 +6,7 @@ require_once(PWP_LOADER);
 
 global $wpdb;
 $row = $wpdb->get_results($wpdb->prepare("
-SELECT * FROM wp_pb_problems WHERE hash = %s", getSoft($_GET, "hash", "")), ARRAY_A);
+SELECT * FROM ".$wpdb->prefix."_pb_problems WHERE hash = %s", getSoft($_GET, "hash", "")), ARRAY_A);
 
 foreach ($row[0] as $field => $value) {
   if ($field == 'shortcodeArgs' || $field == 'graderArgs') {

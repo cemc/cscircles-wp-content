@@ -29,7 +29,7 @@ function export_submissions($content, $options) {
   $results = 
     $wpdb->get_results
     ($wpdb->prepare
-     ("SELECT problem, usercode, userinput, hash, ID FROM wp_pb_submissions
+     ("SELECT problem, usercode, userinput, hash, ID FROM ".$wpdb->prefix."pb_submissions
        WHERE ID < %d 
        ORDER by ID DESC
        LIMIT %d", $last_id, $chunkSize),

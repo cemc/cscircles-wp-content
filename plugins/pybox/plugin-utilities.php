@@ -110,7 +110,7 @@ function userIsAssistant() {
 function userIsTranslator() {
   if (!is_user_logged_in()) return false;
   global $wpdb;
-  return 1==$wpdb->get_var("select count(1) from wp_user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);
+  return 1==$wpdb->get_var("select count(1) from ".$wpdb->prefix."user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);
 }
 
 function nicefiedUsername($uid, $short = TRUE) {
@@ -346,7 +346,7 @@ function getStudents() {
 
   $ulogin = $current_user->user_login;
 
-  $rows = $wpdb->get_results($wpdb->prepare("SELECT user_id FROM wp_usermeta WHERE meta_key=%s AND meta_value=%s", 'pbguru', $ulogin));
+  $rows = $wpdb->get_results($wpdb->prepare("SELECT user_id FROM ".$wpdb->prefix."usermeta WHERE meta_key=%s AND meta_value=%s", 'pbguru', $ulogin));
 
   $result = array();
   foreach ($rows as $row) $result[] = $row->user_id;
@@ -449,7 +449,7 @@ function retroProfilingEntry($seconds, $data=array()) {
   if (array_key_exists('meta', $data))
     $data['meta'] = json_encode($data['meta']);
   global $wpdb;
-  $wpdb->insert( "wp_pb_profiling", $data );
+  $wpdb->insert( $wpdb->prefix."pb_profiling", $data );
 }
 
 function optionsHelper($options, $argname) {
@@ -472,16 +472,16 @@ function pythonEscape($string) {
 
 function allSolvedCount() {
   global $wpdb;
-  return $wpdb->get_var("select count(1) from wp_pb_completed;");
+  return $wpdb->get_var("select count(1) from ".$wpdb->prefix."pb_completed;");
 }
 
 function resendEmails() {
   global $wpdb;
   $return;
-  foreach ($wpdb->get_results("SELECT * FROM wp_pb_mail WHERE ID >= 3818 and ID <= 3835 and uto != 0", ARRAY_A) as $r) {
+  foreach ($wpdb->get_results("SELECT * FROM ".$wpdb->prefix."pb_mail WHERE ID >= 3818 and ID <= 3835 and uto != 0", ARRAY_A) as $r) {
     $problem = $r['problem'];
-    $pname = $wpdb->get_var("SELECT publicname FROM wp_pb_problems WHERE slug like '$problem'");
-    $purl = $wpdb->get_var("SELECT url FROM wp_pb_problems WHERE slug like '$problem'");
+    $pname = $wpdb->get_var("SELECT publicname FROM ".$wpdb->prefix."pb_problems WHERE slug like '$problem'");
+    $purl = $wpdb->get_var("SELECT url FROM ".$wpdb->prefix."pb_problems WHERE slug like '$problem'");
     
     $subject = "CS Circles - Message about $pname";
     $to = get_user_by('id', $r['uto'])->user_email;

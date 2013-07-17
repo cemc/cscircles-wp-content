@@ -28,7 +28,7 @@ function validate() {
     $mailcond = "1";
 
   if ($p != '') {
-    $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM wp_pb_problems WHERE slug = %s AND lang = %s",
+    $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."pb_problems WHERE slug = %s AND lang = %s",
 					     $p, pll_current_language()), ARRAY_A);
     
     if ($problem === null)
@@ -62,7 +62,7 @@ function pbmailpage($options, $content) {
   
   if ($problem !== NULL) {
     
-    $finished = $wpdb->get_var($wpdb->prepare("SELECT time FROM wp_pb_completed WHERE userid = %d AND problem = %s",
+    $finished = $wpdb->get_var($wpdb->prepare("SELECT time FROM ".$wpdb->prefix."pb_completed WHERE userid = %d AND problem = %s",
 					      $sid, $problem['slug']));
     
     $r .= '<h1 id="m" style="margin-top:0">'.
@@ -83,7 +83,7 @@ function pbmailpage($options, $content) {
     $r .= '<i>'.__t('Click on a message title to toggle the message open or closed.').'</i>';
     
     global $mailcond;
-    $messages = $wpdb->get_results($wpdb->prepare("SELECT * FROM wp_pb_mail WHERE ustudent = %d AND problem = %s AND $mailcond ORDER BY ID desc",
+    $messages = $wpdb->get_results($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."pb_mail WHERE ustudent = %d AND problem = %s AND $mailcond ORDER BY ID desc",
 						  $sid, $problem['slug']), ARRAY_A);
     
     foreach ($messages as $i=>$message) {
@@ -199,7 +199,7 @@ function reselector(&$students, $cstudents) {
     //$preamble .= <option value=''>Show only me</option>
     //     <option value='all'>Summary of all my students</option>";
     if (userIsAdmin()) {
-      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM wp_users") as $row) 
+      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM ".$wpdb->prefix."users") as $row) 
       //	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
     }
     else foreach ($students as $student) {

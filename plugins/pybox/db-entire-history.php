@@ -52,7 +52,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
 
    // make an associative array indexed by slug
    
-   $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM wp_pb_problems WHERE slug IS NOT NULL AND lang = '".pll_current_language() ."'", 
+   $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM ".$wpdb->prefix."pb_problems WHERE slug IS NOT NULL AND lang = '".pll_current_language() ."'", 
 				      OBJECT_K);
 
    $whereProblem = "1";
@@ -86,7 +86,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
    $count = 
      $wpdb->get_var("
 SELECT COUNT(1)
-FROM wp_pb_submissions 
+FROM ".$wpdb->prefix."pb_submissions 
 WHERE $whereStudent AND $whereProblem");
 
    if ($count==0) 
@@ -94,7 +94,7 @@ WHERE $whereStudent AND $whereProblem");
 
    $prep = "
 SELECT userid, ID, beginstamp, usercode, userinput, result, problem
-FROM wp_pb_submissions 
+FROM ".$wpdb->prefix."pb_submissions 
 WHERE $whereStudent AND $whereProblem
 ORDER BY $sortString ID DESC " . $limit;
  
