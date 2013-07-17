@@ -14,7 +14,7 @@
 require_once("include-me.php");
 
 function pybox_database_install () {
-  echo "running pybox_database_install";
+  pyboxlog("running pybox_database_install");
   global $wpdb;
   require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // for dbDelta
 
