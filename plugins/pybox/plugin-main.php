@@ -32,8 +32,8 @@ problem text,
 time timestamp
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
   dbDelta($sql);
-  $wpdb->query("create index pb_index on ".$wpdp->prefix."pb_completed (userid, problem (16));");
   $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_completed (problem (16));");
+  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_completed (userid, problem (16));");
 
   $table_name = $wpdb->prefix . "pb_lessons";
   $sql = "CREATE TABLE " . $table_name . " (
@@ -85,6 +85,23 @@ primary key  (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
   dbDelta($sql);
 
+  $table_name = $wpdb->prefix . "pb_mail";
+  $sql = "CREATE TABLE " . $table_name . " (
+ID integer NOT NULL AUTO_INCREMENT,
+ustudent integer,
+ufrom integer,
+uto integer,
+problem text,
+body text,
+time timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+unanswered boolean,
+primary key  (ID)
+) CHARACTER SET utf8 COLLATE utf8_general_ci;";
+  dbDelta($sql);
+  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
+  $wpdb->query("create index pb_index_subject on ".$wpdb->prefix."pb_mail (ustudent, problem (16), ID);");
+  $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_mail (problem (16));");
+
   $table_name = $wpdb->prefix . "pb_submissions";
   $sql = "CREATE TABLE " . $table_name . " (
 ID INT NOT NULL AUTO_INCREMENT,
@@ -104,23 +121,6 @@ PRIMARY KEY  (ID)
   dbDelta($sql);
   $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
   $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
-
-  $table_name = $wpdb->prefix . "pb_mail";
-  $sql = "CREATE TABLE " . $table_name . " (
-ID integer NOT NULL AUTO_INCREMENT,
-ustudent integer,
-ufrom integer,
-uto integer,
-problem text,
-body text,
-time timestamp CURRENT_TIMESTAMP,
-unanswered boolean,
-primary key  (ID)
-) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-  dbDelta($sql);
-  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
-  $wpdb->query("create index pb_index_subject on ".$wpdb->prefix."pb_mail (ustudent, problem (16), ID);");
-  $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_mail (problem (16));");
 
 }
 
