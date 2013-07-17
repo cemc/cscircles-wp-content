@@ -26,7 +26,6 @@ function pybox_database_install () {
   // we create indexes with direct queries since "Duplicate key name" works in our favour
 
   $table_name = $wpdb->prefix . "pb_completed";
-
   $sql = "CREATE TABLE " . $table_name . " (
 userid integer, 
 problem text,
@@ -35,26 +34,6 @@ time timestamp
   dbDelta($sql);
   $wpdb->query("create index pb_index on ".$wpdp->prefix."pb_completed (userid, problem (16));");
   $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_completed (problem (16));");
-
-  $table_name = $wpdb->prefix . "pb_submissions";
-  $sql = "CREATE TABLE " . $table_name . " (
-ID INT NOT NULL AUTO_INCREMENT,
-beginstamp datetime,
-endstamp timestamp, 
-userid integer,
-problem text,
-hash text,
-usercode text,
-userinput text,
-result text,
-ipaddress text,
-postmisc text,
-referer text,
-PRIMARY KEY (ID)
-) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-  dbDelta($sql);
-  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
-  $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
 
   $table_name = $wpdb->prefix . "pb_lessons";
   $sql = "CREATE TABLE " . $table_name . " (
@@ -65,10 +44,10 @@ title text,
 id integer,
 number text,
 lang text,
-PRIMARY KEY (id)
+PRIMARY KEY  (id)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_lessons (lang (2), ordering);");
   dbDelta($sql);
+  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_lessons (lang (2), ordering);");
 
   $table_name = $wpdb->prefix . "pb_problems";
   $sql = "CREATE TABLE " . $table_name . " (
@@ -102,9 +81,29 @@ duration decimal(20, 10),
 crossref integer,
 parent integer,
 meta text,
-primary key (ID)
+primary key  (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
   dbDelta($sql);
+
+  $table_name = $wpdb->prefix . "pb_submissions";
+  $sql = "CREATE TABLE " . $table_name . " (
+ID INT NOT NULL AUTO_INCREMENT,
+beginstamp datetime,
+endstamp timestamp, 
+userid integer,
+problem text,
+hash text,
+usercode text,
+userinput text,
+result text,
+ipaddress text,
+postmisc text,
+referer text,
+PRIMARY KEY  (ID)
+) CHARACTER SET utf8 COLLATE utf8_general_ci;";
+  dbDelta($sql);
+  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
+  $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
 
   $table_name = $wpdb->prefix . "pb_mail";
   $sql = "CREATE TABLE " . $table_name . " (
@@ -116,7 +115,7 @@ problem text,
 body text,
 time timestamp CURRENT_TIMESTAMP,
 unanswered boolean,
-primary key (ID)
+primary key  (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
   dbDelta($sql);
   $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
