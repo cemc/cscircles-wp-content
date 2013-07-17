@@ -238,24 +238,28 @@ function pb_menu_items($wp_admin_bar) {
   
   global $wpdb;
 
-  $students = getStudents();
-  if (count($students)>0 || userIsAdmin() || userIsAssistant()) {
-    if (userIsAdmin())
-      $where = "(uto = ".getUserID() . " OR uto = 0)";
-    else {
-      $where = "(uto = " .getUserID() . ")";//"AND ustudent IN (".implode(',', $students)."))";
-    }
-    $where = $where . "AND unanswered = 1";
-    $count = $wpdb->get_var("SELECT COUNT(1) FROM ".$wpdb->prefix."pb_mail WHERE $where");
-    if ($count > 0) {
-      $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM ".$wpdb->prefix."pb_mail 
+  $mailtable = $wpdb->prefix."pb_mail";
+  // check first, since upon initial installation it might be a problem due to being in header
+  if ($wpdb->get_var("SHOW TABLES LIKE '$mailtable'") == $mailtable) { 
+    $students = getStudents();
+    if (count($students)>0 || userIsAdmin() || userIsAssistant()) {
+      if (userIsAdmin())
+        $where = "(uto = ".getUserID() . " OR uto = 0)";
+      else {
+        $where = "(uto = " .getUserID() . ")";//"AND ustudent IN (".implode(',', $students)."))";
+      }
+      $where = $where . "AND unanswered = 1";
+      $count = $wpdb->get_var("SELECT COUNT(1) FROM ".$wpdb->prefix."pb_mail WHERE $where");
+      if ($count > 0) {
+        $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM ".$wpdb->prefix."pb_mail 
                              WHERE $where ORDER BY ID ASC LIMIT 1", ARRAY_A);
-
-      $url = cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
-      
-      $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'mail', 'href' => $url,
-				      'title' => '<img title="'.__t('goto oldest unanswered mail').'"'.
-				      'class="icon" src="'.UFILES . "mail-icon.png\"/>($count)" ));
+        
+        $url = cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
+        
+        $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'mail', 'href' => $url,
+                                        'title' => '<img title="'.__t('goto oldest unanswered mail').'"'.
+                                        'class="icon" src="'.UFILES . "mail-icon.png\"/>($count)" ));
+      }
     }
   }
   

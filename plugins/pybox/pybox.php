@@ -16,7 +16,7 @@ require_once("include-me.php");
 function pybox_database_install () {
   echo "running pybox_database_install";
   global $wpdb;
-  require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+  require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // for dbDelta
 
   $table_name = $wpdb->prefix . "pb_completed";
   if($wpdb->get_var("show tables like '$table_name'") != $table_name) {  
@@ -171,13 +171,7 @@ require_once("plugin-hooks.php");
 require_once("plugin-profile-options.php");
 require_once("js-translation.php");
 require_once("newuseremail.php");
-#require_once("dbf-subs.php"); not in use
-#require_once("dbf-completed.php"); not in use
 require_once("css-admin.php");
-
-add_shortcode('javaTest', function($o, $c) {
-		passthru("/home/cscircles/java-syntax/tests.py");
-	      });
 
 add_action( 'wp_enqueue_scripts', 'add_button_stylesheet' );
 function add_button_stylesheet() {
