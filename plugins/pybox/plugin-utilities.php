@@ -61,10 +61,12 @@ function cscurl($desc) {
   $s = $cscslugmap[$desc];
   global $wpdb;
   $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
-  if (!is_admin())
-    $res = pll_get_post($res);
-  else
-    $res = pll_get_post($res, substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2));
+  if (class_exists('Polylang_Core')) {
+    if (!is_admin())
+      $res = pll_get_post($res);
+    else
+      $res = pll_get_post($res, substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2));
+  }
   return get_permalink($res);
 }
 
@@ -108,6 +110,7 @@ function userIsAssistant() {
 }
 
 function userIsTranslator() {
+  if (!class_exists('Polylang_Core')) return false;
   if (!is_user_logged_in()) return false;
   global $wpdb;
   return 1==$wpdb->get_var("select count(1) from ".$wpdb->prefix."user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);

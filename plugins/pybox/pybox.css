@@ -221,7 +221,7 @@ opening one will close the other open ones
 .collapseHead .icon {
 	display: inline-block;
 	border: none;
-	background: url('http://cscircles.cemc.uwaterloo.ca/dev/wp-content/plugins/wp-ui/images/ui-icon-whitest.png');
+	background: url(css-images/ui-icon-whitest.png);
 	background-position: -64px -16px;
 	width: 16px;
 	height: 16px;

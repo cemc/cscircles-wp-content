@@ -122,7 +122,7 @@ function footsy() {
   }
       // old method:  echo pll_the_languages(array('echo'=>0,'display_names_as' => 'slug','hide_current' => 1));
   if (userIsAdmin() || userIsTranslator() || userIsAssistant())
-    echo '<li><a href="http://cscircles.cemc.uwaterloo.ca/wp-admin/edit.php?post_type=page">'.__t('Editor').'</a></li>';
+    echo '<li><a href="'.admin_url('edit.php?post_type=page').'">'.__t('Editor').'</a></li>';
   echo '</span>';
 
 }

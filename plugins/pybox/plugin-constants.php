@@ -64,7 +64,7 @@ define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');
 
 define('UPYBOXJS', UPYBOX . 'pybox.js?28');
-define('UPYBOXCSS', UPYBOX . 'pybox.css?16');
+define('UPYBOXCSS', UPYBOX . 'pybox.css?17');
 define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
 
 define('USUBMIT', UPYBOX . 'action-submit-code.php');
