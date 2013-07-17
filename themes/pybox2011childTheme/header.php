@@ -124,8 +124,8 @@ if ( ! empty( $header_image ) ) :
     echo get_the_post_thumbnail( $post->ID, 'post-thumbnail' );
 
  else : 
-   if (pll_current_language()=='de') {
-     echo '<img src="http://cscircles.cemc.uwaterloo.ca/wp-content/uploads/GermanHeader.jpg" width="1000" height="150" />';
+   if (class_exists('Polylang_Core') && pll_current_language()=='de') {
+     echo '<img src="'.content_url('/uploads/GermanHeader.jpg').'" width="1000" height="150" />';
    }
    else {?>
      <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
