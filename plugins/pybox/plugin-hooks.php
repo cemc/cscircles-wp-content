@@ -1,8 +1,4 @@
 <?php
-// see also hacks.txt for documentation of changes to core wordpress code
-
-//add_filter('no_texturize_tags', 'pyboxNTT'); function pyboxNTT($arg) {$arg[] = 'textarea'; $arg[] = 'input'; return $arg;}
-//add_filter('no_texturize_tags', 'input'); old buggy version
 
 // texturize is too annoying once we have translations and code all mixed together
 foreach ( array( 'comment_author', 'term_name', 'link_name', 'link_description', 'link_notes', 'bloginfo', 'wp_title', 'widget_title', 'the_title', 'the_content', 'the_excerpt', 'comment_text', 'list_cats' ) as $filter ) {
@@ -16,6 +12,27 @@ function justemail_contactmethod( $contactmethods ) {
   return $contactmethods;
 }
 add_filter('user_contactmethods','justemail_contactmethod',10,1);
+
+
+function enable_more_buttons($buttons) {
+  $buttons[] = 'sub';
+  $buttons[] = 'sup';
+  return $buttons;
+  }
+add_filter("mce_buttons", "enable_more_buttons");
+
+remove_action( 'wp_head', 'feed_links', 2 ); 
+// Don't display the links to the general feeds: Post and Comment Feed
+remove_action( 'wp_head', 'wlwmanifest_link' );
+remove_action( 'wp_head', 'rsd_link' );
+
+add_filter("robots_txt", "domo_arigato");
+
+function domo_arigato($output) {
+  $output .= 'Disallow: /wp-content/plugins/pybox/';
+  return $output;
+}
+
 
 add_filter('login_headerurl','remove_wp_link');function remove_wp_link($var){return NULL;}
 add_filter('login_headertitle','pb_title');

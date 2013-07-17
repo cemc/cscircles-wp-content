@@ -13,26 +13,31 @@
 
 require_once("include-me.php");
 
+register_activation_hook(__FILE__, 'pybox_database_install');
+// for information about upgrading see
+// http://codex.wordpress.org/Creating_Tables_with_Plugins
+
 function pybox_database_install () {
   pyboxlog("running pybox_database_install");
   global $wpdb;
-  require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); // for dbDelta
+
+  // we use dbDelta since it is more compatible with upgrades
+  require_once(ABSPATH . 'wp-admin/includes/upgrade.php'); 
+  // we create indexes with direct queries since "Duplicate key name" works in our favour
 
   $table_name = $wpdb->prefix . "pb_completed";
-  if($wpdb->get_var("show tables like '$table_name'") != $table_name) {  
-      $sql = "CREATE TABLE " . $table_name . " (
+
+  $sql = "CREATE TABLE " . $table_name . " (
 userid integer, 
 problem text,
 time timestamp
-);";
-      $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on ".$wpdp->prefix."pb_completed (userid, problem (16));");
-      $result = dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_completed (problem (16));");
-  }
+) CHARACTER SET utf8 COLLATE utf8_general_ci;";
+  dbDelta($sql);
+  $wpdb->query("create index pb_index on ".$wpdp->prefix."pb_completed (userid, problem (16));");
+  $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_completed (problem (16));");
 
   $table_name = $wpdb->prefix . "pb_submissions";
-  if($wpdb->get_var("show tables like '$table_name'") != $table_name) {      
-      $sql = "CREATE TABLE " . $table_name . " (
+  $sql = "CREATE TABLE " . $table_name . " (
 ID INT NOT NULL AUTO_INCREMENT,
 beginstamp datetime,
 endstamp timestamp, 
@@ -47,14 +52,12 @@ postmisc text,
 referer text,
 PRIMARY KEY (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-      $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
-      $result = dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
-  }
+  dbDelta($sql);
+  dbDelta("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
+  dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
 
   $table_name = $wpdb->prefix . "pb_lessons";
-  if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-      $sql = "CREATE TABLE " . $table_name . " (
+  $sql = "CREATE TABLE " . $table_name . " (
 major integer,
 minor text,
 ordering integer,
@@ -64,13 +67,11 @@ number text,
 lang text,
 PRIMARY KEY (id)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_lessons (lang (2), ordering);");
-      $result = dbDelta($sql);
-  }
+  dbDelta("create index pb_index on ".$wpdb->prefix."pb_lessons (lang (2), ordering);");
+  dbDelta($sql);
 
   $table_name = $wpdb->prefix . "pb_problems";
-  if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-      $sql = "CREATE TABLE " . $table_name . " (
+  $sql = "CREATE TABLE " . $table_name . " (
 postid integer,
 lesson integer,
 boxid integer,
@@ -85,14 +86,12 @@ publicname text,
 content text,
 lang text
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-      $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_problems (hash (32));");
-      $result = dbDelta("create index pb_index_named on ".$wpdb->prefix."pb_problems (lang (2), slug (16));");
-  }
+  dbDelta($sql);
+  dbDelta("create index pb_index on ".$wpdb->prefix."pb_problems (hash (32));");
+  dbDelta("create index pb_index_named on ".$wpdb->prefix."pb_problems (lang (2), slug (16));");
   
   $table_name = $wpdb->prefix . "pb_profiling";
-  if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-    $sql = "CREATE TABLE " . $table_name . " (
+  $sql = "CREATE TABLE " . $table_name . " (
 ID integer NOT NULL AUTO_INCREMENT,
 activity text,
 start datetime,
@@ -105,12 +104,10 @@ parent integer,
 meta text,
 primary key (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-      $result = dbDelta($sql);
-  }
+  dbDelta($sql);
 
   $table_name = $wpdb->prefix . "pb_mail";
-  if ($wpdb->get_var("show tables like '$table_name'") != $table_name) {
-    $sql = "CREATE TABLE " . $table_name . " (
+  $sql = "CREATE TABLE " . $table_name . " (
 ID integer NOT NULL AUTO_INCREMENT,
 ustudent integer,
 ufrom integer,
@@ -121,38 +118,13 @@ time timestamp CURRENT_TIMESTAMP,
 unanswered boolean,
 primary key (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
-      $result = dbDelta($sql);
-      $result = dbDelta("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
-      $result = dbDelta("create index pb_index_subject on ".$wpdb->prefix."pb_mail (ustudent, problem (16), ID);");
-      $result = dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_mail (problem (16));");
-  }
+  dbDelta($sql);
+  dbDelta("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
+  dbDelta("create index pb_index_subject on ".$wpdb->prefix."pb_mail (ustudent, problem (16), ID);");
+  dbDelta("create index pb_index_problem on ".$wpdb->prefix."pb_mail (problem (16));");
 
 }
 
-register_activation_hook(__FILE__, 'pybox_database_install');
-// for information about upgrading see
-// http://codex.wordpress.org/Creating_Tables_with_Plugins
-
-
-
-function enable_more_buttons($buttons) {
-  $buttons[] = 'sub';
-  $buttons[] = 'sup';
-  return $buttons;
-  }
-add_filter("mce_buttons", "enable_more_buttons");
-
-remove_action( 'wp_head', 'feed_links', 2 ); 
-// Don't display the links to the general feeds: Post and Comment Feed
-remove_action( 'wp_head', 'wlwmanifest_link' );
-remove_action( 'wp_head', 'rsd_link' );
-
-add_filter("robots_txt", "domo_arigato");
-
-function domo_arigato($output) {
-  $output .= 'Disallow: /wp-content/plugins/pybox/';
-  return $output;
-}
 
 
 require_once("shortcodes.php");
@@ -173,10 +145,4 @@ require_once("js-translation.php");
 require_once("newuseremail.php");
 require_once("css-admin.php");
 
-add_action( 'wp_enqueue_scripts', 'add_button_stylesheet' );
-function add_button_stylesheet() {
-  // Respects SSL, Style.css is relative to the current file
-  wp_register_style( 'button-style', includes_url('css/buttons.css') );
-  wp_enqueue_style( 'button-style' );
-}
 // end of file
