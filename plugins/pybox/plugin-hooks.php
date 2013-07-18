@@ -122,7 +122,7 @@ function footsy() {
   global $popupBoxen;
   echo $popupBoxen;
 
-  if (class_exists('Polylang_Core')) {
+  if (class_exists('Polylang_Base')) {
     echo '<span id="pylangswitcher">';
     //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
     
@@ -329,7 +329,7 @@ add_action( 'wp_before_admin_bar_render', 'tweak_polylang_menu' );
 
 function tweak_polylang_menu() {
   global $wp_admin_bar;
-  if (class_exists('Polylang_Core') && is_admin()) {
+  if (class_exists('Polylang_Base') && is_admin()) {
     if (!(userIsTranslator() || userIsAdmin() || userIsAssistant()))
       $wp_admin_bar->remove_node('languages');
     else {

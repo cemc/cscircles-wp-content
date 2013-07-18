@@ -124,7 +124,7 @@ if ( ! empty( $header_image ) ) :
     echo get_the_post_thumbnail( $post->ID, 'post-thumbnail' );
 
  else : 
-   if (class_exists('Polylang_Core') && pll_current_language()=='de') {
+   if (class_exists('Polylang_Base') && pll_current_language()=='de') {
      echo '<img src="'.content_url('/uploads/GermanHeader.jpg').'" width="1000" height="150" />';
    }
    else {?>

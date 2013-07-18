@@ -115,7 +115,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
       echo ($wpdb->insert($table_name, $row)!=1?'<br>insert bad':' insert ok');
   }
   else if ($hash != NULL) {
-    $lang = class_exists('Polylang_Core') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
+    $lang = class_exists('Polylang_Base') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
 
     if ($wpdb->get_var("SELECT COUNT(1) from ".$wpdb->prefix."pb_problems WHERE hash = '$hash' AND lang='".$lang."'") == 0) {
       // hash is important, but not yet registered!

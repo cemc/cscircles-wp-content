@@ -64,7 +64,9 @@ function cscurl($desc) {
   // compute $res, the native-language page id
   if ($desc == 'homepage') {
     
-    if (get_option('page_on_front') == 'posts')
+    // normally for cscircles, show_on_front is page
+    // (front page displays static page in Settings/Reading)
+    if (get_option('show_on_front') != 'page')
       return get_option('siteurl');
 
     $res = get_option('page_on_front');
@@ -73,12 +75,13 @@ function cscurl($desc) {
     $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
   }
 
-  if (class_exists('Polylang_Core')) {
+  if (class_exists('Polylang_Base')) {
     if (!is_admin())
       $res = pll_get_post($res);
     else
       $res = pll_get_post($res, substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2));
   }
+
   return get_permalink($res);
 }
 
@@ -122,7 +125,7 @@ function userIsAssistant() {
 }
 
 function userIsTranslator() {
-  if (!class_exists('Polylang_Core')) return false;
+  if (!class_exists('Polylang_Base')) return false;
   if (!is_user_logged_in()) return false;
   global $wpdb;
   return 1==$wpdb->get_var("select count(1) from ".$wpdb->prefix."user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);
