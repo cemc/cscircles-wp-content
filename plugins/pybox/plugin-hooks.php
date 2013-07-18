@@ -296,18 +296,20 @@ function pb_menu_items($wp_admin_bar) {
 
     $more_links = array(
 			'Wordpress Dashboard' => get_bloginfo('wpurl') .'/wp-admin/index.php',
-			'Edit THIS Page' => get_edit_post_link(),	
-			'MySQL Frontend' => "/~atkong/pma/", 
-			'AWS EC2 visualizer log' => 'http://107.22.148.206/trace-log.txt',
-			'AWS Management Console' => 'https://console.aws.amazon.com/s3/home',
-			'Daily submit-code usage' => get_permalink($ap).'/profiling/?frequency=10&activity=submit-code',
-			'[rebuild /export directory]' => '/nav/?export=Y',
-			'[listing of admin-manual follows]' => get_permalink($ap)
-			);
+			'Edit THIS Page' => get_edit_post_link());
+    if ($_SERVER['SERVER_NAME'] = 'cscircles.cemc.uwaterloo.ca') {
+      $more_links['MySQL Frontend'] = "/~atkong/pma/"; 
+      $more_links['[rebuild /export directory]'] = '/nav/?export=Y';
+    }
+    if ($ap != null) {
+      $more_links['Daily submit-code usage'] = get_permalink($ap).'/profiling/?frequency=10&activity=submit-code';
+      $more_links['[listing of admin-manual follows]'] = get_permalink($ap);
+      
+      $pages = get_pages( array('child_of' => $ap->ID, 'post_status'=>'publish,private'));
+      foreach ($pages as $page) 
+        $more_links[$page->post_title] = get_permalink($page);
 
-    $pages = get_pages( array('child_of' => $ap->ID, 'post_status'=>'publish,private'));
-    foreach ($pages as $page) 
-      $more_links[$page->post_title] = get_permalink($page);
+    }
 
     $i = 0;
     foreach ($more_links as $title => $link) {
@@ -327,7 +329,7 @@ add_action( 'wp_before_admin_bar_render', 'tweak_polylang_menu' );
 
 function tweak_polylang_menu() {
   global $wp_admin_bar;
-  if (is_admin()) {
+  if (class_exists('Polylang_Core') && is_admin()) {
     if (!(userIsTranslator() || userIsAdmin() || userIsAssistant()))
       $wp_admin_bar->remove_node('languages');
     else {
