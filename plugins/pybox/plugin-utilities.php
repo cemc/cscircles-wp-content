@@ -48,7 +48,6 @@ function cscurl($desc) {
   
   $cscslugmap = array(
 		     ('progress') => 'user-page',
-		     ('homepage') => '0-introduction',
 		     ('mail') => 'mail',
 		     ('resources') => 'resources',
 		     ('console') => 'console',
@@ -56,11 +55,24 @@ function cscurl($desc) {
 		     ('contact') => 'contact',
 		     ('install') => 'run-at-home',
 		     ('allusers') => 'admin-user-list',
+		     ('homepage') => NULL // see below
 		     );
 
   $s = $cscslugmap[$desc];
   global $wpdb;
-  $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
+
+  // compute $res, the native-language page id
+  if ($desc == 'homepage') {
+    
+    if (get_option('page_on_front') == 'posts')
+      return get_option('siteurl');
+
+    $res = get_option('page_on_front');
+  }
+  else {
+    $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
+  }
+
   if (class_exists('Polylang_Core')) {
     if (!is_admin())
       $res = pll_get_post($res);
