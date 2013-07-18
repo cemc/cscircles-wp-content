@@ -347,13 +347,14 @@ function doGrading($usercode, $TC) {
   
   $mainFile .= "from _UTILITIES import *\n";
 
-  if (pll_current_language('slug')=='fr')
-    //isSoft($_COOKIE, 'pll_language', 'fr'))
-    $mainFile .= "_setLanguage('fr_FR')\n";
-  else if (pll_current_language('slug')=='de')
-    $mainFile .= "_setLanguage('de_DE')\n";
-  else
-    $mainFile .= "_setLanguage('en_US')\n";
+  $lang = 'en_US';
+  if (class_exists('Polylang_Core')) {    
+    if (pll_current_language('slug')=='fr')
+      $lang = 'fr_FR';
+    else if (pll_current_language('slug')=='de')
+      $lang = 'de_DE';
+  }  
+  $mainFile .= "_setLanguage('$lang')\n";
 
   $inputMaker = inputMaker($TC);
   $noInput = ($inputMaker === FALSE);

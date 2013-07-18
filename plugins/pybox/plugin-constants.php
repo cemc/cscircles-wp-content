@@ -1,32 +1,21 @@
 <?php
 
-class PyboxException extends Exception {}
-define('POSTLIMIT', 20000); //maximum size 'POST' that submit.php will accept
-define('WALLFACTOR', 2); 
-define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit is FACTOR*X + BUFFER
-
-
 // P: path constant; U: url constant
 
-// UWPHOME, url to wordpress base (server part optional)
-// PWP, local path to wordpress base
-// PLOCALHOME, used just by cemc for our setup, optional
+// CHANGE THIS to URL of wordpress root (server part optional, with trailing slash)
+define('UWPHOME',  preg_match('_^/dev(/|$)_i', $_SERVER['REQUEST_URI']) ? '/dev/' : '/');
 
-$dev = preg_match('_^/dev(/|$)_i', $_SERVER['REQUEST_URI']);
-
-define('UWPHOME',  $dev ? '/dev/' : '/');
-define('PLOCALHOME', '/home/cscircles/' . ($dev ? 'dev/' : 'live/'));
-define('PWP', PLOCALHOME . 'www/wordpress/');
-
-// if UWPHOME is right, this should be ok too
-define('UWPCONTENT', UWPHOME . 'wp-content/');
-
+// CHANGE THIS to URL of visualizer (or http://cscircles.cemc.uwaterloo.ca/visualize if not installed)
 define('UVISUALIZER', UWPHOME . 'visualize/');
+// CHANGE THIS to URL of your search page
 define('USEARCH', UWPHOME . 'search/');
 
-// where are safeexec and python3jail installed? 
-define('PJAIL', PLOCALHOME . 'python3jail/');
-define('PSAFEEXEC', PLOCALHOME . 'safeexec/safeexec');
+// path to wordpress (with trailing slash): up 3 directories from directory containing this file
+define('PWP', dirname(dirname(dirname(dirname(__FILE__)))) . '/');
+
+// CHANGE THESE: where are safeexec and python3jail installed? 
+define('PJAIL', PWP . '../../python3jail/'); // with trailing slash
+define('PSAFEEXEC', PWP . '../../safeexec/safeexec'); // binary executable
 
 // misc constants
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
@@ -36,13 +25,14 @@ define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca');
 define('CSCIRCLES_DEVELOPER_EMAIL', 'daveagp@gmail.com');
 define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 
+// optional reporting and exporting
+define('PPYBOXLOG', PWP . '../../pybox_log.txt');
+define('PEXPORT', PWP . '../../export/');
+
 // normally the rest of this file should work without modifying below this line
 
-// optional reporting
-if (defined('PLOCALHOME')) {
-  define('PPYBOXLOG', PLOCALHOME . 'pybox_log.txt');
-  define('PEXPORT', PLOCALHOME . 'export/');
- }
+// if UWPHOME is right, this should be ok too
+define('UWPCONTENT', UWPHOME . 'wp-content/');
 
 // according to default python3jail setup
 define('PPYTHON3MODJAIL', '/python3');
@@ -76,6 +66,13 @@ define('UHISTORY', UPYBOX . 'db-problem-history.php');
 define('UDBMAIL', UPYBOX . 'db-mail.php');
 define('UDBPREFIX', UPYBOX . 'db-');
 define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
+
+
+class PyboxException extends Exception {}
+define('POSTLIMIT', 20000); //maximum size 'POST' that submit.php will accept
+define('WALLFACTOR', 2); 
+define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit is FACTOR*X + BUFFER
+
 
 global $pb_translation;
 
