@@ -460,5 +460,11 @@ jQuery('#registerform #wp-submit.button').each(function(){this.value = '$attrtex
 </script>";
 }
 
+add_action('login_message', 'change_login_message');
+function change_login_message($message) 
+{
+  $message = str_replace("Für dieser Seite registrieren", "Für diese Seite registrieren", $message);
+  return $message;
+}
 
 // end of file
