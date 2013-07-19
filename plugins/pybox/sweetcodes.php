@@ -158,7 +158,7 @@ function sweetcode_parse_atts($text) {
     ."|(\w+)\s*=\s*'"."((?:\\.|''|[^\\'])*)"."'(?!')(?:\s|$)" // old: .'|(\w+)\s*=\s*\'([^\']*)\'(?:\s|$)'
     .'|(\w+)\s*=\s*([^\s\'"]+)(?:\s|$)'
     .'|"([^"]*)"(?:\s|$)'
-    .'|([^="\']+)(?:\s|$)/'; 
+    .'|([^ ="\']+)(?:\s|$)/'; 
 
   $text = preg_replace("/[\x{00a0}\x{200b}]+/u", " ", $text);
   if ( preg_match_all($pattern, $text, $match, PREG_SET_ORDER) ) {
