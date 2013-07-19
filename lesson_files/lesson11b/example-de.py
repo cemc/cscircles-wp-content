@@ -1,8 +1,8 @@
-﻿def square(x):
+def square(x):
     value = x * x
     return value
 
-# das eigentliche Programm startet hier
+# Hier beginnt das Hauptprogramm
 value = 17
 fivesquared = square(5)
 print(fivesquared, value)

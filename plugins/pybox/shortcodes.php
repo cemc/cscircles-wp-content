@@ -338,7 +338,7 @@ function pyRecallHandler($options, $content) {
 
 function newuserwelcome($options, $content) {
   if ( ! is_user_logged_in() ) {
-    $ulog = wp_login_url( home_url() );
+    $ulog = wp_login_url( cscurl('homepage') );
     $uuse = cscurl('usage');
 
     return "<em>".sprintf(__t('New around here? Read <a %1$s>Using this Website</a>. You can also <a %2$s>click here to create an account or log in</a>.'), 

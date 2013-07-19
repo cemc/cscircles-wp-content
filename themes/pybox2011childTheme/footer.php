@@ -29,11 +29,12 @@ showLocationHandler(); ?>
 
    <div id="departmentaddress">
   <?php echo __t('CEMC');?> |
-  <?php echo __t('University of Waterloo');?>, MC 5104 |
+  <?php echo __t('University of Waterloo, MC 5104');?> |
   <?php echo __t('200 University Avenue West');?> |
   <?php echo __t('Waterloo, Ontario, Canada N2L 3G1');?> |
   <?php echo __t('Phone: 519 888 4808');?> |
-  <a href="<?php echo cscurl('contact'); ?>"><?php echo __t('contact us');?></a>
+  <a href="<?php echo cscurl('contact'); ?>"><?php 
+  echo __t('contact us');?></a>
    </div>
 
   </div> 

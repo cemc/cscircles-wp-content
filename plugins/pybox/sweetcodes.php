@@ -158,11 +158,14 @@ function sweetcode_parse_atts($text) {
     ."|(\w+)\s*=\s*'"."((?:\\.|''|[^\\'])*)"."'(?!')(?:\s|$)" // old: .'|(\w+)\s*=\s*\'([^\']*)\'(?:\s|$)'
     .'|(\w+)\s*=\s*([^\s\'"]+)(?:\s|$)'
     .'|"([^"]*)"(?:\s|$)'
-    .'|(\S+)(?:\s|$)/'; 
+    .'|([^="\']+)(?:\s|$)/'; 
 
   $text = preg_replace("/[\x{00a0}\x{200b}]+/u", " ", $text);
   if ( preg_match_all($pattern, $text, $match, PREG_SET_ORDER) ) {
     foreach ($match as $m) {
+      //      echo '{';
+      //foreach ($m as $i=>$v) echo '[' . $i . '=>' . '(' . $v .')],';
+      //echo '}';
       if (!empty($m[1]))
         $atts[strtolower($m[1])] = strip_and_unduplicate($m[2], '"');
       elseif (!empty($m[3]))
@@ -190,8 +193,10 @@ function strip_and_unduplicate($text, $q) {
       $a[$i+1] = stripcslashes('\\' . $a[$i+1]);
       $i++;
     }
-    else if ($a[$i]==$q) // must be a duplicated $q quote
+    else if ($a[$i]==$q) { // must be a duplicated $q quote
+      $i++;
       $a[$i] = '';
+    }
   }
   return implode($a);
 }

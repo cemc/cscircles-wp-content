@@ -1,6 +1,6 @@
-﻿L = ['text', 11]
-LAgain = L             # neue Referenz auf L
-print(LAgain is L)     # Selbe Identität? Ja
-LCopy = L[:]           # Kopie erzeugen
-print(LCopy == LAgain) # Selbe Werte?   Ja, beide sind ['text', 11]
-print(LCopy is LAgain) # Selbe Identität? Nein: LAgain ist L, aber LCopy nicht
+L = ['text', 11]       # L verweist auf die Liste ['text',11]
+LAgain = L             # LAgain verweist nun auf dieselbe Liste.
+print(LAgain is L)     # Identischer Verweis? Ja
+LCopy = L[:]           # Kopie erstellen
+print(LCopy == LAgain) # Gleiche Werte? Ja, LCopy und L verweisen beide auf Listen ['text', 11]
+print(LCopy is LAgain) # Identischer Verweis? Nein: LAgain "is" L, aber LCopy nicht.
