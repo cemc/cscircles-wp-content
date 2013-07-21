@@ -43,14 +43,15 @@ Replacing wp-content:
 - in a shell, enter the wordpress directory
 - delete wp-content or rename to wp-content-backup
 - `git clone https://github.com/cemc/cscircles-wp-content.git wp-content`
-  which copies tour git repo into a new wp-content directory
+  which copies this git repo into a new wp-content directory
 
 Activating new content, on WordPress admin dashboard:
  - go to Plugins and enable "python in a box"
- - go to Appearance/Themes and pick "Pybox 2011 Child Theme"
- - go to Appearance/Theme Options and pick one-column layout
+ - go to Appearance/Themes and activate "Pybox 2011 Child Theme"
  - go to Settings/Reading, set Front Page Displays to a static page
+   (currently we don't have theming for posts figured out)
  - go to Settings/Discussion, turn off Show Avatars
+   (or else there will be a big blank spot in the user menu)
 
 Then you are good to go as far as WordPress is concerned! To test
 it out, create a WordPress page and enter some shortcodes like
