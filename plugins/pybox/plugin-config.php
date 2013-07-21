@@ -2,6 +2,8 @@
 
 // CHANGE THESE: where are safeexec and python3jail installed? 
 // (wordpress defines ABSPATH as absolute path to wordpress dir, ending in slash)
+// these are the CEMC defaults, but yours can be anywhere
+// you probably don't want them in a web-viewable directory
 define('PJAIL', ABSPATH . '../../python3jail/'); // with trailing slash
 define('PSAFEEXEC', ABSPATH . '../../safeexec/safeexec'); // binary executable
 
@@ -28,7 +30,7 @@ if ($_SERVER['SERVER_NAME'] == 'cscircles.cemc.uwaterloo.ca') {
 }
 
 // according to default python3jail setup
-define('PPYTHON3MODJAIL', '/python3');
+define('PPYTHON3MODJAIL', '/bin/python3');
 define('PSCRATCHDIRMODJAIL', 'scratch/');
 
 define('POSTLIMIT', 20000); //maximum size 'POST' that submit.php will accept
