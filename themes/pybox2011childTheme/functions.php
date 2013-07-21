@@ -49,6 +49,13 @@ function my_function_admin_bar(){ return true; }
 add_filter( 'show_admin_bar' , 'my_function_admin_bar');
 
 
+add_filter( 'twentyeleven_default_theme_options' , 'set_layout');
+function set_layout($options) {
+  $options['theme_layout'] = 'content';
+  return $options;
+}
+
+
 add_action('get_header', 'my_filter_head');
 
 function my_filter_head() {
