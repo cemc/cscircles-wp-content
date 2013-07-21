@@ -1,0 +1,26 @@
+Computer Science Circles
+========================
+This repository contains what you need to run an open-source
+version of the Computer Science Circles website,
+ http://cscircles.cemc.uwaterloo.ca
+on your own computer.
+
+Specifically, this folder plays the role of the wp-content
+directory in your WordPress installation.
+
+Using as a drop-in replacement
+==============================
+If you are starting from scratch, you can use this approach:
+
+Installing Wordpress:
+- get database permissions from a database admin
+- unzip http://wordpress.org/latest.zip in your public_html
+- copy wp-config-sample.php to wp-config.php and edit
+- visit WordPress in your browser and follow account setup
+- for more info see: http://codex.wordpress.org/Installing_WordPress
+
+Replacing wp-content:
+- in a shell, enter the wordpress directory
+- delete wp-content or rename to wp-content-backup
+- git clone https://github.com/cemc/cscircles-wp-content.git wp-content
+  which copies tour git repo into a new wp-content directory

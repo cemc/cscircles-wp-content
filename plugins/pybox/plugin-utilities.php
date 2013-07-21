@@ -158,11 +158,14 @@ function getUserID() {
   return empty($u->ID) ? -1 : $u->ID;
 }
 
+// write to log, and send an e-mail
+// if second arg is on, suppress e-mail when possible
 function pyboxlog($message, $suppressemail = -1) {
   $userid = getUserID();
 
-  if ($suppressemail === -1) {
-    $to = CSCIRCLES_DEVELOPER_EMAIL;
+  if (($suppressemail === -1 || !defined('PPYBOXLOG'))
+      && defined('PYBOXLOG_EMAIL')) {
+    $to = PYBOXLOG_EMAIL;
     $subject = 'pyboxlog';
     $emailm  = $message . "\n" . "\n" 
       . "\n" . "REQUEST: " . print_r($_REQUEST, TRUE) . "\n" 
@@ -175,10 +178,12 @@ function pyboxlog($message, $suppressemail = -1) {
       ;
     mail($to, $subject, $emailm);
   }
-  $file = fopen(PPYBOXLOG, "a");
-  date_default_timezone_set('America/New_York');
-  fwrite($file, date("y-m-d H:i:s", time()) . " " . $message . "\n");
-  fclose($file);
+  if (defined('PPYBOXLOG')) {
+    $file = fopen(PPYBOXLOG, "a");
+    date_default_timezone_set('America/New_York');
+    fwrite($file, date("y-m-d H:i:s", time()) . " " . $message . "\n");
+    fclose($file);
+  }
 }
 
 function softSafeDereference( $s, $which="", &$errtgt=NULL ) {

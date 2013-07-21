@@ -1,6 +1,6 @@
 <?php
 
-require_once("include-me-and-load-wp.php");
+require_once("include-me-if-ajax.php");
 
 function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
 

@@ -1,6 +1,9 @@
 <?php
 
-require_once("include-me-and-load-wp.php");
+  // work with ajax and normally too
+if (!defined('ABSPATH')) {
+  require_once("include-me-if-ajax.php");
+ }
 
 /* 
 The generic template for exposing a database query to flexigrid.

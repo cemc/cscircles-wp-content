@@ -11,7 +11,12 @@
   // this is the first file that WordPress calls to activate and use the plugin.
   // you should not include it yourself; use include-me.php instead.
 
-require_once("include-me.php");
+define('UWPHOME',  site_url('/') );
+define('PWP',  ABSPATH );
+
+require_once('plugin-config.php');
+require_once('plugin-constants.php');
+require_once('plugin-utilities.php'); 
 
 register_activation_hook(__FILE__, 'pybox_database_install');
 // for information about upgrading see

@@ -1,6 +1,6 @@
 <?php
 
-require_once("include-me-and-load-wp.php");
+require_once("include-me-if-ajax.php");
 
 function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
 // execute the python $program using safeexec (here $program is a

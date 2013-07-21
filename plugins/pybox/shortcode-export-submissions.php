@@ -2,7 +2,7 @@
 
 add_shortcode('export_submissions', 'export_submissions');
 
-require_once('action-submit-code.php');
+//require_once('action-submit-code.php');
 
 function export_submissions($content, $options) {
   $chunkSize = 500;

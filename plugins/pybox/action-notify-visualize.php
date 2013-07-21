@@ -1,6 +1,6 @@
 <?php
 
-require_once("include-me-and-load-wp.php");
+require_once("include-me-if-ajax.php");
 
 $message = $_REQUEST["message"];
 $millis = $_REQUEST["millis"];
