@@ -125,7 +125,7 @@ if ( ! empty( $header_image ) ) :
 
  else : 
    if (class_exists('Polylang_Base') && pll_current_language()=='de') {
-     echo '<img src="'.content_url('/uploads/GermanHeader.jpg').'" width="1000" height="150" />';
+     echo '<img src="'.content_url('/themes/pybox2011childTheme/images/GermanHeader.jpg').'" width="1000" height="150" />';
    }
    else {?>
      <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
