@@ -86,8 +86,9 @@ themes/pybox2011childTheme/
   included in this repo)
 
 ! Currently, we haven't tried to separate the theme information 
-  from the plugin. In a future version, the shortcodes will be in the 
-  plugin, which may be used without the theme.
+  from the plugin. In a future version, the goal is for all of the 
+  shortcodes and core functionality to lie in the plugin, with the
+  theme consisting of superficial things only.
 
 plugins/*
 : other plugins we use on the main site
