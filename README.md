@@ -2,7 +2,9 @@ Computer Science Circles
 ========================
 This repository contains what you need to run an open-source
 version of the Computer Science Circles website,
+
  http://cscircles.cemc.uwaterloo.ca
+
 on your own computer.
 
 Specifically, this folder plays the role of the wp-content
@@ -21,8 +23,8 @@ our demand.
 
 
 For now, your options are:
-1: follow Installing "safeexec" and "python3jail" directions below
-2: install without ability to execute user code
+ 1. follow Installing "safeexec" and "python3jail" directions below
+ 2. install without ability to execute user code
 
 
 Using as a wp-content drop-in replacement
@@ -65,11 +67,17 @@ button won't work.
 Installing "safeexec" and "python3jail"
 ---------------------------------------
 Please visit
+
  https://github.com/cemc/safeexec
+
 and
+
  https://github.com/cemc/python3jail
+
 then follow the directions listed there. After installation, edit
+
  wp-content/plugins/pybox/plugin-constants.php
+
 and reference the locations of the safeexec binary and the jail directory.
 
 Note: in its current form, installing safeexec requires super-user (admin)
@@ -81,10 +89,14 @@ Options other than drop-in replacing
 ------------------------------------
 This package is distributed as a replacment for wp-content since the main
 two directories are 
+
  wp-content/plugins/pybox and 
+
  wp-content/themes/pybox2011childTheme
+
 and it seems easier than distributing two separate repos at the moment.
 As well, lesson data files are stored in
+
  wp-content/lesson_files
 
 If you would like to copy a specific set of files please read on below.
@@ -92,26 +104,26 @@ If you would like to copy a specific set of files please read on below.
 
 Contained Files Listing
 -----------------------
-plugins/pybox/ 
-: the plugin with all the shortcodes and everything else
+- plugins/pybox/ 
+  - the plugin with all the shortcodes and everything else
 themes/pybox2011childTheme/ 
-: theme for our site. Uses twentyeleven theme (installed by default and 
-  included in this repo)
+  - theme for our site. Uses twentyeleven theme (installed by default and 
+    included in this repo)
 
-! Currently, we haven't tried to separate the theme information 
+Currently, we haven't tried to separate the theme information 
   from the plugin. In a future version, the goal is for all of the 
   shortcodes and core functionality to lie in the plugin, with the
   theme consisting of superficial things only.
 
-plugins/*
-: other plugins we use on the main site. none are required for our
-  plugin or theme to work.
+- plugins/*
+  - other plugins we use on the main site. none are required for our
+    plugin or theme to work.
 
-languages/
-: reference WordPress admin translation files (we did not make them).
-  not related to translating the lessons themselves, which is done
-  with the polylang plugin.
+- languages/
+  - reference WordPress admin translation files (we did not make them).
+    not related to translating the lessons themselves, which is done
+    with the polylang plugin.
 
-lesson_files/
-: files for @include directives in shortcodes and images in lessons
+- lesson_files/
+  - files for @include directives in shortcodes and images in lessons
 
