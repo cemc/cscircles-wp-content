@@ -41,7 +41,7 @@ Installing Wordpress:
 Replacing wp-content:
 - in a shell, enter the wordpress directory
 - delete wp-content or rename to wp-content-backup
-- git clone https://github.com/cemc/cscircles-wp-content.git wp-content
+- `git clone https://github.com/cemc/cscircles-wp-content.git wp-content`
   which copies tour git repo into a new wp-content directory
 
 Activating new content, on WordPress admin dashboard:
