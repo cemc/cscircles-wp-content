@@ -1,0 +1,7 @@
+# don't track old emacs files
+*~
+# don't track irrelevant built-in themes
+themes/twentyten
+themes/twentytwelve
+# don't track irrelevant built-in plugins
+plugins/hello.php
