@@ -10,6 +10,7 @@ on your own computer.
 Specifically, this folder plays the role of the wp-content
 directory in your WordPress installation.
 
+It is licensed under the GPLv3 license.
 
 Note:
 This plugin teaches programming by executing and grading
