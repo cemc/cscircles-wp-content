@@ -176,26 +176,7 @@ function fixwpautop($text) {
 	return $text;
 }
 
-/*function preprocesscallback1($m) {
-  return str_replace("\n", "<br/>", $m[0]);
-}
-function preprocesscallback($m) {
-  $res = $m[0];
-  $res = preg_replace_callback("|<pre>.*</pre>|s", "preprocesscallback1", $res);
-  $res = str_replace(array("\n", "\r"), "", $res);
-  return $res;
-}
-function preprocess($text) {
-  // delete all newlines within shortcodes as they don't play well with wpautop
-  $f = get_shortcode_regex();
-  $f = '@'.$f.'@s';
-  $text = preg_replace_callback($f, "preprocesscallback", $text);
-  return $text;
-  }*/
 function postprocesscallback($m) {
-  //pyboxlog("called pyraw callback on ".$m);
-  //pyboxlog($m[1]);  pyboxlog($m[0]); pyboxlog($m[2]);
-  //pyboxlog(softSafeDereference($m[1]));
   return softSafeDereference($m[1]);
 }
 function postprocess($text) {
@@ -203,20 +184,7 @@ function postprocess($text) {
   return $text;
 }
 
-// this is needed to support complex nested shortcodes which may 
-// sometimes include <pre> inside of shortcode arguments
-
-// default: wpautop (10), shortcode_unautop (10), do_shortcode (11)
-
-// us: 
-// kill all literal newlines in shortcodes (except in <pre>)
-//add_filter ('the_content',  'preprocess', 1);
-// do wpautop, which will not affect interior of shortcodes
-//remove_filter ('the_content',  'wpautop'); // by default, 10
-//add_filter ('the_content',  'wpautop', 6); // now, 6
-//remove_filter('the_content', 'do_shortcode', 11); // by default, 11
-//add_filter('the_content', 'do_shortcode', 9); // now, 9
-// shortcode_unautop is 10
+// undo overly agressive paragraphing
 add_filter ('the_content',  'fixwpautop', 20);
 // now allow raw material we don't want touched
 add_filter ('the_content',  'postprocess', 100);
