@@ -78,7 +78,7 @@ and
 
 then follow the directions listed there. After installation, edit
 
- wp-content/plugins/pybox/plugin-constants.php
+ wp-content/plugins/pybox/plugin-config.php
 
 and reference the locations of the safeexec binary and the jail directory.
 
