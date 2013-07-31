@@ -126,14 +126,16 @@ function footsy() {
     echo '<span id="pylangswitcher">';
     //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
     
-    foreach (array('en', 'fr') as $lang) {
+    // these are the publicly-available languages
+    foreach (array('en', 'fr', 'de') as $lang) {
       if ($lang != pll_current_language()) 
         echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
     }
     
+    // these are the ones in development
     if (userIsAdmin() || 
         userIsTranslator() || userIsAssistant())
-      foreach (array('de', 'nl') as $lang) {
+      foreach (array('nl') as $lang) {
         if ($lang != pll_current_language()) {
           echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
         }
