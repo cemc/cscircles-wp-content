@@ -10,8 +10,10 @@ where each cell is an array representing a row.
 
 echo dbFlexigrid
 (
- function ($limit, $sortname, $sortorder, &$info) {
-   $info['type'] = 'profiling';
+ function ($limit, $sortname, $sortorder) {
+  global $db_query_info;
+  $db_query_info = array();
+   $db_query_info['type'] = 'profiling';
 
    if ( !userIsAdmin() )
      return "Error";

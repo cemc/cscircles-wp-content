@@ -232,8 +232,7 @@ function niceFlex($id, $title, $fileSuffix, $functionName, $dbparams) {
   
   include_once("db-$fileSuffix.php");
   $url = UDBPREFIX . $fileSuffix . ".php";
-  $bar = array();
-  $query_result = call_user_func($functionName," limit 0,0", '', '', $bar, $dbparams);
+  $query_result = call_user_func($functionName," limit 0,0", '', '', $dbparams);
   if (is_string($query_result))
     $rows = __t("n/a");
   else

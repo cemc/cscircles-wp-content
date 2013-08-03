@@ -6,9 +6,11 @@ or an array-pair (total, array of (id, cell) array-pairs),
 where each cell is an array representing a row.
 */
 
-function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
+function dbEntireHistory($limit, $sortname, $sortorder, $req=NULL) {
+  global $db_query_info;
+  $db_query_info = array();
    if ($req == NULL) $req = $_REQUEST;
-   $info['type'] = 'entire-history';
+   $db_query_info['type'] = 'entire-history';
 
    $user = getSoft($req, "user", "");   
    $problem = getSoft($req, "problemhash", "");   
@@ -48,7 +50,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
    }
 
    if ($user != "")
-     $info['viewuser'] = $user;
+     $db_query_info['viewuser'] = $user;
 
    // make an associative array indexed by slug
    
@@ -62,7 +64,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, &$info, $req=NULL) {
      $whereProblem = $wpdb->prepare("problem = %s", $problem);
    }
 
-   $info['problem'] = $problem;
+   $db_query_info['problem'] = $problem;
 
    $knownFields = array(__t("userid")=>"userid", __t("time &amp; ID")=>"beginstamp", __t("problem")=>"problem",
 			__t("user code")=>"usercode", __t("user input")=>"userinput", __t("result")=>"result");

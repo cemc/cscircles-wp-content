@@ -10,12 +10,12 @@ The generic template for exposing a database query to flexigrid.
 
 dbFlexigrid takes a single function argument with signature
 
- function ($limit, $sortname, $sortorder, &$info) 
+ function ($limit, $sortname, $sortorder) 
 
 where $limit is a LIMIT XX, YY string for SWL,
 $sortname, $sortorder is a column name and order to sort on,
-$info['type'] must be defined and is stored for profiling
-$info[anything else] can also be defined and will be stored for profiling.
+global $db_query_info['type'] must be defined and is stored for profiling
+$db_query_info[anything else] can also be defined and will be stored for profiling.
 
 the function returns either a string in case of error,
 or an array-pair (total, (array of pairs (id, cell)),
@@ -40,9 +40,9 @@ function dbFlexigrid($innerFunction, $headers = TRUE) {
   // not yet utilized: sortname, sortorder, qtype, query
   if (strtoupper($sortorder) != "ASC")
     $sortorder = "DESC";
-  
-  $info = array();
-  $result = $innerFunction(" LIMIT " . (($page-1)*$rp) . ", " . $rp . " ", $sortname, $sortorder, $info);
+
+  global $db_query_info;
+  $result = $innerFunction(" LIMIT " . (($page-1)*$rp) . ", " . $rp . " ", $sortname, $sortorder);
 
   if ($headers) {
     header("Expires: Mon, 26 Jul 1997 05:00:00 GMT" ); 
@@ -53,20 +53,20 @@ function dbFlexigrid($innerFunction, $headers = TRUE) {
   }
 
   $activity = "database-";
-  if (array_key_exists('type', $info)) {
-    $activity .= $info['type'];
-    unset($info['type']);
+  if (array_key_exists('type', $db_query_info)) {
+    $activity .= $db_query_info['type'];
+    unset($db_query_info['type']);
   }
 
   if (is_array($result)) { // success case 
     $result['page'] = $page;
-    $info['result'] = 'success';
-    endProfilingEntry($profilingID, array("activity"=>$activity, "meta"=>$info));
+    $db_query_info['result'] = 'success';
+    endProfilingEntry($profilingID, array("activity"=>$activity, "meta"=>$db_query_info));
     return json_encode($result);
   }
   else {
-    $info['result'] = 'error';
-    endProfilingEntry($profilingID, array("activity"=>$activity, "meta"=>$info));
+    $db_query_info['result'] = 'error';
+    endProfilingEntry($profilingID, array("activity"=>$activity, "meta"=>$db_query_info));
     return json_encode("Error: ".$result); // failure case; just sending a string.
   }
 }

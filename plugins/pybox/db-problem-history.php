@@ -6,15 +6,17 @@ or an array-pair (total, array of (id, cell) array-pairs),
 where each cell is an array representing a row.
 */
 
-function dbProblemHistory($limit, $sortname, $sortorder, &$info, $req = NULL) {
+function dbProblemHistory($limit, $sortname, $sortorder, $req = NULL) {
+  global $db_query_info;
+  $db_query_info = array();
   if ($req == NULL) $req = $_REQUEST;
-   $info['type'] = 'problem-history';
+   $db_query_info['type'] = 'problem-history';
 
    $problemname = getSoft($req, "p", ""); //which problem?
    $user = getSoft($req, "user", "");   
    if ($problemname=="")
      return __t("You must enter a non-empty problem name.");
-   $info['problem'] = $problemname;
+   $db_query_info['problem'] = $problemname;
 
    $resultdesc = array('y'=> __t('Did not crash.'), 
 		       'Y'=> __t('Correct!'), 
@@ -30,7 +32,7 @@ function dbProblemHistory($limit, $sortname, $sortorder, &$info, $req = NULL) {
      $u = get_userdata($user);
      if ($u === false) 
        return sprintf(__t("User number %s not found."), $u);
-     $info['viewuser'] = $user;
+     $db_query_info['viewuser'] = $user;
    }
    else
      $u = wp_get_current_user();

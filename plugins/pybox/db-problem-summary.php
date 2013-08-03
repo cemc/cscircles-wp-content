@@ -6,9 +6,11 @@ or an array-pair (total, array of (id, cell) array-pairs),
 where each cell is an array representing a row.
 */
 
-function dbProblemSummary($limit, $sortname, $sortorder, &$info, $req = NULL) {
+function dbProblemSummary($limit, $sortname, $sortorder, $req = NULL) {
+  global $db_query_info;
+  $db_query_info = array();
   if ($req == NULL) $req = $_REQUEST;
-   $info['type'] = 'problem-summary';
+   $db_query_info['type'] = 'problem-summary';
 
    if ( !is_user_logged_in() )
      return __t("You must log in to view past submissions.");
@@ -28,11 +30,11 @@ function dbProblemSummary($limit, $sortname, $sortorder, &$info, $req = NULL) {
    if ($problemname == null) 
      return sprintf(__t("Problem %s not found (at least in current language)"), $problemslug);
 
-   $info['problem'] = $problemslug;
+   $db_query_info['problem'] = $problemslug;
    
    $u = wp_get_current_user();
    $uid = $u->ID;
-   $info['viewuser'] = $uid;   
+   $db_query_info['viewuser'] = $uid;   
    $ulogin = $u->user_login;
 
    $submit_table = $wpdb->prefix . "pb_submissions";

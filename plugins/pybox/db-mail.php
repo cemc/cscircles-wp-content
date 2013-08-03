@@ -18,19 +18,22 @@ only view messages that are to/from themselves and their students
 
 */
 
-function dbMail($limit, $sortname, $sortorder, &$info, $req = NULL) {
+function dbMail($limit, $sortname, $sortorder, $req = NULL) {
+  global $db_query_info;
+  $db_query_info = array();
+
   $who = getSoft(($req===NULL?$_REQUEST:$req), "who", "");
   $xwho = getSoft(($req===NULL?$_REQUEST:$req), "xwho", "");
   $what = getSoft(($req===NULL?$_REQUEST:$req), "what", "");
   $xwhat = getSoft(($req===NULL?$_REQUEST:$req), "xwhat", "");
   $unans = getSoft(($req===NULL?$_REQUEST:$req), "unans", "");
 
-   $info['type'] = 'mail-history';
-   $info['who'] = $who;
-   $info['xwho'] = $xwho;
-   $info['what'] = $what;
-   $info['xwhat'] = $xwhat;
-   $info['unans'] = $unans;
+   $db_query_info['type'] = 'mail-history';
+   $db_query_info['who'] = $who;
+   $db_query_info['xwho'] = $xwho;
+   $db_query_info['what'] = $what;
+   $db_query_info['xwhat'] = $xwhat;
+   $db_query_info['unans'] = $unans;
 
    if ( !is_user_logged_in() )
      return __t("You must log in to view past mail.");

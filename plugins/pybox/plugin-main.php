@@ -148,5 +148,10 @@ require_once("plugin-profile-options.php");
 require_once("js-translation.php");
 require_once("newuseremail.php");
 require_once("css-admin.php");
+require_once("db-mail.php");
+require_once("db-entire-history.php");
+require_once("db-problem-history.php");
+require_once("db-problem-summary.php");
+//require_once("db-profiling.php"); kind of broken at the moment, but never used directly so ok
 
 // end of file
