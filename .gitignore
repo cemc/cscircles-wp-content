@@ -3,5 +3,6 @@
 # don't track irrelevant built-in themes
 themes/twentyten
 themes/twentytwelve
+themes/twentythirteen
 # don't track irrelevant built-in plugins
 plugins/hello.php
