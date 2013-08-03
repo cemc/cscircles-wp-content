@@ -370,6 +370,10 @@ function tweak_admin_bar() {
     $wp_admin_bar->remove_node('user-info');
     $wp_admin_bar->remove_node('dashboard');
     $wp_admin_bar->remove_node('appearance');
+    $wp_admin_bar->remove_node('wp-logo');
+    $wp_admin_bar->remove_node('comments');
+    $wp_admin_bar->remove_node('new-content');
+    $wp_admin_bar->remove_node('edit');
 
     // note! add_node can be used to update information
     $wp_admin_bar->add_node(array('id'=>'logout', 'href' => wp_logout_url( $_SERVER['REQUEST_URI'] )));
