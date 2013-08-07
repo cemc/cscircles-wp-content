@@ -401,31 +401,6 @@ $('div.jqpHintLink a').live('click', function (e) {
     $(e.target).closest('.jqpHintOuter').find('.jqpHintContent').dialog({'dialogClass' : 'wp-dialog','width':800});
 });
 
-function vtabby(wptabsdiv) {
-    f = function(index, elt) {
-	e = $(elt);
-	e.height(e.height()-45);
-    }
-    $.each($(wptabsdiv).find(".ui-tabs-nav"), f);
-    $.each($(wptabsdiv).find(".ui-tabs-panel"), f);
-}
-
-function tabby(index, wptabsdiv) {
-    if ($(wptabsdiv).hasClass('ui-tabs-vertical')) return vtabby(wptabsdiv);
-    tabs = $(wptabsdiv).data('tabs');
-    L = $('<span class="wptabnav wtnleft">&lt;</span>')
-	.click(function (event) {
-	    curr = tabs.option('selected');
-	    if (curr > 0) tabs.select(curr-1);
-	});
-    R = $('<span class="wptabnav wtnright">&gt;</span>')
-	.click(function (event) {
-	    curr = tabs.option('selected');
-	    tabs.select(curr+1);
-	});
-    $(wptabsdiv).prepend(L).prepend(R);
-}
-
 function flexfix(index, flexigrid) {
     G = $(flexigrid);
     i = 0;
@@ -464,7 +439,7 @@ function pyflex(options) {
 }
 function pyflexSuccess(options, data) {
     $('#'+options['id']+' .pyflexerror').remove();
-    console.log('b');
+    //console.log('b');
     if (!(data instanceof Object) || !("rows" in data) || data["rows"].length==0) {
 	hflexhelp[options['id']] = options;
 	msg = (!(data instanceof Object) || !("rows" in data)) ? data : __t('The database connected but found no data.'); 
@@ -473,7 +448,7 @@ function pyflexSuccess(options, data) {
 	//alert(msg);
 	return;
     }
-    console.log('B');
+    //console.log('B');
     firstRow = data['rows'][0]['cell'];
     model = new Array();
     for (colname in firstRow) {
@@ -482,7 +457,7 @@ function pyflexSuccess(options, data) {
 	    colModel['attrs'] = {'class': 'usercodecol', 'title': 'double-click to reload version'};
 	model.push(colModel);
     }
-    console.log('Z');
+    //console.log('Z');
     xp = new Array();
     if ('dbparams' in options)
 	for (paramname in options['dbparams']) 
@@ -520,9 +495,9 @@ function pyflexSuccess(options, data) {
 
 function historyClick(id,thename) {
     $('#pbhistory'+id).toggle();
-    console.log('c');
+    //console.log('c');
     createNow = !$('#pbhistory'+id).is(":hidden") && ($('#pbhistory' + id + ' .flexigrid').length == 0);
-    console.log('C');
+    //console.log('C');
     if (createNow) {
 	var url = HISTORYURL;
 	pyflex({'id':'pbhistory'+id, 'url':url, 'dbparams':{'p': thename}, 'flparams':{'showCloseBtn':true}});
@@ -588,14 +563,8 @@ $( // this call to $ makes it delay until the DOM is loaded
 
 	$('ul.pyscramble').sortable();
 	$('.resizy').resizable({handles:'s',minHeight:50});
-	$('.wp-tabs > div').each(tabby);
 	$('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
-	$('#notice-trans').click(function() {
-	    alert("We're translating the site backend. If anything in English appears broken or different, please tell us on the contact page!");
-	    return false;
-	});
-	
 	if (window.location.hash) {
 	    setTimeout("window.scrollBy(0, -60)", 10); // so direct links aren't hidden by adminbar
 	} 
