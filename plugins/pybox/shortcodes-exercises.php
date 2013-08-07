@@ -1,13 +1,18 @@
 <?php
-add_sweetcode('pyBox', 'pyBoxHandler', true);
+
+// UI elements
 add_sweetcode('pyLink', 'pyLinkHandler', true);
 add_sweetcode('pyHint', 'pyHintHandler', true);
-add_sweetcode('pyShort', 'pyShortHandler', true);
 add_sweetcode('pyWarn', 'pyWarnHandler', true);
-add_sweetcode('pyMulti', 'pyMultiHandler', true);
+
+// exercises (and examples)
 add_sweetcode('pyExample', 'pyExampleHandler', true);
-add_sweetcode('pyProtect', 'pyProtectHandler', true);
+add_sweetcode('pyBox', 'pyBoxHandler', true);
+add_sweetcode('pyShort', 'pyShortHandler', true);
+add_sweetcode('pyMulti', 'pyMultiHandler', true);
 add_sweetcode('pyMultiScramble', 'pyMultiScrambleHandler', true);
+
+// for translation and/or embedding exercises in new places (like mail page)
 add_sweetcode('pyRecall', 'pyRecallHandler', true);
 
 function loadMostRecent($slug) {
@@ -268,24 +273,11 @@ function pyMultiScrambleHandler($options, $content) {
   return $r;
 }
 
-function pyProtectHandler($options, $content) {
-  return $options['protect'];
-}
-
 function pyRecallHandler($options, $content) {
 
   if (!array_key_exists('slug', $options))
     return "[pyRecall error: no slug given]";
   
-  /*  if (isMakingDatabases()) {
-    $r = '';
-    foreach ($options as $k => $v) {
-      $r .= $k . '=';
-      $r .= "'" . str_replace("\n", "\\n", str_replace("'", "''", $v)) . "' ";
-    }
-    pyboxlog($r, FALSE);
-    } */
-
   global $wpdb;
   $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."pb_problems WHERE slug = %s AND lang = %s",
 					   $options['slug'], 'en'), ARRAY_A);
@@ -320,42 +312,6 @@ function pyRecallHandler($options, $content) {
 
   return $result;
 }
-
-function sanitize_helper($matches) {
-  $attr = shortcode_parse_atts( $matches[3] );
-
-  // anything which is not a slug is not an exercise and passes through unchanged.
-  if (!array_key_exists('slug', $attr)) 
-    return $matches[0]; 
-    
-  if (!array_key_exists('title', $attr)) {
-    pyboxlog('[in sanitize_helper] Warning: ' . $attr['slug'] . ' has no title!');
-    $attr['title'] = "";
-  }
-
-  $r = '[pyRecall slug="' . $attr['slug'] . '"';
-
-  $to_translate = array('title', 'epilogue', 'right', 'wrong', 'defaultcode');
-  foreach ($to_translate as $key) 
-    if (array_key_exists($key, $attr)) {
-      $r .= ' ' . $key .'="';
-      $value = $attr[$key];
-      $value = str_replace('"', '""', $value);
-      $value = str_replace("\n", '\n', $value);
-      $r .= $value . '"';
-    }
-
-  $r .= ']' . $matches[5] . '[/pyRecall]';
-
-  return $r;
-}
-
-function sanitize($page) {
-  $page = str_replace("\r", "", $page);
-  $regex = '(\[?)\[(pyExample|pyShort|pyMulti|pyMultiScramble|pyBox)\b((?:[^\'"\\]]|' . "'[^']*'|" . '"[^"]*")*)(?:(\/))?\](?:(.+?)\[\/\2\])?(\]?)';
-  return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
-}
-
 
 
   // helper functions for pyBoxHandler
@@ -499,7 +455,7 @@ function pyBoxHandler($options, $content) {
     $defaultcode = ensureNewlineTerminated($defaultcode);
   }
 
-  $enableDebugFeatures = array_key_exists("d", $_GET); # || userIsAdmin();
+  $enableDebugFeatures = array_key_exists("d", $_GET) || userIsAdmin();
 
   /// actually start outputting here. part 1: headers and description
 
@@ -699,7 +655,7 @@ if (!$facultative && !$scramble) {
     $actions = array('CMtoggle' => $actions['CMtoggle']); // get rid of all other options
 
   if ( $enableDebugFeatures ) 
-    $actions['hashview'] = array('value'=>'Hash (debug)', 'onclick'=>"window.open('".UDEBUGPHP."?hash=$hash')");
+    $actions['hashview'] = array('value'=>__t('Get source'), 'onclick'=>"window.open('".UPROBLEMSOURCE."?hash=$hash')");
   $r .= "<div class='pyboxbuttons'><table><tr>\n";
   if (!$richreadonly)
     $r .= "<td><input type='submit' name='submit' id='submit$id' value=' '/></td>\n";

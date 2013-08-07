@@ -37,9 +37,9 @@ A fix for another issue
 =======================
 Problem 3. Literal newlines inside of nested shortcodes cause problems with
 autop/shortcode_unautop. We accept a flag that will preemtively (before autop)
-cause literal newlines in sweetcode bodies to be ignored (turned to a space)
+cause literal newlines in sweetcode bodies to be ignored (turned to a space);
 except if they are in <pre> they are preserved via conversion to <br/>
-or if they are in a shortcode argument instead of a body they are preserved.
+OR if they are in a shortcode argument instead of a body they are preserved.
 
 If you find yourself definitely wanting a newline inside of a sweetcode 
 body, use instead the CS Circles [br] shortcode that turns into <br>.
@@ -69,8 +69,8 @@ if you switch back and forth enough. Multiple newlines outside of a <pre>
 will be lost if entered in HTML and switched, but will cause &nbsp;
 to be added if entered in Visual. 
 
-The cscircles plugin fixes the multiple-space
-issue, but not the multiple-literal-newline one.
+The cscircles plugin fixes the multiple-space issue by hacking around it,
+but not the multiple-literal-newline one.
 
 This is worth pointing out only to warn that, even with the sweetcode
 modifications, writing long stretches of precise text in a shortcode
@@ -257,7 +257,7 @@ function preprocess($text) {
 
 add_filter ('the_content',  'preprocess', 1);
 
-add_filter ('the_content',  'removeAON', 50);
+add_filter ('the_content',  'removeAON', 20);
 
 function removeAON($content) {
   return str_replace("<!--argOnlyNewline-->", " ", $content);

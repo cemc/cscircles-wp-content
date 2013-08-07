@@ -100,15 +100,15 @@ foreach ( array( 'comment_author', 'term_name', 'link_name', 'link_description',
 
 function fixwpautop($text) {
   // also makes somewhat more html5 compliant
-	$text = preg_replace('|<p>\s*<div(.*)</div>\s*</p>|s', "<div$1</div>", $text);
-	$text = preg_replace('|</div>\s*</p>|s', "</div>", $text);
-	$text = preg_replace('|</pre>\s*<p>|s', "</pre>", $text);
-	$text = preg_replace('|</pre>\s*<br( )(/)>|s', "</pre>", $text);
-	$text = preg_replace('|<br( )(/)>\s*<pre>|s', "<pre>", $text);
-        $text = preg_replace('|<br( )(/)>\s*<div|s', "<div", $text);
-	$text = preg_replace('|tt>|', "code>", $text);
-
-	return $text;
+  $text = preg_replace('|<p>\s*<div(.*)</div>\s*</p>|s', "<div$1</div>", $text);
+  $text = preg_replace('|</div>\s*</p>|s', "</div>", $text);
+  $text = preg_replace('|</pre>\s*<p>|s', "</pre>", $text);
+  $text = preg_replace('|</pre>(\s*<br ?/?>)+|s', "</pre>", $text);
+  $text = preg_replace('|<br ?/?>\s*<pre>|s', "<pre>", $text);
+  $text = preg_replace('|<br ?/?>\s*<div|s', "<div", $text);
+  $text = preg_replace('|tt>|', "code>", $text);
+  
+  return $text;
 }
 
 function postprocesscallback($m) {
@@ -119,8 +119,8 @@ function postprocess($text) {
   return $text;
 }
 
-// undo overly agressive paragraphing
-add_filter ('the_content',  'fixwpautop', 20);
+// undo overly agressive paragraphing 
+add_filter ('the_content',  'fixwpautop', 50);
 // now allow raw material we don't want touched
 add_filter ('the_content',  'postprocess', 100);
 

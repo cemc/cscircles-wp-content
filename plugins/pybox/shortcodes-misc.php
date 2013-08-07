@@ -19,6 +19,45 @@ function newuserwelcome($options, $content) {
   return "";
 }
 
+// two helper functions for exporting and list_pybox_pages
+function sanitize_helper($matches) {
+  $attr = shortcode_parse_atts( $matches[3] );
+
+  // anything which is not a slug is not an exercise and passes through unchanged.
+  if (!array_key_exists('slug', $attr)) 
+    return $matches[0]; 
+    
+  if (!array_key_exists('title', $attr)) {
+    pyboxlog('[in sanitize_helper] Warning: ' . $attr['slug'] . ' has no title!');
+    $attr['title'] = "";
+  }
+
+  $r = '[pyRecall slug="' . $attr['slug'] . '"';
+
+  $to_translate = array('title', 'epilogue', 'right', 'wrong', 'defaultcode');
+  foreach ($to_translate as $key) 
+    if (array_key_exists($key, $attr)) {
+      $r .= ' ' . $key .'="';
+      $value = $attr[$key];
+      $value = str_replace('"', '""', $value);
+      $value = str_replace("\n", '\n', $value);
+      $r .= $value . '"';
+    }
+
+  $r .= ']' . $matches[5] . '[/pyRecall]';
+
+  return $r;
+}
+
+function sanitize($page) {
+  $page = str_replace("\r", "", $page);
+  $regex = '(\[?)\[(pyExample|pyShort|pyMulti|pyMultiScramble|pyBox)\b((?:[^\'"\\]]|' . "'[^']*'|" . '"[^"]*")*)(?:(\/))?\](?:(.+?)\[\/\2\])?(\]?)';
+  return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
+}
+
+
+
+
 add_shortcode('list-pybox-pages', 'list_pybox_pages');
 // for the navigation page
 function list_pybox_pages($options, $content) {
