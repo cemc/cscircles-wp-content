@@ -444,7 +444,9 @@ div.ab-sub-wrapper {
 /* the bar itself */
 .content #wpadminbar {line-height: 52px; height:52px;}
 
-.content #wpadminbar .quicklinks a,#wpadminbar .quicklinks .ab-empty-item,#wpadminbar .shortlink-input{height:52px;padding:0 12px;margin:0;}
+.content #wpadminbar .quicklinks a,
+#wpadminbar .shortlink-input{height:52px;padding:0 12px;margin:0;}
+#wpadminbar .quicklinks .ab-empty-item {height:52px !important;padding:0 12px;margin:0;}
 
 .content #wpadminbar.ie7 .menupop .ab-sub-wrapper,#wpadminbar.ie7 .shortlink-input{top:52px;left:0px;}
 
