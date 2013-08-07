@@ -47,6 +47,7 @@ Replacing wp-content:
 
 Activating new content, on WordPress admin dashboard:
  - go to Plugins and enable "python in a box"
+If you want the appearance to be the same as CS Circles:
  - go to Appearance/Themes and activate "Pybox 2011 Child Theme"
  - go to Settings/Reading, set Front Page Displays to a static page
    (currently we don't have theming for posts figured out)
@@ -87,45 +88,39 @@ permissions, in order to keep user code on separate accounts, which is
 how we keep different submissions from interfering with each other.
 
 
-Options other than drop-in replacing
-------------------------------------
-This package is distributed as a replacment for wp-content since the main
-two directories are 
+Files listing / alternative to drop-in replacement for power users
+------------------------------------------------------------------
+You need not copy all of wp-content. If you install the theme
 
- wp-content/plugins/pybox and 
+ wp-content/plugins/pybox
+
+then you will get all of the shortcode functionality, although
+the look and feel won't look great with every theme.
+
+Use the theme
 
  wp-content/themes/pybox2011childTheme
 
-and it seems easier than distributing two separate repos at the moment.
-As well, lesson data files are stored in
+to get our look and feel, including customizations to the admin bar.
+
+Lesson data files are stored in
 
  wp-content/lesson_files
 
-If you would like to copy a specific set of files please read on below.
+Specifically this the source location for @include directives in
+shortcodes, as well as images in the lessons we wrote.
 
+The remaining files in
 
-Contained Files Listing
------------------------
-- plugins/pybox/ 
-  - the plugin with all the shortcodes and everything else
-themes/pybox2011childTheme/ 
-  - theme for our site. Uses twentyeleven theme (installed by default and 
-    included in this repo)
+ wp-content/plugins/{not pybox}
 
-Currently, we haven't tried to separate the theme information 
-  from the plugin. In a future version, the goal is for all of the 
-  shortcodes and core functionality to lie in the plugin, with the
-  theme consisting of superficial things only.
+are the other plugins we use on the main site. Some of them will
+be necessary to display content we wrote, e.g. LaTeX shortcodes.
 
-- plugins/*
-  - other plugins we use on the main site. none are required for our
-    plugin or theme to work.
+The directory
 
-- languages/
-  - reference WordPress admin translation files (we did not make them).
-    not related to translating the lessons themselves, which is done
-    with the polylang plugin.
+ wp-content/languages
 
-- lesson_files/
-  - files for @include directives in shortcodes and images in lessons
-
+references WordPress admin translation files (we did not make them).
+Note that our own translation is done with the .{mo,po,pot} files
+in pybox and the Polylang plugin.
