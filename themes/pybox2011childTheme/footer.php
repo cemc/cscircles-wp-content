@@ -23,7 +23,7 @@ showLocationHandler(); ?>
 
   <div id="site-generator">
   <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
-  <?php echo sprintf("<a href='http://cemc.math.uwaterloo.ca/copyright.html'>&copy; 2010&mdash;.</a> " . 
+  <?php echo sprintf("<a href='http://cemc.math.uwaterloo.ca/copyright.html'>&copy; 2010&ndash;".strftime("%G").".</a> " . 
 
 		     __t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>. <br> Total number of exercises completed by all users: %3$s'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"', '<b>'.allSolvedCount().'</b>'); ?>
 

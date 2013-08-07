@@ -2,7 +2,9 @@
 
   /*****
 
-Sweetcodes are a modification of WordPress shortcodes. 
+Sweetcodes are a modification of WordPress shortcodes. This file defines
+their framework, but the actual sweetcodes are defined in 
+shortcodes-exercises.php
 
 What's broke that needs fixing?
 ===============================
@@ -27,7 +29,7 @@ but contain no double quotes. This is a pretty weird restriction especially
 given that the v[i] strings are slash-escaped (they will be run through 
 stripcslashes).
 
-Sweetcodes fix exactly these two problems. 
+Sweetcodes fix these two problems. 
 
 As a bonus, they also accept Pascal-style "" or '' quote-escapes.
 
@@ -35,18 +37,16 @@ A fix for another issue
 =======================
 Problem 3. Literal newlines inside of nested shortcodes cause problems with
 autop/shortcode_unautop. We accept a flag that will preemtively (before autop)
-cause:
-- literal newlines in sweetcode bodies are ignored (turned to a space)
- - except:
-   - if they are in <pre> they are preserved via conversion to <br/>
-   - if they are in a shortcode argument instead of a body, they are preserved
+cause literal newlines in sweetcode bodies to be ignored (turned to a space)
+except if they are in <pre> they are preserved via conversion to <br/>
+or if they are in a shortcode argument instead of a body they are preserved.
 
 If you find yourself definitely wanting a newline inside of a sweetcode 
 body, use instead the CS Circles [br] shortcode that turns into <br>.
 
 Writing sweetcodes in <pre>
 ===========================
-Sweetcodes will also do their level best to ignore <pre> and </pre> located
+Sweetcodes will also do their best to ignore <pre> and </pre> located
 within the arguments part. This means that you can write code in a code-like
 environment. The <pre> must appear after the shortcode name, such as
 
@@ -60,7 +60,7 @@ However, be aware that multiple newlines in a row won't work
 consistently (see below).
 
 What else is broke? (a rant of warning)
-===================
+=======================================
 The Wordpress editor, if you switch between visual and text mode a lot,
 is not consistent in how it handles spaces. Multiple spaces entered in 
 the HTML source code editor will be collapsed when you switch to Visual.
@@ -69,11 +69,14 @@ if you switch back and forth enough. Multiple newlines outside of a <pre>
 will be lost if entered in HTML and switched, but will cause &nbsp;
 to be added if entered in Visual. 
 
+The cscircles plugin fixes the multiple-space
+issue, but not the multiple-literal-newline one.
+
 This is worth pointing out only to warn that, even with the sweetcode
 modifications, writing long stretches of precise text in a shortcode
 can only be done within limits unless you are willing to do some work
-on the editor. Note that the cscircles plugin fixes the multiple-space
-issue, but not the multiple-literal-newline one.
+on the editor. The @file including mechanism is the intended way to
+get around this.
 
  *****/
 

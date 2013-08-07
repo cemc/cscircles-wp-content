@@ -1,6 +1,4 @@
 <?php
-require_once('sweetcodes.php');
-
 add_sweetcode('pyBox', 'pyBoxHandler', true);
 add_sweetcode('pyLink', 'pyLinkHandler', true);
 add_sweetcode('pyHint', 'pyHintHandler', true);
@@ -12,10 +10,6 @@ add_sweetcode('pyProtect', 'pyProtectHandler', true);
 add_sweetcode('pyMultiScramble', 'pyMultiScrambleHandler', true);
 add_sweetcode('pyRecall', 'pyRecallHandler', true);
 
-add_shortcode('pyDebug', 'pyDebug');
-add_shortcode('newuserwelcome', 'newuserwelcome');
-add_shortcode( 'list-pybox-pages', 'list_pybox_pages' );
-
 function loadMostRecent($slug) {
   if ( !is_user_logged_in() ) 
     return NULL;
@@ -25,15 +19,6 @@ function loadMostRecent($slug) {
   $table_name = $wpdb->prefix . "pb_submissions";
   $sqlcmd = "SELECT usercode FROM $table_name WHERE userid = %d AND problem = %s ORDER BY beginstamp DESC LIMIT 1";
   return $wpdb->get_var( $wpdb->prepare($sqlcmd, $uid, $slug));
-}
-
-function do_short_and_sweetcode($x) {
-  return do_shortcode(do_sweetcode($x));
-}
-
-function pyDebug($o, $c){
-  if (WP_DEBUG)
-    return do_short_and_sweetcode($c);
 }
 
 function pberror( $errmsg) {
@@ -336,18 +321,6 @@ function pyRecallHandler($options, $content) {
   return $result;
 }
 
-function newuserwelcome($options, $content) {
-  if ( ! is_user_logged_in() ) {
-    $ulog = wp_login_url( cscurl('homepage') );
-    $uuse = cscurl('usage');
-
-    return "<em>".sprintf(__t('New around here? Read <a %1$s>Using this Website</a>. You can also <a %2$s>click here to create an account or log in</a>.'), 
-			  "class='open-same-window' href='$uuse'", 
-			  "class='open-same-window' href='$ulog'")."</em><br/>";
-  }
-  return "";
-}
-
 function sanitize_helper($matches) {
   $attr = shortcode_parse_atts( $matches[3] );
 
@@ -383,70 +356,6 @@ function sanitize($page) {
   return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
 }
 
-// for the navigation page
-function list_pybox_pages($options, $content) {
-  $out = get_pages(array('parent'=>0, 'status'=>'publish'));
-  $links = array();
-  global $polylang;
-  foreach ($out as $page) {
-
-    if ($polylang->get_translation('post', $page->ID, 'en') == $page->ID) { //english only
-
-      $links[] = array("url"=>get_page_link( $page->ID), "title"=>$page->post_title);
-      if (isSoft($_GET, 'export', 'Y')) {
-	$p = get_page($page->ID);
-	$slug = $p->post_name;
-	$f = fopen(PEXPORT . $slug . ".txt", 'w');
-	fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
-	fwrite($f, sanitize($p->post_content));
-	fclose($f);
-      }
-      elseif (isSoft($_GET, 'export', 'raw')) {
-	$p = get_page($page->ID);
-	$slug = $p->post_name;
-	$f = fopen(PEXPORT . $slug . ".txt", 'w');
-	fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
-	fwrite($f, $p->post_content);
-	fclose($f);
-      }
-    }
-  }
-
-  $user_id      = get_current_user_id();
-  $current_user = wp_get_current_user();
-  $profile_url  = get_edit_profile_url( $user_id );
-
-  if ( $user_id ) {
-    $links[] = array("url"=>$profile_url, "title"=>__t('Edit my profile'));
-    $links[] = array("url"=>wp_logout_url(), 'title'=>__t('Log out now'));
-  } 
-  else
-    $links[] = array("url"=>wp_logout_url(), 'title'=>__t('Log in or create a new account'));
-
-
-  foreach ($links as $i=>$page) {
-    $s = $page['title'];
-    $m = preg_match('/^([0-9]+)([A-Z])?\: (.*)$/', $s, $matches);
-    if ($m <= 0)
-      $k = '9999---' . $s;
-    else {
-      $sub = $matches[2];
-      if ($sub=="") $sub="-";
-      $k = sprintf("%04d", $matches[1]) . '-' . $sub . '-'.$matches[3];
-    }
-    $links[$i]['key']=$k;
-  }
-  //  print_r($links);
-  function cmp($p1, $p2) {
-    return strcmp($p1['key'], $p2['key']);
-  }
-  usort($links, 'cmp');
-  echo '<ul>';
-  foreach ($links as $page) {
-    echo "<li><a class='open-same-window' href='".$page['url'] ."'>".$page['title']."</a></li>";
-  }
-  echo '</ul>';
-}
 
 
   // helper functions for pyBoxHandler

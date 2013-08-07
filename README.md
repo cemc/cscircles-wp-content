@@ -41,7 +41,7 @@ Installing Wordpress:
 
 Replacing wp-content:
 - in a shell, enter the wordpress directory
-- delete wp-content or rename to wp-content-backup
+- delete wp-content or rename it to wp-content-backup
 - `git clone https://github.com/cemc/cscircles-wp-content.git wp-content`
   which copies this git repo into a new wp-content directory
 
@@ -102,6 +102,7 @@ Use the theme
  wp-content/themes/pybox2011childTheme
 
 to get our look and feel, including customizations to the admin bar.
+The theme will not work if the plugin is not installed and activated.
 
 Lesson data files are stored in
 

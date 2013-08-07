@@ -130,8 +130,9 @@ PRIMARY KEY  (ID)
 }
 
 
-
-require_once("shortcodes.php");
+require_once("sweetcodes.php");
+require_once("shortcodes-exercises.php");
+require_once("shortcodes-misc.php");
 require_once("shortcodes-layout.php");
 require_once("shortcode-my-progress.php");
 require_once("shortcode-make-databases.php");
@@ -147,7 +148,6 @@ require_once("plugin-hooks.php");
 require_once("plugin-profile-options.php");
 require_once("js-translation.php");
 require_once("newuseremail.php");
-require_once("css-admin.php");
 require_once("db-mail.php");
 require_once("db-entire-history.php");
 require_once("db-problem-history.php");

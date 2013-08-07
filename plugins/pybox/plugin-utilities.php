@@ -2,6 +2,11 @@
 
 // plugin-utilities: this file is included in include-me.php
 
+  // process raw content (used for example in nested shortcodes)
+function do_short_and_sweetcode($x) {
+  return do_shortcode(do_sweetcode($x));
+}
+
 // translation
 function __t($en_string) {
   return __($en_string, 'cscircles');// . get_locale(); // for debugging
