@@ -3,12 +3,6 @@ define( 'HEADER_IMAGE_WIDTH', apply_filters( 'twentyeleven_header_image_width', 
 define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'twentyeleven_header_image_height', 150 ) );
 define( 'HEADER_IMAGE', content_url('/themes/pybox2011childTheme/images/header.jpg') );
 
-//functions.php
-add_theme_support( 'admin-bar', array( 'callback' => 'my_adminbar_cb') );
-function my_adminbar_cb(){
-  //empty function
-}
-
 // removes the profile.php admin color scheme options
 remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-19 13:41-0400\n"
-"PO-Revision-Date: 2013-07-19 13:41-0400\n"
+"POT-Creation-Date: 2013-08-06 21:06-0400\n"
+"PO-Revision-Date: 2013-08-06 21:06-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../wp-plugin/action-send-message.php:30
-#: ../wp-plugin/plugin-utilities.php:138 ../wp-plugin/plugin-utilities.php:508
+#: ../wp-plugin/plugin-utilities.php:138 ../wp-plugin/plugin-utilities.php:513
 #: ../wp-plugin/shortcode-mailpage.php:109
 #: ../wp-plugin/shortcode-mailpage.php:114 ../wp-plugin/shortcodes.php:649
 #: ../wp-plugin/shortcodes.php:655
@@ -32,17 +32,17 @@ msgid "message about"
 msgstr "message pour le problème"
 
 #: ../wp-plugin/action-send-message.php:37
-#: ../wp-plugin/plugin-utilities.php:522
+#: ../wp-plugin/plugin-utilities.php:527
 msgid "To send a reply message, please visit"
 msgstr "Pour répondre, s'il vous plaît visitez"
 
 #: ../wp-plugin/action-send-message.php:39
-#: ../wp-plugin/plugin-utilities.php:524
+#: ../wp-plugin/plugin-utilities.php:529
 msgid "Problem URL:"
 msgstr "URL de problème :"
 
 #: ../wp-plugin/action-send-message.php:40
-#: ../wp-plugin/plugin-utilities.php:525
+#: ../wp-plugin/plugin-utilities.php:530
 msgid "Sent by CS Circles"
 msgstr "Envoyé par Cercles informatiques"
 
@@ -246,13 +246,13 @@ msgid "\"CS Circles Bouncer\" <bounces@cscircles.cemc.uwaterloo.ca>"
 msgstr ""
 "\"Rebondeur Cercles informatiques\" <bounces@cscircles.cemc.uwaterloo.ca>"
 
-#: ../wp-plugin/db-entire-history.php:16
-#: ../wp-plugin/db-problem-history.php:19
+#: ../wp-plugin/db-entire-history.php:18
+#: ../wp-plugin/db-problem-history.php:21
 msgid "Did not crash."
 msgstr "Ne s'est pas planté."
 
-#: ../wp-plugin/db-entire-history.php:17
-#: ../wp-plugin/db-problem-history.php:20 ../wp-plugin/shortcodes.php:182
+#: ../wp-plugin/db-entire-history.php:19
+#: ../wp-plugin/db-problem-history.php:22 ../wp-plugin/shortcodes.php:182
 #: ../wp-plugin/shortcodes.php:229 ../wp-plugin/shortcodes.php:280
 #: ../wp-content/lesson_files/graders/anyorder.py:12
 #: ../wp-content/lesson_files/graders/pendulum-grader.py:16
@@ -260,146 +260,146 @@ msgstr "Ne s'est pas planté."
 msgid "Correct!"
 msgstr "Correct !"
 
-#: ../wp-plugin/db-entire-history.php:18
-#: ../wp-plugin/db-problem-history.php:21
+#: ../wp-plugin/db-entire-history.php:20
+#: ../wp-plugin/db-problem-history.php:23
 msgid "Incorrect."
 msgstr "Pas correct."
 
-#: ../wp-plugin/db-entire-history.php:19
-#: ../wp-plugin/db-problem-history.php:22
+#: ../wp-plugin/db-entire-history.php:21
+#: ../wp-plugin/db-problem-history.php:24
 msgid "Internal error."
 msgstr "Erreur interne."
 
-#: ../wp-plugin/db-entire-history.php:20 ../wp-plugin/db-entire-history.php:21
-#: ../wp-plugin/db-problem-history.php:23
-#: ../wp-plugin/db-problem-history.php:24
+#: ../wp-plugin/db-entire-history.php:22 ../wp-plugin/db-entire-history.php:23
+#: ../wp-plugin/db-problem-history.php:25
+#: ../wp-plugin/db-problem-history.php:26
 msgid "Saved."
 msgstr "Sauvegardé."
 
-#: ../wp-plugin/db-entire-history.php:28
-#: ../wp-plugin/db-problem-history.php:27
-#: ../wp-plugin/db-problem-summary.php:14
+#: ../wp-plugin/db-entire-history.php:30
+#: ../wp-plugin/db-problem-history.php:29
+#: ../wp-plugin/db-problem-summary.php:16
 msgid "You must log in to view past submissions."
 msgstr "Vous devez vous connecter pour consulter les soumissions passé."
 
-#: ../wp-plugin/db-entire-history.php:39 ../wp-plugin/db-entire-history.php:44
+#: ../wp-plugin/db-entire-history.php:41 ../wp-plugin/db-entire-history.php:46
 msgid "User number not found."
 msgstr "Identifiant de l'utilisateur pas trouvé."
 
-#: ../wp-plugin/db-entire-history.php:46
+#: ../wp-plugin/db-entire-history.php:48
 #, php-format
 msgid "User %s does not have you as their guru."
 msgstr "Utilisateur %s ne vous avoir comme leur gourou."
 
-#: ../wp-plugin/db-entire-history.php:61
+#: ../wp-plugin/db-entire-history.php:63
 #, php-format
 msgid "Problem %s is unknown."
 msgstr "Problème %s est inconnu."
 
-#: ../wp-plugin/db-entire-history.php:67
-#: ../wp-plugin/db-entire-history.php:105
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:107
 msgid "userid"
 msgstr "userid"
 
-#: ../wp-plugin/db-entire-history.php:67
-#: ../wp-plugin/db-entire-history.php:116
-#: ../wp-plugin/db-problem-history.php:57
-#: ../wp-plugin/db-problem-history.php:75
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:118
+#: ../wp-plugin/db-problem-history.php:59
+#: ../wp-plugin/db-problem-history.php:77
 msgid "time &amp; ID"
 msgstr "temps &amp; ID"
 
-#: ../wp-plugin/db-entire-history.php:67
-#: ../wp-plugin/db-entire-history.php:109
-#: ../wp-plugin/db-entire-history.php:112 ../wp-plugin/db-mail.php:84
-#: ../wp-plugin/db-mail.php:102
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:111
+#: ../wp-plugin/db-entire-history.php:114 ../wp-plugin/db-mail.php:87
+#: ../wp-plugin/db-mail.php:105
 msgid "problem"
 msgstr "problème"
 
-#: ../wp-plugin/db-entire-history.php:68
-#: ../wp-plugin/db-entire-history.php:113
-#: ../wp-plugin/db-problem-history.php:57
-#: ../wp-plugin/db-problem-history.php:71
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-problem-history.php:59
+#: ../wp-plugin/db-problem-history.php:73
 msgid "user code"
 msgstr "code soumis"
 
-#: ../wp-plugin/db-entire-history.php:68
-#: ../wp-plugin/db-entire-history.php:114
-#: ../wp-plugin/db-problem-history.php:58
-#: ../wp-plugin/db-problem-history.php:73
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:116
+#: ../wp-plugin/db-problem-history.php:60
+#: ../wp-plugin/db-problem-history.php:75
 msgid "user input"
 msgstr "entrée"
 
-#: ../wp-plugin/db-entire-history.php:68
-#: ../wp-plugin/db-entire-history.php:115
-#: ../wp-plugin/db-problem-history.php:58
-#: ../wp-plugin/db-problem-history.php:74
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:117
+#: ../wp-plugin/db-problem-history.php:60
+#: ../wp-plugin/db-problem-history.php:76
 msgid "result"
 msgstr "résultat"
 
-#: ../wp-plugin/db-entire-history.php:93
+#: ../wp-plugin/db-entire-history.php:95
 msgid "We do not have record of any submissions."
 msgstr "Il n'y a pas de programmes sauvegardés."
 
-#: ../wp-plugin/db-entire-history.php:114
-#: ../wp-plugin/db-problem-history.php:73
-#: ../wp-plugin/shortcode-mailpage.php:238
+#: ../wp-plugin/db-entire-history.php:116
+#: ../wp-plugin/db-problem-history.php:75
+#: ../wp-plugin/shortcode-mailpage.php:237
 msgid "n/a"
 msgstr "s/o"
 
-#: ../wp-plugin/db-mail.php:36
+#: ../wp-plugin/db-mail.php:39
 msgid "You must log in to view past mail."
 msgstr "Vous devez être connecté pour afficher le courrier passé."
 
-#: ../wp-plugin/db-mail.php:51 ../wp-plugin/db-mail.php:60
-#: ../wp-plugin/db-mail.php:67
+#: ../wp-plugin/db-mail.php:54 ../wp-plugin/db-mail.php:63
+#: ../wp-plugin/db-mail.php:70
 #, php-format
 msgid "%s must be numeric."
 msgstr "%s doit être numérique."
 
-#: ../wp-plugin/db-mail.php:56
+#: ../wp-plugin/db-mail.php:59
 msgid "Access denied."
 msgstr "Accès refusé."
 
-#: ../wp-plugin/db-mail.php:82 ../wp-plugin/db-mail.php:97
+#: ../wp-plugin/db-mail.php:85 ../wp-plugin/db-mail.php:100
 msgid "from"
 msgstr "de"
 
-#: ../wp-plugin/db-mail.php:82 ../wp-plugin/db-mail.php:98
+#: ../wp-plugin/db-mail.php:85 ../wp-plugin/db-mail.php:101
 #: ../wp-plugin/shortcode-mailpage.php:92
 msgid "to"
 msgstr "à"
 
-#: ../wp-plugin/db-mail.php:83 ../wp-plugin/db-mail.php:100
+#: ../wp-plugin/db-mail.php:86 ../wp-plugin/db-mail.php:103
 msgid "when"
 msgstr "quand"
 
-#: ../wp-plugin/db-mail.php:83 ../wp-plugin/db-mail.php:105
+#: ../wp-plugin/db-mail.php:86 ../wp-plugin/db-mail.php:108
 msgid "message"
 msgstr "message"
 
-#: ../wp-plugin/db-mail.php:84 ../wp-plugin/db-mail.php:104
+#: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:107
 msgid "replied?"
 msgstr "répondu ?"
 
-#: ../wp-plugin/db-mail.php:104
+#: ../wp-plugin/db-mail.php:107
 msgid "no"
 msgstr "non"
 
-#: ../wp-plugin/db-mail.php:104
+#: ../wp-plugin/db-mail.php:107
 msgid "yes"
 msgstr "oui"
 
-#: ../wp-plugin/db-problem-history.php:16
-#: ../wp-plugin/db-problem-summary.php:19
+#: ../wp-plugin/db-problem-history.php:18
+#: ../wp-plugin/db-problem-summary.php:21
 msgid "You must enter a non-empty problem name."
 msgstr "Vous devez entrer un nom de problème non vide."
 
-#: ../wp-plugin/db-problem-history.php:32
+#: ../wp-plugin/db-problem-history.php:34
 #, php-format
 msgid "User number %s not found."
 msgstr "Utilisateur %s est introuvable."
 
-#: ../wp-plugin/db-problem-history.php:52
+#: ../wp-plugin/db-problem-history.php:54
 #, php-format
 msgid ""
 "We do not have record of any submissions from user %1$s for problem %2$s."
@@ -407,37 +407,61 @@ msgstr ""
 "Nous n'avons pas d'enregistrement de tout argument de l'utilisateur %1$s "
 "pour le problème %2$s ."
 
-#: ../wp-plugin/db-problem-summary.php:29
+#: ../wp-plugin/db-problem-summary.php:31
 #: ../wp-plugin/shortcode-mailpage.php:186
 #: ../wp-plugin/shortcode-my-progress.php:28
 #, php-format
 msgid "Problem %s not found (at least in current language)"
 msgstr "Problème %s introuvable (du moins en français)"
 
-#: ../wp-plugin/db-problem-summary.php:69
-#: ../wp-plugin/db-problem-summary.php:75
+#: ../wp-plugin/db-problem-summary.php:71
+#: ../wp-plugin/db-problem-summary.php:77
 msgid "latest correct"
 msgstr "dernière correcte"
 
-#: ../wp-plugin/db-problem-summary.php:70
-#: ../wp-plugin/db-problem-summary.php:76
+#: ../wp-plugin/db-problem-summary.php:72
+#: ../wp-plugin/db-problem-summary.php:78
 msgid "last time"
 msgstr "quand"
 
-#: ../wp-plugin/db-problem-summary.php:71
-#: ../wp-plugin/db-problem-summary.php:77
+#: ../wp-plugin/db-problem-summary.php:73
+#: ../wp-plugin/db-problem-summary.php:79
 msgid "first time"
 msgstr "premier"
 
 #: ../wp-plugin/js-translation.php:4
+msgid "Incorrect, try again."
+msgstr "Incorrecte, essayez à nouveau."
+
+#: ../wp-plugin/js-translation.php:5
+msgid "Enter test input"
+msgstr "Tape entrée de test"
+
+#: ../wp-plugin/js-translation.php:6
 msgid "timed out!"
 msgstr "délai dépassé !"
 
-#: ../wp-plugin/js-translation.php:5 ../wp-plugin/shortcodes.php:772
-msgid "History"
-msgstr "Historique"
+#: ../wp-plugin/js-translation.php:7
+msgid "Go back to grading"
+msgstr "Retour à classement"
 
-#: ../wp-plugin/js-translation.php:6
+#: ../wp-plugin/js-translation.php:8
+msgid "start of tests"
+msgstr "démarrer des tests"
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Error: could not connect to database."
+msgstr "Erreur: ne pouvait pas connecter a base de données."
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Page"
+msgstr "Page"
+
+#: ../wp-plugin/js-translation.php:11
+msgid "Hide history"
+msgstr "Cacher l'historique"
+
+#: ../wp-plugin/js-translation.php:12
 msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
@@ -445,7 +469,11 @@ msgstr ""
 "La boîte de code est vide. Il devrait plutôt contenir votre meilleure "
 "solution partielle à ce jour."
 
-#: ../wp-plugin/js-translation.php:7
+#: ../wp-plugin/js-translation.php:13
+msgid "out of"
+msgstr "sur"
+
+#: ../wp-plugin/js-translation.php:14
 msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
@@ -453,23 +481,92 @@ msgstr ""
 "Avertissement: impossible de dialoguer avec un serveur. Impossible de "
 "définir «complété» le statut de ce problème."
 
-#: ../wp-plugin/js-translation.php:8
-msgid "Run test"
-msgstr "Exécuter le test"
+#: ../wp-plugin/js-translation.php:15 ../wp-plugin/shortcodes.php:772
+msgid "History"
+msgstr "Historique"
 
-#: ../wp-plugin/js-translation.php:9 ../wp-plugin/shortcodes.php:806
-msgid "More actions..."
-msgstr "Plus d'actions..."
-
-#: ../wp-plugin/js-translation.php:10
+#: ../wp-plugin/js-translation.php:16
 msgid "The database connected but found no data."
 msgstr "Base de données connectée, mais rien trouvé."
 
-#: ../wp-plugin/js-translation.php:11
-msgid "out of"
-msgstr "sur"
+#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes.php:806
+msgid "More actions..."
+msgstr "Plus d'actions..."
 
-#: ../wp-plugin/js-translation.php:12
+#: ../wp-plugin/js-translation.php:18
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Affichage de {from} à {to} de {total} articles"
+
+#: ../wp-plugin/js-translation.php:19
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+"Impossible de traiter demande d'envoyage. Vous pourriez avoir perdu votre "
+"connexion à Internet."
+
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes.php:827
+msgid "Run program"
+msgstr "Exécuter le programme"
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Click to try again."
+msgstr "Cliquez ici pour essayer à nouveau."
+
+#: ../wp-plugin/js-translation.php:22 ../wp-plugin/shortcodes.php:757
+msgid "Rich editor"
+msgstr "Éditeur riche"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Run test"
+msgstr "Exécuter le test"
+
+#: ../wp-plugin/js-translation.php:24
+msgid "Simple editor"
+msgstr "Editeur simple"
+
+#: ../wp-plugin/js-translation.php:25
+msgid "Enter input"
+msgstr "Tape entrée"
+
+#: ../wp-plugin/js-translation.php:26
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+"Tous messages de cet étudiant à propos de ce problème sera marqué répondu."
+
+#: ../wp-plugin/js-translation.php:27
+msgid "end of main program"
+msgstr "fin du programme principal"
+
+#: ../wp-plugin/js-translation.php:28
+msgid "Hide input box"
+msgstr "Masquer le champ d'entrée"
+
+#: ../wp-plugin/js-translation.php:29
+msgid "Please enter a non-empty message."
+msgstr "S'il vous plaît entrer un message non vide."
+
+#: ../wp-plugin/js-translation.php:30
+msgid "Your message was sent."
+msgstr "Votre message a été envoyé."
+
+#: ../wp-plugin/js-translation.php:31
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr ""
+"Ne pouvait pas grader parce que la communication avec le serveur n'a pas été "
+"possible. Informations ajax : "
+
+#: ../wp-plugin/js-translation.php:32 ../wp-plugin/shortcodes.php:59
+msgid "You have completed this problem at least once."
+msgstr "Vous avez completé ce problème au moins une fois."
+
+#: ../wp-plugin/js-translation.php:33
+msgid "Enter test statements"
+msgstr "Entrez instructions de test"
+
+#: ../wp-plugin/js-translation.php:34
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
@@ -480,106 +577,9 @@ msgstr ""
 "sur votre profil (disponible dans le menu de l'utilisateur, dans le coin "
 "supérieur droit de la page)."
 
-#: ../wp-plugin/js-translation.php:13 ../wp-plugin/shortcodes.php:827
-msgid "Run program"
-msgstr "Exécuter le programme"
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Go back to grading"
-msgstr "Retour à classement"
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Marking all messages from this student about this problem as answered."
-msgstr ""
-"Tous messages de cet étudiant à propos de ce problème sera marqué répondu."
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Hide history"
-msgstr "Cacher l'historique"
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter test input"
-msgstr "Tape entrée de test"
-
-#: ../wp-plugin/js-translation.php:18
-msgid "Simple editor"
-msgstr "Editeur simple"
-
-#: ../wp-plugin/js-translation.php:19 ../wp-plugin/shortcodes.php:757
-msgid "Rich editor"
-msgstr "Éditeur riche"
-
-#: ../wp-plugin/js-translation.php:20
+#: ../wp-plugin/js-translation.php:35
 msgid "Running..."
 msgstr "Exécutant..."
-
-#: ../wp-plugin/js-translation.php:21
-msgid "Incorrect, try again."
-msgstr "Incorrecte, essayez à nouveau."
-
-#: ../wp-plugin/js-translation.php:22 ../wp-plugin/shortcodes.php:59
-msgid "You have completed this problem at least once."
-msgstr "Vous avez completé ce problème au moins une fois."
-
-#: ../wp-plugin/js-translation.php:23
-msgid "Error: could not connect to database."
-msgstr "Erreur: ne pouvait pas connecter a base de données."
-
-#: ../wp-plugin/js-translation.php:24
-msgid "Enter test statements"
-msgstr "Entrez instructions de test"
-
-#: ../wp-plugin/js-translation.php:25
-msgid "end of main program"
-msgstr "fin du programme principal"
-
-#: ../wp-plugin/js-translation.php:26
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
-msgstr ""
-"Impossible de traiter demande d'envoyage. Vous pourriez avoir perdu votre "
-"connexion à Internet."
-
-#: ../wp-plugin/js-translation.php:27
-msgid "Displaying {from} to {to} of {total} items"
-msgstr "Affichage de {from} à {to} de {total} articles"
-
-#: ../wp-plugin/js-translation.php:28
-msgid "Your message was sent."
-msgstr "Votre message a été envoyé."
-
-#: ../wp-plugin/js-translation.php:29
-msgid "Page"
-msgstr "Page"
-
-#: ../wp-plugin/js-translation.php:30
-msgid "Please enter a non-empty message."
-msgstr "S'il vous plaît entrer un message non vide."
-
-#: ../wp-plugin/js-translation.php:31
-msgid "Hide input box"
-msgstr "Masquer le champ d'entrée"
-
-#: ../wp-plugin/js-translation.php:32
-msgid "start of tests"
-msgstr "démarrer des tests"
-
-#: ../wp-plugin/js-translation.php:33
-msgid ""
-"Could not grade program because communication to the server was not "
-"possible. Ajax information: "
-msgstr ""
-"Ne pouvait pas grader parce que la communication avec le serveur n'a pas été "
-"possible. Informations ajax : "
-
-#: ../wp-plugin/js-translation.php:34
-msgid "Enter input"
-msgstr "Tape entrée"
-
-#: ../wp-plugin/js-translation.php:35
-msgid "Click to try again."
-msgstr "Cliquez ici pour essayer à nouveau."
 
 #: ../wp-plugin/newuseremail.php:10
 msgid ""
@@ -631,69 +631,69 @@ msgstr "Suivant"
 msgid "Computer Science Circles, powered by WordPress"
 msgstr "Cercles informatiques, propulsé par WordPress"
 
-#: ../wp-plugin/plugin-hooks.php:143
+#: ../wp-plugin/plugin-hooks.php:145
 msgid "Editor"
 msgstr "Éditeur"
 
-#: ../wp-plugin/plugin-hooks.php:245
+#: ../wp-plugin/plugin-hooks.php:215
 msgid "My Progress"
 msgstr "Mes progrès"
 
-#: ../wp-plugin/plugin-hooks.php:246
+#: ../wp-plugin/plugin-hooks.php:216
 msgid "Mail"
 msgstr "Poste"
 
-#: ../wp-plugin/plugin-hooks.php:247
+#: ../wp-plugin/plugin-hooks.php:217
 msgid "Console (new window)"
 msgstr "Console (+fenêtre)"
 
-#: ../wp-plugin/plugin-hooks.php:248
+#: ../wp-plugin/plugin-hooks.php:218
 msgid "Resources (new window)"
 msgstr "Ressources (+fenêtre)"
 
-#: ../wp-plugin/plugin-hooks.php:249
+#: ../wp-plugin/plugin-hooks.php:219
 msgid "Contact Us (new window)"
 msgstr "Contactez-nous (+fenêtre)"
 
-#: ../wp-plugin/plugin-hooks.php:253
+#: ../wp-plugin/plugin-hooks.php:223
 msgid "scroll to top"
 msgstr "défiler en haut de page"
 
-#: ../wp-plugin/plugin-hooks.php:277
+#: ../wp-plugin/plugin-hooks.php:247
 msgid "goto oldest unanswered mail"
 msgstr "la plus ancienne poste sans réponse"
 
-#: ../wp-plugin/plugin-hooks.php:337
+#: ../wp-plugin/plugin-hooks.php:307
 msgid "Filter Listed Pages"
 msgstr "Filtre pages listées"
 
-#: ../wp-plugin/plugin-hooks.php:340
+#: ../wp-plugin/plugin-hooks.php:310
 msgid "Show all visible"
 msgstr "Voir toutes visibles"
 
-#: ../wp-plugin/plugin-hooks.php:383
+#: ../wp-plugin/plugin-hooks.php:353
 msgid "<p>Create free account / login</p><p>to save your progress</p>"
 msgstr ""
 "<p>Créer compte gratuit, enregistrer,</p><p>sauvegarder vos progrès</p>"
 
-#: ../wp-plugin/plugin-hooks.php:398
+#: ../wp-plugin/plugin-hooks.php:368
 #, php-format
 msgid "%s's menu"
 msgstr "menu de %s"
 
-#: ../wp-plugin/plugin-hooks.php:415
+#: ../wp-plugin/plugin-hooks.php:389
 msgid "click and type to search website"
 msgstr "cliquez et tapez pour rechercher"
 
-#: ../wp-plugin/plugin-hooks.php:444
+#: ../wp-plugin/plugin-hooks.php:418
 msgid "Computer Science Circles"
 msgstr "Cercles informatiques"
 
-#: ../wp-plugin/plugin-hooks.php:445
+#: ../wp-plugin/plugin-hooks.php:419
 msgid "Log In or Create Account"
 msgstr "Se connecter ou créer un compte"
 
-#: ../wp-plugin/plugin-hooks.php:454
+#: ../wp-plugin/plugin-hooks.php:428
 msgid "Create a new account"
 msgstr "Créez un compte"
 
@@ -761,13 +761,13 @@ msgstr "moi"
 msgid "Asst."
 msgstr "Assistant"
 
-#: ../wp-plugin/plugin-utilities.php:280
+#: ../wp-plugin/plugin-utilities.php:285
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
 "[Trop long; seulement les premiers %1$s de %2$s caractères sont illustré]"
 
-#: ../wp-plugin/plugin-utilities.php:397
+#: ../wp-plugin/plugin-utilities.php:402
 msgid "Return to Computer Science Circles"
 msgstr "Retour au Cercles informatique"
 
@@ -1187,6 +1187,10 @@ msgstr "wordmark-uw.gif"
 #: ../wp-theme/header.php:104
 msgid "wordmark-cemc.png"
 msgstr "wordmark-cemi.png"
+
+#: ../wp-theme/header.php:128
+msgid "/themes/pybox2011childTheme/images/header.jpg"
+msgstr "/themes/pybox2011childTheme/images/header.jpg"
 
 #: ../python3jail/static/_GRADER.py:8
 msgid "Integer"

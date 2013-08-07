@@ -124,14 +124,18 @@ if ( ! empty( $header_image ) ) :
     echo get_the_post_thumbnail( $post->ID, 'post-thumbnail' );
 
  else : 
-   if (class_exists('Polylang_Base') && pll_current_language()=='de') {
-     echo '<img src="'.content_url('/themes/pybox2011childTheme/images/GermanHeader.jpg').'" width="1000" height="150" />';
-   }
-   else {?>
-     <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
-   <?php
-       }
-   endif; // end check for featured image or standard header ?>
+   // "translate" header url for different languages
+   $imgsrc = __t('/themes/pybox2011childTheme/images/header.jpg');
+   
+   // the post thumbnail is not so good since we don't want uploaded files...
+   // prefer to override per-page headers on pages this way instead.
+   // e.g. add "Custom Field" cscircles-header with value console-header.jpg
+   $override = get_post_meta( $post->ID, "cscircles-header", true );
+   if ($override != "") $imgsrc = '/themes/pybox2011childTheme/images/' . $override;
+   
+   echo '<img src="'.content_url($imgsrc).'" width="'.HEADER_IMAGE_WIDTH.'" height="'.HEADER_IMAGE_HEIGHT.'" />';
+
+ endif; // end check for featured image or standard header ?>
 </a>
 <?php   if (stripos($_SERVER["HTTP_USER_AGENT"], 'MSIE')===FALSE)  echo '</div>'; ?>
 <?php endif; // end check for removed header image ?>
