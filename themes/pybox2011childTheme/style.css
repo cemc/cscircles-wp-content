@@ -114,10 +114,10 @@ body, html {
   font-family: 'Droid Sans Mono';
   font-style: normal;
   font-weight: normal;
-  src: url('fonts/dsm.eot');
+  src: url(fonts/dsm.eot);
   src: local('Droid Sans Mono'), local('DroidSansMono'), 
-	url('fonts/dsm.eot') format('embedded-opentype'), 
-	url('fonts/dsm.woff') format('woff');
+	url(fonts/dsm.eot) format('embedded-opentype'), 
+	url(fonts/dsm.woff) format('woff');
 }
 
 
@@ -282,7 +282,7 @@ input[type=text] {
 #wp-admin-bar-comments > .ab-item .ab-icon,
 #wpadminbar #wp-admin-bar-new-content > .ab-item .ab-icon
 {
-        background-image: url(./images/admin-bar-sprite-green.png) !important;
+        background-image: url(images/admin-bar-sprite-green.png) !important;
 }
 
 /* want this not just on "404" pages */
@@ -295,3 +295,214 @@ input[type=text] {
         overflow: hidden;
         padding: 1.625em 8.9%;
 }
+
+
+.testing-warning
+{
+font-style: italic;
+color: blue; 
+}
+
+#wp-admin-bar-updates .screen-reader-text {
+    display: none;
+}
+
+.wp-core-ui .button {
+ font-size: 16px;
+ font-weight: bold;
+}
+
+#wpadminbar .ab-top-menu > li:hover > .ab-item {
+background: none !important;
+color: darkGreen !important;
+background-image: inherit !important;
+}
+#wpadminbar .ab-top-menu > li.hover > .ab-item,
+#wpadminbar .ab-top-menu > li > .ab-item:focus,
+#wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus {
+color: green !important;
+background: white !important;
+background-image: inherit !important;
+}
+
+#wpadminbar a.ab-item:hover,
+#wpadminbar #wp-admin-bar-site-name a.ab-item:hover
+{
+background: none !important;
+}
+
+.screen-reader-shortcut {
+  display: none;
+}
+
+#content ul, #content ol {
+    margin-bottom: 0.3em; /* not 1.625 */
+}
+#content th, #content #td {
+    text-align: inherit;
+}
+a:not(.open-same-window):hover  {
+    color: darkblue;
+    background: #e0e0ff;
+    text-decoration: none;
+}
+
+#content p { margin-top: 8px; margin-bottom: 8px; }
+#content pre { margin: 1px 1px 1px 1px; padding: 10px 10px 10px 20px; }
+#content ul { margin-bottom: 0px; }
+#content hr { margin-top: 8px; margin-bottom: 8px; }
+
+#content .entry-content h1, #content .entry-content h2 {
+    margin: 20px 0px 0px 0px;
+}
+#content .entry-content h3, #content .entry-content h4, #content .entry-content h5, #content .entry-content h6 {
+    margin: 12px 0px 0px 0px;
+}
+
+#wpadminbar .ab-top-secondary {	background: none !important;}
+
+#wpadminbar * { text-shadow: none !important;}
+
+#wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {min-width: inherit !important;}
+
+#wpadminbar.ie8 #adminbarsearch .adminbar-input{background-color: lightGreen !important;}
+
+#wpadminbar #wp-admin-bar-totop img.icon {cursor: pointer}
+
+#wpadminbar img.icon {
+	background: none;
+	vertical-align: -2px;
+}
+#wpadminbar #wp-admin-bar-mail img.icon {
+	vertical-align: -4px;
+}
+
+#wpadminbar * {
+	border-left: none !important;
+	border-right: none !important;
+}
+
+#menu-item-122, #menu-item-4734, #menu-item-6758 { /* lesson 0 */
+    clear: left;
+}
+#menu-item-3391, #menu-item-4733, #menu-item-6796 { /* My Progress */
+    float: right !important;
+    font-weight: bold;
+}
+
+/* kill default grey colours  */
+#wpadminbar, #wpadminbar * {
+    color: darkGreen; 
+} 
+
+#wpadminbar {
+    background-image: url(images/banner.png) !important;
+    background-color: paleGreen !important;;
+    border-bottom: 1px solid black !important;;
+    box-shadow: 0px 3px 15px -3px #777 !important;; 
+}
+
+#wpadminbar li.new-or-login * {
+    font-weight: bold;
+    color: blue; /* highlight 'new account or log in' */
+    font-size: 110%;
+    line-height: 26px;
+    text-align: center;
+}
+
+.content #wp-admin-bar-site-name .ab-item { text-shadow: 2px 2px 0px paleGreen, -2px -2px 0px paleGreen; }
+
+#wp-admin-bar-my-account div.ab-sub-wrapper {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+div.ab-sub-wrapper {
+    margin-right: 0px !important; /* why does wordpress put -1 here? maybe related to border. */
+}
+
+/* .content matches normal page views and search results, but not the admin menu/dashboard. */
+/* .profile-php is the reverse */
+
+/* necessary for top bar to grow and stretch with rest of page */
+@media all and (min-width:1000px) { .content #wpadminbar {
+    max-width: 1000px;
+    margin-left: -500px;
+    left: 50% !important;
+}}
+
+/* collection of lines modified from admin-bar.css so height is 52px instead of original (26?) */
+
+/* "Computer Science Circles" */
+.content #wp-admin-bar-site-name .ab-item
+{font: bold 30px/52px sans-serif; margin-left: 10px;}
+
+/* throughout */
+.content #wpadminbar *
+{line-height: 52px; color:darkgreen;}
+
+/* the bar itself */
+.content #wpadminbar {line-height: 52px; height:52px;}
+
+.content #wpadminbar .quicklinks a,#wpadminbar .quicklinks .ab-empty-item,#wpadminbar .shortlink-input{height:52px;padding:0 12px;margin:0;}
+
+.content #wpadminbar.ie7 .menupop .ab-sub-wrapper,#wpadminbar.ie7 .shortlink-input{top:52px;left:0px;}
+
+.content #wpadminbar #adminbarsearch{height:52px;padding:0px 2px;}
+
+.content #wpadminbar #wp-admin-bar-user-info{margin-top:-6px;margin-bottom:25px;height:auto;background:none;}
+/* end of lines to adjust admin bar height */
+
+/*************** bumper: thing at the top to ensure cscircles banner covers nothing ***********8*/
+div#bumper {
+    background-color: paleGreen;
+    background-image: url(images/banner.png) !important;
+    height: 52px;
+    width: 100%; 
+    color: #9F9;
+    text-align: right;
+}
+
+div#bumper span {opacity: 0.1}
+
+/******************* the picture of the fractal or computer ************/
+.toppictureholder {
+    height: 150px;
+    background-color: darkblue;
+/*    position: absolute;*/
+    top: 0px;
+    left: 0px;
+}
+
+header {
+   margin: 0px;
+   border: none !important;
+   position: relative;
+   top : 0px;
+}
+
+header > a {
+   position: relative;
+   top: 0px;
+}
+
+header > a > div.toppictureholder {
+   position: relative;
+}
+
+/*********************************** bottom, CEMC logo ************************/
+#site-generator {
+    box-shadow: 0px 35px 15px #777;
+}
+
+#colophon .cemc.logo {
+    float: left; 
+    margin-left: 25px;
+    background-image: url(images/cemc_logo.gif);
+    width: 73px;
+    height: 64px;
+    margin-top: 5px;
+}
+
+
+
