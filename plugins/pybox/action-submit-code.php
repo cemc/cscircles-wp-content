@@ -527,7 +527,7 @@ _user_stdout.close()
   $submit_code_stderr = $stderr;
   $submit_code_errnice = stderrNiceify($stderr);
 
-  if (userIsAdmin()) 
+  if (userIsAdmin() && $stderrlen > 0) 
     $m .= JQpopUp("Debug: view unsanitized", 
                   preBox($stderr, $stderrlen));
 

@@ -20,7 +20,7 @@ function newuserwelcome($options, $content) {
 }
 
 // two helper functions for exporting and list_pybox_pages
-function sanitize_helper($matches) {
+function translator_template_helper($matches) {
   $attr = shortcode_parse_atts( $matches[3] );
 
   // anything which is not a slug is not an exercise and passes through unchanged.
@@ -28,7 +28,7 @@ function sanitize_helper($matches) {
     return $matches[0]; 
     
   if (!array_key_exists('title', $attr)) {
-    pyboxlog('[in sanitize_helper] Warning: ' . $attr['slug'] . ' has no title!');
+    pyboxlog('[in translator_template_helper] Warning: ' . $attr['slug'] . ' has no title!');
     $attr['title'] = "";
   }
 
@@ -49,14 +49,11 @@ function sanitize_helper($matches) {
   return $r;
 }
 
-function sanitize($page) {
+function translator_template($page) {
   $page = str_replace("\r", "", $page);
   $regex = '(\[?)\[(pyExample|pyShort|pyMulti|pyMultiScramble|pyBox)\b((?:[^\'"\\]]|' . "'[^']*'|" . '"[^"]*")*)(?:(\/))?\](?:(.+?)\[\/\2\])?(\]?)';
-  return preg_replace_callback( "_$regex"."_s", 'sanitize_helper', $page);
+  return preg_replace_callback( "_$regex"."_s", 'translator_template_helper', $page);
 }
-
-
-
 
 add_shortcode('list-pybox-pages', 'list_pybox_pages');
 // for the navigation page
@@ -74,7 +71,7 @@ function list_pybox_pages($options, $content) {
 	$slug = $p->post_name;
 	$f = fopen(PEXPORT . $slug . ".txt", 'w');
 	fwrite($f, 'Title: ' . $p->post_title . "\n\nContent:\n\n");
-	fwrite($f, sanitize($p->post_content));
+	fwrite($f, translator_template($p->post_content));
 	fclose($f);
       }
       elseif (isSoft($_GET, 'export', 'raw')) {

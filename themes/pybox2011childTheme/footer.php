@@ -22,6 +22,8 @@ get_sidebar( 'footer' );
 // show the prev lesson / next lesson buttons
 require_once("footer-prevnext.php");
 showPrevNext(); 
+
+echo pageSourceWidget();
 ?>
 
   <div id="site-generator">

@@ -2,6 +2,13 @@
 
 require_once("include-to-load-wp.php");
 
+function quote_it($s) {
+  if (substr_count($s, '"') > substr_count($s, "'"))
+    return "'" . addcslashes($s, "'") . "'";
+  else
+    return '"' . addcslashes($s, '"') . '"';
+}
+
 global $wpdb;
 
 $row = NULL;
@@ -22,33 +29,44 @@ if (getSoft($_GET, "hash", "")!="") {
 if ($row == NULL)
   {echo "Invalid problem"; return; }
 
+$args = json_decode($row['shortcodeArgs'], true);
+
 $r = "";
 $r .= '[';
 
 if ($row['type'] == 'short answer') $codename = 'pyShort';
  else if ($row['type'] == 'multiple choice') $codename = 'pyMulti';
  else if ($row['type'] == 'multichoice scramble') $codename = 'pyMultiScramble';
- else if ($row['type'] == 'scramble') $codename = 'pyBox';
- else if ($row['type'] == 'code') $codename = 'pyBox';
+ else if ($row['type'] == 'scramble') {$codename = 'pyScramble'; unset($args['scramble']);}
+ else if ($row['type'] == 'code') {
+   if (isSoft($args, 'pyexample', 'Y'))
+     {$codename = 'pyExample'; unset($args['pyexample']);}
+   else
+     $codename = 'pyBox';
+ }
  else $codename = 'py??'. $row['type'] . '??';
 
 $r .= $codename;
 
-foreach (json_decode($row['shortcodeArgs']) as $field => $value) {
-  $r .= ' ';
+foreach ($args as $field => $value) {
+  $r .= "\n";
   $r .= $field;
-  $r .= '="';
-  if (substr($field, 0, 6) == 'solver' || substr($field, 0, 6) == 'answer') 
+  $r .= '=';
+  if (substr($field, 0, 6) == 'solver' || substr($field, 0, 6) == 'answer'
+      || substr($field, 0, 5) == 'right' || substr($field, 0, 5) == 'wrong') 
     $r .= "REDACTED";
   else
-    $r .= addcslashes($value, '"' . "'\n");  
-  $r .= '"';
+    $r .= embed_atfile_links(quote_it(htmlspecialchars($value, ENT_NOQUOTES)));
 }
-$r .= "]\n";
-$r .= $row['content'];
+$r .= "\n]\n";
+$r .= htmlspecialchars($row['content'], ENT_NOQUOTES);
 $r .= "\n[/$codename]";
 
-header("Content-Type: text/plain");
-echo $r;
-
 ?>
+<html>
+The following shortcode is a definition for the example or exercise that you clicked on.
+<br>
+<?php echo open_source_preamble(); ?>
+<hr>
+<pre style="white-space:pre-wrap"><?php echo $r ?></pre>
+</html>

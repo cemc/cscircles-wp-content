@@ -174,6 +174,12 @@ function getUserID() {
   return empty($u->ID) ? -1 : $u->ID;
 }
 
+// 2-character code for current language
+// doesn't work in Dashboard/Admin pages
+function currLang2() {
+  return class_exists('Polylang_Base') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
+}
+
 // write to log, and send an e-mail
 // if second arg is on, suppress e-mail when possible
 function pyboxlog($message, $suppressemail = -1) {
@@ -202,57 +208,25 @@ function pyboxlog($message, $suppressemail = -1) {
   }
 }
 
-function softSafeDereference( $s, $which="", &$errtgt=NULL ) {
-  //ppyboxlog("ssd".$s);
-  $errtgt = FALSE;
-  $r = "";
-  $lines = explode("\n", $s);
-  for ($i = 0; $i < count($lines); $i++) {
-    if ($i > 0) $r .= "\n";
-    if (substr($lines[$i], 0, 6)=="@file:") {
-      $tmp = oneLineSoftSafeDereference( $lines[$i], $which, $errtgt );
-      if ($tmp === FALSE) return FALSE;
-      $r .= $tmp;
-    }
-    else
-      $r .= $lines[$i];
-  }
-  return $r;
-}
-
-function oneLineSoftSafeDereference( $s, $which="", &$errtgt=NULL ) {
-  //  pyboxlog("olssd".$s);
-  $errtgt = FALSE;
-  if (substr($s, 0, 6)=="@file:") {
-    $comma = strpos($s, ",");
-    if ($comma === FALSE)
-      return safeDereference( $s, $which, $errtgt );
-    else
-      return safeDereference( substr($s, 0, $comma), $which, $errtgt) . "\n" .  
-	oneLineSoftSafeDereference( substr($s, $comma+1), $which, $errtgt);
-  }
-  return $s;
-}
-
-function safeDereference( $s, $which="", &$errtgt=NULL ) {
+function softSafeDereference( $orig ) {
 // read contents of a file from the data directory
 // sanitized to avoid trickery: only alphanumeric and .-_ and / allowed in filenames
 // if it contains any .. then it fails
   // pyboxlog("sd".$s);
-  $errtgt = FALSE;
-  if (substr($s, 0, 6)!="@file:") return FALSE;
-  $s = substr($s, 6);
+
+  if (substr($orig, 0, 6)!="@file:") return $orig;
+  $s = substr($orig, 6);
 
   // exclude .. and force only alphanumerics plus /._-
-  if (strstr($s, "..") != FALSE) return FALSE;
-  if (preg_match('@[^a-zA-Z0-9/_\-.]@', $s)>0) return FALSE;
+  if (strstr($s, "..") != FALSE) return $orig;
+  if (preg_match('@^[a-zA-Z0-9/_.-]+$@', $s)==0) return $orig;
 
   $fn = PDATADIR  . trim($s);
-  $co = file_get_contents($fn);
-
+  $co = @file_get_contents($fn);
   
   if ($co === FALSE) 
-    throw new PyboxException("Cannot find file " . $fn);
+    return $orig;
+  //throw new PyboxException("Cannot find file " . $fn);
 
   if (getSoft($GLOBALS, 'pb_translation', NULL) != NULL)
     $co = translateOf($co, $GLOBALS['pb_translation']);
@@ -444,6 +418,22 @@ function timeAndMicro() {
   return array($m[1], $m[0]);
 }
 
+function simpleProfilingEntry($data) {
+  global $wpdb;
+  date_default_timezone_set('America/New_York');
+  $start = date( 'Y-m-d H:i:s', time() );
+  $preciseStart = timeAndMicro();
+  $table_name = $wpdb->prefix . "pb_profiling";
+  $data['start'] = $start;
+  $data['preciseStart'] = implode(".", $preciseStart);
+  $data['preciseEnd'] = implode(".", $preciseStart);
+  $data['duration'] = 0;
+  $data['userid'] = getUserID();
+  if (array_key_exists('meta', $data))
+    $data['meta'] = json_encode($data['meta']);
+  $wpdb->insert( $table_name, $data );
+}
+
 function beginProfilingEntry($data) {
   // $data must be a subset of the column names in wp_pb_profiling
   // if $data['meta'] exists it will get json_encoded
@@ -552,5 +542,65 @@ function resendEmails() {
     pyboxlog("Resent message $mailref", TRUE);
   }
 }  
+
+function embed_atfile_link($name) {
+  return '<a href="page-atfile-source.php?'.http_build_query(array('file'=>$name[1])).'">'.$name[0].'</a>';
+}
+
+function embed_atfile_links($s) {
+  return preg_replace_callback("~@file:([a-zA-Z0-9./_-]+)~", "embed_atfile_link", $s);
+}
+
+function problemSourceWidget($parms, $bump = false) {
+  if ( is_user_logged_in() ) {
+    $classes = "get-problem-source";
+    if ($bump) $classes .= " bumpit";
+    
+    return '<a class="'.$classes.'" target="_blank" title="'.__t('View definition')
+      .'" href="'.UPROBLEMSOURCE.'?'.http_build_query($parms).'">'
+      .'&lt;/&gt;</a>';
+  }
+  else return "";
+}
+
+function pageSourceWidget() {
+  global $post;
+  if ( is_user_logged_in() && isset($post) ) {
+    $classes = "get-page-source";
+    
+    return '<a class="'.$classes.'" target="_blank" title="'.__t('View page source')
+      .'" href="'.UPAGESOURCE.'?'.http_build_query(array("page"=>$post->ID)).'">'
+      .'&lt;/&gt;</a>';
+  }
+  else return "";
+}
+
+function open_source_preamble() {
+  if (!is_user_logged_in()) {
+    echo "<i>Sorry, you need to be logged in to view this page.</i>";
+    die(0);
+  }
+
+  // keep track in case anything weird happens
+  $log = array();
+  $log['page'] = $_SERVER['PHP_SELF'];
+  $log['page'] = substr($log['page'], strrpos($log['page'], '/')+1);
+  $log['query'] = $_GET;
+  $log['ip'] = $_SERVER['REMOTE_ADDR'];
+
+  simpleProfilingEntry(array("activity" => "view-source",
+                             "meta" => $log));
+
+  return '
+We provide it under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+Creative Commons Non-Commerical Share-Alike 3.0 License</a>.
+<br>
+We release it for you to use as a model in creating your own CS Circles lessons and exercises.
+<br>
+We encourage you to <a href="/contact">contact us</a> if you have questions or want to write, share or remix our content.
+<br>
+Visit <a href="https://github.com/cemc/cscircles-wp-content">https://github.com/cemc/cscircles-wp-content</a>
+for the CS Circles backend source code.';
+}
 
 // end of file

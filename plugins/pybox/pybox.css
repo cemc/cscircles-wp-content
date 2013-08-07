@@ -499,7 +499,6 @@ ie7 #content .pybox textarea {
 /******************** rich editors ******************************/
 
 #content .CodeMirror {
-    font-family: Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', Consolas, monospace !important;
     background: #FAFAFA;
     border-top: 1px solid black; 
     border-bottom: 1px solid black;
@@ -591,5 +590,29 @@ table.helpControls {
 .helpInner {
     padding: 3px;
     background: white;
+}
+
+.get-problem-source {
+    position: absolute;
+    right: 0em;
+    bottom: 0em;
+    font-weight: bold;
+    font-family: Consolas, Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', monospace !important;
+}
+
+.get-problem-source.bumpit {
+    position: absolute;
+    right: 0em;
+    bottom: 2.1em;
+    font-weight: bold;
+    font-family: Consolas, Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', monospace !important;
+}
+
+.get-page-source {
+    float: right;
+    font-weight: bold;
+    font-family: Consolas, Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', monospace !important;
+    position: relative;
+    top: -1.5em;
 }
 

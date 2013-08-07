@@ -15,6 +15,10 @@ add_sweetcode('pyMultiScramble', 'pyMultiScrambleHandler', true);
 // for translation and/or embedding exercises in new places (like mail page)
 add_sweetcode('pyRecall', 'pyRecallHandler', true);
 
+function debugEnabled() {
+  return array_key_exists("d", $_GET) || userIsAdmin();
+}
+
 function loadMostRecent($slug) {
   if ( !is_user_logged_in() ) 
     return NULL;
@@ -105,7 +109,7 @@ function registerPybox($id, $slug, $type, $facultative, $title, $content, $args 
       echo ($wpdb->insert($table_name, $row)!=1?'<br>insert bad':' insert ok');
   }
   else if ($hash != NULL) {
-    $lang = class_exists('Polylang_Base') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
+    $lang = currLang2();
 
     if ($wpdb->get_var("SELECT COUNT(1) from ".$wpdb->prefix."pb_problems WHERE hash = '$hash' AND lang='".$lang."'") == 0) {
       // hash is important, but not yet registered!
@@ -170,6 +174,7 @@ function pyShortHandler($options, $content) {
   $r .= '</div>';
   $r .= '<div class="pbresults" id="pyShortResults'.$id.'"></div>';
   $r .= '<div class="epilogue">'. getSoft($options, "epilogue", __t("Correct!")) . '</div>';
+  $r .= problemSourceWidget(array('slug'=>$slug,'lang'=>currLang2()));
   $r .= '</div>';
   
   return $r; 
@@ -217,6 +222,7 @@ function pyMultiHandler($options, $content) {
   $r .= '</div>'; //pyboxbuttons
   $r .= '<div class="pbresults" id="pyMultiResults'.$id.'"></div>';
   $r .= '<div class="epilogue">'. getSoft($options, "epilogue", __t("Correct!")) . '</div>';
+  $r .= problemSourceWidget(array('slug'=>$slug,'lang'=>currLang2()));
   $r .= '</div>'; //pybox
 
   return $r;
@@ -268,6 +274,7 @@ function pyMultiScrambleHandler($options, $content) {
   $r .= '</div>'; 
   $r .= '<div id="pbresults' . $id . '" class="pbresults"></div>';
   $r .= '<div class="epilogue">'. getSoft($options, "epilogue", __t("Correct!")) . '</div>';
+  $r .= problemSourceWidget(array('slug'=>$slug,'lang'=>currLang2()));
   $r .= '</div>';
 
   return $r;
@@ -455,8 +462,6 @@ function pyBoxHandler($options, $content) {
     $defaultcode = ensureNewlineTerminated($defaultcode);
   }
 
-  $enableDebugFeatures = array_key_exists("d", $_GET) || userIsAdmin();
-
   /// actually start outputting here. part 1: headers and description
 
   $r = '';
@@ -467,7 +472,7 @@ function pyBoxHandler($options, $content) {
 
   if ($scramble)
     $c = "scramble";
-  else if ($enableDebugFeatures) {
+  else if (debugEnabled()) {
     $c = "debug";
   }
   else $c = "";
@@ -654,8 +659,6 @@ if (!$facultative && !$scramble) {
   if ( $richreadonly )
     $actions = array('CMtoggle' => $actions['CMtoggle']); // get rid of all other options
 
-  if ( $enableDebugFeatures ) 
-    $actions['hashview'] = array('value'=>__t('Get source'), 'onclick'=>"window.open('".UPROBLEMSOURCE."?hash=$hash')");
   $r .= "<div class='pyboxbuttons'><table><tr>\n";
   if (!$richreadonly)
     $r .= "<td><input type='submit' name='submit' id='submit$id' value=' '/></td>\n";
@@ -696,6 +699,8 @@ if (!$facultative && !$scramble) {
 
   $c = (count($actions)>$mb)?' avoidline':'';
   $r .= "<div id='pbresults$id' class='pbresults$c'></div>\n";
+
+  $r .= problemSourceWidget(array('hash'=>$hash), count($actions)>$mb);
 
   $r .= '</div>' . "\n";
   $r .= '</form>'."\n";	
