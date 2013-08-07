@@ -155,7 +155,7 @@ opening one will close the other open ones
 .collapseHead .icon {
 	display: inline-block;
 	border: none;
-	background: url(css-images/ui-icon-whitest.png);
+	background: url(files/ui-icon-whitest.png);
 	background-position: -64px -16px;
 	width: 16px;
 	height: 16px;
@@ -365,7 +365,7 @@ table.pywarn {
     vertical-align: middle;
     position: relative;
     border-radius: 1px;
-    background-image: url('css-images/close.png');
+    background-image: url(files/close.png);
     background-repeat: none;
     width: 16px;
     height: 16px;
@@ -585,7 +585,7 @@ table.helpControls {
 
 .helpOuter {
     padding: 5px; 
-    background: url("css-images/rbw.png") repeat;
+    background: url(files/rbw.png) repeat;
 }
 
 .helpInner {

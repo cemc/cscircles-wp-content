@@ -14,8 +14,9 @@ define('UFILES', UPYBOX . 'files/');
 define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');
 
+// +1 to ? number forces clients to reload instead of using cached
 define('UPYBOXJS', UPYBOX . 'pybox.js?28');
-define('UPYBOXCSS', UPYBOX . 'pybox.css?17');
+define('UPYBOXCSS', UPYBOX . 'pybox.css?18');
 
 define('UDEBUGPHP', UPYBOX . 'action-inspect-problem.php');
 define('USUBMIT', UPYBOX . 'action-submit-code.php');
@@ -26,7 +27,7 @@ define('UFULLHISTORY', UPYBOX . 'db-entire-history.php');
 define('UHISTORY', UPYBOX . 'db-problem-history.php');
 define('UDBMAIL', UPYBOX . 'db-mail.php');
 define('UDBPREFIX', UPYBOX . 'db-');
-define('UFLEXIGRID', UPYBOX . 'db-flexigrid/');
+define('UFLEXIGRID', UPYBOX . 'flexigrid/');
 
 // other basic stuff
 

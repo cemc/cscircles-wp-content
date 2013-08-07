@@ -1,9 +1,31 @@
-action-* : files which receive data via POST requests & give replies
-customizations-*: small tweaks to editors
-db-*: provides windowed db access using 'flexigrid' framework
-pages/*: rudimentary standalone html pages that can be accessed
-pybox.css, css-images/*, pybox.js: for browser interface of user
-plugin-*, shortcode*: the wordpress plugin definitions
-include-me.php: can be included whenever you want to access pybox stuff
+Quick directory guide
+=====================
+
+plugin-config.php: CHANGE THIS FILE!! if you want safeexec+jail functionality
+
+plugin-*: core components of the plugin
+
+pybox.{css,js}: core components of user interface
+
+shortcode*, sweetcodes.php: defines shortcodes comprising bulk of functionality
+
+action-* : ajax receivers & directly-viewed pages
+
+include-to-load-wp.php: does what name says
+
+cscircles-*.{po,mo,pot}, {bounce_email_strings, js-translation}.php: translation files
+
+db-*: provides controlled db access using 'flexigrid' framework
+
+*email.py: for sending and bouncing emails
+
+
+CodeMirror2/, db-flexigrid/: modules we use, we didn't create them
+(flexigrid is a modified version, CodeMirror2 is the original)
+
+files/: images for css, icons, pdfs for cheatsheets
+
+customizations-*/: small tweaks to editors
+
 
 See .htaccess for what visitors can/cannot access directly.
