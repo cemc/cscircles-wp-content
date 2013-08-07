@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+BOUNCE_ADDRESS = 'bounces@cscircles.cemc.uwaterloo.ca'
+WEBSITE_URL = 'http://cscircles.cemc.uwaterloo.ca/' # with trailing slash
+
 """Usage:
 - first line is sender in the format: full name <address@doma.in>
 - second line is the recipient in the same format
@@ -33,15 +36,16 @@ def send_unicode_email(mFrom, mTo, mSubject, mBody):
     composed['Reply-To'] = format_address(sender_name, sender_addr)
     composed['To'] = format_address(recipient_name, recipient_addr)
     composed['Subject'] = Header(mSubject, 'UTF-8')
-    composed['From'] = format_address(sender_name,
-                                      'bounces@cscircles.cemc.uwaterloo.ca')
+    composed['From'] = format_address(sender_name, BOUNCE_ADDRESS)
 
     try:
         srv = smtplib.SMTP('localhost')
         srv.send_message(composed)
         srv.quit()
+        return 0
     except:
         report_error([mFrom, mTo, mSubject, mBody])
+        return -1
 
 def report_error(msgArray):
     import os, json, traceback
@@ -52,6 +56,11 @@ def report_error(msgArray):
     try:
         if os.path.isfile(log_filename):
             with open(log_filename, 'a', encoding='utf-8') as f:
+                print(errmsg, file=f)
+                traceback.print_exc(file=f)
+                logged = True
+        else:
+            with open(log_filename, 'w', encoding='utf-8') as f:
                 print(errmsg, file=f)
                 traceback.print_exc(file=f)
                 logged = True
@@ -68,7 +77,8 @@ def main():
     mTo = mohel(lines[1])
     mSubject = mohel(lines[2])
     mBody = ''.join(lines[3:])
-    send_unicode_email(mFrom, mTo, mSubject, mBody)
+    return send_unicode_email(mFrom, mTo, mSubject, mBody)
 
 if __name__ == '__main__':
-    main()
+    retcode = main()
+    sys.exit(retcode)

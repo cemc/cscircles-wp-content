@@ -22,7 +22,7 @@ if textbody != "":
 else:
     origbody = htmlbody
 
-link = re.search('http://cscircles.cemc.uwaterloo.ca/([^/]*)/([^#]*)#m', origbody)
+link = re.search(send_email.WEBSITE_URL + '([^/]*)/([^#]*)#m', origbody)
 if (link == None):
    linkhint = ' '
 else:
@@ -30,19 +30,23 @@ else:
 
 linkhint = linkhint.replace('=3D', '=')
 
-# these strings should remain SYNCED with bounce_email_strings.php
+# these two strings should remain SYNCED with bounce_email_strings.php.
+# make any English change both here and there;
+# then rebuild the .pot and .po files;
+# after the .po is updated by a translator, update this file.
 
 if (link != None and link.group(1) == 'poste'): # french
    bodytemplate = "Votre e-mail à {0} ne sera pas lu. Si vous avez répondu à pour l'aide sur un problème, vous devez utiliser le lien{1}dans le courriel précédent. \nUne copie de votre e-mail est copiée ci-dessous."
-   mFrom = '"Rebondeur Cercles informatiques" <bounces@cscircles.cemc.uwaterloo.ca>'
+   bouncerName = 'Rebondeur Cercles informatiques'
 elif (link != None and link.group(1) == 'post'): # german
    bodytemplate = "Deine Email an {0} wird nicht gelesen werden. Wenn du antwortest, um weitere Hilfsstellungen zu einem Problem zu erfragen, musst du den Link aus der vorherigen Email verwendenl \n{1}\nEs folgt eine Kopie deiner Email."
-   mFrom = '\"EI:CSC (no-reply)\" <bounces@cscircles.cemc.uwaterloo.ca>'
+   bouncerName = 'EI:CSC (no-reply)'
 else:
    bodytemplate = "Your e-mail to {0} will not be read. If you are replying to ask for follow-up help about a problem, you must use the link in the previous email{1} \nA copy of your e-mail follows."
-   mFrom = '"CS Circles Bouncer" <bounces@cscircles.cemc.uwaterloo.ca>'
-	
-body = bodytemplate.format('bounces@cscircles.cemc.uwaterloo.ca', linkhint)
+   bouncerName = 'CS Circles Bouncer'
+
+mFrom = '"' + bouncerName + '" <' + send_email.BOUNCE_ADDRESS + '>'
+body = bodytemplate.format(send_email.BOUNCE_ADDRESS, linkhint)
 
 body += "\n===\n" + origbody
 

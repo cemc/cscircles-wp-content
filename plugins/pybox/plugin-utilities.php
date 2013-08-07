@@ -91,6 +91,12 @@ function cscurl($desc) {
 }
 
 function pb_mail($from, $to, $subject, $body) {
+  // $from should just be a string like me@domain.com or "Jim" <me@domain.com>
+  // this function takes care of using this as reply-to and setting
+  // an appropriate real sender.
+
+  // we use Python if possible (better unicode support) and fallback to WP/PHP
+
   $ensemble = "$from\n$to\n$subject\n$body";
   //pyboxlog('[pb_mail]'.$ensemble, 1);
   $cmd = PPYBOXDIR . "send_email.py";
@@ -100,13 +106,18 @@ function pb_mail($from, $to, $subject, $body) {
 			  2 => array("pipe", "w")
 			  );
   $process = proc_open($cmd, $descriptorspec, $pipes, '.', array('PYTHONIOENCODING'=>"utf_8"));
+  $sent = FALSE;
   if (is_resource($process)) {
     fwrite($pipes[0], $ensemble);
     fclose($pipes[0]);
     //pyboxlog("message sent [$from|$to|$subject|" . stream_get_contents($pipes[1]) .'|'.stream_get_contents($pipes[2]).']', 1);
     fclose($pipes[1]);
     fclose($pipes[2]);
-    proc_close($process);
+    if (proc_close($process) == 0) $sent = TRUE;
+  } 
+  if (!$sent) {
+    pyboxlog( "Used fallback for pb_mail", TRUE );
+    wp_mail( $to, $subject, $body, "From: " . $from . '\n');
   }
 }
 
