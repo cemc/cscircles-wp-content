@@ -6,6 +6,12 @@ function pyDebug($o, $c){
     return do_short_and_sweetcode($c);
 }
 
+add_shortcode('authorship', 'authorship');
+function authorship($o, $c){
+  // this is treated only like a comment
+  return "";
+}
+
 add_shortcode('newuserwelcome', 'newuserwelcome');
 function newuserwelcome($options, $content) {
   if ( ! is_user_logged_in() ) {
