@@ -9,9 +9,11 @@ pybox.{css,js}: core components of user interface
 
 shortcode*, sweetcodes.php: defines shortcodes comprising bulk of functionality
 
-action-* : ajax receivers & directly-viewed pages
+action-* : ajax receivers
 
-include-to-load-wp.php: does what name says
+page-* : directly-viewed pages
+
+include-to-load-wp.php: does what name says (used for action-* and page-*)
 
 cscircles-*.{po,mo,pot}, {bounce_email_strings, js-translation}.php: translation files
 

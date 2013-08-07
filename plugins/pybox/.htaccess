@@ -1,48 +1,25 @@
-<files *>
+<Files *>
 Order Deny,Allow
 Deny from All
-</files>
+</Files>
 
-<files *.js>
+# allow images, icons, pdfs
+<FilesMatch "\.(jpe?g|gif|png|ico|pdf)$">
 Allow from All
-</files>
+</FilesMatch>
 
-<files *.jpeg>
+# these should always be accessible
+<FilesMatch "\.(js|css|html?)$">
 Allow from All
-</files>
+</FilesMatch>
 
-<files *.jpg>
+# only public for convenience so translators can easily get latest version
+<FilesMatch "\.(po|pot)">
 Allow from All
-</files>
+</FilesMatch>
 
-<files *.gif>
+# only these php files should be directly accessed by the user
+<FilesMatch "^(action-|db-|page-).*\.php$">
 Allow from All
-</files>
+</FilesMatch>
 
-<files *.png>
-Allow from All
-</files>
-
-<files *.css>
-Allow from All
-</files>
-
-<files *.pdf>
-Allow from All
-</files>
-
-<files *.ico>
-Allow from All
-</files>
-
-<files action-*.php>
-Allow from All
-</files>
-
-<files db-*.php>
-Allow from All
-</files>
-
-<files *.po>
-Allow from All
-</files>
