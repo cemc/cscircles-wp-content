@@ -6,6 +6,8 @@
 // you probably don't want them in a web-viewable directory
 define('PJAIL', ABSPATH . '../../python3jail/'); // with trailing slash
 define('PSAFEEXEC', ABSPATH . '../../safeexec/safeexec'); // binary executable
+// you don't need to use ABSPATH at all: /home/myaccount/python3jail/ is fine for example
+// if for some reason you want to use a relative path, it should be relative to the "pybox" directory (see action-submit-code.php)
 
 // CHANGE THIS to URL of visualizer (or http://cscircles.cemc.uwaterloo.ca/visualize if not installed)
 define('UVISUALIZER', site_url( '/visualize/' ) );

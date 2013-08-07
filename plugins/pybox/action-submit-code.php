@@ -21,6 +21,27 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
        || $cpulimit > 10) 
      throw new PyboxException('invalid cpulimit ' . 
 			      var_export($cpulimit, TRUE));
+
+   // NOTE: if you run in to problems, try avoiding symlinks
+   if (!file_exists(PJAIL))
+     throw new PyboxException('could not find python3jail directory at PJAIL="' . PJAIL .'" '
+                              . '(relative to pwd="'.dirname(__FILE__).'")');
+   if (!is_dir(PJAIL))
+     throw new PyboxException('constant PJAIL="' . PJAIL .'" exists, but is not a directory and should be '
+                              . '(relative to pwd="'.dirname(__FILE__).'")');
+   if (substr(PJAIL, -1) !== '/')
+     throw new PyboxException('directory constant PJAIL="' . PJAIL .'" should end with a slash');
+
+   // NOTE: if you run in to problems, try avoiding symlinks
+   if (!file_exists(PSAFEEXEC))
+     throw new PyboxException('could not find safeexec binary at PSAFEEXEC="' . PSAFEEXEC .'" ' 
+                              . '(relative to pwd="'.dirname(__FILE__).'")');   
+   if (is_dir(PSAFEEXEC))
+     throw new PyboxException('PSAFEEXEC="' . PSAFEEXEC .'" is a directory; should be a binary executable ' 
+                              . '(relative to pwd="'.dirname(__FILE__).'")');   
+   if (!is_executable(PSAFEEXEC))
+     throw new PyboxException('PSAFEEXEC="' . PSAFEEXEC .'" is not executable ' 
+                              . '(relative to pwd="'.dirname(__FILE__).'")');   
    
    $clocklimit = intval($cpulimit)*WALLFACTOR + WALLBUFFER;
 
