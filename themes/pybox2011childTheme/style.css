@@ -382,10 +382,10 @@ a:not(.open-same-window):hover  {
 	border-right: none !important;
 }
 
-#menu-item-122, #menu-item-4734, #menu-item-6758 { /* lesson 0 */
+.menu-item-for-lesson-zero { /* lesson 0 : set this in the menu editor, turn on css in screen options*/
     clear: left;
 }
-#menu-item-3391, #menu-item-4733, #menu-item-6796 { /* My Progress */
+.menu-item-for-my-progress { /* My Progress; same as previous comment */
     float: right !important;
     font-weight: bold;
 }
