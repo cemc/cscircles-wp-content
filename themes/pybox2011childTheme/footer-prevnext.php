@@ -1,8 +1,6 @@
 <?php
 
-  //require_once("include-me.php");
-
-function showLocationHandler() {
+function showPrevNext() {
 
   global $wpdb, $post;
   $table_name = $wpdb->prefix . "pb_lessons";

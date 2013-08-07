@@ -9,12 +9,12 @@ if (defined('ABSPATH')) {
 // used for external/ajax access to wordpress functions
 // http://codex.wordpress.org/Integrating_WordPress_with_Your_Website
 
-// from this file (include-me-if-ajax), look at the containing directory
+// from this file (include-to-load-wp.php), look at the containing directory
 // (pybox) and up 3 more (plugins, wp-content, wordpress) for wp-load.php 
+// we can't just use ABSPATH because it's not defined (an ajax call is in progress)
 require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-load.php');
-// we can't use ABSPATH because it's not defined (an ajax call is in progress)
 
-// now wordpress is installed. Huzzah!
+// now wordpress is loaded. Huzzah!
 
 // we only need this for ajax calls:
 if (array_key_exists('polylang', $GLOBALS)

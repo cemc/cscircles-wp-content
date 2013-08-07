@@ -19,7 +19,10 @@
    */
 get_sidebar( 'footer' );
 
-showLocationHandler(); ?>
+// show the prev lesson / next lesson buttons
+require_once("footer-prevnext.php");
+showPrevNext(); 
+?>
 
   <div id="site-generator">
   <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>

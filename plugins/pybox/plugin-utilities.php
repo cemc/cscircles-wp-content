@@ -1,6 +1,6 @@
 <?php
 
-// plugin-utilities: this file is included in include-me.php
+// utility functions available within the plugin
 
   // process raw content (used for example in nested shortcodes)
 function do_short_and_sweetcode($x) {

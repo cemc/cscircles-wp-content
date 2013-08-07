@@ -16,8 +16,8 @@ define('UWARN', UFILES . 'warning.png');
 
 define('UPYBOXJS', UPYBOX . 'pybox.js?28');
 define('UPYBOXCSS', UPYBOX . 'pybox.css?17');
-define('UDEBUGPHP', UPYBOX . 'pages/problem-options.php');
 
+define('UDEBUGPHP', UPYBOX . 'action-inspect-problem.php');
 define('USUBMIT', UPYBOX . 'action-submit-code.php');
 define('USETCOMPLETED', UPYBOX . 'action-notify-complete.php');
 define('UMESSAGE', UPYBOX . 'action-send-message.php');

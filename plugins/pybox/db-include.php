@@ -2,7 +2,7 @@
 
   // work with ajax and normally too
 if (!defined('ABSPATH')) {
-  require_once("include-me-if-ajax.php");
+  require_once("include-to-load-wp.php");
  }
 
 /* 

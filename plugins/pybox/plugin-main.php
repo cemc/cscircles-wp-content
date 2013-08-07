@@ -8,8 +8,10 @@
    *     Author URI:   
    */
 
-  // this is the first file that WordPress calls to activate and use the plugin.
-  // you should not include it yourself; use include-me.php instead.
+  // This is the first file that WordPress calls to activate and use the plugin.
+
+  // Non-WordPress-called pages (ajax calls or direct .php views) must
+  // include "include-to-load-wp.php" to get the plugin's functionality (and all of WP)
 
 define('UWPHOME',  site_url('/') );
 define('PWP',  ABSPATH );
@@ -143,7 +145,6 @@ require_once("shortcode-db-profiling.php");
 require_once("shortcode-admin-user-list.php");
 require_once("shortcode-export-submissions.php");
 require_once("shortcode-vis.php");
-require_once("plugin-footer-prevnext.php");
 require_once("plugin-hooks.php");
 require_once("plugin-profile-options.php");
 require_once("js-translation.php");

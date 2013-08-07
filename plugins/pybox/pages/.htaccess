@@ -1,4 +1,0 @@
-<files *>
-order Allow,Deny
-Allow from all
-</files>
