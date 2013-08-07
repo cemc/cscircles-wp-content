@@ -16,7 +16,11 @@ define('USEARCH', site_url ( '/search/') );
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
 define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
 define('CSCIRCLES_ASST_ID_DE', 11351);
-define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca');
+// you can leave CSCIRCLES_BOUNCE_EMAIL as-is, although users will
+// get bounces directing them to our site. However, to get a
+// bounce specific to your server requires extra steps, see 
+// bounce_email.py and configgure your mail server accordingly.
+define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca'); 
 define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 
 // optional reporting and exporting.
