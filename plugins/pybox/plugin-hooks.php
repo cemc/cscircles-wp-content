@@ -384,15 +384,6 @@ function tweak_admin_bar() {
       $wp_admin_bar->add_node(array('id'=>'view-site', 'href' => cscurl('homepage')));
     }
 
-    /*        if ( !is_admin() ) { // search box
-      $form = "<form id='adminbarsearch' action='/'>\n" 
-        . '<input class="adminbar-input" name="s" id="adminbar-search" title="'.__t('click and type to search website').'" tabindex="10" type="text" value="" maxlength="150" />'
-	. '</form>';
-
-      $wp_admin_bar->add_node(array('id'=>'search', 'title'=>$form));
-      
-      }*/
-    
   }  
 }
 add_action( 'wp_before_admin_bar_render', 'tweak_admin_bar' ); 
