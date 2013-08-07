@@ -81,7 +81,7 @@ class GoogleCSE
 		self::$google_search_show_sidebar = get_option('cse-search-show-sidebar');
 
 		// setup google search form for wordpress
-      $q = isset($_GET['q']) ? $_GET['q'] : '';
+                $q = isset($_GET['s']) ? $_GET['s'] : '';
 		self::$google_search_box = preg_replace('/size="31"/is', 'id="s" value="'.$q.'" ', self::$google_search_box);
 		self::$google_search_box = preg_replace('/cse-search-box/is', 'searchform', self::$google_search_box);
 		self::$google_search_box = preg_replace('/action="([^"]*)"/s', 'action="'.self::$search_url.'"', self::$google_search_box);
