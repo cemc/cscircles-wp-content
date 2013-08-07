@@ -33,6 +33,10 @@ if ($_SERVER['SERVER_NAME'] == 'cscircles.cemc.uwaterloo.ca') {
 define('PPYTHON3MODJAIL', '/bin/python3');
 define('PSCRATCHDIRMODJAIL', 'scratch/');
 
+// 'cx' parameter for google custom search; replace with your own
+// for the search box to search your own site
+//define('GSOOGLE_SEARCH_CX', '007230231723983473694:r0-95non7ri');
+
 define('POSTLIMIT', 20000); //maximum size 'POST' that submit.php will accept
 define('WALLFACTOR', 2); 
 define('WALLBUFFER', 4); // if the cpu limit for a problem is X, walltime limit is FACTOR*X + BUFFER

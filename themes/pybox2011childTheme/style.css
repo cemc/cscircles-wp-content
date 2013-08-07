@@ -284,3 +284,14 @@ input[type=text] {
 {
         background-image: url(./images/admin-bar-sprite-green.png) !important;
 }
+
+/* want this not just on "404" pages */
+
+#main #searchform {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-width: 1px 0;
+        margin: 0 -8.9%;
+        overflow: hidden;
+        padding: 1.625em 8.9%;
+}

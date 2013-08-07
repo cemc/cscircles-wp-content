@@ -384,19 +384,14 @@ function tweak_admin_bar() {
       $wp_admin_bar->add_node(array('id'=>'view-site', 'href' => cscurl('homepage')));
     }
 
-    if ( !is_admin() ) { // search box
-      $form = "<form id='adminbarsearch' action='".cscurl('search')."'>\n" 
-        . '<input class="adminbar-input" name="q" id="adminbar-search" title="'.__t('click and type to search website').'" tabindex="10" type="text" value="" maxlength="150" />'
-	. '<input name="sa" type="submit" class="adminbar-button" value="' . __('Search') . '"/>'
-	. '<input type="hidden" name="cx" value="007230231723983473694:r0-95non7ri">'
-        ."\n".'<input type="hidden" name="cof" value="FORID:9">'
-        ."\n".'<input type="hidden" name="ie" value="UTF-8">'
-        ."\n".'<input type="hidden" name="nojs" value="1">'
+    /*        if ( !is_admin() ) { // search box
+      $form = "<form id='adminbarsearch' action='/'>\n" 
+        . '<input class="adminbar-input" name="s" id="adminbar-search" title="'.__t('click and type to search website').'" tabindex="10" type="text" value="" maxlength="150" />'
 	. '</form>';
 
       $wp_admin_bar->add_node(array('id'=>'search', 'title'=>$form));
       
-    }
+      }*/
     
   }  
 }

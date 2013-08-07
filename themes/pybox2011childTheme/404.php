@@ -25,17 +25,9 @@ get_header(); ?>
 	   sprintf(__t('Try a different address, a <a %1$s>search</a>, or <a %2$s>contact us</a> if the website sent you here via a broken link.'), 'href="'.cscurl('search').'"', 'href="'.cscurl('contact').'"');
 ?></p>
 
-<form id="searchform" action="<?php echo cscurl('search'); ?>">
-  <input type="hidden" name="cx" value= "007230231723983473694:r0-95non7ri" />
-     <input type="hidden" name="cof" value="FORID:9" />
-     <input type="hidden" name="ie" value="UTF-8" />
-     <input type="text" name="q" id="s"  />
-     <input type="submit" name="sa" value="Search" />
-     <input type="hidden" name="nojs" value="1" />
-  <img src="http://www.google.com/cse/images/google_custom_search_smwide.gif">
-  </form>
-
-	  <?php /*get_search_form();*/ ?>
+<?php echo get_search_form(); 
+// pulls from google search plugin if installed, default search otherwise
+ ?>
 
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->

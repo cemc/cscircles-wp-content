@@ -130,9 +130,10 @@ if ( ! empty( $header_image ) ) :
    // the post thumbnail is not so good since we don't want uploaded files...
    // prefer to override per-page headers on pages this way instead.
    // e.g. add "Custom Field" cscircles-header with value console-header.jpg
-   $override = get_post_meta( $post->ID, "cscircles-header", true );
-   if ($override != "") $imgsrc = '/themes/pybox2011childTheme/images/' . $override;
-   
+   if (isset($post)) { 
+     $override = get_post_meta( $post->ID, "cscircles-header", true );
+     if ($override != "") $imgsrc = '/themes/pybox2011childTheme/images/' . $override;
+   }
    echo '<img src="'.content_url($imgsrc).'" width="'.HEADER_IMAGE_WIDTH.'" height="'.HEADER_IMAGE_HEIGHT.'" />';
 
  endif; // end check for featured image or standard header ?>
