@@ -597,7 +597,7 @@ We provide it under a <img src="files/cc.png" style="height: 1em"/>
 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
 Creative Commons Non-Commerical Share-Alike 3.0 License</a> 
 <br>
-Use it as a model in creating your own CS Circles lessons and exercises.
+Use it as a model in <a href="/authoring">creating your own</a> CS Circles lessons and exercises.
 <br>
 We encourage you to <a href="/contact">contact us</a> if you have questions or want to write, share or remix our content.
 <br>

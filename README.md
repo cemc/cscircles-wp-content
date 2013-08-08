@@ -88,6 +88,13 @@ permissions, in order to keep user code on separate accounts, which is
 how we keep different submissions from interfering with each other.
 
 
+Writing content
+---------------
+See http://cscircles.cemc.uwaterloo.ca/authoring/
+
+You can look at samples of existing content by using the icons on
+the bottom-left of exercises, examples and lessons.
+
 Files listing / alternative to drop-in replacement for power users
 ------------------------------------------------------------------
 You need not copy all of wp-content. If you install the theme
