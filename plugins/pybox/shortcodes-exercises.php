@@ -6,6 +6,7 @@ add_sweetcode('pyHint', 'pyHintHandler', true);
 add_sweetcode('pyWarn', 'pyWarnHandler', true);
 
 // exercises (and examples)
+add_sweetcode('pyScramble', 'pyScrambleHandler', true);
 add_sweetcode('pyExample', 'pyExampleHandler', true);
 add_sweetcode('pyBox', 'pyBoxHandler', true);
 add_sweetcode('pyShort', 'pyShortHandler', true);
@@ -229,14 +230,13 @@ function pyMultiHandler($options, $content) {
 }
 
 function pyExampleHandler($options, $content) {
-  if (array_key_exists('translate', $options)) {
-    $GLOBALS['pb_translation'] = $options['translate'];
-  }
-  if ($options == FALSE) $options = array();
   $options['pyexample'] = 'Y';
-  $result = pyBoxHandler($options, $content);
-  $GLOBALS['pb_translation'] = NULL;
-  return $result;
+  return pyBoxHandler($options, $content);
+}
+
+function pyScrambleHandler($options, $content) {
+  $options['scramble'] = 'Y';
+  return pyBoxHandler($options, $content);
 }
 
 function pyMultiScrambleHandler($options, $content) {
@@ -346,12 +346,16 @@ function pyBoxHandler($options, $content) {
 
   /// do some cleaning-up and preprocessing of options, and create the problem info for grader
 
+  if (array_key_exists('translate', $options)) 
+    $GLOBALS['pb_translation'] = $options['translate'];
+
   if (array_key_exists('pyexample', $options)) {
     setSoft($options, 'grader', '*nograder*');
     setSoft($options, 'readonly', 'Y');
     setSoft($options, 'hideemptyinput', 'Y');
     unset($options['pyexample']);
   }
+
   
   if (array_key_exists('code', $options)) {            // sugar: code is an alias for defaultcode
     $options["defaultcode"] = $options["code"];
@@ -420,6 +424,7 @@ function pyBoxHandler($options, $content) {
   $facultative = ((isset($grader) && ($grader == '*nograder*')) || $console || $readonly);
   if ($scramble || $readonly) $options['nolog'] = 'Y';
 
+
   // for grader. note that if they are absent, their default values are 'N'
   if ($facultative) $options['facultative'] = 'Y'; else unset($options['facultative']);
   if ($allowinput) $options['allowinput'] = 'Y'; else unset($options['allowinput']);
@@ -445,7 +450,11 @@ function pyBoxHandler($options, $content) {
   $slug = getSoft($options, 'slug', 'NULL');
 
   registerPybox($id, $slug, $scramble?"scramble":"code", $facultative, getSoft($options, 'title', NULL), $content, $shortcodeOptions, $hash, $optionsJson);
-  if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
+  if (isMakingDatabases()) {
+    $res = do_short_and_sweetcode($content); // faster db generation with accurate count
+    $GLOBALS['pb_translation'] = NULL;
+    return $res;
+  }
 
   /// we've delivered options to the grader. get on with producing html
 
@@ -458,7 +467,8 @@ function pyBoxHandler($options, $content) {
     try 
       { $defaultcode = softSafeDereference($defaultcode); }
     catch (PyboxException $e) 
-      { return pberror("PyBox error: defaultcode file " . $defaultcode . " not found."); }
+      {   $GLOBALS['pb_translation'] = NULL;
+        return pberror("PyBox error: defaultcode file " . $defaultcode . " not found."); }
     $defaultcode = ensureNewlineTerminated($defaultcode);
   }
 
@@ -707,6 +717,7 @@ if (!$facultative && !$scramble) {
   if ($readyScripts != '')
     $r .= "<script type='text/javascript'>$readyScripts</script>\n";
 
+  $GLOBALS['pb_translation'] = NULL;
   return $r;
   
 }

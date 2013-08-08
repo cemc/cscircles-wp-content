@@ -121,8 +121,8 @@ function get_sweetcode_regex($flagged_only = false) {
     . '('                                // 3: Unroll the loop: Inside the opening sweetcode tag
     .   '(?:'
     // the next 4 lines replace 2 original lines
-    .        '"(?:\\.|""|[^\\"])*"(?!")' // inside of double-quotes, \. or "" or non-escaped; can't end followed by "
-    .       "|'(?:\\.|''|[^\\'])*'(?!')" // inside of single-quotes, \. or '' or non-escaped; can't end followed by '
+    .        '"(?:\\\\.|""|[^\\\\"])*"(?!")' // inside of double-quotes, \. or "" or non-escaped; can't end followed by "
+    .       "|'(?:\\\\.|''|[^\\\\'])*'(?!')" // inside of single-quotes, \. or '' or non-escaped; can't end followed by '
     .       '|\\/(?!\\])'                // A forward slash not followed by a closing bracket
     .       '|[^\\]\\/\'"]'              // Not a closing bracket or forward slash or quotes
     // end changes!
@@ -149,6 +149,8 @@ function get_sweetcode_regex($flagged_only = false) {
 
 function do_sweetcode_tag( $m ) {
 
+      //echo '((('.$m[0].')))';
+  
   global $sweetcode_tags;
 
   // allow [[foo]] syntax for escaping a tag
@@ -173,8 +175,8 @@ function sweetcode_parse_atts($text) {
   $atts = array();
 
   $pattern = 
-    '/(\w+)\s*=\s*"'.'((?:\\.|""|[^\\"])*)'.'"(?!")(?:\s|$)'  // old:  '/(\w+)\s*=\s*"([^"]*)"(?:\s|$)'
-    ."|(\w+)\s*=\s*'"."((?:\\.|''|[^\\'])*)"."'(?!')(?:\s|$)" // old: .'|(\w+)\s*=\s*\'([^\']*)\'(?:\s|$)'
+    '/(\w+)\s*=\s*"'.'((?:\\\\.|""|[^\\\\"])*)'.'"(?!")'  // old:  '/(\w+)\s*=\s*"([^"]*)"(?:\s|$)'
+    ."|(\w+)\s*=\s*'"."((?:\\\\.|''|[^\\\\'])*)"."'(?!')" // old: .'|(\w+)\s*=\s*\'([^\']*)\'(?:\s|$)'
     .'|(\w+)\s*=\s*([^\s\'"]+)(?:\s|$)'
     .'|"([^"]*)"(?:\s|$)'
     .'|([^ ="\'\s]+)(?:\s|$)/'; // modified
@@ -197,9 +199,10 @@ function sweetcode_parse_atts($text) {
 
   if ( preg_match_all($pattern, $text, $match, PREG_SET_ORDER) ) {
     foreach ($match as $m) {
-      ///echo '{';
-      //foreach ($m as $i=>$v) echo '[' . $i . '=>' . '(' . $v .')],';
-      //echo '}';
+      /*echo '{{{'.$m[0].'}}}';
+      echo '{';
+      foreach ($m as $i=>$v) echo '[' . $i . '=>' . '(' . $v .')],';
+      echo '}';*/
       if (!empty($m[1]))
         $atts[strtolower($m[1])] = strip_and_unduplicate($m[2], '"');
       elseif (!empty($m[3]))

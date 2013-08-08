@@ -13,13 +13,13 @@ global $wpdb;
 
 $row = NULL;
 if (getSoft($_GET, "hash", "")!="") {  
-  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content, postid FROM "
+  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content, postid, url FROM "
                                        .$wpdb->prefix."pb_problems WHERE hash = %s", 
                                        $_GET["hash"])
                         , ARRAY_A);
  }
  else if (getSoft($_GET, "slug", "")!="") {
-  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content, postid FROM "
+  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content, postid, url FROM "
                                        .$wpdb->prefix."pb_problems WHERE slug = %s AND lang = %s", 
                                        $_GET["slug"],
                                        getSoft($_GET, "lang", "en"))
@@ -79,4 +79,6 @@ The following shortcode is a definition for the example or exercise that you cli
 <?php echo $authorshipmsg; ?>
 <hr>
 <pre style="white-space:pre-wrap"><?php echo $r ?></pre>
+<hr>
+Click <a href="<?php echo $row['url']; ?>">here</a> to view this shortcode in action.
 </html>
