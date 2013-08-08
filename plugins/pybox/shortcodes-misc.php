@@ -8,8 +8,8 @@ function pyDebug($o, $c){
 
 add_shortcode('authorship', 'authorship');
 function authorship($o, $c){
-  // this is treated only like a comment
-  return "";
+  // this is treated only like a comment, let's include it anyway
+  return "<!-- " . $o['info'] . "-->";
 }
 
 add_shortcode('newuserwelcome', 'newuserwelcome');

@@ -13,13 +13,13 @@ global $wpdb;
 
 $row = NULL;
 if (getSoft($_GET, "hash", "")!="") {  
-  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content FROM "
+  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content, postid FROM "
                                        .$wpdb->prefix."pb_problems WHERE hash = %s", 
                                        $_GET["hash"])
                         , ARRAY_A);
  }
  else if (getSoft($_GET, "slug", "")!="") {
-  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content FROM "
+  $row = $wpdb->get_row($wpdb->prepare("SELECT type, shortcodeArgs, content, postid FROM "
                                        .$wpdb->prefix."pb_problems WHERE slug = %s AND lang = %s", 
                                        $_GET["slug"],
                                        getSoft($_GET, "lang", "en"))
@@ -62,11 +62,21 @@ $r .= "\n]\n";
 $r .= htmlspecialchars($row['content'], ENT_NOQUOTES);
 $r .= "\n[/$codename]";
 
+$page_src_url = UPAGESOURCE.'?'.http_build_query(array("page"=>$row['postid']));
+$content = get_post($row['postid'])->post_content;
+$found = preg_match("_\[authorship.*info=\\s*(.*)/(authorship)?\]_s", $content, $match);
+if ($found > 0)
+  $authorshipmsg = 'The <a href="'.$page_src_url.'">containing page source</a> has authorship info: <i>'.$match[1].'</i>';
+ else
+   $authorshipmsg = 'See also the <a href="'.$page_src_url.'">containing page source</a>.';
+
 ?>
 <html>
 The following shortcode is a definition for the example or exercise that you clicked on.
 <br>
 <?php echo open_source_preamble(); ?>
+<br>
+<?php echo $authorshipmsg; ?>
 <hr>
 <pre style="white-space:pre-wrap"><?php echo $r ?></pre>
 </html>

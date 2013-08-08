@@ -18,7 +18,9 @@ $content =
 
 ?>
 <html>
-The following is the source code for the page <b><?php echo $page->post_title; ?></b> that you clicked on.
+The following is the source code for the page <b><a href="<?php 
+echo get_permalink($page->ID); 
+?>"><?php echo $page->post_title; ?></a></b> that you clicked on.
 <br>
 <?php echo open_source_preamble(); ?>
 <hr>
