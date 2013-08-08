@@ -570,7 +570,8 @@ function pageSourceWidget() {
     
     return '<a class="'.$classes.'" target="_blank" title="'.__t('View page source')
       .'" href="'.UPAGESOURCE.'?'.http_build_query(array("page"=>$post->ID)).'">'
-      .'&lt;/&gt;</a>';
+      ."<img src='".UFILES."/cc.png'></a>";
+      //      .'&lt;/&gt;</a>';
   }
   else return "";
 }
