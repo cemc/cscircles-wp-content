@@ -28,9 +28,10 @@ echo pageSourceWidget();
 
   <div id="site-generator">
   <a href="http://cemc.uwaterloo.ca"><div class="cemc logo"></div></a>
-  <?php echo sprintf("<a href='http://cemc.math.uwaterloo.ca/copyright.html'>&copy; 2010&ndash;".strftime("%G").".</a> " . 
-
-		     __t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>. <br> Total number of exercises completed by all users: %3$s'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"', '<b>'.allSolvedCount().'</b>'); ?>
+  <a href='http://cemc.uwaterloo.ca/copyright.html'>
+<img src='/wp-content/plugins/pybox/files/cc.png' style='height:0.8em; vertical-align: baseline; top: 0px' />
+  <?php echo sprintf("2010&ndash;".strftime("%G").".</a> " );
+echo sprintf(    __t('Computer Science Circles is a free service of the <a %1$s>Centre for Education in Mathematics and Computing</a> at the <a %2$s>University of Waterloo</a>. <br> Total number of exercises completed by all users: %3$s'), 'href="http://www.cemc.uwaterloo.ca/"', 'href="http://www.uwaterloo.ca"', '<b>'.allSolvedCount().'</b>'); ?>
 
    <div id="departmentaddress">
   <?php echo __t('CEMC');?> |
