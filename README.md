@@ -99,11 +99,14 @@ Writing content
 See http://cscircles.cemc.uwaterloo.ca/authoring/
 
 You can look at samples of existing content by using the icons on
-the bottom-left of exercises, examples and lessons.
+the bottom-left of exercises, examples and lessons. Feel free to
+copy the entire source code for the pages (including the authorship
+info). You can make derivative works under the conditions of the 
+license mentioned on the get-source page.
 
-Files listing / alternative to drop-in replacement for power users
-------------------------------------------------------------------
-You need not copy all of wp-content. If you install the theme
+Files listing 
+-------------
+Power users need not copy all of wp-content. If you install the theme
 
  wp-content/plugins/pybox
 
