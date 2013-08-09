@@ -3,6 +3,6 @@
 add_shortcode('style', 'style');
 
 function style($options, $content) {
-  return "<style> " . $content . "</style>";
+  return "<style> " . html_entity_decode($content) . "</style>";
 }
 
