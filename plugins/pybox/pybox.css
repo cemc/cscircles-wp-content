@@ -558,7 +558,7 @@ ie7 #content .pybox textarea {
 #main #content .pbresults:empty, #main #content .pbresults.avoidline { border-top: none; }
 
 /**************** grader *************/
-.gmi { white-space: pre; }
+.gmi { white-space: pre-wrap; }
 
 /**************** epilogue placeholder *********************/
 .epilogue { display: none; }

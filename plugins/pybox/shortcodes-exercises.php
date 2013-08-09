@@ -377,7 +377,8 @@ function pyBoxHandler($options, $content) {
   }
 
   foreach ($options as $optname => $optvalue)          // syntactic sugar for inplace grader 
-    if (preg_match('|tests|', $optname)>0)
+    if (preg_match('|tests|', $optname)>0
+        || preg_match('|precode|', $optname)>0)
       $options["inplace"] = "Y"; 
 
   global $post, $lesson_reg_info;                      // $lessonNumber is numeric (major) part of lesson number
