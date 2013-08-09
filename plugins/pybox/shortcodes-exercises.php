@@ -68,6 +68,10 @@ function isMakingDatabases() {
   return isset($lesson_reg_info);
 }
 
+function slugwarn() {
+  return "<b style='color:red;' class='slugwarn'>WARNING: this problem needs a permanent slug to save user data</b></br>";
+}
+
 function registerPybox($id, $slug, $type, $facultative, $title, $content, $args = NULL, $hash = NULL, $graderOptions = NULL) {
   if (is_array($args))
     $args = json_encode($args);
@@ -157,8 +161,7 @@ function pyShortHandler($options, $content) {
   registerPybox($id, $slug, "short answer", FALSE, getSoft($options, 'title', NULL), $content, $options);
   if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
-  if (!array_key_exists('slug', $options))
-    $r .= "<b style='color:red;' class='slugwarn'>WARNING: this problem needs a permanent slug to save user data</b></br>";
+  if (!array_key_exists('slug', $options)) $r .= slugwarn();
 
   $r .= heading(__t('Short Answer Exercise'), $options);
 
@@ -201,8 +204,7 @@ function pyMultiHandler($options, $content) {
   registerPybox($id, $slug, "multiple choice", FALSE, getSoft($options, 'title', NULL), $content, $options);
   if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
-  if (!array_key_exists('slug', $options))
-    $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
+  if (!array_key_exists('slug', $options)) $r .= slugwarn();
 
   $r .= heading(__t('Multiple Choice Exercise'), $options);
 
@@ -256,8 +258,7 @@ function pyMultiScrambleHandler($options, $content) {
   registerPybox($id, $slug, "multichoice scramble", FALSE, getSoft($options, 'title', NULL), $content, $options);
   if (isMakingDatabases()) return do_short_and_sweetcode($content);; // faster db generation with accurate count
   $r .= checkbox($slug);
-  if (!array_key_exists('slug', $options))
-    $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
+  if (!array_key_exists('slug', $options)) $r .= slugwarn();
 
   $r .= heading(__t('Scramble Exercise'), $options);
 
@@ -493,7 +494,7 @@ function pyBoxHandler($options, $content) {
 
   if (!$facultative && !array_key_exists("slug", $options)) {
     pyboxlog("Hash " . $hash . " not read-only, but needs a slug", TRUE);
-    $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";    
+    $r .= slugwarn();
   }
 
   if ($facultative) 
