@@ -7,12 +7,18 @@ version of the Computer Science Circles website,
 
 on your own computer.
 
-Specifically, this folder plays the role of the wp-content
+This repository is at https://github.com/cemc/cscircles-wp-content
+
+For authoring information, see http://cscircles.cemc.uwaterloo.ca/authoring/
+
+This code is released under the GPLv3 license.
+
+
+Installation
+-------------------------------------------
+This folder plays the role of the wp-content
 directory in your WordPress installation.
 
-It is licensed under the GPLv3 license.
-
-Note:
 This plugin teaches programming by executing and grading
 arbitrary user code. However, this is not a good idea unless
 done securely. Currently, only one option works: you must
@@ -21,7 +27,6 @@ is harder than installing a wordpress plugin. We are working
 on developing other options like sending code to a Waterloo
 server and executing it there as long as it does not exceed
 our demand.
-
 
 For now, your options are:
  1. follow Installing "safeexec" and "python3jail" directions below
