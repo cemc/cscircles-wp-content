@@ -4,20 +4,21 @@
 h1,
 h2 {
 	color: inherit;
-	font-size: inherit;
-	font-weight: inherit;
 	margin: inherit;
 }
 h3 {
-	font-size: inherit;
 	letter-spacing: inherit;
 	line-height: inherit;
 	text-transform: none;
 }
 h4, h5, h6 {
-	font-size: inherit;
 	margin: inherit;
 }
+
+h1, h2, h3, h4, h5, h6 {font-weight: bold}
+h1 {font-size: 150%}
+h2 {font-size: 125%}
+h3, h4, h5, h6 {font-size: 100%}
 
 // make pre easier to read
 #tinymce pre
