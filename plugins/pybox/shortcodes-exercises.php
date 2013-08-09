@@ -158,7 +158,7 @@ function pyShortHandler($options, $content) {
   if (isMakingDatabases()) return do_short_and_sweetcode($content); // faster db generation with accurate count
   $r .= checkbox($slug);
   if (!array_key_exists('slug', $options))
-    $r .= "<b style='color:red;'>WARNING: this problem needs a permanent slug to save user data</b></br>";
+    $r .= "<b style='color:red;' class='slugwarn'>WARNING: this problem needs a permanent slug to save user data</b></br>";
 
   $r .= heading(__t('Short Answer Exercise'), $options);
 
