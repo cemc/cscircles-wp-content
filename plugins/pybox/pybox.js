@@ -92,6 +92,8 @@ function pbFormSubmit(event) {
     values['usercode'+id]=pbGetText(id);
 
     $('#submit'+id).attr('disabled', true);
+
+  $('#pybox'+id+' .bumpit').removeClass('bumpit');
     
     $('#pbresults'+id).html("<p>"+__t("Running...")+'</p>');
     $.ajax({

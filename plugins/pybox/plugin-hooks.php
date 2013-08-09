@@ -105,6 +105,7 @@ function fixwpautop($text) {
   $text = preg_replace('|</pre>\s*<p>|s', "</pre>", $text);
   $text = preg_replace('|</pre>(\s*<br ?/?>)+|s', "</pre>", $text);
   $text = preg_replace('|-->(\s*<br ?/?>)+|s', "-->", $text);
+  $text = preg_replace('|/script>(\s*<br ?/?>)+|s', "/script>", $text);
   $text = preg_replace('|<br ?/?>\s*<pre>|s', "<pre>", $text);
   $text = preg_replace('|<br ?/?>\s*<div|s', "<div", $text);
   $text = preg_replace('|tt>|', "code>", $text);
