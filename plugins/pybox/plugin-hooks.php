@@ -100,6 +100,7 @@ foreach ( array( 'comment_author', 'term_name', 'link_name', 'link_description',
 
 function fixwpautop($text) {
   // also makes somewhat more html5 compliant
+  $text = preg_replace('|<p>\s*<br>\s*<p>|s', "<br>", $text);
   $text = preg_replace('|<p>\s*<div(.*)</div>\s*</p>|s', "<div$1</div>", $text);
   $text = preg_replace('|</div>\s*</p>|s', "</div>", $text);
   $text = preg_replace('|</pre>\s*<p>|s', "</pre>", $text);
@@ -107,7 +108,7 @@ function fixwpautop($text) {
   $text = preg_replace('|-->(\s*<br ?/?>)+|s', "-->", $text);
   $text = preg_replace('|/script>(\s*<br ?/?>)+|s', "/script>", $text);
   $text = preg_replace('|<br ?/?>\s*<pre>|s', "<pre>", $text);
-  $text = preg_replace('|<br ?/?>\s*<div|s', "<div", $text);
+  $text = preg_replace('|<br ?/?>\s*(<h.>)|s', "$1", $text);
   $text = preg_replace('|tt>|', "code>", $text);
   
   return $text;
