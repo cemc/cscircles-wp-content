@@ -52,6 +52,7 @@ Replacing wp-content:
 
 Activating new content, on WordPress admin dashboard:
  - go to Plugins and enable "python in a box"
+
 If you want the appearance to be the same as CS Circles:
  - go to Appearance/Themes and activate "Pybox 2011 Child Theme"
  - go to Settings/Reading, set Front Page Displays to a static page
