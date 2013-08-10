@@ -91,6 +91,7 @@ meta text,
 primary key  (ID)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;";
   dbDelta($sql);
+  $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_profiling (activity (32), start);");
 
   $table_name = $wpdb->prefix . "pb_mail";
   $sql = "CREATE TABLE " . $table_name . " (
