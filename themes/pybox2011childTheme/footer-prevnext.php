@@ -18,7 +18,7 @@ function showPrevNext() {
   $hi = $thisrow->ordering + 2;
 
   $results = $wpdb->get_results("SELECT * FROM $table_name WHERE "
-				."ordering >= $lo AND ordering <= $hi AND lang = '".pll_current_language()."' "
+				."ordering >= $lo AND ordering <= $hi AND lang = '".currLang2()."' "
 				."ORDER BY ordering ASC");
   
   echo '<div class="locator">';

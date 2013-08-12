@@ -10,8 +10,14 @@ function makedb($content, $options) {
   foreach ($out as $page) {
     $s = $page->post_title;
     $m = preg_match('/^([0-9]+)([A-Z]?)\: (.*)$/', $s, $matches);
-    global $polylang;
-    $lang = $polylang->get_post_language($page->ID)->slug;
+    if (class_exists('Polylang_Base')) {
+      global $polylang;
+      $lang = $polylang->get_post_language($page->ID)->slug;
+    }
+    else {
+      // use default language
+      $polylang = currLang2();
+    }
     if ($m >= 1) 
       $lessons[] = array('number'=>$matches[1].$matches[2], 
 			 'title'=>$matches[3], 
@@ -19,7 +25,8 @@ function makedb($content, $options) {
 			 'minor'=>$matches[2], 
 			 'id'=>$page->ID,
 			 'lang'=>$lang); 
-    elseif (get_page_by_path('console')->ID == pll_get_post($page->ID, 'en'))
+    elseif ((class_exists('Polylang_Base') && (get_page_by_path('console')->ID == pll_get_post($page->ID, 'en')))
+            || get_page_by_path('console')->ID == $page->ID)
       $lessons[] = array('id'=>$page->ID, 'number'=>NULL, 'lang'=>$lang);
     // go through the console page too, mainly to set up the right url in history grids,
     // it does not get added to pb_lessons but its contents do get added to pb_problems

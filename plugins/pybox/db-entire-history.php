@@ -54,7 +54,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, $req=NULL) {
 
    // make an associative array indexed by slug
    
-   $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM ".$wpdb->prefix."pb_problems WHERE slug IS NOT NULL AND lang = '".pll_current_language() ."'", 
+   $problemTable = $wpdb->get_results("SELECT slug, publicname, url FROM ".$wpdb->prefix."pb_problems WHERE slug IS NOT NULL AND lang = '".currLang2() ."'", 
 				      OBJECT_K);
 
    $whereProblem = "1";
