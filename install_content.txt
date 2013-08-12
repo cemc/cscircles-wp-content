@@ -45,3 +45,17 @@ Check if it worked:
 Does it look like the page on the official CS Circles site?
 
 Try solving some problems. Then look at your progress page again; does it reflect what you did?
+
+
+
+There is a final thing to get the LaTeX engine working, which normally uses a web server.
+
+Go to Settings -> WP LaTeX
+
+- change background color to "transparent" (this is just superficial, but it's what we use)
+
+- create wp-content/latex (same instructions as above for "wp-content/upload")
+
+- switch from the server to dvipng or dvips+convert (the former looked marginally better on our server)
+
+- check out Geometric Mean and Gravity in lesson 7b to see if it is showing formulas

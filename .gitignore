@@ -8,3 +8,4 @@ themes/twentythirteen
 plugins/hello.php
 # if user creates this, don't track it
 upload
+latex
