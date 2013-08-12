@@ -983,8 +983,11 @@ function submit_code_main($post, $_log_it) {
 if (realpath(__FILE__) == realpath($_SERVER["SCRIPT_FILENAME"])) {
   $post = $_POST;
   // you should do the next two lines iff magic quotes are enabled
-  $phpv = explode('.', PHP_VERSION);
-  if ($phpv[1] < 4) { // is not working for us??
+  
+  // man oh man. see details in plugin-config.php
+  $mq = defined('MAGIC_QUOTES_USED') ? MAGIC_QUOTES_USED : get_magic_quotes_gpc();
+
+  if ($mq) { 
     $post = array();
     foreach ($_POST as $k => $v) {$post[$k] = stripslashes($_POST[$k]);}
   }

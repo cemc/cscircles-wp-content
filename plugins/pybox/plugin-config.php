@@ -48,6 +48,11 @@ define('POSTLIMIT', 20000);
 define('WALLFACTOR', 2); 
 define('WALLBUFFER', 4); 
 
+// wordpress "turns on" magic quotes even if they are off,
+// so no matter what is your server setting, this probably should be true
+// http://wordpress.org/support/topic/sql-injection-escaping-and-magic-quotes
+define('MAGIC_QUOTES_USED', true);
+
 // you probably don't need to change these if you install our python3jail and safeexec repositories
 define('PPYTHON3MODJAIL', '/bin/python3');
 define('PSCRATCHDIRMODJAIL', 'scratch/');
