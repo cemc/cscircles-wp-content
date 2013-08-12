@@ -9,16 +9,14 @@ define('PSAFEEXEC', ABSPATH . '../../safeexec/safeexec'); // binary executable
 // you don't need to use ABSPATH at all: /home/myaccount/python3jail/ is fine for example
 // if for some reason you want to use a relative path, it should be relative to the "pybox" directory (see action-submit-code.php)
 
-// CHANGE THIS to URL of visualizer (or http://cscircles.cemc.uwaterloo.ca/visualize if not installed)
-define('UVISUALIZER', site_url( '/visualize/' ) );
-// CHANGE THIS to URL of your search page
-define('USEARCH', site_url ( '/search/') );
-
-// misc constants
+// change these to e-mail addresses that you will read. they can be the same.
 define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
 define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
-define('CSCIRCLES_ASST_ID_DE', 11351);
-define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
+
+// ******** you probably don't need to edit anything below this line ******** //
+
+define('UVISUALIZER', 'http://cscircles.cemc.uwaterloo.ca/visualize/' ); // hacky; will be fixed later
+define('CSCIRCLES_ASST_ID_DE', 11351); // hacky; will be fixed later
 
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two
