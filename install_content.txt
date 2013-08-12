@@ -1,0 +1,47 @@
+If you are seeking to make a complete clone of the CS Circles site, this
+requires contacting us for permission. We will give you a file called something
+like computersciencecircles.wordpress.yyyy-mm-dd.xml and these are the steps
+needed to install its contents.
+
+
+Installing CS Circles Content
+
+- Get latest cscircles repo ("git pull", save plugin-config.php elsewhere first & restore after)
+
+- Plugins->Installed Plugins: activate Python in a Box, Polylang, LaTeX, WordPress Importer if not already activated
+
+- double-check that theme is installed & configured (see wp-content/README.md)
+
+File Import
+
+The wordpress mechanism requires uploading the .xml file first, which needs a directory permission.
+
+- create wp-content/upload and make it webserver writeable (either chmod a+rw it, or sudo chgrp apache it followed by chmod g+rw)
+
+- go to Tools->Import->WordPress, upload the .xml file
+
+- Assign all posts to your admin account; not necessary to import attachments
+
+- ignore errors (related to attachments/images, not important)
+
+Settings
+
+- Settings->Reading, change front page to "0: Hello!"
+
+- Settings->Languages->Settings Tab, (i) set default language to English (ii) turn off "Detect browser language"
+
+- Appearance->Menus, pick the English menu, at bottom check "Primary Menu English"
+
+- Settings->Permalinks, change to "Post name"
+
+- as instructed on that page, copy text from bottom of page and copy to wordpress/.htaccess file
+
+- [admin menu in top, 3 spots from right]->"Visiting this page will rebuild problem-lesson DB"
+
+Check if it worked:
+
+- [admin's user menu in top right corner]->"My progress" 
+
+Does it look like the page on the official CS Circles site?
+
+Try solving some problems. Then look at your progress page again; does it reflect what you did?
