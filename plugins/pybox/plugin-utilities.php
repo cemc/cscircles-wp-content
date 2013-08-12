@@ -14,7 +14,6 @@ function __t($en_string) {
 
 function translateOf($string, $translations) {
   $translations = explode("\n", $translations);
-  echo var_export($translations, TRUE);
   for ($i=0; $i<count($translations)/2; $i++) {
     $en = $translations[2*$i];
     $trans = $translations[2*$i+1];
