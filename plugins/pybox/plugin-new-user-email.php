@@ -20,7 +20,8 @@ Press "%upprof%" once you are done.
 Thanks from the Computer Science Circles team!
 %siteurl%');
     //pyboxlog('locale:' . pll_current_language('locale'), 1);
-    update_user_meta( $user_id, 'user_lang', pll_current_language('locale') );
+    if (class_exists('Polylang_Base')) 
+      update_user_meta( $user_id, 'user_lang', pll_current_language('locale') );
     $subject = __t('Computer Science Circles: New account');
 
     $user_login = stripslashes($user->user_login);
