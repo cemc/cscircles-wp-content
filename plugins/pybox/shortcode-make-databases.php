@@ -16,7 +16,7 @@ function makedb($content, $options) {
     }
     else {
       // use default language
-      $polylang = currLang2();
+      $lang = currLang2();
     }
     if ($m >= 1) 
       $lessons[] = array('number'=>$matches[1].$matches[2], 
