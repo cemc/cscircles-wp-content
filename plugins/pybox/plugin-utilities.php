@@ -351,7 +351,7 @@ function getCompleted($problem) {
   return ($count > 0)?TRUE:FALSE;
 }
 
-function getStudents() {
+function getStudents($with_hidden = false) {
   global $current_user;
   get_currentuserinfo();
 
@@ -362,14 +362,18 @@ function getStudents() {
 
   $ulogin = $current_user->user_login;
 
-  $rows = $wpdb->get_results($wpdb->prepare("SELECT user_id FROM ".$wpdb->prefix."usermeta WHERE meta_key=%s AND meta_value=%s", 'pbguru', $ulogin));
+  $rows = $wpdb->get_results($wpdb->prepare("SELECT user_id FROM ".$wpdb->prefix."usermeta WHERE meta_key=%s AND meta_value=%s ORDER BY user_id DESC", 'pbguru', $ulogin));
 
   $result = array();
-  foreach ($rows as $row) $result[] = $row->user_id;
+  if ($with_hidden)
+    $hidden = array();
+  else
+    $hidden = explode(",", get_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', true));
+  foreach ($rows as $row) if (!in_array($row->user_id, $hidden)) $result[] = $row->user_id;
   return $result;
 }
 
-function getStudentList() {
+function getStudentList($with_hidden = false) {
   if ( ! is_user_logged_in() )
     return FALSE;
 

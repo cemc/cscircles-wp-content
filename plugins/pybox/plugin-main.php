@@ -154,6 +154,7 @@ require_once("db-mail.php");
 require_once("db-entire-history.php");
 require_once("db-problem-history.php");
 require_once("db-problem-summary.php");
+require_once("admin-students.php");
 //require_once("db-profiling.php"); kind of broken at the moment, but never used directly so ok
 
 // end of file
