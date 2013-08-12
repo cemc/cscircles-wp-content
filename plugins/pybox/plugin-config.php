@@ -23,7 +23,9 @@ define('PCEMCCSC', 'http://www.cemc.uwaterloo.ca/resources/cscircles');
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two
 // PYBOXLOG constants
-if ($_SERVER['SERVER_NAME'] == 'cscircles.cemc.uwaterloo.ca') {
+define ('ON_CEMC_SERVER', UWPHOME == 'http://cscircles.cemc.uwaterloo.ca'
+        || UWPHOME == 'http://cscircles.cemc.uwaterloo.ca/dev');
+if (ON_CEMC_SERVER) {
   // if you want some of these, remove them from the 'if' block
   define('PYBOXLOG_EMAIL', 'daveagp@gmail.com');        // e-mail notifications for logging
   define('PPYBOXLOG', ABSPATH . '../../pybox_log.txt'); // file, writeable by apache, for logging

@@ -12,7 +12,9 @@ function makedb($content, $options) {
     $m = preg_match('/^([0-9]+)([A-Z]?)\: (.*)$/', $s, $matches);
     if (class_exists('Polylang_Base')) {
       global $polylang;
-      $lang = $polylang->get_post_language($page->ID)->slug;
+      $lang = $polylang->get_post_language($page->ID);
+      if ($lang != NULL) $lang = $lang->slug;
+      else $lang = substr(get_bloginfo("language"), 0, 2);
     }
     else {
       // use default language

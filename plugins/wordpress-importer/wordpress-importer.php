@@ -610,7 +610,8 @@ class WP_Import extends WP_Importer {
 
 					$comment_post_ID = $post_id = $this->process_attachment( $postdata, $remote_url );
 				} else {
-					$comment_post_ID = $post_id = wp_insert_post( $postdata, true );
+//					$comment_post_ID = $post_id = wp_insert_post( $postdata, true );
+                                  $comment_post_ID = $post_id = wp_insert_post( $this->addslashes_deep( $postdata ), true );
 					do_action( 'wp_import_insert_post', $post_id, $original_post_ID, $postdata, $post );
 				}
 
@@ -1114,6 +1115,30 @@ class WP_Import extends WP_Importer {
 	// return the difference in length between two strings
 	function cmpr_strlen( $a, $b ) {
 		return strlen($b) - strlen($a);
+	}
+
+	/**
+	 * Navigates through an array and add slashes to escape the values.
+	 *
+	 * If an array is passed, the array_map() function causes a callback to pass the
+	 * value back to the function. This value will be slash-escaped.
+	 *
+	 * @param array|string $value The array or string to be escaped
+	 * @return array|string Escaped array (or string in the callback).
+	 */
+	function addslashes_deep($value) {
+		if ( is_array($value) ) {
+			$value = array_map(array(&$this, 'addslashes_deep'), $value);
+		} elseif ( is_object($value) ) {
+			$vars = get_object_vars( $value );
+			foreach ($vars as $key=>$data) {
+				$value->{$key} = addslashes_deep( $data );
+			}
+		} else {
+			$value = addslashes($value);
+		}
+
+		return $value;
 	}
 }
 

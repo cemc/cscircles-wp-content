@@ -14,6 +14,7 @@ function __t($en_string) {
 
 function translateOf($string, $translations) {
   $translations = explode("\n", $translations);
+  echo var_export($translations, TRUE);
   for ($i=0; $i<count($translations)/2; $i++) {
     $en = $translations[2*$i];
     $trans = $translations[2*$i+1];
@@ -143,6 +144,7 @@ function userIsAssistant() {
 function userIsTranslator() {
   if (!class_exists('Polylang_Base')) return false;
   if (!is_user_logged_in()) return false;
+  if (!ON_CEMC_SERVER) return false;
   global $wpdb;
   return 1==$wpdb->get_var("select count(1) from ".$wpdb->prefix."user2group_rs where group_id=10 and user_id=" . wp_get_current_user()->ID);
 }
