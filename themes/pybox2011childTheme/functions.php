@@ -222,7 +222,8 @@ function pb_menu_items($wp_admin_bar) {
       $more_links['[rebuild /export directory]'] = '/nav/?export=Y';
     }
     if ($ap != null) {
-      $more_links['Daily submit-code usage'] = get_permalink($ap).'/profiling/?frequency=10&activity=submit-code';
+      //      $more_links['Daily submit-code usage'] = get_permalink($ap).'/profiling/?frequency=10&activity=submit-code';
+      $more_links['Rebuild Databases'] = admin_url('tools.php?page=cscircles-makedb');
       $more_links['[listing of admin-manual follows]'] = get_permalink($ap);
       
       $pages = get_pages( array('child_of' => $ap->ID, 'post_status'=>'publish,private'));

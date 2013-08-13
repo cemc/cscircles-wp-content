@@ -138,7 +138,6 @@ require_once("shortcodes-exercises.php");
 require_once("shortcodes-misc.php");
 require_once("shortcodes-layout.php");
 require_once("shortcode-my-progress.php");
-require_once("shortcode-make-databases.php");
 require_once("shortcode-youtube.php");
 require_once("shortcode-mailpage.php");
 require_once("shortcode-style.php");
@@ -154,6 +153,7 @@ require_once("db-mail.php");
 require_once("db-entire-history.php");
 require_once("db-problem-history.php");
 require_once("db-problem-summary.php");
+require_once("admin-make-databases.php");
 require_once("admin-students.php");
 //require_once("db-profiling.php"); kind of broken at the moment, but never used directly so ok
 

@@ -1,8 +1,27 @@
 <?php
 
-add_shortcode('makedb', 'makedb');
+add_action('admin_menu', 'rebuild_databases_link');
 
-function makedb($content, $options) {
+function rebuild_databases_link() {
+  if (userIsAdmin())
+    add_management_page("Rebuild CS Circles Databases", "Rebuild CS Circles Databases", "read", "cscircles-makedb", "cscircles_makedb_page");
+}
+
+function cscircles_makedb_page() {
+
+  echo "<div class='wrap'>
+<h2>Rebuild CS Circles Databases</h2>
+<div>This page will rebuild the lesson database and the problem database. 
+(If you're writing your own lessons, it assumes a certain structure on
+the lesson slugs, contact us for help on this which is in progress.)</div>";
+
+  if (!array_key_exists('submitted', $_REQUEST)) {
+    echo "<form method='get' action='tools.php'>
+   <input type='hidden' name='page' value='cscircles-makedb'>
+   <input type='hidden' name='submitted' value='true'>
+   <button class='button-primary' id='submit'>Rebuild Databases</button></form>";
+  }
+  else{
 
   $out = get_pages();
   $lessons = array();
@@ -59,9 +78,10 @@ function makedb($content, $options) {
   $problem_table_name = $wpdb->prefix . "pb_problems";
 
   if (!$GLOBALS['SKIP_DB_REBUILD']) {
-    echo 'Truncating tables ';
+    echo '<b>Truncating tables: ';
     $wpdb->query("TRUNCATE TABLE $problem_table_name;");
     $wpdb->query("TRUNCATE TABLE $lesson_table_name;");
+    echo 'done</b>';
   }
 
   $currlang = 'xx';
@@ -99,6 +119,8 @@ function makedb($content, $options) {
     echo '</pre>';
   }
   $lesson_reg_info = 1;
+}
+echo '</div>';
 }
 
 // end of file
