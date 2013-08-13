@@ -36,7 +36,7 @@ Settings
 
 - as instructed on that page, copy text from bottom of page and copy to wordpress/.htaccess file
 
-- [admin menu in top, 3 spots from right]->"Visiting this page will rebuild problem-lesson DB"
+- [admin menu in top, 3 spots from right]->"Rebuild Databases", press button (you should see lots of output)
 
 Check if it worked:
 
