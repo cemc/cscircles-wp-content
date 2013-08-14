@@ -10,6 +10,8 @@ Installing CS Circles Content
 
 - Plugins->Installed Plugins: activate Python in a Box, Polylang, LaTeX, WordPress Importer if not already activated
 
+- Important! Make sure all 4 of the plugins just mentioned are activated.
+
 - double-check that theme is installed & configured (see wp-content/README.md)
 
 File Import
@@ -34,7 +36,11 @@ Settings
 
 - Settings->Permalinks, change to "Post name"
 
-- as instructed on that page, copy text from bottom of page and copy to wordpress/.htaccess file
+- if instructed on that page, copy text from bottom of page and copy to wordpress/.htaccess file
+  and ensure it has chmod a+r permissions
+
+(if broken at this point, your web server is probably not allowing .htaccess overriding. Visit
+http://your-server/wp-admin directly to undo the change. It is not critical.)
 
 - [admin menu in top, 3 spots from right]->"Rebuild Databases", press button (you should see lots of output)
 
