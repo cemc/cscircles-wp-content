@@ -93,6 +93,12 @@ Note: in its current form, installing safeexec requires super-user (admin)
 permissions, in order to keep user code on separate accounts, which is
 how we keep different submissions from interfering with each other.
 
+Note 2: If you can't get this to work please let us know. Initial steps 
+are to look at the web server logs and configuration. Try creating a file
+called phpinfo.php containing just
+  <?php echo phpinfo(); ?>
+and e-mail us a link to this page as a starting point, two important
+things may be basedir, and later, mod_rewrite.
 
 Writing content
 ---------------
