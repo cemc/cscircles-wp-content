@@ -81,10 +81,10 @@ and
 
  https://github.com/cemc/python3jail
 
-then follow the directions listed there. After installation, edit
+and follow the (unfortunately long) installation instructions therein.
 
- wp-content/plugins/pybox/plugin-config.php
-
+After installation, go to 
+  Settings -> CS Circles
 and reference the locations of the safeexec binary and the jail directory.
 
 Note: in its current form, installing safeexec requires super-user (admin)
@@ -94,9 +94,6 @@ how we keep different submissions from interfering with each other.
 Note 2: If you can't get this to work please let us know. Initial steps 
 are to look at the web server logs, configuration, and phpinfo(). We
 ran in to 'basedir' problems once.
-
-Note 3: Once installed, go to Settings->CS Circles 
-
 
 Optional Additional Setup
 -------------------------
