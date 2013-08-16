@@ -3,17 +3,22 @@
 
   // see plugin-main.php for where the options get their default values
 
-add_action('admin_menu', 'cscircles_admin_menu');
-add_action('admin_init', 'cscircles_admin_init');
-function cscircles_admin_menu() {
-  if (userIsAdmin())
-    add_options_page("CS Circles", "CS Circles", "read", "cscircles-options", "cscircles_options_page");
+add_action('admin_menu', 'cscircles_administrator');
+function cscircles_administrator() {
+  if (userIsAdmin()) {
+    add_menu_page( 'CS Circles', 'CS Circles', 'edit_plugins',
+                   'cscircles-options', 'cscircles_options_page',
+                   UFILES . 'checked16.png' );
+    add_submenu_page('cscircles-options', "Rebuild Databases", "Rebuild Databases", 
+                     "edit_plugins", "cscircles-makedb", "cscircles_makedb_page");
+  }
 }
 
 function cscircles_nosanitize($x) {return $x;}
 
 function cscircles_boolean_sanitize($x) {return $x=='on';}
 
+add_action('admin_init', 'cscircles_admin_init');
 function cscircles_admin_init() {
   register_setting('cscircles', 'cscircles_pjail', 'cscircles_nosanitize');
   register_setting('cscircles', 'cscircles_psafeexec', 'cscircles_nosanitize');

@@ -83,9 +83,10 @@ and
 
 and follow the (unfortunately long) installation instructions therein.
 
-After installation, go to 
-  Settings -> CS Circles
-and reference the locations of the safeexec binary and the jail directory.
+After installation, go to the admin pages/dashboard and select the 
+  "CS Circles"
+menu item at the bottom. Enter the locations of the safeexec binary & 
+jail directory.
 
 Note: in its current form, installing safeexec requires super-user (admin)
 permissions, in order to keep user code on separate accounts, which is

@@ -1,22 +1,15 @@
 <?php
 
-add_action('admin_menu', 'rebuild_databases_link');
-
-function rebuild_databases_link() {
-  if (userIsAdmin())
-    add_management_page("Rebuild CS Circles Databases", "Rebuild CS Circles Databases", "read", "cscircles-makedb", "cscircles_makedb_page");
-}
-
 function cscircles_makedb_page() {
 
   echo "<div class='wrap'>
 <h2>Rebuild CS Circles Databases</h2>
 <div>This page will rebuild the lesson database and the problem database. 
-(If you're writing your own lessons, it assumes a certain structure on
-the lesson slugs, contact us for help on this which is in progress.)</div>";
+(If you're writing your own lessons, it assumes a structure like 99X-lessontitle
+on the lesson slugs; contact us for help if needed.)</div>";
 
   if (!array_key_exists('submitted', $_REQUEST)) {
-    echo "<form method='get' action='tools.php'>
+    echo "<form method='get' action='admin.php'>
    <input type='hidden' name='page' value='cscircles-makedb'>
    <input type='hidden' name='submitted' value='true'>
    <button class='button-primary' id='submit'>Rebuild Databases</button></form>";

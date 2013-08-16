@@ -38,17 +38,17 @@ Settings
 
 Check if it worked:
 
-- [admin's user menu in top right corner]->"My progress" 
+- [user menu in top right corner]->"My progress" 
 
 You should see about 100 exercises grouped by lesson. Try solving some problems and visit it again.
 
 
-LaTeX (used on a handful of pages)
+Offline LaTeX (optional)
 
 - Go to Settings -> WP LaTeX
 
 - create wp-content/latex (same instructions as above for "wp-content/uploads")
 
-- switch from the server to dvipng or dvips+convert (the former looked marginally better on our server)
+- switch from the server to dvipng or dvips+convert
 
 - check out Geometric Mean and Gravity in lesson 7b to see if it is showing formulas
