@@ -3,6 +3,8 @@ google-analytics : no customizations
 role-scoper : use role-scoper.patch
 list-pages-shortcode : no customizations (previous ones were accepeted upstream)
 contact-form-7 : use contact-form-7.patch
+wp-importer : patch needed (backslashing issue)
+google-custom-search : patch needed
 all others : ask Dave
 
 ==== PATCHING INFO ====
