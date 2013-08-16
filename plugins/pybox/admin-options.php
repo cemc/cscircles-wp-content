@@ -8,7 +8,7 @@ function cscircles_administrator() {
   if (userIsAdmin()) {
     add_menu_page( 'CS Circles', 'CS Circles', 'edit_plugins',
                    'cscircles-options', 'cscircles_options_page',
-                   UFILES . 'checked16.png' );
+                   UFILES . 'checked16.png' , 73);
     add_submenu_page('cscircles-options', "Rebuild Databases", "Rebuild Databases", 
                      "edit_plugins", "cscircles-makedb", "cscircles_makedb_page");
   }
