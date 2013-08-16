@@ -163,6 +163,7 @@ require_once("db-problem-summary.php");
 require_once("admin-make-databases.php");
 require_once("admin-students.php");
 require_once("admin-options.php");
+require_once("tool-visualizer.php");
 //require_once("db-profiling.php"); kind of broken at the moment, but never used directly so ok
 
 // end of file
