@@ -7,5 +7,5 @@ themes/twentythirteen
 # don't track irrelevant built-in plugins
 plugins/hello.php
 # if user creates this, don't track it
-upload
+uploads
 latex

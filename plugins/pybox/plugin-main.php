@@ -16,11 +16,18 @@
 define('UWPHOME',  site_url('/') );
 define('PWP',  ABSPATH );
 
+if (FALSE === get_option('cscircles_pjail'))
+  update_option('cscircles_pjail', '/path/to/python3jail/');
+if (FALSE === get_option('cscircles_psafeexec'))
+  update_option('cscircles_psafeexec', '/path/to/safeexec/safeexec');
+define('PJAIL', get_option('cscircles_pjail', ''));
+define('PSAFEEXEC', get_option('cscircles_psafeexec', ''));
+
 require_once('plugin-config.php');
 require_once('plugin-constants.php');
 require_once('plugin-utilities.php'); 
 
-register_activation_hook(__FILE__, 'pybox_database_install');
+register_activation_hook(__FILE__, 'pybox_install');
 // for information about upgrading see
 // http://codex.wordpress.org/Creating_Tables_with_Plugins
 
@@ -155,6 +162,7 @@ require_once("db-problem-history.php");
 require_once("db-problem-summary.php");
 require_once("admin-make-databases.php");
 require_once("admin-students.php");
+require_once("admin-options.php");
 //require_once("db-profiling.php"); kind of broken at the moment, but never used directly so ok
 
 // end of file

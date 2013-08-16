@@ -22,6 +22,18 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
      throw new PyboxException('invalid cpulimit ' . 
 			      var_export($cpulimit, TRUE));
 
+   if (PJAIL == '')
+     throw new PyboxException('PJAIL is an empty string');
+
+   if (PSAFEEXEC == '')
+     throw new PyboxException('PSAFEEXEC is an empty string');
+
+   if (substr(PJAIL, 0, 1) != '/')
+     throw new PyboxException('PJAIL must start with a slash; currently ' . PJAIL);
+
+   if (substr(PSAFEEXEC, 0, 1) != '/')
+     throw new PyboxException('PSAFEEXEC must start with a slash; currently ' . PSAFEEXEC);
+
    // NOTE: if you run in to problems, try avoiding symlinks
    if (!file_exists(PJAIL))
      throw new PyboxException('could not find python3jail directory at PJAIL="' . PJAIL .'" '

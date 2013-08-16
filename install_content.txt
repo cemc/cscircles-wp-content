@@ -6,19 +6,19 @@ needed to install its contents.
 
 Installing CS Circles Content
 
-- Get latest cscircles repo ("git pull", save plugin-config.php elsewhere first & restore after)
+- Get latest cscircles repo ("git pull")
 
 - Plugins->Installed Plugins: activate Python in a Box, Polylang, LaTeX, WordPress Importer if not already activated
 
 - Important! Make sure all 4 of the plugins just mentioned are activated.
 
-- double-check that theme is installed & configured (see wp-content/README.md)
+- double-check that pybox 2011 child theme is activated (see README.md)
 
 File Import
 
 The wordpress mechanism requires uploading the .xml file first, which needs a directory permission.
 
-- create wp-content/upload and make it webserver writeable (either chmod a+rw it, or sudo chgrp apache it followed by chmod g+rw)
+- create wp-content/uploads and make it webserver writeable (either chmod a+rw it, or sudo chgrp apache it followed by chmod g+rw)
 
 - go to Tools->Import->WordPress, upload the .xml file
 
@@ -34,33 +34,20 @@ Settings
 
 - Appearance->Menus, pick the English menu, at bottom check "Primary Menu English"
 
-- Settings->Permalinks, change to "Post name"
-
-- if instructed on that page, copy text from bottom of page and copy to wordpress/.htaccess file
-  and ensure it has chmod a+r permissions
-
-(if broken at this point, your web server is probably not allowing .htaccess overriding. Visit
-http://your-server/wp-admin directly to undo the change. It is not critical.)
-
 - [admin menu in top, 3 spots from right]->"Rebuild Databases", press button (you should see lots of output)
 
 Check if it worked:
 
 - [admin's user menu in top right corner]->"My progress" 
 
-Does it look like the page on the official CS Circles site?
-
-Try solving some problems. Then look at your progress page again; does it reflect what you did?
+You should see about 100 exercises grouped by lesson. Try solving some problems and visit it again.
 
 
+LaTeX (used on a handful of pages)
 
-There is a final thing to get the LaTeX engine working, which normally uses a web server.
+- Go to Settings -> WP LaTeX
 
-Go to Settings -> WP LaTeX
-
-- change background color to "transparent" (this is just superficial, but it's what we use)
-
-- create wp-content/latex (same instructions as above for "wp-content/upload")
+- create wp-content/latex (same instructions as above for "wp-content/uploads")
 
 - switch from the server to dvipng or dvips+convert (the former looked marginally better on our server)
 

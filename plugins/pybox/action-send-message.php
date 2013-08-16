@@ -40,7 +40,7 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
   $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
 
   if ($to == 0) {
-    $to_emailaddr = CSCIRCLES_ASST_EMAIL;
+    $to_emailaddr = get_option('cscircles_asst_email', get_userdata(1)->user_email);
     if (pll_current_language()=='de')
       $to_emailaddr = get_user_by('id', CSCIRCLES_ASST_ID_DE)->user_email;
   }

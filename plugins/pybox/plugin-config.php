@@ -1,19 +1,6 @@
 <?php
 
-// CHANGE THESE: where are safeexec and python3jail installed? 
-// (wordpress defines ABSPATH as absolute path to wordpress dir, ending in slash)
-// these are the CEMC defaults, but yours can be anywhere
-// you probably don't want them in a web-viewable directory
-define('PJAIL', ABSPATH . '../../python3jail/'); // with trailing slash
-define('PSAFEEXEC', ABSPATH . '../../safeexec/safeexec'); // binary executable
-// you don't need to use ABSPATH at all: /home/myaccount/python3jail/ is fine for example
-// if for some reason you want to use a relative path, it should be relative to the "pybox" directory (see action-submit-code.php)
-
-// change these to e-mail addresses that you will read. they can be the same.
-define('CSCIRCLES_EMAIL', 'cscircles@uwaterloo.ca');
-define('CSCIRCLES_ASST_EMAIL', 'csc-assistant@uwaterloo.ca');
-
-// ******** you probably don't need to edit anything below this line ******** //
+  // this file contains things you might need to personalize but probably do not.
 
 define('UVISUALIZER', 'http://cscircles.cemc.uwaterloo.ca/visualize/' ); // hacky; will be fixed later
 define('CSCIRCLES_ASST_ID_DE', 11351); // hacky; will be fixed later

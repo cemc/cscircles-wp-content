@@ -56,9 +56,7 @@ Activating new content, on WordPress admin dashboard:
 If you want the appearance to be the same as CS Circles:
  - go to Appearance/Themes and activate "Pybox 2011 Child Theme"
  - go to Settings/Reading, set Front Page Displays to a static page
-   (currently we don't have theming for posts figured out)
- - go to Settings/Discussion, turn off Show Avatars
-   (or else there will be a big blank spot in the user menu)
+   (currently we don't have theming designed for posts)
 
 Then you are good to go as far as WordPress is concerned! To test
 it out, create a WordPress page and enter some shortcodes like
@@ -94,11 +92,41 @@ permissions, in order to keep user code on separate accounts, which is
 how we keep different submissions from interfering with each other.
 
 Note 2: If you can't get this to work please let us know. Initial steps 
-are to look at the web server logs and configuration. Try creating a file
-called phpinfo.php containing just
-  <?php echo phpinfo(); ?>
-and e-mail us a link to this page as a starting point, two important
-things may be basedir, and later, mod_rewrite.
+are to look at the web server logs, configuration, and phpinfo(). We
+ran in to 'basedir' problems once.
+
+Note 3: Once installed, go to Settings->CS Circles 
+
+
+Optional Additional Setup
+-------------------------
+If you want people to be able to register themselves,
+ - go to Settings/Membership and select "Anyone can Register"
+Otherwise you will have to create each account.
+
+Some minor functionality requires that you have named links instead of 
+numbered ones. Go to Settings->Permalinks, change to "Post name".
+
+- When you press "Save Changes", if you get the yellow box 
+    "You should update your .htaccess now." 
+  at the top of the page, follow the instructions at the bottom of the page.
+  This .htaccess file should be in the "wordpress" directory.
+
+Does your website work? Try going to the home page. If it's broken
+(404 / Not Found) maybe one of the following three things happened.
+(a) the mod_rewrite module needs to be activated? read rewrite_help.php
+  in this folder if you're not sure how to check this and fix this.
+(b) the module is installed but .htaccess files are not allowed? 
+  edit the server .conf file and change "AllowOverride None"
+  for your site to "AllowOverride All". Then restart the server process.
+(c) the .htaccess file cannot be read by the webserver user account?
+  edit it to start with a garbage line like Blah. Now you should get a 
+  500 / Internal Error instead if the file is being read.
+  (Remove that garbage line after.)
+
+If needed, you may switch back and forth by manually visiting 
+ http://your-site/cscircles/wp-admin
+
 
 Writing content
 ---------------
@@ -109,6 +137,7 @@ the bottom-left of exercises, examples and lessons. Feel free to
 copy the entire source code for the pages (including the authorship
 info). You can make derivative works under the conditions of the 
 license mentioned on the get-source page.
+
 
 Files listing 
 -------------

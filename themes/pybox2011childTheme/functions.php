@@ -3,6 +3,17 @@ define( 'HEADER_IMAGE_WIDTH', apply_filters( 'twentyeleven_header_image_width', 
 define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'twentyeleven_header_image_height', 150 ) );
 define( 'HEADER_IMAGE', content_url('/themes/pybox2011childTheme/images/header.jpg') );
 
+// don't show avatars
+add_filter('pre_option_show_avatars', 'do_not_show_avatars');
+function do_not_show_avatars() { return 0; }
+
+// transparent latex backgrounds
+add_filter('option_wp_latex', 'transparent_latex_bg');
+function transparent_latex_bg($opts) {
+  $opts['bg'] = 'transparent';
+  return $opts; 
+}
+
 // removes the profile.php admin color scheme options
 remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 
