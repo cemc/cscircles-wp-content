@@ -174,7 +174,8 @@ add_filter('show_admin_bar', '__return_true');
 add_action('admin_bar_menu', 'pb_menu_items', 5);
 function pb_menu_items($wp_admin_bar) {
   $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('progress'), 'title'=>__t('My Progress'), 'id'=>'up'));
-  $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('mail'), 'title'=>__t('Mail'), 'id'=>'uppity'));
+  if (!get_option('cscircles_hide_help'))
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('mail'), 'title'=>__t('Mail'), 'id'=>'uppity'));
   $wp_admin_bar->add_menu( array( 'id'=>'snappy', 'parent' => 'user-actions', 'title' => __t('Console (new window)'), 'href' => cscurl('console'), "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => __t('Resources (new window)'), 'href' => cscurl('resources'), "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => __t('Contact Us (new window)'), 'href' => cscurl('contact'), "meta" => array("target" => "_blank")));

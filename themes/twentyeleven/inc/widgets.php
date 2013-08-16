@@ -30,7 +30,7 @@ class Twenty_Eleven_Ephemera_Widget extends WP_Widget {
 	 *
 	 * @param array An array of standard parameters for widgets in this theme
 	 * @param array An array of settings for this widget instance
-	 * @return void Echoes it's output
+	 * @return void Echoes its output
 	 **/
 	function widget( $args, $instance ) {
 		$cache = wp_cache_get( 'widget_twentyeleven_ephemera', 'widget' );
@@ -86,7 +86,7 @@ class Twenty_Eleven_Ephemera_Widget extends WP_Widget {
 				<?php if ( 'link' != get_post_format() ) : ?>
 
 				<li class="widget-entry-title">
-					<a href="<?php echo esc_url( get_permalink() ); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+					<a href="<?php echo esc_url( get_permalink() ); ?>" rel="bookmark"><?php the_title(); ?></a>
 					<span class="comments-link">
 						<?php comments_popup_link( __( '0 <span class="reply">comments &rarr;</span>', 'twentyeleven' ), __( '1 <span class="reply">comment &rarr;</span>', 'twentyeleven' ), __( '% <span class="reply">comments &rarr;</span>', 'twentyeleven' ) ); ?>
 					</span>
@@ -95,14 +95,7 @@ class Twenty_Eleven_Ephemera_Widget extends WP_Widget {
 				<?php else : ?>
 
 				<li class="widget-entry-title">
-					<?php
-						// Grab first link from the post content. If none found, use the post permalink as fallback.
-						$link_url = twentyeleven_url_grabber();
-
-						if ( empty( $link_url ) )
-							$link_url = get_permalink();
-					?>
-					<a href="<?php echo esc_url( $link_url ); ?>" title="<?php echo esc_attr( sprintf( __( 'Link to %s', 'twentyeleven' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?>&nbsp;<span>&rarr;</span></a>
+					<a href="<?php echo esc_url( twentyeleven_get_first_url() ); ?>" rel="bookmark"><?php the_title(); ?>&nbsp;<span>&rarr;</span></a>
 					<span class="comments-link">
 						<?php comments_popup_link( __( '0 <span class="reply">comments &rarr;</span>', 'twentyeleven' ), __( '1 <span class="reply">comment &rarr;</span>', 'twentyeleven' ), __( '% <span class="reply">comments &rarr;</span>', 'twentyeleven' ) ); ?>
 					</span>

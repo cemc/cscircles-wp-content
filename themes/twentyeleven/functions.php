@@ -224,7 +224,7 @@ function twentyeleven_header_style() {
 
 	// If we get this far, we have custom styles. Let's do this.
 	?>
-	<style type="text/css">
+	<style type="text/css" id="twentyeleven-header-css">
 	<?php
 		// Has the text been hidden?
 		if ( 'blank' == $text_color ) :
@@ -259,7 +259,7 @@ if ( ! function_exists( 'twentyeleven_admin_header_style' ) ) :
  */
 function twentyeleven_admin_header_style() {
 ?>
-	<style type="text/css">
+	<style type="text/css" id="twentyeleven-admin-header-css">
 	.appearance_page_custom-header #headimg {
 		border: none;
 	}
@@ -317,8 +317,8 @@ function twentyeleven_admin_header_image() { ?>
 		else
 			$style = ' style="display:none"';
 		?>
-		<h1><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		<div id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
+		<h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+		<div id="desc" class="displaying-header-text"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
 		<?php if ( $image ) : ?>
 			<img src="<?php echo esc_url( $image ); ?>" alt="" />
 		<?php endif; ?>
@@ -457,6 +457,24 @@ function twentyeleven_content_nav( $html_id ) {
 	<?php endif;
 }
 endif; // twentyeleven_content_nav
+
+/**
+ * Return the first link from the post content. If none found, the
+ * post permalink is used as a fallback.
+ *
+ * @uses get_url_in_content() to get the first URL from the post content.
+ *
+ * @return string
+ */
+function twentyeleven_get_first_url() {
+	$content = get_the_content();
+	$has_url = function_exists( 'get_url_in_content' ) ? get_url_in_content( $content ) : false;
+
+	if ( ! $has_url )
+		$has_url = twentyeleven_url_grabber();
+
+	return ( $has_url ) ? $has_url : apply_filters( 'the_permalink', get_permalink() );
+}
 
 /**
  * Return the URL for the first link found in the post content.
@@ -612,3 +630,42 @@ function twentyeleven_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'twentyeleven_body_classes' );
 
+/**
+ * Retrieves the IDs for images in a gallery.
+ *
+ * @uses get_post_galleries() first, if available. Falls back to shortcode parsing,
+ * then as last option uses a get_posts() call.
+ *
+ * @since Twenty Eleven 1.6.
+ *
+ * @return array List of image IDs from the post gallery.
+ */
+function twentyeleven_get_gallery_images() {
+	$images = array();
+
+	if ( function_exists( 'get_post_galleries' ) ) {
+		$galleries = get_post_galleries( get_the_ID(), false );
+		if ( isset( $galleries[0]['ids'] ) )
+		 	$images = explode( ',', $galleries[0]['ids'] );
+	} else {
+		$pattern = get_shortcode_regex();
+		preg_match( "/$pattern/s", get_the_content(), $match );
+		$atts = shortcode_parse_atts( $match[3] );
+		if ( isset( $atts['ids'] ) )
+			$images = explode( ',', $atts['ids'] );
+	}
+
+	if ( ! $images ) {
+		$images = get_posts( array(
+			'fields'         => 'ids',
+			'numberposts'    => 999,
+			'order'          => 'ASC',
+			'orderby'        => 'menu_order',
+			'post_mime_type' => 'image',
+			'post_parent'    => get_the_ID(),
+			'post_type'      => 'attachment',
+		) );
+	}
+
+	return $images;
+}

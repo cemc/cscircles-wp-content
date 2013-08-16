@@ -663,7 +663,7 @@ if (!$facultative && !$scramble) {
     }
   }
 
-  if (!$facultative && !$scramble) {
+  if (!$facultative && !$scramble && !(get_option('cscircles_hide_help'))) {
     $actions['help'] = array('value'=>__t('Help'), 'onclick'=>"helpClick($id);");
   }
 
