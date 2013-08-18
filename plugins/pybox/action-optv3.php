@@ -1,11 +1,32 @@
 <?php
 
+  // read http request variables, from cgi, then pass them on 
+  // as a json dict to python's maketrace in jail
+
 require_once("include-to-load-wp.php");
 foreach ($_REQUEST as $k => $v)
   $_REQUEST[$k] = stripslashes($v);
 
-  // read http request variables, from cgi, then pass them on 
-  // as a json dict to python's maketrace in jail
+if (!array_key_exists('user_script', $_REQUEST) || !array_key_exists('raw_input_json', $_REQUEST))
+  {
+    echo "Error, missing inputs";
+    return;
+  }
+
+$logRow = array(
+                'beginstamp' => date( 'Y-m-d H:i:s', time() ),
+                'usercode' => $_REQUEST['user_script'],
+                'userinput' => $_REQUEST['raw_input_json'],
+                'hash' => 'visualizer',
+                'postmisc' => '',
+                'problem' => 'visualizer', 
+                'ipaddress' => ($_SERVER['REMOTE_ADDR']),
+                'referer' => ($_SERVER['HTTP_REFERER']),
+                'userid' => is_user_logged_in() ? wp_get_current_user()->ID : -1);
+
+global $wpdb;
+$table_name = $wpdb->prefix . "pb_submissions";
+$wpdb->insert( $table_name, $logRow);
 
 $descriptorspec = array
     (0 => array("pipe", "r"), 
