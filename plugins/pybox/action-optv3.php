@@ -1,5 +1,7 @@
 <?php
 
+require_once("include-to-load-wp.php");
+
   // read http request variables, from cgi, then pass them on 
   // as a json dict to python's maketrace in jail
 
@@ -9,7 +11,7 @@ $descriptorspec = array
      2 => array("pipe", "w")
      );
 
-$command = "/home/cscircles/dev/safeexec/safeexec --env_vars PY --gid 1000 --uidplus 10000 --cpu 5 --mem 100000 --clock 7 --chroot_dir /home/cscircles/dev/python3jail --exec_dir /static/OnlinePythonTutor/v3/ --exec /bin/python3 -S -u csc_exec.py -";
+$command = PSAFEEXEC . " --env_vars PY --gid 1000 --uidplus 10000 --cpu 5 --mem 100000 --clock 7 --chroot_dir " . PJAIL . " --exec_dir /static/OnlinePythonTutor/v3/ --exec /bin/python3 -S -u csc_exec.py -";
 
 $process = proc_open($command, $descriptorspec, $pipes);
 
