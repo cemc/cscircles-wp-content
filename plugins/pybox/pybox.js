@@ -566,7 +566,7 @@ function undo_htmlspecialchars(S) {
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   
 
-	$('ul.pyscramble').sortable();
+        $('ul.pyscramble').sortable();
 	$('.resizy').resizable({handles:'s',minHeight:50});
 	$('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
