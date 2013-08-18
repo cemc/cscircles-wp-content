@@ -177,6 +177,7 @@ function pb_menu_items($wp_admin_bar) {
   if (!get_option('cscircles_hide_help'))
     $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('mail'), 'title'=>__t('Mail'), 'id'=>'uppity'));
   $wp_admin_bar->add_menu( array( 'id'=>'snappy', 'parent' => 'user-actions', 'title' => __t('Console (new window)'), 'href' => cscurl('console'), "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'snappie', 'parent' => 'user-actions', 'title' => __t('Visualizer (new window)'), 'href' => cscurl('visualize'), "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => __t('Resources (new window)'), 'href' => cscurl('resources'), "meta" => array("target" => "_blank")));
   $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => __t('Contact Us (new window)'), 'href' => cscurl('contact'), "meta" => array("target" => "_blank")));
 

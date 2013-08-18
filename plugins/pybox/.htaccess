@@ -13,6 +13,11 @@ Allow from All
 Allow from All
 </FilesMatch>
 
+# for OnlinePythonTutor
+<FilesMatch "\.(txt)$">
+Allow from All
+</FilesMatch>
+
 # only public for convenience so translators can easily get latest version
 <FilesMatch "\.(po|pot)">
 Allow from All

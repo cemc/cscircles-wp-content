@@ -312,7 +312,6 @@ function pbVisualize(id, tni) {
     var form = document.createElement("form");
     form.setAttribute("method", "post");
     form.setAttribute("target", "_blank");
-    form.setAttribute("action", VISUALIZEURL);
 
     usercode = pbGetText(id);
 
@@ -324,22 +323,26 @@ function pbVisualize(id, tni) {
 	    usercode += '\n# '+__t('end of main program')+'\n\n# '+__t('start of tests')+'\n' + extrainput;
 	}
 	else {
-	    params["userinput"] = extrainput;
+	    params["raw_input"] = extrainput;
 	}
     }
 
-    params["usercode"] =  usercode;
+    params["code"] =  usercode;
 
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-	    var hiddenField = document.createElement("input");
-	    hiddenField.setAttribute("type", "hidden");
-	    hiddenField.setAttribute("name", key);
-	    hiddenField.setAttribute("value", params[key]);
-	    
-	    form.appendChild(hiddenField);
-        }
+  var bbquery = '';
+  var numparams=0;
+  for (var key in params) {
+    if (params.hasOwnProperty(key)) {
+      if (numparams==0) bbquery += '#';
+      else bbquery += '&';
+      numparams++;
+      bbquery += encodeURIComponent(key);
+      bbquery += '=';
+      bbquery += encodeURIComponent(params[key]);
     }
+  }
+
+    form.setAttribute("action", VISUALIZEURL + bbquery);
 
     document.body.appendChild(form);
     form.submit();

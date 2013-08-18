@@ -7,6 +7,8 @@ define('PDATADIR', PWP . 'wp-content/lesson_files/');
 
 // U: URL constant
 
+define('UVISUALIZER', UWPHOME . 'visualizer/');
+
 define('UWPCONTENT', UWPHOME . 'wp-content/');
 define('UPYBOX', UWPCONTENT . 'plugins/pybox/');
 define('UCODEMIRROR2', UPYBOX . 'CodeMirror2/');

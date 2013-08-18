@@ -2,7 +2,6 @@
 
   // this file contains things you might need to personalize but probably do not.
 
-define('UVISUALIZER', 'http://cscircles.cemc.uwaterloo.ca/visualize/' ); // hacky; will be fixed later
 define('CSCIRCLES_ASST_ID_DE', 11351); // hacky; will be fixed later
 
 // optional reporting and exporting.
