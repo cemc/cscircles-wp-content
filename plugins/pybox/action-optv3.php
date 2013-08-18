@@ -1,6 +1,8 @@
 <?php
 
 require_once("include-to-load-wp.php");
+foreach ($_REQUEST as $k => $v)
+  $_REQUEST[$k] = stripslashes($v);
 
   // read http request variables, from cgi, then pass them on 
   // as a json dict to python's maketrace in jail
