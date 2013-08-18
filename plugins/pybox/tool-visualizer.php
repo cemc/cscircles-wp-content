@@ -11,6 +11,6 @@ function visualizer_tr() {
 
   $wp_query->is_404 = false;
   header("HTTP/1.1 200 OK");
-  include("visualize.php-include");
+  //include("visualize.php-include");
   exit;
 }

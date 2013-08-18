@@ -117,8 +117,14 @@ Execute code using
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 </p>
 
+<?php
+        echo "flkfdslkdnfglkdfg";
+  if (is_user_logged_in())
+          echo niceFlex('us', __t('Your visualizer submissions'),
+	                'problem-history', 'dbProblemHistory', array('user'=>$getUserID(), 'p'=>'visualizer'));
+?>
 
-<p style="margin-top: 25px;">Basic Examples:<br/>
+<p style="margin-top: 25px;">Basifnsdc Examples:<br/>
 
 <a id="aliasExampleLink" href="#">hello</a> |
 <a id="happyExampleLink" href="#">happy</a> |
