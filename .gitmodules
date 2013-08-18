@@ -1,0 +1,3 @@
+[submodule "plugins/pybox/OnlinePythonTutor"]
+	path = plugins/pybox/OnlinePythonTutor
+	url = git@github.com:cemc/OnlinePythonTutor.git
