@@ -524,7 +524,6 @@ function descape(S) {
     return jQuery.parseJSON('"' + S + '"');
 }
 
-$('.collapseHead').live('click', toggleSibling);
 function toggleSibling(event) {
     var con = $(this).parents('.collapseContain'); // .collapseContain
 //    console.log(con.size(), con);
@@ -566,9 +565,12 @@ function undo_htmlspecialchars(S) {
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   
 
+      $('.collapseHead').live('click', toggleSibling);
+      $('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
+
+      if (typeof justVisualizing === 'undefined') {
         $('ul.pyscramble').sortable();
 	$('.resizy').resizable({handles:'s',minHeight:50});
-	$('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
 	if (window.location.hash) {
 	    setTimeout("window.scrollBy(0, -60)", 10); // so direct links aren't hidden by adminbar
@@ -576,7 +578,7 @@ $( // this call to $ makes it delay until the DOM is loaded
 
 	$("#wp-admin-bar-site-name").after($("#pylangswitcher li"));
 	$("#pylangswitcher").remove();
-
-	flexfixall();
+      }
+      flexfixall();
     }
 );

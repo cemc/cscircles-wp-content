@@ -14,10 +14,7 @@ function pyBoxInit() {
  wp_enqueue_style( 'wp-jquery-ui-dialog' );
 }
 
-add_action('wp_head', 'pyBoxHead');
-function pyBoxHead() {
-  echo "<script type='text/javascript'>\n";
-
+function printJSTranslation() {
   // if language is english, define __t as doing nothing
   if (get_locale() == 'fr_FR' || get_locale() == 'de_DE') {
     echo sprintf("var translationArray = %s;", jsonTranslationArray());
@@ -25,6 +22,14 @@ function pyBoxHead() {
   else {
     echo "var translationArray = null;";
   }
+}
+
+add_action('wp_head', 'pyBoxHead');
+function pyBoxHead() {
+  echo "<script type='text/javascript'>\n";
+
+  printJSTranslation();
+  
   echo sprintf("var SUBMITURL = '%s';\n", USUBMIT);
   echo sprintf("var SETCOMPLETEDURL = '%s';\n", USETCOMPLETED);
   echo sprintf("var CONSOLEURL = '%s';\n", cscurl('console'));

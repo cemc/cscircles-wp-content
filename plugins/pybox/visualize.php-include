@@ -1,6 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- based on visualize.html in OnlinePythonTutor/v3 -->
+
    <base href="../wp-content/plugins/pybox/OnlinePythonTutor/v3/">
+
 
 <!--
 
@@ -51,10 +55,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script type="text/javascript" src="js/pytutor.js"></script>
 <link rel="stylesheet" href="css/pytutor.css"/>
 
-<!--
+<?php
+  echo "<script type='text/javascript' src='".UFLEXIGRID."js/flexigrid.js'></script>\n";
+  echo '<link type="text/css" rel="stylesheet" href="'.UFLEXIGRID.'css/flexigrid.css" />' . "\n";
+?>
+
+<script type="text/javascript">justVisualizing = true;
+<?php printJSTranslation(); ?></script>
 <script type="text/javascript" src="../../pybox.js"></script>
 <link rel="stylesheet" href="../../pybox.css"/>
--->
 
 <!-- requirements for opt-frontend.js -->
 
@@ -117,14 +126,14 @@ Execute code using
   </select>.
 </p>
 
-<p>
+<p style='text-align:center'>
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 </p>
 
 <?php
 
-  if (0 && is_user_logged_in())
-          echo niceFlex('us', __t('Your visualizer submissions'),
+  if (is_user_logged_in())
+          echo niceFlex('us', __t('History of previous visualizer submissions'),
 	                'problem-history', 'dbProblemHistory', 
                         array('user'=>getUserID(), 'p'=>'visualizer'));
 ?>
@@ -223,7 +232,7 @@ Execute code using
 
 <p>To share this visualization, click the 'Generate URL' button above
 and share that URL. To report a bug, paste the URL along with a brief
-error description in an email addressed to philip@pgbovine.net</p>
+error description in an email addressed to daveagp@gmail.com</p>
 
 <!--
 <div id="embedLinkDiv">
