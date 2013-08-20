@@ -68,12 +68,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <!-- requirements for opt-frontend.js -->
 
 <!-- codemirror.net online code editor -->
-<script type="text/javascript" src="js/codemirror/codemirror.js"></script>
-<link type="text/css" href="css/codemirror.css" rel="stylesheet" />
-<script type="text/javascript" src="js/codemirror/python.js"></script>
+<script type="text/javascript" src="../../CodeMirror3/lib/codemirror.js"></script>
+<link type="text/css" href="../../CodeMirror3/lib/codemirror.css" rel="stylesheet" />
+<script type="text/javascript" src="../../CodeMirror3/mode/python/python.js"></script>
 
 <script type="text/javascript" src="js/opt-frontend.js"></script>
 <link rel="stylesheet" href="css/opt-frontend.css"/>
+
+<style>
+.CodeMirror {
+  border: 1px solid #eee;
+  height: auto;
+}
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+</style>
 
 </head>
 
