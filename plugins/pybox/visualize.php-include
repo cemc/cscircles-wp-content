@@ -92,12 +92,6 @@ Write your Python 3 code here:
 
 <div id="codeInputPane"></div> <!-- populate with a CodeMirror instance -->
 
-<br/>
-Optional text input for the program (e.g., to read with input()):
-<br/>
- 
-<textarea id="stdinPane" cols="55" rows="5" wrap="off" style='width:100%'></textarea>
-
 <p style="margin-top: 10px; line-height: 200%; display: none">
 Execute code using
   <select id="pythonVersionSelector">
@@ -130,6 +124,15 @@ Execute code using
 <button id="executeBtn" class="bigBtn" type="button">Visualize Execution</button>
 </p>
 
+<div class="collapseContain hiding">
+<div class="collapseHead"><span class="icon"></span>Enter
+ optional text input for the program to read with <tt>input()</tt>:
+</div> 
+<div class="collapseBody">
+<textarea id="stdinPane" cols="55" rows="5" wrap="off" style='width:100%'></textarea>
+</div>
+</div>
+
 <?php
 
   if (is_user_logged_in())
@@ -138,7 +141,12 @@ Execute code using
                         array('user'=>getUserID(), 'p'=>'visualizer'));
 ?>
 
-<p style="margin-top: 25px;">Basic Examples:<br/>
+<div class="collapseContain hiding">
+<div class="collapseHead"><span class="icon"></span>Examples
+</div> 
+<div class="collapseBody">
+
+<p>Basic Examples:<br/>
 
 <a id="aliasExampleLink" href="#">hello</a> |
 <a id="happyExampleLink" href="#">happy</a> |
@@ -218,6 +226,8 @@ Execute code using
 <a id="nonlocalLink" href="#">nonlocal</a>
 </p>
 
+</div></div> <!-- collapse body, container -->
+
 </div>
 
 
@@ -231,8 +241,8 @@ Execute code using
 </p>
 
 <p>To share this visualization, click the 'Generate URL' button above
-and share that URL. To report a bug, paste the URL along with a brief
-error description in an email addressed to daveagp@gmail.com</p>
+and share that URL. Use can use it to share with others or 
+<a href="<?php cscurl('contact'); ?>">report a bug</a>.
 
 <!--
 <div id="embedLinkDiv">
@@ -284,7 +294,7 @@ to receive occasional announcements.
 
 <p style="margin-top: 8px;">
 Original tool &copy; 2010-2013 <a href="http://www.pgbovine.net/">Philip Guo</a>. 
-This version tweaked by <a href="http://cscircles.cemc.uwaterloo.ca">CS Circles</a>.
+This version by <a href="http://cscircles.cemc.uwaterloo.ca">CS Circles</a>.
 </p>
 
 </div>
