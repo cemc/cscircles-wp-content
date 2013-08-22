@@ -249,17 +249,22 @@ function pbCodeMirror(id) {
     cmed[id] = CodeMirror.fromTextArea
     (document.getElementById("usercode"+id), //"cmta"
      {
-	 mode: 
-	 {name: "python", 
-	  version: 3, 
-	  singleLineStringErrors: false
-	 }, 
-	 lineNumbers: true, 
-	 indentUnit: 3,
-	 tabSize: 3,
-	 tabMode: "shift", 
-	 matchBrackets: true,
-	 readOnly: ro   
+       mode: 
+       {name: "python", 
+	version: 3, 
+	singleLineStringErrors: false
+       }, 
+       lineNumbers: true, 
+       indentUnit: 3,
+       tabSize: 3,
+       matchBrackets: true,
+       readOnly: ro,
+       extraKeys: {
+         Tab: function(cm) {
+           var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+           cm.replaceSelection(spaces, "end", "+input");
+         }
+       }
      }
     );
     
