@@ -34,7 +34,7 @@ $descriptorspec = array
      2 => array("pipe", "w")
      );
 
-$command = PSAFEEXEC . " --env_vars PY --gid 1000 --uidplus 10000 --cpu 5 --mem 100000 --clock 7 --chroot_dir " . PJAIL . " --exec_dir /static/OnlinePythonTutor/v3/ --exec /bin/python3 -S -u csc_exec.py -";
+$command = PSAFEEXEC . " --env_vars PY --gid 1000 --uidplus 10000 --cpu 5 --mem 100000 --clock 7 --chroot_dir " . PJAIL . " --exec_dir /static/OnlinePythonTutor3-cemc/ --exec /bin/python3 -S -u csc_exec.py -";
 
 $process = proc_open($command, $descriptorspec, $pipes);
 
