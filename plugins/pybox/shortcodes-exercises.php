@@ -1,17 +1,17 @@
 <?php
 
 // UI elements
-add_sweetcode('pyLink', 'pyLinkHandler', true);
-add_sweetcode('pyHint', 'pyHintHandler', true);
-add_sweetcode('pyWarn', 'pyWarnHandler', true);
+add_sweetcode('pyLink', 'pyLinkHandler', "NP");
+add_sweetcode('pyHint', 'pyHintHandler', "N"); // to allow hint="<pre>"
+add_sweetcode('pyWarn', 'pyWarnHandler', "NP");
 
 // exercises (and examples)
-add_sweetcode('pyScramble', 'pyScrambleHandler', true);
-add_sweetcode('pyExample', 'pyExampleHandler', true);
-add_sweetcode('pyBox', 'pyBoxHandler', true);
-add_sweetcode('pyShort', 'pyShortHandler', true);
-add_sweetcode('pyMulti', 'pyMultiHandler', true);
-add_sweetcode('pyMultiScramble', 'pyMultiScrambleHandler', true);
+add_sweetcode('pyScramble', 'pyScrambleHandler', "NP");
+add_sweetcode('pyExample', 'pyExampleHandler', "NP");
+add_sweetcode('pyBox', 'pyBoxHandler', "NP");
+add_sweetcode('pyShort', 'pyShortHandler', "NP");
+add_sweetcode('pyMulti', 'pyMultiHandler', "NP");
+add_sweetcode('pyMultiScramble', 'pyMultiScrambleHandler', "NP");
 
 // for translation and/or embedding exercises in new places (like mail page)
 add_sweetcode('pyRecall', 'pyRecallHandler', true);

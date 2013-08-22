@@ -81,16 +81,21 @@ get around this.
  *****/
 
 $sweetcode_tags = array();
-$sweetcode_flags = array(); //delete all literal newlines from body?
 
-function add_sweetcode($tag, $func, $stripnewlines = false) {
+$sweetcode_strip_nl_body = array();
+$sweetcode_strip_pre_arg = array();
+
+function add_sweetcode($tag, $func, $flags) {
   global $sweetcode_tags;
-  global $sweetcode_flags;
+  global $sweetcode_strip_nl_body;
+  global $sweetcode_strip_pre_arg;
   
   if ( is_callable($func) ) {
     $sweetcode_tags[$tag] = $func;
-    if ($stripnewlines)
-      $sweetcode_flags[] = $tag;
+    if (strstr($flags, "N") !== FALSE)
+      $sweetcode_strip_nl_body[] = $tag;
+    if (strstr($flags, "P") !== FALSE)
+      $sweetcode_strip_pre_arg[] = $tag;
   }
 }
 
@@ -104,11 +109,12 @@ function do_sweetcode($content) {
   return preg_replace_callback( "/$pattern/s", 'do_sweetcode_tag', $content );
 }
 
-function get_sweetcode_regex($flagged_only = false) {
+function get_sweetcode_regex($strip_nl_only = false) {
   global $sweetcode_tags;
-  global $sweetcode_flags;
-  if ($flagged_only)
-    $tagnames = $sweetcode_flags;
+  global $sweetcode_strip_nl_body;
+  global $sweetcode_strip_pre_arg;
+  if ($strip_nl_only)
+    $tagnames = $sweetcode_strip_nl_body;
   else
     $tagnames = array_keys($sweetcode_tags);
   $tagregexp = join( '|', array_map('preg_quote', $tagnames) );
@@ -160,7 +166,7 @@ function do_sweetcode_tag( $m ) {
 
   $tag = $m[2];
 
-  $attr = sweetcode_parse_atts( $m[3] );
+  $attr = sweetcode_parse_atts( $m[3] , $m[2]);
 
   if ( isset( $m[5] ) ) {
     // enclosing tag - extra parameter
@@ -171,7 +177,7 @@ function do_sweetcode_tag( $m ) {
   }
 }
 
-function sweetcode_parse_atts($text) {
+function sweetcode_parse_atts($text, $tag) {
   $atts = array();
 
   $pattern = 
@@ -181,9 +187,12 @@ function sweetcode_parse_atts($text) {
     .'|"([^"]*)"(?:\s|$)'
     .'|([^ ="\'\s]+)(?:\s|$)/'; // modified
 
-  // we want to allow the user to use these
-  $text = str_replace("<pre>", "", $text);
-  $text = str_replace("</pre>", "", $text);
+  global $sweetcode_strip_pre_arg;
+  if (in_array($tag,  $sweetcode_strip_pre_arg)) {
+    // we want to allow the user to use these
+    $text = str_replace("<pre>", "", $text);
+    $text = str_replace("</pre>", "", $text);
+  }
 
   // deal with our methodology for keeping newlines in args only
   $text = str_replace("<!--argOnlyNewline-->", "\n", $text);

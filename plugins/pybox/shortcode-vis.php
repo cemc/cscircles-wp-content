@@ -1,6 +1,6 @@
 <?php
 
-add_sweetcode('pyVis', 'pyVisHandler');
+add_sweetcode('pyVis', 'pyVisHandler', "NP");
 
 function pyVisHandler($options, $the_content) {
 
