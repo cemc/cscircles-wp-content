@@ -84,7 +84,7 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
 //   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
 //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
-//                          codeDivWidth=350, codeDivHeight=400
+//   codeDivWidth=350, codeDivHeight=400
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
 //   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
