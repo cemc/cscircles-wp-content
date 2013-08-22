@@ -275,6 +275,7 @@ function pbCodeMirror(id) {
 		cmwrap.removeClass('autoCMsize');
 		cs.height(cmwrap.height());
 		cg.css('min-height', cmwrap.height()+'px');
+              cs.find(".CodeMirror-gutters").height("100%");
 	    }}
 			);
     });

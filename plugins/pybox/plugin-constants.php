@@ -11,7 +11,7 @@ define('UVISUALIZER', UWPHOME . 'visualize/');
 
 define('UWPCONTENT', UWPHOME . 'wp-content/');
 define('UPYBOX', UWPCONTENT . 'plugins/pybox/');
-define('UCODEMIRROR2', UPYBOX . 'CodeMirror2/');
+define('UCODEMIRROR3', UPYBOX . 'CodeMirror3/');
 define('UFILES', UPYBOX . 'files/');
 define('UFAVICON', UFILES . 'favicon.ico');
 define('UWARN', UFILES . 'warning.png');

@@ -1,0 +1,31 @@
+/* extra features/functionality/behaviour not originally in codemirror */
+
+body div#page div#main div#primary div#content .CodeMirror {
+    font-family: Monaco, Menlo, 'Ubuntu Mono', 'Droid Sans Mono', Consolas, monospace;
+    font-size: 16px;
+    line-height: 22px;
+    background: #FAFAFA;
+    border-top: 1px solid black; 
+    border-bottom: 1px solid black;
+    height: auto;
+}
+
+/* before the user resizes, the containing div has .autoCMsize */
+body div#page div#main div#primary div#content div.autoCMsize {
+    height: auto !important; 
+}
+body div#page div#main div#primary div#content div.autoCMsize .CodeMirror-scroll {
+    min-height: 50px;
+    max-height: 300px;
+}
+/* make gutter extend down upon resize */
+body div#page div#main div#primary div#content .CodeMirror-gutters {
+    height: 100%;
+}
+
+/* old selectors used in previous versions:
+.CodeMirror-scroll outline: none
+.CodeMirror-lines white-space: pre
+.CodeMirror-wrap pre: word-break normal
+*/
+

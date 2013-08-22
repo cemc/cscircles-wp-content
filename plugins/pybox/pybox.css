@@ -104,7 +104,7 @@ input.wpcf7-text, textarea.wpcf7-textarea {
    <div.collapseBody/>
 </div>
 
-if several collapseContain's are within an .accordion,
+if several collapseContains are within an .accordion,
 opening one will close the other open ones
 
 */
@@ -497,32 +497,6 @@ ie7 #content .pybox textarea {
 
 
 /******************** rich editors ******************************/
-
-#content .CodeMirror {
-    background: #FAFAFA;
-    border-top: 1px solid black; 
-    border-bottom: 1px solid black;
-}
-
-#content .CodeMirror-lines pre { /* overriding overflow: auto for pre in style.css */
-    overflow: inherit;
-} 
-
- #content .CodeMirror-scroll {
-  overflow-y: auto; /* recommended for autosize, but i like everywhere */
-  overflow-x: auto; /* recommended for autosize, but i like everywhere */
-  width: 100%; /* recommended for autosize, but i like everywhere */
-}
-
-#content .autoCMsize {
-  height: auto !important;
-}
-
-#content .autoCMsize .CodeMirror-scroll { /* more specific than #content .CodeMirror in codemirrorwp.css */
-  min-height: 50px;
-    height: auto;
-    max-height: 300px;
-}
 
 /****************** action buttons inside each pybox *****************/
 #content .pyboxbuttons { margin: 5px 0px 5px 0px; }
