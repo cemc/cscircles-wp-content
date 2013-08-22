@@ -9,6 +9,7 @@ function pyVisHandler($options, $the_content) {
   $res = ' ';
   if (!array_key_exists("code", $options)) return "pyVis error: code='...' not found";
   $content = $options["code"];
+  $content = softSafeDereference($content);
   $content = html_entity_decode(str_replace("\xC2\xA0", ' ', str_replace('<br/>', "\n", $content)));
   $content = trim($content);
   $content = trim($content);
