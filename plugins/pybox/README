@@ -1,8 +1,6 @@
 Quick directory guide
 =====================
 
-plugin-config.php: CHANGE THIS FILE!! if you want safeexec+jail functionality
-
 plugin-*: core components of the plugin
 
 pybox.{css,js}: core components of user interface
@@ -21,9 +19,10 @@ db-*: provides controlled db access using 'flexigrid' framework
 
 *email.py: for sending and bouncing emails
 
+tool-visualizer.php, visualize.php-include: used for visualization
 
-CodeMirror2/, db-flexigrid/: modules we use, we didn't create them
-(flexigrid is a modified version, CodeMirror2 is the original)
+
+CodeMirror2/, db-flexigrid/, OnlinePythonTutor3-cemc/: external modules we use
 
 files/: images for css, icons, pdfs for cheatsheets
 

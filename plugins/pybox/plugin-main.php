@@ -136,6 +136,7 @@ PRIMARY KEY  (ID)
   dbDelta($sql);
   $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_submissions (userid, problem (16), beginstamp);");
   $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_submissions (problem (16));");
+  $wpdb->query("create index pb_hash_result on ".$wpdb->prefix."pb_submissions (hash (40), result (2));");
 
 }
 
