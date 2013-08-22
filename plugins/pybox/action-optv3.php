@@ -7,11 +7,24 @@ require_once("include-to-load-wp.php");
 foreach ($_REQUEST as $k => $v)
   $_REQUEST[$k] = stripslashes($v);
 
-if (!array_key_exists('user_script', $_REQUEST) || !array_key_exists('raw_input_json', $_REQUEST))
+if (!array_key_exists('user_script', $_REQUEST))
   {
     echo "Error, missing inputs";
     return;
   }
+
+if (!array_key_exists('raw_input_json', $_REQUEST))
+  $_REQUEST['raw_input_json'] = '';
+
+if (strlen(print_r($_REQUEST, TRUE))>POSTLIMIT) {
+  pyboxlog("action-optv3.php got too many bytes of data:" 
+           . strlen(print_r($_REQUEST, TRUE)));
+  return sprintf(__t('Submitted data (program and/or test input) '
+             .'too large. Reduce size or <a href = "%s">'
+             .'run at home</a>.'), 
+                 cscurl('install'));
+  }
+
 
 $logRow = array(
                 'beginstamp' => date( 'Y-m-d H:i:s', time() ),
