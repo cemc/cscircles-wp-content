@@ -24,6 +24,7 @@ function cscircles_admin_init() {
   register_setting('cscircles', 'cscircles_psafeexec', 'cscircles_nosanitize');
   register_setting('cscircles', 'cscircles_asst_email', 'cscircles_nosanitize');  
   register_setting('cscircles', 'cscircles_hide_help', 'cscircles_boolean_sanitize');
+  register_setting('cscircles', 'cscircles_hide_ack', 'cscircles_boolean_sanitize');
 
   add_settings_section('cscircles_ms', 'Settings', 'cscircles_callback1', 'cscircles');
   
@@ -38,6 +39,9 @@ function cscircles_admin_init() {
 
   add_settings_field('cscircles_hide_help', 'Hide "Help" and "Mail"',
                      'cscircles_callback5', 'cscircles', 'cscircles_ms');
+
+  add_settings_field('cscircles_hide_ack', 'Hide link to original site',
+                     'cscircles_callback6', 'cscircles', 'cscircles_ms');
 
 }
 
@@ -60,6 +64,10 @@ function cscircles_callback4() {
 
 function cscircles_callback5() {
   ?><input type="checkbox" name="cscircles_hide_help" <?php echo get_option('cscircles_hide_help')?'checked':'';?> /><?php
+}
+
+function cscircles_callback6() {
+  ?><input type="checkbox" name="cscircles_hide_ack" <?php echo get_option('cscircles_hide_ack')?'checked':'';?> /><?php
 }
 
 function cscircles_options_page() {
