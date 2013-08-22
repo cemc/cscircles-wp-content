@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-12 18:08-0400\n"
-"PO-Revision-Date: 2013-08-12 18:12-0400\n"
+"POT-Creation-Date: 2013-08-22 13:30-0400\n"
+"PO-Revision-Date: 2013-08-22 13:33-0400\n"
 "Last-Translator: Wolfgang Pohl <pohl@bwinf.de>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Language: de_DE\n"
 
 #: ../wp-plugin/action-send-message.php:30
-#: ../wp-plugin/plugin-utilities.php:157 ../wp-plugin/plugin-utilities.php:522
+#: ../wp-plugin/plugin-utilities.php:157 ../wp-plugin/plugin-utilities.php:526
 #: ../wp-plugin/shortcode-mailpage.php:109
 #: ../wp-plugin/shortcode-mailpage.php:114
 #: ../wp-plugin/shortcodes-exercises.php:531
@@ -35,145 +35,145 @@ msgid "message about"
 msgstr "Nachricht über"
 
 #: ../wp-plugin/action-send-message.php:37
-#: ../wp-plugin/plugin-utilities.php:536
+#: ../wp-plugin/plugin-utilities.php:540
 msgid "To send a reply message, please visit"
 msgstr "Um zu antworten, gehe bitte auf"
 
 #: ../wp-plugin/action-send-message.php:39
-#: ../wp-plugin/plugin-utilities.php:538
+#: ../wp-plugin/plugin-utilities.php:542
 msgid "Problem URL:"
 msgstr "URL der Übung:"
 
 #: ../wp-plugin/action-send-message.php:40
-#: ../wp-plugin/plugin-utilities.php:539
+#: ../wp-plugin/plugin-utilities.php:543
 msgid "Sent by CS Circles"
 msgstr "Gesendet von CS Circles (by EI)"
 
-#: ../wp-plugin/action-send-message.php:58
+#: ../wp-plugin/action-send-message.php:59
 msgid "SENT:"
 msgstr "GESENDET:"
 
-#: ../wp-plugin/action-send-message.php:59
+#: ../wp-plugin/action-send-message.php:60
 #, php-format
 msgid "THIS IS A COPY of a message you sent to %s."
 msgstr "DIES IST EINE KOPIE der geschickten Nachricht an %s"
 
-#: ../wp-plugin/action-send-message.php:100
+#: ../wp-plugin/action-send-message.php:101
 msgid "The user sent this code with the message:"
 msgstr "Der Nutzer hat diesen Code mit der Nachricht geschickt:"
 
-#: ../wp-plugin/action-submit-code.php:305
-#: ../wp-plugin/action-submit-code.php:321
+#: ../wp-plugin/action-submit-code.php:317
+#: ../wp-plugin/action-submit-code.php:333
 msgid "Program gave the following output:"
 msgstr "Das Programm hat diese Ausgabe erzeugt:"
 
-#: ../wp-plugin/action-submit-code.php:308
+#: ../wp-plugin/action-submit-code.php:320
 msgid "Program gave the following correct output:"
 msgstr "Das Programm hat diese korrekte Ausgabe erzeugt:"
 
-#: ../wp-plugin/action-submit-code.php:319
-#: ../wp-plugin/action-submit-code.php:329
+#: ../wp-plugin/action-submit-code.php:331
+#: ../wp-plugin/action-submit-code.php:341
 msgid "Program printed no output."
 msgstr "Das Programm hat keine Ausgabe erzeugt."
 
-#: ../wp-plugin/action-submit-code.php:332
+#: ../wp-plugin/action-submit-code.php:344
 msgid "(Did you forget to use </i><code>print</code><i>?)"
 msgstr "(Hast du vergessen, </i><code>print</code><i> zu benutzen?)"
 
-#: ../wp-plugin/action-submit-code.php:337
+#: ../wp-plugin/action-submit-code.php:349
 msgid "Program output:"
 msgstr "Programmausgabe :"
 
-#: ../wp-plugin/action-submit-code.php:340
+#: ../wp-plugin/action-submit-code.php:352
 msgid "Expected this correct output:"
 msgstr "Erwartete korrekte Ausgabe:"
 
-#: ../wp-plugin/action-submit-code.php:519
+#: ../wp-plugin/action-submit-code.php:531
 msgid "Before running your code:"
 msgstr "Vor der Ausführung des Codes:"
 
-#: ../wp-plugin/action-submit-code.php:524
+#: ../wp-plugin/action-submit-code.php:536
 msgid "Input:"
 msgstr "Eingabe:"
 
-#: ../wp-plugin/action-submit-code.php:537
+#: ../wp-plugin/action-submit-code.php:549
 msgid "Error messages: "
 msgstr "Fehlermeldungen: "
 
-#: ../wp-plugin/action-submit-code.php:540
+#: ../wp-plugin/action-submit-code.php:552
 msgid "Program executed without crashing."
 msgstr "Das Programm hat keinen Fehler verursacht."
 
-#: ../wp-plugin/action-submit-code.php:543
+#: ../wp-plugin/action-submit-code.php:555
 msgid "Program crashed."
 msgstr "Das Programm hat einen Fehler verursacht."
 
-#: ../wp-plugin/action-submit-code.php:545
+#: ../wp-plugin/action-submit-code.php:557
 msgid "Program crashed &mdash; "
 msgstr "Programmfehler &mdash; "
 
-#: ../wp-plugin/action-submit-code.php:549
+#: ../wp-plugin/action-submit-code.php:561
 msgid "Memory Limit Exceeded"
 msgstr "Speicherüberschreitung"
 
-#: ../wp-plugin/action-submit-code.php:549
+#: ../wp-plugin/action-submit-code.php:561
 msgid "Time Limit Exceeded"
 msgstr "Zeitüberschreitung"
 
-#: ../wp-plugin/action-submit-code.php:550
+#: ../wp-plugin/action-submit-code.php:562
 msgid "Command exited with non-zero status"
 msgstr "Befehl endete mit Exit-Status ungleich 0."
 
-#: ../wp-plugin/action-submit-code.php:551
+#: ../wp-plugin/action-submit-code.php:563
 msgid "Command terminated by signal"
 msgstr "Befehl durch Signal beendet."
 
-#: ../wp-plugin/action-submit-code.php:551
+#: ../wp-plugin/action-submit-code.php:563
 msgid "Output Limit Exceeded"
 msgstr "Überschreitung des Ausgabelimits"
 
 # corresponds to SIGHUP in safeexec; not likely to really ever be seen by a user
-#: ../wp-plugin/action-submit-code.php:552
+#: ../wp-plugin/action-submit-code.php:564
 msgid "Invalid Function"
 msgstr "Ungültige Funktion"
 
 # corresponds to internal failure in safeexec; not likely to be seen by a user
-#: ../wp-plugin/action-submit-code.php:552
+#: ../wp-plugin/action-submit-code.php:564
 msgid "Internal Error"
 msgstr "Interner Fehler"
 
-#: ../wp-plugin/action-submit-code.php:577
-#: ../wp-plugin/action-submit-code.php:592
+#: ../wp-plugin/action-submit-code.php:589
+#: ../wp-plugin/action-submit-code.php:604
 msgid "The grader said:"
 msgstr "Anmerkungen der Auswertung:"
 
-#: ../wp-plugin/action-submit-code.php:580
+#: ../wp-plugin/action-submit-code.php:592
 msgid "Automatic tests:"
 msgstr "Automatische Tests:"
 
-#: ../wp-plugin/action-submit-code.php:622
+#: ../wp-plugin/action-submit-code.php:634
 msgid "Result of grading: "
 msgstr "Ergebnis der Auswertung: "
 
-#: ../wp-plugin/action-submit-code.php:663
+#: ../wp-plugin/action-submit-code.php:675
 msgid "Success!"
 msgstr "Richtig!"
 
-#: ../wp-plugin/action-submit-code.php:669
+#: ../wp-plugin/action-submit-code.php:681
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
 "Test nicht bestanden. Schaue dir die Details unten an und probiere es "
 "nochmal."
 
-#: ../wp-plugin/action-submit-code.php:686
+#: ../wp-plugin/action-submit-code.php:698
 msgid "You must log in to save data."
 msgstr "Du musst angemeldet sein, um Daten zu speichern."
 
-#: ../wp-plugin/action-submit-code.php:687
+#: ../wp-plugin/action-submit-code.php:699
 msgid "Program saved."
 msgstr "Programm gespeichert."
 
-#: ../wp-plugin/action-submit-code.php:717
+#: ../wp-plugin/action-submit-code.php:729
 #, php-format
 msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
@@ -182,52 +182,52 @@ msgstr ""
 "Programm und/oder Testeingaben sind zu groß. Bitte verkleinern oder<a href="
 "\"%s\">auf deinem Rechner ausführen</a>."
 
-#: ../wp-plugin/action-submit-code.php:749
+#: ../wp-plugin/action-submit-code.php:761
 #, php-format
 msgid "Pybox error: problem hash %s not found. Try reloading the page."
 msgstr ""
 "Fehler: Übungs-Code %s wurde nicht gefunden. Versuche, die Seite neu zu  "
 "laden."
 
-#: ../wp-plugin/action-submit-code.php:843
+#: ../wp-plugin/action-submit-code.php:855
 #, php-format
 msgid "You cannot use %s in this exercise."
 msgstr "Du darfst %s in dieser Übung nicht benutzen."
 
-#: ../wp-plugin/action-submit-code.php:855
+#: ../wp-plugin/action-submit-code.php:867
 #, php-format
 msgid ""
 "You are only allowed to change at most %s characters compared to the "
 "original version of the code."
 msgstr "Du darfst maximal %s Zeichen vom Originalcode ändern."
 
-#: ../wp-plugin/action-submit-code.php:860
+#: ../wp-plugin/action-submit-code.php:872
 #, php-format
 msgid "You changed %s or more."
 msgstr "Du hast %s oder mehr geändert."
 
-#: ../wp-plugin/action-submit-code.php:879
+#: ../wp-plugin/action-submit-code.php:891
 #, php-format
 msgid "You changed %s."
 msgstr "Du hast %s geändert."
 
-#: ../wp-plugin/action-submit-code.php:891
+#: ../wp-plugin/action-submit-code.php:903
 msgid "Note: ran with user tests."
 msgstr "Achtung: wurde mit eigenen Testeingaben ausgeführt."
 
-#: ../wp-plugin/action-submit-code.php:894
+#: ../wp-plugin/action-submit-code.php:906
 msgid "Note: ran with user inputs."
 msgstr "Achtung: wurde mit eigenen Eingaben ausgeführt."
 
-#: ../wp-plugin/action-submit-code.php:896
+#: ../wp-plugin/action-submit-code.php:908
 msgid " Click \"Go back to grading\" to switch back."
 msgstr " Klicke  \"Zurück\", um zurück zu wechseln."
 
-#: ../wp-plugin/action-submit-code.php:898
+#: ../wp-plugin/action-submit-code.php:910
 msgid " Click \"Hide input box\" to switch back."
 msgstr " Klicke \"Eingabebox verstecken\", um zurück zu wechseln."
 
-#: ../wp-plugin/action-submit-code.php:925
+#: ../wp-plugin/action-submit-code.php:937
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
 msgstr "Ergebnisse für Test %1$s von %2$s"
@@ -432,62 +432,71 @@ msgid "first time"
 msgstr "erste Bearbeitung"
 
 #: ../wp-plugin/js-translation.php:4
-msgid "Go back to grading"
-msgstr "Zurück"
+msgid "Error: could not connect to database."
+msgstr "Fehler: kann keine Datenbankverbindung aufbauen."
 
 #: ../wp-plugin/js-translation.php:5
-msgid "Enter test statements"
-msgstr "Testbefehle eingeben"
-
-#: ../wp-plugin/js-translation.php:6
-msgid "Run test"
-msgstr "Test ausführen"
-
-#: ../wp-plugin/js-translation.php:7 ../wp-plugin/shortcodes-exercises.php:54
-msgid "You have completed this problem at least once."
-msgstr "Du hast diese Übung bereits gelöst."
-
-#: ../wp-plugin/js-translation.php:8
-msgid "Displaying {from} to {to} of {total} items"
-msgstr "Zeige {from} bis {to} von {total} Elementen"
-
-#: ../wp-plugin/js-translation.php:9 ../wp-plugin/shortcodes-exercises.php:639
-msgid "Rich editor"
-msgstr "Erweiterter Editor"
-
-#: ../wp-plugin/js-translation.php:10
-msgid "Click to try again."
-msgstr "Klicke hier, um es noch einmal zu versuchen."
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Hide history"
-msgstr "Chronik verstecken"
-
-#: ../wp-plugin/js-translation.php:12
 msgid "The database connected but found no data."
 msgstr "Datenbank verbunden, keine Daten."
 
+#: ../wp-plugin/js-translation.php:6
+msgid "Page"
+msgstr "Seite"
+
+#: ../wp-plugin/js-translation.php:7
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+"Alle Nachrichten dieses Schülers zu dieser Übung als beantwortet markieren."
+
+#: ../wp-plugin/js-translation.php:8 ../wp-plugin/shortcodes-exercises.php:686
+msgid "More actions..."
+msgstr "Mehr Optionen..."
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Running..."
+msgstr "Läuft..."
+
+#: ../wp-plugin/js-translation.php:10
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr ""
+"Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste "
+"Teillösung enthalten."
+
+#: ../wp-plugin/js-translation.php:11
+msgid "start of tests"
+msgstr "Start der Tests"
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Run test"
+msgstr "Test ausführen"
+
 #: ../wp-plugin/js-translation.php:13
-msgid "Your message was sent."
-msgstr "Deine Nachricht wurde gesendet."
+msgid "end of main program"
+msgstr "Ende des Programms"
 
 #: ../wp-plugin/js-translation.php:14
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
-msgstr ""
-"Kann Anfrage nicht senden. Möglicherweise ist deine Internet-Verbindung "
-"unterbrochen."
+msgid "Hide history"
+msgstr "Chronik verstecken"
 
 #: ../wp-plugin/js-translation.php:15
 msgid "Hide input box"
 msgstr "Eingabebox verstecken"
 
 #: ../wp-plugin/js-translation.php:16
-msgid "Please enter a non-empty message."
-msgstr "Gib eine nicht-leere Nachricht ein."
+msgid "Enter input"
+msgstr "Testeingabe"
 
 #: ../wp-plugin/js-translation.php:17
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr ""
+"Dein Programm konnte nicht ausgewertet werden, da die Verbindung zum Server "
+"fehlschlug. Fehlerinformation: "
+
+#: ../wp-plugin/js-translation.php:18
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
@@ -498,57 +507,44 @@ msgstr ""
 "Profil aus (diese Option steht dir im Usermenü zur Verfügung, in der oberen "
 "rechten Ecke der Seite)"
 
-#: ../wp-plugin/js-translation.php:18
-msgid "timed out!"
-msgstr "Zeitüberschreitung!"
-
 #: ../wp-plugin/js-translation.php:19
-msgid "out of"
-msgstr "von"
-
-#: ../wp-plugin/js-translation.php:20
-msgid "Page"
-msgstr "Seite"
-
-#: ../wp-plugin/js-translation.php:21
-msgid "Simple editor"
-msgstr "Einfacher Editor"
-
-#: ../wp-plugin/js-translation.php:22
-msgid "Error: could not connect to database."
-msgstr "Fehler: kann keine Datenbankverbindung aufbauen."
-
-#: ../wp-plugin/js-translation.php:23
-msgid "Running..."
-msgstr "Läuft..."
-
-#: ../wp-plugin/js-translation.php:24
-msgid "Marking all messages from this student about this problem as answered."
-msgstr ""
-"Alle Nachrichten dieses Schülers zu dieser Übung als beantwortet markieren."
-
-#: ../wp-plugin/js-translation.php:25
 msgid "Incorrect, try again."
 msgstr "Nicht richtig, versuche es nochmal."
 
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
+msgstr "Du hast diese Übung bereits gelöst."
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Please enter a non-empty message."
+msgstr "Gib eine nicht-leere Nachricht ein."
+
+#: ../wp-plugin/js-translation.php:22
+msgid "Simple editor"
+msgstr "Einfacher Editor"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "out of"
+msgstr "von"
+
+#: ../wp-plugin/js-translation.php:24
+msgid "Enter test statements"
+msgstr "Testbefehle eingeben"
+
+#: ../wp-plugin/js-translation.php:25
+msgid "Your message was sent."
+msgstr "Deine Nachricht wurde gesendet."
+
 #: ../wp-plugin/js-translation.php:26
-msgid ""
-"The code box is empty. It should instead contain your best partial solution "
-"so far."
-msgstr ""
-"Die Codebox ist leer. Sie sollte statt dessen deine zur Zeit beste "
-"Teillösung enthalten."
+msgid "timed out!"
+msgstr "Zeitüberschreitung!"
 
 #: ../wp-plugin/js-translation.php:27
-msgid "end of main program"
-msgstr "Ende des Programms"
+#: ../wp-plugin/shortcodes-exercises.php:707
+msgid "Run program"
+msgstr "Programm ausführen"
 
 #: ../wp-plugin/js-translation.php:28
-#: ../wp-plugin/shortcodes-exercises.php:686
-msgid "More actions..."
-msgstr "Mehr Optionen..."
-
-#: ../wp-plugin/js-translation.php:29
 msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
@@ -556,37 +552,41 @@ msgstr ""
 "Warnung: konnte Server nicht kontaktieren. Übung konnte nicht als 'erledigt' "
 "markiert werden."
 
+#: ../wp-plugin/js-translation.php:29
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "Zeige {from} bis {to} von {total} Elementen"
+
 #: ../wp-plugin/js-translation.php:30
-msgid "start of tests"
-msgstr "Start der Tests"
+#: ../wp-plugin/shortcodes-exercises.php:639
+msgid "Rich editor"
+msgstr "Erweiterter Editor"
 
 #: ../wp-plugin/js-translation.php:31
-#: ../wp-plugin/shortcodes-exercises.php:707
-msgid "Run program"
-msgstr "Programm ausführen"
+msgid "Go back to grading"
+msgstr "Zurück"
 
 #: ../wp-plugin/js-translation.php:32
-#: ../wp-plugin/shortcodes-exercises.php:654
-msgid "History"
-msgstr "Chronik"
+msgid "Click to try again."
+msgstr "Klicke hier, um es noch einmal zu versuchen."
 
 #: ../wp-plugin/js-translation.php:33
 msgid "Enter test input"
 msgstr "Testeingabe"
 
 #: ../wp-plugin/js-translation.php:34
-msgid "Enter input"
-msgstr "Testeingabe"
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+"Kann Anfrage nicht senden. Möglicherweise ist deine Internet-Verbindung "
+"unterbrochen."
 
 #: ../wp-plugin/js-translation.php:35
-msgid ""
-"Could not grade program because communication to the server was not "
-"possible. Ajax information: "
-msgstr ""
-"Dein Programm konnte nicht ausgewertet werden, da die Verbindung zum Server "
-"fehlschlug. Fehlerinformation: "
+#: ../wp-plugin/shortcodes-exercises.php:654
+msgid "History"
+msgstr "Chronik"
 
-#: ../wp-plugin/plugin-hooks.php:88
+#: ../wp-plugin/plugin-hooks.php:94
 msgid "Editor"
 msgstr "Editor"
 
@@ -698,15 +698,15 @@ msgstr "Asst."
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr "[Zu lang; nur die ersten %1$s der %2$s Zeichen werden angezeigt]"
 
-#: ../wp-plugin/plugin-utilities.php:395
+#: ../wp-plugin/plugin-utilities.php:399
 msgid "Return to Computer Science Circles"
 msgstr "Zurück zu CS Circles (by EI)"
 
-#: ../wp-plugin/plugin-utilities.php:562
+#: ../wp-plugin/plugin-utilities.php:566
 msgid "View definition"
 msgstr "Definition anzeigen"
 
-#: ../wp-plugin/plugin-utilities.php:574
+#: ../wp-plugin/plugin-utilities.php:578
 msgid "View page source"
 msgstr "Quelltext der Seite"
 
@@ -1083,7 +1083,9 @@ msgstr "Wir konnten nichts unter der Adresse %s finden"
 msgid ""
 "Try a different address, a search, or <a %1$s>contact us</a> if the website "
 "sent you here via a broken link."
-msgstr "Versuche eine andere URL, nutze die Suche oder <a %1$s>kontaktiere uns</a>, wenn du denkst, dass wir schuld sind."
+msgstr ""
+"Versuche eine andere URL, nutze die Suche oder <a %1$s>kontaktiere uns</a>, "
+"wenn du denkst, dass wir schuld sind."
 
 # I added the last sentence (with the count) from an old version. Is it correct?
 #: ../wp-theme/footer.php:34
@@ -1131,62 +1133,66 @@ msgstr "(zum oberen Ende der Seite)"
 msgid "Next"
 msgstr "Weiter mit"
 
-#: ../wp-theme/functions.php:128
+#: ../wp-theme/functions.php:139
 msgid "Computer Science Circles"
 msgstr "Computer Science Circles (by EI)"
 
-#: ../wp-theme/functions.php:129
+#: ../wp-theme/functions.php:140
 msgid "Log In or Create Account"
 msgstr "Anmelden oder Registrieren"
 
 # Exactly what it sounds like
-#: ../wp-theme/functions.php:138
+#: ../wp-theme/functions.php:149
 msgid "Create a new account"
 msgstr "Registrieren"
 
-#: ../wp-theme/functions.php:165
+#: ../wp-theme/functions.php:176
 msgid "My Progress"
 msgstr "Mein Fortschritt"
 
-#: ../wp-theme/functions.php:166
+#: ../wp-theme/functions.php:178
 msgid "Mail"
 msgstr "Mail"
 
-#: ../wp-theme/functions.php:167
+#: ../wp-theme/functions.php:179
 msgid "Console (new window)"
 msgstr "Konsole (neues Fenster)"
 
-#: ../wp-theme/functions.php:168
+#: ../wp-theme/functions.php:180
+msgid "Visualizer (new window)"
+msgstr "Visualizer (neues Fenster)"
+
+#: ../wp-theme/functions.php:181
 msgid "Resources (new window)"
 msgstr "Nachlesen (neues Fenster)"
 
-#: ../wp-theme/functions.php:169
+#: ../wp-theme/functions.php:182
 msgid "Contact Us (new window)"
 msgstr "Kontakt (neues Fenster)"
 
-#: ../wp-theme/functions.php:173
+#: ../wp-theme/functions.php:186
 msgid "scroll to top"
 msgstr "Nach oben scrollen"
 
-#: ../wp-theme/functions.php:197
+#: ../wp-theme/functions.php:210
 msgid "goto oldest unanswered mail"
 msgstr "zur ältesten nicht-beantworteten Mail wechseln"
 
-#: ../wp-theme/functions.php:249
+#: ../wp-theme/functions.php:264
 msgid "Filter Listed Pages"
 msgstr "Filtere die aufgelisteten Seiten"
 
-#: ../wp-theme/functions.php:252
+#: ../wp-theme/functions.php:267
 msgid "Show all visible"
 msgstr "Alles zeigen"
 
-#: ../wp-theme/functions.php:295
+#: ../wp-theme/functions.php:310
 msgid "<p>Create free account / login</p><p>to save your progress</p>"
 msgstr ""
 "<p>Kostenlos registrieren, anmelden</p><p>und deinen Fortschritt speichern</"
 "p>"
 
-#: ../wp-theme/functions.php:314
+#: ../wp-theme/functions.php:329
 #, php-format
 msgid "%s's menu"
 msgstr "Menü von %s"
@@ -1199,7 +1205,11 @@ msgstr "wordmark-uw.gif"
 msgid "wordmark-cemc.png"
 msgstr "wordmark-cemc.png"
 
-#: ../wp-theme/header.php:128
+#: ../wp-theme/header.php:110
+msgid "Click here for the original site"
+msgstr "Klicken Sie hier für Original-Website"
+
+#: ../wp-theme/header.php:131
 msgid "/themes/pybox2011childTheme/images/header.jpg"
 msgstr "/themes/pybox2011childTheme/images/GermanHeader.jpg"
 

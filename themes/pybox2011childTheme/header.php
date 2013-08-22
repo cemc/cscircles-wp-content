@@ -105,8 +105,8 @@ if (isset($post)) {
 	  </div>
 	<header id="branding" role="banner">
 <?php
-if (WP_HOME != "http://cscircles.cemc.uwaterloo.ca" && !get_option("cscircles_hide_ack", "0")=="1")
-  echo '<div style="position:absolute;top:20px;right:-120px;transform:rotate(90deg);-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg)">
+if (WP_HOME != "http://cscircles.cemc.uwaterloo.ca/" && !get_option("cscircles_hide_ack", "0")=="1")
+  echo '<div style="position:absolute;top:30px;right:-140px;transform:rotate(90deg);-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg)">
  <a href="http://cscircles.cemc.uwaterloo.ca">' . __t("Click here for the original site") . "</a></div>";
 
   if (stripos($_SERVER["HTTP_USER_AGENT"], 'MSIE')===FALSE) 
