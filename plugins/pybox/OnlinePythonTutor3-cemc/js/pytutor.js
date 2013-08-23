@@ -139,7 +139,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
                     && this.curTrace[this.curTrace.length-1].stdout);
   
   if (this.hasStdout) {
-    this.stdoutLines = this.curTrace[this.curTrace.length-1].stdout.split("\n").length;
+    this.stdoutLines = this.curTrace[this.curTrace.length-1].stdout.replace(/\n$/, '').split("\n").length;
   }
   else 
     this.stdoutLines = -1;
@@ -1593,7 +1593,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
     // keep original horizontal scroll level:
     var oldLeft = myViz.domRoot.find("#pyStdout").scrollLeft();
-    myViz.domRoot.find("#pyStdout").val(curEntry.stdout);
+    myViz.domRoot.find("#pyStdout").val(curEntry.stdout.replace(/\n$/, ''));
 
     myViz.domRoot.find("#pyStdout").scrollLeft(oldLeft);
     // scroll to bottom, though:
