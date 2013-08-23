@@ -330,7 +330,7 @@ table.pywarn {
 /* mostly for error hinting */
 .pbresults .prebox .hintlink {
     font-size: 100%;
-    border: none;
+    border-color: rgba(0, 0, 0, 0.1);
 }
 
 .hintbox {

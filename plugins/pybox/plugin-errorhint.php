@@ -1,5 +1,12 @@
 <?php
 
+  /* 
+Categorization, enumeration and explanation of errors 
+done by Ayomikun (George) Okeowo
+as part of a Junior Project at Princeton
+University, Fall 2013 
+*/
+
 function determineHint($errmsg) {
   if (!hintable($errmsg)) return NULL;
   
@@ -294,10 +301,10 @@ mystring[5/2] # 5/2 is not an integer
 The visualizer can help you determine the steps just before the error
 occurred.
 ",
-                 "SyntaxError: can't assign to function call"
+                 "SyntaxError: can't assign to (function call|literal)"
 =>
 '
-This error indicates that Python attempted to assign a value to the result of a function call, for example
+This error indicates that Python attempted to assign a value in an invalid way, such as
 <pre>
 sqrt(4) = x # we can\'t redefine sqrt(4)
 </pre>
@@ -345,5 +352,140 @@ represents a floating point number. Ensure that there are no extraneous characte
 <pre>
 x = float('314 159') # did you mean 314.159?
 </pre>
-The visualizer can help you debug what happened earlier in your code."
+The visualizer can help you debug what happened earlier in your code.",
+                 "TypeError: unorderable types.*"
+=>
+"This error indicates that Python attempted to compare and put in order
+two differing 
+types of objects. You can compare numbers like 
+<code>5 >= 4</code> and strings like <code>'food' > 'fish'</code>
+but you can't mix the two or compare other types.
+<pre>
+z = max(5, '6')   # error when max calls >
+booly = max > min # can't compare functions
+</pre>
+Using the visualizer can help you determine which values are being compared.",
+                 "TypeError: not all arguments converted during string formatting" =>
+"
+The <code>%</code> symbol has two purposes in Python: modulo (remainder)
+of numbers, and <i>string formatting</i> that we don't discuss. This error
+probably means you accidentally applied <code>%</code> to a string.
+<pre>
+if '10' % 5 == 0: # '10' must be an int
+</pre>
+Using the visualizer can help you determine what happened just before
+the indicated line.",
+"TypeError: (object of type '.*' has no .*\(\)|bad operand type for .*|.* argument must be a .*)"
+=>
+"
+This error indicates that Python attempted to call a function on 
+the wrong kind of object. 
+<pre>
+print(len(input)) # try print(len(input()))
+print(abs('-5'))  # convert to int first
+</pre>
+Using the visualizer can help you determine what happened just before
+the indicated line.
+",
+                 "TypeError: '.*' object cannot be interpreted as an integer" =>
+"This error indicates that Python encountered a non-integer value where an integer value was 
+necessary. This often occurs in a <code>range()</code> statement.
+<pre>
+for i in range(0, '10'): # use str()
+</pre>
+Using the visualizer can help you determine what happened just before
+the indicated line.
+",
+"TypeError: an integer is required"
+=>
+"
+This error indicates that Python encountered a non-integer value for a function call that requires 
+an integer. This error occurs often with <code>chr()</code> that converts
+integers to ASCII characters:
+<pre>
+letter = chr('95') # convert to int() first
+</pre>
+Using the visualizer can help you determine what happened just before
+the indicated line.
+",
+"RuntimeError: maximum recursion depth exceeded.*"
+=>
+'This error indicates that Python executed a function that utilized recursion more times than 
+allowed by the interpreter. If you are using a recursive function, ensure that there is a way for the 
+recursion to end, and that it is eventually reached by every input.
+<pre>
+def f(x):
+ return x + f(x-1)
+print(f(5)) # never stops!
+</pre>
+This is an excellent error for debugging with the visualizer.',
+                 "IndexError: list assignment index out of range"
+=>
+'
+This error indicates that Python attempted to access the index of a list beyond its indices. 
+                When accessing the elements of a string or list, keep in mind that the index count goes from 0 to its 
+length <b>minus 1</b>. 
+<pre>
+aList = ["f", "o"]
+aList[2] = "x" # can only assign [0] or [1]
+</pre>
+If you want to append to the end of a list, use <code>list.append()</code>.
+<br>You can
+use the visualizer to inspect the list just before the
+program crashed.',
+"TypeError: slice indices must be integers or None or have an __index__ method"
+=>
+"A <i>slice</i> refers to a multi-part substring/sublist operator, like 
+<code>x[b:e]</code> or <code>x[b:e:s]</code>.
+Make sure that you use integers for all values inside of <code>[]</code>.
+<pre>
+s[1:s[len(s)-1]] # try s[1:len(s)-1]
+</pre>
+You can
+use the visualizer to inspect the values just before the
+program crashed.",
+                 "TypeError: ord\(\) expected .*, but .* found"=>
+                "
+The <code>ord</code> function,
+which converts characters to ASCII values, can only accept
+single characters, which are strings of length 1.
+<pre>
+print(ord(3)) # try ord('3') or chr(3)?
+</pre>
+You can
+use the visualizer to inspect the values just before the
+program crashed."
+                 ,
+                 "SyntaxError: '(.*)' .*(outside|not.*in).*loop" =>
+'
+This error indicates that Python encountered a $1 statement outside of a loop,
+but it only makes sense inside of a loop (<code>break</code> stops the loop,
+<code>continue</code> skips to the next iteration of the same loop).
+Check the scope and placement of your $1 statement and ensure it is inside of the loop.
+',
+                 "SyntaxError: 'return' outside function" =>
+'
+Double-check your indentation and line placement, so that <code>return</code>
+only occurs inside of functions:
+<pre>
+def f(x):
+  if x > 0: return True
+return False           # outside!
+</pre>
+',
+                 'TypeError: can only concatenate list \(not .*\) to list'
+=>
+'
+Adding elements to lists can be done in two ways in Python,
+<pre>
+L = [1, 2]
+print(L + [3]) # L stays [1, 2]
+L.append(3)    # changes L
+</pre>
+This error indicates that 
+you used <code>+</code> but didn\'t add two lists. 
+You can
+use the visualizer to inspect the values just before the
+program crashed.
+'
 );

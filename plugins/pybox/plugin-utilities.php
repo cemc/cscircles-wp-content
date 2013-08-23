@@ -271,11 +271,18 @@ function preBox( $s, $len = -1, $lenlimit = 2000, $style = '', $hinted = false )
 // $len: if this is a smaller version of an original string, what was the original length?
   if ($s === NULL)
     return '<div><i>NULL</i></div>';
+
+  $lastline = strrpos($s, "\n", -2);
+  if ($lastline === FALSE) $lastline = "";
+  else $lastline = substr($s, $lastline);
+  if (strlen($lastline) > $lenlimit)
+    $lastline = substr($lastline, strlen($lastline) - $lenlimit);
+
   if ($len == -1)
     $len = strlen($s);
-  if ($lenlimit >= 0 && strlen($s) > $lenlimit) {
+  if ($lenlimit >= 0 && strlen($s) - strlen($lastline) > $lenlimit) {
     $s = substr($s, 0, $lenlimit) . "\n" . 
-      sprintf(__t('[Too long; only first %1$s out of %2$s characters shown]'), $lenlimit, $len) . "\n";
+      sprintf(__t('[Too long; only first %1$s out of %2$s characters shown]'), $lenlimit, $len) . $lastline;
   }
   $style = ($style=="")?"":" style='$style'";
 
@@ -289,7 +296,8 @@ function preBox( $s, $len = -1, $lenlimit = 2000, $style = '', $hinted = false )
     $hint = determineHint($match[1]);
 
     if ($hint !== NULL) {
-      $replacement = popUp($match[1], $hint, $style);
+      $replacement = popUp($match[1], $hint, $style, 
+                           "Click for more information about this error");
     }
     else
       $replacement = $match[1];
@@ -324,7 +332,7 @@ function firstLine( $s ) { //get first line of a string
   return $list[0];
 }
 
-function popUp($linkText, $popup, $class = "") {
+function popUp($linkText, $popup, $class = "", $title = "") {
   //pyboxlog('popup' . $linkText . ';' . $popup . '.');
   global $pyRenderCount;
   if (!isset($pyRenderCount)) { // only used if called dynamically, e.g. "unsanitized output" in admin's submit.php
@@ -334,8 +342,10 @@ function popUp($linkText, $popup, $class = "") {
 
   global $popupBoxen;
 
+  if ($title != '') $title=' title="'.$title.'" ';
+
   $r = '';
-  $r .= '<a class="hintlink" id="hintlink' . $id . '">';
+  $r .= '<a class="hintlink" '.$title.' id="hintlink' . $id . '">';
   $r .= $linkText;
   $r .= '</a>';
 
