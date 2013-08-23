@@ -265,7 +265,7 @@ function rowSummary($arr) {
   return $r.']';
 }
 
-function preBox( $s, $len = -1, $lenlimit = 2000, $style = '' ) {
+function preBox( $s, $len = -1, $lenlimit = 2000, $style = '', $hinted = false ) {
 // takes any long string, trims if needed, converts special html chars, and wraps in pre tag
 // the result can be directly inserted in html safely
 // $len: if this is a smaller version of an original string, what was the original length?
@@ -278,7 +278,30 @@ function preBox( $s, $len = -1, $lenlimit = 2000, $style = '' ) {
       sprintf(__t('[Too long; only first %1$s out of %2$s characters shown]'), $lenlimit, $len) . "\n";
   }
   $style = ($style=="")?"":" style='$style'";
-  return "<pre class='prebox'$style>"."\n".htmlspecialchars($s).'</pre>';
+
+  $s = htmlspecialchars($s);
+
+  if ($hinted) {
+    $regex = "|Internal_Flag:(.*):galF|";
+    
+    preg_match($regex, $s, $match);
+
+    $hint = determineHint($match[1]);
+
+    if ($hint !== NULL) {
+      $replacement = popUp($match[1], $hint, $style);
+    }
+    else
+      $replacement = $match[1];
+    
+    $s = preg_replace($regex, $replacement, $s);
+  }
+  global $popupBoxen;
+  return "<pre class='prebox'$style>"."\n".$s.'</pre>' . $popupBoxen;
+}
+
+function preBoxHinted( $s, $len = -1, $lenlimit = 2000, $style = '') {
+  return preBox($s, $len, $lenlimit, $style . " widepophint hintedError", true);
 }
 
 function multilineToAssociative( $s ) {

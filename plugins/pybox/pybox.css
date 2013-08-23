@@ -327,6 +327,12 @@ table.pywarn {
     background-color: yellow !important;
 }
 
+/* mostly for error hinting */
+.pbresults .prebox .hintlink {
+    font-size: 100%;
+    border: none;
+}
+
 .hintbox {
     display: none;
     background-color:yellow;

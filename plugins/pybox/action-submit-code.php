@@ -113,6 +113,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    //$errors = bounded_stream_get_contents($pipes[2], 10000);
    
    $errors = file_get_contents($stderrFile);
+
    $errors = array('data' => $errors, 'length' => strlen($errors));
 
    fclose($pipes[1]);
@@ -265,7 +266,11 @@ function stderrNiceify($S) {
 	"In line $matches[2] of the tests you submitted:";
     }
     else {
-      $r .= "\n" . $line;
+      if ($i!=count($lines)-2)
+        $r .= "\n" . $line;
+      else {
+        $r .= "\nInternal_Flag:".$line.":galF";
+      }
     }
   }
   return $r;
@@ -546,7 +551,7 @@ _user_stdout.close()
   if ($stderr=='')
     $errnice = '';
   else
-    $errnice = '<p>'.__t('Error messages: ') . preBox(stderrNiceify($stderr), $stderrlen) . '</p>';
+    $errnice = '<p>'.__t('Error messages: ') . preBoxHinted(stderrNiceify($stderr), $stderrlen) . '</p>';
 
   if ($ok) 
     $m .= "<p>".__t('Program executed without crashing.')."</p>";
