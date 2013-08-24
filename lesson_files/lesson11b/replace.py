@@ -3,5 +3,5 @@ def xReplace(value):
     x = value
 
 x = "outer"
-xReplace("inner")
-print(x)          # this time, prints 'inner'!
+xReplace("inner") 
+print(x)       # 'inner' now!
