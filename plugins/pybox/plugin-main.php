@@ -27,7 +27,7 @@ require_once('plugin-config.php');
 require_once('plugin-constants.php');
 require_once('plugin-utilities.php'); 
 
-register_activation_hook(__FILE__, 'pybox_install');
+register_activation_hook(__FILE__, 'pybox_database_install');
 // for information about upgrading see
 // http://codex.wordpress.org/Creating_Tables_with_Plugins
 
