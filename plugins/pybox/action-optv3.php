@@ -3,6 +3,8 @@
   // read http request variables, from cgi, then pass them on 
   // as a json dict to python's maketrace in jail
 
+define(MAX_VIS_CACHED_LEN, 30000);
+
   /************* preliminary stuff *************/
 header("Content-type: text/plain; charset=utf8");
 require_once("include-to-load-wp.php");
@@ -101,10 +103,12 @@ if (is_resource($process)) {
   // typical for internal errors
   if ($results == '') echo $stderr;
   else {
-
-    $wpdb->update("{$wpdb->prefix}pb_submissions", 
-                  array("result" => $results),
-                  array("ID" => $logid));
+    
+    if (len($results) < MAX_VIS_CACHED_LEN)
+      
+      $wpdb->update("{$wpdb->prefix}pb_submissions", 
+                    array("result" => $results),
+                    array("ID" => $logid));
 
   }
 }
