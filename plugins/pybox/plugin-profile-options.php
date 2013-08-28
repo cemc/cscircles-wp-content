@@ -46,7 +46,7 @@ function user_pb_options_fields( $user ) {
        <tr>
 														<th><label for="pboptout"><?php echo __t("Opt Out of Mass Emails"); ?></label></th>
        <td>
-     <input type="checkbox" name="optout" id="optout"<?php echo $optout . " > ".
+     <input type="checkbox" name="pboptout" id="pboptout"<?php echo $optout . " > ".
  __t("(default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.");?></input>
        </td>
        </tr>
