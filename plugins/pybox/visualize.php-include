@@ -71,6 +71,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 <script type="text/javascript" src="../CodeMirror3/lib/codemirror.js"></script>
 <link type="text/css" href="../CodeMirror3/lib/codemirror.css" rel="stylesheet" />
 <script type="text/javascript" src="../CodeMirror3/mode/python/python.js"></script>
+<script type="text/javascript" src="../CodeMirror3/addon/edit/matchbrackets.js"></script>
 
 <script type="text/javascript" >
 var python3_backend_script = '../action-optv3.php';
