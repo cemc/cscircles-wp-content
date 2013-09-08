@@ -77,6 +77,13 @@ function pyUser($options, $content) {
 
   $allProblems = ($gp == "");
 
+  if (!$viewingAsStudent) {
+    $problem_html = 
+      $allProblems? 
+      "all problems":
+      ("<a href='".$problemsByNumber[$gp]['url']."'>".$problemsByNumber[$gp]['publicname'] ."</a>");
+  }
+
   if (!$allStudents && array_key_exists('user', $_GET) && $_GET['user'] != '') {
     if (!is_numeric($_GET['user']))
       return __t("User id must be numeric.");
@@ -91,18 +98,12 @@ function pyUser($options, $content) {
     }
     $uid = $getuid;
     $user = get_userdata($uid);
-    echo "<div class='history-prenote'>".__t('Viewing student ') . $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $uid . ")</div>";
+    echo "<div class='history-prenote'>".sprintf(__t("Now viewing %s for "), $problem_html) . $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $uid . ")</div>";
   }
   if ($allStudents) {
-    echo "<div class='history-prenote'>".__t("Viewing summary of all your students")."</div>";
+    echo "<div class='history-prenote'>".sprintf(__t("Now viewing %s for all of your students"), $problem_html) ."</div>";
   }
 
-  if (!$viewingAsStudent) {
-    if (!$allProblems) 
-      echo "<div class='history-prenote'>Viewing history for problem <a href='".$problemsByNumber[$gp]['url']."'>".$problemsByNumber[$gp]['publicname'] ."</a></div>";
-    else
-      echo "<div class='history-prenote'>Viewing history for all problems combined</div>";
-  }
 
   /***************** end of header ***************/
 
@@ -168,31 +169,37 @@ function pyUser($options, $content) {
 
   if ($allStudents && !userIsAdmin()) {
     $studentList = getStudentList();
-    if ($allProblems) {
-      // show number of problems each student completed
-      $scompleted = $wpdb->get_results
-        ("SELECT userid, count(1) from $completed_table WHERE userid in $studentList GROUP BY userid", ARRAY_A);
-      $desc = 'Problems completed per student';
-      $remind = 'problems';
-    }
-    else {
-      // show number of submissions by each student for this problem
-      $scompleted = $wpdb->get_results(
-                                       $wpdb->prepare("SELECT count(1), userid from $submissions_table WHERE userid in $studentList AND problem LIKE %s GROUP BY userid", $gp),
-        ARRAY_A);
-      $desc = 'Submission count per student';
-      $remind = 'submissions';
-    }
-    $studentTable .= '<div class="history-note">'.$desc.' (click name to drill down)</div>';
+    $where = "WHERE userid in $studentList";
+    if (!$allProblems)
+      $where .= $wpdb->prepare("and problem LIKE %s", $gp);
+
+    // show number of problems each student completed
+    $scompleted = $wpdb->get_results
+      ("SELECT userid, count(1) as comps from $completed_table $where GROUP BY userid", OBJECT_K);
+    
+    // show number of submissions by each student for this problem
+    $ssubmissions = $wpdb->get_results
+      ("SELECT userid, count(1) as subs from $submissions_table $where GROUP BY userid", OBJECT_K);
+
+    $studentTable .= '<div class="history-note">Student listing (click name to drill down)</div>';
     $studentTable .= '<table>';
-    foreach ($scompleted as $scrow) {
+
+    foreach (getStudents() as $stu) {
       $studentTable .= '<tr>';
       $studentTable .= '<td>';
-      $studentTable .= '<a href="?user=' . $scrow["userid"] .'&problem=' . $gp . '">';
-      $studentTable .= userString($scrow["userid"]);
+      $studentTable .= '<a class="open-same-window" href="?user=' . $stu .'&problem=' . $gp . '">';
+      $studentTable .= userString($stu);
       $studentTable .= '</a></td>';
       $studentTable .= '<td>';
-      $studentTable .= $scrow["count(1)"] . ' ' . $remind;
+      if ($allProblems)
+        $studentTable .= (array_key_exists($stu, $scompleted) ? ($scompleted[$stu]->comps) : 0) . ' completed';
+      else
+        $studentTable .= '<img src="' . UFILES .
+          (array_key_exists($stu, $scompleted) ? 'checked' : 'icon') . '.png"/>';
+
+      $studentTable .= '</td>';
+      $studentTable .= '<td>';
+      $studentTable .= (array_key_exists($stu, $ssubmissions) ? ($ssubmissions[$stu]->subs) : 0) . ' submissions';
       $studentTable .= '</td>';
       $studentTable .= '</tr>';
     }
