@@ -12,7 +12,7 @@ input.wpcf7-text, textarea.wpcf7-textarea {
 }
 
 .ui-resizable-handle {
-    z-index: 999 !important; // not to overlap modal dialogs
+    z-index: 999 !important; /* not to overlap modal dialogs*/
 }
 
 .fixsresize .ui-resizable-s {
@@ -91,6 +91,47 @@ input.wpcf7-text, textarea.wpcf7-textarea {
     border-radius: 3px;
     margin-right: 10px;
     padding: 2px;
+    white-space: nowrap;
+}
+
+.latest-title {
+    font-size: 120%;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.recent {
+    padding: 10px 0px;
+}
+
+.history-prenote {
+    color: #D00;
+}
+
+.history-prenote, .history-note {
+    font-size: 110%;
+    font-weight: bold;
+    margin: 5px 0px;
+}
+
+#content .history-tablette {
+    vertical-align: middle; 
+    display: inline-block; 
+    width: auto; 
+    border: none;
+}
+
+#content .history-tablette {
+    line-height: 14px;
+}
+
+#content .history-tablette-bottom {
+    position: relative;
+    top: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 14px;
 }
 
 /********************** simple collapsers ********************/
@@ -202,7 +243,6 @@ table.locator {
     width: 100%;
 }
 td.locator {
-    align:center;
     text-align: center;
 }
 .nextlesson {

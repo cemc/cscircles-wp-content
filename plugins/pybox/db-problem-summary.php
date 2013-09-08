@@ -69,7 +69,7 @@ function dbProblemSummary($limit, $sortname, $sortorder, $req = NULL) {
      $cell['info'] = userString($sid);
      if ($sdata != null) {
        $cell[__t('latest correct')] = prebox($sdata->usercode);
-       $cell[__t('last time')] = $sdata->beginstamp;
+       $cell[__t('last time')] = $sdata->endstamp;
        $cell[__t('first time')] = $wpdb->get_var
 	 ($wpdb->prepare("SELECT time FROM $complete_table WHERE userid=$sid and problem='%s'", $problemslug));
      }

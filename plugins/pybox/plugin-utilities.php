@@ -272,11 +272,13 @@ function preBox( $s, $len = -1, $lenlimit = 2000, $style = '', $hinted = false )
   if ($s === NULL)
     return '<div><i>NULL</i></div>';
 
-  $lastline = strrpos($s, "\n", -2);
-  if ($lastline === FALSE) $lastline = "";
-  else $lastline = substr($s, $lastline);
-  if (strlen($lastline) > $lenlimit)
-    $lastline = substr($lastline, strlen($lastline) - $lenlimit);
+  if (strlen($s) > 1) {
+    $lastline = strrpos($s, "\n", -2);
+    if ($lastline === FALSE) $lastline = "";
+    else $lastline = substr($s, $lastline);
+    if (strlen($lastline) > $lenlimit)
+      $lastline = substr($lastline, strlen($lastline) - $lenlimit);
+  }
 
   if ($len == -1)
     $len = strlen($s);

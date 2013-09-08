@@ -114,7 +114,10 @@ ORDER BY $sortString ID DESC " . $limit;
        $cell[__t('problem')] = $p;
      $cell[__t('user code')] = preBox($r['usercode'], -1, -1);
      $cell[__t('user input')] = $r['userinput'] == NULL ? '<i>'.__t('n/a').'</i>' : preBox($r['userinput'], -1, 100000);
-     $cell[__t('result')] = $resultdesc[$r['result']];
+     if ($p != 'visualizer' && $p != 'visualizer-iframe')
+       $cell[__t('result')] = getSoft($resultdesc, $r['result'], '???');
+     else
+       $cell[__t('result')] = '<i>n/a</i>';       
      $cell[__t('time &amp; ID')] = str_replace(' ', '<br/>', $r['beginstamp']) . '<br/>#' . $r['ID'];
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);
    }
