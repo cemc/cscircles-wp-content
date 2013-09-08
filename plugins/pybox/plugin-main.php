@@ -20,8 +20,10 @@ if (FALSE === get_option('cscircles_pjail'))
   update_option('cscircles_pjail', '/path/to/python3jail/');
 if (FALSE === get_option('cscircles_psafeexec'))
   update_option('cscircles_psafeexec', '/path/to/safeexec/safeexec');
-define('PJAIL', get_option('cscircles_pjail'));
-define('PSAFEEXEC', get_option('cscircles_psafeexec'));
+if (!defined('PJAIL')) // allow overriding PJAIL in wp-config.php
+  define('PJAIL', get_option('cscircles_pjail'));
+if (!defined('PSAFEEXEC')) // allow overriding PSAFEEXEC in wp-config.php
+  define('PSAFEEXEC', get_option('cscircles_psafeexec'));
 
 require_once('plugin-config.php');
 require_once('plugin-constants.php');
