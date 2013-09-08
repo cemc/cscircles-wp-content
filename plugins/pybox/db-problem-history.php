@@ -73,7 +73,8 @@ WHERE userid = %d AND problem = %s ORDER BY $sortString ID DESC" . $limit, $uid,
      $cell[__t('user code')] = preBox($r['usercode'], -1, -1);
      if ($showInputColumn) 
        $cell[__t('user input')] = $r['userinput'] === NULL ? '<i>'.__t('n/a').'</i>' : preBox($r['userinput'], -1, 100000);
-     $cell[__t('result')] = getSoft($resultdesc, $r['result'], $r['result']);
+     if ($problemname != "visualizer")
+       $cell[__t('result')] = getSoft($resultdesc, $r['result'], $r['result']);
      $cell[__t('time &amp; ID')] = str_replace(' ', '<br/>', $r['beginstamp']) . '<br/>#' . $r['ID'];
      $flexirows[] = array('id'=>$r['ID'], 'cell'=>$cell);
    }

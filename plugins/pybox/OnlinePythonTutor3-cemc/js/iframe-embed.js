@@ -27,44 +27,49 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 
-// Pre-reqs: pytutor.js and jquery.ba-bbq.min.js should be imported BEFORE this file
-
-
-// backend scripts to execute (Python 2 and 3 variants, if available)
-// make two copies of ../web_exec.py and give them the following names,
-// then change the first line (starting with #!) to the proper version
-// of the Python interpreter (i.e., Python 2 or Python 3).
-//var python2_backend_script = 'web_exec_py2.py';
-//var python3_backend_script = 'web_exec_py3.py';
-
-// uncomment below if you're running on Google App Engine using the built-in app.yaml
-var python2_backend_script = 'exec';
-var python3_backend_script = '../action-optv3.php'; // relative to iframe-embed.js
+// Pre-reqs:
+// - pytutor.js
+// - jquery.ba-bbq.min.js
+// - opt-frontend-common.js
+// should all be imported BEFORE this file
 
 
 var myVisualizer = null; // singleton ExecutionVisualizer instance
 
 
+function NOP() {};
+
+
 $(document).ready(function() {
-  var preseededCode = $.bbq.getState('code');
+  var queryStrOptions = getQueryStringOptions();
 
-  var pyState = $.bbq.getState('py');
-  var verticalStackBool = ($.bbq.getState('verticalStack') == 'true'); // boolean
-  var heapPrimitivesBool = ($.bbq.getState('heapPrimitives') == 'true');
-  var drawParentPointerBool = ($.bbq.getState('drawParentPointers') == 'true');
-  var textRefsBool = ($.bbq.getState('textReferences') == 'true');
-  var showOnlyOutputsBool = ($.bbq.getState('showOnlyOutputs') == 'true');
+  var preseededCode = queryStrOptions.preseededCode;
+  var pyState = queryStrOptions.pyState;
+  var verticalStackBool = (queryStrOptions.verticalStack == 'true');
+  var heapPrimitivesBool = (queryStrOptions.heapPrimitives == 'true');
+  var drawParentPointerBool = (queryStrOptions.drawParentPointers == 'true');
+  var textRefsBool = (queryStrOptions.textRefs == 'true');
+  var showOnlyOutputsBool = (queryStrOptions.showOnlyOutputs == 'true');
+  var cumModeBool = (queryStrOptions.cumulativeState == 'true');
 
-  // set up all options in a JS object
-  var options = {cumulative_mode: ($.bbq.getState('cumulative') == 'true'),
-                 heap_primitives: heapPrimitivesBool,
-                 show_only_outputs: showOnlyOutputsBool,
-                 py_crazy_mode: ($.bbq.getState('py') == '2crazy')};
+  var codeDivWidth = undefined;
+  var codeDivWidth = 350;
+  var cdw = $.bbq.getState('codeDivWidth');
+  var cdw = $.bbq.getState('width');
+  if (cdw) {
+    codeDivWidth = Number(cdw);
+  }
+
+  var codeDivHeight = undefined;
+  var cdh = $.bbq.getState('codeDivHeight');
+  if (cdh) {
+    codeDivHeight = Number(cdh);
+  }
 
 
-  var preseededCurInstr = Number($.bbq.getState('curInstr'));
-  if (!preseededCurInstr) {
-    preseededCurInstr = 0;
+  var startingInstruction = queryStrOptions.preseededCurInstr;
+  if (!startingInstruction) {
+    startingInstruction = 0;
   }
 
   var backend_script = null;
@@ -74,10 +79,8 @@ $(document).ready(function() {
   else if (pyState == '3') {
       backend_script = python3_backend_script;
   }
-
-  if (!backend_script) {
-    alert('Error: This server is not configured to run Python ' + $('#pythonVersionSelector').val());
-    return;
+  else if (pyState == '2crazy') {
+      backend_script = python2crazy_backend_script;
   }
 
 
@@ -99,100 +102,78 @@ $(document).ready(function() {
       var container = findContainer();
       
       function resizeContainerNow() {
-        var fudge = ($(".ExecutionVisualizer > table").width() > $(container).width()) ? 20 : 0;
-        $(container).height(fudge + $("html").height());
+        $(container).height($("html").height());
       };
   }
 
-      
-  $.get(backend_script,
-        {user_script : preseededCode,
-         options_json: JSON.stringify(options),
-         iframe_mode: "Y"},
-        function(dataFromBackend) {
-          var trace = dataFromBackend.trace;
+  // set up all options in a JS object
+  var backendOptionsObj = {cumulative_mode: cumModeBool,
+                           heap_primitives: heapPrimitivesBool,
+                           show_only_outputs: showOnlyOutputsBool,
+                           py_crazy_mode: (pyState == '2crazy'),
+                           origin: 'iframe-embed.js'};
 
-          // don't enter visualize mode if there are killer errors:
-          if (!trace ||
-              (trace.length == 0) ||
-              (trace[trace.length - 1].event == 'uncaught_exception')) {
+  var frontendOptionsObj = {startingInstruction: startingInstruction,
+                            embeddedMode: true,
+                            verticalStack: verticalStackBool,
+                            disableHeapNesting: heapPrimitivesBool,
+                            drawParentPointers: drawParentPointerBool,
+                            textualMemoryLabels: textRefsBool,
+                            showOnlyOutputs: showOnlyOutputsBool,
+                            executeCodeWithRawInputFunc: executeCodeWithRawInput,
+                            heightChangeCallback: (resizeContainer ? resizeContainerNow : NOP),
 
-            if (trace.length == 1) {
-              alert(trace[0].exception_msg);
-            }
-            else if (trace[trace.length - 1].exception_msg) {
-              alert(trace[trace.length - 1].exception_msg);
-            }
-            else {
-              alert("Whoa, unknown error! Reload to try again, or report a bug to philip@pgbovine.net\n\n(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
-            }
-          }
-          else {
-            var startingInstruction = 0;
+                            // undocumented experimental modes:
+                            pyCrazyMode: (pyState == '2crazy'),
+                            highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
+                            codeDivWidth: codeDivWidth,
+                            codeDivHeight: codeDivHeight,
+                           }
 
-            // only do this at most ONCE, and then clear out preseededCurInstr
-            if (preseededCurInstr && preseededCurInstr < trace.length) { // NOP anyways if preseededCurInstr is 0
-              startingInstruction = preseededCurInstr;
-            }
+  function executeCode(forceStartingInstr) {
+    if (forceStartingInstr) {
+      frontendOptionsObj.startingInstruction = forceStartingInstr;
+    }
+    executePythonCode(preseededCode,
+                      backend_script, backendOptionsObj,
+                      frontendOptionsObj,
+                      'vizDiv',
+                      function() { // success
+                        if ($.bbq.getState('rightStdout')) {
+                          $("#progOutputs").appendTo("#dataViz");
+                        };
+                        if (resizeContainer)
+                          resizeContainerNow();
+                      }, 
+                      NOP);
+  }
 
-            var codeDivWidth = 350;
-            if ($.bbq.getState("width")) codeDivWidth = $.bbq.getState("width");
 
-            myVisualizer = new ExecutionVisualizer('vizDiv',
-                                                   dataFromBackend,
-                                                   {startingInstruction: preseededCurInstr,
-                                                    embeddedMode: true,
-                                                    verticalStack: verticalStackBool,
-                                                    disableHeapNesting: heapPrimitivesBool,
-                                                    drawParentPointers: drawParentPointerBool,
-                                                    textualMemoryLabels: textRefsBool,
-                                                    showOnlyOutputs: showOnlyOutputsBool,
-                                                    highlightLines: typeof $.bbq.getState("highlightLines") !== "undefined",
-                                                    pyCrazyMode: ($.bbq.getState('py') == '2crazy'),
-                                                    heightChangeCallback: (resizeContainer ? resizeContainerNow : null),
-                                                    codeDivWidth: codeDivWidth
-                                                   });
+  function executeCodeFromScratch() {
+    // reset these globals
+    rawInputLst = [];
+    executeCode();
+  }
 
-            // set keyboard bindings
-            // VERY IMPORTANT to clear and reset this every time or
-            // else the handlers might be bound multiple times
-            $(document).unbind('keydown');
-            $(document).keydown(function(k) {
-              if (k.keyCode == 37) { // left arrow
-                if (myVisualizer.stepBack()) {
-                  k.preventDefault(); // don't horizontally scroll the display
-                }
-              }
-              else if (k.keyCode == 39) { // right arrow
-                if (myVisualizer.stepForward()) {
-                  k.preventDefault(); // don't horizontally scroll the display
-                }
-              }
-            });
-
-            if ($.bbq.getState('rightStdout')) {
-              $("#progOutputs").appendTo("#dataViz");
-            }
-
-            if (resizeContainer) resizeContainerNow();
-
-          }
-        },
-        "json");
+  function executeCodeWithRawInput(rawInputStr, curInstr) {
+    // set some globals
+    rawInputLst.push(rawInputStr);
+    executeCode(curInstr);
+  }
 
 
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
-    alert("Online Python Tutor server error (possibly due to memory/resource overload).");
+    alert("Ugh, Online Python Tutor server error :(");
   });
 
 
   // redraw connector arrows on window resize
   $(window).resize(function() {
-    if (typeof appMode !== "undefined" && appMode == 'display') {
-      myVisualizer.redrawConnectors();
-    }
+    myVisualizer.redrawConnectors();
   });
-  
+
+  executeCodeFromScratch(); // finally, execute code and display visualization
+
 });
 

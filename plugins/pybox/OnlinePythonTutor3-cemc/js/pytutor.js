@@ -82,9 +82,10 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //   codeDivWidth  - maximum width  of #pyCodeOutputDiv (in integer pixels)
 //   editCodeBaseURL - the base URL to visit when the user clicks 'Edit code' (if null, then 'Edit code' link hidden)
 //   allowEditAnnotations - allow user to edit per-step annotations (default: false)
-//   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false
+//   embeddedMode         - shortcut for hideOutput=true, allowEditAnnotations=false,
+//                                       codeDivWidth=this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH,
+//                                       codeDivHeight=this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT
 //   disableHeapNesting   - if true, then render all heap objects at the top level (i.e., no nested objects)
-//   codeDivWidth=350, codeDivHeight=400
 //   drawParentPointers   - if true, then draw environment diagram parent pointers for all frames
 //                          WARNING: there are hard-to-debug MEMORY LEAKS associated with activating this option
 //   textualMemoryLabels  - render references using textual memory labels rather than as jsPlumb arrows.
@@ -102,12 +103,15 @@ var curVisualizerID = 1; // global to uniquely identify each ExecutionVisualizer
 //                                 with some new user input (somewhat hacky!)
 //   highlightLines - highlight current and previously executed lines (default: false)
 //   arrowLines     - draw arrows pointing to current and previously executed lines (default: true)
+//   compactFuncLabels - render functions with a 'func' prefix and no type label
 //   pyCrazyMode    - run with Py2crazy, which provides expression-level
 //                    granularity instead of line-level granularity (HIGHLY EXPERIMENTAL!)
 function ExecutionVisualizer(domRootID, dat, params) {
   this.curInputCode = dat.code.rtrim(); // kill trailing spaces
   this.curTrace = dat.trace;
 
+  this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH = 350;
+  this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT = 400;
 
   // optional filtering to remove redundancy ...
   // ok, we're gonna filter out all trace entries of 'call' events,
@@ -139,7 +143,7 @@ function ExecutionVisualizer(domRootID, dat, params) {
                     && this.curTrace[this.curTrace.length-1].stdout);
   
   if (this.hasStdout) {
-    this.stdoutLines = this.curTrace[this.curTrace.length-1].stdout.replace(/\n$/, '').split("\n").length;
+    this.stdoutLines = this.curTrace[this.curTrace.length-1].stdout.split("\n").length;
   }
   else 
     this.stdoutLines = -1;
@@ -174,10 +178,16 @@ function ExecutionVisualizer(domRootID, dat, params) {
   if (this.params.lang == undefined) 
     this.params.lang = "python";
 
+  this.compactFuncLabels = this.params.compactFuncLabels;
+
+  // audible!
+  if (this.params.pyCrazyMode) {
+      this.params.arrowLines = this.params.highlightLines = false;
+  }
+
   // needs to be unique!
   this.visualizerID = curVisualizerID;
   curVisualizerID++;
-
 
   this.leftGutterSvgInitialized = false;
   this.arrowOffsetY = undefined;
@@ -407,11 +417,11 @@ ExecutionVisualizer.prototype.render = function() {
 
     // don't override if they've already been set!
     if (this.params.codeDivWidth === undefined) {
-      this.params.codeDivWidth = 350;
+      this.params.codeDivWidth = this.DEFAULT_EMBEDDED_CODE_DIV_WIDTH;
     }
 
     if (this.params.codeDivHeight === undefined) {
-      this.params.codeDivHeight = 400;
+      this.params.codeDivHeight = this.DEFAULT_EMBEDDED_CODE_DIV_HEIGHT;
     }
     
     this.allowEditAnnotations = false;
@@ -473,7 +483,7 @@ ExecutionVisualizer.prototype.render = function() {
       .css('max-height', this.params.codeDivHeight + 'px');
   }
 
-  var globalsLabel = "Global variables";
+  var globalsLabel = "Global frame";
   if (myViz.params.lang == 'java') globalsLabel = "Static fields";
   
   // create a persistent globals frame
@@ -1593,7 +1603,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
 
     // keep original horizontal scroll level:
     var oldLeft = myViz.domRoot.find("#pyStdout").scrollLeft();
-    myViz.domRoot.find("#pyStdout").val(curEntry.stdout.replace(/\n$/, ''));
+    myViz.domRoot.find("#pyStdout").val(curEntry.stdout);
 
     myViz.domRoot.find("#pyStdout").scrollLeft(oldLeft);
     // scroll to bottom, though:
@@ -1743,11 +1753,18 @@ ExecutionVisualizer.prototype.precomputeCurTraceLayouts = function() {
 
           if (!isPrimitiveType(child)) {
             var childID = getRefID(child);
-            if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
-              updateCurLayout(childID, curRow, newRow);
-            }
-            else if (myViz.disableHeapNesting) {
+
+            // comment this out to make "linked lists" that aren't
+            // structurally equivalent look good, e.g.,:
+            //   x = (1, 2, (3, 4, 5, 6, (7, 8, 9, None)))
+            //if (structurallyEquivalent(heapObj, curEntry.heap[childID])) {
+            //  updateCurLayout(childID, curRow, newRow);
+            //}
+            if (myViz.disableHeapNesting) {
               updateCurLayout(childID, [], []);
+            }
+            else {
+              updateCurLayout(childID, curRow, newRow);
             }
           }
         });
@@ -2191,10 +2208,12 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
     else if (typ == "number") {
       d3DomElement.append('<span class="numberObj">' + obj + '</span>');
     }
-    else if (obj instanceof Array && obj[0] == "PRIMITIVE") {
-      if (obj[1] == "void")
-        d3DomElement.append('<span class="voidObj">void</span>');
-      else assert(false);
+    else if (obj instanceof Array && obj[0] == "VOID") {
+      d3DomElement.append('<span class="voidObj">void</span>');
+    }
+    else if (obj instanceof Array && obj[0] == "NUMBER-LITERAL") {
+      // actually transmitted as a string
+      d3DomElement.append('<span class="numberObj">' + obj[1] + '</span>');
     }
     else {
       assert(false);
@@ -2381,7 +2400,11 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
 
           // the keys should always be strings, so render them directly (and without quotes):
           // (actually this isn't the case when strings are rendered on the heap)
-          if (typeof kvPair[0] == "string") {
+          if (kvPair[0] instanceof Array 
+               && kvPair[0][0] == "NO-LABEL") {
+            $(keyTd).hide();
+          }
+          else if (typeof kvPair[0] == "string") {
             // common case ...
             var attrnameStr = htmlspecialchars(kvPair[0]);
             keyTd.append('<span class="keyObj">' + attrnameStr + '</span>');
@@ -2409,13 +2432,17 @@ ExecutionVisualizer.prototype.renderDataStructures = function() {
       var funcName = htmlspecialchars(obj[1]).replace('&lt;lambda&gt;', '\u03bb');
       var parentFrameID = obj[2]; // optional
 
-      d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
+      if (!myViz.compactFuncLabels) {
+        d3DomElement.append('<div class="typeLabel">' + typeLabelPrefix + 'function</div>');
+      }
+
+      var funcPrefix = myViz.compactFuncLabels ? 'func' : '';
 
       if (parentFrameID) {
-        d3DomElement.append('<div class="funcObj">' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
+        d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + ' [parent=f'+ parentFrameID + ']</div>');
       }
       else {
-        d3DomElement.append('<div class="funcObj">' + funcName + '</div>');
+        d3DomElement.append('<div class="funcObj">' + funcPrefix + ' ' + funcName + '</div>');
       }
     }
     else if (obj[0] == 'HEAP_PRIMITIVE') {
@@ -3117,7 +3144,11 @@ function structurallyEquivalent(obj1, obj2) {
 
 function isPrimitiveType(obj) {
   var typ = typeof obj;
-  return ((obj == null) || (typ != "object") || (obj instanceof Array && obj[0] == "PRIMITIVE"));
+  return ((obj == null) 
+          || (typ != "object") 
+          || (obj instanceof Array && obj[0] == "VOID")
+          || (obj instanceof Array && obj[0] == "NUMBER-LITERAL")
+         );
 }
 
 function getRefID(obj) {

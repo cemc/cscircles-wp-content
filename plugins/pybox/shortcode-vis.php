@@ -22,6 +22,6 @@ function pyVisHandler($options, $the_content) {
     .'code='.urlencode($content)
     .'&cumulative=false&heapPrimitives=false&drawParentPointers=false&textReferences=false&showOnlyOutputs=false&py=3&curInstr=0&resizeContainer=true&highlightLines&width='.$width.'&rightStdout=1';
   return 
-    "<$tag width='100%' height='480' frameborder='0' $urlname='$url'></$tag>";
+    "<$tag width='100%' height='480' frameborder='0' scrolling='no' $urlname='$url'></$tag>";
 }
 
