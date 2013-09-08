@@ -134,6 +134,17 @@ input.wpcf7-text, textarea.wpcf7-textarea {
     line-height: 14px;
 }
 
+.progress-selector {
+    background-color:#EEF; 
+    border: 1px solid blue; 
+    border-radius: 5px; 
+    padding: 5px;
+}
+
+.progress-selector td {
+    padding: 2px;
+}
+
 /********************** simple collapsers ********************/
 
 

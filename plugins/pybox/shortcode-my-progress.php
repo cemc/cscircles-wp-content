@@ -32,7 +32,7 @@ function pyUser($options, $content) {
 
   if (userIsAdmin() || userIsAssistant() || $cstudents>0) {
     $preamble = 
-      "<div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
+      "<div class='progress-selector'>
        <form method='get'><table style='border:none'><tr><td>".sprintf(__t("View one of your students? (you have %s)"), $cstudents).'</td><td>';
     $options = array();
     $options[''] = __t('Show only me');
@@ -50,7 +50,7 @@ function pyUser($options, $content) {
     }
     
     if (userIsAdmin()) {
-      $preamble .= 'blank: you; "all": all; id#: user (<a href="'.cscurl('allusers').'">list</a>) <input style = "width:60px" type="text" name="user" value="'.getSoft($_REQUEST, 'user', '').'">';
+      $preamble .= 'blank: you; "all": all; id#: user (<a href="'.cscurl('allusers').'">list</a>) <input style = "padding:0px;width:60px" type="text" name="user" value="'.getSoft($_REQUEST, 'user', '').'">';
     }
     else {
       $preamble .= optionsHelper($options, 'user');
