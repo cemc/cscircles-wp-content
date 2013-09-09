@@ -279,6 +279,7 @@ function preBox( $s, $len = -1, $lenlimit = 2000, $style = '', $hinted = false )
     if (strlen($lastline) > $lenlimit)
       $lastline = substr($lastline, strlen($lastline) - $lenlimit);
   }
+  else $lastline = '';
 
   if ($len == -1)
     $len = strlen($s);

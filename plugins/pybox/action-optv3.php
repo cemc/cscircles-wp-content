@@ -35,28 +35,37 @@ global $wpdb;
 
 $cached_result = NULL;
 
-$hash = md5($_REQUEST['user_script'] . "\t\t\t" . $_REQUEST['raw_input_json']);
+$basehash = md5($_REQUEST['user_script'] . "\t\t\t" . $_REQUEST['raw_input_json']) . '-viz';
+$versionedhash = $basehash . VIZ_VERSION; 
 
-if (strstr($_REQUEST['user_script'], 'random') == FALSE) { // don't cache if randomized
-  $existing = $wpdb->get_row(
-                             $wpdb->prepare(
-"SELECT * FROM {$wpdb->prefix}pb_submissions
-WHERE hash = %s AND result IS NOT NULL LIMIT 1",
- $hash . '-viz'));
+$dontCache = strstr($_REQUEST['user_script'], 'random') !== FALSE;
+
+if (!$dontCache) { // don't cache if randomized
+  $the_count = $wpdb->get_var
+    ($wpdb->prepare
+     ("SELECT count(1) FROM {$wpdb->prefix}pb_submissions
+WHERE hash LIKE %s LIMIT 4", $basehash . '%'));
   
-  if ($existing !== NULL)
-    $cached_result = $existing->result;
+  $cached_result = $wpdb->get_var
+    ($wpdb->prepare
+     ("SELECT result FROM {$wpdb->prefix}pb_submissions
+WHERE hash = %s AND result is NOT NULL LIMIT 1", $versionedhash));
+  
+  // if cached_result is NULL, we still have to compute it anyway
 
  }
 
   /************* do logging *************/
+// save things to build up the cache count
+// save things sent to the real visualizer (not the iframe)
+// but once something is iframed 5 times we don't need to log it any more
 if ($cached_result === NULL || !isSoft($_REQUEST, "iframe_mode", "Y")) {
 
   $logRow = array(
                   'beginstamp' => date( 'Y-m-d H:i:s', time() ),
                   'usercode' => $_REQUEST['user_script'],
                   'userinput' => $_REQUEST['raw_input_json'],
-                  'hash' => $hash . '-viz',
+                  'hash' => $versionedhash,
                   'problem' => isSoft($_REQUEST, "iframe_mode", "Y") ? 'visualizer-iframe' : 'visualizer', 
                   'ipaddress' => ($_SERVER['REMOTE_ADDR']),
                   'referer' => ($_SERVER['HTTP_REFERER']),
@@ -104,7 +113,10 @@ if (is_resource($process)) {
   if ($results == '') echo $stderr;
   else {
     
-    if (strlen($results) < MAX_VIS_CACHED_LEN)
+    if (!$dontCache &&
+        $the_count >= 4 && //cache things on the 5th time
+        $cached_result == NULL &&
+        strlen($results) < MAX_VIS_CACHED_LEN)
       
       $wpdb->update("{$wpdb->prefix}pb_submissions", 
                     array("result" => $results),
