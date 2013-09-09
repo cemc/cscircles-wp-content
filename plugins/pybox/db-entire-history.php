@@ -81,7 +81,6 @@ function dbEntireHistory($limit, $sortname, $sortorder, $req=NULL) {
    }
    else {
      $uid = $u->ID;
-     $uname = $u->display_name;
      $whereStudent = $wpdb->prepare("userid = %d", $uid);
    }     
 

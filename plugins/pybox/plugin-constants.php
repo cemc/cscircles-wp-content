@@ -21,7 +21,7 @@ define('UWARN', UFILES . 'warning.png');
 
 // +1 to ? number forces clients to reload instead of using cached
 define('UPYBOXJS', UPYBOX . 'pybox.js?33');
-define('UPYBOXCSS', UPYBOX . 'pybox.css?21');
+define('UPYBOXCSS', UPYBOX . 'pybox.css?22');
 
 define('UPROBLEMSOURCE', UPYBOX . 'page-problem-source.php');
 define('UPAGESOURCE', UPYBOX . 'page-source.php');

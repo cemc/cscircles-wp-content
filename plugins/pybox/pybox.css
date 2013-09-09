@@ -125,6 +125,10 @@ input.wpcf7-text, textarea.wpcf7-textarea {
     line-height: 14px;
 }
 
+#content .history-tablette-top {
+    line-height: 10px;
+}
+
 #content .history-tablette-bottom {
     position: relative;
     top: 5px;

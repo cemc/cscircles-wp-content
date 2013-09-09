@@ -60,15 +60,20 @@ function pbmailpage($options, $content) {
   $students = getStudents();
   $cstudents = count($students);
   
+  $r .= reselector($students, $cstudents);
+
+  $r .= '<hr style="width:80%;align:center;">';
+  
   if ($problem !== NULL) {
     
     $finished = $wpdb->get_var($wpdb->prepare("SELECT time FROM ".$wpdb->prefix."pb_completed WHERE userid = %d AND problem = %s",
 					      $sid, $problem['slug']));
     
-    $r .= '<h1 id="m" style="margin-top:0">'.
+    $r .= '<div class="history-note">'.
       sprintf(__t('Messages about %1$s for user %2$s'),
 	      '<a href="' . $problem['url'] . '">' . $problem['publicname'] .'</a>',
 	      userString($sid));
+    $r .= '</div>';
     
     if ($finished !== NULL)
       $r .= "<img title='".$student->user_login.__t(" has completed this problem.")."' src='".UFILES."checked.png' class='pycheck'/>";
@@ -88,7 +93,8 @@ function pbmailpage($options, $content) {
     
     foreach ($messages as $i=>$message) {
       $c =  ($message['ID']==$focus) ?  " showing" : " hiding";
-      $r .= "<div class='collapseContain$c' style='border-radius: 5px;'>";
+      $idp = ($message['ID']==$focus) ?  " id='m' " : '';
+      $r .= "<div $idp class='collapseContain$c' style='border-radius: 5px;'>";
       $title = __t("From")." ".nicefiedUsername($message['ufrom'], FALSE). ' '.__t('to').' '.nicefiedUsername($message['uto'], FALSE).', '.$message['time'];
       if (count($messages)>1 && $i==0) $title .= " ".__t("(newest)");
       if (count($messages)>1 && $i==count($messages)-1) $title .= " " .__t("(oldest)");
@@ -132,10 +138,13 @@ function pbmailpage($options, $content) {
 </div>';
     
     $problemname = $problem['publicname'];
+
+    $r .= '<hr style="width:80%;align:center;">';
     
-    $r .= "<h2>Tools</h2>";
-    $r .= "<a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a>";
-    $r .= "<br><a href=\"".$problem['url'].'">'.sprintf(__t("Original lesson page containing %s (new window)"), $problemname).'</a>'."
+    if (getUserID() != $sid) 
+      $r .= "<div class='history-note'><a href='".cscurl('progress').'?user='.$sid."'>".sprintf(__t("%s's progress page (new window)"), $name)."</a></div>";
+
+$r .= "
 <div class='collapseContain hiding'>
 <div class='collapseHead'><span class='icon'></span>".__t("Problem description for")." ".$problem['publicname']."</div>
 <div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
@@ -165,8 +174,6 @@ function pbmailpage($options, $content) {
   $r .= niceFlex('allme', __t("All messages ever to or from me"),
 		 'mail', 'dbMail', array());
   
-  $r .= reselector($students, $cstudents);
-  
   return $r;
 }
 
@@ -188,43 +195,39 @@ function reselector(&$students, $cstudents) {
   }  
   
   $preamble = 
-    "<br><div style='background-color:#EEF; border: 1px solid blue; border-radius: 5px; padding: 5px;'>
-       <h1 style='margin-top: 0px;'>".sprintf($cstudents == 0 ? __t("View a different problem?") : __t("Reload with a different view? (you have %s students)"), $cstudents)."</h1>
-       <form method='get'>";
+    "<div class='progress-selector'>
+       <form method='get'><table style='border:none'>";
   if ($cstudents > 0 || userIsAssistant()) { // slightly leaky but assistants will want to see progress
-    $preamble .= __t("Select different user?");
+    $preamble .= "<tr><td>".sprintf(__t("View mail with one of your students? (you have %s)"), $cstudents).'</td><td>';
     $options = array();
     $options[''] = __t('Me');
     
-    //$preamble .= <option value=''>Show only me</option>
-    //     <option value='all'>Summary of all my students</option>";
-    if (userIsAdmin()) {
-      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM ".$wpdb->prefix."users") as $row) 
-      //	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
-    }
-    else foreach ($students as $student) {
-      $info = get_userdata($student);
-      $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")<br/>";
+    if (!userIsAdmin()) {
+      foreach ($students as $student) {
+        $info = get_userdata($student);
+        $options[$info->ID] = userString($info->ID);
+      }
     }
     
     if (userIsAdmin()) {
-      $preamble .= ' &mdash; blank: you; id#: user (<a href="'.cscurl('allusers').'">list</a>) <input style = "text-align: right; width:60px" type="text" name="who" value="'.getSoft($_REQUEST, 'who', '').'"><br/>';
+      $preamble .= 'blank: you; "all": all; id#: user (<a href="'.cscurl('allusers').'">list</a>) <input style = "padding:0px;width:60px" type="text" name="user" value="'.getSoft($_REQUEST, 'user', '').'">';
     }
     else {
-      $preamble .= '<br/>'.optionsHelper($options, 'who')."<br/>";
+      $preamble .= optionsHelper($options, 'who');
     }
+    $preamble .= "</td></tr>";
   }
   
-  $preamble .= __t("Mail for which problem?")."<br/>";
+  $preamble .= "<tr><td>".__t("View mail for another problem?")."</td><td>";
   $options = array();
   $options[''] = 'all problems';
   foreach ($problems as $problem) {
     if ($problem['type'] == 'code')
       $options[$problem['slug']] = $problem['publicname'];
   }
-  $preamble .= optionsHelper($options, 'what');
+  $preamble .= optionsHelper($options, 'what') . "</td></tr>";;
   
-  $preamble .= "<br/><input type='submit' value='".__t('Submit')."'/></form></div>";
+    $preamble .= "</td></tr><tr><td colspan='2' style='text-align:center'><input style='width: 25%' type='submit' value='".__t('Submit')."'/></tr></td></table></form></div>";
   return $preamble;
 }
 

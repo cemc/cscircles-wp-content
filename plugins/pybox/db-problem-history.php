@@ -38,7 +38,7 @@ function dbProblemHistory($limit, $sortname, $sortorder, $req = NULL) {
      $u = wp_get_current_user();
    
    $uid = $u->ID;
-   $uname = $u->display_name;
+   $uname = $u->user_login;
    
    global $wpdb;   
    $table_name = $wpdb->prefix . "pb_submissions";

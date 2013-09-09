@@ -128,10 +128,9 @@ function userString($n, $short = false) {
   $user = get_userdata($n);
   if ($user === FALSE) return FALSE;
   if (!$short)
-    return $user->display_name . " (" 
-      . $user->user_nicename . " " 
+    return $user->user_login . " (" 
       . $user->user_email . " #" . $n . ")";
-  return $user->user_nicename . " #" . $n ;
+  return $user->user_login . " #" . $n ;
 }
 
 function userIsAdmin() {
@@ -562,7 +561,7 @@ function resendEmails() {
       $mFrom = '"'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
     else {
       $user = get_user_by('id', $r['ufrom']);
-      $mFrom = '"' . $user->user_nicename . '" <' . $user->user_email . '>';
+      $mFrom = '"' . $user->user_login . '" <' . $user->user_email . '>';
     }
 
 

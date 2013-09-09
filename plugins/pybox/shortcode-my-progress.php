@@ -38,15 +38,11 @@ function pyUser($options, $content) {
     $options[''] = __t('Show only me');
     $options['all'] = __t('Summary of all my students');
     
-    //$preamble .= <option value=''>Show only me</option>
-    //     <option value='all'>Summary of all my students</option>";
-    if (userIsAdmin()) {
-      //      foreach ($wpdb->get_results("SELECT user_nicename, user_email, ID, display_name FROM ".$wpdb->prefix."users") as $row) 
-      //	$options[$row->ID] = $row->display_name . " (" . $row->user_nicename . " " . $row->user_email . " #" . $row->ID . ")";
-    }
-    else foreach ($students as $student) {
-      $info = get_userdata($student);
-      $options[$info->ID] = $info->display_name . " (" . $info->user_nicename . " " . $info->user_email . " #" . $info->ID . ")";
+    if (!userIsAdmin()) {
+      foreach ($students as $student) {
+        $info = get_userdata($student);
+        $options[$info->ID] = userString($info->ID);
+      }
     }
     
     if (userIsAdmin()) {
@@ -78,10 +74,14 @@ function pyUser($options, $content) {
   $allProblems = ($gp == "");
 
   if (!$viewingAsStudent) {
-    $problem_html = 
-      $allProblems? 
-      "all problems":
-      ("<a href='".$problemsByNumber[$gp]['url']."'>".$problemsByNumber[$gp]['publicname'] ."</a>");
+    if ($allProblems)
+      $problem_html = "all problems";
+    else if ($gp=='console') 
+      $problem_html = "Console";
+    else 
+      $problem_html = 
+        "<a href='".$problemsByNumber[$gp]['url']."'>".
+        $problemsByNumber[$gp]['publicname'] ."</a>";
   }
 
   if (!$allStudents && array_key_exists('user', $_GET) && $_GET['user'] != '') {
@@ -98,7 +98,7 @@ function pyUser($options, $content) {
     }
     $uid = $getuid;
     $user = get_userdata($uid);
-    echo "<div class='history-prenote'>".sprintf(__t("Now viewing %s for "), $problem_html) . $user->display_name . " (" . $user->user_nicename . " " . $user->user_email . " #" . $uid . ")</div>";
+    echo "<div class='history-prenote'>".sprintf(__t("Now viewing %s for "), $problem_html) . userString($uid) . '</div>';
   }
   if ($allStudents) {
     echo "<div class='history-prenote'>".sprintf(__t("Now viewing %s for all of your students"), $problem_html) ."</div>";
@@ -128,6 +128,7 @@ function pyUser($options, $content) {
   $flexigrids .= niceFlex('submittedcode', 
                           $allProblems ? __t("Submitted code") 
                           : sprintf(__t("Submitted code for %s"),
+                                    $_GET['problem']=='console'?'Console':
                                     $problemsByNumber[$_GET['problem']]['publicname']),
                           'entire-history', 
                           'dbEntireHistory', 

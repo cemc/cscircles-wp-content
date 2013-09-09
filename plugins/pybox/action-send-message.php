@@ -29,7 +29,7 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
   if (userIsAdmin() || userIsAssistant())
     $mFrom = '"'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
   else 
-    $mFrom = '"' . $current_user->user_nicename . '" <' . $current_user->user_email . '>';
+    $mFrom = '"' . $current_user->user_login . '" <' . $current_user->user_email . '>';
 
   $subject = __t('CS Circles') .' - '. __t('message about') . ' ' . $problem_info['publicname'];
   
