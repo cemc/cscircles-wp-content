@@ -70,9 +70,12 @@ function pbmailpage($options, $content) {
 					      $sid, $problem['slug']));
     
     $r .= '<div class="history-note">'.
-      sprintf(__t('Messages about %1$s for user %2$s'),
-	      '<a href="' . $problem['url'] . '">' . $problem['publicname'] .'</a>',
-	      userString($sid));
+      sprintf(__t('Mail about %1$s [%3$s] for %2$s'),
+              $problem['publicname'],
+	      userString($sid),
+              '<a href="' . $problem['url'] . '">' . 
+              __t('link to original page') . '</a>'
+              );
     $r .= '</div>';
     
     if ($finished !== NULL)
@@ -80,10 +83,8 @@ function pbmailpage($options, $content) {
     else
       $r .= "<img title='".$student->user_login.__t(" has not completed this problem.")."' src='".UFILES."icon.png' class='pycheck'/>";
     
-    $r .= '</h1>';
-    
     if ($finished !== NULL)
-      $r .= "<p style='font-weight: bold; color: red'>".sprintf(__t('Note: this student completed the problem at %s'), $finished)."</p>";
+      $r .= "<div class='history-prenote'>".sprintf(__t('Note: this student completed the problem at %s'), $finished)."</div>";
     
     $r .= '<i>'.__t('Click on a message title to toggle the message open or closed.').'</i>';
     
