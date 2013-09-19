@@ -127,6 +127,12 @@ function userString($n, $short = false) {
   if ($n < 0) return "unregistered";
   $user = get_userdata($n);
   if ($user === FALSE) return FALSE;
+
+  $nicks = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', true), true);
+  if (is_array($nicks) && array_key_exists($n, $nicks)) {
+    return $nicks[$n];
+  }
+
   if (!$short)
     return $user->user_login . " (" 
       . $user->user_email . " #" . $n . ")";

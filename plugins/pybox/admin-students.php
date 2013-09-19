@@ -15,6 +15,7 @@ function cscircles_students_page() {
     $d = 0;
     $h = 0;
     $newhide = "";
+    $newnicks = array();
     foreach ($_REQUEST as $key => $val) {
       if (substr($key, 0, 1)=='s' && is_numeric(substr($key, 1))) {
         $id = substr($key, 1);
@@ -30,8 +31,16 @@ function cscircles_students_page() {
           $d++;
         }
       }
+      if (substr($key, 0, 1)=='n' && is_numeric(substr($key, 1))) {
+        $id = substr($key, 1);
+        $nick = $val;
+        $nick = preg_replace('_[<>&\"\\\\]_', "", trim($nick));
+        if ($nick != '') 
+          $newnicks[$id]=$nick;
+      }
     }
     update_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', $newhide);
+    update_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', json_encode($newnicks));
     echo "<div class='updated'>Deleted $d students. You have $h hidden students.</div>";
   }
 
@@ -41,7 +50,9 @@ messages between you and them in the Mail page histories.</p>
 
 <p>If you hide a student, you can unhide them later.</p>
 <p>If you remove a student, their guru is cleared. They would have to re-add you if you want them back.</p>
-<p>Students are listed in order of registration on CS Circles (earliest first).</p>";
+<p>Students are listed in order of registration on CS Circles (earliest first).</p>
+";
+
 
   if (count(getStudents(true))==0) {
     echo "<div class='error'>You have no students. This page will disappear, and reappear if you get more students.</div>";
@@ -51,9 +62,12 @@ messages between you and them in the Mail page histories.</p>
   echo "<form method='get' action='users.php'>
    <input type='hidden' name='page' value='cscircles-students'>
    <input type='hidden' name='submitted' value='true'>
-<table style='text-align:center'><tr><th>Unhidden</th><th>Hidden</th><th>Remove</th><th>Username</th><th>Name</th><th>E-mail</th></tr>";
+<table style='text-align:center'><tr><th>Unhidden</th><th>Hidden</th><th>Remove</th><th>Username</th><th>Name</th><th>E-mail</th><th>Optional nickname (appears to you as their name on whole site)</th></tr>";
 
   $hidden = get_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', true);
+  $nicks = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', true), true);
+
+  if (!is_array($nicks)) $nicks = array();
   if ($hidden == '') $hidden = '';
   $hidden = explode(",", $hidden);
 
@@ -65,6 +79,8 @@ messages between you and them in the Mail page histories.</p>
     $c1 = $hid?"":"checked='true'";
     $c2 = $hid?"checked='true'":"";
 
+    $nick = getSoft($nicks, $id, '');
+
     echo "<tr>
 <td><input type='radio' name='s$id' $c1 value='unhide'/></td>
 <td><input type='radio' name='s$id' $c2 value='hide'/></td>
@@ -72,6 +88,7 @@ messages between you and them in the Mail page histories.</p>
 <td>{$user->user_login}</td>
 <td>{$user->user_firstname} {$user->user_lastname}</td>
 <td>{$user->user_email}</td>
+<td><input style='width:100%' type='text' name = 'n$id' value=\"$nick\"></td>
 </tr>";
   }
   echo "</table>
