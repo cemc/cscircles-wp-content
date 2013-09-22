@@ -51,6 +51,7 @@ messages between you and them in the Mail page histories.</p>
 <p>If you hide a student, you can unhide them later.</p>
 <p>If you remove a student, their guru is cleared. They would have to re-add you if you want them back.</p>
 <p>Students are listed in order of registration on CS Circles (earliest first).</p>
+<p>Nicknames are optional (otherwise students appear by their e-mail and/or userid).</p>
 ";
 
 
