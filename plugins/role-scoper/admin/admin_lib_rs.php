@@ -629,7 +629,7 @@ class ScoperAdminLib {
 		if ( ! is_array( $dismissals ) )
 			$dismissals = array();
 
-		$msg_id = ( isset( $_REQUEST['msg_id'] ) ) ? $_REQUEST['msg_id'] : 'pp_offer';
+		$msg_id = ( isset( $_REQUEST['msg_id'] ) ) ? $_REQUEST['msg_id'] : 'ppcore_offer';
 		$dismissals[$msg_id] = true;
 		update_option( 'scoper_dismissals', $dismissals );
 	}

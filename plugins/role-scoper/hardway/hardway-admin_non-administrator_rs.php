@@ -24,7 +24,8 @@ class ScoperAdminHardway_Ltd {
 			$nomess_uris = array_merge($nomess_uris, array('admin-ajax.php'));
 		
 		if ( ! in_array( $GLOBALS['pagenow'], $nomess_uris ) && ! in_array( $GLOBALS['plugin_page_cr'], $nomess_uris ) )
-			add_filter('query', array('ScoperAdminHardway_Ltd', 'flt_last_resort_query') );	
+		//|| ( defined('DOING_AJAX') && DOING_AJAX && defined('SCOPER_FILTERED_AJAX_ACTIONS') && ! empty($_REQUEST['action']) && in_array( $_REQUEST['action'], explode( ',', str_replace(' ', '', SCOPER_FILTERED_AJAX_ACTIONS ) ) ) ) )
+			add_filter('query', array('ScoperAdminHardway_Ltd', 'flt_last_resort_query') );
 	}
 
 	// next-best way to handle any permission checks for non-Ajax operations which can't be done via has_cap filter
@@ -172,8 +173,9 @@ class ScoperAdminHardway_Ltd {
 				if ( defined( 'RVY_VERSION' ) ) {
 					if ( class_exists( 'RevisionaryAdminHardway_Ltd' ) )
 						$query = RevisionaryAdminHardway_Ltd::flt_last_resort_query( $query );
-						
-					$query = RevisionaryAdminHardway::flt_include_pending_revisions( $query );
+
+					if ( class_exists( 'RevisionaryAdminHardway' ) )
+						$query = RevisionaryAdminHardway::flt_include_pending_revisions( $query );
 				}
 			}
 

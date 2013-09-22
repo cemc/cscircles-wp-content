@@ -1,6 +1,12 @@
 <?php
-
 function scoper_admin_init() {
+	global $pagenow;
+
+	if ( in_array( $pagenow, array( 'update.php', 'plugin-install.php', 'update-core.php', 'plugins.php' ) ) ) {
+		require_once( dirname(__FILE__).'/plugin-update-watch_rs.php' );
+		RS_UpdateWatch::update_watch();
+	}
+	
 	if ( ! empty($_POST['rs_submit']) || ! empty($_POST['rs_defaults']) || ! empty($_POST['rs_flush_cache']) ) {
 		// For 'options' and 'realm' admin panels, handle updated options right after current_user load (and before scoper init).
 		// By then, check_admin_referer is available, but Scoper config and WP admin menu has not been loaded yet.
@@ -25,6 +31,23 @@ function scoper_admin_init() {
 	if ( defined( 'EASY_FIELDS_URL' ) ) {
 		if ( strpos( $_SERVER['SCRIPT_NAME'], '/wp-admin/media-upload.php' ) || strpos( $_SERVER['SCRIPT_NAME'], '/wp-admin/async-upload.php' ) )
 			define( 'DISABLE_QUERYFILTERS_RS', true );
+	}
+	
+	global $pagenow;
+
+	// prevent default_private option from forcing a draft/pending post into private publishing
+	if ( in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ) {
+		if ( empty($_POST['publish']) && isset($_POST['post_status']) && isset($_POST['post_type']) && scoper_get_otype_option( 'default_private', 'post', $_POST['post_type'] ) ) {
+			$stati = get_post_stati( array( 'public' => true, 'private' => true ), 'names', 'or' );
+
+			if ( 'private' == $_POST['visibility'] && ! in_array( $_POST['hidden_post_status'], $stati ) ) {
+				$_POST['post_status'] = $_POST['hidden_post_status'];
+				$_REQUEST['post_status'] = $_REQUEST['hidden_post_status'];
+				
+				$_POST['visibility'] = 'public';
+				$_REQUEST['visibility'] = 'public';
+			}
+		}
 	}
 }
 

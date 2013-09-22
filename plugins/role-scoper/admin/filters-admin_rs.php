@@ -371,15 +371,25 @@ class ScoperAdminFilters
 	function act_nav_menu_ui() {
 		if ( ! $this->_can_edit_theme_locs() ) {
 			unset( $GLOBALS['wp_meta_boxes']['nav-menus']['side']['default']['nav-menu-theme-locations'] );
+			
+			if ( strpos( $_SERVER['REQUEST_URI'], 'nav-menus.php?action=locations' ) )
+				wp_die( __('You are not permitted to manage menu locations', 'scoper' ) );
 		}
 	}
 	
 	// make sure theme locations are not wiped because logged user has editing access to a subset of menus
 	function act_nav_menu_guard_theme_locs( $referer ) {
-		if ( 'update-nav_menu' == $referer ) {
-			if ( isset( $_POST['menu-locations'] ) ) {
-				if ( ! $this->_can_edit_theme_locs() )
-					unset( $_POST['menu-locations'] );
+		if ( 'update-nav_menu' == $referer ) {			
+			if ( ! $this->_can_edit_theme_locs() ) {
+				if ( awp_ver( '3.6-dev' ) ) {
+					if ( $stored_locs = get_theme_mod( 'nav_menu_locations' ) )
+						$_POST['menu-locations'] = (array) $stored_locs;
+					else
+						$_POST['menu-locations'] = array();
+				} else {
+					if ( isset( $_POST['menu-locations'] ) )
+						unset( $_POST['menu-locations'] );
+				}
 			}
 		}
 	}

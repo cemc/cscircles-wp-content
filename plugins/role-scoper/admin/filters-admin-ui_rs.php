@@ -53,18 +53,11 @@ class ScoperAdminFiltersUI
 
 		if ( 'nav-menus.php' == $pagenow ) {
 			add_action( 'admin_head', array(&$this, 'ui_hide_add_menu') );
-			add_filter( 'parse_query', array( $this, 'available_menu_items_parse_query' ) );
 		}
 		
 		add_action( 'admin_head', array(&$this, 'ui_hide_appearance_submenus') );
 			
 	} // end class constructor
-
-	// enable this to prevent Nav Menu Managers from adding items they cannot edit
-	function available_menu_items_parse_query( &$query ) {
-		if ( scoper_get_option( 'admin_nav_menu_filter_items' ) )
-			$query->query_vars['suppress_filters'] = false;
-	}
 	
 	function ui_hide_admin_divs() {
 		if ( ! in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php' ) ) )
@@ -167,6 +160,16 @@ class ScoperAdminFiltersUI
 /* <![CDATA[ */
 jQuery(document).ready( function($) {
 	$('.menu-add-new').hide();
+	
+	if ( $('.add-new-menu-action').length )
+		$('.add-new-menu-action').hide();
+	else
+		$('.add-edit-menu-action').hide();
+		
+	$('#nav-menu-theme-locations').hide();
+	
+	$('.menu-theme-locations').hide();
+	$('.nav-tab-wrapper a[href*="action=locations"]').hide();
 });
 /* ]]> */
 </script>

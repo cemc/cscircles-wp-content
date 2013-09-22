@@ -217,7 +217,7 @@ class Scoper_Submittee {
 					$value[$key] = isset($_POST[$postvar]) ? $_POST[$postvar] : '';
 				}	
 			}
-			elseif ( 'mu_sitewide_groups' == $option_basename ) {
+			elseif ( ( 'mu_sitewide_groups' == $option_basename ) && agp_is_plugin_network_active( SCOPER_BASENAME ) ) {
 				$current_setting = get_site_option( 'scoper_mu_sitewide_groups' );
 				if ( $current_setting != $value ) {
 					//delete_option( 'scoper_version' ); // this forces DB schema update on next access (to create site-wide / blog-specific groups table)
@@ -344,9 +344,11 @@ class Scoper_Submittee {
 			$add_caps[$role_handle] = array_fill_keys( array_diff( $set_caps, array_keys($default_caps) ), true);
 		}
 
-		scoper_update_option( $default_prefix . 'disabled_role_caps', $disable_caps, $sitewide);
-		scoper_update_option( $default_prefix . 'user_role_caps', $add_caps, $sitewide);
-		
+		//scoper_update_option( $default_prefix . 'disabled_role_caps', $disable_caps, $sitewide);
+		//scoper_update_option( $default_prefix . 'user_role_caps', $add_caps, $sitewide);
+		update_option( 'scoper_' . $default_prefix . 'disabled_role_caps', $disable_caps, $sitewide);
+		update_option( 'scoper_' . $default_prefix . 'user_role_caps', $add_caps, $sitewide);
+
 		scoper_refresh_options();
 		$scoper->load_definition('cap_defs');
 		

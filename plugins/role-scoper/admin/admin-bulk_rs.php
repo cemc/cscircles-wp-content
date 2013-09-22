@@ -978,8 +978,8 @@ function item_tree($scope, $mode, $src, $otype_or_tx, $all_items, $assigned_role
 						$require_for = $strict_items[$setting][$role_handle][$id];
 						$open_brace = $close_brace = '';
 					} else {
-						$require_for = $strict_items[$setting][$role_handle][$id]['assign_for'];
-						$open_brace = ( $strict_items[$setting][$role_handle][$id]['inherited_from'] ) ? '{' : '';
+						$require_for = isset( $strict_items[$setting][$role_handle][$id]['assign_for'] ) ? $strict_items[$setting][$role_handle][$id]['assign_for'] : false;
+						$open_brace = ( ! empty( $strict_items[$setting][$role_handle][$id]['inherited_from'] ) ) ? '{' : '';
 						$close_brace = ( $open_brace ) ? '}' : '';
 					}
 				} else {

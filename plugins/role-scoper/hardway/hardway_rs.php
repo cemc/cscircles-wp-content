@@ -273,6 +273,8 @@ class ScoperHardway
 		else
 			$frontend_list_private = false;
 
+		$force_publish_status = ! $frontend_list_private && ( 'publish' == $post_status );
+			
 		// WP core does not include private pages in query.  Include private statuses in anticipation of user-specific filtering		
 		if ( $post_status && ( ( 'publish' != $post_status ) || ( $is_front && ! $frontend_list_private ) ) )
 			$where_status = $wpdb->prepare( "post_status = '%s'", $post_status );	
@@ -315,8 +317,8 @@ class ScoperHardway
 			}
 
 		} else {
-			$_args = array( 'skip_teaser' => true );
-
+			$_args = array( 'skip_teaser' => true, 'retain_status' => $force_publish_status );
+			
 			if ( in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php' ) ) ) {
 				if ( $post_type_obj = get_post_type_object( $post_type ) ) {
 					$plural_name = plural_name_from_cap_rs( $post_type_obj );

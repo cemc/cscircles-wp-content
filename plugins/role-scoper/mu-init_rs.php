@@ -15,8 +15,6 @@ function scoper_default_options_sitewide() {
 		'custom_user_blogcaps' => true,
 		'no_frontend_admin' => true,
 		'indicate_blended_roles' => true,
-		'version_update_notice' => true,
-		'version_check_minutes' => true,
 		
 		'rs_page_reader_role_objscope' => true,
 		'rs_page_author_role_objscope' => true,

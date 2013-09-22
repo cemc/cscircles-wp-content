@@ -41,6 +41,9 @@ class Relevanssi_Search_Filter_RS {
 	function relevanssi_post_ok( $post_ok, $doc ) {
 		static $set_listed_ids = false;
 	
+		if ( ( 0 === strpos( $doc, 't_' ) ) || ( 0 === strpos( $doc, 'u_' ) ) )
+			return ( function_exists( 'relevanssi_default_post_ok' ) ) ? relevanssi_default_post_ok( $post_ok, $doc ) : $post_ok;
+	
 		if ( ! $set_listed_ids ) {
 			$set_listed_ids = true;
 			$GLOBALS['scoper']->listed_ids['post'] = array_fill_keys( array_keys($this->relevanssi_results), true );

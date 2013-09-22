@@ -92,11 +92,12 @@ jQuery(document).ready( function($) {
 	function default_private_js() {
 		global $post;
 		
-		if ( $post && ( 'auto-draft' != $post->post_status ) )
-			return;
-
-		if ( 'post-new.php' != $GLOBALS['pagenow'] )
-			return;
+		if ( 'post-new.php' != $GLOBALS['pagenow'] ) {
+			$stati = get_post_stati( array( 'public' => true, 'private' => true ), 'names', 'or' );
+			
+			if ( in_array( $post->post_status, $stati ) )
+				return;
+		}
 ?>
 <script type="text/javascript">
 /* <![CDATA[ */

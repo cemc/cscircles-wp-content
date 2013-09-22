@@ -6,6 +6,9 @@ class CommentsInterceptor_RS {
 	function flt_comments_clauses( $clauses, &$qry_obj ) {
 		global $wpdb;
 		
+		if ( did_action( 'comment_post' ) )  // don't filter comment retrieval for email notification
+			return $clauses;
+		
 		if ( is_admin() && defined( 'SCOPER_NO_COMMENT_FILTERING' ) && empty( $GLOBALS['current_user']->allcaps['moderate_comments'] ) )
 			return $clauses;
 

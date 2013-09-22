@@ -55,7 +55,7 @@ class ScoperRewrite {
 		
 		// sleep() time is necessary to avoid .htaccess file i/o race conditions since other plugins (W3 Total Cache) may also perform or trigger .htaccess update, and those file operations don't all use flock
 		// This update only occurs on plugin activation, the first time a MS site has an attachment to a private/restricted page, and on various plugin option changes.
-		if ( IS_MU_RS ) {
+		if ( IS_MU_RS && ( ! awp_ver('3.5') || get_site_option( 'ms_files_rewriting' ) ) ) {
 			add_action( 'shutdown', create_function( '', "sleep(2); require_once( dirname(__FILE__).'/rewrite-mu_rs.php' ); ScoperRewriteMU::update_mu_htaccess( '$include_rs_rules' );" ) );
 		} else {
 			if ( file_exists( ABSPATH . '/wp-admin/includes/misc.php' ) )
@@ -73,7 +73,7 @@ class ScoperRewrite {
 			return;
 	
 		$http_auth = scoper_get_option( 'feed_link_http_auth' );
-		$filtering = IS_MU_RS && get_site_option( 'scoper_file_filtering' );	// scoper_get_option is not reliable for initial execution following plugin activation
+		$filtering = IS_MU_RS && ( ! awp_ver('3.5') || get_site_option( 'ms_files_rewriting' ) ) && get_site_option( 'scoper_file_filtering' );	// scoper_get_option is not reliable for initial execution following plugin activation
 		
 		$new_rules = '';
 		
@@ -115,7 +115,7 @@ class ScoperRewrite {
 			return false;
 		
 		// don't risk leaving custom .htaccess files in content folder at deactivation due to difficulty of reconstructing custom path for each blog
-		if ( IS_MU_RS ) {
+		if ( IS_MU_RS && ( ! awp_ver('3.5') || get_site_option( 'ms_files_rewriting' ) ) ) {
 			global $blog_id;
 			
 			if ( 'site-new.php' == $GLOBALS['pagenow'] )
@@ -160,7 +160,7 @@ class ScoperRewrite {
 		$uploads = scoper_get_upload_info();
 		
 		// If a filter has changed MU basedir, don't filter file attachments for this blog because we might not be able to regenerate the basedir for rule removal at RS deactivation
-		if ( ! IS_MU_RS || strpos( $uploads['basedir'], "/blogs.dir/$blog_id/files" ) || ( false !== strpos( $uploads['basedir'], trailingslashit(WP_CONTENT_DIR) . 'uploads' ) ) ) {
+		if ( ! IS_MU_RS || ( awp_ver('3.5') && ! get_site_option( 'ms_files_rewriting' ) ) || strpos( $uploads['basedir'], "/blogs.dir/$blog_id/files" ) || ( false !== strpos( $uploads['basedir'], trailingslashit(WP_CONTENT_DIR) . 'uploads' ) ) ) {
 			$htaccess_path = trailingslashit($uploads['basedir']) . '.htaccess';
 			ScoperRewrite::insert_with_markers( $htaccess_path, 'Role Scoper', $rules );
 		}
@@ -263,7 +263,7 @@ class ScoperRewrite {
 			}
 		} // end foreach protected attachment
 
-		if ( IS_MU_RS ) {
+		if ( IS_MU_RS && ( ! awp_ver('3.5') || get_site_option( 'ms_files_rewriting' ) ) ) {
 			global $blog_id;
 			$file_filtered_sites = (array) get_site_option( 'scoper_file_filtered_sites' );
 			if ( ! in_array( $blog_id, $file_filtered_sites ) ) {

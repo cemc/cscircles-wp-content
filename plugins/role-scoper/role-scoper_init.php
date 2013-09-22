@@ -358,6 +358,10 @@ function scoper_get_option($option_basename, $sitewide = -1, $get_default = fals
 	//dump($get_default);
 	//dump($scoper_blog_options);
 
+	if ( ( 'mu_sitewide_groups' == $option_basename ) && ! agp_is_plugin_network_active( SCOPER_BASENAME ) ) {
+		return false;
+	}
+	
 	if ( ! isset( $optval ) ) {
 		if ( ! empty($scoper_default_options) && ! empty( $scoper_default_options[$option_basename] ) )
 			$optval = $scoper_default_options[$option_basename];
@@ -422,7 +426,7 @@ function scoper_get_option($option_basename, $sitewide = -1, $get_default = fals
 			foreach ( $taxonomies as $taxonomy )
 				$default_taxonomies[$taxonomy] = ( isset( $GLOBALS['rs_default_disable_taxonomies'][$taxonomy] ) ) ? 0 : 1;
 		}
-		
+
 		$optval = array_diff_key( array_merge( $default_taxonomies, (array) $optval ), $GLOBALS['rs_forbidden_taxonomies'] );  // remove forbidden taxonomies, even if previously stored
 	} elseif ( 'use_term_roles' == $option_basename ) {
 		if ( $optval ) {
@@ -754,7 +758,7 @@ function scoper_any_role_limits() {
 			$any_limits->end_date_gmt = true;
 	}
 	
-	if ( scoper_get_var( "SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE content_date_limited > 0 LIMIT 1" ) ) {
+	if ( scoper_get_option( 'role_content_date_limits' ) && scoper_get_var( "SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE content_date_limited > 0 LIMIT 1" ) ) {
 		$any_limits->content_date_limited = true;
 		
 		if ( scoper_get_var( "SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE content_min_date_gmt > 0 LIMIT 1" ) )

@@ -125,7 +125,11 @@ class QueryInterceptor_RS
 		} else
 			$object_types = '';
 
-		return $this->flt_objects_request( $request, 'post', $object_types );
+		$args = array();
+		if ( isset( $_wp_query->query_vars['required_operation'] ) )
+			$args['required_operation'] = $_wp_query->query_vars['required_operation'];
+			
+		return $this->flt_objects_request( $request, 'post', $object_types, $args );
 	}
 
 	// Append any limiting clauses to WHERE clause for taxonomy query
@@ -447,7 +451,7 @@ class QueryInterceptor_RS
 		$defaults = array( 'user' => '', 'use_object_roles' => -1, 'use_term_roles' => -1, 
 							'taxonomies' => array(), 'request' => '', 'terms_query' => 0, 
 							'force_reqd_caps' => '', 'alternate_reqd_caps' => '',	'source_alias' => '',
-							'required_operation' => '', 'terms_reqd_caps' => '', 'skip_teaser' => false
+							'required_operation' => '', 'terms_reqd_caps' => '', 'skip_teaser' => false, 'retain_status' => false,
 							 );
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
@@ -592,7 +596,7 @@ class QueryInterceptor_RS
 				
 				// Eliminate a primary plugin incompatibility by skipping this preservation of existing single status requirements if we're on the front end and the requirement is 'publish'.  
 				// (i.e. include private posts that this user has access to via RS role assignment).  
-				if ( ! $this->scoper->is_front() || ( 'publish' != $use_status ) || ( empty( $args['user']->ID ) && empty($tease_otypes) ) || defined('SCOPER_RETAIN_PUBLISH_FILTER') ) { 
+				if ( ! $this->scoper->is_front() || ( 'publish' != $use_status ) || $retain_status || ( empty( $args['user']->ID ) && empty($tease_otypes) ) || defined('SCOPER_RETAIN_PUBLISH_FILTER') ) { 
 					$force_single_status = true;
 
 					foreach ( array_keys($otype_status_reqd_caps) as $_object_type )
@@ -983,7 +987,7 @@ class QueryInterceptor_RS
 							$args = array_merge($args, array( 'qualifying_roles' => $owner_roles ) );
 							$scope_temp = $this->objects_where_scope_clauses($src_name, $owner_reqd_caps, $args );
 
-							if ( ( $scope_temp != $where[$cap_name]['user'] ) && ! is_null($scope_temp) ) { // TODO: why is null ever returned?
+							if ( ( ! isset($where[$cap_name]['user']) || ( $scope_temp != $where[$cap_name]['user'] ) ) && ! is_null($scope_temp) ) { // TODO: why is null ever returned?
 								$parent_clause = '';
 
 								// enable authors to view / edit / approve revisions to their published posts

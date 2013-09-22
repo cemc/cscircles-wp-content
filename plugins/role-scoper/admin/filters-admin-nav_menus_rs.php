@@ -101,21 +101,53 @@ function _rs_determine_selected_menu() {
 	// Get recently edited nav menu
 	$recently_edited = (int) get_user_option( 'nav_menu_recently_edited' );
 
-	$nav_menu_selected_id = isset( $_REQUEST['menu'] ) ? (int) $_REQUEST['menu'] : 0;
+	if ( awp_ver( '3.6-dev' ) ) {
+		$menu_count = count( $nav_menus );
+
+		// Are we on the add new screen?
+		$add_new_screen = ( isset( $_GET['menu'] ) && 0 == $_GET['menu'] ) ? true : false;
+
+		$locations_screen = ( isset( $_GET['action'] ) && 'locations' == $_GET['action'] ) ? true : false;
 	
-	// If there was no recently edited menu, and $nav_menu_selected_id is a nav menu, update recently edited menu.
-	if ( !$recently_edited && is_nav_menu( $nav_menu_selected_id ) ) {
-		$recently_edited = $nav_menu_selected_id;
+		// If we have one theme location, and zero menus, we take them right into editing their first menu
+		$page_count = wp_count_posts( 'page' );
+		$one_theme_location_no_menus = ( 1 == count( get_registered_nav_menus() ) && ! $add_new_screen && empty( $nav_menus ) && ! empty( $page_count->publish ) ) ? true : false;
 
-	// Else if $nav_menu_selected_id is not a menu and not requesting that we create a new menu, but $recently_edited is a menu, grab that one.
-	} elseif ( 0 == $nav_menu_selected_id && ! isset( $_REQUEST['menu'] ) && is_nav_menu( $recently_edited ) ) {
-		$nav_menu_selected_id = $recently_edited;
+		if ( empty( $recently_edited ) && is_nav_menu( $nav_menu_selected_id ) )
+			$recently_edited = $nav_menu_selected_id;
 
-	// Else try to grab the first menu from the menus list
-	} elseif ( 0 == $nav_menu_selected_id && ! isset( $_REQUEST['menu'] ) && ! empty($nav_menus) ) {
-		$nav_menu_selected_id = $nav_menus[0]->term_id;
+		// Use $recently_edited if none are selected
+		if ( empty( $nav_menu_selected_id ) && ! isset( $_GET['menu'] ) && is_nav_menu( $recently_edited ) )
+			$nav_menu_selected_id = $recently_edited;
+
+		// On deletion of menu, if another menu exists, show it
+		if ( ! $add_new_screen && 0 < $menu_count && isset( $_GET['action'] ) && 'delete' == $_GET['action'] )
+			$nav_menu_selected_id = $nav_menus[0]->term_id;
+
+		// Set $nav_menu_selected_id to 0 if no menus
+		if ( $one_theme_location_no_menus ) {
+			$nav_menu_selected_id = 0;
+		} elseif ( empty( $nav_menu_selected_id ) && ! empty( $nav_menus ) && ! $add_new_screen ) {
+			// if we have no selection yet, and we have menus, set to the first one in the list
+			$nav_menu_selected_id = $nav_menus[0]->term_id;
+		}
+	} else {
+		$nav_menu_selected_id = isset( $_REQUEST['menu'] ) ? (int) $_REQUEST['menu'] : 0;
+		
+		// If there was no recently edited menu, and $nav_menu_selected_id is a nav menu, update recently edited menu.
+		if ( !$recently_edited && is_nav_menu( $nav_menu_selected_id ) ) {
+			$recently_edited = $nav_menu_selected_id;
+
+		// Else if $nav_menu_selected_id is not a menu and not requesting that we create a new menu, but $recently_edited is a menu, grab that one.
+		} elseif ( 0 == $nav_menu_selected_id && ! isset( $_REQUEST['menu'] ) && is_nav_menu( $recently_edited ) ) {
+			$nav_menu_selected_id = $recently_edited;
+
+		// Else try to grab the first menu from the menus list
+		} elseif ( 0 == $nav_menu_selected_id && ! isset( $_REQUEST['menu'] ) && ! empty($nav_menus) ) {
+			$nav_menu_selected_id = $nav_menus[0]->term_id;
+		}
 	}
-
+		
 	return $nav_menu_selected_id;
 }
 

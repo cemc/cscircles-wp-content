@@ -49,7 +49,7 @@ function agp_return_file( $file_path, $attachment_id = 0 ) {
 	if ( is_array($key) )
 		$key = reset($key);
 	
-	if ( IS_MU_RS ) {
+	if ( IS_MU_RS && ( ! awp_ver('3.5') || get_site_option( 'ms_files_rewriting' ) ) ) {
 		$basedir = parse_url( $uploads['basedir'] );
 		$baseurl = parse_url( $uploads['baseurl'] );
 	
@@ -94,20 +94,18 @@ class AttachmentFilters_RS {
 	
 		//rs_errlog('_user_can_read_file');
 		
-		$file_path = $uploads['basedir'] . "/$file";
-
-
+		//$file_path = $uploads['basedir'] . "/$file";
 		//rs_errlog("$file_path exists.");	
 		
 		global $wpdb, $wp_query;
 
-		$file_url = $uploads['baseurl'] . "/$file";
-
 		// auto-resized copies have -NNNxNNN suffix, but the base filename is stored as attachment.  Strip the suffix out for db query.
-		$orig_file_url = preg_replace( "/-[0-9]{2,4}x[0-9]{2,4}./", '.', $file_url );
+		$orig_file = preg_replace( "/-[0-9]{2,4}x[0-9]{2,4}./", '.', $file );
 	
 		// manually resized copies have -?????????????? suffix, but the base filename is stored as attachment.  Strip the suffix out for db query.
-		$orig_file_url = preg_replace( "/-[0-9,a-z]{14}./", '.', $orig_file_url );
+		$orig_file = preg_replace( "/-[0-9,a-z]{14}./", '.', $orig_file );
+
+		$orig_file_url = $uploads['baseurl'] . "/$orig_file";
 
 		$qry = "SELECT * FROM $wpdb->posts WHERE post_type = 'attachment' AND post_parent > 0 AND guid = '$orig_file_url'";
 		$results = scoper_get_results( $qry );

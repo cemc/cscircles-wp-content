@@ -311,6 +311,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 					// Add or remove object role assignments as needed (no DB update if nothing has changed)
 					foreach ( $role_bases as $role_basis )
 						$role_assigner->assign_roles(OBJECT_SCOPE_RS, $src_name, $object_id, $set_roles[$role_basis], $role_basis, $args );
+
 				} // endif object type is known and user can admin this object
 			} // end if current user is an Administrator, or doesn't need to be
 		} //endif roles were manually edited by user (and not autosave)

@@ -15,12 +15,19 @@ define ('ASSIGN_FOR_CHILDREN_RS', 'children');
 define ('ASSIGN_FOR_BOTH_RS', 'both');
 
 define( 'OBJECT_UI_RS', 'object_ui' );
-	
+
 require_once( dirname(__FILE__).'/admin_lib_rs.php' );
 
 if ( IS_MU_RS )
 	require_once( dirname(__FILE__).'/admin_lib-mu_rs.php' );
 
+global $pagenow;
+if ( 'nav-menus.php' == $pagenow ) {  // Administrators also need this, to add private posts to available items list
+	global $scoper_nav_menu_query;
+	require_once( dirname(__FILE__).'/filters-nav-menu-query_rs.php' );
+	$scoper_nav_menu_query = new ScoperNavMenuQuery();
+}
+	
 class ScoperAdmin
 {
 	var $scoper;
@@ -28,7 +35,7 @@ class ScoperAdmin
 	var $tinymce_readonly;
 	
 	function ScoperAdmin() {
-		global $pagenow;
+		global $pagenow, $plugin_page_cr;
 		
 		$this->scoper =& $GLOBALS['scoper'];
 		
@@ -72,6 +79,12 @@ class ScoperAdmin
 			add_action( 'admin_menu', array( &$this, 'reinstate_solo_submenus' ) );
 			add_action( 'network_admin_menu', array( &$this, 'reinstate_solo_submenus' ) );
 		}
+		
+		if ( in_array( $plugin_page_cr, array( 'rs-options', 'rs-about' ) ) ) {
+			wp_enqueue_style( 'plugin-install' );
+			wp_enqueue_script( 'plugin-install' );
+			add_thickbox();
+		}
 	}
 	
 	function reinstate_solo_submenus() {
@@ -86,13 +99,13 @@ class ScoperAdmin
 	}
 
 	function dashboard_notice() {
-		if ( ! is_content_administrator_rs() || defined('PP_VERSION') )
+		if ( ! is_super_admin() || defined('PP_VERSION') || defined('PPC_VERSION') )
 			return;
 
-		$msg_id = 'pp_offer';
+		$msg_id = 'ppcore_offer';
 		$dismissals = (array) scoper_get_option( 'dismissals' );
 
-		if ( in_array( $msg_id, $dismissals ) )
+		if ( isset( $dismissals[$msg_id] ) )
 			return;
 
 		require_once( dirname(__FILE__).'/misc/version_notice_rs.php' );
@@ -204,13 +217,7 @@ class ScoperAdmin
 
 		echo '<link rel="stylesheet" href="' . SCOPER_URLPATH . '/admin/role-scoper.css" type="text/css" />'."\n";
 
-		if ( 'rs-options' == $plugin_page_cr ) {
-			if ( scoper_get_option('version_update_notice') ) {
-				require_once( dirname(__FILE__).'/misc/version_notice_rs.php');
-				scoper_new_version_notice();
-			}
-
-		} elseif ( 'rs-about' == $plugin_page_cr ) {
+		if ( 'rs-about' == $plugin_page_cr ) {
 			echo '<link rel="stylesheet" href="' . SCOPER_URLPATH . '/admin/about/about.css" type="text/css" />'."\n";
 		}
 

@@ -33,7 +33,7 @@ function awp_ver($wp_ver_requirement) {
 // TODO: move these function to core-admin_lib.php, update extensions accordingly
 if ( ! function_exists('awp_plugin_info_url') ) {
 function awp_plugin_info_url( $plugin_slug ) {
-	$url = get_option('siteurl') . "/wp-admin/plugin-install.php?tab=plugin-information&plugin=$plugin_slug";
+	$url = get_option('siteurl') . "/wp-admin/plugin-install.php?tab=plugin-information&plugin=$plugin_slug&TB_iframe=true&width=640&height=678";
 	return $url;
 }
 }

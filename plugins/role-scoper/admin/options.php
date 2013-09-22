@@ -233,8 +233,6 @@ $ui->option_captions = array(
 	'custom_user_blogcaps' => __('Support WP Custom User Caps', 'scoper'),
 	'no_frontend_admin' => __('Assume No Front-end Admin', 'scoper'),
 	'indicate_blended_roles' => __('Indicate blended roles', 'scoper'),
-	'version_update_notice' => __('Notify on Version Updates', 'scoper'),
-	/* 'version_check_minutes' => __('', 'scoper'), */
 	'strip_private_caption' => __('Suppress "Private:" Caption', 'scoper'),
 	'display_hints' => __('Display Administrative Hints', 'scoper'),
 	'hide_non_editor_admin_divs' => __('Specified element IDs also require the following site-wide Role:', 'scoper'),
@@ -297,7 +295,6 @@ $ui->form_options = array(
 	'file_filtering' =>		array( 'file_filtering', 'file_filtering_regen_key' ),
 	'date_limits' =>		array( 'role_duration_limits', 'role_content_date_limits' ),
 	'internal_cache' =>		array( 'persistent_cache' ),
-	'version' =>			array( 'version_update_notice' ),
 	'rss_feeds' =>			array( 'feed_link_http_auth', 'rss_private_feed_mode', 'rss_nonprivate_feed_mode', 'feed_teaser' ),
 	'hidden_content_teaser' => array( 'do_teaser' ) /* NOTE: all teaser options follow scope setting of do_teaser */
 	
@@ -486,10 +483,6 @@ if ( scoper_get_option('display_hints', $sitewide, $customize_defaults) ) {
 	echo '<div class="rs-optionhint">';
 	_e("This page enables <strong>optional</strong> adjustment of Role Scoper's features. For most installations, the default settings are fine.", 'scoper');
 
-	require_once( dirname(__FILE__).'/misc/version_notice_rs.php' );
-	$message = scoper_pp_msg();
-	echo "<br /><br /><div>$message</div>";
-	
 	if ( IS_MU_RS && function_exists('is_super_admin') && is_super_admin() ) {
 		if ( $sitewide ) {
 			if ( ! $customize_defaults ) {
@@ -513,6 +506,123 @@ if ( scoper_get_option('display_hints', $sitewide, $customize_defaults) ) {
 		}
 	}
 	
+	require_once( dirname(__FILE__).'/misc/version_notice_rs.php' );
+	$message = scoper_pp_msg( true );
+	echo "<br /><br /><div>$message</div>";
+	
+
+		$img_url = SCOPER_URLPATH . '/admin/images/';
+		$lang_id = 'scoper';
+		?>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		jQuery(document).ready( function($) {
+			$('a[href=#pp-more]').click( function() {
+				$('#pp_features').show();
+				return false;
+			});
+			$('a[href=#pp-hide]').click( function() {
+				$('#pp_features').hide();
+				return false;
+			});
+		});
+		/* ]]> */
+		</script>
+		<style>
+		#pp_features {text-align:left;border:1px solid #eee;margin:10px 20px 20px 20px;background-color:white}
+		div.pp-logo, div.pp-logo img { text-align: left; clear:both }
+		ul.pp-features { list-style: none; padding-top:10px; text-align:left; margin-left: 50px; margin-top: 0; }
+		ul.pp-features li:before { content: "\2713\0020"; }
+		ul.pp-features li { padding-bottom: 5px }
+		img.cme-play { margin-bottom: -3px; margin-left: 5px;}
+		ul.rs-pplinks {
+		margin-top: 0;
+		margin-left:20px;
+		}
+		ul.rs-pplinks li{
+		display: inline;
+		margin: 0 3px 0 3px;
+		}
+		ul.rs-pplinks li.spacer{
+		font-size: 1.5em;
+		}
+		</style>
+
+		<?php /* play.png icon by Pavel: http://kde-look.org/usermanager/search.php?username=InFeRnODeMoN */ ?>
+
+		<div id="pp_features"<?php if ( empty($_REQUEST['show_pp']) ) echo ' style="display:none"';?>><div class="pp-logo"><a href="http://presspermit.com"><img src="<?php echo $img_url;?>pp-logo.png" /></a></div><ul class="pp-features">
+		
+		<li>
+		<?php _e( "Assign standard WP roles supplementally for a specific post type", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/regulate-post-type-access" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Assign custom WP roles supplementally for a specific post type <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/custom-role-usage" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Customize reading permissions per-category or per-post", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/category-exceptions" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Customize editing permissions per-category or per-post <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/page-editing-exceptions" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Custom Post Visibility statuses, fully implemented throughout wp-admin <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/custom-post-visibility" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Custom Moderation statuses for access-controlled, multi-step publishing workflow <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/multi-step-moderation" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Regulate permissions for Edit Flow post statuses <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/edit-flow-integration" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Customize the moderated editing of published content with Revisionary or Post Forking <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/published-content-revision" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Grant Spectator, Participant or Moderator access to specific bbPress forums <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/bbpress-forum-permissions" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "Grant supplemental content permissions to a BuddyPress group <em>(Pro)</em>", $lang_id );?>
+		<a href="http://presspermit.com/tutorial/buddypress-content-permissions" target="_blank"><img class="cme-play" src="<?php echo $img_url;?>play.png" /></a></li>
+
+		<li>
+		<?php _e( "WPML integration to mirror permissions to translations <em>(Pro)</em>", $lang_id );?>
+		</li>
+		
+		<li>
+		<?php _e( "Member support forum", $lang_id );?>
+		</li>
+		
+		</ul>
+		
+		<ul class="rs-pplinks">
+		<li>
+		<span class="plugins update-message"><a href="<?php echo awp_plugin_info_url('press-permit-core');?>" class="thickbox" title="<?php printf( __('%s (free install)', $lang_id), 'Press Permit Core' );?>"><?php _e('Install PP Core', 'rsu');?></a></span>
+		</li>
+		<li class="spacer">&bull;</li>
+		<li><a class="pp-screencasts" href="http://presspermit.com/tutorial" target="_blank"><?php _e( 'Screencasts', $lang_id );?></a></li>
+		<li class="spacer">&bull;</li>
+		<li><a href="http://presspermit.com/pp-rs-feature-grid" target="_blank"><?php _e( 'Feature Grid', $lang_id );?></a></li>
+		<li class="spacer">&bull;</li>
+		<li><a href="http://presspermit.com/faqs" target="_blank"><?php _e( 'FAQs', $lang_id );?></a></li>
+		<li class="spacer">&bull;</li>
+		<li><a href="http://presspermit.com/forums/forum/pre-sale-questions/" target="_blank"><?php _e( 'Pre-Sale Questions', $lang_id );?></a></li>
+		<li class="spacer">&bull;</li>
+		<li><a href="http://presspermit.com/purchase/" target="_blank"><?php _e( 'Purchase', $lang_id );?></a></li>
+		<li class="spacer">&bull;</li>
+		<li><a href="#pp-hide" class="rs-hidepp"><?php _e( 'hide', $lang_id );?></a></li>
+		</ul>
+
+		</div>
+		<?php
+	
 	echo '</div>';
 }
 
@@ -534,7 +644,7 @@ if ( ! empty( $ui->form_options[$tab][$section] ) ) :?>
 	$hint = '';
 	$ui->option_checkbox( 'define_usergroups', $tab, $section, $hint, '<br />' );
 
-	if ( IS_MU_RS ) {
+	if ( IS_MU_RS && agp_is_plugin_network_active( SCOPER_BASENAME ) ) {
 		$hint = __('If enabled, each user group will be available for role assignment in any site.  Any existing site-specific groups will be unavailable.  Group role assignments are still site-specific.', 'scoper');
 		$ui->option_checkbox( 'mu_sitewide_groups', $tab, $section, $hint, '' );
 	}	
@@ -937,34 +1047,23 @@ if ( ! empty( $ui->form_options[$tab][$section] ) ) :
 <?php endif; // any options accessable in this section
 
 
-$section = 'version';
-if ( ! empty( $ui->form_options[$tab][$section] ) ) :
 								// --- VERSION SECTION ---
 	?>
 	<tr valign="top">
-	<th scope="row"><?php echo $ui->section_captions[$tab][$section]; ?></th>
+	<th scope="row"><?php _e('Version', 'scoper'); ?></th>
 	<td>
-	
-	<?php if ( in_array( 'version_update_notice', $ui->form_options[$tab][$section] ) ) :
-		$ui->all_options []= 'version_update_notice';?>
-		<?php
-		printf( __( "Role Scoper Version: %s", 'scoper'), SCOPER_VERSION);
-		echo '<br />';
-		printf( __( "Database Schema Version: %s", 'scoper'), SCOPER_DB_VERSION);
-		echo '<br />';
-		global $wp_version;
-		printf( __( "WordPress Version: %s", 'scoper'), $wp_version );
-		echo '<br />';
-		printf( __( "PHP Version: %s", 'scoper'), phpversion() );
-		echo '<br />';
-		
-		$hint = '';
-		$ui->option_checkbox( 'version_update_notice', $tab, $section, $hint, '<br />' );
-		?>
-	<?php endif;?>
-		
+	<?php
+	printf( __( "Role Scoper Version: %s", 'scoper'), SCOPER_VERSION);
+	echo '<br />';
+	printf( __( "Database Schema Version: %s", 'scoper'), SCOPER_DB_VERSION);
+	echo '<br />';
+	global $wp_version;
+	printf( __( "WordPress Version: %s", 'scoper'), $wp_version );
+	echo '<br />';
+	printf( __( "PHP Version: %s", 'scoper'), phpversion() );
+	?>
 	</td></tr>
-<?php endif; // any options accessable in this section
+<?php
 
 
 $section = 'rss_feeds';
@@ -1307,7 +1406,7 @@ if ( ! empty( $ui->form_options[$tab][$section] ) && in_array( 'do_teaser', $ui-
 
 if ( ! defined('RVY_VERSION' ) ) {
 	echo '<tr><td colspan="2"><div class="rs-optionhint"><p style="margin-left:4em;text-indent:-3.5em">&nbsp;';
-	printf( __('<span class="rs-green"><strong>Idea:</strong></span> For Scheduled Revisions and Pending Revisions functionality that integrates with your RS Roles and Restrictions, install %1$s Revisionary%2$s, another %3$s Agapetry&nbsp;Creations%4$s plugin.', 'scoper'), "<a href='" . awp_plugin_info_url("revisionary") . "'>", '</a>', "<a href='http://agapetry.net'>", '</a>' );	
+	printf( __('<span class="rs-green"><strong>Idea:</strong></span> For Scheduled Revisions and Pending Revisions functionality that integrates with your RS Roles and Restrictions, install %1$s Revisionary%2$s, another %3$s plugin.', 'scoper'), "<span class='plugins update-message'><a href='" . awp_plugin_info_url("revisionary") . "' class='thickbox' title=' Revisionary'>", '</a></span>', "<a href='http://agapetry.net'>Agapetry Creations</a>" );	
 	echo '</p></div></td></tr>';
 }
 

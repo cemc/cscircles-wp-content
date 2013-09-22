@@ -100,6 +100,11 @@ class Scoper
 		if ( empty($current_rs_user) )
 			return;
 		
+		if ( is_multisite() && ! is_user_member_of_blog() && empty($GLOBALS['current_user']->allcaps) ) {
+			$GLOBALS['current_user']->allcaps['read'] = true;
+			$current_rs_user->allcaps['read'] = true;
+		}
+		
 		$current_rs_user->merge_scoped_blogcaps();
 		$GLOBALS['current_user']->allcaps = array_merge( $GLOBALS['current_user']->allcaps, $current_rs_user->allcaps );
 		
@@ -352,7 +357,6 @@ class Scoper
 		} 
 	}
 	
-	
 	function add_hardway_filters() {
 		// port or low-level query filters to work around limitations in WP core API
 		require_once( dirname(__FILE__).'/hardway/hardway_rs.php'); // need get_pages() filtering to include private pages for some 3rd party plugin config UI (Simple Section Nav)
@@ -385,7 +389,7 @@ class Scoper
 
 				$hardway_uris = apply_filters( 'scoper_admin_hardway_uris', $hardway_uris );
 																															// support for rs-config-ngg <= 1.0
-				if ( defined('XMLRPC_REQUEST') || in_array( $pagenow, $hardway_uris ) || in_array( $plugin_page_cr, $hardway_uris ) || in_array( "p-admin/admin.php?page=$plugin_page_cr", $hardway_uris ) )
+				if ( defined('XMLRPC_REQUEST') /* || ( defined('DOING_AJAX') && DOING_AJAX ) */ || in_array( $pagenow, $hardway_uris ) || in_array( $plugin_page_cr, $hardway_uris ) || in_array( "p-admin/admin.php?page=$plugin_page_cr", $hardway_uris ) )
 					require_once( dirname(__FILE__).'/hardway/hardway-admin_rs.php' );
         	}
 		} // endif is_admin or xmlrpc

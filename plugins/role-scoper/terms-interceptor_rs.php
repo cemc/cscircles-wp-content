@@ -49,6 +49,9 @@ class TermsInterceptor_RS
 
 	function flt_get_the_terms( $terms, $id, $taxonomy ) {
 		if ( $terms && is_array($terms) ) {
+			if ( function_exists('is_teaser_rs') && is_teaser_rs($id) )
+				return $terms;
+		
 			static $all_terms;
 			
 			if ( ! isset($all_terms) )
@@ -155,7 +158,7 @@ class TermsInterceptor_RS
 				$return['remap_parents'] = true;
 			}
 
-			if ( is_admin() && ( array_key_exists('plugin_page', $GLOBALS) && 's2' == $GLOBALS['plugin_page'] ) ) {
+			if ( is_admin() && isset($GLOBALS['plugin_page']) && ( 's2' == $GLOBALS['plugin_page'] ) ) {
 				$return['required_operation'] = 'read';
 			}
 		}

@@ -40,8 +40,6 @@ function scoper_default_options() {
 		'disabled_access_types' => array(),
 		'no_frontend_admin' => 0,
 		'indicate_blended_roles' => 1,
-		'version_update_notice' => 1,
-		'version_check_minutes' => 30,
 		'strip_private_caption' => 0,
 		'display_hints' => 1,
 		'hide_non_editor_admin_divs' => 1,

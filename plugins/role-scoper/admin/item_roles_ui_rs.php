@@ -473,6 +473,9 @@ class ScoperItemRolesUI {
 				$html_inserts = $otype_def->admin_inserts->bottom;
 			
 			elseif ( ! $html_inserts = $src->admin_inserts->bottom ) {
+				if ( ! is_object($html_inserts) )
+					$html_inserts = (object) array();
+				
 				// TODO: CSS
 				$html_inserts->open = (object) array(
 					'container' => '<br />', 
