@@ -13,6 +13,9 @@ class Polylang_Auto_Translate {
 		global $wpdb, $polylang;
 		$qv = &$query->query_vars;
 
+		if (!empty($qv['post_type']) && !(is_array($qv['post_type']) && array_intersect($qv['post_type'], $polylang->post_types) || in_array($qv['post_type'], $polylang->post_types)))
+			return;
+
 		$sign = create_function('$n', 'return $n > 0 ? 1 : ($n < 0 ? -1 : 0);');
 
 		// /!\ always keep untranslated as is
@@ -94,7 +97,7 @@ class Polylang_Auto_Translate {
 			// tax_query since WP 3.1
 			if (!empty($qv['tax_query']) && is_array($qv['tax_query'])) {
 				foreach ($qv['tax_query'] as $key => $q) {
-					if (in_array($q['taxonomy'], $polylang->taxonomies)) {
+					if (isset($q['taxonomy']) && in_array($q['taxonomy'], $polylang->taxonomies)) {
 						$arr = array();
 						$field = isset($q['field']) && in_array($q['field'], array('slug', 'name')) ? $q['field'] : 'term_id';
 						foreach ( (array) $q['terms'] as $t)

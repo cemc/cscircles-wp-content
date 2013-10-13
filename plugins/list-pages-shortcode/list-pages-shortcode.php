@@ -5,7 +5,7 @@ Plugin Name: List Pages Shortcode
 Plugin URI: http://wordpress.org/extend/plugins/list-pages-shortcode/
 Description: Introduces the [list-pages], [sibling-pages] and [child-pages] <a href="http://codex.wordpress.org/Shortcode_API">shortcodes</a> for easily displaying a list of pages within a post or page.  Both shortcodes accept all parameters that you can pass to the <a href="http://codex.wordpress.org/Template_Tags/wp_list_pages">wp_list_pages()</a> function.  For example, to show a page's child pages sorted by title simply add [child-pages sort_column="post_title"] in the page's content.
 Author: Ben Huson, Aaron Harp
-Version: 1.5
+Version: 1.6
 Author URI: http://www.aaronharp.com
 */
 
@@ -23,6 +23,8 @@ class List_Pages_Shortcode {
 	
 	function shortcode_list_pages( $atts, $content, $tag ) {
 		global $post;
+		
+		do_action( 'shortcode_list_pages_before' );
 		
 		// Child Pages
 		$child_of = 0;
@@ -50,6 +52,8 @@ class List_Pages_Shortcode {
 			'exclude_tree'=> '',
 			'meta_key'    => '',
 			'meta_value'  => '',
+			'walker'      => new List_Pages_Shortcode_Walker_Page,
+			'post_type'   => 'page',
 			'offset'      => '',
 			'post_status' => 'publish',
 			'exclude_current_page' => 0,
@@ -63,17 +67,12 @@ class List_Pages_Shortcode {
 		// Set necessary params
 		$atts['echo'] = 0;
 		if ( $atts['exclude_current_page'] && absint( $post->ID ) ) {
-			if ( !empty( $atts['exclude'] ) )
+			if ( ! empty( $atts['exclude'] ) )
 				$atts['exclude'] .= ',';
 			$atts['exclude'] .= $post->ID;
 		}
 		
 		$atts = apply_filters( 'shortcode_list_pages_attributes', $atts, $content, $tag );
-		
-		// Use custom walker
-		if ( $atts['excerpt'] || $atts['list_type'] != 'ul' ) {
-			$atts['walker'] = new List_Pages_Shortcode_Walker_Page;
-		}
 		
 		// Catch <ul> tags in wp_list_pages()
 		if ( $atts['list_type'] != 'ul' ) {
@@ -83,10 +82,13 @@ class List_Pages_Shortcode {
 		// Create output
 		$out = wp_list_pages( $atts );
 		remove_filter( 'wp_list_pages', array( $this, 'ul2list_type' ), 10 );
-		if ( !empty( $out ) )
+		if ( ! empty( $out ) )
 			$out = '<' . $atts['list_type'] . ' class="' . $atts['class'] . '">' . $out . '</' . $atts['list_type'] . '>';
+		$out = apply_filters( 'shortcode_list_pages', $out, $atts, $content, $tag );
 		
-		return apply_filters( 'shortcode_list_pages', $out, $atts, $content, $tag );
+		do_action( 'shortcode_list_pages_after' );
+		
+		return $out;
 	}
 	
 	/**
@@ -149,7 +151,7 @@ class List_Pages_Shortcode_Walker_Page extends Walker_Page {
 		$output .= "$indent</" . $args['list_type'] . ">\n";
 	}
 	
-	function start_el( &$output, $page, $depth, $args, $current_page = 0 ) {
+	function start_el( &$output, $page, $depth = 0, $args = array(), $current_page = 0 ) {
 		if ( $depth )
 			$indent = str_repeat("\t", $depth);
 		else
@@ -171,7 +173,7 @@ class List_Pages_Shortcode_Walker_Page extends Walker_Page {
 
 		$css_class = implode( ' ', apply_filters( 'page_css_class', $css_class, $page, $depth, $args, $current_page ) );
 
-		$output .= $indent . '<li class="' . $css_class . '"><a href="' . get_permalink($page->ID) . '">' . $link_before . apply_filters( 'the_title', $page->post_title, $page->ID ) . $link_after . '</a>';
+		$item = '<a href="' . get_permalink($page->ID) . '">' . $link_before . apply_filters( 'the_title', $page->post_title, $page->ID ) . $link_after . '</a>';
 
 		if ( !empty($show_date) ) {
 			if ( 'modified' == $show_date )
@@ -179,13 +181,15 @@ class List_Pages_Shortcode_Walker_Page extends Walker_Page {
 			else
 				$time = $page->post_date;
 
-			$output .= " " . mysql2date($date_format, $time);
+			$item .= " " . mysql2date($date_format, $time);
 		}
 		
 		// Excerpt
 		if ( $args['excerpt'] ) {
-			$output .= apply_filters( 'list_pages_shortcode_excerpt', $page->post_excerpt, $page, $depth, $args, $current_page );
+			$item .= apply_filters( 'list_pages_shortcode_excerpt', $page->post_excerpt, $page, $depth, $args, $current_page );
 		}
+		
+		$output .= $indent . '<li class="' . $css_class . '">' . apply_filters( 'list_pages_shortcode_item', $item, $page, $depth, $args, $current_page );
 	}
 	
 }
