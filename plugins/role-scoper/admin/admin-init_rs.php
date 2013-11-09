@@ -33,6 +33,9 @@ function scoper_admin_init() {
 			define( 'DISABLE_QUERYFILTERS_RS', true );
 	}
 	
+	if ( defined( 'SSEO_VERSION' ) )
+		require_once( dirname(__FILE__).'/eyes-only-admin_rs.php' );
+	
 	global $pagenow;
 
 	// prevent default_private option from forcing a draft/pending post into private publishing

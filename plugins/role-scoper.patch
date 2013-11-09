@@ -14,14 +14,3 @@ diff -Naur ./db-setup_rs.php ../role-scoper/db-setup_rs.php
  	";
  	
 diff -Naur ./terms-interceptor_rs.php ../role-scoper/terms-interceptor_rs.php
---- ./terms-interceptor_rs.php	2012-10-10 16:22:10.000000000 -0400
-+++ ../role-scoper/terms-interceptor_rs.php	2012-11-07 18:04:20.000000000 -0500
-@@ -155,7 +155,7 @@
- 				$return['remap_parents'] = true;
- 			}
- 
--			if ( is_admin() && ( 's2' == $GLOBALS['plugin_page'] ) ) {
-+			if ( is_admin() && ( array_key_exists('plugin_page', $GLOBALS) && 's2' == $GLOBALS['plugin_page'] ) ) {
- 				$return['required_operation'] = 'read';
- 			}
- 		}

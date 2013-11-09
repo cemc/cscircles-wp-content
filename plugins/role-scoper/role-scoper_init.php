@@ -46,6 +46,9 @@ function scoper_log_init_action() {
 
 	elseif ( defined('XMLRPC_REQUEST') )
 		require_once( dirname(__FILE__).'/xmlrpc_rs.php');
+		
+	if ( defined( 'SSEO_VERSION' ) )
+		require_once( dirname(__FILE__).'/eyes-only-helper_rs.php' );
 }
 
 function scoper_act_set_current_user() {
