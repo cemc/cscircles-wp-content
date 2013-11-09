@@ -2,11 +2,11 @@
 # This file is distributed under the same license as the Twenty Eleven package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twenty Twelve 1.1.1 (WordPress 3.6)\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tags/twentytwelve\n"
-"POT-Creation-Date: 2013-05-22 21:14:07+00:00\n"
-"PO-Revision-Date: 2013-07-28 15:14+0100\n"
-"Last-Translator: WordPress Francophone <traduction_at_wordpress-fr.net>\n"
+"Project-Id-Version: Twenty Thirteen 1.0 (WordPress 3.7)\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tags/twentythirteen\n"
+"POT-Creation-Date: 2013-08-01 18:14:17+00:00\n"
+"PO-Revision-Date: 2013-10-04 17:10+0100\n"
+"Last-Translator: WordPress Francophone <traduction@wordpress-fr.net>\n"
 "Language-Team: WordPress-Francophone <traduction@wordpress-fr.net>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -14,19 +14,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: 404.php:17
+#: 404.php:16 content-none.php:12
+msgid "Nothing Found"
+msgstr "Rien n&rsquo;a été trouvé"
+
+#: 404.php:21
 msgid "This is somewhat embarrassing, isn&rsquo;t it?"
 msgstr "C&rsquo;est plutôt gênant, vous ne trouvez pas&nbsp;?"
 
-#: 404.php:21
-msgid ""
-"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-"searching can help."
+#: 404.php:22
+msgid "It looks like nothing was found at this location. Maybe try a search?"
 msgstr ""
-"Il semblerait que nous ne soyons pas en mesure de trouver votre contenu. "
-"Essayez en lançant une recherche."
+"Apparemment, rien n&rsquo;a été trouvé à cette adresse. Essayez avec "
+"recherche&nbsp;?"
 
 #: archive.php:29
 msgid "Daily Archives: %s"
@@ -54,235 +56,205 @@ msgstr "Y"
 msgid "Archives"
 msgstr "Archives"
 
-#: author.php:32
-msgid "Author Archives: %s"
-msgstr "Archives de l&rsquo;auteur&nbsp;: %s"
-
-#: author.php:53 content.php:53
+#: author-bio.php:16
 msgid "About %s"
 msgstr "A propos %s"
 
-#: category.php:21
+#: author-bio.php:20
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+"Afficher tous les articles de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: author.php:30
+msgid "All posts by %s"
+msgstr "Tous les articles par %s"
+
+#: category.php:19
 msgid "Category Archives: %s"
 msgstr "Archives pour la catégorie %s"
 
-#: comments.php:31
+#: comments.php:25
+msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "Une réflexion au sujet de &laquo;&nbsp;%2$s&nbsp;&raquo;"
 msgstr[1] "%1$s réflexions au sujet de &laquo;&nbsp;%2$s&nbsp;&raquo;"
 
-#: comments.php:42
+#: comments.php:45
 msgid "Comment navigation"
 msgstr "Navigation des commentaires"
 
-#: comments.php:43
+#: comments.php:46
 msgid "&larr; Older Comments"
 msgstr "&larr; Commentaire plus ancien"
 
-#: comments.php:44
+#: comments.php:47
 msgid "Newer Comments &rarr;"
 msgstr "Commentaires plus récents &rarr;"
 
-#: comments.php:53
+#: comments.php:52
 msgid "Comments are closed."
 msgstr "Les commentaires sont fermés."
 
-#: content-aside.php:15 content-image.php:13 content-link.php:14
-#: content-quote.php:13 content-status.php:21 content.php:39
+#: content-aside.php:13 content-audio.php:24 content-gallery.php:24
+#: content-image.php:23 content-link.php:24 content-quote.php:13
+#: content-status.php:13 content-video.php:23 content.php:39
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Lire la suite <span class=\"meta-nav\">&rarr;</span>"
 
-#: content-aside.php:20 content-link.php:18 content-quote.php:17
-#: content-status.php:15
-msgid "Permalink to %s"
-msgstr "Permalien vers %s"
-
-#: content-aside.php:23 content-image.php:23 content-link.php:21
-#: content-quote.php:20 content-status.php:27 content.php:28
-msgid "Leave a reply"
-msgstr "Laisser une réponse"
-
-#: content-aside.php:23 content-image.php:23 content-link.php:21
-#: content-quote.php:20 content-status.php:27 content.php:28
-msgid "1 Reply"
-msgstr "1 réponse"
-
-#: content-aside.php:23 content-image.php:23 content-link.php:21
-#: content-quote.php:20 content-status.php:27 content.php:28
-msgid "% Replies"
-msgstr "% réponses"
-
-#: content-aside.php:26 content-image.php:26 content-link.php:24
-#: content-page.php:24 content-quote.php:23 content-status.php:30
-#: content.php:46 functions.php:341 image.php:37
-msgid "Edit"
-msgstr "Modifier"
-
-#: content-link.php:12
-msgid "Link"
-msgstr "Lien"
-
-#: content-none.php:13 index.php:49 search.php:34
-msgid "Nothing Found"
-msgstr "Rien n&rsquo;a été trouvé"
-
-#: content-none.php:17 index.php:53
-msgid ""
-"Apologies, but no results were found. Perhaps searching will help find a "
-"related post."
-msgstr ""
-"Toutes nos excuses, mais votre requête n&rsquo;a donné aucun résultat. Peut-"
-"être qu&rsquo;une recherche peut vous indiquer un article lié."
-
-#: content-page.php:21 content.php:40 image.php:92
+#: content-aside.php:14 content-audio.php:25 content-chat.php:24
+#: content-gallery.php:25 content-image.php:24 content-link.php:25
+#: content-quote.php:14 content-status.php:14 content-video.php:24
+#: content.php:40 image.php:70 page.php:35
 msgid "Pages:"
 msgstr "Pages&nbsp;:"
 
-#: content.php:14
-msgid "Featured post"
-msgstr "Article mis en avant"
+#: content-aside.php:20 content-aside.php:28 content-audio.php:31
+#: content-chat.php:29 content-gallery.php:39 content-image.php:35
+#: content-link.php:19 content-quote.php:25 content-status.php:19
+#: content-video.php:35 content.php:29 image.php:44 page.php:39
+msgid "Edit"
+msgstr "Modifier"
 
-#: content.php:57
-msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+#: content-gallery.php:36 content-image.php:32 content-quote.php:22
+#: content-video.php:32 content.php:47
+msgid "Leave a comment"
+msgstr "Laisser un commentaire"
+
+#: content-gallery.php:36 content-image.php:32 content-quote.php:22
+#: content-video.php:32 content.php:47
+msgid "One comment so far"
+msgstr "Un commentaire pour le moment"
+
+#: content-gallery.php:36 content-image.php:32 content-quote.php:22
+#: content-video.php:32 content.php:47
+msgid "View all % comments"
+msgstr "Afficher les % commentaires"
+
+#: content-none.php:18
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr ""
-"Afficher tous les articles de %s <span class=\"meta-nav\">&rarr;</span>"
+"Prêt à publier votre premier article&nbsp;? <a href=\"%1$s\">Lancez-vous</"
+"a>&nbsp;!"
 
-#. #-#-#-#-#  twentytwelve.pot (Twenty Twelve 1.1.1)  #-#-#-#-#
+#: content-none.php:22
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with "
+"different keywords."
+msgstr ""
+"Désolé, mais rien ne correspond à votre critère de recherche. Veuillez "
+"réessayer avec d&rsquo;autres mots-clés."
+
+#: content-none.php:27
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+"Il semblerait que nous ne soyons pas en mesure de trouver votre contenu. "
+"Essayez en lançant une recherche."
+
+#. #-#-#-#-#  twentythirteen.pot (Twenty Thirteen 1.0)  #-#-#-#-#
 #. Author URI of the plugin/theme
-#: footer.php:17
+#: footer.php:20
 msgid "http://wordpress.org/"
 msgstr "http://wordpress.org/"
 
-#: footer.php:17
+#: footer.php:20
 msgid "Semantic Personal Publishing Platform"
 msgstr "Plate-forme de publication personnelle à la pointe de la sémantique"
 
-#: footer.php:17
+#: footer.php:20
 msgid "Proudly powered by %s"
 msgstr "Fièrement propulsé par %s"
 
-#: functions.php:64
-msgid "Primary Menu"
-msgstr "Menu principal"
+#: functions.php:93
+msgid "Navigation Menu"
+msgstr "Menu de navigation"
 
-#. translators: If there are characters in your language that are not supported
-#. by Open Sans, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:100
-msgctxt "Open Sans font: on or off"
+#. Translators: If there are characters in your language that are not
+#. * supported by Source Sans Pro, translate this to 'off'. Do not translate
+#. * into your own language.
+#: functions.php:124
+msgctxt "Source Sans Pro font: on or off"
 msgid "on"
 msgstr "on"
 
-#. translators: To add an additional Open Sans character subset specific to
-#. your language, translate
-#. this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your
-#. own language.
-#: functions.php:105
-msgctxt "Open Sans font: add new subset (greek, cyrillic, vietnamese)"
-msgid "no-subset"
-msgstr "no-subset "
+#. Translators: If there are characters in your language that are not
+#. * supported by Bitter, translate this to 'off'. Do not translate into your
+#. * own language.
+#: functions.php:130
+msgctxt "Bitter font: on or off"
+msgid "on"
+msgstr "on"
 
-#: functions.php:213
+#: functions.php:212
 msgid "Page %s"
 msgstr "Page %s"
 
-#: functions.php:238
-msgid "Main Sidebar"
-msgstr "Colonne principale"
+#: functions.php:227
+msgid "Main Widget Area"
+msgstr "Zone principale de widgets"
 
-#: functions.php:240
-msgid ""
-"Appears on posts and pages except the optional Front Page template, which "
-"has its own widgets"
-msgstr ""
-"Apparaît sur les articles et les pages, sauf le modèle facultatif Page "
-"d&rsquo;Accueil, qui dispose de ses propres widgets."
+#: functions.php:229
+msgid "Appears in the footer section of the site."
+msgstr "Apparaît dans le pied de page du site."
 
-#: functions.php:248
-msgid "First Front Page Widget Area"
-msgstr "Première zone de la Page d&rsquo;Accueil"
+#: functions.php:237
+msgid "Secondary Widget Area"
+msgstr "Zone secondaire de widgets"
 
-#: functions.php:250 functions.php:260
-msgid ""
-"Appears when using the optional Front Page template with a page set as "
-"Static Front Page"
-msgstr ""
-"Apparaît lorsque vous utilisez le modèle facultatif Page d&rsquo;Accueil "
-"avec une page configurée en Page d&rsquo;Accueil Statique."
+#: functions.php:239
+msgid "Appears on posts and pages in the sidebar."
+msgstr "Apparaît dans la barre latérale des articles et pages."
 
-#: functions.php:258
-msgid "Second Front Page Widget Area"
-msgstr "Seconde zone de la Page d&rsquo;Accueil"
-
-#: functions.php:282 single.php:20
-msgid "Post navigation"
+#: functions.php:264
+msgid "Posts navigation"
 msgstr "Navigation des articles"
 
-#: functions.php:283
+#: functions.php:268
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Articles plus anciens"
 
-#: functions.php:284
+#: functions.php:272
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Articles plus récents <span class=\"meta-nav\">&rarr;</span>"
 
-#: functions.php:309
-msgid "Pingback:"
-msgstr "Ping&nbsp;:"
+#: functions.php:300
+msgid "Post navigation"
+msgstr "Navigation des articles"
 
-#: functions.php:309
-msgid "(Edit)"
-msgstr "(Modifier)"
+#: functions.php:303
+msgctxt "Previous post link"
+msgid "<span class=\"meta-nav\">&larr;</span> %title"
+msgstr "<span class=\"meta-nav\">&larr;</span> %title"
+
+#: functions.php:304
+msgctxt "Next post link"
+msgid "%title <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%title <span class=\"meta-nav\">&rarr;</span>"
 
 #: functions.php:324
-msgid "Post author"
-msgstr "Auteur de l&rsquo;article"
-
-#. translators: 1: date, 2: time
-#: functions.php:330
-msgid "%1$s at %2$s"
-msgstr "%1$s le %2$s"
-
-#: functions.php:336
-msgid "Your comment is awaiting moderation."
-msgstr "Votre commentaire est en attente de validation."
-
-#: functions.php:345
-msgid "Reply"
-msgstr "Répondre"
+msgid "Sticky"
+msgstr "Mis en avant"
 
 #. Translators: used between list items, there is a space after the comma.
-#: functions.php:364 functions.php:367
+#: functions.php:330 functions.php:336
 msgid ", "
 msgstr ", "
 
-#: functions.php:378
+#: functions.php:345
 msgid "View all posts by %s"
 msgstr "Afficher tous les articles par %s"
 
-#. Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's
-#. name.
-#: functions.php:384
-msgid ""
-"This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author"
-"\"> by %4$s</span>."
-msgstr ""
-"Cette entrée a été publiée dans %1$s, et marquée avec %2$s, le %3$s <span "
-"class=\"by-author\">par %4$s</span>."
+#: functions.php:365
+msgctxt "1: post format name. 2: date"
+msgid "%1$s on %2$s"
+msgstr "%1$s le %2$s"
 
-#: functions.php:386
-msgid ""
-"This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
-"span>."
-msgstr ""
-"Cette entrée a été publiée dans %1$s le %3$s <span class=\"by-author\">par "
-"%4$s</span>."
-
-#: functions.php:388
-msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
-msgstr ""
-"Cette entrée a été publiée le %3$s <span class=\"by-author\">par %4$s</span>."
+#: functions.php:371
+msgid "Permalink to %s"
+msgstr "Permalien vers %s"
 
 #: header.php:43
 msgid "Menu"
@@ -292,100 +264,219 @@ msgstr "Menu"
 msgid "Skip to content"
 msgstr "Aller au contenu principal"
 
-#: image.php:26
+#: image.php:22
 msgid ""
-"<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class="
-"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
-"span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; "
-"%5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</"
-"a>."
+"<span class=\"attachment-meta\">Published on <time class=\"entry-date\" "
+"datetime=\"%1$s\">%2$s</time> in <a href=\"%3$s\" title=\"Return to %4$s\" "
+"rel=\"gallery\">%5$s</a></span>"
 msgstr ""
-"<span class=\"meta-prep meta-prep-entry-date\">Publié le </span> <span class="
-"\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></"
-"span> en <a href=\"%3$s\" title=\"Lien vers l'image en taille originale\">"
-"%4$s &times; %5$s</a> dans <a href=\"%6$s\" title=\"Revenir à %7$s\" rel="
-"\"gallery\">%8$s</a>."
+"<span class=\"attachment-meta\">Publié le <time class=\"entry-date\" "
+"datetime=\"%1$s\">%2$s</time> dans <a href=\"%3$s\" title=\"Revenir vers %4$s"
+"\" rel=\"gallery\">%5$s</a></span>"
 
-#: image.php:41
-msgid "&larr; Previous"
-msgstr "&larr; Précédent"
+#: image.php:38
+msgid "Link to full-size image"
+msgstr "Lien vers l&rsquo;image originale"
 
-#: image.php:42
-msgid "Next &rarr;"
-msgstr "Suivant &rarr;"
+#: image.php:39
+msgid "Full resolution"
+msgstr "Pleine résolution"
 
-#: index.php:38
-msgid "No posts to display"
-msgstr "Aucun article à afficher"
+#: image.php:51
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Précédent"
 
-#: index.php:42
-msgid "Ready to publish your first post? <a href=\"%s\">Get started here</a>."
+#: image.php:52
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Suivant <span class=\"meta-nav\">&rarr;</span>"
+
+#: inc/back-compat.php:38 inc/back-compat.php:50 inc/back-compat.php:65
+msgid ""
+"Twenty Thirteen requires at least WordPress version 3.6. You are running "
+"version %s. Please upgrade and try again."
 msgstr ""
-"Prêt à publier votre premier article&nbsp;? <a href=\"%s\">Lancez-vous</"
-"a>&nbsp;!"
+"Twenty Thirteen nécessite au moins WordPress 3.6. Vous utilisez la version "
+"%s. Veuillez faire une mise à jour et réessayer."
+
+#: inc/custom-header.php:48
+msgctxt "header image description"
+msgid "Circle"
+msgstr "Cercle"
+
+#: inc/custom-header.php:53
+msgctxt "header image description"
+msgid "Diamond"
+msgstr "Losange"
+
+#: inc/custom-header.php:58
+msgctxt "header image description"
+msgid "Star"
+msgstr "Étoile"
 
 #: search.php:18
 msgid "Search Results for: %s"
 msgstr "Résultats de recherche pour %s"
 
-#: search.php:38
-msgid ""
-"Sorry, but nothing matched your search criteria. Please try again with some "
-"different keywords."
-msgstr ""
-"Désolé, mais rien ne correspond à votre critère de recherche. Veuillez "
-"réessayer avec d&rsquo;autres mots-clés."
-
-#: single.php:21
-msgctxt "Previous post link"
-msgid "&larr;"
-msgstr "&larr;"
-
-#: single.php:22
-msgctxt "Next post link"
-msgid "&rarr;"
-msgstr "&rarr;"
-
 #: tag.php:21
 msgid "Tag Archives: %s"
 msgstr "Archives du mot-clé %s"
 
+#: taxonomy-post_format.php:23
+msgid "%s Archives"
+msgstr "Archives des %s"
+
 #. Theme Name of the plugin/theme
-msgid "Twenty Twelve"
-msgstr "Twenty Twelve"
+msgid "Twenty Thirteen"
+msgstr "Twenty Thirteen"
 
 #. Theme URI of the plugin/theme
-msgid "http://wordpress.org/themes/twentytwelve"
-msgstr "http://wordpress.org/themes/twentytwelve"
+msgid "http://wordpress.org/themes/twentythirteen"
+msgstr "http://wordpress.org/themes/twentythirteen"
 
 #. Description of the plugin/theme
 msgid ""
-"The 2012 theme for WordPress is a fully responsive theme that looks great on "
-"any device. Features include a front page template with its own widgets, an "
-"optional display font, styling for post formats on both index and single "
-"views, and an optional no-sidebar page template. Make it yours with a custom "
-"menu, header image, and background."
+"The 2013 theme for WordPress takes us back to the blog, featuring a full "
+"range of post formats, each displayed beautifully in their own unique way. "
+"Design details abound, starting with a vibrant color scheme and matching "
+"header images, beautiful typography and icons, and a flexible layout that "
+"looks great on any device, big or small."
 msgstr ""
-"Le thème 2012 de WordPress est un thème conçu pour s&rsquo;afficher de la "
-"meilleure manière sur n&rsquo;importe quelle taille d&rsquo;écran. Parmi ses "
-"fonctionnalités se trouvent un modèle de page d&rsquo;accueil avec ses "
-"propres widgets, une police d&rsquo;affichage optionnelle, un design pour "
-"les formats d&rsquo;article à la fois sur l&rsquo;index et en vue "
-"individuelle, et un modèle facultatif sans barre latérale. Vous pouvez le "
-"faire vôtre avec un menu personnalisé, une image d&rsquo;en-tête, et un fond "
-"d&rsquo;écran."
+"Le thème de WordPress pour 2013 nous ramène au blog, avec un grand nombre de "
+"formats d'article, chacun s'affichant à sa propre manière, en toute beauté. "
+"Vous y trouverez de nombreux détails de mise en page, à commencer par le jeu "
+"de couleurs vives et les images d'en-tête assorties, une superbe typographie "
+"et de belles icônes, et une mise en page flexible qui fonctionne sur toutes "
+"les tailles d'écrans, grands ou petits."
 
 #. Author of the plugin/theme
 msgid "the WordPress team"
 msgstr "L&rsquo;équipe WordPress"
 
-#. Template Name of the plugin/theme
-msgid "Front Page Template"
-msgstr "Modèle de Page d&rsquo;Accueil"
+#~ msgid "Not found"
+#~ msgstr "Introuvable"
 
-#. Template Name of the plugin/theme
-msgid "Full-width Page Template, No Sidebar"
-msgstr "Modèle de page pleine largeur, sans barre latérale"
+#~ msgid "Go back."
+#~ msgstr "Revenir en arrière."
+
+#~ msgid "Author Archives: %s"
+#~ msgstr "Archives de l&rsquo;auteur&nbsp;: %s"
+
+#~ msgid "1 Reply"
+#~ msgstr "1 réponse"
+
+#~ msgid "% Replies"
+#~ msgstr "% réponses"
+
+#~ msgid "Link"
+#~ msgstr "Lien"
+
+#~ msgid ""
+#~ "Apologies, but no results were found. Perhaps searching will help find a "
+#~ "related post."
+#~ msgstr ""
+#~ "Toutes nos excuses, mais votre requête n&rsquo;a donné aucun résultat. "
+#~ "Peut-être qu&rsquo;une recherche peut vous indiquer un article lié."
+
+#~ msgid "Featured post"
+#~ msgstr "Article mis en avant"
+
+#~ msgid "Primary Menu"
+#~ msgstr "Menu principal"
+
+#~ msgctxt "Open Sans font: add new subset (greek, cyrillic, vietnamese)"
+#~ msgid "no-subset"
+#~ msgstr "no-subset "
+
+#~ msgid ""
+#~ "Appears on posts and pages except the optional Front Page template, which "
+#~ "has its own widgets"
+#~ msgstr ""
+#~ "Apparaît sur les articles et les pages, sauf le modèle facultatif Page "
+#~ "d&rsquo;Accueil, qui dispose de ses propres widgets."
+
+#~ msgid "First Front Page Widget Area"
+#~ msgstr "Première zone de la Page d&rsquo;Accueil"
+
+#~ msgid ""
+#~ "Appears when using the optional Front Page template with a page set as "
+#~ "Static Front Page"
+#~ msgstr ""
+#~ "Apparaît lorsque vous utilisez le modèle facultatif Page d&rsquo;Accueil "
+#~ "avec une page configurée en Page d&rsquo;Accueil Statique."
+
+#~ msgid "Pingback:"
+#~ msgstr "Ping&nbsp;:"
+
+#~ msgid "(Edit)"
+#~ msgstr "(Modifier)"
+
+#~ msgid "Post author"
+#~ msgstr "Auteur de l&rsquo;article"
+
+#~ msgid "Your comment is awaiting moderation."
+#~ msgstr "Votre commentaire est en attente de validation."
+
+#~ msgid "Reply"
+#~ msgstr "Répondre"
+
+#~ msgid ""
+#~ "This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-"
+#~ "author\"> by %4$s</span>."
+#~ msgstr ""
+#~ "Cette entrée a été publiée dans %1$s, et marquée avec %2$s, le %3$s <span "
+#~ "class=\"by-author\">par %4$s</span>."
+
+#~ msgid ""
+#~ "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</"
+#~ "span>."
+#~ msgstr ""
+#~ "Cette entrée a été publiée dans %1$s le %3$s <span class=\"by-author"
+#~ "\">par %4$s</span>."
+
+#~ msgid ""
+#~ "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+#~ msgstr ""
+#~ "Cette entrée a été publiée le %3$s <span class=\"by-author\">par %4$s</"
+#~ "span>."
+
+#~ msgid "&larr; Previous"
+#~ msgstr "&larr; Précédent"
+
+#~ msgid "Next &rarr;"
+#~ msgstr "Suivant &rarr;"
+
+#~ msgid "No posts to display"
+#~ msgstr "Aucun article à afficher"
+
+#~ msgctxt "Previous post link"
+#~ msgid "&larr;"
+#~ msgstr "&larr;"
+
+#~ msgctxt "Next post link"
+#~ msgid "&rarr;"
+#~ msgstr "&rarr;"
+
+#~ msgid ""
+#~ "The 2012 theme for WordPress is a fully responsive theme that looks great "
+#~ "on any device. Features include a front page template with its own "
+#~ "widgets, an optional display font, styling for post formats on both index "
+#~ "and single views, and an optional no-sidebar page template. Make it yours "
+#~ "with a custom menu, header image, and background."
+#~ msgstr ""
+#~ "Le thème 2012 de WordPress est un thème conçu pour s&rsquo;afficher de la "
+#~ "meilleure manière sur n&rsquo;importe quelle taille d&rsquo;écran. Parmi "
+#~ "ses fonctionnalités se trouvent un modèle de page d&rsquo;accueil avec "
+#~ "ses propres widgets, une police d&rsquo;affichage optionnelle, un design "
+#~ "pour les formats d&rsquo;article à la fois sur l&rsquo;index et en vue "
+#~ "individuelle, et un modèle facultatif sans barre latérale. Vous pouvez le "
+#~ "faire vôtre avec un menu personnalisé, une image d&rsquo;en-tête, et un "
+#~ "fond d&rsquo;écran."
+
+#~ msgid "Front Page Template"
+#~ msgstr "Modèle de Page d&rsquo;Accueil"
+
+#~ msgid "Full-width Page Template, No Sidebar"
+#~ msgstr "Modèle de page pleine largeur, sans barre latérale"
 
 #~ msgid "Reply <span>&darr;</span>"
 #~ msgstr "Répondre <span>&darr;</span>"
@@ -697,12 +788,6 @@ msgstr "Modèle de page pleine largeur, sans barre latérale"
 #~ msgstr ""
 #~ "Ce contenu a été publié dans %1$s. Mettez-le en favori avec son <a href="
 #~ "\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a>."
-
-#~ msgid "<span class=\"meta-nav\">&larr;</span> Previous"
-#~ msgstr "<span class=\"meta-nav\">&larr;</span> Précédent"
-
-#~ msgid "Next <span class=\"meta-nav\">&rarr;</span>"
-#~ msgstr "Suivant <span class=\"meta-nav\">&rarr;</span>"
 
 #~ msgid "Search"
 #~ msgstr "Recherche"
