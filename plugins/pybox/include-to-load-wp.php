@@ -17,10 +17,11 @@ require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-load.php');
 // now wordpress is loaded. Huzzah!
 
 // we only need this for ajax calls:
-if (array_key_exists('polylang', $GLOBALS)
+/*if (array_key_exists('polylang', $GLOBALS)
     // but not for the visualizer:
     && !defined("DO_NOT_LOAD_POLYLANG_TEXTDOMAINS"))
   $GLOBALS['polylang']->load_textdomains();
+*/
 
 // this is to avoid errors shown if WP_DEBUG is on
 remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
