@@ -386,7 +386,7 @@ function doGrading($usercode, $TC) {
   $mainFile .= "from _UTILITIES import *\n";
 
   $lang = 'en_US';
-  if (class_exists('Polylang_Base')) {    
+  if (class_exists('PLL_Base')) {    
     if (pll_current_language('slug')=='fr')
       $lang = 'fr_FR';
     else if (pll_current_language('slug')=='de')

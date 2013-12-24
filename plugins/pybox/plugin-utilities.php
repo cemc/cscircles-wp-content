@@ -79,7 +79,7 @@ function cscurl($desc) {
     $res = $wpdb->get_var($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name like %s", $s));
   }
 
-  if (class_exists('Polylang_Base')) {
+  if (class_exists('PLL_Base')) {
     if (!is_admin())
       $res = pll_get_post($res);
     else {
@@ -149,7 +149,7 @@ function userIsAssistant() {
 }
 
 function userIsTranslator() {
-  if (!class_exists('Polylang_Base')) return false;
+  if (!class_exists('PLL_Base')) return false;
   if (!is_user_logged_in()) return false;
   if (!ON_CEMC_SERVER) return false;
   global $wpdb;
@@ -186,7 +186,7 @@ function getUserID() {
 // 2-character code for current language
 // doesn't work in Dashboard/Admin pages
 function currLang2() {
-  return class_exists('Polylang_Base') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
+  return class_exists('PLL_Base') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
 }
 
 // write to log, and send an e-mail

@@ -256,8 +256,8 @@ function pb_menu_items($wp_admin_bar) {
 add_action( 'wp_before_admin_bar_render', 'tweak_polylang_menu' );
 function tweak_polylang_menu() {
   global $wp_admin_bar;
-  if (class_exists('Polylang_Base') && is_admin()) {
-    if (!(userIsTranslator() || userIsAdmin() || userIsAssistant()))
+  if (class_exists('PLL_Base') && is_admin()) {
+    if (!(userIsTranslator() || userIsAdmin() || userIsAssistant())) 
       $wp_admin_bar->remove_node('languages');
     else {
       $node = $wp_admin_bar->get_node('languages');

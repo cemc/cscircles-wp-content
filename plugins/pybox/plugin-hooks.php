@@ -71,7 +71,7 @@ function footsy() {
   global $popupBoxen;
   echo $popupBoxen;
 
-  if (class_exists('Polylang_Base')) {
+  if (class_exists('PLL_Base')) {
     echo '<span id="pylangswitcher">';
     //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
     
