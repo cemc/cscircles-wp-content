@@ -136,6 +136,7 @@ pll_tagBox = {
 			// add the language in the $_GET variable
 			var lang = $('#post_lang_choice').attr('value');
 			var tax = $(this).closest('div.tagsdiv').attr('id');
+			// change action name for backward compatibility WP < 3.7
 			$(this).suggest( ajaxurl + '?action=polylang-ajax-tag-search&lang=' + lang + '&tax=' + tax, { delay: 500, minchars: 2, multiple: true, multipleSep: "," } );
 		});
 	},
@@ -176,6 +177,28 @@ pll_tagBox = {
 	}
 };
 
+})(jQuery);
+
+// quick edit
+// thanks to WP Dreamer http://wpdreamer.com/2012/03/manage-wordpress-posts-using-bulk-edit-and-quick-edit/
+(function($) {
+	var $wp_inline_edit = inlineEditPost.edit;
+
+	inlineEditPost.edit = function( id ) {
+		$wp_inline_edit.apply( this, arguments );
+		var $post_id = 0;
+		if ( typeof( id ) == 'object' )
+			$post_id = parseInt( this.getId( id ) );
+
+		if ( $post_id > 0 ) {
+			var $edit_row = $( '#edit-' + $post_id );
+			var $select = $edit_row.find(':input[name="inline_lang_choice"]');
+			$select.find('option:selected').removeProp('selected');
+			var lang = $('#lang_' + $post_id).html();
+			$("input[name='old_lang']").val(lang);
+			$select.find('option[value="'+lang+'"]').prop('selected', true);
+		}
+	}
 })(jQuery);
 
 jQuery(document).ready(function($) {
@@ -223,7 +246,7 @@ jQuery(document).ready(function($) {
 						$('#' + tax + '-lang').val($('#post_lang_choice').attr('value')); // hidden field
 						break;
 					case 'pages': // parent dropdown list for pages
-						$('#parent_id').replaceWith(this.data);
+						$('#pageparentdiv > .inside').html(this.data);
 						break;
 					default:
 						break;
@@ -255,16 +278,6 @@ jQuery(document).ready(function($) {
 		});
 	}
 
-	// quick edit
-	$('#the-list').on('click', 'a.editinline', function(){
-		inlineEditPost.revert();
-		var post_id = inlineEditPost.getId(this);
-		var lang = $('#lang_'+post_id).html();
-		$("input[name='old_lang']").val(lang);
-		$('#post_lang_choice option:selected').removeProp('selected');
-		$('#post_lang_choice option[value="'+lang+'"]').attr('selected', 'selected'); // FIXME why prop('selected', true) does not work?
-	});
-
 	// ajax for changing the media's language
 	$('.media_lang_choice').change( function() {
 		var data = {
@@ -278,7 +291,7 @@ jQuery(document).ready(function($) {
 			$.each(res.responses, function() {
 				switch (this.what) {
 					case 'translations': // translations fields
-						$('.translations').html(this.data); // WP < 3.5
+						$('.translations').html(this.data); // backward compatibility WP < 3.5
 						$('.compat-field-translations').html(this.data); // WP 3.5+
 						break;
 					default:

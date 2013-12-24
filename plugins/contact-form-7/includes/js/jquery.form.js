@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 3.44.0-2013.09.15
+ * version: 3.46.0-2013.11.21
  * Requires jQuery v1.5 or later
  * Copyright (c) 2013 M. Alsup
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -9,7 +9,19 @@
  * https://github.com/malsup/form#copyright-and-license
  */
 /*global ActiveXObject */
-;(function($) {
+
+// AMD support
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // using AMD; register as anon module
+        define(['jquery'], factory);
+    } else {
+        // no AMD; invoke directly
+        factory( (typeof(jQuery) != 'undefined') ? jQuery : window.Zepto );
+    }
+}
+
+(function($) {
 "use strict";
 
 /*
@@ -312,11 +324,15 @@ $.fn.ajaxSubmit = function(options) {
         }
 
         s.data = null;
-            var beforeSend = s.beforeSend;
-            s.beforeSend = function(xhr, o) {
+        var beforeSend = s.beforeSend;
+        s.beforeSend = function(xhr, o) {
+            //Send FormData() provided by user
+            if (options.formData)
+                o.data = options.formData;
+            else
                 o.data = formdata;
-                if(beforeSend)
-                    beforeSend.call(this, xhr, o);
+            if(beforeSend)
+                beforeSend.call(this, xhr, o);
         };
         return $.ajax(s);
     }
@@ -1197,4 +1213,5 @@ function log() {
     }
 }
 
-})( (typeof(jQuery) != 'undefined') ? jQuery : window.Zepto );
+}));
+
