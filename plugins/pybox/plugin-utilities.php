@@ -85,6 +85,7 @@ function cscurl($desc) {
     else {
       $lang = substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2);
       if ($lang=='') $lang=substr(get_bloginfo("language"), 0, 2);
+      if ($lang=='0') $lang=substr(get_bloginfo("language"), 0, 2);
       $res = pll_get_post($res, $lang);
     }
   }

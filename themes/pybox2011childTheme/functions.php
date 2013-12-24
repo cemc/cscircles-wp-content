@@ -74,11 +74,11 @@ add_action('admin_head', 'pybox_admin_css');
 function pybox_admin_css() {
   echo '<style type="text/css">
 .wp-admin .button-primary{
-        margin-top: 10px;
+/*        margin-top: 10px;
         font-size: 14px !important;
         font-weight: bold;
         padding: 7px;
-        height: auto;
+        height: auto;*/
 }
 
 .wp-admin #wpadminbar #wp-toolbar #wp-admin-bar-user-actions .ab-item

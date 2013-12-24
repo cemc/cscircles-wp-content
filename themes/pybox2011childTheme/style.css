@@ -282,8 +282,26 @@ input[type=text] {
 #wp-admin-bar-comments > .ab-item .ab-icon,
 #wpadminbar #wp-admin-bar-new-content > .ab-item .ab-icon
 {
-        background-image: url(images/admin-bar-sprite-green.png) !important;
+/*        background-image: url(images/admin-bar-sprite-green.png) !important; */
 }
+/* use dark green, not grey; and adjust to right spot */
+#wpadminbar #adminbarsearch:before
+{color: inherit !important; position:relative !important; top:0.25em !important; left:1em !important}
+
+#wpadminbar .ab-icon:before, #wpadminbar .ab-item:before
+{color: inherit !important; position:relative !important; top:0.5em !important}
+
+/* use dark green, not while */
+#wpadminbar a.ab-item, #wpadminbar>#wp-toolbar span.ab-label, #wpadminbar>#wp-toolbar span.noticon
+{color: darkgreen !important}
+
+#wpadminbar #wp-admin-bar-site-name>.ab-item:before {content:'' !important;} /* hide home icon */
+#wp-admin-bar-my-account>.ab-item:before {content: '' !important;} /* hide account icon */
+
+/* revert color changes brought by wp 3.8 */
+#wpadminbar .menupop .ab-sub-wrapper, #wpadminbar .shortlink-input {background-color: white !important} 
+#wpadminbar .menupop .ab-sub-wrapper ul li:hover {background-color: #EEF !important}
+
 
 /* want this not just on "404" pages */
 
