@@ -118,6 +118,7 @@ primary key  (ID)
   $wpdb->query("create index pb_index on ".$wpdb->prefix."pb_mail (uto, unanswered);");
   $wpdb->query("create index pb_index_subject on ".$wpdb->prefix."pb_mail (ustudent, problem (16), ID);");
   $wpdb->query("create index pb_index_problem on ".$wpdb->prefix."pb_mail (problem (16));");
+  $wpdb->query("create index pb_index_from on ".$wpdb->prefix."pb_mail (ufrom);");
 
   $table_name = $wpdb->prefix . "pb_submissions";
   $sql = "CREATE TABLE " . $table_name . " (
