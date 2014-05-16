@@ -29,7 +29,7 @@ function wpcf7_file_shortcode_handler( $tag ) {
 
 	$atts['size'] = $tag->get_size_option( '40' );
 	$atts['class'] = $tag->get_class_option( $class );
-	$atts['id'] = $tag->get_option( 'id', 'id', true );
+	$atts['id'] = $tag->get_id_option();
 	$atts['tabindex'] = $tag->get_option( 'tabindex', 'int', true );
 
 	if ( $tag->is_required() )
@@ -45,7 +45,7 @@ function wpcf7_file_shortcode_handler( $tag ) {
 
 	$html = sprintf(
 		'<span class="wpcf7-form-control-wrap %1$s"><input %2$s />%3$s</span>',
-		$tag->name, $atts, $validation_error );
+		sanitize_html_class( $tag->name ), $atts, $validation_error );
 
 	return $html;
 }
@@ -74,18 +74,21 @@ function wpcf7_file_validation_filter( $result, $tag ) {
 	$tag = new WPCF7_Shortcode( $tag );
 
 	$name = $tag->name;
+	$id = $tag->get_id_option();
 
 	$file = isset( $_FILES[$name] ) ? $_FILES[$name] : null;
 
 	if ( $file['error'] && UPLOAD_ERR_NO_FILE != $file['error'] ) {
 		$result['valid'] = false;
 		$result['reason'][$name] = wpcf7_get_message( 'upload_failed_php_error' );
+		$result['idref'][$name] = $id ? $id : null;
 		return $result;
 	}
 
 	if ( empty( $file['tmp_name'] ) && $tag->is_required() ) {
 		$result['valid'] = false;
 		$result['reason'][$name] = wpcf7_get_message( 'invalid_required' );
+		$result['idref'][$name] = $id ? $id : null;
 		return $result;
 	}
 
@@ -146,6 +149,7 @@ function wpcf7_file_validation_filter( $result, $tag ) {
 	if ( ! preg_match( $file_type_pattern, $file['name'] ) ) {
 		$result['valid'] = false;
 		$result['reason'][$name] = wpcf7_get_message( 'upload_file_type_invalid' );
+		$result['idref'][$name] = $id ? $id : null;
 		return $result;
 	}
 
@@ -154,6 +158,7 @@ function wpcf7_file_validation_filter( $result, $tag ) {
 	if ( $file['size'] > $allowed_size ) {
 		$result['valid'] = false;
 		$result['reason'][$name] = wpcf7_get_message( 'upload_file_too_large' );
+		$result['idref'][$name] = $id ? $id : null;
 		return $result;
 	}
 
@@ -169,6 +174,7 @@ function wpcf7_file_validation_filter( $result, $tag ) {
 	if ( false === @move_uploaded_file( $file['tmp_name'], $new_file ) ) {
 		$result['valid'] = false;
 		$result['reason'][$name] = wpcf7_get_message( 'upload_failed' );
+		$result['idref'][$name] = $id ? $id : null;
 		return $result;
 	}
 
@@ -254,9 +260,9 @@ function wpcf7_tg_pane_file( &$contact_form ) {
 </tr>
 </table>
 
-<div class="tg-tag"><?php echo esc_html( __( "Copy this code and paste it into the form left.", 'contact-form-7' ) ); ?><br /><input type="text" name="file" class="tag" readonly="readonly" onfocus="this.select()" /></div>
+<div class="tg-tag"><?php echo esc_html( __( "Copy this code and paste it into the form left.", 'contact-form-7' ) ); ?><br /><input type="text" name="file" class="tag wp-ui-text-highlight code" readonly="readonly" onfocus="this.select()" /></div>
 
-<div class="tg-mail-tag"><?php echo esc_html( __( "And, put this code into the File Attachments field below.", 'contact-form-7' ) ); ?><br /><span class="arrow">&#11015;</span>&nbsp;<input type="text" class="mail-tag" readonly="readonly" onfocus="this.select()" /></div>
+<div class="tg-mail-tag"><?php echo esc_html( __( "And, put this code into the File Attachments field below.", 'contact-form-7' ) ); ?><br /><input type="text" class="mail-tag wp-ui-text-highlight code" readonly="readonly" onfocus="this.select()" /></div>
 </form>
 </div>
 <?php
@@ -268,8 +274,9 @@ function wpcf7_tg_pane_file( &$contact_form ) {
 add_action( 'wpcf7_admin_notices', 'wpcf7_file_display_warning_message' );
 
 function wpcf7_file_display_warning_message() {
-	if ( empty( $_GET['post'] ) || ! $contact_form = wpcf7_contact_form( $_GET['post'] ) )
+	if ( ! $contact_form = wpcf7_get_current_contact_form() ) {
 		return;
+	}
 
 	$has_tags = (bool) $contact_form->form_scan_shortcode(
 		array( 'type' => array( 'file', 'file*' ) ) );

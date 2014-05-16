@@ -116,10 +116,17 @@ class PLL_Admin_Model extends PLL_Model {
 		$this->update_translations($lang->slug);
 
 		// delete language option in widgets
-		if (!empty($this->options['widgets'])) {
-			foreach ($this->options['widgets'] as $key => $slug) {
-				if ($slug == $lang->slug)
-					unset($this->options['widgets'][$key]);
+		foreach ($GLOBALS['wp_registered_widgets'] as $widget) {
+			if (!empty($widget['callback'][0]) && !empty($widget['params'][0]['number'])) {
+				$obj = $widget['callback'][0];
+				$number = $widget['params'][0]['number'];
+				if (is_object($obj) && method_exists($obj, 'get_settings') && method_exists($obj, 'save_settings')) {
+					$settings = $obj->get_settings();
+					if (isset($settings[$number]['pll_lang']) && $settings[$number]['pll_lang'] == $lang->slug) {
+						unset($settings[$number]['pll_lang']);
+						$obj->save_settings($settings);
+					}
+				}
 			}
 		}
 
@@ -202,10 +209,17 @@ class PLL_Admin_Model extends PLL_Model {
 			$this->update_translations($old_slug, $slug);
 
 			// update language option in widgets
-			if (!empty($this->options['widgets'])) {
-				foreach ($this->options['widgets'] as $key => $lg) {
-					if ($lg == $old_slug)
-						$this->options['widgets'][$key] = $slug;
+			foreach ($GLOBALS['wp_registered_widgets'] as $widget) {
+				if (!empty($widget['callback'][0]) && !empty($widget['params'][0]['number'])) {
+					$obj = $widget['callback'][0];
+					$number = $widget['params'][0]['number'];
+					if (is_object($obj) && method_exists($obj, 'get_settings') && method_exists($obj, 'save_settings')) {
+						$settings = $obj->get_settings();
+						if (isset($settings[$number]['pll_lang']) && $settings[$number]['pll_lang'] == $old_slug) {
+							$settings[$number]['pll_lang'] = $slug;
+							$obj->save_settings($settings);
+						}
+					}
 				}
 			}
 
@@ -311,7 +325,7 @@ class PLL_Admin_Model extends PLL_Model {
 		$posts = get_posts(array(
 			'numberposts' => -1,
 			'nopaging'    => true,
-			'post_type'   => $this->post_types,
+			'post_type'   => $this->get_translated_post_types(),
 			'post_status' => 'any',
 			'fields'      => 'ids',
 			'tax_query'   => array(array(
@@ -321,7 +335,7 @@ class PLL_Admin_Model extends PLL_Model {
 			))
 		));
 
-		$terms = get_terms($this->taxonomies, array('get'=>'all', 'fields'=>'ids'));
+		$terms = get_terms($this->get_translated_taxonomies(), array('get'=>'all', 'fields'=>'ids'));
 		$groups = $this->get_languages_list(array('fields' => 'tl_term_id'));
 		$tr_terms = get_objects_in_term($groups, 'term_language');
 		$terms = array_unique(array_diff($terms, $tr_terms)); // array_unique to avoid duplicates if a term is in more than one taxonomy

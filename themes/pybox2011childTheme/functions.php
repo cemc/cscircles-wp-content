@@ -263,9 +263,9 @@ function tweak_polylang_menu() {
       $node = $wp_admin_bar->get_node('languages');
       $node->title = __t('Filter Listed Pages'); // 'Languages' is confusing
       $wp_admin_bar->add_node($node); // update   
-      $node = $wp_admin_bar->get_node('all');
+      /*      $node = $wp_admin_bar->get_node('all'); doesn't exist any more?
       $node->title = str_replace(__('Show all languages', 'polylang'), __t('Show all visible'), $node->title); // similar
-      $wp_admin_bar->add_node($node); // update   
+      $wp_admin_bar->add_node($node); // update   */
     }
   }
 }

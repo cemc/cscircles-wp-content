@@ -23,6 +23,7 @@
  * flag                => html img of the flag
  * home_url            => home url in this language
  * search_url          => home url to use in search forms
+ * mo_id               => id of the post storing strings translations
  *
  * @since 1.2
  */
@@ -51,6 +52,8 @@ class PLL_Language {
 		$this->is_rtl = $description['rtl'];
 
 		$this->description = &$this->locale; // backward compatibility with Polylang < 1.2
+
+		$this->mo_id = PLL_MO::get_id($this);
 	}
 
 	/*
@@ -72,7 +75,7 @@ class PLL_Language {
 		$this->flag = apply_filters('pll_get_flag', empty($this->flag_url) ? '' :
 			sprintf(
 				'<img src="%s" title="%s" alt="%s" />',
-				esc_url($this->flag_url),
+				$this->flag_url,
 				esc_attr(apply_filters('pll_flag_title', $this->name, $this->slug, $this->locale)),
 				esc_attr($this->name)
 			));
@@ -92,22 +95,23 @@ class PLL_Language {
 	 * set home_url and search_url properties
 	 *
 	 * @since 1.3
-	 *
 	 */
 	public function set_home_url() {
-		$options = get_option('polylang');
-
-		// a static page is used as front page : /!\ don't use get_page_link to avoid infinite loop
-		// don't use this for search form
-		if (!$options['redirect_lang'] && ($page_on_front = get_option('page_on_front')) && $id = pll_get_post($page_on_front, $this))
-			$this->home_url = _get_page_link($id);
-
-		$link = $GLOBALS['polylang']->links_model->home_url($this);
+		// home url for search form (can't use the page url if a static page is used as front page)
+		$this->search_url = $GLOBALS['polylang']->links_model->home_url($this);
 
 		// add a trailing slash as done by WP on homepage (otherwise could break the search form when the permalink structure does not include one)
 		// only for pretty permalinks
-		$this->search_url = get_option('using_permalinks') ? trailingslashit($link) : $link;
+		if (get_option('using_permalinks'))
+			$this->search_url = trailingslashit($link);
 
-		$this->home_url = empty($this->home_url) ? $this->search_url : $this->home_url;
+		$options = get_option('polylang');
+
+		// a static page is used as front page
+		if (!$options['redirect_lang'] && ($page_on_front = get_option('page_on_front')) && $id = pll_get_post($page_on_front, $this))
+			$this->home_url = _get_page_link($id); // /!\ don't use get_page_link to avoid infinite loop
+
+		else
+			$this->home_url = $this->search_url;
 	}
 }

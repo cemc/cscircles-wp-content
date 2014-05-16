@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== List Pages Shortcode ===
 Contributors: husobj, aaron_guitar
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=aaron%40freshwebs%2enet&item_name=Fotobook%20Donation&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: shortcodes, pages, list pages, sibling pages, child pages, subpages
 Requires at least: 2.5
-Tested up to: 3.6.1
-Stable tag: 1.6
+Tested up to: 3.9
+Stable tag: 1.7.1
 License: GPLv2 or later
 
 Introduces the [list-pages], [sibling-pages] and [child-pages] shortcodes for easily displaying a list of pages within a post or page.
@@ -45,6 +45,12 @@ In addition to the [wp_list_pages()](http://codex.wordpress.org/Template_Tags/wp
 * **exclude_current_page** *(int)* Exclude the current page. Defaults to `0`.
 * **excerpt** *(int)* Show the page excerpt. Defaults to `0`.
 
+== Installation ==
+
+1. Download and unzip the most recent version of this plugin
+2. Upload the list-pages-shortcode folder to /path-to-wordpress/wp-content/plugins/
+3. Login to your WP Admin panel, click Plugins, and activate "List Pages Shortcode"
+
 == Frequently Asked Questions ==
 
 = How do I include a page excerpt? =
@@ -63,6 +69,16 @@ You can then include the excerpt via your shortcode.
 `[list-pages excerpt="1"]`
 
 == Changelog ==
+
+= 1.7.1 =
+
+* When no list type specified don't wrap in list tags.
+* Update List_Pages_Shortcode_Walker_Page class with changes made to the WordPress Walker_Page class.
+* Checked WordPress 3.9 compatibility.
+
+= 1.7 =
+
+* Add 'list-pages-shortcode' class to all lists.
 
 = 1.6 =
 
@@ -102,8 +118,42 @@ You can then include the excerpt via your shortcode.
 
 * First release.
 
-== Installation ==
+== Upgrade Notice ==
 
-1. Download and unzip the most recent version of this plugin
-2. Upload the list-pages-shortcode folder to /path-to-wordpress/wp-content/plugins/
-3. Login to your WP Admin panel, click Plugins, and activate "List Pages Shortcode"
+= 1.7.1 =
+
+* When no list type specified don't wrap in list tags.
+* Update List_Pages_Shortcode_Walker_Page class with changes made to the WordPress Walker_Page class.
+* Checked WordPress 3.9 compatibility.
+
+= 1.7 =
+
+Add 'list-pages-shortcode' class to all lists.
+
+= 1.6 =
+
+* Add default arg values to start_el() Walker method. Props eceleste.
+* Added `shortcode_list_pages_before` action.
+* Added `shortcode_list_pages_after` action.
+* Added `list_pages_shortcode_item` filter.
+* Allow specifying of `post_type`.
+
+= 1.5 =
+
+Added support for showing excerpt and filtering of excerpt output using 'list_pages_shortcode_excerpt' filter. Added support for outputting as ordered list.
+
+= 1.4 =
+
+Added support for 'post_status'.
+
+= 1.3 =
+
+Added 'shortcode_list_pages_attributes' filter and allow 'child_of' to be overridden by shortcode parameter.
+
+= 1.2 =
+
+Added support for extra wp_list_pages() parameters: include, sort_order, meta_key, meta_value and offset.
+
+= 1.1 =
+
+Added 'shortcode_list_pages' filter and [sibling-pages] shortcode.

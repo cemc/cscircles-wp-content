@@ -7,7 +7,6 @@
  */
 class PLL_Model {
 	public $options;
-	public $post_types = array(), $taxonomies = array(); // post types & taxonomies to filter by language
 	private $languages; // used to cache the list of languages
 
 	/*
@@ -42,9 +41,8 @@ class PLL_Model {
 		// registers completely the language taxonomy
 		add_action('setup_theme', array(&$this, 'register_taxonomy'), 1);
 
-		// setups post types and taxonomies to translate
+		// setups post types to translate
 		add_action('registered_post_type', array(&$this, 'registered_post_type'));
-		add_action('registered_taxonomy', array(&$this, 'registered_taxonomy'));
 
 		// just in case someone would like to display the language description ;-)
 		add_filter('language_description', create_function('$v', "return '';"));
@@ -63,13 +61,10 @@ class PLL_Model {
 	 * @return array unmodified $terms
 	 */
 	public function _prime_terms_cache($terms, $taxonomies) {
-		foreach ($terms as $term) {
-			if (is_object($term)) {
-				if (in_array($term->taxonomy, $this->taxonomies))
-					$term_ids[] = $term->term_id;
+		if ($this->is_translated_taxonomy($taxonomies)) {
+			foreach ($terms as $term) {
+				$term_ids[] = is_object($term) ? $term->term_id : $term;
 			}
-			elseif (array_intersect($taxonomies, $this->taxonomies))
-				$term_ids[] = $term;
 		}
 
 		if (!empty($term_ids))
@@ -153,22 +148,20 @@ class PLL_Model {
 					array() : array_combine(wp_list_pluck($term_languages, 'name'), $term_languages);
 
 				if (!empty($languages) && !empty($term_languages)) {
-					array_walk($languages, create_function('&$v, $k, $term_languages', '$v = new PLL_Language($v, $term_languages[$v->name]);'), $term_languages);
-
-					// need to wait for $wp_rewrite availibility to set homepage urls
-					$this->_languages = $languages;
-					did_action('setup_theme') ? $this->_languages_urls() : add_action('setup_theme', array(&$this, '_languages_urls'));
+					// don't use array_map + create_function to instantiate an autoloaded class as it breaks badly in old versions of PHP
+					foreach ($languages as $k => $v) {
+						$languages[$k] = new PLL_Language($v, $term_languages[$v->name]);
+					}
 				}
 				else {
 					$languages = array(); // in case something went wrong
 				}
 			}
 
-			// add flags (not in db cache as they may be different on frontend and admin)
-			foreach ($languages as $lang)
-				$lang->set_flag();
-
 			$this->languages = $languages;
+
+			// need to wait for $wp_rewrite availibility to set homepage urls
+			did_action('setup_theme') ? $this->_languages_list() : add_action('setup_theme', array(&$this, '_languages_list'));
 		}
 
 		$args = wp_parse_args($args, array('hide_empty' => false));
@@ -181,17 +174,28 @@ class PLL_Model {
 	}
 
 	/*
-	 * fills home urls in language list and set transient in db
-	 * delayed to be sure we have access to $wp_rewrite
+	 * fills home urls and flags in language list and set transient in db
+	 * delayed to be sure we have access to $wp_rewrite for home urls
+	 * home urls are not cached in db if PLL_CACHE_HOME_URL is set to false
 	 *
-	 * @since 1.3
+	 * @since 1.4
 	 */
-	public function _languages_urls() {
-		foreach ($this->_languages as $language)
-			$language->set_home_url();
+	public function _languages_list() {
+		if (false === get_transient('pll_languages_list')) {
+			if (!defined('PLL_CACHE_HOME_URL') || PLL_CACHE_HOME_URL) {
+				foreach ($this->languages as $language)
+					$language->set_home_url();
+			}
+			set_transient('pll_languages_list', $this->languages);
+		}
 
-		set_transient('pll_languages_list', $this->_languages);
-		unset($this->languages, $this->_languages); // in case flags were already set
+		foreach ($this->languages as $language) {
+			if (defined('PLL_CACHE_HOME_URL') && !PLL_CACHE_HOME_URL)
+				$language->set_home_url();
+
+			// add flags (not in db cache as they may be different on frontend and admin)
+			$language->set_flag();
+		}
 	}
 
 	/*
@@ -325,7 +329,7 @@ class PLL_Model {
 	 * @return array an associative array of translations with language code as key and translation id as value
 	 */
 	public function get_translations($type, $id) {
-		$type = ($type == 'post' || in_array($type, $this->post_types)) ? 'post' : (($type == 'term' || in_array($type, $this->taxonomies)) ? 'term' : false);
+		$type = ($type == 'post' || $this->is_translated_post_type($type)) ? 'post' : (($type == 'term' || $this->is_translated_taxonomy($type)) ? 'term' : false);
 		return $type && ($term = $this->get_object_term($id, $type . '_translations')) && !empty($term) ? unserialize($term->description) : array();
 	}
 
@@ -477,28 +481,6 @@ class PLL_Model {
 	}
 
 	/*
-	 * adds clauses to comments query to filter them by language - used in both frontend and admin
-	 *
-	 * @since 1.2
-	 *
-	 * @param array $clauses the list of sql clauses in comments query
-	 * @param object $lang PLL_Language object
-	 * @return array modifed list of clauses
-	 */
-	public function comments_clauses($clauses, $lang) {
-		global $wpdb;
-		if (!empty($lang)) {
-			// if this clause is not already added by WP
-			if (!strpos($clauses['join'], '.ID'))
-				$clauses['join'] .= " JOIN $wpdb->posts ON $wpdb->posts.ID = $wpdb->comments.comment_post_ID";
-
-			$clauses['join'] .= $this->join_clause('post');
-			$clauses['where'] .= $this->where_clause($lang, 'post');
-		}
-		return $clauses;
-	}
-
-	/*
 	 * adds terms clauses to get_terms to filter them by languages - used in both frontend and admin
 	 *
 	 * @since 1.2
@@ -522,8 +504,7 @@ class PLL_Model {
 	 */
 	public function register_taxonomy() {
 		// registers the language taxonomy
-		// object types will be set later once all custom post types are registered
-		register_taxonomy('language', $this->post_types, array(
+		register_taxonomy('language', $this->get_translated_post_types(), array(
 			'labels' => array(
 				'name' => __('Languages', 'polylang'),
 				'singular_name' => __('Language', 'polylang'),
@@ -536,32 +517,31 @@ class PLL_Model {
 	}
 
 	/*
-	 * post types that need to be translated
+	 * returns post types that need to be translated
 	 *
 	 * @since 1.2
 	 *
-	 * @return array array of post types names for which Polylang manages languages and translations
+	 * @param bool $filter true if we should return only valid registered post types
+	 * @return array post type names for which Polylang manages languages and translations
 	 */
-	protected function get_post_types() {
-		$post_types = array('post' => 'post', 'page' => 'page');
-		if (!empty($this->options['media_support']))
-			$post_types['attachement'] = 'attachment';
+	public function get_translated_post_types($filter = true) {
+		static $post_types = array();
 
-		if (is_array($this->options['post_types']))
-			$post_types = array_merge($post_types,  $this->options['post_types']);
+		// the post types list is cached for better better performance
+		// wait for 'after_setup_theme' to apply the cache to allow themes adding the filter in functions.php
+		if (!$post_types || !did_action('after_setup_theme')) {
+			$post_types = array('post' => 'post', 'page' => 'page');
 
-		return apply_filters('pll_get_post_types', $post_types , false);
-	}
+			if (!empty($this->options['media_support']))
+				$post_types['attachement'] = 'attachment';
 
-	/*
-	 * returns valid registered post types that need to be translated
-	 *
-	 * @since 1.2
-	 *
-	 * @return array array of registered post type names for which Polylang manages languages and translations
-	 */
-	public function get_translated_post_types() {
-		return $this->post_types = array_intersect($this->get_post_types(), get_post_types());
+			if (is_array($this->options['post_types']))
+				$post_types = array_merge($post_types,  $this->options['post_types']);
+
+			$post_types = apply_filters('pll_get_post_types', $post_types , false);
+		}
+
+		return $filter ? array_intersect($post_types, get_post_types()) : $post_types;
 	}
 
 	/*
@@ -572,8 +552,7 @@ class PLL_Model {
 	 * @param string $post_type post type name
 	 */
 	public function registered_post_type($post_type) {
-		if (in_array($post_type, $this->get_post_types())) {
-			$this->post_types[$post_type] = $post_type;
+		if ($this->is_translated_post_type($post_type)) {
 			register_taxonomy_for_object_type('language', $post_type);
 			register_taxonomy_for_object_type('post_translations', $post_type);
 		}
@@ -587,46 +566,31 @@ class PLL_Model {
 	 * @param string|array $post_type post type name or array of post type names
 	 */
 	public function is_translated_post_type($post_type) {
-		return (is_array($post_type) && array_intersect($post_type, $this->post_types) || in_array($post_type, $this->post_types));
+		$post_types = $this->get_translated_post_types(false);
+		return (is_array($post_type) && array_intersect($post_type, $post_types) || in_array($post_type, $post_types));
 	}
 
 	/*
-	 * taxonomies that need to be translated
+	 * return taxonomies that need to be translated
 	 *
 	 * @since 1.2
 	 *
-	 * @return array array of taxonomy names for which Polylang manages languages and translations
-	 */
-	protected function get_taxonomies() {
-		$taxonomies = array('category' => 'category', 'post_tag' => 'post_tag');
-
-		if (is_array($this->options['taxonomies']))
-			$taxonomies = array_merge($taxonomies, $this->options['taxonomies']);
-
-		return apply_filters('pll_get_taxonomies', $taxonomies, false);
-	}
-
-	/*
-	 * return valid registered taxonomies that need to be translated
-	 *
-	 * @since 1.2
-	 *
+	 * @param bool $filter true if we should return only valid registered taxonmies
 	 * @return array array of registered taxonomy names for which Polylang manages languages and translations
 	 */
-	public function get_translated_taxonomies() {
-		return $this->taxonomies = array_intersect($this->get_taxonomies(), get_taxonomies());
-	}
+	public function get_translated_taxonomies($filter = true) {
+		static $taxonomies = array();
 
-	/*
-	 * check if registered post type must be translated
-	 *
-	 * @since 1.2
-	 *
-	 * @param string $taxonomy taxonomy name
-	 */
-	public function registered_taxonomy($taxonomy) {
-		if (in_array($taxonomy, $this->get_taxonomies()))
-			$this->taxonomies[$taxonomy] = $taxonomy;
+		if (!$taxonomies || !did_action('after_setup_theme')) {
+			$taxonomies = array('category' => 'category', 'post_tag' => 'post_tag');
+
+			if (is_array($this->options['taxonomies']))
+				$taxonomies = array_merge($taxonomies, $this->options['taxonomies']);
+
+			$taxonomies = apply_filters('pll_get_taxonomies', $taxonomies, false);
+		}
+
+		return $filter ? array_intersect($taxonomies, get_taxonomies()) : $taxonomies;
 	}
 
 	/*
@@ -637,34 +601,36 @@ class PLL_Model {
 	 * @param string|array $tax taxonomy name or array of taxonomy names
 	 */
 	public function is_translated_taxonomy($tax) {
-		return (is_array($tax) && array_intersect($tax, $this->taxonomies) || in_array($tax, $this->taxonomies));
+		$taxonomies = $this->get_translated_taxonomies(false);
+		return (is_array($tax) && array_intersect($tax, $taxonomies) || in_array($tax, $taxonomies));
 	}
 
 	/*
 	 * it is possible to have several terms with the same name in the same taxonomy (one per language)
-	 * but the native get_term_by will return only one term
+	 * but the native term_exists will return true even if only one exists
 	 * so here the function adds the language parameter
 	 *
-	 * @since 1.2
+	 * @since 1.4
 	 *
-	 * @param string $field currently the only possibility is 'name'
-	 * @param string $value the term name
+	 * @param string $term_name the term name
 	 * @param string $taxonomy taxonomy name
+	 * @param int $parent parent term id
 	 * @param string|object $language the language slug or object
 	 * @return null|int the term_id of the found term
 	 */
-	public function get_term_by($field, $value, $taxonomy, $language) {
+	public function term_exists($term_name, $taxonomy, $parent, $language) {
 		global $wpdb;
 
-		if ('name' != $field)
-			return NULL;
+		$select = "SELECT t.term_id FROM $wpdb->terms AS t";
+		$join = " INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id";
+		$join .= $this->join_clause('term');
+		$where = $wpdb->prepare(" WHERE tt.taxonomy = %s AND t.name = %s", $taxonomy, $term_name);
+		$where .= $this->where_clause($this->get_language($language), 'term');
 
-		return $wpdb->get_row("SELECT t.*, tt.* FROM $wpdb->terms AS t"
-			. " INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id"
-			. $this->join_clause('term')
-			. $wpdb->prepare(" WHERE tt.taxonomy = %s AND t.name = %s", $taxonomy, $value)
-			. $this->where_clause($this->get_language($language), 'term')
-		);
+		if ($parent > 0)
+			$where .= $wpdb->prepare(" AND tt.parent = %d", $parent);
+
+		return $wpdb->get_var($select . $join . $where);
 	}
 
 	/*
@@ -680,31 +646,37 @@ class PLL_Model {
 		global $wpdb;
 
 		$q = wp_parse_args($args, array('post_type' => 'post'));
+		if (!is_array($q['post_type']))
+			$q['post_type'] = array($q['post_type']);
 
 		$cache_key = md5(serialize($q));
 		$counts = wp_cache_get($cache_key, 'pll_count_posts');
 
 		if (false === $counts) {
+			$select = "SELECT pll_tr.term_taxonomy_id, COUNT(*) AS num_posts FROM {$wpdb->posts} AS p";
+			$join = $this->join_clause('post');
 			$where = " WHERE post_status = 'publish'";
-			$where .= $wpdb->prepare(" AND {$wpdb->posts}.post_type = %s", $q['post_type']);
+			$where .= " AND p.post_type IN ('" . join("', '", $q['post_type'] ) . "')";
+			$where .= $this->where_clause($this->get_languages_list(), 'post');
+			$groupby = " GROUP BY pll_tr.term_taxonomy_id";
 
 			if (!empty($q['m'])) {
 				$q['m'] = '' . preg_replace('|[^0-9]|', '', $q['m']);
-				$where .= $wpdb->prepare(" AND YEAR({$wpdb->posts}.post_date) = %d", substr($q['m'], 0, 4));
+				$where .= $wpdb->prepare(" AND YEAR(p.post_date) = %d", substr($q['m'], 0, 4));
 				if ( strlen($q['m']) > 5 )
-					$where .= $wpdb->prepare(" AND MONTH({$wpdb->posts}.post_date) = %d", substr($q['m'], 4, 2));
+					$where .= $wpdb->prepare(" AND MONTH(p.post_date) = %d", substr($q['m'], 4, 2));
 				if ( strlen($q['m']) > 7 )
-					$where .= $wpdb->prepare(" AND DAYOFMONTH({$wpdb->posts}.post_date) = %d", substr($q['m'], 6, 2));
+					$where .= $wpdb->prepare(" AND DAYOFMONTH(p.post_date) = %d", substr($q['m'], 6, 2));
 			}
 
 			if (!empty($q['year']))
-				$where .= $wpdb->prepare(" AND YEAR({$wpdb->posts}.post_date) = %d", $q['year']);
+				$where .= $wpdb->prepare(" AND YEAR(p.post_date) = %d", $q['year']);
 
 			if (!empty($q['monthnum']))
-				$where .= $wpdb->prepare(" AND MONTH({$wpdb->posts}.post_date) = %d", $q['monthnum']);
+				$where .= $wpdb->prepare(" AND MONTH(p.post_date) = %d", $q['monthnum']);
 
 			if (!empty($q['day']))
-				$where .= $wpdb->prepare(" AND DAYOFMONTH({$wpdb->posts}.post_date) = %d", $q['day']);
+				$where .= $wpdb->prepare(" AND DAYOFMONTH(p.post_date) = %d", $q['day']);
 
 			if (!empty($q['author_name'])) {
 				$author = get_user_by('slug',  sanitize_title_for_query($q['author_name']));
@@ -713,12 +685,14 @@ class PLL_Model {
 			}
 
 			if (!empty($q['author']))
-				$where .= $wpdb->prepare(" AND {$wpdb->posts}.post_author = %d", $q['author']);
+				$where .= $wpdb->prepare(" AND p.post_author = %d", $q['author']);
 
-			$select = "SELECT pll_tr.term_taxonomy_id, COUNT(*) AS num_posts FROM {$wpdb->posts}";
-			$join = $this->join_clause('post');
-			$where .= $this->where_clause($this->get_languages_list(), 'post');
-			$groupby = " GROUP BY pll_tr.term_taxonomy_id";
+			if (!empty($q['post_format'])) {
+				$join .= " INNER JOIN {$wpdb->term_relationships} AS tr ON tr.object_id = p.ID";
+				$join .= " INNER JOIN {$wpdb->term_taxonomy} AS tt ON tt.term_taxonomy_id = tr.term_taxonomy_id";
+				$join .= " INNER JOIN {$wpdb->terms} AS t ON t.term_id = tt.term_id";
+				$where .= $wpdb->prepare(" AND t.slug = %s", $q['post_format']);
+			}
 
 			$res = $wpdb->get_results($select . $join . $where . $groupby, ARRAY_A);
 			foreach ((array) $res as $row)
@@ -743,5 +717,23 @@ class PLL_Model {
 		}
 
 		return $args;
+	}
+
+	/*
+	 * returns ids of objects in a language similarly to get_objects_in_term for a taxonomy
+	 * faster than get_objects_in_term as it avoids a JOIN
+	 *
+	 * @since 1.4
+	 *
+	 * @param object $lang a PLL_Language object
+	 * @param string $type optional, either 'post' or 'term', defaults to 'post'
+	 * @return array
+	 */
+	public function get_objects_in_language($lang, $type = 'post') {
+		global $wpdb;
+		return $wpdb->get_col($wpdb->prepare("
+			SELECT object_id FROM $wpdb->term_relationships WHERE term_taxonomy_id = %d",
+			'term' == $type ? $lang->tl_term_taxonomy_id : $lang->term_taxonomy_id
+		));
 	}
 }

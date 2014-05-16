@@ -238,14 +238,18 @@ class PLL_Settings {
 					$this->options[$key] = isset($_POST[$key]) ? (int) $_POST[$key] : 0;
 
 				// FIXME : TODO error message if not a valid url
-				if (isset($_POST['domains']) && is_array($_POST['domains'])) {
+				if (3 == $this->options['force_lang'] && isset($_POST['domains']) && is_array($_POST['domains'])) {
 					foreach ($_POST['domains'] as $key => $domain) {
 						$this->options['domains'][$key] = esc_url_raw(trim($domain));
 					}
+					$this->options['domains'][$this->options['default_lang']] = get_option('home');
 				}
 
 				foreach (array('browser', 'hide_default', 'redirect_lang', 'media_support') as $key)
 					$this->options[$key] = isset($_POST[$key]) ? 1 : 0;
+
+				if (3 == $this->options['force_lang'])
+					$this->options['browser'] = $this->options['hide_default'] = 0;
 
 				foreach (array('sync', 'post_types', 'taxonomies') as $key)
 					$this->options[$key] = empty($_POST[$key]) ? array() : array_keys($_POST[$key], 1);
@@ -331,7 +335,7 @@ class PLL_Settings {
 				$widget_settings = $wp_registered_widgets[$widget]['callback'][0]->get_settings();
 				$number = $wp_registered_widgets[$widget]['params'][0]['number'];
 				// don't enable widget title translation if the widget is visible in only one language or if there is no title
-				if (empty($this->options['widgets'][$widget]) && isset($widget_settings[$number]['title']) && $title = $widget_settings[$number]['title'])
+				if (empty($widget_settings[$number]['pll_lang']) && isset($widget_settings[$number]['title']) && $title = $widget_settings[$number]['title'])
 					$this->register_string(__('Widget title', 'polylang'), $title, 'Widget');
 			}
 		}

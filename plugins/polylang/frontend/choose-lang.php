@@ -51,7 +51,8 @@ abstract class PLL_Choose_Lang {
 
 		// set a cookie to remember the language. check headers have not been sent to avoid ugly error
 		// possibility to set PLL_COOKIE to false will disable cookie although it will break some functionalities
-		if (!headers_sent() && PLL_COOKIE !== false && (!isset($_COOKIE[PLL_COOKIE]) || $_COOKIE[PLL_COOKIE] != $curlang->slug)) {
+		// don't set cookie when using multiple domains
+		if ($this->options['force_lang'] < 3 && !headers_sent() && PLL_COOKIE !== false && (!isset($_COOKIE[PLL_COOKIE]) || $_COOKIE[PLL_COOKIE] != $curlang->slug)) {
 			$cookie_domain = 2 == $this->options['force_lang'] ? $this->domain : COOKIE_DOMAIN;
 			setcookie(PLL_COOKIE, $curlang->slug, time() + 31536000 /* 1 year */, COOKIEPATH, $cookie_domain);
 		}
@@ -68,6 +69,10 @@ abstract class PLL_Choose_Lang {
 	 * @return object browser preferred language or default language
 	 */
 	public function get_preferred_language() {
+		// multiple domains
+		if (3 == $this->options['force_lang'])
+			return $this->model->get_language($this->links_model->get_language_from_url());
+
 		// check first if the user was already browsing this site
 		if (isset($_COOKIE[PLL_COOKIE]))
 			return $this->model->get_language($_COOKIE[PLL_COOKIE]);
@@ -190,7 +195,7 @@ abstract class PLL_Choose_Lang {
 	 * @param object $query instance of WP_Query
 	 */
 	public function parse_main_query($query) {
-		if (empty($GLOBALS['wp_the_query']) || $query !== $GLOBALS['wp_the_query'])
+		if (!$query->is_main_query())
 			return;
 
 		$qv = $query->query_vars;
@@ -235,33 +240,21 @@ abstract class PLL_Choose_Lang {
 				$query->is_home = $query->is_posts_page = true;
 			}
 		}
-
-		// backward compatibility WP < 3.4, sets a language for theme preview
-		if (is_preview() && is_front_page()) {
-			$this->set_language($this->get_preferred_language());
-			$this->set_lang_query_var($query, $this->curlang);
-		}
 	}
 
 	/*
 	 * sets the language in query
-	 * optimized for WP 3.5+
+	 * optimized for (needs) WP 3.5+
 	 *
 	 * @since 1.3
 	 */
 	public function set_lang_query_var(&$query, $lang) {
-		// backward compatibility WP < 3.5
-		if (version_compare($GLOBALS['wp_version'], '3.5' , '<')) {
-			$query->set('lang', $lang->slug);
-		}
-		else {
-			// defining directly the tax_query (rather than setting 'lang' avoids transforming the query by WP)
-			$query->query_vars['tax_query'][] = array(
-				'taxonomy' => 'language',
-				'field'    => 'term_taxonomy_id', // since WP 3.5
-				'terms'    => $lang->term_taxonomy_id,
-				'operator' => 'IN'
-			);
-		}
+		// defining directly the tax_query (rather than setting 'lang' avoids transforming the query by WP)
+		$query->query_vars['tax_query'][] = array(
+			'taxonomy' => 'language',
+			'field'    => 'term_taxonomy_id', // since WP 3.5
+			'terms'    => $lang->term_taxonomy_id,
+			'operator' => 'IN'
+		);
 	}
 }
