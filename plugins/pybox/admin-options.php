@@ -84,4 +84,14 @@ function cscircles_options_page() {
   echo "</form>
 </div>";   
 
+  $updates = wp_get_translation_updates();
+  if ($updates) {
+    echo "<p><i>Note:</i> The following translations may need to be updated:<ul>";
+    foreach ($updates as $u) {
+      echo "<li>";
+      foreach ($u as $f=>$v) echo "<b>$f</b>: $v, ";
+    }
+    echo "</ul></p>";
+  }
+
 }
