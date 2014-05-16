@@ -497,9 +497,16 @@ function pyBoxHandler($options, $content) {
     pyboxlog("Hash " . $hash . " not read-only, but needs a slug", TRUE);
     $r .= slugwarn();
   }
+  
 
-  if ($facultative) 
-    $r .= heading(__t('Example'), $options);
+  if ($facultative) {
+    if ($console) {
+      unset($options["title"]);
+      $r .= heading("Console", $options);
+    }
+    else
+      $r .= heading(__t('Example'), $options);
+  }
   else {
     $r .= checkbox($slug);
     $r .= heading($scramble ? __t('Scramble Exercise') : __t('Coding Exercise'), $options);
@@ -641,7 +648,7 @@ if (!$facultative && !$scramble) {
     if ($userLikesRich)
       $readyScripts .= "jQuery(function(){pbToggleCodeMirror($id);});";
   }
-  if (!$scramble && ($lessonNumber >= 4 || $lessonNumber < 0)) {
+  if (!$scramble && !$console && ($lessonNumber >= 4 || $lessonNumber < 0)) {
     $actions['consolecopy'] = array('value'=>__t('Open in console'), 'onclick'=>"pbConsoleCopy($id)");
   }
   if (!$scramble && ($lessonNumber >= 4 || $lessonNumber < 0)) {
