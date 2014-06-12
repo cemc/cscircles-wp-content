@@ -180,6 +180,12 @@ function set_mail_sender(&$phpmailer) {
   $phpmailer->Sender = CSCIRCLES_BOUNCE_EMAIL;
 }
 
+add_filter('robots_txt', 'pybox_domo_arigato');
+function pybox_domo_arigato( $output ) {
+  $output .= "Disallow: /dev/\n";
+  return $output;
+}
+
 // we also used to do robots_txt, but not working, so deleted
 
 /************************************/

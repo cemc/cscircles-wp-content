@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, international, localization
 Requires at least: 3.5
 Tested up to: 3.9
-Stable tag: 1.4.5
+Stable tag: 1.5
 License: GPLv2 or later
 
 Polylang adds multilingual content management support to WordPress.
@@ -24,7 +24,7 @@ Polylang allows you to create a bilingual or multilingual WordPress site. You wr
 
 = Translators =
 
-The plugin admin interface is currently available in 34 languages: English, French, German by [Christian Ries](http://www.singbyfoot.lu), Russian by [yoyurec](http://yoyurec.in.ua) and unostar, Greek by [theodotos](http://www.ubuntucy.org), Dutch by [AlbertGn](http://wordpress.org/support/profile/albertgn), Hebrew by [ArielK](http://www.arielk.net), Polish by [Peter Paciorkiewicz](http://www.paciorkiewicz.pl) and [Bartosz](http://www.dfactory.eu/), Latvian by [@AndyDeGroo](http://twitter.com/AndyDeGroo), Italian by [Luca Barbetti](http://wordpress.org/support/profile/lucabarbetti), Danish by [Compute](http://wordpress.org/support/profile/compute), Spanish by Curro, Portuguese by [Vitor Carvalho](http://vcarvalho.com/), Lithuanian by [Naglis Jonaitis](http://najo.lt/), Turkish by [darchws](http://darch.ws/), Finnish by [Jani Alha](http://www.wysiwyg.fi), Bulgarian by [pavelsof](http://wordpress.org/support/profile/pavelsof), Belarusian by [Alexander Markevitch](http://fourfeathers.by/), Afrikaans by [Kobus Joubert](http://translate3d.com/), Hungarian by Csaba Erdei, Norwegian by [Tom Boersma](http://www.oransje.com/), Slovak by [Branco (WebHostingGeeks.com)](http://webhostinggeeks.com/user-reviews/), Swedish by [matsii](http://wordpress.org/support/profile/matsii) and [Jon Täng](http://jontang.se), Catalan by [Núria Martínez Berenguer](http://www.linkedin.com/profile/view?id=127867004&trk=nav_responsive_tab_profile&locale=en_US), Ukrainian by [cmd soft](http://www.cmd-soft.com/), Estonian by [Ahto Naris](http://profiles.wordpress.org/ahtonaris/), Venetian by Michele Brunelli, simplified Chinese by [Changmeng Hu](http://www.wpdaxue.com), Indonesian by [ajoull](http://www.ajoull.com/), Arabic by [Anas Sulaiman](http://ahs.pw/), Traditional Chinese by [香腸](http://sofree.cc/), Czech by [Přemysl Karbula](http://www.premyslkarbula.cz), Serbian by Sinisa, Myanmar by Sithu Thwin
+The plugin admin interface is currently available in 35 languages: English, French, German by [Christian Ries](http://www.singbyfoot.lu), Russian by [yoyurec](http://yoyurec.in.ua) and unostar, Greek by [theodotos](http://www.ubuntucy.org), Dutch by [AlbertGn](http://wordpress.org/support/profile/albertgn), Hebrew by [ArielK](http://www.arielk.net), Polish by [Peter Paciorkiewicz](http://www.paciorkiewicz.pl) and [Bartosz](http://www.dfactory.eu/), Latvian by [@AndyDeGroo](http://twitter.com/AndyDeGroo), Italian by [Luca Barbetti](http://wordpress.org/support/profile/lucabarbetti), Danish by [Compute](http://wordpress.org/support/profile/compute), Spanish by Curro, Portuguese by [Vitor Carvalho](http://vcarvalho.com/), Lithuanian by [Naglis Jonaitis](http://najo.lt/), Turkish by [darchws](http://darch.ws/), Finnish by [Jani Alha](http://www.wysiwyg.fi), Bulgarian by [pavelsof](http://wordpress.org/support/profile/pavelsof), Belarusian by [Alexander Markevitch](http://fourfeathers.by/), Afrikaans by [Kobus Joubert](http://translate3d.com/), Hungarian by Csaba Erdei, Norwegian by [Tom Boersma](http://www.oransje.com/), Slovak by [Branco (WebHostingGeeks.com)](http://webhostinggeeks.com/user-reviews/), Swedish by [matsii](http://wordpress.org/support/profile/matsii) and [Jon Täng](http://jontang.se), Catalan by [Núria Martínez Berenguer](http://www.linkedin.com/profile/view?id=127867004&trk=nav_responsive_tab_profile&locale=en_US), Ukrainian by [cmd soft](http://www.cmd-soft.com/), Estonian by [Ahto Naris](http://profiles.wordpress.org/ahtonaris/), Venetian by Michele Brunelli, simplified Chinese by [Changmeng Hu](http://www.wpdaxue.com), Indonesian by [ajoull](http://www.ajoull.com/), Arabic by [Anas Sulaiman](http://ahs.pw/), Traditional Chinese by [香腸](http://sofree.cc/), Czech by [Přemysl Karbula](http://www.premyslkarbula.cz), Serbian by Sinisa, Myanmar by Sithu Thwin, Ukrainian by [http://getvoip.com/](http://getvoip.com/)
 
 = Credits =
 
@@ -64,75 +64,37 @@ See http://polylang.wordpress.com/documentation/contribute/
 
 == Upgrade Notice ==
 
-= 1.4.5 =
-Polylang 1.2 introduced major internal changes. More than ever, make a database backup before upgrading from 1.1.6 or older! If you are using a version older than 0.8, please ugrade to 0.9.8 before ugrading to 1.4.5
+= 1.5 =
+Polylang 1.2 introduced major internal changes. More than ever, make a database backup before upgrading from 1.1.6 or older! If you are using a version older than 0.8, please ugrade to 0.9.8 before ugrading to 1.5
 
 == Changelog ==
 
-= 1.4.5 (2014-04-19) =
+= 1.5 =
 
-* Fix: Notice when combined with WPSEO 1.5+
-* Fix: Impossible to disable a widget language filter once set (introduced in 1.4.4)
-* Fix: Unexpected redirection of the homepage with language code when permalink structure has no trailing slash (introduced in 1.4.4)
-* Fix: Some installs lead to wrong redirection when using domains (introduced in 1.4.4)
-* Fix: Possible infinite redirection while previewing posts (introduced in 1.4.4)
-* Fix: Uploaded medias don't get a language since WP 3.9
-* Fix: Compatibility with Twenty Fourteen Ephemera widget in the version shipped with WP 3.9
+* Add Ukrainian translation contributed by [http://getvoip.com/](http://getvoip.com/)
+* Refresh translation metaboxes (again): now translated posts are chosen from an autocomplete input field
+* Categories and post tags translations are also chosen in an automplete input field
+* Better error management on languages pages
+* Use Dashicons instead of Icomoon icons for WP 3.8+
+* Check if translated post is readable by the current user before displaying the language switcher
+* Minimum Twenty Fourteen version is now 1.1
+* Code cleaning
+* Add support for Quick draft introduced in WP 3.8
+* Add support for object cache plugins for recent posts and recent comments widgets
+* Add support for pages with modified query in the language switcher (ex: when multiple post types queried on the same page)
+* Add new API functions: pll_languages_list, pll_set_post_language, pll_set_term_language, pll_save_post_translations, pll_save_term_translations, pll_count_posts
+* Add new filter pll_the_languages_args
+* Add support for ICL_LANGUAGE_CODE == 'all' on admin side
+* Fix: Galician flag
+* Fix: static page on front pagination is broken
+* Fix: search url may be broken
+* Fix: PHP notice in icl_get_languages
+* Fix: more robust way of detecting language in url when using directory
+* Fix: delete translations terms orphans in database
+* Fix: inconsistent behavior when setting page on front from customizer
+* Fix: deleting a category assigns posts to wrong default category
+* Fix: quick edit breaks synchronization
+* Fix: some security issues
 
-= 1.4.4 (2014-04-09) =
-
-* Add: Compatibility with widgets customizer introduced in WP 3.9
-* Fix: No post in translation dropdown after switching the language in edit post (introduced in 1.4.3)
-* Fix: No canonical redirection when there is no language code in url and the language code is not hidden for the default language
-* Fix: Suppress language cookie when using multiple domains
-
-= 1.4.3 (2014-03-22) =
-
-* Add: Serbian translation contributed by Sinisa
-* Add: Myanmar translation contributed by Sithu Thwin
-* Fix: comment form redirects to wp-admin when using multiple domains or subdomains.
-* Fix: fatal error with old versions of PHP (tested on PHP 5.2.4)
-* Fix: Bad gateway experienced by users hosted by wpengine.com
-* Fix: links got from tiny MCE link button are filtered with admin language filter instead of current post language
-* Fix: possibly wrong redirection in check_language_code_in_url when using multiple domains or subdomains
-
-= 1.4.2 (2014-02-24) =
-
-* Add: check multiple post types in PLL_Model::count_posts
-* Fix: error 404 on category links when setting the language by content (introduced in 1.4.1)
-* Fix: PHP notices in frontend-nav-menu.php with Artisteer themes
-* Fix: decrease the memory usage of untranslated posts list
-* Fix: home page not correctly redirected to canonical when using page on front and page name is kept in url
-
-= 1.4.1 (2014-02-16) =
-
-* Add: Czech translation contributed by [Přemysl Karbula](http://www.premyslkarbula.cz)
-* Fix: the displayed language is not correct in quick edit for categories and post tags
-* Fix: the language switcher does not display the correct link for translated parent categories if only children have posts
-* Fix: 3rd parameter of icl_object_id is not optional
-* Fix: issue when combining multiple domains and browser detection -> the combination is now forbidden
-* Fix: conflict Shiba Media Library: link between media translations is lost when using media quick edit
-* Fix: notice when using taxonomies in wpml-config.xml
-* Fix: incorrect post format link
-* Fix: Twenty Fourteen Ephemera widget strings are not translated
-
-= 1.4 (2014-01-22) =
-
-* Add Traditionial Chinese translation contributed by [香腸](http://sofree.cc/)
-* Minimum WordPress version is now v3.5
-* Refresh translations metaboxes: now translated posts are chosen in a dropdown list
-* Check if translated archives for category, tag and post format are empty before displaying the language switcher
-* Add specific management of translated featured tag in Twenty Fourteen
-* Add the possibility not to cache homepage urls with option PLL_CACHE_HOME_URL (for users having several domains).
-* The function get_pages is now filtered by language
-* Ajax requests on frontend are now automatically detected. It is no more necessary to set 'pll_load_front' :)
-* Various performance improvements
-* 'pll_get_post_types' and 'pll_get_taxonomies' filters must be added *before* 'after_setup_theme' is fired
-* Pre 1.2 data will be removed from DB at first upgrade at least 60 days after upgrade to 1.4
-* Removed some duplicate code between admin and frontend
-* Bug correction: incorrect pagination when using domains or subdomains
-* Bug correction: post format link not translated
-* Bug correction: impossible to use child terms with same name in hierarchical taxonomies
-* Bug correction: the terms list table is filtered according to new translation language instead of admin language filter
 
 See changelog.txt for older changelog

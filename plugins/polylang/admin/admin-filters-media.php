@@ -2,23 +2,20 @@
 
 /*
  * manages filters and actions related to media on admin side
+ * capability to edit / create media is checked before loading this class
  *
  * @since 1.2
  */
-class PLL_Admin_Filters_Media {
-	public $model, $pref_lang;
-
+class PLL_Admin_Filters_Media extends PLL_Admin_Filters_Post_Base {
 	/*
 	 * constructor: setups filters and actions
 	 *
 	 * @since 1.2
 	 *
-	 * @param object $model instance of PLL_Model
-	 * @param object $pref_lang language chosen in admin filter or default language
+	 * @param object $polylang
 	 */
-	public function __construct(&$model, $pref_lang) {
-		$this->model = &$model;
-		$this->pref_lang = $pref_lang;
+	public function __construct(&$polylang) {
+		parent::__construct($polylang);
 
 		// adds the language field and translations tables in the 'Edit Media' panel
 		add_filter('attachment_fields_to_edit', array(&$this, 'attachment_fields_to_edit'), 10, 2);
@@ -27,7 +24,7 @@ class PLL_Admin_Filters_Media {
 		add_action('wp_ajax_media_lang_choice', array(&$this,'media_lang_choice'));
 
 		// adds actions related to languages when creating, saving or deleting media
-		add_action('add_attachment', array(&$this, 'add_attachment'));
+		add_action('add_attachment', array(&$this, 'set_default_language'));
 		add_filter('attachment_fields_to_save', array(&$this, 'save_media'), 10, 2);
 		add_filter('wp_delete_file', array(&$this, 'wp_delete_file'));
 
@@ -74,6 +71,8 @@ class PLL_Admin_Filters_Media {
 	 * @since 0.9
 	 */
 	public function media_lang_choice() {
+		check_ajax_referer('pll_language', '_pll_nonce');
+
 		preg_match('#([0-9]+)#', $_POST['post_id'], $matches);
 		$post_id = $matches[1];
 		$lang = $this->model->get_language($_POST['lang']);
@@ -95,6 +94,9 @@ class PLL_Admin_Filters_Media {
 	 * @since 0.9
 	 */
 	public function translate_media() {
+		//security check
+		check_admin_referer('translate_media');
+
 		$post = get_post($_GET['from_media']);
 		$post_id = $post->ID;
 
@@ -113,28 +115,7 @@ class PLL_Admin_Filters_Media {
 		$this->model->save_translations('post', $tr_id, $translations);
 
 		wp_redirect(admin_url(sprintf('post.php?post=%d&action=edit', $tr_id))); // WP 3.5+
-
 		exit;
-	}
-
-	/*
-	 * sets the language of a new attachment
-	 *
-	 * @since 0.9.8
-	 *
-	 * @param int $post_id
-	 */
-	public function add_attachment($post_id) {
-		if (!empty($_GET['new_lang'])) { // created as a translation from an existing attachment
-			$lang = $_GET['new_lang'];
-		}
-		else {
-			$post = get_post($post_id);
-			if (!empty($post->post_parent)) // upload in the "Add media" modal when editing a post
-				$lang = $this->model->get_post_language($post->post_parent);
-		}
-
-		$this->model->set_post_language($post_id, isset($lang) ? $lang : $this->pref_lang);
 	}
 
 	/*
@@ -148,18 +129,13 @@ class PLL_Admin_Filters_Media {
 	 * @return array unmodified $post
 	 */
 	public function save_media($post, $attachment) {
-		$this->model->set_post_language($post['ID'], $attachment['language']); // the language is no more automatically saved by WP since WP 3.5
+		// language is filled in attachment by the function applying the filter 'attachment_fields_to_save'
+		// all security checks have been done by functions applying this filter
+		if (!empty($attachment['language']))
+			$this->model->set_post_language($post['ID'], $attachment['language']);
 
-		// save translations after checking the translated media is in the right language
-		if (isset($_POST['media_tr_lang'])) {
-			$this->model->delete_translation('post', $post['ID']);
-
-			foreach ($_POST['media_tr_lang'] as $lang=>$tr_id) {
-				$translations[$lang] = $this->model->get_post_language((int) $tr_id)->slug == $lang && $tr_id != $post['ID'] ? (int) $tr_id : 0;
-			}
-
-			$this->model->save_translations('post', $post['ID'], $translations);
-		}
+		if (isset($_POST['media_tr_lang']))
+			$this->save_translations($post['ID'], $_POST['media_tr_lang']);
 
 		return $post;
 	}

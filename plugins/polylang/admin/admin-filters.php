@@ -12,11 +12,10 @@ class PLL_Admin_Filters extends PLL_Filters {
 	 *
 	 * @since 1.2
 	 *
-	 * @param object $links_model
-	 * @param object $curlang language chosen in admin filter
+	 * @param object $polylang
 	 */
-	public function __construct(&$links_model, &$curlang) {
-		parent::__construct($links_model, $curlang);
+	public function __construct(&$polylang) {
+		parent::__construct($polylang);
 
 		// widgets languages filter
 		add_action('in_widget_form', array(&$this, 'in_widget_form'), 10, 3);
@@ -92,7 +91,8 @@ class PLL_Admin_Filters extends PLL_Filters {
 		// biography translations
 		foreach ($this->model->get_languages_list() as $lang) {
 			$meta = $lang->slug == $this->options['default_lang'] ? 'description' : 'description_'.$lang->slug;
-			update_user_meta($user_id, $meta, $_POST['description_'.$lang->slug]);
+			if (!empty($_POST['description_'.$lang->slug]))
+				update_user_meta($user_id, $meta, $_POST['description_'.$lang->slug]);
 		}
 	}
 
