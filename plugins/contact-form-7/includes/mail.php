@@ -303,8 +303,8 @@ function wpcf7_special_mail_tag( $output, $name, $html ) {
                         . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
                         . " " . $user->display_name
                   . " " . $user->user_email;
-          }
-          else $output = 'User not logged in.';
+          } else $output = 'User not logged in.';
+          return $output;
         }
 
 	if ( '_remote_ip' == $name ) {

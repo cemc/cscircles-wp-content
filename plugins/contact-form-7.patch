@@ -13,8 +13,8 @@ diff -Naur ./includes/mail.php ../contact-form-7/includes/mail.php
 -                        . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
 -                        . " " . $user->display_name
 -                  . " " . $user->user_email;
--          }
--          else $output = 'User not logged in.';
+-          } else $output = 'User not logged in.';
+-          return $output;
 -        }
 -
  	if ( '_remote_ip' == $name ) {
