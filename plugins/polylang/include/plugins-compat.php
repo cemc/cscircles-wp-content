@@ -37,6 +37,10 @@ class PLL_Plugins_Compat {
 
 		if (!PLL_ADMIN)
 			add_filter('option_featured-content', array(&$this, 'twenty_fourteen_option_featured_content'));
+			
+		// Jetpack 3
+		add_action('jetpack_widget_get_top_posts', array(&$this, 'jetpack_widget_get_top_posts'), 10, 3);
+		add_filter('grunion_contact_form_field_html', array(&$this, 'grunion_contact_form_field_html_filter'), 10, 3);
 	}
 
 	/*
@@ -128,7 +132,7 @@ class PLL_Plugins_Compat {
 		if (!$term = get_term_by( 'name', $settings['tag-name'], 'post_tag' ))
 			return $featured_ids;
 
-		// get fearured tag translations
+		// get featured tag translations
 		$tags = $GLOBALS['polylang']->model->get_translations('term' ,$term->term_id);
 		$ids = array();
 
@@ -138,7 +142,7 @@ class PLL_Plugins_Compat {
 			$_ids = get_posts(array(
 				'lang'        => 0, // avoid language filters
 				'fields'      => 'ids',
-				'numberposts' => self::$max_posts,
+				'numberposts' => Featured_Content::$max_posts,
 				'tax_query'   => array(array(
 					'taxonomy' => 'post_tag',
 					'terms'    => (int) $tag,
@@ -169,5 +173,36 @@ class PLL_Plugins_Compat {
 			$settings['tag-id'] = $tr;
 
 		return $settings;
+	}
+
+	/*
+	 * adapted from the same function in jetpack-3.0.2/3rd-party/wpml.php
+	 * 
+	 * @since 1.5.4
+	 */
+	public function jetpack_widget_get_top_posts( $posts, $post_ids, $count ) {
+		foreach ( $posts as $k => $post ) {
+			if (pll_current_language() !== pll_get_post_language($post['post_id']))
+				unset( $posts[ $k ] );
+		}
+
+		return $posts;
+	}
+
+	/*
+	 * adapted from the same function in jetpack-3.0.2/3rd-party/wpml.php
+	 * keeps using 'icl_translate' as the function registers the string
+	 * 
+	 * @since 1.5.4
+	 */
+	public function grunion_contact_form_field_html_filter( $r, $field_label, $id ){
+		if ( function_exists( 'icl_translate' ) ) {
+			if ( pll_current_language() !== pll_default_language() ) {
+				$label_translation = icl_translate( 'jetpack ', $field_label . '_label', $field_label );
+				$r = str_replace( $field_label, $label_translation, $r );
+			}
+		}
+
+		return $r;
 	}
 }

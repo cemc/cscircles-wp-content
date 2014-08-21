@@ -2,9 +2,9 @@
 Contributors: takayukister
 Donate link: http://contactform7.com/donate/
 Tags: contact, form, contact form, feedback, email, ajax, captcha, akismet, multilingual
-Requires at least: 3.7
+Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 3.8.1
+Stable tag: 3.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,7 +58,7 @@ The following are other recommended plugins by the author of Contact Form 7.
 * Galician (gl_ES) - [Arume Desenvolvementos Informáticos](http://www.arumeinformatica.es/)
 * Georgian (ka_GE) - [Nodar Rocko Davituri](http://davituri.com/)
 * German (de_DE) - [Marcel Spitau](http://blog.spitau.de), [Ivan Graf](http://blog.bildergallery.com/)
-* Greek (el) - [Nick Mouratidis](http://www.kepik.gr/), [Pr. friedlich](http://friedlich.wordpress.com/)
+* Greek (el) - [Nick Mouratidis](http://www.kepik.gr/), [Pr. friedlich](http://friedlich.wordpress.com/), John D. Dimoferlias
 * Gujarati (gu_IN) - [Apoto](http://www.apoto.com/)
 * Haitian (ht) - [Lam Tu Do](http://bizover.net/)
 * Hebrew (he_IL) - [Yaron Ofer](http://www.gadgetguru.co.il/), [Arik Galansky](http://www.arikg.co.il/)
@@ -124,6 +124,23 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 
 For more information, see [Releases](http://contactform7.com/category/releases/).
 
+= 3.9.1 =
+
+* Fix: options with empty values didn't work correctly in a drop-down menu.
+* Fix: broke layout of input fields after validation by an incorrect jQuery use.
+* Fix: couldn't enqueue JavaScript manually with wpcf7_enqueue_scripts() when WPCF7_LOAD_JS was false.
+* Fix: couldn't enqueue CSS manually with wpcf7_enqueue_styles() when WPCF7_LOAD_CSS was false.
+* Translations for Greek and Hungarian have been updated.
+
+= 3.9 =
+
+* A major change has been made to the internal structure. For details, see [beta release announcement](http://contactform7.com/2014/07/02/contact-form-7-39-beta/).
+* The exclude_blank mail option has been introduced.
+* The wpcf7_load_js and wpcf7_load_css (functions and filter hooks) have been introduced.
+* The jQuery Form Plugin (jquery.form.js) has been updated to 3.51.0.
+* Translations for Persian and Slovak have been updated.
+* WordPress 3.8 or higher is required.
+
 = 3.8.1 =
 
 * Fix: misuse of functions that Akismet 3.0 has marked deprecated.
@@ -138,25 +155,3 @@ For more information, see [Releases](http://contactform7.com/category/releases/)
 * Added html_name attribute support in [contact-form-7] shortcodes.
 * WordPress 3.7 or higher is required.
 * Translation for Ukrainian has been updated.
-
-= 3.7.2 =
-
-* Fixed a bug that allowed to avoid CAPTCHA validation.
-* The jQuery Form Plugin (jquery.form.js) has been updated to 3.50.0.
-* Translation for Dutch has been updated.
-
-= 3.7.1 =
-
-* The jQuery Form Plugin (jquery.form.js) has been updated to 3.49.0.
-* Fixed a bug of auto-p formatting around [response].
-* Translations for Russian, Korean, Hungarian, and German have been updated.
-
-= 3.7 =
-
-* Support free_text option that allows checkbox/radio to have an additional free text field.
-* Restore floating-tip style validation error as an option.
-* Support html_id and html_class attributes in [contact-form-7] shortcode.
-* Fixed bug that Flamingo stored submissions in demo-mode.
-* Fixed bug where auto-p function wrapped [response] with p.
-* The jQuery Form Plugin (jquery.form.js) has been updated to 3.48.0.
-* Translation for Haitian has been created. Translations for German, Hungarian, Czech, Turkish, Lithuanian, French, Basque, and Brazilian Portuguese have been updated.

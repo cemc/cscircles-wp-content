@@ -1,22 +1,22 @@
-diff -Naur ./modules/special-mail-tags.php ../contact-form-7/modules/special-mail-tags.php
---- ./modules/special-mail-tags.php	2012-07-31 00:57:05.000000000 -0400
-+++ ../contact-form-7/modules/special-mail-tags.php	2012-08-12 20:21:20.000000000 -0400
-@@ -67,6 +67,18 @@
- 	elseif ( '_post_author_email' == $name )
- 		$output = $user->user_email;
+diff -Naur ./includes/mail.php ../contact-form-7/includes/mail.php
+--- ./includes/mail.php	2014-08-21 01:54:37.000000000 -0400
++++ ../contact-form-7/includes/mail.php	2014-07-31 08:02:34.000000000 -0400
+@@ -295,18 +295,6 @@
+ 		return $output;
+ 	}
  
-+	elseif ( 'user_info' == $name ) {
-+	  if ( is_user_logged_in() ) {
-+	    $output = 'logged in';
-+	    $user = wp_get_current_user();
-+	        $output = '#' . $user->ID . ' ' . $user->user_login
-+		        . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">" 
-+		        . " " . $user->display_name
-+		  . " " . $user->user_email;
-+	  }
-+	  else $output = 'User not logged in.';
-+	}
-+
- 	return $output;
- }
- 
+-        if ( 'user_info' == $name ) {
+-          if ( is_user_logged_in() ) {
+-            $output = 'logged in';
+-            $user = wp_get_current_user();
+-                $output = '#' . $user->ID . ' ' . $user->user_login
+-                        . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
+-                        . " " . $user->display_name
+-                  . " " . $user->user_email;
+-          }
+-          else $output = 'User not logged in.';
+-        }
+-
+ 	if ( '_remote_ip' == $name ) {
+ 		if ( $remote_ip = $submission->get_meta( 'remote_ip' ) ) {
+ 			return $remote_ip;
