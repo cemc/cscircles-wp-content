@@ -44,7 +44,6 @@ function tabs_to_spaces($width, $text) {
 // given a term describing a link to a special page,
 // get the URL to the (properly translated) real location
 function cscurl($desc) {
-
   if ($desc == 'visualize') return UVISUALIZER;
 
   //  if ($desc == 'homepage') // due to a bug, we can't translate during 'is_admin'
@@ -80,8 +79,11 @@ function cscurl($desc) {
   }
 
   if (class_exists('PLL_Base')) {
-    if (!is_admin())
+    if (!is_admin()) {
+      $old = $res;
       $res = pll_get_post($res);
+      if ($res=="") $res = $old; // there was no translation
+    }
     else {
       $lang = substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2);
       if ($lang=='') $lang=substr(get_bloginfo("language"), 0, 2);

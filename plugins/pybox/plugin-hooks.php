@@ -84,7 +84,7 @@ function footsy() {
     // these are the ones in development
     if (userIsAdmin() || 
         userIsTranslator() || userIsAssistant())
-      foreach (array('nl') as $lang) {
+      foreach (array('nl', 'lt') as $lang) {
         if ($lang != pll_current_language()) {
           echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
         }
