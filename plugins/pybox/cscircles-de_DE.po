@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-22 13:30-0400\n"
-"PO-Revision-Date: 2013-08-22 13:33-0400\n"
+"PO-Revision-Date: 2014-08-24 02:38-0400\n"
 "Last-Translator: Wolfgang Pohl <pohl@bwinf.de>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
@@ -1152,7 +1152,7 @@ msgstr "Mein Fortschritt"
 
 #: ../wp-theme/functions.php:178
 msgid "Mail"
-msgstr "Mail"
+msgstr "Post"
 
 #: ../wp-theme/functions.php:179
 msgid "Console (new window)"
