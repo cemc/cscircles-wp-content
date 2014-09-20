@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-22 13:30-0400\n"
-"PO-Revision-Date: 2014-08-24 02:38-0400\n"
+"PO-Revision-Date: 2014-09-19 21:56-0400\n"
 "Last-Translator: Wolfgang Pohl <pohl@bwinf.de>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
@@ -24,11 +24,11 @@ msgstr ""
 #: ../wp-plugin/shortcodes-exercises.php:531
 #: ../wp-plugin/shortcodes-exercises.php:537
 msgid "CS Circles Assistant"
-msgstr "CS Circles (by EI) Assistent"
+msgstr "CS Circles (by BWINF) Assistent"
 
 #: ../wp-plugin/action-send-message.php:34
 msgid "CS Circles"
-msgstr "CS Circles (by EI)"
+msgstr "CS Circles (by BWINF)"
 
 #: ../wp-plugin/action-send-message.php:34
 msgid "message about"
@@ -47,7 +47,7 @@ msgstr "URL der Übung:"
 #: ../wp-plugin/action-send-message.php:40
 #: ../wp-plugin/plugin-utilities.php:543
 msgid "Sent by CS Circles"
-msgstr "Gesendet von CS Circles (by EI)"
+msgstr "Gesendet von CS Circles (by BWINF)"
 
 #: ../wp-plugin/action-send-message.php:59
 msgid "SENT:"
@@ -245,7 +245,7 @@ msgstr ""
 
 #: ../wp-plugin/bounce_email_strings.php:4
 msgid "CS Circles Bouncer"
-msgstr "EI:CSC (no-reply)"
+msgstr "BWINF:CSC (no-reply)"
 
 #: ../wp-plugin/db-entire-history.php:18
 #: ../wp-plugin/db-problem-history.php:21
@@ -606,7 +606,7 @@ msgid ""
 "Thanks from the Computer Science Circles team!\n"
 "%siteurl%"
 msgstr ""
-"Du hast nun einen Account für Computer Science Circles (by EI),mit einem "
+"Du hast nun einen Account für Computer Science Circles (by BWINF),mit einem "
 "zufällig erzeugten Passwort.\n"
 "\n"
 "Benutzername: %username%\n"
@@ -617,13 +617,13 @@ msgstr ""
 "und gib ein eigenes gutes Passwort an. \n"
 "Drücke  \"%upprof%\" wenn du fertig bist.\n"
 "\n"
-"Vielen Dank vom Computer Science Circles (by EI) Team!\n"
+"Vielen Dank vom Computer Science Circles (by BWINF) Team!\n"
 "%siteurl%"
 
 # subject of email sent to new users when they register
 #: ../wp-plugin/plugin-new-user-email.php:25
 msgid "Computer Science Circles: New account"
-msgstr "Computer Science Circles (by EI): Neuer Account"
+msgstr "Computer Science Circles (by BWINF): Neuer Account"
 
 #: ../wp-plugin/plugin-new-user-email.php:31
 msgid "Update Profile"
@@ -683,7 +683,7 @@ msgid ""
 "Circles. They are pretty infrequent, about once per year."
 msgstr ""
 "(Standard: inaktiv) Wenn du hier einen Haken machst, wirst du keine "
-"Ankündigungen von CS Circles (by EI) bekommen.  Sie sind ziemlich selten."
+"Ankündigungen von CS Circles (by BWINF) bekommen.  Sie sind ziemlich selten."
 
 #: ../wp-plugin/plugin-utilities.php:155
 msgid "me"
@@ -700,7 +700,7 @@ msgstr "[Zu lang; nur die ersten %1$s der %2$s Zeichen werden angezeigt]"
 
 #: ../wp-plugin/plugin-utilities.php:399
 msgid "Return to Computer Science Circles"
-msgstr "Zurück zu CS Circles (by EI)"
+msgstr "Zurück zu CS Circles (by BWINF)"
 
 #: ../wp-plugin/plugin-utilities.php:566
 msgid "View definition"
@@ -1094,16 +1094,11 @@ msgid ""
 "Computer Science Circles is a free service of the <a %1$s>Centre for "
 "Education in Mathematics and Computing</a> at the <a %2$s>University of "
 "Waterloo</a>. <br> Total number of exercises completed by all users: %3$s"
-msgstr ""
-"Computer Science Circles ist ein kostenfreier Dienst des <a %1$s>Centre for "
-"Education in Mathematics and Computing</a> der <a %2$s>University of "
-"Waterloo</a>. <br> Die deutsche Version wird betrieben von der Initiative "
-"Bundesweit Informatiknachwuchs Fördern / Einstieg Informatik.<br>Gesamtzahl "
-"der Übungen, die von allen Benutzern vollendet wurden: %3$s"
+msgstr "Computer Science Circles ist ein kostenfreier Dienst des <a %1$s>Centre for Education in Mathematics and Computing</a> der <a %2$s>University of Waterloo</a>. <br> Die deutsche Version wird betrieben von den Bundesweiten Informatikwettbewerben<br>Gesamtzahl der Übungen, die von allen Benutzern vollendet wurden: %3$s"
 
 #: ../wp-theme/footer.php:37
 msgid "CEMC"
-msgstr "Einstieg Informatik"
+msgstr "Bundesweite Informatikwettbewerbe"
 
 #: ../wp-theme/footer.php:38
 msgid "University of Waterloo, MC 5104"
@@ -1135,7 +1130,7 @@ msgstr "Weiter mit"
 
 #: ../wp-theme/functions.php:139
 msgid "Computer Science Circles"
-msgstr "Computer Science Circles (by EI)"
+msgstr "Computer Science Circles (by BWINF)"
 
 #: ../wp-theme/functions.php:140
 msgid "Log In or Create Account"
@@ -1462,17 +1457,17 @@ msgstr "Falsche Antwort, versuch es nochmal."
 #~ msgstr "Die richtige Antwort ist "
 
 #~ msgid "\"CS Circles Bouncer\" <bounces@cscircles.cemc.uwaterloo.ca>"
-#~ msgstr "\"EI:CSC (no-reply)\" <csc-noreply@einstieg-informatik.de>"
+#~ msgstr "\"BWINF:CSC (no-reply)\" <csc-noreply@einstieg-informatik.de>"
 
 #~ msgid "Computer Science Circles, powered by WordPress"
-#~ msgstr "Computer Science Circles (by EI) verwendet WordPress"
+#~ msgstr "Computer Science Circles (by BWINF) verwendet WordPress"
 
 #~ msgid "click and type to search website"
 #~ msgstr "Klicke und tipp hier etwas ein, um die Webseite zu durchsuchen"
 
 #~ msgid "THIS IS A COPY of a message you sent to the CS Circles Assistant."
 #~ msgstr ""
-#~ "DIES IST EINE KOPIE der Nachricht, die du an den CS Circles (by EI) "
+#~ "DIES IST EINE KOPIE der Nachricht, die du an den CS Circles (by BWINF) "
 #~ "Assistenten gesendet hast."
 
 #~ msgid "How do you want your name displayed?"
