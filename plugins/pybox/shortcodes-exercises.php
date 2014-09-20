@@ -174,6 +174,7 @@ function pyShortHandler($options, $content) {
   $r .= '<input type="hidden" name="type" value="'. $type . '"/>';
   $r .= '<input type="hidden" name="correct" value="'. $answer . '"/>';
   $r .= '<input type="hidden" name="slug" value="'. $slug . '"/>';
+  $r .= '<input type="hidden" name="lang" value="'. currLang2() . '"/>';
   $r .= "<input type='submit' style='margin:5px;' value='".__t('Check answer')."' onClick = 'pbShortCheck($id)'/>";
   $r .= '</div>';
   $r .= '<div class="pbresults" id="pyShortResults'.$id.'"></div>';
@@ -220,6 +221,7 @@ function pyMultiHandler($options, $content) {
   $r .= '</select>';
   //$r .= '<hr>';
   $r .= "<div class='pyboxbuttons'>";
+  $r .= '<input type="hidden" name="lang" value="'. currLang2() . '"/>';
   $r .= '<input type="hidden" name="slug" value="'. $slug . '"/>';
   $r .= "<input type='submit' style='margin:5px;' value='".__t("Check answer")."' onClick='pbMultiCheck($id)'/>";
   $r .= '</div>'; //pyboxbuttons
@@ -271,6 +273,7 @@ function pyMultiScrambleHandler($options, $content) {
   $r .= '</ul>' . "\n";
   $r .= '<div class="pyboxbuttons">';
   $r .= "<input type='button' value='".__t("Check answer")."' onclick='pbMultiscrambleCheck($id)'/>\n";
+  $r .= '<input type="hidden" name="lang" value="'. currLang2() . '"/>';
   $r .= '<input type="hidden" name="slug" value="'.$slug.'"/>' . "\n";
   $r .= '</div>'; 
   $r .= '<div id="pbresults' . $id . '" class="pbresults"></div>';
@@ -705,6 +708,7 @@ if (!$facultative && !$scramble) {
     $r .= "<input type='hidden' name='timeout' value='$timeout'/>\n";
   }
 
+  $r .= '<input type="hidden" name="lang" value="'. currLang2() . '"/>';
   $r .= '<input type="hidden" id="inputInUse'.$id.'" name="inputInUse" value="Y"/>'."\n";
   $r .= '<input type="hidden" name="pyId" value="'. $id . '"/>'."\n";
   $r .= '<input type="hidden" name="hash" value="'. $hash . '"/>'."\n";

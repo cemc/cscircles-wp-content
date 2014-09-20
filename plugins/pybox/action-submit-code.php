@@ -386,15 +386,13 @@ function doGrading($usercode, $TC) {
   $mainFile .= "from _UTILITIES import *\n";
 
   $lang = 'en_US';
-  if (class_exists('PLL_Base')) {    
-    if (pll_current_language('slug')=='fr')
-      $lang = 'fr_FR';
-    else if (pll_current_language('slug')=='de')
-      $lang = 'de_DE';
-    else if (pll_current_language('slug')=='lt') {
-      $lang = 'lt_LT';
-    }
-  }  
+  if (isSoft($_REQUEST, "lang", "fr"))
+    $lang = 'fr_FR';
+  if (isSoft($_REQUEST, "lang", "de"))
+    $lang = 'de_DE';
+  if (isSoft($_REQUEST, "lang", "lt"))
+    $lang = 'lt_LT';
+
   $mainFile .= "_setLanguage('$lang')\n";
 
   $inputMaker = inputMaker($TC);
