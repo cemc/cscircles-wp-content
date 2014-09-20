@@ -1,0 +1,1394 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-22 13:30-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Jurgis Pralgauskis <Jurgis.Pralgauskis@gmail.com>\n"
+"Language-Team: Lithuanian \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../wp-plugin/action-send-message.php:30
+#: ../wp-plugin/plugin-utilities.php:157 ../wp-plugin/plugin-utilities.php:526
+#: ../wp-plugin/shortcode-mailpage.php:109
+#: ../wp-plugin/shortcode-mailpage.php:114
+#: ../wp-plugin/shortcodes-exercises.php:531
+#: ../wp-plugin/shortcodes-exercises.php:537
+msgid "CS Circles Assistant"
+msgstr ""
+
+#: ../wp-plugin/action-send-message.php:34
+msgid "CS Circles"
+msgstr ""
+
+#: ../wp-plugin/action-send-message.php:34
+msgid "message about"
+msgstr "žinutė apie"
+
+#: ../wp-plugin/action-send-message.php:37
+#: ../wp-plugin/plugin-utilities.php:540
+msgid "To send a reply message, please visit"
+msgstr "Norėdami atsakyti, eikite į"
+
+#: ../wp-plugin/action-send-message.php:39
+#: ../wp-plugin/plugin-utilities.php:542
+msgid "Problem URL:"
+msgstr "Problemos URL: "
+
+#: ../wp-plugin/action-send-message.php:40
+#: ../wp-plugin/plugin-utilities.php:543
+msgid "Sent by CS Circles"
+msgstr ""
+
+#: ../wp-plugin/action-send-message.php:59
+msgid "SENT:"
+msgstr "IŠSIŲSTA:"
+
+#: ../wp-plugin/action-send-message.php:60
+#, php-format
+msgid "THIS IS A COPY of a message you sent to %s."
+msgstr "ČIA KOPIJA žinutės, kurią jūs siuntėte %s."
+
+#: ../wp-plugin/action-send-message.php:101
+msgid "The user sent this code with the message:"
+msgstr "Su žinute atsiųstas kodas:"
+
+#: ../wp-plugin/action-submit-code.php:317
+#: ../wp-plugin/action-submit-code.php:333
+msgid "Program gave the following output:"
+msgstr "Programa atspausdino:"
+
+#: ../wp-plugin/action-submit-code.php:320
+msgid "Program gave the following correct output:"
+msgstr "Programa atspausdino teisingai:"
+
+#: ../wp-plugin/action-submit-code.php:331
+#: ../wp-plugin/action-submit-code.php:341
+msgid "Program printed no output."
+msgstr "Programa nieko neatspausdino"
+
+#: ../wp-plugin/action-submit-code.php:344
+msgid "(Did you forget to use </i><code>print</code><i>?)"
+msgstr "(Gal užmiršote panaudoti </i><code>print</code><i>?)"
+
+#: ../wp-plugin/action-submit-code.php:349
+msgid "Program output:"
+msgstr "Programa atspausdino:"
+
+#: ../wp-plugin/action-submit-code.php:352
+msgid "Expected this correct output:"
+msgstr "Teisingas rezultatas:"
+
+#: ../wp-plugin/action-submit-code.php:531
+msgid "Before running your code:"
+msgstr "Prieš paleisdami savo programėlę:"
+
+#: ../wp-plugin/action-submit-code.php:536
+msgid "Input:"
+msgstr "Įvestis (duomeys):"
+
+#: ../wp-plugin/action-submit-code.php:549
+msgid "Error messages: "
+msgstr "Klaida: "
+
+#: ../wp-plugin/action-submit-code.php:552
+msgid "Program executed without crashing."
+msgstr "Programa veikia be klaidų (\"nenulūžo\".)"
+
+#: ../wp-plugin/action-submit-code.php:555
+msgid "Program crashed."
+msgstr "Programa \"nulūžo\" - yra klaidų."
+
+#: ../wp-plugin/action-submit-code.php:557
+msgid "Program crashed &mdash; "
+msgstr "Programa \"nulūžo\"  &mdash; "
+
+#: ../wp-plugin/action-submit-code.php:561
+msgid "Memory Limit Exceeded"
+msgstr "Programa bando naudoti daugiau atminties, negu leidžiama"
+
+#: ../wp-plugin/action-submit-code.php:561
+msgid "Time Limit Exceeded"
+msgstr "Programa vykdoma ilgiau negu leidžiama"
+
+#: ../wp-plugin/action-submit-code.php:562
+msgid "Command exited with non-zero status"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:563
+msgid "Command terminated by signal"
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:563
+msgid "Output Limit Exceeded"
+msgstr "Programa spausdina daugiau teksto, negu leidžiama"
+
+#: ../wp-plugin/action-submit-code.php:564
+msgid "Invalid Function"
+msgstr "Netinkama funkcija"
+
+#: ../wp-plugin/action-submit-code.php:564
+msgid "Internal Error"
+msgstr "Vidinė sistemos klaida"
+
+#: ../wp-plugin/action-submit-code.php:589
+#: ../wp-plugin/action-submit-code.php:604
+msgid "The grader said:"
+msgstr "Automatinio vertinimo pranešimas:"
+
+#: ../wp-plugin/action-submit-code.php:592
+msgid "Automatic tests:"
+msgstr "Automatiniai testai:"
+
+#: ../wp-plugin/action-submit-code.php:634
+msgid "Result of grading: "
+msgstr "Vertinimo rezultatai: "
+
+#: ../wp-plugin/action-submit-code.php:675
+msgid "Success!"
+msgstr "Pavyko!"
+
+#: ../wp-plugin/action-submit-code.php:681
+msgid "Did not pass tests. Please check details below and try again."
+msgstr "Testuojant rasta klaidų. Pasitikrinkite ir bandykite dar kartą."
+
+#: ../wp-plugin/action-submit-code.php:698
+msgid "You must log in to save data."
+msgstr "Norint išsaugoti informaciją, reikia prisijungti."
+
+#: ../wp-plugin/action-submit-code.php:699
+msgid "Program saved."
+msgstr "Programa išsaugota"
+
+#: ../wp-plugin/action-submit-code.php:729
+#, php-format
+msgid ""
+"Submitted data (program and/or test input) too large. Reduce size or <a href "
+"= \"%s\">run at home</a>."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:761
+#, php-format
+msgid "Pybox error: problem hash %s not found. Try reloading the page."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:855
+#, php-format
+msgid "You cannot use %s in this exercise."
+msgstr "Šioje užduotyje neleidžiama naudoti: %s"
+
+#: ../wp-plugin/action-submit-code.php:867
+#, php-format
+msgid ""
+"You are only allowed to change at most %s characters compared to the "
+"original version of the code."
+msgstr "Jums leidžiama pakeisti tik %s simbolius pradinėje programoje."
+
+#: ../wp-plugin/action-submit-code.php:872
+#, php-format
+msgid "You changed %s or more."
+msgstr "Jūs pakeitėte %s arba daugiau simbolių."
+
+#: ../wp-plugin/action-submit-code.php:891
+#, php-format
+msgid "You changed %s."
+msgstr "Jūs pakeitėte %s."
+
+#: ../wp-plugin/action-submit-code.php:903
+msgid "Note: ran with user tests."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:906
+msgid "Note: ran with user inputs."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:908
+msgid " Click \"Go back to grading\" to switch back."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:910
+msgid " Click \"Hide input box\" to switch back."
+msgstr ""
+
+#: ../wp-plugin/action-submit-code.php:937
+#, php-format
+msgid "Results for test case %1$s out of %2$s"
+msgstr "Testų rezultatai: %1$s iš $2$s"
+
+#: ../wp-plugin/bounce_email_strings.php:3
+msgid ""
+"Your e-mail to {0} will not be read. If you are replying to ask for follow-"
+"up help about a problem, you must use the link in the previous email{1} \n"
+"A copy of your e-mail follows."
+msgstr ""
+"Jūsų laiškas, skirtas {0}, nebus skaitomas. Jeigu norite tęsti problemos "
+"aiškinimąsi, turite naudoti nuorodą ankstesniame laiške."
+
+#: ../wp-plugin/bounce_email_strings.php:4
+msgid "CS Circles Bouncer"
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:18
+#: ../wp-plugin/db-problem-history.php:21
+msgid "Did not crash."
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:19
+#: ../wp-plugin/db-problem-history.php:22
+#: ../wp-plugin/shortcodes-exercises.php:180
+#: ../wp-plugin/shortcodes-exercises.php:227
+#: ../wp-plugin/shortcodes-exercises.php:277
+#: ../wp-content/lesson_files/graders/anyorder.py:12
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:16
+#: ../wp-content/lesson_files/graders/trim-lines.py:14
+msgid "Correct!"
+msgstr "Teisingai!"
+
+#: ../wp-plugin/db-entire-history.php:20
+#: ../wp-plugin/db-problem-history.php:23
+msgid "Incorrect."
+msgstr "Neteisingai."
+
+#: ../wp-plugin/db-entire-history.php:21
+#: ../wp-plugin/db-problem-history.php:24
+msgid "Internal error."
+msgstr "Vidinė sistemos klaida."
+
+#: ../wp-plugin/db-entire-history.php:22 ../wp-plugin/db-entire-history.php:23
+#: ../wp-plugin/db-problem-history.php:25
+#: ../wp-plugin/db-problem-history.php:26
+msgid "Saved."
+msgstr "Išsaugota"
+
+#: ../wp-plugin/db-entire-history.php:30
+#: ../wp-plugin/db-problem-history.php:29
+#: ../wp-plugin/db-problem-summary.php:16
+msgid "You must log in to view past submissions."
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:41 ../wp-plugin/db-entire-history.php:46
+msgid "User number not found."
+msgstr "Naudotojo numeris nerastas."
+
+#: ../wp-plugin/db-entire-history.php:48
+#, php-format
+msgid "User %s does not have you as their guru."
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:63
+#, php-format
+msgid "Problem %s is unknown."
+msgstr "Užduotis %s nerasta/nežinoma"
+
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:107
+msgid "userid"
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:118
+#: ../wp-plugin/db-problem-history.php:59
+#: ../wp-plugin/db-problem-history.php:77
+msgid "time &amp; ID"
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:69
+#: ../wp-plugin/db-entire-history.php:111
+#: ../wp-plugin/db-entire-history.php:114 ../wp-plugin/db-mail.php:87
+#: ../wp-plugin/db-mail.php:105
+msgid "problem"
+msgstr "užduotis"
+
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-problem-history.php:59
+#: ../wp-plugin/db-problem-history.php:73
+msgid "user code"
+msgstr "pateiktas kodas"
+
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:116
+#: ../wp-plugin/db-problem-history.php:60
+#: ../wp-plugin/db-problem-history.php:75
+msgid "user input"
+msgstr "pateikti duomenys"
+
+#: ../wp-plugin/db-entire-history.php:70
+#: ../wp-plugin/db-entire-history.php:117
+#: ../wp-plugin/db-problem-history.php:60
+#: ../wp-plugin/db-problem-history.php:76
+msgid "result"
+msgstr "rezultatas"
+
+#: ../wp-plugin/db-entire-history.php:95
+msgid "We do not have record of any submissions."
+msgstr ""
+
+#: ../wp-plugin/db-entire-history.php:116
+#: ../wp-plugin/db-problem-history.php:75
+#: ../wp-plugin/shortcode-mailpage.php:237
+msgid "n/a"
+msgstr ""
+
+#: ../wp-plugin/db-mail.php:39
+msgid "You must log in to view past mail."
+msgstr ""
+
+#: ../wp-plugin/db-mail.php:54 ../wp-plugin/db-mail.php:63
+#: ../wp-plugin/db-mail.php:70
+#, php-format
+msgid "%s must be numeric."
+msgstr "%s turi būti skaičius"
+
+#: ../wp-plugin/db-mail.php:59
+msgid "Access denied."
+msgstr ""
+
+#: ../wp-plugin/db-mail.php:85 ../wp-plugin/db-mail.php:100
+msgid "from"
+msgstr "nuo"
+
+#: ../wp-plugin/db-mail.php:85 ../wp-plugin/db-mail.php:101
+#: ../wp-plugin/shortcode-mailpage.php:92
+msgid "to"
+msgstr "kam"
+
+#: ../wp-plugin/db-mail.php:86 ../wp-plugin/db-mail.php:103
+msgid "when"
+msgstr "kada"
+
+#: ../wp-plugin/db-mail.php:86 ../wp-plugin/db-mail.php:108
+msgid "message"
+msgstr "žinutė"
+
+#: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:107
+msgid "replied?"
+msgstr "atsakyta?"
+
+#: ../wp-plugin/db-mail.php:107
+msgid "no"
+msgstr "ne"
+
+#: ../wp-plugin/db-mail.php:107
+msgid "yes"
+msgstr "taip"
+
+#: ../wp-plugin/db-problem-history.php:18
+#: ../wp-plugin/db-problem-summary.php:21
+msgid "You must enter a non-empty problem name."
+msgstr ""
+
+#: ../wp-plugin/db-problem-history.php:34
+#, php-format
+msgid "User number %s not found."
+msgstr ""
+
+#: ../wp-plugin/db-problem-history.php:54
+#, php-format
+msgid ""
+"We do not have record of any submissions from user %1$s for problem %2$s."
+msgstr ""
+
+#: ../wp-plugin/db-problem-summary.php:31
+#: ../wp-plugin/shortcode-mailpage.php:186
+#: ../wp-plugin/shortcode-my-progress.php:28
+#, php-format
+msgid "Problem %s not found (at least in current language)"
+msgstr ""
+
+#: ../wp-plugin/db-problem-summary.php:71
+#: ../wp-plugin/db-problem-summary.php:77
+msgid "latest correct"
+msgstr "paskutinis teisingas"
+
+#: ../wp-plugin/db-problem-summary.php:72
+#: ../wp-plugin/db-problem-summary.php:78
+msgid "last time"
+msgstr "paskutinį kartą"
+
+#: ../wp-plugin/db-problem-summary.php:73
+#: ../wp-plugin/db-problem-summary.php:79
+msgid "first time"
+msgstr "pirmą kartą"
+
+#: ../wp-plugin/js-translation.php:4
+msgid "Error: could not connect to database."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:5
+msgid "The database connected but found no data."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:6
+msgid "Page"
+msgstr "Puslapis"
+
+#: ../wp-plugin/js-translation.php:7
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:8 ../wp-plugin/shortcodes-exercises.php:686
+msgid "More actions..."
+msgstr "Daugiau veiksmų..."
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Running..."
+msgstr "Vykdoma..."
+
+#: ../wp-plugin/js-translation.php:10
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr "Neįvestas joks kodas -- turėtų būti jūsų geriausias bandymas."
+
+#: ../wp-plugin/js-translation.php:11
+msgid "start of tests"
+msgstr "testuojama"
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Run test"
+msgstr "Testuoti"
+
+#: ../wp-plugin/js-translation.php:13
+msgid "end of main program"
+msgstr "pagrindinės programos pabaiga"
+
+#: ../wp-plugin/js-translation.php:14
+msgid "Hide history"
+msgstr "Paslėpti istoriją"
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Hide input box"
+msgstr "Paslėpti duomenų įvedimo laukelį"
+
+#: ../wp-plugin/js-translation.php:16
+msgid "Enter input"
+msgstr "Įveskite duomenis"
+
+#: ../wp-plugin/js-translation.php:17
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr "Nepavyko įvertinti programos, nes nutrūko ryšys su serveriu: "
+
+#: ../wp-plugin/js-translation.php:18
+msgid ""
+"Please select a valid recipient for the message. If you are working with a "
+"teacher or friend, select them as a guru on your Profile (available within "
+"the user menu, in the top right corner of the page)."
+msgstr ""
+"Nurodykite tinkamą žinutės gavėją. Savo profilio nustatymose "
+"(žr. meniu viršuj dešinėje) nurodykite guru (tai gali būti jūsų draugas arba mokytojas) - įveskite jo naudotojo vardą."
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Incorrect, try again."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:20 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:21
+msgid "Please enter a non-empty message."
+msgstr "Žinutė negali būti tuščia."
+
+#: ../wp-plugin/js-translation.php:22
+msgid "Simple editor"
+msgstr "Paprastas redaktorius"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "out of"
+msgstr "iš"
+
+#: ../wp-plugin/js-translation.php:24
+msgid "Enter test statements"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:25
+msgid "Your message was sent."
+msgstr "Žinutė išsiųsta"
+
+#: ../wp-plugin/js-translation.php:26
+msgid "timed out!"
+msgstr "laikas baigėsi!"
+
+#: ../wp-plugin/js-translation.php:27
+#: ../wp-plugin/shortcodes-exercises.php:707
+msgid "Run program"
+msgstr "Vykdyti programą"
+
+#: ../wp-plugin/js-translation.php:28
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:29
+msgid "Displaying {from} to {to} of {total} items"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:30
+#: ../wp-plugin/shortcodes-exercises.php:639
+msgid "Rich editor"
+msgstr "Modernesnis redaktorius"
+
+#: ../wp-plugin/js-translation.php:31
+msgid "Go back to grading"
+msgstr "Grįžti prie įvertinimų"
+
+#: ../wp-plugin/js-translation.php:32
+msgid "Click to try again."
+msgstr "Bandyti dar kartą"
+
+#: ../wp-plugin/js-translation.php:33
+msgid "Enter test input"
+msgstr "Įveskite testo duomenis"
+
+#: ../wp-plugin/js-translation.php:34
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:35
+#: ../wp-plugin/shortcodes-exercises.php:654
+msgid "History"
+msgstr "Istorija"
+
+#: ../wp-plugin/plugin-hooks.php:94
+msgid "Editor"
+msgstr "Redaktorius"
+
+#: ../wp-plugin/plugin-new-user-email.php:10
+msgid ""
+"An account has been created for you on the Computer Science Circles website, "
+"with a randomly generated password.\n"
+"\n"
+"User name: %username%\n"
+"Current random password: %password%\n"
+"\n"
+"Please visit\n"
+"%loginurl%\n"
+"and change your password to something you will remember. \n"
+"Press \"%upprof%\" once you are done.\n"
+"\n"
+"Thanks from the Computer Science Circles team!\n"
+"%siteurl%"
+msgstr ""
+"Jums sukurtas prisijungimas \"Computer Science Circles\" svetainėje.\n"
+"\n"
+"Naudotojo vardas: %username%\n"
+"Sugeneruotas slaptažodis: %password%\n"
+"\n"
+"Prisijunkite,\n"
+"%loginurl%\n"
+"ir pasikeiskite slaptažodį, kad jį atsimintumėte. \n"
+"Paspauskite \"%upprof%\", kai baigsite.\n"
+"\n"
+"Sėkmės!\n"
+"%siteurl%"
+
+#: ../wp-plugin/plugin-new-user-email.php:25
+msgid "Computer Science Circles: New account"
+msgstr "Naujas naudotojas"
+
+#: ../wp-plugin/plugin-new-user-email.php:31
+msgid "Update Profile"
+msgstr "Įsiminti duomenis"
+
+#: ../wp-plugin/plugin-profile-options.php:19
+#, php-format
+msgid "The username %s does not exist."
+msgstr "Naudotojas %s nerastas"
+
+#: ../wp-plugin/plugin-profile-options.php:22
+#, php-format
+msgid "%s exists! They are your guru."
+msgstr "%s bus jūsų guru!"
+
+#: ../wp-plugin/plugin-profile-options.php:25
+msgid ""
+"Enter the username of your guru. After you press <i>Update profile</i> we'll "
+"see if they exist."
+msgstr "Įveskite norimo guru naudotojo vardą. Paspaudus <i>Įsiminti duomenis</i>  "
+"bus patikrinta, ar toks yra."
+
+#: ../wp-plugin/plugin-profile-options.php:32
+msgid "Guru&apos;s <i>Username</i> (blank for none)"
+msgstr "Guru <i>naudotojo vardas</i> (arba tuščias laukelis)"
+
+#: ../wp-plugin/plugin-profile-options.php:34
+msgid ""
+"Any other person with a CS Circles account (such as your teacher) can be "
+"your guru. You can ask them direct questions when you get stuck, and they "
+"can view your progress."
+msgstr ""
+"Bet kuris kitas asmuo, prisiregistravęs svetainėje, gali būti jūsų guru. "
+"Jeigu, atlikdami užduotis, jūs \"užstrigsite\", paspaudę pagalbos mygtuką, "
+"galėsite jiems nusiųsti klausimą, pagalbos prašymą. Jie galės matyti jūsų progresą"
+
+#: ../wp-plugin/plugin-profile-options.php:40
+msgid "Don&apos;t Send Mail Copies"
+msgstr "Nesiųsti kopijų"
+
+#: ../wp-plugin/plugin-profile-options.php:43
+msgid ""
+"(default: unchecked) If checked, you will not receive a carbon copy when you "
+"send a message."
+msgstr ""
+
+#: ../wp-plugin/plugin-profile-options.php:47
+msgid "Opt Out of Mass Emails"
+msgstr ""
+
+#: ../wp-plugin/plugin-profile-options.php:50
+msgid ""
+"(default: unchecked) If checked, you will not receive announcements from CS "
+"Circles. They are pretty infrequent, about once per year."
+msgstr ""
+
+#: ../wp-plugin/plugin-utilities.php:155
+msgid "me"
+msgstr "aš"
+
+#: ../wp-plugin/plugin-utilities.php:157
+msgid "Asst."
+msgstr ""
+
+#: ../wp-plugin/plugin-utilities.php:278
+#, php-format
+msgid "[Too long; only first %1$s out of %2$s characters shown]"
+msgstr ""
+
+#: ../wp-plugin/plugin-utilities.php:399
+msgid "Return to Computer Science Circles"
+msgstr "Grįžti į svetainę"
+
+#: ../wp-plugin/plugin-utilities.php:566
+msgid "View definition"
+msgstr "Peržiūrėti apibrėžimą"
+
+#: ../wp-plugin/plugin-utilities.php:578
+msgid "View page source"
+msgstr "Puslapio aprašymo kodas"
+
+#: ../wp-plugin/shortcode-mailpage.php:12
+msgid "Student ID must be a number."
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:20
+msgid "No such student exists."
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:23
+msgid "Access denied. You may need to log in first."
+msgstr "Pirma reikia prisijungti."
+
+#: ../wp-plugin/shortcode-mailpage.php:35
+msgid "No such problem exists."
+msgstr "Tokios užduoties nėra"
+
+#: ../wp-plugin/shortcode-mailpage.php:45
+msgid "You must log in order to view the mail page."
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:69
+#, php-format
+msgid "Messages about %1$s for user %2$s"
+msgstr "Žinutės apie %1$s naudotojui %2$s"
+
+#: ../wp-plugin/shortcode-mailpage.php:74
+msgid " has completed this problem."
+msgstr "pabaigė šią užduotį"
+
+#: ../wp-plugin/shortcode-mailpage.php:76
+msgid " has not completed this problem."
+msgstr "nebaigė šios užduoties"
+
+#: ../wp-plugin/shortcode-mailpage.php:81
+#, php-format
+msgid "Note: this student completed the problem at %s"
+msgstr "Pastaba: užduotį atliko per %s"
+
+#: ../wp-plugin/shortcode-mailpage.php:83
+msgid "Click on a message title to toggle the message open or closed."
+msgstr "Spustelkite žn. pavadinimą, kad išskleist/suskleist."
+
+#: ../wp-plugin/shortcode-mailpage.php:92
+msgid "From"
+msgstr "Nuo"
+
+#: ../wp-plugin/shortcode-mailpage.php:93
+msgid "(newest)"
+msgstr "(naujausi)"
+
+#: ../wp-plugin/shortcode-mailpage.php:94
+msgid "(oldest)"
+msgstr "(seniausi)"
+
+#: ../wp-plugin/shortcode-mailpage.php:96
+msgid "Quote/<br/>Reply"
+msgstr "Cituoti/<br/>Atsakyti"
+
+#: ../wp-plugin/shortcode-mailpage.php:105
+#: ../wp-plugin/shortcodes-exercises.php:528
+#: ../wp-plugin/shortcodes-exercises.php:535
+msgid "Send a question by e-mail to: "
+msgstr "Siųsti klausimą el. paštu, skirtą:"
+
+#: ../wp-plugin/shortcode-mailpage.php:108
+#: ../wp-plugin/shortcodes-exercises.php:530
+msgid "My guru"
+msgstr "Mano guru"
+
+#: ../wp-plugin/shortcode-mailpage.php:115
+msgid "(No guru is specified)"
+msgstr "(Jūs neesate pasirinkę guru)"
+
+#: ../wp-plugin/shortcode-mailpage.php:123
+msgid "Type here to send a reply about this problem"
+msgstr "Čia įveskite atsakymą dėl užduoties"
+
+#: ../wp-plugin/shortcode-mailpage.php:129
+msgid "Just mark as read without replying"
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:131
+msgid "Send this message!"
+msgstr "Siųsti!"
+
+#: ../wp-plugin/shortcode-mailpage.php:137
+#, php-format
+msgid "%s's progress page (new window)"
+msgstr "%s progresas (naujame lange)"
+
+#: ../wp-plugin/shortcode-mailpage.php:138
+#, php-format
+msgid "Original lesson page containing %s (new window)"
+msgstr "Pradinis pamokos puslapis su %s (naujame lange)"
+
+#: ../wp-plugin/shortcode-mailpage.php:140
+msgid "Problem description for"
+msgstr "Problemos aprašymas užduočiai"
+
+#: ../wp-plugin/shortcode-mailpage.php:146
+#, php-format
+msgid "%1$s's submissions for %2$s"
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:148
+#, php-format
+msgid "My previous submissions for %s"
+msgstr "Ankstesni bandymai užduočiai %s"
+
+#: ../wp-plugin/shortcode-mailpage.php:152
+#, php-format
+msgid "My other messages about %s"
+msgstr "Kitos mano žinutės dėl %s"
+
+#: ../wp-plugin/shortcode-mailpage.php:155
+msgid "My messages for other programs"
+msgstr "Mano žinutės dėl kitų užduočių"
+
+#: ../wp-plugin/shortcode-mailpage.php:156
+#, php-format
+msgid "Messages to/from %s for other problems"
+msgstr "Žinutės su %s dėl kitų užduočių"
+
+#: ../wp-plugin/shortcode-mailpage.php:162
+#, php-format
+msgid "All messages ever about %s's work"
+msgstr "Viso %s žinutės"
+
+#: ../wp-plugin/shortcode-mailpage.php:165
+msgid "All messages ever to or from me"
+msgstr "Visos žinutės man"
+
+#: ../wp-plugin/shortcode-mailpage.php:192
+msgid "View a different problem?"
+msgstr "Peržiūrėti kitą problemą"
+
+#: ../wp-plugin/shortcode-mailpage.php:192
+#: ../wp-plugin/shortcode-my-progress.php:35
+#, php-format
+msgid "Reload with a different view? (you have %s students)"
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:195
+#: ../wp-plugin/shortcode-my-progress.php:36
+msgid "Select different user?"
+msgstr "Parinkti kitą naudotoją"
+
+#: ../wp-plugin/shortcode-mailpage.php:197
+msgid "Me"
+msgstr "Aš"
+
+#: ../wp-plugin/shortcode-mailpage.php:218
+msgid "Mail for which problem?"
+msgstr ""
+
+#: ../wp-plugin/shortcode-mailpage.php:227
+#: ../wp-plugin/shortcode-my-progress.php:68
+msgid "Submit"
+msgstr "Siųsti"
+
+#: ../wp-plugin/shortcode-my-progress.php:9
+msgid "You must log in order to view your user page."
+msgstr ""
+
+#: ../wp-plugin/shortcode-my-progress.php:38
+msgid "Show only me"
+msgstr "Rodyti tik mane"
+
+#: ../wp-plugin/shortcode-my-progress.php:39
+msgid "Summary of all my students"
+msgstr "Visų mokinių santrauka"
+
+#: ../wp-plugin/shortcode-my-progress.php:58
+msgid "Just show submissions for one problem?"
+msgstr "Rodyti sprendimus tik vienam uždaviniui"
+
+#: ../wp-plugin/shortcode-my-progress.php:60
+msgid "Show all"
+msgstr "Rodyti viską"
+
+#: ../wp-plugin/shortcode-my-progress.php:61
+msgid "Console"
+msgstr "Programos redagavimas"
+
+#: ../wp-plugin/shortcode-my-progress.php:76
+msgid "User id must be numeric."
+msgstr ""
+
+#: ../wp-plugin/shortcode-my-progress.php:80
+#: ../wp-plugin/shortcode-my-progress.php:84
+msgid "Invalid user id."
+msgstr ""
+
+#: ../wp-plugin/shortcode-my-progress.php:88
+msgid "Viewing as "
+msgstr "Esate prisijungę kaip"
+
+#: ../wp-plugin/shortcode-my-progress.php:91
+msgid "Viewing summary of all your students"
+msgstr "Visų mokinių darbų santrauka"
+
+#: ../wp-plugin/shortcode-my-progress.php:112
+msgid "Latest Problems Completed"
+msgstr "Vėliausiai išspręsti uždaviniai"
+
+#: ../wp-plugin/shortcode-my-progress.php:137
+#, php-format
+msgid "Solutions by my students for %s"
+msgstr "Mano mokinių sprendimai uždaviniui %s"
+
+#: ../wp-plugin/shortcode-my-progress.php:150
+msgid "Submitted Code"
+msgstr "Pateiktas kodas"
+
+#: ../wp-plugin/shortcode-my-progress.php:161
+msgid "Overview"
+msgstr "Apžvalga"
+
+#: ../wp-plugin/shortcodes-exercises.php:36
+#, php-format
+msgid "Internal error, details below; please <a href='%s'>contact staff</a>."
+msgstr ""
+
+#: ../wp-plugin/shortcodes-exercises.php:36
+msgid "Timestamp:"
+msgstr "Laiko žymė"
+
+#: ../wp-plugin/shortcodes-exercises.php:56
+msgid "You have not yet completed this problem."
+msgstr "Jūs dar nebaigėte šios užduoties"
+
+#: ../wp-plugin/shortcodes-exercises.php:166
+msgid "Short Answer Exercise"
+msgstr "Trumpo atsakymo užduotis"
+
+#: ../wp-plugin/shortcodes-exercises.php:169
+msgid "Your answer"
+msgstr "Jūsų atsakymas"
+
+#: ../wp-plugin/shortcodes-exercises.php:170
+msgid "enter a number"
+msgstr "įveskite skaičių"
+
+#: ../wp-plugin/shortcodes-exercises.php:177
+#: ../wp-plugin/shortcodes-exercises.php:224
+#: ../wp-plugin/shortcodes-exercises.php:273
+msgid "Check answer"
+msgstr "Patikrinti atsakymą"
+
+#: ../wp-plugin/shortcodes-exercises.php:209
+msgid "Multiple Choice Exercise"
+msgstr "Pasirinkimo užduotis"
+
+#: ../wp-plugin/shortcodes-exercises.php:213
+msgid "Your choice:"
+msgstr "Jūsų pasirinkimas:"
+
+#: ../wp-plugin/shortcodes-exercises.php:213
+msgid "Select one"
+msgstr "Pasirinkite vieną"
+
+#: ../wp-plugin/shortcodes-exercises.php:263
+#: ../wp-plugin/shortcodes-exercises.php:505
+msgid "Scramble Exercise"
+msgstr "Sumaišytų eilučių užduotis"
+
+#: ../wp-plugin/shortcodes-exercises.php:502
+msgid "Example"
+msgstr "Pavyzdys"
+
+#: ../wp-plugin/shortcodes-exercises.php:505
+msgid "Coding Exercise"
+msgstr "Programavimo pratimas"
+
+#: ../wp-plugin/shortcodes-exercises.php:519
+msgid "You need to create an account and log in to ask a question."
+msgstr "Norėdami paklausti, turite (užsiregistruoti ir) prisijungti"
+
+#: ../wp-plugin/shortcodes-exercises.php:538
+msgid "(No guru specified in your profile)"
+msgstr "(jūs nenurodėte savo guru (prisijungimo profilyje))"
+
+#: ../wp-plugin/shortcodes-exercises.php:542
+msgid ""
+"Enter text for the message below. <i>Be sure to explain where you're stuck "
+"and what you've tried so far. Your partial solution code will be "
+"automatically included with the message.</i>"
+msgstr ""
+"Žemiau parašykite žinutę. <i>Būtinai paaiškinkite, kur/kas jums nesigavo"
+"ir kokius variantus jau išbandėte. Jūsų paskutinis programos variantas "
+"bus automatiškai pridėtas.</i>"
+
+#: ../wp-plugin/shortcodes-exercises.php:544
+msgid "Send this message"
+msgstr "Išsiųsti"
+
+#: ../wp-plugin/shortcodes-exercises.php:545
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#: ../wp-plugin/shortcodes-exercises.php:564
+msgid "# delete this comment and enter your code here"
+msgstr "# vietoj šio komentaro parašykite savo kodą"
+
+#: ../wp-plugin/shortcodes-exercises.php:616
+msgid ""
+"Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> "
+"below."
+msgstr ""
+"Žemiau įveskite testavimo veiksmus, pvz., <tt>print(myfunction(\"testiniai duomenys\"))</tt>."
+
+#: ../wp-plugin/shortcodes-exercises.php:619
+msgid "You may enter input for the program in the box below."
+msgstr "Žemiau galima įvesti duomenis programai (angl. \"input\")"
+
+#: ../wp-plugin/shortcodes-exercises.php:645
+msgid "Open in console"
+msgstr "Atverti programos redagavimą"
+
+#: ../wp-plugin/shortcodes-exercises.php:648
+msgid "Visualize"
+msgstr "Veiksmų sekimas"
+
+#: ../wp-plugin/shortcodes-exercises.php:662
+msgid "Reset code to default"
+msgstr "Grąžinti pradinį kodą"
+
+#: ../wp-plugin/shortcodes-exercises.php:667
+msgid "Help"
+msgstr "Pagalba"
+
+#: ../wp-plugin/shortcodes-misc.php:21
+#, php-format
+msgid ""
+"New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
+"$s>click here to create an account or log in</a>."
+msgstr "Jei lankotės čia pirmąkart, galite susipažinti su <a %1$s>svetainės galimybėmis</a> bei <a %2"
+"$s>susikurti prisijungimą</a>."
+
+#: ../wp-plugin/shortcodes-misc.php:99
+msgid "Edit my profile"
+msgstr "Redaguoti savo duomenis"
+
+#: ../wp-plugin/shortcodes-misc.php:100
+msgid "Log out now"
+msgstr "Atsijungti"
+
+#: ../wp-plugin/shortcodes-misc.php:103
+msgid "Log in or create a new account"
+msgstr "Prisijungti / Registruotis"
+
+#: ../wp-theme/404.php:19
+msgid "Error 404. Not enough internets."
+msgstr ""
+
+#: ../wp-theme/404.php:24
+#, php-format
+msgid "We cannot find anything at the address %s"
+msgstr ""
+
+#: ../wp-theme/404.php:25
+#, php-format
+msgid ""
+"Try a different address, a search, or <a %1$s>contact us</a> if the website "
+"sent you here via a broken link."
+msgstr ""
+
+#: ../wp-theme/footer.php:34
+#, php-format
+msgid ""
+"Computer Science Circles is a free service of the <a %1$s>Centre for "
+"Education in Mathematics and Computing</a> at the <a %2$s>University of "
+"Waterloo</a>. <br> Total number of exercises completed by all users: %3$s"
+msgstr ""
+
+#: ../wp-theme/footer.php:37
+msgid "CEMC"
+msgstr ""
+
+#: ../wp-theme/footer.php:38
+msgid "University of Waterloo, MC 5104"
+msgstr ""
+
+#: ../wp-theme/footer.php:39
+msgid "200 University Avenue West"
+msgstr ""
+
+#: ../wp-theme/footer.php:40
+msgid "Waterloo, Ontario, Canada N2L 3G1"
+msgstr ""
+
+#: ../wp-theme/footer.php:41
+msgid "Phone: 519 888 4808"
+msgstr ""
+
+#: ../wp-theme/footer.php:43
+msgid "contact us"
+msgstr ""
+
+#: ../wp-theme/footer-prevnext.php:45
+msgid "(goes to top of current page)"
+msgstr ""
+
+#: ../wp-theme/footer-prevnext.php:48
+msgid "Next"
+msgstr "Toliau"
+
+#: ../wp-theme/functions.php:139
+msgid "Computer Science Circles"
+msgstr ""
+
+#: ../wp-theme/functions.php:140
+msgid "Log In or Create Account"
+msgstr "Prisijunkite / Užsiregistruokite"
+
+#: ../wp-theme/functions.php:149
+msgid "Create a new account"
+msgstr "Užsiregistruoti"
+
+#: ../wp-theme/functions.php:176
+msgid "My Progress"
+msgstr "Mano progresas"
+
+#: ../wp-theme/functions.php:178
+msgid "Mail"
+msgstr "Paštas"
+
+#: ../wp-theme/functions.php:179
+msgid "Console (new window)"
+msgstr "Programos rašymas (naujame lange)"
+
+#: ../wp-theme/functions.php:180
+msgid "Visualizer (new window)"
+msgstr "Programos sekimas (naujame lange)"
+
+
+#: ../wp-theme/functions.php:181
+msgid "Resources (new window)"
+msgstr "Ištekliai (naujame lange)"
+
+
+#: ../wp-theme/functions.php:182
+msgid "Contact Us (new window)"
+msgstr "Kontaktai (naujame lange)"
+
+
+#: ../wp-theme/functions.php:186
+msgid "scroll to top"
+msgstr "į viršų"
+
+
+#: ../wp-theme/functions.php:210
+msgid "goto oldest unanswered mail"
+msgstr "seniausias neatsakytas paštas"
+
+#: ../wp-theme/functions.php:264
+msgid "Filter Listed Pages"
+msgstr "Filtruoti puslapius"
+
+#: ../wp-theme/functions.php:267
+msgid "Show all visible"
+msgstr "Rodyti visus"
+
+#: ../wp-theme/functions.php:310
+msgid "<p>Registruokitės / prisijunkite,</p><p>jei norite išsaugoti užduočių sprendimus</p>"
+msgstr ""
+
+#: ../wp-theme/functions.php:329
+#, php-format
+msgid "%s's menu"
+msgstr "%s meniu"
+
+#: ../wp-theme/header.php:103
+msgid "wordmark-uw.gif"
+msgstr ""
+
+#: ../wp-theme/header.php:104
+msgid "wordmark-cemc.png"
+msgstr ""
+
+#: ../wp-theme/header.php:110
+msgid "Click here for the original site"
+msgstr "Originali (angliška) svetainė"
+
+#: ../wp-theme/header.php:131
+msgid "/themes/pybox2011childTheme/images/header.jpg"
+msgstr ""
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "Integer"
+msgstr "Sveikas skaičius"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "String"
+msgstr "Tekstas (String)"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "Floating Point Number"
+msgstr "Skaičius su kableliu (Floating Point Number)"
+
+#: ../python3jail/static/_GRADER.py:9
+msgid "Function Type"
+msgstr "Funkcija"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "Boolean"
+msgstr "Loginė reikšmė"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "\"None\" Type"
+msgstr "\"None\" tipas"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "Range Type"
+msgstr "Intervalas (Range)"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "List"
+msgstr "Sąrašas"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "Dictionary"
+msgstr "Žodynas"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "Tuple"
+msgstr "Nekintantis sąrašas (Tuple)"
+
+#: ../python3jail/static/_GRADER.py:32
+msgid "a function "
+msgstr "funkcija"
+
+#: ../python3jail/static/_GRADER.py:34
+msgid " equal to "
+msgstr " lygu "
+
+#: ../python3jail/static/_GRADER.py:50
+msgid " and "
+msgstr " ir "
+
+#: ../python3jail/static/_GRADER.py:52
+msgid ", and "
+msgstr ", ir "
+
+#: ../python3jail/static/_GRADER.py:54
+msgid "We defined "
+msgstr "Mes apibrėžėme "
+
+#: ../python3jail/static/_GRADER.py:68 ../python3jail/static/_GRADER.py:92
+msgid "Error: {0} has wrong type {1}, expected {2}"
+msgstr "Klaida: {0} duomenų tipas neteisingas: vietoj {2} yra {1}."
+
+#: ../python3jail/static/_GRADER.py:73 ../python3jail/static/_GRADER.py:112
+msgid "Error: {0} has wrong value {1}, expected {2}"
+msgstr "Klaida: {0} reikšmė neteisinga: vietoj {2} yra {1}."
+
+#: ../python3jail/static/_GRADER.py:77
+msgid "its value is correct!"
+msgstr "reikšmė yra teisinga!"
+
+#: ../python3jail/static/_GRADER.py:83 ../python3jail/static/_GRADER.py:88
+msgid "finished!"
+msgstr "baigta!"
+
+#: ../python3jail/static/_GRADER.py:85
+msgid "value "
+msgstr "reikšmė"
+
+#: ../python3jail/static/_GRADER.py:90
+msgid "finished! (returned a value {} but did not need to return anything)"
+msgstr "baigta! (buvo grąžinta reikšmė {}, nors nereikėjo.)"
+
+#: ../python3jail/static/_GRADER.py:98
+msgid "Error: list {0} has wrong length {1}, expected {2}"
+msgstr "Klaida: sąrašo {0} ilgis neteisingas - vietoj {1} turi būti {2}."
+
+#: ../python3jail/static/_GRADER.py:108 ../python3jail/static/_GRADER.py:110
+msgid " its value {} is correct!"
+msgstr " jo reikšmė {} yra teisinga!"
+
+#: ../python3jail/static/_GRADER.py:130 ../python3jail/static/_GRADER.py:144
+msgid "Running {} &hellip;"
+msgstr "Vykdoma {} &hellip;"
+
+#: ../python3jail/static/_GRADER.py:136
+msgid "Error: function {} not defined"
+msgstr "Klaida: funkcija {} nežinoma"
+
+#: ../python3jail/static/_GRADER.py:139
+msgid "Error: {0} should be defined as a function, but found type {1}"
+msgstr "Klaida: {0} turi būti funkcija, bet jos tipas yra {1}"
+
+#: ../python3jail/static/_GRADER.py:158
+msgid ""
+"Your output is incorrect, but just barely. Whitespace characters (space, "
+"newline, tab) are either missing, or extra ones are present."
+msgstr ""
+"Jūsų rezultatas yra truputį netikslus. Trūksta arba per daug tarpų, "
+"peršokimų į kt. eilutę arba tab'ų."
+
+#: ../python3jail/static/_GRADER.py:160
+msgid "Your output is not correct."
+msgstr "Neteisingas rezultatas"
+
+#: ../python3jail/static/_GRADER.py:203
+msgid "Checking {} &hellip; "
+msgstr "Tikrinama {} &hellip; "
+
+#: ../python3jail/static/_GRADER.py:207
+msgid "Error: variable {} not defined"
+msgstr "Klaida: kintamasis {} nežinomas"
+
+#: ../python3jail/static/_GRADER.py:212
+msgid "Setting {0} to {1}"
+msgstr "Kintamajam {0} priskiriama {1}"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:3
+msgid "Error: Your output should consist of exactly 1 line."
+msgstr "Klaida: jūsų programa turi atspausdinti vieną eilutę."
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:6
+msgid "Error: Your output should not contain any spaces."
+msgstr "Klaida: jūsų prorgrama neturi atspausdinti jokių tarpų"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:8
+msgid "Error: The last character of your output is wrong."
+msgstr "Klaida: paskutinis atspausdintas simbolis yra neteisingas."
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:10
+msgid "Error: Could not interpret {} as a float."
+msgstr "Klaida: {} negalima atpažinti, kaip skaičiaus su kableliu."
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:13
+msgid "Error: Numbers are different."
+msgstr "Klaida: skaičiai nesutampa"
+
+#: ../wp-content/lesson_files/graders/anyorder.py:7
+msgid "Line {}: too many copies of '{}'"
+msgstr "Eilutė {}: per daug '{}' kopijų"
+
+#: ../wp-content/lesson_files/graders/anyorder.py:8
+msgid "Line {}: not a correct output line: '{}'"
+msgstr "Eilutė {}: neteisingai atspausdinta eilutė: '{}'"
+
+#: ../wp-content/lesson_files/graders/anyorder.py:11
+msgid "Missing at least one line of output: '{}'"
+msgstr "Trūksta bent vienos rezultato eilutės: '{}'"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:6
+#: ../wp-content/lesson_files/graders/real-per-line.py:5
+#: ../wp-content/lesson_files/graders/trim-lines.py:4
+msgid "Not enough lines of output: {0} expected, {1} found"
+msgstr "Trūksta rezultato eilučių: reikia {0}, yra {1}"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:9
+#: ../wp-content/lesson_files/graders/real-per-line.py:8
+msgid "Error: Output line {0} '{1}' was not a number"
+msgstr "Klaida: Rezutato eilutėje {0} '{1}' nėra skaičius"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:11
+#: ../wp-content/lesson_files/graders/real-per-line.py:10
+msgid "Output line {0}, value {1}, did not match expected value {2}"
+msgstr "Rezutato eilutėje {0} reikšmė {1} neatitinka lauktos - {2}"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:14
+#: ../wp-content/lesson_files/graders/real-per-line.py:13
+#: ../wp-content/lesson_files/graders/trim-lines.py:12
+msgid "Too many lines of output: {0} expected, {1} found"
+msgstr "Per daug rezultato eilučių: reikia {0}, o yra {1}"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:16
+msgid "Here is the plot of the output:"
+msgstr "Rezultato grafikas:"
+
+#: ../wp-content/lesson_files/graders/trim-lines.py:7
+msgid "Error: output line {0} {1} did not match expected line {2}"
+msgstr "Klaida: rez. eilutė {0} {1} neatitinka lauktos reikšmės {2}"
+
+#: ../wp-content/lesson_files/graders/warmup.py:7
+msgid "Your program produced no output. Please try again."
+msgstr "Jūsų programa nieko neatspausdino... Bandykite kažką pakeisti."
+
+#: ../wp-content/lesson_files/graders/warmup.py:9
+msgid "Your program produced too many lines of output. Please try again."
+msgstr "Programa atspausdino per daug eilučių. Bandykite kažką pakeisti."
+
+#: ../wp-content/lesson_files/graders/warmup.py:11
+msgid "Your program produced too few lines of output. Please try again."
+msgstr "rograma atspausdino per mažai eilučių. Bandykite kažką pakeisti."
+
+#: ../wp-content/lesson_files/graders/warmup.py:13
+msgid "Exactly correct, good job!"
+msgstr "Puiku - rezultatas tikslus ir teisingas!"
+
+#: ../wp-content/lesson_files/graders/warmup.py:15
+msgid "Almost correct but ensure you correctly use upper and lower case."
+msgstr "Beveik teisingai, bet kažkas ne taip su didžiosiom/mažosiom raidėm"
+
+#: ../wp-content/lesson_files/graders/warmup.py:17
+msgid "Almost correct but ensure you correctly use punctuation and spacing."
+msgstr "Beveik teisingai, bet kažkas ne taip su skyryba ir tarpais."
+
+#: ../wp-content/lesson_files/graders/warmup.py:19
+msgid ""
+"Partially correct; ensure upper/lower case, punctuation, and spacing are "
+"correct."
+msgstr "Dalinai teisinga; įsitikinkite, kad didžiosios/mažosios raidės, "
+"skyryba bei tarpai yra tvarkoj."
+
+#: ../wp-content/lesson_files/graders/warmup.py:21
+msgid "Incorrect answer, please try again."
+msgstr "Neteisingai.. Bandykite pataisyti."

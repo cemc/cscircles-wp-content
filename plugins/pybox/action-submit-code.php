@@ -391,6 +391,9 @@ function doGrading($usercode, $TC) {
       $lang = 'fr_FR';
     else if (pll_current_language('slug')=='de')
       $lang = 'de_DE';
+    else if (pll_current_language('slug')=='lt') {
+      $lang = 'lt_LT';
+    }
   }  
   $mainFile .= "_setLanguage('$lang')\n";
 

@@ -16,7 +16,7 @@ function pyBoxInit() {
 
 function printJSTranslation() {
   // if language is english, define __t as doing nothing
-  if (get_locale() == 'fr_FR' || get_locale() == 'de_DE') {
+  if (get_locale() == 'fr_FR' || get_locale() == 'de_DE' || get_locale() == 'lt_LT') {
     echo sprintf("var translationArray = %s;", jsonTranslationArray());
   }
   else {
