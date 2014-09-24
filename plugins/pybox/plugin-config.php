@@ -1,8 +1,13 @@
 <?php
 
-  // this file contains things you might need to personalize but probably do not.
+  // this file contains things you might need to personalize
 
-define('CSCIRCLES_ASST_ID_DE', 11351); // hacky; will be fixed later
+define('PRODUCTION_LANGUAGES', serialize(array('en', 'fr', 'de')));
+define('DEVELOPMENT_LANGUAGES', serialize(array('nl', 'lt')));
+
+// user id of cscircles assistant for each language, defaults to dave/troy/sandy
+// 2 and 4 should change
+define('CSCIRCLES_ASST_ID_MAP', serialize(array('de' => 11351, 'nl' => 2, 'lt' => 4)));
 
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two

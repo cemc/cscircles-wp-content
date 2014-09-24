@@ -16,7 +16,7 @@ function pyBoxInit() {
 
 function printJSTranslation() {
   // if language is english, define __t as doing nothing
-  if (get_locale() == 'fr_FR' || get_locale() == 'de_DE' || get_locale() == 'lt_LT') {
+  if (currLang2() != 'en') {
     echo sprintf("var translationArray = %s;", jsonTranslationArray());
   }
   else {
@@ -76,7 +76,7 @@ function footsy() {
     //  echo '<li><a id="notice-trans" href="#">notice! (08-30)</a></li>';
     
     // these are the publicly-available languages
-    foreach (array('en', 'fr', 'de') as $lang) {
+    foreach (unserialize(PRODUCTION_LANGUAGES) as $lang) {
       if ($lang != pll_current_language()) 
         echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
     }
@@ -84,7 +84,7 @@ function footsy() {
     // these are the ones in development
     if (userIsAdmin() || 
         userIsTranslator() || userIsAssistant())
-      foreach (array('nl', 'lt') as $lang) {
+      foreach (unserialize(DEVELOPMENT_LANGUAGES) as $lang) {
         if ($lang != pll_current_language()) {
           echo '<li><a href="'.get_permalink(pll_get_post(get_the_ID(), $lang)).'">'.$lang.'</a></li>';
         }

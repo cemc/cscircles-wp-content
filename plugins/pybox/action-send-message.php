@@ -17,8 +17,9 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
     return "#";   
 
   $insert_to = $to;
-  if ($to == 0 && pll_current_language()=='de')
-    $insert_to = CSCIRCLES_ASST_ID_DE;
+  if ($to == 0 
+      && pll_current_language()!='en')
+    $insert_to = getSoft(unserialize(CSCIRCLES_ASST_ID_MAP), pll_current_language(), $insert_to);
 
   $wpdb->insert($wpdb->prefix.'pb_mail', 
 		array('ufrom' => $from, 'uto' => $insert_to, 'ustudent' => $student, 'problem' => $slug, 'body' => $body, 
@@ -42,8 +43,9 @@ function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
   if ($to == 0) {
     // same fallback as admin-options.php
     $to_emailaddr = get_option('cscircles_asst_email', get_userdata(1)->user_email);
-    if (pll_current_language()=='de')
-      $to_emailaddr = get_user_by('id', CSCIRCLES_ASST_ID_DE)->user_email;
+    $tmp = getSoft(unserialize(CSCIRCLES_ASST_ID_MAP), pll_current_language(), -1);
+    if (pll_current_language()!='en' && $tmp!=-1)
+      $to_emailaddr = get_user_by('id', $tmp)->user_email;
   }
   else {
     $to_emailaddr = get_user_by('id', $to)->user_email;

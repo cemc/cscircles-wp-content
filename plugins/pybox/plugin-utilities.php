@@ -7,6 +7,8 @@ function do_short_and_sweetcode($x) {
   return do_shortcode(do_sweetcode($x));
 }
 
+// useful 
+
 // translation
 function __t($en_string) {
   return __($en_string, 'cscircles');// . get_locale(); // for debugging
@@ -147,7 +149,9 @@ function userIsAdmin() {
 }
 
 function userIsAssistant() {
-  return userIsAdmin() || (getUserID() == CSCIRCLES_ASST_ID_DE);
+  foreach (unserialize(CSCIRCLES_ASST_ID_MAP) as $lang => $id)
+    if (getUserID() == $id) return true;
+  return userIsAdmin();
 }
 
 function userIsTranslator() {
@@ -161,7 +165,7 @@ function userIsTranslator() {
 function nicefiedUsername($uid, $short = TRUE) {
   if (($uid == 0 && userIsAdmin()) || ($uid == getUserID())) 
     return __t('me');
-  elseif ($uid == 0 || $uid == CSCIRCLES_ASST_ID_DE)
+  elseif ($uid == 0 || in_array($uid, unserialize(CSCIRCLES_ASST_ID_MAP)))
     return $short ? __t('Asst.') : __t('CS Circles Assistant');
   else
     return get_userdata($uid)->user_login;
@@ -189,6 +193,11 @@ function getUserID() {
 // doesn't work in Dashboard/Admin pages
 function currLang2() {
   return class_exists('PLL_Base') ? pll_current_language() : substr(get_bloginfo("language"), 0, 2);
+}
+
+// same, but like en_US or fr_FR
+function currLang4() {
+  return class_exists('PLL_Base') ? pll_current_language("locale") : get_bloginfo("language");
 }
 
 // write to log, and send an e-mail

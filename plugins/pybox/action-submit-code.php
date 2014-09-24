@@ -386,12 +386,10 @@ function doGrading($usercode, $TC) {
   $mainFile .= "from _UTILITIES import *\n";
 
   $lang = 'en_US';
-  if (isSoft($_REQUEST, "lang", "fr"))
-    $lang = 'fr_FR';
-  if (isSoft($_REQUEST, "lang", "de"))
-    $lang = 'de_DE';
-  if (isSoft($_REQUEST, "lang", "lt"))
-    $lang = 'lt_LT';
+  if (array_key_exists("lang", $_REQUEST)
+      && preg_match("~^[a-zA-Z_]*$~", $_REQUEST["lang"])) {
+    $lang = $_REQUEST["lang"];
+  }
 
   $mainFile .= "_setLanguage('$lang')\n";
 
