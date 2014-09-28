@@ -101,7 +101,7 @@ msgstr "Klaida: "
 
 #: ../wp-plugin/action-submit-code.php:552
 msgid "Program executed without crashing."
-msgstr "Programa veikia be klaidų (\"nenulūžo\".)"
+msgstr " " 
 
 #: ../wp-plugin/action-submit-code.php:555
 msgid "Program crashed."
@@ -158,7 +158,7 @@ msgstr "Pavyko!"
 
 #: ../wp-plugin/action-submit-code.php:681
 msgid "Did not pass tests. Please check details below and try again."
-msgstr "Testuojant rasta klaidų. Pasitikrinkite ir bandykite dar kartą."
+msgstr "Testuojant rasta klaidų. Bandykite dar kartą."
 
 #: ../wp-plugin/action-submit-code.php:698
 msgid "You must log in to save data."
@@ -221,7 +221,7 @@ msgstr ""
 #: ../wp-plugin/action-submit-code.php:937
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
-msgstr "Testų rezultatai: %1$s iš $2$s"
+msgstr "Testų rezultatai: %1$s iš %2$s"
 
 #: ../wp-plugin/bounce_email_strings.php:3
 msgid ""
@@ -523,7 +523,7 @@ msgstr "laikas baigėsi!"
 #: ../wp-plugin/js-translation.php:27
 #: ../wp-plugin/shortcodes-exercises.php:707
 msgid "Run program"
-msgstr "Vykdyti programą"
+msgstr "Vykdyti"
 
 #: ../wp-plugin/js-translation.php:28
 msgid ""
@@ -618,7 +618,7 @@ msgstr "%s bus jūsų guru!"
 msgid ""
 "Enter the username of your guru. After you press <i>Update profile</i> we'll "
 "see if they exist."
-msgstr "Įveskite norimo guru naudotojo vardą. Paspaudus <i>Įsiminti duomenis</i>  "
+msgstr "Įveskite norimo guru naudotojo vardą. Paspaudus <i>\"Įsiminti duomenis\"</i>  "
 "bus patikrinta, ar toks yra."
 
 #: ../wp-plugin/plugin-profile-options.php:32
@@ -997,7 +997,7 @@ msgstr "Žemiau galima įvesti duomenis programai (angl. \"input\")"
 
 #: ../wp-plugin/shortcodes-exercises.php:645
 msgid "Open in console"
-msgstr "Atverti programos redagavimą"
+msgstr "Programavimo konsolė"
 
 #: ../wp-plugin/shortcodes-exercises.php:648
 msgid "Visualize"
