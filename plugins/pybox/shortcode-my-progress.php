@@ -218,8 +218,8 @@ function pyUser($options, $content) {
   $overview = '';
   if ($allProblems || !$allStudents) {
 
-    $overview = '<h2 style="margin-top:5px;text-align:center">'.__t('List of all problems').
-      ($allStudents ? ' (with #completed)' : ' (with #submissions)').
+    $overview = '<h2 style="margin-top:5px;text-align:center">'.__t('List of all problems'). ' '.
+      ($allStudents ? __t('(with #completed)') : __t('(with #submissions)')).
       '</h2>';
     
     if (!$viewingAsStudent) {
