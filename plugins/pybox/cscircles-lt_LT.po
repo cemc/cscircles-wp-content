@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-28 14:22-0400\n"
+"POT-Creation-Date: 2014-10-03 19:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Jurgis Pralgauskis <Jurgis.Pralgauskis@gmail.com>\n"
 "Language-Team: Lithuanian \n"
@@ -22,6 +22,8 @@ msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
 "= \"%s\">run at home</a>."
 msgstr ""
+"Pateikta per daug teksto. Sumažinkite programą arba duomenis/testavimo "
+"komandas, arba  <a href = \"%s\">vykdykite programą savo kompiuteryje</a>."
 
 #: ../wp-plugin/action-send-message.php:31
 #: ../wp-plugin/plugin-utilities.php:169 ../wp-plugin/plugin-utilities.php:579
@@ -157,7 +159,7 @@ msgstr "Automatiniai testai:"
 
 #: ../wp-plugin/action-submit-code.php:638
 msgid "Result of grading: "
-msgstr "Vertinimo rezultatai: "
+msgstr "Tikrinimo rezultatai: "
 
 #: ../wp-plugin/action-submit-code.php:679
 msgid "Success!"
@@ -204,24 +206,24 @@ msgstr "Jūs pakeitėte %s."
 
 #: ../wp-plugin/action-submit-code.php:907
 msgid "Note: ran with user tests."
-msgstr ""
+msgstr "Pastaba: vykdoma su jūsų testais."
 
 #: ../wp-plugin/action-submit-code.php:910
 msgid "Note: ran with user inputs."
-msgstr ""
+msgstr "Pastaba: vykdoma su jūsų duomenimis."
 
 #: ../wp-plugin/action-submit-code.php:912
 msgid " Click \"Go back to grading\" to switch back."
-msgstr ""
+msgstr "Galite spustelti \"Užduoties tikrinimas\"."
 
 #: ../wp-plugin/action-submit-code.php:914
 msgid " Click \"Hide input box\" to switch back."
-msgstr ""
+msgstr "Galite spustelti \"Paslėpti duomenų įvedimą\"."
 
 #: ../wp-plugin/action-submit-code.php:941
 #, php-format
 msgid "Results for test case %1$s out of %2$s"
-msgstr "Testų rezultatai: %1$s iš %2$s"
+msgstr "%1$s testo rezultatai (iš %2$s)"
 
 #: ../wp-plugin/bounce_email_strings.php:3
 msgid ""
@@ -431,68 +433,64 @@ msgid ""
 msgstr "Nepavyko įvertinti programos, nes nutrūko ryšys su serveriu: "
 
 #: ../wp-plugin/js-translation.php:6
-msgid "Run test"
-msgstr "Testuoti"
-
-#: ../wp-plugin/js-translation.php:7
-msgid "Error: could not connect to database."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:8
-msgid "Your message was sent."
-msgstr "Žinutė išsiųsta"
-
-#: ../wp-plugin/js-translation.php:9
 msgid "Displaying {from} to {to} of {total} items"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:10
-#: ../wp-plugin/shortcodes-exercises.php:718
-msgid "Run program"
-msgstr "Vykdyti"
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Please enter a non-empty message."
-msgstr "Žinutė negali būti tuščia."
-
-#: ../wp-plugin/js-translation.php:12
-msgid "The database connected but found no data."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:13
-msgid "timed out!"
-msgstr "laikas baigėsi!"
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Hide input box"
-msgstr "Paslėpti duomenų įvedimo laukelį"
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Hide history"
-msgstr "Paslėpti istoriją"
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Enter test input"
-msgstr "Įveskite testo duomenis"
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter test statements"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:18
-#: ../wp-plugin/shortcodes-exercises.php:649
-msgid "Rich editor"
-msgstr "Modernesnis redaktorius"
-
-#: ../wp-plugin/js-translation.php:19
+#: ../wp-plugin/js-translation.php:7
 msgid "Enter input"
 msgstr "Įveskite duomenis"
 
-#: ../wp-plugin/js-translation.php:20
-msgid "Incorrect, try again."
+#: ../wp-plugin/js-translation.php:8
+msgid "Enter test input"
+msgstr "Įvesti duomenis"
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Enter test statements"
+msgstr "Įvesti komandas pasitestavimui"
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Error: could not connect to database."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/js-translation.php:11
+msgid "Go back to grading"
+msgstr "Užduoties tikrinimas"
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Hide history"
+msgstr "Paslėpti istoriją"
+
+#: ../wp-plugin/js-translation.php:13
+msgid "Hide input box"
+msgstr "Paslėpti duomenų įvedimą"
+
+#: ../wp-plugin/js-translation.php:14
+#: ../wp-plugin/shortcodes-exercises.php:664
+msgid "History"
+msgstr "Istorija"
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Incorrect, try again."
+msgstr "Neteisingai, bandykite dar kartą."
+
+#: ../wp-plugin/js-translation.php:16
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:17
+#: ../wp-plugin/shortcodes-exercises.php:696
+msgid "More actions..."
+msgstr "Daugiau veiksmų..."
+
+#: ../wp-plugin/js-translation.php:18
+msgid "Page"
+msgstr "Puslapis"
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Please enter a non-empty message."
+msgstr "Žinutė negali būti tuščia."
+
+#: ../wp-plugin/js-translation.php:20
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
@@ -502,69 +500,73 @@ msgstr ""
 "viršuj dešinėje) nurodykite guru (tai gali būti jūsų draugas arba mokytojas) "
 "- įveskite jo naudotojo vardą."
 
-#: ../wp-plugin/js-translation.php:22
-msgid "Go back to grading"
-msgstr "Grįžti prie įvertinimų"
+#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/shortcodes-exercises.php:649
+msgid "Rich editor"
+msgstr "Modernesnis redaktorius"
 
-#: ../wp-plugin/js-translation.php:23 ../wp-plugin/shortcodes-exercises.php:54
-msgid "You have completed this problem at least once."
-msgstr ""
+#: ../wp-plugin/js-translation.php:22
+#: ../wp-plugin/shortcodes-exercises.php:718
+msgid "Run program"
+msgstr "Vykdyti"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Run test"
+msgstr "Vykdyti"
 
 #: ../wp-plugin/js-translation.php:24
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
-msgstr ""
+msgid "Running..."
+msgstr "Vykdoma..."
 
 #: ../wp-plugin/js-translation.php:25
-msgid "start of tests"
-msgstr "testuojama"
+msgid "Simple editor"
+msgstr "Paprastas redaktorius"
 
 #: ../wp-plugin/js-translation.php:26
-#: ../wp-plugin/shortcodes-exercises.php:696
-msgid "More actions..."
-msgstr "Daugiau veiksmų..."
-
-#: ../wp-plugin/js-translation.php:27
-msgid ""
-"Warning: unable to talk to server. Could not set 'completed' status for this "
-"problem."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:28
 msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
 msgstr "Neįvestas joks kodas -- turėtų būti jūsų geriausias bandymas."
 
-#: ../wp-plugin/js-translation.php:29
-msgid "out of"
-msgstr "iš"
-
-#: ../wp-plugin/js-translation.php:30
-msgid "Marking all messages from this student about this problem as answered."
+#: ../wp-plugin/js-translation.php:27
+msgid "The database connected but found no data."
 msgstr ""
 
+#: ../wp-plugin/js-translation.php:28
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:29
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:30 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
+msgstr "Jūs jau esate išsprendęs šį uždavinį."
+
 #: ../wp-plugin/js-translation.php:31
-msgid "Simple editor"
-msgstr "Paprastas redaktorius"
+msgid "Your message was sent."
+msgstr "Žinutė išsiųsta"
 
 #: ../wp-plugin/js-translation.php:32
-msgid "Running..."
-msgstr "Vykdoma..."
-
-#: ../wp-plugin/js-translation.php:33
-#: ../wp-plugin/shortcodes-exercises.php:664
-msgid "History"
-msgstr "Istorija"
-
-#: ../wp-plugin/js-translation.php:34
 msgid "end of main program"
 msgstr "pagrindinės programos pabaiga"
 
+#: ../wp-plugin/js-translation.php:33
+msgid "out of"
+msgstr "iš"
+
+#: ../wp-plugin/js-translation.php:34
+msgid "start of tests"
+msgstr "testuojama"
+
 #: ../wp-plugin/js-translation.php:35
-msgid "Page"
-msgstr "Puslapis"
+msgid "timed out!"
+msgstr "laikas baigėsi!"
 
 #: ../wp-plugin/plugin-hooks.php:94
 msgid "Editor"
@@ -702,18 +704,19 @@ msgid "No such problem exists."
 msgstr "Tokios užduoties nėra"
 
 #: ../wp-plugin/shortcode-mailpage.php:45
-msgid "You must log in order to view the mail page."
-msgstr ""
+#, fuzzy
+msgid "You must login to view the mail page."
+msgstr "Norint peržiūrėti savo profilį, reikia prisijungti."
 
 #: ../wp-plugin/shortcode-mailpage.php:73
 #, fuzzy, php-format
 msgid "Mail about %1$s [%3$s] for %2$s"
-msgstr "Žinutės apie %1$s naudotojui %2$s"
+msgstr "Žinutės apie %1$s [%3$s] naudotojui %2$s"
 
 #: ../wp-plugin/shortcode-mailpage.php:77
 #, fuzzy
 msgid "link to original page"
-msgstr "Originali (angliška) svetainė"
+msgstr "nuoroda į originalų puslapį"
 
 #: ../wp-plugin/shortcode-mailpage.php:82
 msgid " has completed this problem."
@@ -820,16 +823,15 @@ msgstr "Visos žinutės man"
 #: ../wp-plugin/shortcode-mailpage.php:202
 #, php-format
 msgid "View mail with one of your students? (you have %s)"
-msgstr ""
+msgstr "Peržiūrėti susirašinėjimą su vienu iš mokinių? (jūs turite %s)"
 
 #: ../wp-plugin/shortcode-mailpage.php:204
 msgid "Me"
 msgstr "Aš"
 
 #: ../wp-plugin/shortcode-mailpage.php:222
-#, fuzzy
 msgid "View mail for another problem?"
-msgstr "Peržiūrėti kitą problemą"
+msgstr "Peržiūrėti žinutes apie kitą uždavinį?"
 
 #: ../wp-plugin/shortcode-mailpage.php:231
 #: ../wp-plugin/shortcode-my-progress.php:66
@@ -837,13 +839,14 @@ msgid "Submit"
 msgstr "Siųsti"
 
 #: ../wp-plugin/shortcode-my-progress.php:9
-msgid "You must log in order to view your user page."
-msgstr ""
+#, fuzzy
+msgid "You must login to view your user page."
+msgstr "Norint peržiūrėti savo profilį, reikia prisijungti."
 
 #: ../wp-plugin/shortcode-my-progress.php:36
-#, php-format
+#, fuzzy, php-format
 msgid "View one of your students? (you have %s)"
-msgstr ""
+msgstr "Peržiūrėti susirašinėjimą su vienu iš mokinių? (jūs turite %s)"
 
 #: ../wp-plugin/shortcode-my-progress.php:38
 msgid "Show only me"
@@ -875,14 +878,14 @@ msgid "Invalid user id."
 msgstr ""
 
 #: ../wp-plugin/shortcode-my-progress.php:101
-#, fuzzy, php-format
+#, php-format
 msgid "Now viewing %s for "
-msgstr "Esate prisijungę kaip"
+msgstr "Dabar peržiūrite %s skirtą "
 
 #: ../wp-plugin/shortcode-my-progress.php:104
-#, fuzzy, php-format
+#, php-format
 msgid "Now viewing %s for all of your students"
-msgstr "Visų mokinių darbų santrauka"
+msgstr "Dabar žiūrite visų mokinių %s "
 
 #: ../wp-plugin/shortcode-my-progress.php:117
 #, php-format
@@ -897,7 +900,7 @@ msgstr "Pateiktas kodas"
 #: ../wp-plugin/shortcode-my-progress.php:130
 #, fuzzy, php-format
 msgid "Submitted code for %s"
-msgstr "Pateiktas kodas"
+msgstr "Pateiktas kodas užduočiai: %s"
 
 #: ../wp-plugin/shortcode-my-progress.php:142
 #, fuzzy
@@ -906,7 +909,7 @@ msgstr "Vėliausiai išspręsti uždaviniai"
 
 #: ../wp-plugin/shortcode-my-progress.php:221
 msgid "List of all problems"
-msgstr ""
+msgstr "Visų užduočių sąrašas"
 
 #: ../wp-plugin/shortcode-my-progress.php:222
 msgid "(with #completed)"
@@ -986,7 +989,7 @@ msgid ""
 "and what you've tried so far. Your partial solution code will be "
 "automatically included with the message.</i>"
 msgstr ""
-"Žemiau parašykite žinutę. <i>Būtinai paaiškinkite, kur/kas jums nesigavoir "
+"Žemiau parašykite žinutę. <i>Būtinai paaiškinkite, kur/kas jums nesigavo ir "
 "kokius variantus jau išbandėte. Jūsų paskutinis programos variantas bus "
 "automatiškai pridėtas.</i>"
 
@@ -1158,6 +1161,8 @@ msgstr "Filtruoti puslapius"
 #: ../wp-theme/functions.php:310
 msgid "<p>Create free account / login</p><p>to save your progress</p>"
 msgstr ""
+"<p>Registruokitės / prisijunkite,</p><p>jei norite išsaugoti užduočių "
+"sprendimus</p>"
 
 #: ../wp-theme/functions.php:329
 #, php-format
@@ -1270,7 +1275,7 @@ msgstr "Klaida: sąrašo {0} ilgis neteisingas - vietoj {1} turi būti {2}."
 
 #: ../python3jail/static/_GRADER.py:108 ../python3jail/static/_GRADER.py:110
 msgid " its value {} is correct!"
-msgstr " jo reikšmė {} yra teisinga!"
+msgstr " grąžinama reikšmė {} yra teisinga!"
 
 #: ../python3jail/static/_GRADER.py:130 ../python3jail/static/_GRADER.py:144
 msgid "Running {} &hellip;"
@@ -1294,7 +1299,9 @@ msgstr ""
 
 #: ../python3jail/static/_GRADER.py:160
 msgid "Your output is not correct."
-msgstr "Neteisingas rezultatas"
+msgstr ""
+"<span style='color:brown'>Neteisingas rezultatas</span>. <br>Toliau "
+"nebetikrinama..."
 
 #: ../python3jail/static/_GRADER.py:203
 msgid "Checking {} &hellip; "
@@ -1409,8 +1416,23 @@ msgstr "Neteisingai.. Bandykite pataisyti."
 #~ msgid "Original lesson page containing %s (new window)"
 #~ msgstr "Pradinis pamokos puslapis su %s (naujame lange)"
 
+#~ msgid "View a different problem?"
+#~ msgstr "Peržiūrėti kitą problemą"
+
 #~ msgid "Select different user?"
 #~ msgstr "Parinkti kitą naudotoją"
+
+#~ msgid "Viewing as "
+#~ msgstr "Esate prisijungę kaip"
+
+#~ msgid "Viewing summary of all your students"
+#~ msgstr "Visų mokinių darbų santrauka"
+
+#~ msgid "Latest Problems Completed"
+#~ msgstr "Vėliausiai išspręsti uždaviniai"
+
+#~ msgid "Submitted Code"
+#~ msgstr "Pateiktas kodas"
 
 #~ msgid "Overview"
 #~ msgstr "Apžvalga"

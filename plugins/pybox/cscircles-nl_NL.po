@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-28 14:22-0400\n"
-"PO-Revision-Date: 2013-02-14 12:43+0000\n"
+"POT-Creation-Date: 2014-10-03 19:46-0400\n"
+"PO-Revision-Date: 2014-10-03 19:44-0400\n"
 "Last-Translator: Ries Kock <rieskock@xs4all.nl>\n"
 "Language-Team: Nederlands <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -442,108 +442,95 @@ msgstr ""
 "mogelijk was. Ajax informatie: "
 
 #: ../wp-plugin/js-translation.php:6
-msgid "Run test"
-msgstr "Run de test"
-
-#: ../wp-plugin/js-translation.php:7
-msgid "Error: could not connect to database."
-msgstr "Fout: kan geen verbinding maken met de database."
-
-#: ../wp-plugin/js-translation.php:8
-msgid "Your message was sent."
-msgstr "Je bericht is verzonden"
-
-#: ../wp-plugin/js-translation.php:9
 msgid "Displaying {from} to {to} of {total} items"
 msgstr "In beeld: {from} tot en met {to} van {total} items"
 
-#: ../wp-plugin/js-translation.php:10
-#: ../wp-plugin/shortcodes-exercises.php:718
-msgid "Run program"
-msgstr "Run programma"
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Please enter a non-empty message."
-msgstr "Type een bericht is."
-
-#: ../wp-plugin/js-translation.php:12
-msgid "The database connected but found no data."
-msgstr "Verbonden met database maar geen data gevonden"
-
-#: ../wp-plugin/js-translation.php:13
-msgid "timed out!"
-msgstr "uit de tijd gelopen"
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Hide input box"
-msgstr "Verberg het invoer-veld"
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Hide history"
-msgstr "Historie verbergen"
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Enter test input"
-msgstr "Voer test invoer in"
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter test statements"
-msgstr "Voer test opdrachten in "
-
-#: ../wp-plugin/js-translation.php:18
-#: ../wp-plugin/shortcodes-exercises.php:649
-msgid "Rich editor"
-msgstr "Uitgebreide editor"
-
-#: ../wp-plugin/js-translation.php:19
+#: ../wp-plugin/js-translation.php:7
 msgid "Enter input"
 msgstr "Type invoer"
 
-#: ../wp-plugin/js-translation.php:20
+#: ../wp-plugin/js-translation.php:8
+msgid "Enter test input"
+msgstr "Voer test invoer in"
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Enter test statements"
+msgstr "Voer test opdrachten in "
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Error: could not connect to database."
+msgstr "Fout: kan geen verbinding maken met de database."
+
+#: ../wp-plugin/js-translation.php:11
+msgid "Go back to grading"
+msgstr "Ga terug naar nakijkprogramma"
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Hide history"
+msgstr "Historie verbergen"
+
+#: ../wp-plugin/js-translation.php:13
+msgid "Hide input box"
+msgstr "Verberg het invoer-veld"
+
+#: ../wp-plugin/js-translation.php:14
+#: ../wp-plugin/shortcodes-exercises.php:664
+msgid "History"
+msgstr "Historie"
+
+#: ../wp-plugin/js-translation.php:15
 msgid "Incorrect, try again."
 msgstr "Niet correct, probeer het nog een keer."
 
-#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/js-translation.php:16
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+"Alle berichten van deze student over dit probleem worden gemarkeerd als "
+"beantwoord."
+
+#: ../wp-plugin/js-translation.php:17
+#: ../wp-plugin/shortcodes-exercises.php:696
+msgid "More actions..."
+msgstr "Meer acties..."
+
+#: ../wp-plugin/js-translation.php:18
+msgid "Page"
+msgstr "Pagina"
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Please enter a non-empty message."
+msgstr "Type een bericht is."
+
+#: ../wp-plugin/js-translation.php:20
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
 "the user menu, in the top right corner of the page)."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:22
-msgid "Go back to grading"
-msgstr "Ga terug naar nakijkprogramma"
+#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/shortcodes-exercises.php:649
+msgid "Rich editor"
+msgstr "Uitgebreide editor"
 
-#: ../wp-plugin/js-translation.php:23 ../wp-plugin/shortcodes-exercises.php:54
-msgid "You have completed this problem at least once."
-msgstr "Je hebt deze opgave tenminste één keer afgerond."
+#: ../wp-plugin/js-translation.php:22
+#: ../wp-plugin/shortcodes-exercises.php:718
+msgid "Run program"
+msgstr "Run programma"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Run test"
+msgstr "Run de test"
 
 #: ../wp-plugin/js-translation.php:24
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
-msgstr ""
-"Het verzoek 'stuur bericht' kan niet uitgevoerd worden. Wellicht is de "
-"internetverbinding verbroken."
+msgid "Running..."
+msgstr "Bezig met uitvoeren..."
 
 #: ../wp-plugin/js-translation.php:25
-msgid "start of tests"
-msgstr "begin van het testen"
+msgid "Simple editor"
+msgstr "Eenvoudige editor"
 
 #: ../wp-plugin/js-translation.php:26
-#: ../wp-plugin/shortcodes-exercises.php:696
-msgid "More actions..."
-msgstr "Meer acties..."
-
-#: ../wp-plugin/js-translation.php:27
-msgid ""
-"Warning: unable to talk to server. Could not set 'completed' status for this "
-"problem."
-msgstr ""
-"Let op: niet in staat om met de server te communiceren. De opgave kan nu "
-"niet op 'afgehandeld' gezet worden."
-
-#: ../wp-plugin/js-translation.php:28
 msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
@@ -551,36 +538,49 @@ msgstr ""
 "De code-invoer is leeg. Deze zou je beste deeloplossing tot nu toe moeten "
 "bevatten."
 
-#: ../wp-plugin/js-translation.php:29
-msgid "out of"
-msgstr "van"
+#: ../wp-plugin/js-translation.php:27
+msgid "The database connected but found no data."
+msgstr "Verbonden met database maar geen data gevonden"
 
-#: ../wp-plugin/js-translation.php:30
-msgid "Marking all messages from this student about this problem as answered."
+#: ../wp-plugin/js-translation.php:28
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
 msgstr ""
-"Alle berichten van deze student over dit probleem worden gemarkeerd als "
-"beantwoord."
+"Het verzoek 'stuur bericht' kan niet uitgevoerd worden. Wellicht is de "
+"internetverbinding verbroken."
+
+#: ../wp-plugin/js-translation.php:29
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr ""
+"Let op: niet in staat om met de server te communiceren. De opgave kan nu "
+"niet op 'afgehandeld' gezet worden."
+
+#: ../wp-plugin/js-translation.php:30 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
+msgstr "Je hebt deze opgave tenminste één keer afgerond."
 
 #: ../wp-plugin/js-translation.php:31
-msgid "Simple editor"
-msgstr "Eenvoudige editor"
+msgid "Your message was sent."
+msgstr "Je bericht is verzonden"
 
 #: ../wp-plugin/js-translation.php:32
-msgid "Running..."
-msgstr "Bezig met uitvoeren..."
-
-#: ../wp-plugin/js-translation.php:33
-#: ../wp-plugin/shortcodes-exercises.php:664
-msgid "History"
-msgstr "Historie"
-
-#: ../wp-plugin/js-translation.php:34
 msgid "end of main program"
 msgstr "einde van het hoofd programma"
 
+#: ../wp-plugin/js-translation.php:33
+msgid "out of"
+msgstr "van"
+
+#: ../wp-plugin/js-translation.php:34
+msgid "start of tests"
+msgstr "begin van het testen"
+
 #: ../wp-plugin/js-translation.php:35
-msgid "Page"
-msgstr "Pagina"
+msgid "timed out!"
+msgstr "uit de tijd gelopen"
 
 #: ../wp-plugin/plugin-hooks.php:94
 msgid "Editor"
@@ -723,7 +723,7 @@ msgid "No such problem exists."
 msgstr "Deze opgave bestaat niet."
 
 #: ../wp-plugin/shortcode-mailpage.php:45
-msgid "You must log in order to view the mail page."
+msgid "You must login to view the mail page."
 msgstr "Je moet inloggen om de mail-pagina te mogen zien."
 
 #: ../wp-plugin/shortcode-mailpage.php:73
@@ -857,7 +857,7 @@ msgid "Submit"
 msgstr "Inzenden"
 
 #: ../wp-plugin/shortcode-my-progress.php:9
-msgid "You must log in order to view your user page."
+msgid "You must login to view your user page."
 msgstr "Je moet inloggen om de gebruikerspagina te kunnen bekijken."
 
 #: ../wp-plugin/shortcode-my-progress.php:36

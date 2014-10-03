@@ -6,7 +6,7 @@ add_shortcode('pyUser', 'pyUser');
 
 function pyUser($options, $content) {
   if ( !is_user_logged_in() ) 
-    return __t("You must log in order to view your user page.");
+    return __t("You must login to view your user page.");
   
   global $wpdb;
   

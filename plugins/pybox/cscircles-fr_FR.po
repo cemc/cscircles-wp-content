@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-28 14:22-0400\n"
-"PO-Revision-Date: 2014-09-28 14:21-0400\n"
+"POT-Creation-Date: 2014-10-03 19:46-0400\n"
+"PO-Revision-Date: 2014-10-03 19:41-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -445,68 +445,65 @@ msgstr ""
 "possible. Informations ajax : "
 
 #: ../wp-plugin/js-translation.php:6
-msgid "Run test"
-msgstr "Exécuter le test"
-
-#: ../wp-plugin/js-translation.php:7
-msgid "Error: could not connect to database."
-msgstr "Erreur: ne pouvait pas connecter a base de données."
-
-#: ../wp-plugin/js-translation.php:8
-msgid "Your message was sent."
-msgstr "Votre message a été envoyé."
-
-#: ../wp-plugin/js-translation.php:9
 msgid "Displaying {from} to {to} of {total} items"
 msgstr "Affichage de {from} à {to} de {total} articles"
 
-#: ../wp-plugin/js-translation.php:10
-#: ../wp-plugin/shortcodes-exercises.php:718
-msgid "Run program"
-msgstr "Exécuter le programme"
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Please enter a non-empty message."
-msgstr "S'il vous plaît entrer un message non vide."
-
-#: ../wp-plugin/js-translation.php:12
-msgid "The database connected but found no data."
-msgstr "Base de données connectée, mais rien trouvé."
-
-#: ../wp-plugin/js-translation.php:13
-msgid "timed out!"
-msgstr "délai dépassé !"
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Hide input box"
-msgstr "Masquer le champ d'entrée"
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Hide history"
-msgstr "Cacher l'historique"
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Enter test input"
-msgstr "Tape entrée de test"
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter test statements"
-msgstr "Entrez instructions de test"
-
-#: ../wp-plugin/js-translation.php:18
-#: ../wp-plugin/shortcodes-exercises.php:649
-msgid "Rich editor"
-msgstr "Éditeur riche"
-
-#: ../wp-plugin/js-translation.php:19
+#: ../wp-plugin/js-translation.php:7
 msgid "Enter input"
 msgstr "Tape entrée"
 
-#: ../wp-plugin/js-translation.php:20
+#: ../wp-plugin/js-translation.php:8
+msgid "Enter test input"
+msgstr "Tape entrée de test"
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Enter test statements"
+msgstr "Entrez instructions de test"
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Error: could not connect to database."
+msgstr "Erreur: ne pouvait pas connecter a base de données."
+
+#: ../wp-plugin/js-translation.php:11
+msgid "Go back to grading"
+msgstr "Retour à classement"
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Hide history"
+msgstr "Cacher l'historique"
+
+#: ../wp-plugin/js-translation.php:13
+msgid "Hide input box"
+msgstr "Masquer le champ d'entrée"
+
+#: ../wp-plugin/js-translation.php:14
+#: ../wp-plugin/shortcodes-exercises.php:664
+msgid "History"
+msgstr "Historique"
+
+#: ../wp-plugin/js-translation.php:15
 msgid "Incorrect, try again."
 msgstr "Incorrecte, essayez à nouveau."
 
-#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/js-translation.php:16
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+"Tous messages de cet étudiant à propos de ce problème sera marqué répondu."
+
+#: ../wp-plugin/js-translation.php:17
+#: ../wp-plugin/shortcodes-exercises.php:696
+msgid "More actions..."
+msgstr "Plus d'actions..."
+
+#: ../wp-plugin/js-translation.php:18
+msgid "Page"
+msgstr "Page"
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Please enter a non-empty message."
+msgstr "S'il vous plaît entrer un message non vide."
+
+#: ../wp-plugin/js-translation.php:20
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
@@ -517,40 +514,29 @@ msgstr ""
 "sur votre profil (disponible dans le menu de l'utilisateur, dans le coin "
 "supérieur droit de la page)."
 
-#: ../wp-plugin/js-translation.php:22
-msgid "Go back to grading"
-msgstr "Retour à classement"
+#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/shortcodes-exercises.php:649
+msgid "Rich editor"
+msgstr "Éditeur riche"
 
-#: ../wp-plugin/js-translation.php:23 ../wp-plugin/shortcodes-exercises.php:54
-msgid "You have completed this problem at least once."
-msgstr "Vous avez completé ce problème au moins une fois."
+#: ../wp-plugin/js-translation.php:22
+#: ../wp-plugin/shortcodes-exercises.php:718
+msgid "Run program"
+msgstr "Exécuter le programme"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Run test"
+msgstr "Exécuter le test"
 
 #: ../wp-plugin/js-translation.php:24
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
-msgstr ""
-"Impossible de traiter demande d'envoyage. Vous pourriez avoir perdu votre "
-"connexion à Internet."
+msgid "Running..."
+msgstr "Exécutant..."
 
 #: ../wp-plugin/js-translation.php:25
-msgid "start of tests"
-msgstr "démarrer des tests"
+msgid "Simple editor"
+msgstr "Editeur simple"
 
 #: ../wp-plugin/js-translation.php:26
-#: ../wp-plugin/shortcodes-exercises.php:696
-msgid "More actions..."
-msgstr "Plus d'actions..."
-
-#: ../wp-plugin/js-translation.php:27
-msgid ""
-"Warning: unable to talk to server. Could not set 'completed' status for this "
-"problem."
-msgstr ""
-"Avertissement: impossible de dialoguer avec un serveur. Impossible de "
-"définir «complété» le statut de ce problème."
-
-#: ../wp-plugin/js-translation.php:28
 msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
@@ -558,35 +544,49 @@ msgstr ""
 "La boîte de code est vide. Il devrait plutôt contenir votre meilleure "
 "solution partielle à ce jour."
 
-#: ../wp-plugin/js-translation.php:29
-msgid "out of"
-msgstr "sur"
+#: ../wp-plugin/js-translation.php:27
+msgid "The database connected but found no data."
+msgstr "Base de données connectée, mais rien trouvé."
 
-#: ../wp-plugin/js-translation.php:30
-msgid "Marking all messages from this student about this problem as answered."
+#: ../wp-plugin/js-translation.php:28
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
 msgstr ""
-"Tous messages de cet étudiant à propos de ce problème sera marqué répondu."
+"Impossible de traiter demande d'envoyage. Vous pourriez avoir perdu votre "
+"connexion à Internet."
+
+#: ../wp-plugin/js-translation.php:29
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr ""
+"Avertissement: impossible de dialoguer avec un serveur. Impossible de "
+"définir «complété» le statut de ce problème."
+
+#: ../wp-plugin/js-translation.php:30 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
+msgstr "Vous avez completé ce problème au moins une fois."
 
 #: ../wp-plugin/js-translation.php:31
-msgid "Simple editor"
-msgstr "Editeur simple"
+msgid "Your message was sent."
+msgstr "Votre message a été envoyé."
 
 #: ../wp-plugin/js-translation.php:32
-msgid "Running..."
-msgstr "Exécutant..."
-
-#: ../wp-plugin/js-translation.php:33
-#: ../wp-plugin/shortcodes-exercises.php:664
-msgid "History"
-msgstr "Historique"
-
-#: ../wp-plugin/js-translation.php:34
 msgid "end of main program"
 msgstr "fin du programme principal"
 
+#: ../wp-plugin/js-translation.php:33
+msgid "out of"
+msgstr "sur"
+
+#: ../wp-plugin/js-translation.php:34
+msgid "start of tests"
+msgstr "démarrer des tests"
+
 #: ../wp-plugin/js-translation.php:35
-msgid "Page"
-msgstr "Page"
+msgid "timed out!"
+msgstr "délai dépassé !"
 
 #: ../wp-plugin/plugin-hooks.php:94
 msgid "Editor"
@@ -729,7 +729,7 @@ msgid "No such problem exists."
 msgstr "Aucun tel problème existe."
 
 #: ../wp-plugin/shortcode-mailpage.php:45
-msgid "You must log in order to view the mail page."
+msgid "You must login to view the mail page."
 msgstr "Vous devez vous connecter pour visualiser cette page."
 
 #: ../wp-plugin/shortcode-mailpage.php:73
@@ -862,7 +862,7 @@ msgid "Submit"
 msgstr "Soumettre"
 
 #: ../wp-plugin/shortcode-my-progress.php:9
-msgid "You must log in order to view your user page."
+msgid "You must login to view your user page."
 msgstr "Vous devez vous connecter pour voir votre page utilisateur."
 
 #: ../wp-plugin/shortcode-my-progress.php:36

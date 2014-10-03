@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-28 14:22-0400\n"
+"POT-Creation-Date: 2014-10-03 19:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -429,136 +429,136 @@ msgid ""
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:6
-msgid "Run test"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:7
-msgid "Error: could not connect to database."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:8
-msgid "Your message was sent."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:9
 msgid "Displaying {from} to {to} of {total} items"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:10
-#: ../wp-plugin/shortcodes-exercises.php:718
-msgid "Run program"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:11
-msgid "Please enter a non-empty message."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:12
-msgid "The database connected but found no data."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:13
-msgid "timed out!"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:14
-msgid "Hide input box"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:15
-msgid "Hide history"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:16
-msgid "Enter test input"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:17
-msgid "Enter test statements"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:18
-#: ../wp-plugin/shortcodes-exercises.php:649
-msgid "Rich editor"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:19
+#: ../wp-plugin/js-translation.php:7
 msgid "Enter input"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:20
+#: ../wp-plugin/js-translation.php:8
+msgid "Enter test input"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Enter test statements"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Error: could not connect to database."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:11
+msgid "Go back to grading"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Hide history"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:13
+msgid "Hide input box"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:14
+#: ../wp-plugin/shortcodes-exercises.php:664
+msgid "History"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:15
 msgid "Incorrect, try again."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/js-translation.php:16
+msgid "Marking all messages from this student about this problem as answered."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:17
+#: ../wp-plugin/shortcodes-exercises.php:696
+msgid "More actions..."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:18
+msgid "Page"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Please enter a non-empty message."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:20
 msgid ""
 "Please select a valid recipient for the message. If you are working with a "
 "teacher or friend, select them as a guru on your Profile (available within "
 "the user menu, in the top right corner of the page)."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:22
-msgid "Go back to grading"
+#: ../wp-plugin/js-translation.php:21
+#: ../wp-plugin/shortcodes-exercises.php:649
+msgid "Rich editor"
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:23 ../wp-plugin/shortcodes-exercises.php:54
-msgid "You have completed this problem at least once."
+#: ../wp-plugin/js-translation.php:22
+#: ../wp-plugin/shortcodes-exercises.php:718
+msgid "Run program"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Run test"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:24
-msgid ""
-"Unable to process 'send message' request. You might have lost your internet "
-"connection."
+msgid "Running..."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:25
-msgid "start of tests"
+msgid "Simple editor"
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:26
-#: ../wp-plugin/shortcodes-exercises.php:696
-msgid "More actions..."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:27
-msgid ""
-"Warning: unable to talk to server. Could not set 'completed' status for this "
-"problem."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:28
 msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:29
-msgid "out of"
+#: ../wp-plugin/js-translation.php:27
+msgid "The database connected but found no data."
 msgstr ""
 
-#: ../wp-plugin/js-translation.php:30
-msgid "Marking all messages from this student about this problem as answered."
+#: ../wp-plugin/js-translation.php:28
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:29
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:30 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:31
-msgid "Simple editor"
+msgid "Your message was sent."
 msgstr ""
 
 #: ../wp-plugin/js-translation.php:32
-msgid "Running..."
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:33
-#: ../wp-plugin/shortcodes-exercises.php:664
-msgid "History"
-msgstr ""
-
-#: ../wp-plugin/js-translation.php:34
 msgid "end of main program"
 msgstr ""
 
+#: ../wp-plugin/js-translation.php:33
+msgid "out of"
+msgstr ""
+
+#: ../wp-plugin/js-translation.php:34
+msgid "start of tests"
+msgstr ""
+
 #: ../wp-plugin/js-translation.php:35
-msgid "Page"
+msgid "timed out!"
 msgstr ""
 
 #: ../wp-plugin/plugin-hooks.php:94
@@ -679,7 +679,7 @@ msgid "No such problem exists."
 msgstr ""
 
 #: ../wp-plugin/shortcode-mailpage.php:45
-msgid "You must log in order to view the mail page."
+msgid "You must login to view the mail page."
 msgstr ""
 
 #: ../wp-plugin/shortcode-mailpage.php:73
@@ -812,7 +812,7 @@ msgid "Submit"
 msgstr ""
 
 #: ../wp-plugin/shortcode-my-progress.php:9
-msgid "You must log in order to view your user page."
+msgid "You must login to view your user page."
 msgstr ""
 
 #: ../wp-plugin/shortcode-my-progress.php:36

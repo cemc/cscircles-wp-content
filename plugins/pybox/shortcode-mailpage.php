@@ -42,7 +42,7 @@ function validate() {
 
 function pbmailpage($options, $content) {
   if ( !is_user_logged_in() ) 
-    return __t("You must log in order to view the mail page.");
+    return __t("You must login to view the mail page.");
   
   $v = validate();
   
