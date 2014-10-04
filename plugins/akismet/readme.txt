@@ -2,7 +2,7 @@
 Contributors: matt, ryan, andy, mdawaffe, tellyworth, josephscott, lessbloat, eoigal, cfinke, automattic
 Tags: akismet, comments, spam
 Requires at least: 3.1
-Tested up to: 3.9.2
+Tested up to: 4.0
 Stable tag: 3.0.2
 License: GPLv2 or later
 

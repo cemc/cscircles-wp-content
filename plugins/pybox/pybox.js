@@ -397,6 +397,7 @@ $(".hintboxlink").live("click", function(e) {
 $(".pbform").live("submit", pbFormSubmit);
 $(".selectmore").live("change", pbSelectChange);
 $('.entry-content a').live('click', stayHere);
+$('.hintbox').live('click', stayHere);
 $('.hintbox a').live('click', stayHere);
 $('.pyflexClose').live('click', function (e) {historyClick($(e.target).closest('.pybox').find('input[name="pyId"]').val(),"");});
 $('.flexigrid pre').live('dblclick', function (e) {
