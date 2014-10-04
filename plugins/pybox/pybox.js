@@ -382,11 +382,15 @@ hflex = {}; //history flexigrid instances
 hflexhelp = {};
 
 $(".hintlink").live("click", function(e) {
-    n = $(this).attr("id").substring(8);
-    o = $("#hintbox" + n);
-    o.insertBefore('#page');
-    o.css({"display":"block","top": e.pageY,"left": e.pageX});
-    o.draggable({ cancel: ".hintboxlink" });
+  n = $(this).attr("id").substring(8);
+  o = $("#hintbox" + n);
+  if ($("#durn").length==0)
+    $("body").prepend("<div id='durn' style='max-height:0px'></div>");
+  o.appendTo($('#durn'));
+  o.css({"position":"relative"}); /* absolute gave ugly firefox bug! */
+  o.css({"display":"block"});
+  o.css({"top": e.pageY,"left": e.pageX});
+  o.draggable({ cancel: ".hintboxlink" });
 });
 
 $(".hintboxlink").live("click", function(e) {

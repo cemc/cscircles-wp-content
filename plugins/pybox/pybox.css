@@ -402,7 +402,6 @@ table.pywarn {
     box-shadow: 5px 5px 5px #444;
     cursor: move;
     z-index:100000; /* on top of resizable-handles */
-    position: absolute;
 }
 
 .hintbox:hover {
