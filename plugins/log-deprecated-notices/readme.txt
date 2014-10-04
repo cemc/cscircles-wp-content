@@ -2,8 +2,8 @@
 Contributors: nacin
 Tags: deprecated, logging, admin, WP_DEBUG, E_NOTICE, developer
 Requires at least: 3.0
-Tested up to: 3.6
-Stable tag: 0.2
+Tested up to: 4.1-alpha
+Stable tag: 0.3
 
 Logs the usage of deprecated files, functions, and function arguments, and identifies where the deprecated functionality is being used.
 
@@ -57,6 +57,9 @@ Want to add something here? I'm all ears. plugins at [andrewnacin.com](http://an
 I will prioritize these tasks based on feedback, so let me know what you'd like to see.
 
 == Upgrade Notice ==
+
+= 0.3 =
+Updated to handle a new deprecated message in WordPress 4.0.
 
 = 0.2 =
 Initial compatibility for WordPress 3.3.

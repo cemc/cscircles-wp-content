@@ -295,17 +295,19 @@ function wpcf7_special_mail_tag( $output, $name, $html ) {
 		return $output;
 	}
 
+
         if ( 'user_info' == $name ) {
           if ( is_user_logged_in() ) {
             $output = 'logged in';
             $user = wp_get_current_user();
-                $output = '#' . $user->ID . ' ' . $user->user_login
-                        . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
-                        . " " . $user->display_name
-                  . " " . $user->user_email;
+            $output = '#' . $user->ID . ' ' . $user->user_login
+              . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
+              . " " . $user->display_name
+              . " " . $user->user_email;
           } else $output = 'User not logged in.';
           return $output;
         }
+
 
 	if ( '_remote_ip' == $name ) {
 		if ( $remote_ip = $submission->get_meta( 'remote_ip' ) ) {

@@ -1,12 +1,12 @@
 <?php
 /*
-Plugin Name: Google Analytics for WordPress
-Plugin URI: http://yoast.com/wordpress/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v420
-Description: This plugin makes it simple to add Google Analytics to your WordPress blog, adding lots of features, eg. custom variables and automatic clickout and download tracking.
-Author: Joost de Valk
-Version: 4.3.5
-Requires at least: 3.0
-Author URI: http://yoast.com/
+Plugin Name: Google Analytics by Yoast
+Plugin URI: https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wordpress&utm_medium=plugin&utm_campaign=wpgaplugin&utm_content=v504
+Description: This plugin makes it simple to add Google Analytics to your WordPress blog, adding lots of features, eg. error page, search result and automatic clickout and download tracking.
+Author: Team Yoast
+Version: 5.0.6
+Requires at least: 3.8
+Author URI: https://yoast.com/
 License: GPL v3
 Text Domain: google-analytics-for-wordpress
 Domain Path: /languages
@@ -30,30 +30,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // This plugin was originally based on Rich Boakes' Analytics plugin: http://boakes.org/analytics, but has since been rewritten and refactored multiple times.
 
-define( "GAWP_VERSION", '4.3.5' );
+define( 'GAWP_VERSION', '5.0.6' );
 
-define( "GAWP_URL", trailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'GAWP_FILE', __FILE__ );
 
-define( "GAWP_PATH", plugin_dir_path( __FILE__ ) );
+define( 'GAWP_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
-if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+if ( ! class_exists( 'Yoast_GA_Options' ) ) {
+	require_once 'includes/class-options.php';
+}
 
-	require_once plugin_dir_path( __FILE__ ) . 'admin/ajax.php';
-
-} else if ( defined('DOING_CRON') && DOING_CRON ) {
-
-	$options = get_option( 'Yoast_Google_Analytics' );
-	if ( isset( $options['yoast_tracking'] ) && $options['yoast_tracking'] )
-		require_once GAWP_PATH . 'inc/class-tracking.php';
+// Only require the needed classes
+if ( is_admin() ) {
+	require_once 'admin/class-admin.php';
 
 } else {
-	load_plugin_textdomain( 'google-analytics-for-wordpress', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-
-	require_once GAWP_PATH . 'inc/functions.php';
-
-	if ( is_admin() ) {
-		require_once GAWP_PATH . 'admin/class-admin.php';
-	} else {
-		require_once GAWP_PATH . 'frontend/class-frontend.php';
-	}
+	require_once 'frontend/class-frontend.php';
 }

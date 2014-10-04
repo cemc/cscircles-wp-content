@@ -6,7 +6,7 @@
  * Plugin Name: Log Deprecated Notices
  * Plugin URI: http://wordpress.org/extend/plugins/log-deprecated-notices/
  * Description: Logs the usage of deprecated files, functions, hooks, and function arguments, offers the alternative if available, and identifies where the deprecated functionality is being used. WP_DEBUG not required (but its general use is strongly recommended).
- * Version: 0.2
+ * Version: 0.3
  * Author: Andrew Nacin
  * Author URI: http://nacin.com/
  * License: GPLv2 or later
@@ -283,6 +283,10 @@ class Deprecated_Log {
 			case 'define' :
 				if ( 'ms_subdomain_constants' == $backtrace[4]['function'] ) {
 					$deprecated = 'VHOST';
+					$this->log( 'constant', compact( 'deprecated', 'message', 'menu', 'version' ) );
+					return;
+				} elseif ( false !== strpos( $message, 'WPLANG' ) ) {
+					$deprecated = 'WPLANG';
 					$this->log( 'constant', compact( 'deprecated', 'message', 'menu', 'version' ) );
 					return;
 				}
