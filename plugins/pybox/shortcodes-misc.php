@@ -69,7 +69,7 @@ function list_pybox_pages($options, $content) {
   global $polylang;
   foreach ($out as $page) {
 
-    if ($polylang->get_translation('post', $page->ID, 'en') == $page->ID) { //english only
+    if ($polylang->model->get_translation('post', $page->ID, 'en') == $page->ID) { //english only
 
       $links[] = array("url"=>get_page_link( $page->ID), "title"=>$page->post_title);
       if (isSoft($_GET, 'export', 'Y')) {
