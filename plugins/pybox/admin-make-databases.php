@@ -21,7 +21,7 @@ on the lesson slugs; contact us for help if needed.)</div>";
 
   foreach ($out as $page) {
     $s = $page->post_title;
-    $m = preg_match('/^([0-9]+)([A-Z]?)\: (.*)$/', $s, $matches);
+    $m = preg_match('/^([0-9]+)([A-Za-z]?)\: (.*)$/', $s, $matches);
     if (class_exists('PLL_Base')) {
       global $polylang;
       $lang = $polylang->get_post_language($page->ID);
