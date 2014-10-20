@@ -235,6 +235,7 @@ function reselector(&$students, $cstudents) {
 function niceFlex($id, $title, $fileSuffix, $functionName, $dbparams) {
   
   include_once("db-$fileSuffix.php");
+  $dbparams["lang"] = currLang4();
   $url = UDBPREFIX . $fileSuffix . ".php";
   $query_result = call_user_func($functionName," limit 0,0", '', '', $dbparams);
   if (is_string($query_result))
