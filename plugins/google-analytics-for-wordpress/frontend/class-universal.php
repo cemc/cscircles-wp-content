@@ -29,11 +29,14 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 		 *
 		 * @todo, add the tracking code and remove this test output
 		 */
-		public function tracking() {
+		public function tracking( $return_array = false ) {
 			global $wp_query;
 
 			if ( $this->do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
+
+				// Running action for adding possible code
+				do_action( 'yst_tracking' );
 
 				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
@@ -46,19 +49,19 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				}
 
 				$ua_code = $this->get_tracking_code();
-				if ( is_null( $ua_code ) ) {
+				if ( is_null( $ua_code ) && $return_array == false ) {
 					return;
 				}
 
 				// Set tracking code here
 				if ( ! empty( $ua_code ) ) {
-					if ( $this->options['add_allow_linker'] && ! $this->options['allowanchor'] ) {
+					if ( $this->options['add_allow_linker'] && ! $this->options['allow_anchor'] ) {
 						$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowLinker': true}";
 					} else {
-						if ( $this->options['allowanchor'] && ! $this->options['add_allow_linker'] ) {
+						if ( $this->options['allow_anchor'] && ! $this->options['add_allow_linker'] ) {
 							$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true}";
 						} else {
-							if ( $this->options['allowanchor'] && $this->options['add_allow_linker'] ) {
+							if ( $this->options['allow_anchor'] && $this->options['add_allow_linker'] ) {
 								$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "', {'allowAnchor': true, 'allowLinker': true}";
 							} else {
 								$gaq_push[] = "'create', '" . $ua_code . "', '" . $domain . "'";
@@ -73,7 +76,7 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 					// Add custom code to the view
 					$gaq_push[] = array(
 						'type'  => 'custom_code',
-						'value' => $this->options['custom_code'],
+						'value' => stripslashes( $this->options['custom_code'] ),
 					);
 				}
 
@@ -119,6 +122,10 @@ if ( ! class_exists( 'Yoast_GA_Universal' ) ) {
 				 *
 				 * @api array $gaq_push
 				 */
+				if ( true == $return_array ) {
+					return $gaq_push;
+				}
+
 				$gaq_push = apply_filters( 'yoast-ga-push-array-universal', $gaq_push );
 
 				$ga_settings = $this->options; // Assign the settings to the javascript include view

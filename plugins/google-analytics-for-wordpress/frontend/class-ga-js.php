@@ -27,13 +27,16 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 		/**
 		 * Function to output the GA Tracking code in the wp_head()
 		 *
-		 * @todo, add the tracking code and remove this test output
+		 * @param bool $return_array
 		 */
-		public function tracking() {
+		public function tracking( $return_array = false ) {
 			global $wp_query;
 
 			if ( parent::do_tracking() && ! is_preview() ) {
 				$gaq_push = array();
+
+				// Running action for adding possible code
+				do_action( 'yst_tracking' );
 
 				if ( isset( $this->options['subdomain_tracking'] ) && $this->options['subdomain_tracking'] != '' ) {
 					$domain = $this->options['subdomain_tracking'];
@@ -46,7 +49,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				$ua_code = $this->get_tracking_code();
-				if ( is_null( $ua_code ) ) {
+				if ( is_null( $ua_code ) && $return_array == false ) {
 					return;
 				}
 
@@ -56,7 +59,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					$gaq_push[] = "'_setDomainName', '" . $domain . "'";
 				}
 
-				if ( $this->options['allowanchor'] ) {
+				if ( isset( $this->options['allowanchor'] ) && $this->options['allowanchor'] ) {
 					$gaq_push[] = "'_setAllowAnchor', true";
 				}
 
@@ -73,7 +76,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 					// Add custom code to the view
 					$gaq_push[] = array(
 						'type'  => 'custom_code',
-						'value' => $this->options['custom_code'],
+						'value' => stripslashes( $this->options['custom_code'] ),
 					);
 				}
 
@@ -87,7 +90,7 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				}
 
 				if ( is_404() ) {
-					$gaq_push[] = "'_trackPageview,'/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
+					$gaq_push[] = "'_trackPageview','/404.html?page=' + document.location.pathname + document.location.search + '&from=' + document.referrer";
 				} else {
 					if ( $wp_query->is_search ) {
 						$pushstr = "'_trackPageview','/?s=";
@@ -114,9 +117,14 @@ if ( ! class_exists( 'Yoast_GA_JS' ) ) {
 				 *
 				 * @api array $gaq_push
 				 */
+				if ( true == $return_array ) {
+					return $gaq_push;
+				}
+
 				$gaq_push = apply_filters( 'yoast-ga-push-array-ga-js', $gaq_push );
 
 				$ga_settings = $this->options; // Assign the settings to the javascript include view
+
 
 				// Include the tracking view
 				if ( $this->options['debug_mode'] == 1 ) {
