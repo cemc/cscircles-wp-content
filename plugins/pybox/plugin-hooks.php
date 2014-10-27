@@ -39,6 +39,7 @@ function pyBoxHead() {
   echo sprintf("var MESSAGEURL = '%s';\n", UMESSAGE);
   echo sprintf("var MAILURL = '%s';\n", cscurl('mail'));
   echo sprintf("var DEFAULTTIMEOUTMS = '%s';\n", (WALLFACTOR*1 + WALLBUFFER)*1000);
+  echo sprintf("var PB_LANG4 = '%s';\n", currLang4());
 
   echo "</script>\n";
 

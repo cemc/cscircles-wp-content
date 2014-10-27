@@ -176,7 +176,7 @@ function mailReply(id, slug) {
 	noreplyval = noreply.checked;
     var thedata = {"source":2,"id":id,"slug":slug,
 		   "message":$('#mailform textarea').val(),
-		   "noreply":noreplyval};
+		   "noreply":noreplyval,"lang":PB_LANG4};
 
     var r = null;
     $('#mailform .recipient').each(function(i, item) {r = $(item);});
