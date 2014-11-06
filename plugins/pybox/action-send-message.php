@@ -4,7 +4,7 @@ require_once("include-to-load-wp.php");
 
 function send($problem_info, $from, $to, $student, $slug, $body, $noreply) {
 
-  global $wpdb, $current_user;
+  global $wpdb, $current_user, $lang;
 
   $unanswered = (getUserID() == $student) ? 1 : 0;
 

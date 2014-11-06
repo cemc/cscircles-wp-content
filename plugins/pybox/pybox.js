@@ -162,7 +162,7 @@ function sendMessage(id, slug) {
 	$.ajax({
 	    type: "POST",
 	    url : MESSAGEURL,
-	    data: {"source":1,"slug":slug,"recipient":recipient,"message":message,"code":code},
+    	    data: {"source":1,"slug":slug,"recipient":recipient,"message":message,"code":code,"lang":PB_LANG4},
 	    error: function() {alert(__t("Unable to process 'send message' request. You might have lost your internet connection."));}
 	});
 	alert(__t("Your message was sent."));
