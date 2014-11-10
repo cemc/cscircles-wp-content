@@ -7,7 +7,10 @@ define('DEVELOPMENT_LANGUAGES', serialize(array('nl', 'lt')));
 
 // user id of cscircles assistant for each language, defaults to dave/troy/sandy (0)
 // 2 should change
-define('CSCIRCLES_ASST_ID_MAP', serialize(array('de' => 11351, 'nl' => 2, 'lt' => 1359)));
+define('CSCIRCLES_ASST_ID_MAP', 
+       serialize(array('de' => 11351, 
+                       'nl' => 25033, 
+                       'lt' => 1359)));
 
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two
