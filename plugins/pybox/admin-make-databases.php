@@ -20,6 +20,7 @@ on the lesson slugs; contact us for help if needed.)</div>";
   $lessons = array();
 
   foreach ($out as $page) {
+    if ($page->post_status != 'publish') continue;
     $s = $page->post_title;
     $m = preg_match('/^([0-9]+)([A-Za-z]?)\: (.*)$/', $s, $matches);
     if (class_exists('PLL_Base')) {
