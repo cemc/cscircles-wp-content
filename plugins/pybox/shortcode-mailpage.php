@@ -148,7 +148,7 @@ function pbmailpage($options, $content) {
 $r .= "
 <div class='collapseContain hiding'>
 <div class='collapseHead'><span class='icon'></span>".__t("Problem description for")." ".$problem['publicname']."</div>
-<div class='collapseBody'>".pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content'])."</div>
+<div class='collapseBody'>".apply_filters('the_content', pyBoxHandler(json_decode($problem['shortcodeArgs'], TRUE), $problem['content']))."</div>
 </div>";
     
     
