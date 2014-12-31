@@ -479,6 +479,7 @@ function timeAndMicro() {
 }
 
 function simpleProfilingEntry($data) {
+  return;
   global $wpdb;
   date_default_timezone_set('America/New_York');
   $start = date( 'Y-m-d H:i:s', time() );
@@ -495,6 +496,7 @@ function simpleProfilingEntry($data) {
 }
 
 function beginProfilingEntry($data) {
+  return;
   // $data must be a subset of the column names in wp_pb_profiling
   // if $data['meta'] exists it will get json_encoded
   global $wpdb;
@@ -512,6 +514,7 @@ function beginProfilingEntry($data) {
 }
 
 function endProfilingEntry($id, $data=array()) {  
+  return;
   // $data must be a subset of the column names in wp_pb_profiling
   // any common values with beginProfilingEntry's $data will be overwritten
   // if $data['meta'] exists it will get json_encoded
@@ -529,6 +532,7 @@ function endProfilingEntry($id, $data=array()) {
 
 // don't actually do separate start and end calls; just a single thing
 function retroProfilingEntry($seconds, $data=array()) {
+  return;
   date_default_timezone_set('America/New_York');
   $data['start'] = date( 'Y-m-d H:i:s', time() );
   $data['preciseEnd'] = implode(".", timeAndMicro());
