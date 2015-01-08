@@ -2,69 +2,130 @@
 # This file is distributed under the GPL v3.
 msgid ""
 msgstr ""
-"Project-Id-Version: Google Analytics by Yoast 5.0.6\n"
+"Project-Id-Version: Google Analytics by Yoast 5.1.4\n"
 "Report-Msgid-Bugs-To: "
-"http://wordpress.org/support/plugin/google-analytics-for-wordpress\n"
-"POT-Creation-Date: 2014-09-17 13:22:41+00:00\n"
+"https://github.com/yoast/google-analytics-for-wordpress/issues\n"
+"POT-Creation-Date: 2014-12-02 13:22:29+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Remkus de Vries <translations@yoast.com>\n"
+"Last-Translator: Yoast Translate Team <translations@yoast.com>\n"
 "Language-Team: Yoast Translate <translations@yoast.com>\n"
-"X-Generator: grunt-wp-i18n 0.4.4\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2; "
-"_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__; esc_html__;esc_attr_e; "
-"esc_html_e;esc_attr_x:1,2c; esc_html_x:1,2c;\n"
-"X-Poedit-Bookmarks: \n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: admin/class-admin.php:57
-msgid "Settings saved!"
-msgstr ""
-
-#: admin/class-admin.php:70
-msgid "Please configure your %sGoogle Analytics settings%s!"
-msgstr ""
-
-#: admin/class-admin.php:109
-msgid "FAQ"
-msgstr ""
-
-#: admin/class-admin.php:112 admin/class-admin.php:153
-#: admin/class-admin.php:154
-msgid "Settings"
-msgstr ""
-
-#: admin/class-admin.php:135 admin/class-admin.php:144
-#: admin/class-admin.php:153 admin/class-admin.php:162
+#: admin/class-admin-menu.php:55 admin/class-admin-menu.php:79
 msgid "Yoast Google Analytics:"
 msgstr ""
 
-#: admin/class-admin.php:135
-msgid "General Settings"
+#: admin/class-admin-menu.php:55 admin/pages/settings.php:28
+msgid "General settings"
 msgstr ""
 
-#: admin/class-admin.php:135
+#: admin/class-admin-menu.php:55
 msgid "Analytics"
 msgstr ""
 
-#: admin/class-admin.php:144 admin/class-admin.php:145
-msgid "Dashboard"
+#: admin/class-admin.php:76
+msgid "Please configure your %sGoogle Analytics settings%s!"
 msgstr ""
 
-#: admin/class-admin.php:162 admin/pages/extensions.php:22
-msgid "Extensions"
+#: admin/class-admin.php:106
+msgid "Settings saved!"
 msgstr ""
 
-#: admin/class-admin.php:673
+#: admin/class-admin.php:113
+msgid "There where no changes to save, please try again."
+msgstr ""
+
+#: admin/class-admin.php:132
+msgid "FAQ"
+msgstr ""
+
+#: admin/class-admin.php:135 admin/pages/settings.php:6
+msgid "Settings"
+msgstr ""
+
+#: admin/class-admin.php:188
+msgid ""
+"If you want to track custom dimensions, to for instance track page views "
+"per author or post type, you should upgrade to the %1$spremium version of "
+"Google Analytics by Yoast%2$s."
+msgstr ""
+
+#: admin/class-admin.php:190
+msgid ""
+"This will also give you email access to the support team at Yoast, who will "
+"provide support on the plugin 24/7."
+msgstr ""
+
+#: admin/class-admin.php:543
 msgid "Debug information"
+msgstr ""
+
+#: admin/class-admin.php:592
+msgid "Google Analytics by Yoast Premium"
+msgstr ""
+
+#: admin/class-admin.php:593
+msgid ""
+"The premium version of Google Analytics for WordPress with more features "
+"&amp; support."
+msgstr ""
+
+#: admin/class-admin.php:598
+msgid "Google Analytics"
+msgstr ""
+
+#: admin/class-admin.php:598
+msgid "E-Commerce tracking"
+msgstr ""
+
+#: admin/class-admin.php:599
+msgid ""
+"Track your E-Commerce data and transactions with this E-Commerce extension "
+"for Google Analytics."
+msgstr ""
+
+#: admin/i18n-module/i18n-module.php:170
+msgid ""
+"As you can see, there is a translation of this plugin in %1$s. This "
+"translation is currently %3$d%% complete. We need your help to make it "
+"complete and to fix any errors. Please register at %4$s to help complete "
+"the translation to %1$s!"
+msgstr ""
+
+#: admin/i18n-module/i18n-module.php:172
+msgid ""
+"You're using WordPress in %1$s. While %2$s has been translated to %1$s for "
+"%3$d%%, it's not been shipped with the plugin yet. You can help! Register "
+"at %4$s to help complete the translation to %1$s!"
+msgstr ""
+
+#: admin/i18n-module/i18n-module.php:174
+msgid ""
+"You're using WordPress in a language we don't support yet. We'd love for "
+"%2$s to be translated in that language too, but unfortunately, it isn't "
+"right now. You can change that! Register at %4$s to help translate it!"
+msgstr ""
+
+#: admin/i18n-module/i18n-module.php:194
+msgid "Translation of %s"
+msgstr ""
+
+#: admin/i18n-module/i18n-module.php:199
+msgid "Register now &raquo;"
 msgstr ""
 
 #: admin/license-manager/class-license-manager.php:137
@@ -212,40 +273,34 @@ msgstr ""
 msgid "%sRenew your license now%s."
 msgstr ""
 
+#: admin/pages/dashboard.php:6 admin/pages/extensions.php:10
+#: admin/pages/settings.php:6
+msgid "Yoast Google Analytics: "
+msgstr ""
+
 #: admin/pages/dashboard.php:6
-msgid "Yoast Google Analytics: Dashboard"
+msgid "Dashboard"
 msgstr ""
 
-#: admin/pages/extensions.php:11
-msgid "Google Analytics"
-msgstr ""
-
-#: admin/pages/extensions.php:11
-msgid "E-Commerce tracking"
-msgstr ""
-
-#: admin/pages/extensions.php:12
+#: admin/pages/dashboard.php:9
 msgid ""
-"Track your E-Commerce data and transactions with this E-Commerce extension "
-"for Google Analytics."
+"This feature %1$swill be coming soon%2$s. For now, you can %3$sread our "
+"posts on Analytics%2$s, or of course, %4$slog into Google Analytics%2$s "
+"yourself."
 msgstr ""
 
-#: admin/pages/extensions.php:19
-msgid "Yoast Google Analytics: Extensions"
+#: admin/pages/extensions.php:10 admin/pages/extensions.php:13
+msgid "Extensions"
 msgstr ""
 
-#: admin/pages/extensions.php:23
+#: admin/pages/extensions.php:14
 msgid "Licenses"
 msgstr ""
 
-#: admin/pages/extensions.php:57
+#: admin/pages/extensions.php:58
 msgid ""
 "You have not installed any extensions for Yoast Google Analytics, so there "
 "are no licenses to activate."
-msgstr ""
-
-#: admin/pages/settings.php:6
-msgid "Yoast Google Analytics: Settings"
 msgstr ""
 
 #: admin/pages/settings.php:13
@@ -260,221 +315,209 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: admin/pages/settings.php:16
+#: admin/pages/settings.php:16 admin/pages/settings.php:102
+msgid "Custom dimensions"
+msgstr ""
+
+#: admin/pages/settings.php:18
 msgid "Debug mode"
 msgstr ""
 
-#: admin/pages/settings.php:25
-msgid "General settings"
-msgstr ""
-
-#: admin/pages/settings.php:38
+#: admin/pages/settings.php:41
 msgid "Google profile"
 msgstr ""
 
-#: admin/pages/settings.php:39
+#: admin/pages/settings.php:42
 msgid "Authenticate with your Google account"
 msgstr ""
 
-#: admin/pages/settings.php:42
+#: admin/pages/settings.php:45
 msgid "Current UA-profile"
 msgstr ""
 
-#: admin/pages/settings.php:50
+#: admin/pages/settings.php:53
 msgid "Re-authenticate with your Google account"
 msgstr ""
 
-#: admin/pages/settings.php:56
+#: admin/pages/settings.php:59
 msgid "Manually enter your UA code"
 msgstr ""
 
-#: admin/pages/settings.php:65
+#: admin/pages/settings.php:68
 msgid "Track outbound click & downloads"
 msgstr ""
 
-#: admin/pages/settings.php:65
+#: admin/pages/settings.php:68
 msgid ""
 "Clicks &amp; downloads will be tracked as events, you can find these under "
 "Content &raquo; Event Tracking in your Google Analytics reports."
 msgstr ""
 
-#: admin/pages/settings.php:66
+#: admin/pages/settings.php:69
 msgid "Allow tracking of anonymous data"
 msgstr ""
 
-#: admin/pages/settings.php:66
+#: admin/pages/settings.php:69
 msgid ""
 "By allowing us to track anonymous data we can better help you, because we "
 "know with which WordPress configurations, themes and plugins we should "
 "test. No personal data will be submitted."
 msgstr ""
 
-#: admin/pages/settings.php:67
+#: admin/pages/settings.php:70
 msgid "Anonymize IP's"
 msgstr ""
 
-#: admin/pages/settings.php:67
+#: admin/pages/settings.php:70
 msgid ""
-"This adds <code><a "
-"href=\"http://code.google.com/apis/analytics/docs/gaJS/gaJSApi_gat.html#_"
-"gat._anonymizeIp\" target=\"_blank\">_anonymizeIp</a></code>, telling "
-"Google Analytics to anonymize the information sent by the tracker objects "
-"by removing the last octet of the IP address prior to its storage."
+"This adds <code>%1$s _anonymizeIp%2$s</code>, telling Google Analytics to "
+"anonymize the information sent by the tracker objects by removing the last "
+"octet of the IP address prior to its storage."
 msgstr ""
 
-#: admin/pages/settings.php:68
+#: admin/pages/settings.php:71
 msgid ""
 "Users of the role you select will be ignored, so if you select Editor, all "
 "Editors will be ignored."
 msgstr ""
 
-#: admin/pages/settings.php:73
+#: admin/pages/settings.php:76
 msgid "Universal settings"
 msgstr ""
 
-#: admin/pages/settings.php:74
+#: admin/pages/settings.php:77
 msgid "Enable Universal tracking"
 msgstr ""
 
-#: admin/pages/settings.php:74
+#: admin/pages/settings.php:77
 msgid ""
 "First enable Universal tracking in your Google Analytics account. How to do "
-"that, please read <a "
-"href=\"http://kb.yoast.com/article/125-universal-analytics#utm_medium=kb-"
-"link&utm_source=gawp-config&utm_campaign=wpgaplugin\" "
-"target=\"_blank\">this guide</a> to learn how to do that."
+"that, please read %1$sthis guide%2$s to learn how to do that."
 msgstr ""
 
-#: admin/pages/settings.php:75
+#: admin/pages/settings.php:78
 msgid "Enable Demographics and Interest Reports"
 msgstr ""
 
-#: admin/pages/settings.php:75
+#: admin/pages/settings.php:78
 msgid ""
 "You have to enable the Demographics in Google Analytics before you can see "
-"the tracking data. We have a doc in our <a "
-"href=\"http://kb.yoast.com/article/154-enable-demographics-and-interests-"
-"report-in-google-analytics/#utm_medium=kb-link&utm_source=gawp-config&utm_"
-"campaign=wpgaplugin\" target=\"_blank\">knowlegde base</a> about this "
+"the tracking data. We have a doc in our %1$sknowlegde base%2$s about this "
 "feature."
 msgstr ""
 
-#: admin/pages/settings.php:80
+#: admin/pages/settings.php:83
 msgid "Advanced settings"
 msgstr ""
 
-#: admin/pages/settings.php:81
+#: admin/pages/settings.php:84
 msgid "Track downloads as"
 msgstr ""
 
-#: admin/pages/settings.php:81
+#: admin/pages/settings.php:84
 msgid ""
 "Not recommended, as this would skew your statistics, but it does make it "
 "possible to track downloads as goals."
 msgstr ""
 
-#: admin/pages/settings.php:82
+#: admin/pages/settings.php:85
 msgid "Extensions of files to track as downloads"
 msgstr ""
 
-#: admin/pages/settings.php:83
+#: admin/pages/settings.php:86
 msgid "Track full URL of outbound clicks or just the domain"
 msgstr ""
 
-#: admin/pages/settings.php:84
+#: admin/pages/settings.php:87
 msgid "Subdomain tracking"
 msgstr ""
 
-#: admin/pages/settings.php:84
+#: admin/pages/settings.php:87
 msgid ""
 "This allows you to set the domain that's set by <code>setDomainName</code> "
 "for tracking subdomains, if empty this will not be set."
 msgstr ""
 
-#: admin/pages/settings.php:86
+#: admin/pages/settings.php:89
 msgid "Set path for internal links to track as outbound links"
 msgstr ""
 
-#: admin/pages/settings.php:87
+#: admin/pages/settings.php:90
 msgid "Label for those links"
 msgstr ""
 
-#: admin/pages/settings.php:89
+#: admin/pages/settings.php:92
 msgid "Tag links in RSS feed with campaign variables"
 msgstr ""
 
-#: admin/pages/settings.php:89
+#: admin/pages/settings.php:92
 msgid ""
 "Do not use this feature if you use FeedBurner, as FeedBurner can do this "
 "automatically, and better than this plugin can. Check <a "
-"href=\"http://www.google.com/support/feedburner/bin/answer.py?hl=en&amp;"
-"answer=165769\" target=\"_blank\">this help page</a> for info on how to "
+"href=\"https://support.google.com/feedburner/answer/165769?hl=en&amp;ref_"
+"topic=13075\" target=\"_blank\">this help page</a> for info on how to "
 "enable this feature in FeedBurner."
 msgstr ""
 
-#: admin/pages/settings.php:90
+#: admin/pages/settings.php:93
 msgid "Allow anchor"
 msgstr ""
 
-#: admin/pages/settings.php:90
+#: admin/pages/settings.php:93
 msgid ""
-"This adds a <code><a "
-"href=\"http://code.google.com/apis/analytics/docs/gaJSApiCampaignTracking."
-"html#_gat.GA_Tracker_._setAllowAnchor\" "
-"target=\"_blank\">_setAllowAnchor</a></code> call to your tracking code, "
-"and makes RSS link tagging use a # as well."
+"This adds a <code>%1$s_setAllowAnchor%2$s</code> call to your tracking "
+"code, and makes RSS link tagging use a # as well."
 msgstr ""
 
-#: admin/pages/settings.php:91
+#: admin/pages/settings.php:94
 msgid "Add <code>_setAllowLinker</code>"
 msgstr ""
 
-#: admin/pages/settings.php:91
+#: admin/pages/settings.php:94
 msgid ""
-"This adds a <code><a "
-"href=\"http://code.google.com/apis/analytics/docs/gaJS/"
-"gaJSApiDomainDirectory.html#_gat.GA_Tracker_._setAllowLinker\" "
-"target=\"_blank\">_setAllowLinker</a></code> call to your tracking code,  "
-"allowing you to use <code>_link</code> and related functions."
+"This adds a <code>%1$s_setAllowLinker%2$s</code> call to your tracking "
+"code,  allowing you to use <code>_link</code> and related functions."
 msgstr ""
 
-#: admin/pages/settings.php:92
+#: admin/pages/settings.php:95
 msgid ""
 "Not for the average user: this allows you to add a line of code, to be "
 "added before the <code>trackPageview</code> call."
 msgstr ""
 
-#: admin/pages/settings.php:97
+#: admin/pages/settings.php:109
 msgid "Debug settings"
 msgstr ""
 
-#: admin/pages/settings.php:100
+#: admin/pages/settings.php:112
 msgid ""
 "If you want to confirm that tracking on your blog is working as it should, "
-"enable these options and check the console in Firebug (for Firefox), "
-"Firebug Lite (for other browsers) or Chrome & Safari's Web Inspector. Be "
-"absolutely sure to disable debugging afterwards, as it is slower than "
-"normal tracking."
+"enable this option and check the console of your browser. Be absolutely "
+"sure to disable debugging afterwards, as it is slower than normal tracking."
 msgstr ""
 
-#: admin/pages/settings.php:101
+#: admin/pages/settings.php:113
 msgid "Note"
 msgstr ""
 
-#: admin/pages/settings.php:101
-msgid "the debugging and firebug scripts are only loaded for admins."
+#: admin/pages/settings.php:113
+msgid "the debugging scripts is only loaded for admins."
 msgstr ""
 
-#: admin/pages/settings.php:103
+#: admin/pages/settings.php:115
 msgid "Enable debug mode"
 msgstr ""
 
-#: admin/pages/settings.php:104
-msgid "Enable Firebug Lite"
+#: admin/pages/settings.php:127
+msgid "Select the users to ignore"
 msgstr ""
 
-#: admin/pages/settings.php:116
-msgid "Select the users to ignore"
+#: admin/views/content-footer.php:8
+msgid "Remove these ads?"
+msgstr ""
+
+#: admin/views/content-footer.php:9
+msgid "Upgrade to Google Analytics By Yoast Premium »"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

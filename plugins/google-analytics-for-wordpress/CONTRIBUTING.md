@@ -15,6 +15,8 @@ For localization, please refer to [translate.yoast.com](http://translate.yoast.c
   * Clearly describe the issue including steps to reproduce the bug.
   * Make sure you fill in the earliest version that you know has the issue as well as the version of WordPress you're using.
 
+_Note:_ do **not** report security issues here. Email them to security at yoast dot com so we can deal with them swiftly and securely.
+
 ## Making Changes
 
 * Fork the repository on GitHub
@@ -31,6 +33,11 @@ For localization, please refer to [translate.yoast.com](http://translate.yoast.c
 * Finally, please use tabs and not spaces. The tab indent size should be 8 for all Google Analytics for WordPress code.
 
 At this point you're waiting on us to merge your pull request. We'll review all pull requests, and make suggestions and changes if necessary.
+
+<a name="patch-welcome"></a>
+## "Patch welcome" issues
+
+Some issues are [labeled "Patch-welcome"](https://github.com/Yoast/google-analytics-for-wordpress/issues?q=is%3Aopen+is%3Aissue+label%3APatch-Welcome). This means we see the value in the particular enhancement being suggested but have decided for now not to prioritize it. If you however decide to write a patch for it we'll gladly include it after some code review.
 
 # Additional Resources
 * [General GitHub Documentation](http://help.github.com/)

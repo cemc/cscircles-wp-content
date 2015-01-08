@@ -1,10 +1,10 @@
-﻿=== Google Analytics by Yoast ===
+=== Google Analytics by Yoast ===
 Contributors: joostdevalk,PvW_NL
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 5.0.7
+Tested up to: 4.1
+Stable tag: 5.2.8
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -13,7 +13,7 @@ Track your WordPress site easily with the latest tracking codes and lots added d
 The Google Analytics by Yoast plugin for WordPress allows you to track your blog easily and always stays up to date with the newest features in Google Analytics.
 
 > <strong>Development on GitHub</strong><br>
-> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, please refer to the forums. A premium version of Google Analytics by Yoast will be available soon which will give you access to email support.
+> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, you have two options: either [buy the premium version of Google Analytics by Yoast on Yoast.com](https://yoast.com/wordpress/plugins/google-analytics/), this will give you access to our support team, or refer to the forums.
 
 Full list of features:
 
@@ -48,6 +48,163 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.2.8 =
+
+Release Date: January 8th, 2015
+
+* Bugfixes:
+	* Makes sure reauthentication notice is only shown on the GA dashboard page.
+	* Fixes a couple of situations in which the GA reauthentication notice was shown erroneously.
+
+= 5.2.7 =
+
+Release Date: December 18th, 2014
+
+* Bugfixes:
+	* Increase timeout limit for request to Google API to prevent quickly session time-outs.
+	* Setting SSL verifier to FALSE, to prevent checking SSL-chain.
+	* Checking for cURL version 7.19, it this version is used the plugin switches to http streams.
+
+* Enhancements:
+	* Using webproperties instead of account names in the select box for choosing the Google Analytics profile.
+
+= 5.2.6 =
+
+Release Date: December 16th, 2014
+
+* Hotfix:
+	* Fixing API library to prevent fatal error.
+
+* Bugfixes:
+	* Fixes the way of getting data from the Google API. cURL was used, but is changed into core wp_remote functionality to prevent errors when cURL isn't enabled.
+
+= 5.2.5 =
+
+Release Date: December 16th, 2014
+
+* Enhancements:
+	* When deactivating the plugin the options with API-details will be cleared.
+	* Show notice when the plugin isn't able to fetch data from Google for more than 48 hours.
+
+* Bugfixes:
+	* Fixes the way of getting data from the Google API. cURL was used, but is changed into core wp_remote functionality to prevent errors when cURL isn't enabled.
+	* Using autoloader for Google OAuth libraries instead of require them immediately to prevent conflicts with already loaded files.
+
+= 5.2.4 =
+
+Release Date: December 15th, 2014
+
+* Enhancements:
+	* Moved from OAuth1 to OAuth2 for Google Analytics API requests.
+	* Open authentication and reauthentication for Google in a new window.
+	* Force reloading of CSS and JS on version change of plugin.
+	* Refactoring fetching profiles from Google Analytics
+
+= 5.2.3 =
+
+Release Date: December 11th, 2014
+
+* Enhancements:
+	* improved visual look and data representation for dashboard graphs, props [Andrey Savchenko](https://github.com/Rarst/)
+	* when manual UA-code is selected, the profile selection gets disabled to clarify that the user is choosing an alternative to regular profile selection.
+
+* Bugfixes:
+	* Fixes a bug where GA profile was fetched with every admin request, resulting in a pile of unnecessary API requests.
+	* Fixes a problem where GA started throttling API requests done by our plugin because there were too many. We now fetch the data only once a day from GA. For realtime data, users should go to Google Analytics.
+
+= 5.2.2 =
+
+Release Date: December 10th, 2014
+
+* Bugfixes:
+	* Fixes a bug where it was no longer possible to uncheck checkboxes in the settings.
+	* Fixes a bug where jQuery Chosen component was not rendered correctly on a hidden tab.
+
+= 5.2.1 =
+
+Release Date: December 9th, 2014
+
+* Enhancements:
+	* Replaced jQuery Chosen library with latest version to enable optgroup search.
+	* Shows a warning when configuring a manual UA-code that this will not work together with the dashboards functionality.
+
+* Bugfixes:
+	* Fixes a 'headers already sent' warning.
+	* Fixes a bug where nothing was shown on the dashboards for setups with a manual UA-code. It now shows you a message that you need to authenticate with Google Analytics if you wish to make use of the dashboards feature.
+
+= 5.2 =
+
+Release Date: December 9th, 2014
+
+* Features:
+	* Added a brand new GA dashboard:
+		* Added graphs showing the sessions and bounce rates.
+		* Added reporting tables showing top pages, traffic sources and countries.
+
+= 5.1.4 =
+
+Release Date: December 2nd, 2014
+
+* Enhancements:
+	* Added GA property name to 'Analytics profile' selection in settings. Thanks [stephenyeargin](https://github.com/stephenyeargin) for reporting.
+	* Removed firebug lite as it's rather obsolete with todays development consoles.
+
+* i18n:
+    * Several string fixes for easier translation.
+    * Added en_GB and he_IL.
+
+* Bugfixes:
+	* Fixes a bug where site admins for sites on a multisite setup would receive a notice when visiting another site on the same setup which they didn't administrate, props [nerrad](https://github.com/nerrad).
+	* Fixes a bug where saving the admin settings would cause non-string form fields to be ignored or rejected.
+
+= 5.1.3 =
+
+Release Date: November 26th, 2014
+
+* Security fix: fixed a very minor cross site scripting issue with the manual UA code in de admin settings. The manual UA code is now sanitized before it is saved.
+
+= 5.1.2 =
+
+Release Date: November 19th, 2014
+
+* Features:
+	* Added a new box promoting our translation site for non en_US users.
+
+* Bugfixes:
+	* Fixes a bug where links on the extension page where not pointing to the correct url.
+
+= 5.1.1 =
+
+Release Date: November 12th, 2014
+
+* Bugfixes:
+	* Fixes a conflict with Fancybox.
+	* Fixes a bug where links without the href attribute would cause the tracking code to be added wrongly.
+	* Fixes a multisite bug in Premium which was caused by the absence of a network admin menu.
+	* Fixes an issue with the version number.
+	* Fixes a bug where translations might be loaded several times.
+
+* Enhancements:
+	* Shows more relevant banners.
+	* Adds an image to the premium extension on the extensions page.
+	* Always show the custom dimension tab.
+	* Added translations for Finnish, Dutch and Russian.
+
+= 5.1 =
+
+Release Date: October 30th, 2014
+
+* Bugfixes:
+	* Fixes a possible JavaScript conflict within the tracking code.
+	* Makes sure translations are loaded correctly.
+
+* Enhancements:
+	* Improved UX for help texts in form.
+	* Added "Google Analytics by Yoast Premium" to the extensions page.
+	* Makes sure the user returns to the original settings tab after saving.
+	* Added a filter `wp_nav_menu` to enable tracking outbound links from the menu.
+	* Added a filter `wp_list_bookmarks` to enable tracking for blogroll widgets.
 
 = 5.0.7 =
 Release Date: October 14th, 2014
@@ -438,3 +595,4 @@ For all frequently asked questions, and their answers, check the [Yoast Knowledg
 1. Screenshot of the general settings panel for this plugin.
 2. Screenshot of the universal settings panel.
 3. Screenshot of the advanced settings panel.
+4. Screenshot of the account selection drop down.
