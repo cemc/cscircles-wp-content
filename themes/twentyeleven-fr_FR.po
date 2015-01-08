@@ -1,0 +1,589 @@
+# Translation of Twenty Eleven in French (France)
+# This file is distributed under the same license as the Twenty Eleven package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2013-06-09 19:54:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/1.0-alpha-1000\n"
+"Project-Id-Version: Twenty Eleven\n"
+
+#. Theme URI of the plugin/theme
+msgid "http://wordpress.org/themes/twentyeleven"
+msgstr "http://wordpress.org/themes/twentyeleven"
+
+#: content-image.php:36
+msgid "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+msgstr "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> par </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+
+#: functions.php:669
+msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+msgstr "<span class=\"sep\">Publié le </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> par </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+
+#. Template Name of the plugin/theme
+msgid "Showcase Template"
+msgstr "Modèle de vitrine"
+
+#. Template Name of the plugin/theme
+msgid "Sidebar Template"
+msgstr "Modèle de colonne latérale"
+
+#: image.php:30
+msgid "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class=\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "<span class=\"meta-prep meta-prep-entry-date\">Publié le </span> <span class=\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> à <a href=\"%3$s\" title=\"Lien vers l'image en taille originale\">%4$s &times; %5$s</a> dans <a href=\"%6$s\" title=\"Revenir à %7$s\" rel=\"gallery\">%8$s</a>"
+
+#: inc/theme-options.php:128
+msgid "Overview"
+msgstr "Vue d'ensemble"
+
+#: archive.php:27
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: archive.php:29
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: content-single.php:39
+msgid "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Ce contenu a été publié par <a href=\"%6$s\">%5$s</a>. Mettez-le en favori avec son <a href=\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a>."
+
+#: functions.php:650
+msgid "Reply <span>&darr;</span>"
+msgstr "Répondre <span>&darr;</span>"
+
+#: single.php:19
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Précédent"
+
+#: single.php:20
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Suivant <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-aside.php:24 content-image.php:23 content-link.php:24
+#: content-quote.php:24 content-status.php:24 content.php:30
+msgid "Reply"
+msgstr "Répondre"
+
+#: content-aside.php:24 content-image.php:23 content-link.php:24
+#: content-quote.php:24 content-status.php:24 content.php:30
+msgctxt "comments number"
+msgid "1"
+msgstr "1"
+
+#: content-aside.php:24 content-image.php:23 content-link.php:24
+#: content-quote.php:24 content-status.php:24 content.php:30
+msgctxt "comments number"
+msgid "%"
+msgstr "%"
+
+#: image.php:18
+msgid "Image navigation"
+msgstr "Navigation des images"
+
+#. translators: 1: comment author, 2: date and time
+#: functions.php:626
+msgid "%1$s on %2$s <span class=\"says\">said:</span>"
+msgstr "Le %2$s, %1$s <span class=\"says\">a dit&nbsp;:</span>"
+
+#. translators: 1: date, 2: time
+#: functions.php:632
+msgid "%1$s at %2$s"
+msgstr "%1$s à %2$s"
+
+#: archive.php:61 author.php:90 category.php:63 index.php:41 tag.php:64
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Toutes nos excuses, mais votre requête pour cette archive n&rsquo;a donné aucun résultat. Peut-être aurez-vous plus de chance en lançant une recherche..."
+
+#: header.php:135
+msgid "Skip to primary content"
+msgstr "Aller au contenu principal"
+
+#: header.php:137
+msgid "Skip to secondary content"
+msgstr "Aller au contenu secondaire"
+
+#: inc/theme-options.php:63
+msgid "Default Layout"
+msgstr "Mise en page par défaut"
+
+#: inc/theme-options.php:111
+msgid "Some themes provide customization options that are grouped together on a Theme Options screen. If you change themes, options may change or disappear, as they are theme-specific. Your current theme, Twenty Eleven, provides the following Theme Options:"
+msgstr "Certains thèmes proposent des options de personnalisation, regroupées sur l&rsquo;écran &laquo;&nbsp;Options du thème"
+
+#: inc/theme-options.php:113
+msgid "<strong>Color Scheme</strong>: You can choose a color palette of \"Light\" (light background with dark text) or \"Dark\" (dark background with light text) for your site."
+msgstr "<strong>Jeu de couleurs</strong>&nbsp;: vous pouvez choisir comme palette de couleurs pour votre site &laquo;&nbsp;Clair&nbsp;&raquo; (fond clair et texte foncé), ou  &laquo;&nbsp;Foncé&nbsp;&raquo; (fond foncé et texte clair)."
+
+#: inc/theme-options.php:114
+msgid "<strong>Link Color</strong>: You can choose the color used for text links on your site. You can enter the HTML color or hex code, or you can choose visually by clicking the \"Select a Color\" button to pick from a color wheel."
+msgstr "<strong>Couleur des liens</strongs>&nbsp;: vous pouvez choisir la couleur des liens textuels de votre site. Saisissez le code couleur (code HTML ou hexadécimal), ou choisissez-la avec le sélecteur de couleur, en cliquant sur &laquo;&nbsp;Choisir une couleur&nbsp;&raquo;."
+
+#: inc/theme-options.php:115
+msgid "<strong>Default Layout</strong>: You can choose if you want your site&#8217;s default layout to have a sidebar on the left, the right, or not at all."
+msgstr "<strong>Mise en page par défaut</strong>&nbsp;: si vous le souhaitez, votre site peut afficher sa barre latérale sur le côté droit, le côté gauche, ou ne pas l&rsquo;afficher du tout."
+
+#: inc/theme-options.php:117
+msgid "Remember to click \"Save Changes\" to save any changes you have made to the theme options."
+msgstr "N&rsquo;oubliez pas de cliquer sur &laquo;&nbsp;Enregistrer les modifications&nbsp;&raquo; pour conserver toutes les modifications apportées aux options du thème"
+
+#: inc/theme-options.php:119
+msgid "For more information:"
+msgstr "Pour plus d&rsquo;information&nbsp;:"
+
+#: inc/theme-options.php:120
+msgid "<a href=\"http://codex.wordpress.org/Appearance_Theme_Options_Screen\" target=\"_blank\">Documentation on Theme Options</a>"
+msgstr "<a href=\"http://codex.wordpress.org/Appearance_Theme_Options_Screen\" target=\"_blank\">Documentation sur les options du thème (en)</a>"
+
+#: inc/theme-options.php:121
+msgid "<a href=\"http://wordpress.org/support/\" target=\"_blank\">Support Forums</a>"
+msgstr "<a href=\"http://www.wordpress-fr.net/support/\" target=\"_blank\">Forums d&rsquo;entraide en français</a>"
+
+#: inc/theme-options.php:191
+msgid "One-column, no sidebar"
+msgstr "Une colonne, pas de barre latérale"
+
+#. translators: used between list items, there is a space after the comma
+#: content-featured.php:29 content-featured.php:38 content-gallery.php:60
+#: content-gallery.php:70 content-image.php:49 content-image.php:58
+#: content-quote.php:44 content-quote.php:54 content-single.php:30
+#: content-single.php:33 content.php:51 content.php:63
+msgid ", "
+msgstr ", "
+
+#: content-gallery.php:64 content-image.php:53 content-quote.php:48
+#: content.php:55
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">Publié dans</span> %2$s"
+
+#: footer.php:28
+msgid "Semantic Personal Publishing Platform"
+msgstr "Plate-forme de publication personnelle à la pointe de la sémantique"
+
+#: footer.php:28
+msgid "Proudly powered by %s"
+msgstr "Fièrement propulsé par %s"
+
+#: content-gallery.php:76 content-image.php:61 content-quote.php:60
+#: content.php:69
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">Mots-clés&nbsp;:</span> %2$s"
+
+#: content-aside.php:19
+msgid "Aside"
+msgstr "En passant"
+
+#: content-gallery.php:19
+msgid "Gallery"
+msgstr "Galerie"
+
+#: content-image.php:18
+msgid "Image"
+msgstr "Image"
+
+#: content-link.php:19
+msgid "Link"
+msgstr "Lien"
+
+#: content-quote.php:15
+msgid "Quote"
+msgstr "Citation"
+
+#: content-status.php:19
+msgid "Status"
+msgstr "Humeur du moment"
+
+#: content.php:16
+msgid "Featured"
+msgstr "Mis en avant"
+
+#. Description of the plugin/theme
+msgid "The 2011 theme for WordPress is sophisticated, lightweight, and adaptable. Make it yours with a custom menu, header image, and background -- then go further with available theme options for light or dark color scheme, custom link colors, and three layout choices. Twenty Eleven comes equipped with a Showcase page template that transforms your front page into a showcase to show off your best content, widget support galore (sidebar, three footer areas, and a Showcase page widget area), and a custom \"Ephemera\" widget to display your Aside, Link, Quote, or Status posts. Included are styles for print and for the admin editor, support for featured images (as custom header images on posts and pages and as large images on featured \"sticky\" posts), and special styles for six different post formats."
+msgstr "Le thème par défaut de WordPress pour 2011 est sophistiqué, léger et adaptable. Faites-le vôtre avec un menu personnalisé, une image d&rsquo;en-tête et de fond - puis aller plus loin avec les options disponibles pour les couleurs du thèmes (claires ou foncées), celle des liens, et trois choix de mise en page. Twenty-Elevent est équipé d&rsquo;un modèle de page Vitrine qui transforme votre page d&rsquo;accueil en une vitrine pour montrer vos meilleurs contenus, reconnaît de nombreux widgets (colonne latérale, pied de page à trois zones, et une zone de widget pour la page page vitrine), et un widget personnalisable Ephémères, pour afficher vos contenus écrits en passant, vos liens, citations ou humeurs du moment. Sont inclus les styles pour l&rsquo;impression et pour l&rsquo;éditeur de l&rsquo;administration, reconnaissance des images mises en avant (comme les images en-tête personnalisables par article et par page, ou la reprise en grand des images articles mis en avant), et des styles spéciaux pour six formats différents d&rsquo;articles."
+
+#: archive.php:25
+msgid "Daily Archives: %s"
+msgstr "Archives quotidiennes&nbsp;:"
+
+#: archive.php:27
+msgid "Monthly Archives: %s"
+msgstr "Archives mensuelles&nbsp;: %s"
+
+#: archive.php:29
+msgid "Yearly Archives: %s"
+msgstr "Archives annuelles&nbsp;: %s"
+
+#. translators: header image description
+#: functions.php:184
+msgid "Wheel"
+msgstr "Roue"
+
+#. translators: header image description
+#: functions.php:190
+msgid "Shore"
+msgstr "Rivage"
+
+#. translators: header image description
+#: functions.php:196
+msgid "Trolley"
+msgstr "Tramway"
+
+#. translators: header image description
+#: functions.php:202
+msgid "Pine Cone"
+msgstr "Pomme de pin"
+
+#. translators: header image description
+#: functions.php:208
+msgid "Chessboard"
+msgstr "Damier"
+
+#. translators: header image description
+#: functions.php:214
+msgid "Lanterns"
+msgstr "Lanternes"
+
+#. translators: header image description
+#: functions.php:220
+msgid "Willow"
+msgstr "Saule"
+
+#. translators: header image description
+#: functions.php:226
+msgid "Hanoi Plant"
+msgstr "Plante de Hanoï"
+
+#: inc/theme-options.php:56 inc/theme-options.php:528
+msgid "Color Scheme"
+msgstr "Jeu de couleurs"
+
+#: inc/theme-options.php:62 inc/theme-options.php:545
+msgid "Link Color"
+msgstr "Couleur des liens"
+
+#: inc/theme-options.php:95 inc/theme-options.php:96
+msgid "Theme Options"
+msgstr "Options du thème"
+
+#: inc/theme-options.php:150
+msgid "Light"
+msgstr "Clair"
+
+#: inc/theme-options.php:156
+msgid "Dark"
+msgstr "Foncé"
+
+#: inc/theme-options.php:181
+msgid "Content on left"
+msgstr "Contenu à gauche"
+
+#: inc/theme-options.php:186
+msgid "Content on right"
+msgstr "Contenu à droite"
+
+#: inc/theme-options.php:298
+msgid "Select a Color"
+msgstr "Choisir une couleur"
+
+#: inc/theme-options.php:301
+msgid "Default color: %s"
+msgstr "Couleur par défaut&nbsp;:"
+
+#: inc/theme-options.php:337
+msgid "%s Theme Options"
+msgstr "Options du thème %s"
+
+#: inc/widgets.php:21
+msgid "Use this widget to list your recent Aside, Status, Quote, and Link posts"
+msgstr "Utiliser ce widget pour lister vos derniers contenus court&nbsp;: en passant, humeur du moment, citation, liens..."
+
+#: showcase.php:151
+msgid "Featuring: %s"
+msgstr "Mise en avant&nbsp;: %s"
+
+#: inc/theme-options.php:552
+msgid "Layout"
+msgstr "Mise en page"
+
+#: 404.php:17
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr "C&rsquo;est plutôt gênant, vous ne trouvez pas&nbsp;?"
+
+#: 404.php:21
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help."
+msgstr "Il semblerait que nous ne soyons pas en mesure de trouver votre contenu. Essayez en lançant une recherche, ou à l&rsquo;aide de l&rsquo;un des lien ci-dessous."
+
+#: 404.php:28
+msgid "Most Used Categories"
+msgstr "Catégories les plus utilisées"
+
+#. translators: %1$s: smilie
+#: 404.php:36
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Essayez de voir du côté des archives mensuelles. %1$s"
+
+#: archive.php:31
+msgid "Blog Archives"
+msgstr "Archives du blog"
+
+#: archive.php:57 author.php:86 category.php:59 index.php:37 search.php:44
+#: tag.php:60
+msgid "Nothing Found"
+msgstr "Rien n&rsquo;a été trouvé"
+
+#: author.php:29
+msgid "Author Archives: %s"
+msgstr "Archives de l&rsquo;auteur&nbsp;: %s"
+
+#: author.php:60 content-single.php:63
+msgid "About %s"
+msgstr "A propos %s"
+
+#: category.php:19
+msgid "Category Archives: %s"
+msgstr "Archives pour la catégorie %s"
+
+#: comments.php:17
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Cet article est protégé par un mot de passe. Veuillez le saisir pour pouvoir lire ses commentaires."
+
+#: comments.php:34
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Une réflexion au sujet de &laquo;&nbsp;%2$s&nbsp;&raquo;"
+msgstr[1] "%1$s réflexions au sujet de &laquo;&nbsp;%2$s&nbsp;&raquo;"
+
+#: comments.php:41 comments.php:62
+msgid "Comment navigation"
+msgstr "Navigation des commentaires"
+
+#: comments.php:42 comments.php:63
+msgid "&larr; Older Comments"
+msgstr "&larr; Commentaire plus ancien"
+
+#: comments.php:43 comments.php:64
+msgid "Newer Comments &rarr;"
+msgstr "Commentaires plus récents &rarr;"
+
+#: comments.php:74
+msgid "Comments are closed."
+msgstr "Les commentaires sont fermés."
+
+#: content-gallery.php:46 showcase.php:121
+msgid "Permalink to %s"
+msgstr "Permalien vers %s"
+
+#: content-aside.php:35 content-gallery.php:34 content-image.php:29
+#: content-link.php:35 content-quote.php:35 content-status.php:48
+#: content.php:41 functions.php:375
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lire la suite <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-aside.php:36 content-featured.php:23 content-gallery.php:52
+#: content-image.php:30 content-intro.php:18 content-link.php:36
+#: content-page.php:18 content-quote.php:36 content-single.php:24
+#: content-status.php:49 content.php:42 image.php:98
+msgid "Pages:"
+msgstr "Pages&nbsp;:"
+
+#: content-aside.php:44 content-gallery.php:85 content-image.php:66
+#: content-link.php:44 content-quote.php:69 content-status.php:57
+#: content.php:79 showcase.php:202
+msgid "Leave a reply"
+msgstr "Laisser une réponse"
+
+#: content-aside.php:44 content-gallery.php:85 content-image.php:66
+#: content-link.php:44 content-quote.php:69 content-status.php:57
+#: content.php:79 showcase.php:202
+msgid "<b>1</b> Reply"
+msgstr "<b>Une</b> réponse"
+
+#: content-aside.php:44 content-gallery.php:85 content-image.php:66
+#: content-link.php:44 content-quote.php:69 content-status.php:57
+#: content.php:79 showcase.php:202
+msgid "<b>%</b> Replies"
+msgstr "<b>%</b> Réponses"
+
+#: content-aside.php:46 content-featured.php:45 content-gallery.php:88
+#: content-image.php:70 content-intro.php:19 content-link.php:46
+#: content-page.php:21 content-quote.php:72 content-single.php:52
+#: content-status.php:59 content.php:82 functions.php:609 functions.php:637
+#: image.php:41
+msgid "Edit"
+msgstr "Modifier"
+
+#: content-featured.php:31
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Ce contenu a été publié dans %1$s, et marqué avec %2$s. Mettez-le en favori avec son <a href=\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a>."
+
+#: content-featured.php:33
+msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Ce contenu a été publié dans %1$s. Mettez-le en favori avec son <a href=\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a>."
+
+#: content-gallery.php:45
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "Cette galerie contient <a %1$s>%2$s photo</a>."
+msgstr[1] "Cette galerie contient <a %1$s>%2$s photos</a>."
+
+#: content-image.php:41 functions.php:675
+msgid "View all posts by %s"
+msgstr "Afficher tous les articles par %s"
+
+#: content-single.php:35
+msgid "This entry was posted in %1$s and tagged %2$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Ce contenu a été publié dans %1$s par <a href=\"%6$s\">%5$s</a>, et marqué avec %2$s. Mettez-le en favori avec son <a href=\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a>."
+
+#: content-single.php:37
+msgid "This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Ce contenu a été publié dans %1$s par <a href=\"%6$s\">%5$s</a>. Mettez-le en favori avec son <a href=\"%3$s\" title=\"Permalien vers %4$s\" rel=\"bookmark\">permalien</a>."
+
+#: content-single.php:67
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Afficher tous les articles de %s <span class=\"meta-nav\">&rarr;</span>"
+
+#. #-#-#-#-#  twentyeleven.pot (Twenty Eleven 2.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+#: footer.php:28
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: functions.php:95
+msgid "Primary Menu"
+msgstr "Menu principal"
+
+#: functions.php:446
+msgid "Main Sidebar"
+msgstr "Colonne principale"
+
+#: functions.php:455
+msgid "Showcase Sidebar"
+msgstr "Colonne latérale de la vitrine"
+
+#: functions.php:457
+msgid "The sidebar for the optional Showcase Template"
+msgstr "La colonne latérale pour le modèle factultatif de vitrine"
+
+#: functions.php:465
+msgid "Footer Area One"
+msgstr "Zone 1 du pied de page"
+
+#: functions.php:467 functions.php:477 functions.php:487
+msgid "An optional widget area for your site footer"
+msgstr "Une zone facultative de widgets pour le pied de page de votre site"
+
+#: functions.php:475
+msgid "Footer Area Two"
+msgstr "Zone 2 du pied de page"
+
+#: functions.php:485
+msgid "Footer Area Three"
+msgstr "Zone 3 du pied de page"
+
+#: functions.php:509 single.php:18
+msgid "Post navigation"
+msgstr "Navigation des articles"
+
+#: functions.php:510
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Articles plus anciens"
+
+#: functions.php:511
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Articles plus récents <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:609
+msgid "Pingback:"
+msgstr "Ping&nbsp;:"
+
+#: functions.php:641
+msgid "Your comment is awaiting moderation."
+msgstr "Votre commentaire est en attente de validation."
+
+#: header.php:43
+msgid "Page %s"
+msgstr "Page %s"
+
+#: header.php:133
+msgid "Main menu"
+msgstr "Menu principal"
+
+#: image.php:19
+msgid "&larr; Previous"
+msgstr "&larr; Précédent"
+
+#: image.php:20
+msgid "Next &rarr;"
+msgstr "Suivant &rarr;"
+
+#: inc/widgets.php:22
+msgid "Twenty Eleven Ephemera"
+msgstr "Contenu éphémère de Twenty Ten"
+
+#: inc/widgets.php:56
+msgid "Ephemera"
+msgstr "Éphémère"
+
+#: inc/widgets.php:95 inc/widgets.php:104
+msgid "0 <span class=\"reply\">comments &rarr;</span>"
+msgstr "Aucun <span class=\"reply\">commentaire &rarr;</span>"
+
+#: inc/widgets.php:95 inc/widgets.php:104
+msgid "1 <span class=\"reply\">comment &rarr;</span>"
+msgstr "Un <span class=\"reply\">commentaire &rarr;</span>"
+
+#: inc/widgets.php:95 inc/widgets.php:104
+msgid "% <span class=\"reply\">comments &rarr;</span>"
+msgstr "% <span class=\"reply\">commentaires &rarr;</span>"
+
+#: inc/widgets.php:167
+msgid "Title:"
+msgstr "Titre&nbsp;:"
+
+#: inc/widgets.php:170
+msgid "Number of posts to show:"
+msgstr "Nombre d&rsquo;articles à afficher&nbsp;:"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "Résultats de recherche pour %s"
+
+#: searchform.php:11 searchform.php:12 searchform.php:13
+msgid "Search"
+msgstr "Recherche"
+
+#: showcase.php:78
+msgid "Featured Post"
+msgstr "Article mis en avant"
+
+#: showcase.php:161
+msgid "Recent Posts"
+msgstr "Articles récents"
+
+#: sidebar.php:19
+msgid "Archives"
+msgstr "Archives"
+
+#: sidebar.php:26
+msgid "Meta"
+msgstr "Méta"
+
+#. Theme Name of the plugin/theme
+msgid "Twenty Eleven"
+msgstr "Twenty Eleven"
+
+#. Author of the plugin/theme
+msgid "the WordPress team"
+msgstr "L&rsquo;équipe WordPress"
+
+#: search.php:48
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Désolé, mais rien ne correspond à votre critères de recherche. Veuillez réessayer avec d&rsquo;autres mots-clés."
+
+#: tag.php:19
+msgid "Tag Archives: %s"
+msgstr "Archives du mot-clé %s"

@@ -1,0 +1,311 @@
+# Translation of Twenty Fifteen in Dutch
+# This file is distributed under the same license as the Twenty Fifteen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2014-12-17 19:59:41+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/1.0-alpha-1000\n"
+"Project-Id-Version: Twenty Fifteen\n"
+
+#: single.php:37
+msgid "Previous post:"
+msgstr "Vorig bericht:"
+
+#: single.php:34
+msgid "Next post:"
+msgstr "Volgend bericht:"
+
+#: inc/customizer.php:52 inc/customizer.php:68 inc/customizer.php:73
+msgid "Applied to the header on small screens and the sidebar on wide screens."
+msgstr "Van toepassing op de koptekst op kleine schermen en op de sidebar voor brede schermen."
+
+#: single.php:36
+msgid "Previous"
+msgstr "Vorige"
+
+#: single.php:33
+msgid "Next"
+msgstr "Volgende"
+
+#: inc/template-tags.php:91 inc/template-tags.php:99
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#: image.php:24
+msgid "Previous Image"
+msgstr "Vorige afbeelding"
+
+#: image.php:24
+msgid "Next Image"
+msgstr "Volgende afbeelding"
+
+#: inc/template-tags.php:23
+msgid "Comment navigation"
+msgstr "Reactienavigatie"
+
+#: inc/template-tags.php:122
+msgid "Leave a comment"
+msgstr "Geef een reactie"
+
+#: inc/template-tags.php:122
+msgid "1 Comment"
+msgstr "1 reactie"
+
+#: inc/template-tags.php:122
+msgid "% Comments"
+msgstr "% reacties"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
+#. Author of the plugin/theme
+msgid "the WordPress team"
+msgstr "het WordPress-team"
+
+#: inc/customizer.php:152
+msgid "Blue"
+msgstr "Blauw"
+
+#: inc/customizer.php:141
+msgid "Purple"
+msgstr "Paars"
+
+#: inc/customizer.php:130
+msgid "Pink"
+msgstr "Roze"
+
+#: inc/customizer.php:108
+msgid "Dark"
+msgstr "Donker"
+
+#: inc/customizer.php:119
+msgid "Yellow"
+msgstr "Geel"
+
+#: inc/customizer.php:97
+msgid "Default"
+msgstr "Standaard"
+
+#. Theme URI of the plugin/theme
+msgid "https://wordpress.org/themes/twentyfifteen"
+msgstr "https://wordpress.org/themes/twentyfifteen"
+
+#. Theme Name of the plugin/theme
+msgid "Twenty Fifteen"
+msgstr "Twenty Fifteen"
+
+#: inc/template-tags.php:102
+msgctxt "Used before tag names."
+msgid "Tags"
+msgstr "Tags"
+
+#: inc/template-tags.php:85
+msgctxt "Used before post author name."
+msgid "Author"
+msgstr "Auteur"
+
+#: inc/template-tags.php:26
+msgid "Older Comments"
+msgstr "Oudere reacties"
+
+#: inc/template-tags.php:30
+msgid "Newer Comments"
+msgstr "Nieuwere reacties"
+
+#: inc/template-tags.php:49
+msgid "Featured"
+msgstr "Uitgelicht"
+
+#: inc/back-compat.php:37 inc/back-compat.php:47 inc/back-compat.php:60
+msgid "Twenty Fifteen requires at least WordPress version 4.1. You are running version %s. Please upgrade and try again."
+msgstr "Twenty Fifteen vereist minimaal WordPress versie 4.1. Je maakt momenteel gebruik van versie %s. Graag WordPress bijwerken en opnieuw proberen."
+
+#: inc/template-tags.php:76
+msgctxt "Used before publish date."
+msgid "Posted on"
+msgstr "Geplaatst op"
+
+#: inc/template-tags.php:113
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "Volledige grootte"
+
+#: image.php:84
+msgctxt "Parent post link"
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
+msgstr "<span class=\"meta-nav\">Gepubliceerd in</span><span class=\"post-title\">%title</span>"
+
+#: inc/template-tags.php:94
+msgctxt "Used before category names."
+msgid "Categories"
+msgstr "Categorieën"
+
+#: header.php:44
+msgid "Menu and widgets"
+msgstr "Menu en widgets"
+
+#: inc/template-tags.php:55
+msgctxt "Used before post format."
+msgid "Format"
+msgstr "Format"
+
+#: inc/customizer.php:67
+msgid "Header and Sidebar Background Color"
+msgstr "Koptekst en sidebar achtergrondkleur"
+
+#: inc/customizer.php:36
+msgid "Base Color Scheme"
+msgstr "Standaard kleurschema"
+
+#: inc/customizer.php:51
+msgid "Header and Sidebar Text Color"
+msgstr "Koptekst en sidebar tekstkleur"
+
+#. Description of the plugin/theme
+msgid "Our 2015 default theme is clean, blog-focused, and designed for clarity. Twenty Fifteen's simple, straightforward typography is readable on a wide variety of screen sizes, and suitable for multiple languages. We designed it using a mobile-first approach, meaning your content takes center-stage, regardless of whether your visitors arrive by smartphone, tablet, laptop, or desktop computer."
+msgstr "Het 2015 standaard thema is schoon, blog-gefocust en ontworpen voor helderheid. Twenty Fifteen is heeft een eenvoudig en duidelijk typografie zodat het leesbaar is op een grote verscheidenheid van schermbreedtes. Het thema biedt ondersteuning voor meerdere talen. Het is ontworpen met de gedachte dat mobiel voorop staat, dit betekend dat de inhoud het meest belangrijk is ongeacht dat bezoekers op je site komen via een smartphone, tablet, laptop of desktop computer."
+
+#: comments.php:53
+msgid "Comments are closed."
+msgstr "Reacties zijn gesloten."
+
+#: content-link.php:36 content-page.php:25 content.php:38 image.php:59
+msgid "Pages:"
+msgstr "Pagina&#39;s:"
+
+#: content-link.php:56 content-page.php:35 content-search.php:28
+#: content-search.php:33 content.php:57 image.php:71
+msgid "Edit"
+msgstr "Bewerken"
+
+#: footer.php:25
+msgid "Proudly powered by %s"
+msgstr "Ondersteund door %s"
+
+#: functions.php:85
+msgid "Primary Menu"
+msgstr "Primair menu"
+
+#: header.php:27
+msgid "Skip to content"
+msgstr "Naar de inhoud springen"
+
+#: content-none.php:15
+msgid "Nothing Found"
+msgstr "Niets gevonden"
+
+#: content-none.php:22
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Klaar om je eerste bericht te publiceren? <a href=\"%1$s\">Start hier</a>."
+
+#: content-none.php:26
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Helaas, er waren geen overeenkomsten met jouw zoekterm. Probeer het opnieuw met enkele andere zoekwoorden."
+
+#: content-none.php:31
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Het lijkt erop dat wij niet kunnen vinden wat jij zoekt. Wellicht dat de zoekfunctie helpt."
+
+#. translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:168
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr "aan"
+
+#. translators: If there are characters in your language that are not supported
+#. by Noto Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:158
+msgctxt "Noto Sans font: on or off"
+msgid "on"
+msgstr "aan"
+
+#. translators: If there are characters in your language that are not supported
+#. by Noto Serif, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:163
+msgctxt "Noto Serif font: on or off"
+msgid "on"
+msgstr "aan"
+
+#. translators: %s: Name of current post
+#: content-link.php:31 content.php:33 inc/template-tags.php:237
+msgid "Continue reading %s"
+msgstr "Lees verder %s"
+
+#: comments.php:28
+msgctxt "comments title"
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Een gedachte over &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s gedachten over &ldquo;%2$s&rdquo;"
+
+#: functions.php:133
+msgid "Widget Area"
+msgstr "Widget ruimte"
+
+#: functions.php:231
+msgid "expand child menu"
+msgstr "Alles uitklappen"
+
+#: functions.php:232
+msgid "collapse child menu"
+msgstr "Alles inklappen"
+
+#. translators: To add an additional character subset specific to your
+#. language, translate this to 'greek', 'cyrillic', 'devanagari' or
+#. 'vietnamese'. Do not translate into your own language.
+#: functions.php:173
+msgctxt "Add new subset (greek, cyrillic, devanagari, vietnamese)"
+msgid "no-subset"
+msgstr "no-subset"
+
+#: functions.php:135
+msgid "Add widgets here to appear in your sidebar."
+msgstr "Widgets toevoegen zodat ze verschijnen in de sidebar."
+
+#: functions.php:86
+msgid "Social Links Menu"
+msgstr "Social-link menu"
+
+#. #-#-#-#-#  twentyfifteen.pot (Twenty Fifteen 1.0)  #-#-#-#-#
+#. Author URI of the plugin/theme
+#: footer.php:25
+msgid "https://wordpress.org/"
+msgstr "https://nl.wordpress.org/"
+
+#: archive.php:51 content-link.php:40 content-page.php:29 content.php:42
+#: image.php:63 index.php:48 search.php:40
+msgid "Page"
+msgstr "Pagina"
+
+#: archive.php:50 index.php:47 search.php:39
+msgid "Next page"
+msgstr "Volgende pagina"
+
+#: archive.php:49 index.php:46 search.php:38
+msgid "Previous page"
+msgstr "Vorige pagina"
+
+#: author-bio.php:12
+msgid "Published by"
+msgstr "Gepubliceerd door"
+
+#: author-bio.php:34
+msgid "View all posts by %s"
+msgstr "Toon alle berichten van %s"
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Oeps! Die pagina kon niet worden gevonden."
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Het lijkt erop dat er niets gevonden is op deze locatie. Probeer het eens met een zoekopdracht?"
