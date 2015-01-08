@@ -3,8 +3,8 @@ Contributors: takayukister
 Donate link: http://contactform7.com/donate/
 Tags: contact, form, contact form, feedback, email, ajax, captcha, akismet, multilingual
 Requires at least: 3.9
-Tested up to: 4.0
-Stable tag: 4.0.1
+Tested up to: 4.1
+Stable tag: 4.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,7 +42,7 @@ The following are other recommended plugins by the author of Contact Form 7.
 * Belarusian (be_BY) - Igor Dubilei
 * Bosnian (bs_BA) - Vedran
 * Bulgarian (bg_BG) - Iliyan Darganov
-* Catalan (ca) - Jordi Sancho, Robert Buj, Jaume Aragay Badia
+* Catalan (ca) - Jordi Sancho, Robert Buj, Jaume Aragay Badia, luba lee
 * Central Kurdish (ckb) - Mahr Hassan
 * Chinese (China; zh_CN) - Soz, Keefe Dunn, Stella Hu
 * Chinese (Taiwan; zh_TW) - James Wu
@@ -87,7 +87,7 @@ The following are other recommended plugins by the author of Contact Form 7.
 * Sinhala (si_LK) - Nitin Aggarwal
 * Slovak (sk_SK) - Patrik Bóna, WordPress Slovakia
 * Slovene (sl_SI) - Mihael Simonič, Jani Roskar
-* Spanish (es_ES) - Jordi Sancho, Vladimir Prieto, Federico Mikaelian, Matias Baldanza, Carlos Agnese, Lourdes Cuesta
+* Spanish (es_ES) - Jordi Sancho, Vladimir Prieto, Federico Mikaelian, Matias Baldanza, Carlos Agnese, Lourdes Cuesta, Carlos Oropesa
 * Swedish (sv_SE) - Fredrik Jonsson, the Swedish community
 * Tagalog (tl) - Rupert Agnew Lanuza, Hanne, Language Connect
 * Tamil (ta) - Nitin Aggarwal
@@ -124,6 +124,17 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 == Changelog ==
 
 For more information, see [Releases](http://contactform7.com/category/releases/).
+
+= 4.0.3 =
+
+* The contextual help tab has been added to admin pages.
+* Changed the admin menu icon to "email" dashicon.
+* Translations for Croatian, Turkish, and Catalan have been updated.
+
+= 4.0.2 =
+
+* Introduced wpcf7_build_query() to correctly apply urlencode to keys and values in URL queries.
+* Translations for Portuguese, Spanish, Hungarian, and German have been updated.
 
 = 4.0.1 =
 

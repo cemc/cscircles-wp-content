@@ -52,7 +52,7 @@ if (!function_exists('icl_get_home_url')) {
  * list of paramaters accepted in $args
  *
  * skip_missing  => wether to skip missing translation or not, 0 or 1, defaults to 0
- * orderby       => 'id', 'cod', 'name', defaults to 'id'
+ * orderby       => 'id', 'code', 'name', defaults to 'id'
  * order         => 'ASC' or 'DESC', defaults to 'ASC'
  * link_empty_to => link to use when the translation is missing {$lang} is replaced by the language code
  *
@@ -75,22 +75,25 @@ if (!function_exists('icl_get_home_url')) {
 if (!function_exists('icl_get_languages')) {
 	function icl_get_languages($args = '') {
 		global $polylang;
-		if (empty($polylang) || !($polylang instanceof PLL_Frontend) || empty($polylang->curlang))
+		if (empty($polylang))
 			return array();
 
-		$args = extract(wp_parse_args($args));
-		$orderby = (isset($orderby) && $orderby == 'code') ? 'slug' : (isset($orderby) && $orderby == 'name' ? 'name' : 'id');
-		$order = (!empty($order) && $order == 'desc') ? 'DESC' : 'ASC';
+		$args = wp_parse_args($args, array('skip_missing' => 0, 'orderby' => 'id', 'order' => 'ASC'));
+		$orderby = (isset($args['orderby']) && $args['orderby'] == 'code') ? 'slug' : (isset($args['orderby']) && $args['orderby'] == 'name' ? 'name' : 'id');
+		$order = (!empty($args['order']) && $args['order'] == 'desc') ? 'DESC' : 'ASC';
 
 		$arr = array();
 
 		foreach ($polylang->model->get_languages_list(array('hide_empty' => true, 'orderby' => $orderby, 'order' => $order)) as $lang) {
-			$url = $polylang->links->get_translation_url($lang);
+			// we can find a translation only on frontend
+			if (method_exists($polylang->links, 'get_translation_url'))
+				$url = $polylang->links->get_translation_url($lang);
 
-			if (empty($url) && !empty($skip_missing))
+			// it seems that WPML does not bother of skip_missing parameter on admin side and before the $wp_query object has been filled
+			if (empty($url) && !empty($args['skip_missing']) && !is_admin() && did_action('parse_query'))
 				continue;
 
-			$arr[] = array(
+			$arr[$lang->slug] = array(
 				'id'               => $lang->term_id,
 				'active'           => isset($polylang->curlang->slug) && $polylang->curlang->slug == $lang->slug ? 1 : 0,
 				'native_name'      => $lang->name,
@@ -98,9 +101,9 @@ if (!function_exists('icl_get_languages')) {
 				'translated_name'  => '', // does not exist in Polylang
 				'language_code'    => $lang->slug,
 				'country_flag_url' => $lang->flag_url,
-				'url'              => $url ? $url :
-					(empty($link_empty_to) ? $polylang->links->get_home_url($lang) :
-					str_replace('{$lang}', $lang->slug, $link_empty_to))
+				'url'              => !empty($url) ? $url :
+					(empty($args['link_empty_to']) ? $polylang->links->get_home_url($lang) :
+					str_replace('{$lang}', $lang->slug, $args['link_empty_to']))
 			);
 		}
 		return $arr;
@@ -472,13 +475,13 @@ class PLL_WPML_Config {
 	public function init() {
 		$this->wpml_config = array();
 
-		// child theme
-		if (($template = get_template_directory()) != ($stylesheet = get_stylesheet_directory()) && file_exists($file = $stylesheet.'/wpml-config.xml'))
-			$this->xml_parse(file_get_contents($file), get_stylesheet()); // FIXME fopen + fread + fclose quicker ?
-
 		// theme
-		if (file_exists($file = $template.'/wpml-config.xml'))
- 			$this->xml_parse(file_get_contents($file), get_template());
+		if (file_exists($file = ($template = get_template_directory()) .'/wpml-config.xml'))
+ 			$this->xml_parse(file_get_contents($file), get_template()); // FIXME fopen + fread + fclose quicker ?
+
+		// child theme
+		if ($template != ($stylesheet = get_stylesheet_directory()) && file_exists($file = $stylesheet.'/wpml-config.xml'))
+			$this->xml_parse(file_get_contents($file), get_stylesheet());
 
 		// plugins
 		// don't forget sitewide active plugins thanks to Reactorshop http://wordpress.org/support/topic/polylang-and-yoast-seo-plugin/page/2?replies=38#post-4801829
@@ -486,7 +489,7 @@ class PLL_WPML_Config {
 		$plugins = array_merge($plugins, get_option('active_plugins'));
 
 		foreach ($plugins as $plugin) {
-			if (file_exists($file = dirname(POLYLANG_DIR).'/'.dirname($plugin).'/wpml-config.xml'))
+			if (file_exists($file = WP_PLUGIN_DIR.'/'.dirname($plugin).'/wpml-config.xml'))
 				$this->xml_parse(file_get_contents($file), dirname($plugin));
 		}
 
