@@ -3,6 +3,18 @@ define( 'HEADER_IMAGE_WIDTH', apply_filters( 'twentyeleven_header_image_width', 
 define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'twentyeleven_header_image_height', 150 ) );
 define( 'HEADER_IMAGE', content_url('/themes/pybox2011childTheme/images/header.jpg') );
 
+function pybox_on() {
+  return function_exists('pyboxlog');
+}
+
+function _cscurl($slug) {
+  return pybox_on() ? cscurl($slug) : $slug;
+}
+
+function ___t($text) {
+  return pybox_on() ? __t($text) : $text;
+}
+
 // don't show avatars
 add_filter('pre_option_show_avatars', 'do_not_show_avatars');
 function do_not_show_avatars() { return 0; }
@@ -39,7 +51,7 @@ function tweak_profile_page( $subject ) {
   }
   // add return link, and hide unnecessary section headers
   $subject = preg_replace ( '#id="profile-page">#', 'id="profile-page">
-<style>h3 {display: none}</style>' . returnfromprofile(), $subject);
+<style>h3 {display: none}</style>' . (pybox_on() ? returnfromprofile() : ''), $subject);
   
   return $subject;
 }
@@ -47,7 +59,7 @@ function tweak_profile_page( $subject ) {
 add_action( 'admin_head-index.php', 'do_tweak_dashboard_page');
 function do_tweak_dashboard_page() {ob_start('tweak_dashboard_page');}
 function tweak_dashboard_page( $subject ) {
-  return preg_replace ( '/<div class="wrap">/', returnfromprofile() . '<div class="wrap">', $subject);
+  return preg_replace ( '/<div class="wrap">/', (pybox_on() ? returnfromprofile() : '') . '<div class="wrap">', $subject);
 }
 
 function my_function_admin_bar(){ return true; }
@@ -107,7 +119,7 @@ add_action('wp_head', 'faviconlinks');
 add_action('login_head', 'faviconlinks');
 add_action('admin_head', 'faviconlinks');
 function faviconlinks() {
-  echo '<link rel="shortcut icon" href="'.UFAVICON.'"/>';
+  echo '<link rel="shortcut icon" href="'.(pybox_on() ? UFAVICON : '#').'"/>';
 }
 
 // don't show/generate links to feeds
@@ -136,8 +148,8 @@ function login_style() {
 }
 function login_subtitle( $message ) {
   //this is a good time to print a new header
-  echo "<h1>".__t("Computer Science Circles")."</h1>";
-  echo "<h2 style='text-align:center;margin:0.5em'>".__t("Log In or Create Account")."</h2>";
+  echo "<h1>".___t("Computer Science Circles")."</h1>";
+  echo "<h2 style='text-align:center;margin:0.5em'>".___t("Log In or Create Account")."</h2>";
 
   return $message; //no-op
 }
@@ -146,7 +158,7 @@ add_filter( 'login_message', 'login_subtitle' );
 // We found "register" was confusing for users
 add_action( 'login_footer', 'change_login_text' );
 function change_login_text() {
-  $msg = __t('Create a new account');
+  $msg = ___t('Create a new account');
   $htmltext = htmlspecialchars($msg, ENT_QUOTES);
   $attrtext = addslashes($msg);
   echo "<script type='text/javascript'>
@@ -173,17 +185,17 @@ add_filter('show_admin_bar', '__return_true');
 
 add_action('admin_bar_menu', 'pb_menu_items', 5);
 function pb_menu_items($wp_admin_bar) {
-  $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('progress'), 'title'=>__t('My Progress'), 'id'=>'up'));
+  $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => _cscurl('progress'), 'title'=>___t('My Progress'), 'id'=>'up'));
   if (!get_option('cscircles_hide_help'))
-    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => cscurl('mail'), 'title'=>__t('Mail'), 'id'=>'uppity'));
-  $wp_admin_bar->add_menu( array( 'id'=>'snappy', 'parent' => 'user-actions', 'title' => __t('Console (new window)'), 'href' => cscurl('console'), "meta" => array("target" => "_blank")));
-  $wp_admin_bar->add_menu( array( 'id'=>'snappie', 'parent' => 'user-actions', 'title' => __t('Visualizer (new window)'), 'href' => cscurl('visualize'), "meta" => array("target" => "_blank")));
-  $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => __t('Resources (new window)'), 'href' => cscurl('resources'), "meta" => array("target" => "_blank")));
-  $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => __t('Contact Us (new window)'), 'href' => cscurl('contact'), "meta" => array("target" => "_blank")));
+    $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => _cscurl('mail'), 'title'=>___t('Mail'), 'id'=>'uppity'));
+  $wp_admin_bar->add_menu( array( 'id'=>'snappy', 'parent' => 'user-actions', 'title' => ___t('Console (new window)'), 'href' => _cscurl('console'), "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'snappie', 'parent' => 'user-actions', 'title' => ___t('Visualizer (new window)'), 'href' => _cscurl('visualize'), "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'crackle', 'parent' => 'user-actions', 'title' => ___t('Resources (new window)'), 'href' => _cscurl('resources'), "meta" => array("target" => "_blank")));
+  $wp_admin_bar->add_menu( array( 'id'=>'pop', 'parent' => 'user-actions', 'title' => ___t('Contact Us (new window)'), 'href' => _cscurl('contact'), "meta" => array("target" => "_blank")));
 
   if (!is_admin())
     $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'totop', 
-				    'title' => '<img onclick="scrollToTop()" title="'.__t('scroll to top').'"'.
+				    'title' => '<img onclick="scrollToTop()" title="'.___t('scroll to top').'"'.
 				    ' class="icon" src="'.UFILES . 'up.png"/>' ));
   
   global $wpdb;
@@ -191,8 +203,8 @@ function pb_menu_items($wp_admin_bar) {
   $mailtable = $wpdb->prefix."pb_mail";
   // check first, since upon initial installation it might be a problem due to being in header
   if ($wpdb->get_var("SHOW TABLES LIKE '$mailtable'") == $mailtable) { 
-    $students = getStudents();
-    if (count($students)>0 || userIsAdmin() || userIsAssistant()) {
+    $students = pybox_on() ? getStudents() : array();
+    if (pybox_on() && (count($students)>0 || userIsAdmin() || userIsAssistant())) {
       if (userIsAdmin())
         $where = "(uto = ".getUserID() . " OR uto = 0)";
       else {
@@ -204,10 +216,10 @@ function pb_menu_items($wp_admin_bar) {
         $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM ".$wpdb->prefix."pb_mail 
                              WHERE $where ORDER BY ID ASC LIMIT 1", ARRAY_A);
         
-        $url = cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
+        $url = _cscurl('mail') . "?who=".$msg['ustudent']."&what=".$msg['problem']."&which=".$msg['ID'].'#m';
         
         $wp_admin_bar->add_menu( array( 'parent' => 'top-secondary', 'id' => 'mail', 'href' => $url,
-                                        'title' => '<img title="'.__t('goto oldest unanswered mail').'"'.
+                                        'title' => '<img title="'.___t('goto oldest unanswered mail').'"'.
                                         'class="icon" src="'.UFILES . "mail-icon.png\"/>($count)" ));
       }
     }
@@ -257,14 +269,14 @@ add_action( 'wp_before_admin_bar_render', 'tweak_polylang_menu' );
 function tweak_polylang_menu() {
   global $wp_admin_bar;
   if (class_exists('PLL_Base') && is_admin()) {
-    if (!(userIsTranslator() || userIsAdmin() || userIsAssistant())) 
+    if (pybox_on() && !(userIsTranslator() || userIsAdmin() || userIsAssistant())) 
       $wp_admin_bar->remove_node('languages');
     else {
       $node = $wp_admin_bar->get_node('languages');
-      $node->title = __t('Filter Listed Pages'); // 'Languages' is confusing
+      $node->title = ___t('Filter Listed Pages'); // 'Languages' is confusing
       $wp_admin_bar->add_node($node); // update   
       /*      $node = $wp_admin_bar->get_node('all'); doesn't exist any more?
-      $node->title = str_replace(__('Show all languages', 'polylang'), __t('Show all visible'), $node->title); // similar
+      $node->title = str_replace(__('Show all languages', 'polylang'), ___t('Show all visible'), $node->title); // similar
       $wp_admin_bar->add_node($node); // update   */
     }
   }
@@ -296,7 +308,7 @@ function wp_admin_bar_sitename_tweak( $wp_admin_bar) {
   $wp_admin_bar->add_menu( array(
                                  'id'    => 'site-name',
                                  'title' => get_bloginfo('name'),
-                                 'href' => cscurl('homepage')
+                                 'href' => _cscurl('homepage')
                                  ) );
 }
 
@@ -307,7 +319,7 @@ function wp_admin_bar_create_account_item_tweak( $wp_admin_bar ) {
       $wp_admin_bar->add_menu( array( 
                                      'id' => 'new-or-login', 
                                      'parent' => 'top-secondary', 
-                                     'title' => __t('<p>Create free account / login</p><p>to save your progress</p>'), 
+                                     'title' => ___t('<p>Create free account / login</p><p>to save your progress</p>'), 
                                      'href' => wp_login_url( $_SERVER['REQUEST_URI'] ), //
                                      'meta' => array( 'class' => 'new-or-login'))); 
     }
@@ -326,7 +338,7 @@ function tweak_admin_bar() {
   
   if ( $user_id ) { // if logged in
 
-    $howdy  = sprintf( __t("%s's menu"), $current_user->display_name );
+    $howdy  = sprintf( ___t("%s's menu"), $current_user->display_name );
 
     $wp_admin_bar->remove_node('user-info');
     $wp_admin_bar->remove_node('dashboard');
@@ -341,7 +353,7 @@ function tweak_admin_bar() {
     $wp_admin_bar->add_node(array('id'=>'edit-profile', 'href' => $profile_url . '?wp_http_referer=' . urlencode($_SERVER['REQUEST_URI'])));
 
     if ( is_admin() ) { // proper language redirect on admin pages
-      $wp_admin_bar->add_node(array('id'=>'view-site', 'href' => cscurl('homepage')));
+      $wp_admin_bar->add_node(array('id'=>'view-site', 'href' => _cscurl('homepage')));
     }
 
   }  
