@@ -33,25 +33,9 @@ remove_action( 'admin_color_scheme_picker', 'admin_color_scheme_picker' );
 add_action( 'admin_head-profile.php', 'do_tweak_profile_page');
 function do_tweak_profile_page() {ob_start('tweak_profile_page');}
 function tweak_profile_page( $subject ) {
-  foreach (array("rich_editing", 
-                 "comment_shortcuts",
-                 "description", 
-                 "url", 
-                 "admin_bar_front", 
-                 "display_name",
-                 "nickname") 
-           as $label
-           ) {
-    $subject = preg_replace_callback( "#<tr.*label for=\"".$label."\".*</tr>#Us",
-                                      function ($match) {
-                                        $pos = strrpos($match[0], "<tr>");
-                                        return substr($match[0], 0, $pos);
-                                      },
-                                      $subject);
-  }
-  // add return link, and hide unnecessary section headers
-  $subject = preg_replace ( '#id="profile-page">#', 'id="profile-page">
-<style>h3 {display: none}</style>' . (pybox_on() ? returnfromprofile() : ''), $subject);
+  // add return link, and hide unnecessary profile bits
+    $subject = preg_replace ( '#id="profile-page">#', 'id="profile-page">
+<style>h3, .show-admin-bar, .user-display-name-wrap, .user-url-wrap, .user-description-wrap  {display: none} </style>' . (pybox_on() ? returnfromprofile() : ''), $subject);
   
   return $subject;
 }
