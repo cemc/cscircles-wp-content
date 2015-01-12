@@ -13,8 +13,14 @@ if (defined('ABSPATH')) {
 // (pybox) and up 3 more (plugins, wp-content, wordpress) for wp-load.php 
 // we can't just use ABSPATH because it's not defined (an ajax call is in progress)
 require_once(dirname(dirname(dirname(dirname(__FILE__)))) . '/wp-load.php');
-
 // now wordpress is loaded. Huzzah!
+
+add_filter( 'locale', 'set_my_locale' );
+function set_my_locale( $lang ) {
+  if (array_key_exists('lang', $_REQUEST))
+    return $_REQUEST['lang'];
+  return $lang;
+}
 
 // we only need this for ajax calls:
 /*if (array_key_exists('polylang', $GLOBALS)
