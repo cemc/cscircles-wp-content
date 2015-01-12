@@ -445,10 +445,14 @@ function pyflex(options) {
     //options['url']      : url that performs the database call
     //options['dbparams'] : extra arguments to send in database call
     //options['flparams'] : extra arguments for flexigrid, overwriting defaults
+  if (! ('dbparams' in options)) {
+    options['dbparams'] = {};
+  }
+  options['dbparams']['lang'] = window.PB_LANG4;
     $.ajax
     ({type:"POST",
       url:options['url'],
-      data:$.param('dbparams' in options ? options['dbparams'] : []),
+      data:$.param(options['dbparams']),
       success:function(data){pyflexSuccess(options, data);},
       failure:function(){$("#"+options['id']).html(__t('Error: could not connect to database.'));}
      });
