@@ -1,1 +1,1 @@
-Antislashes \ et apostrophes ' et guillemets " et dièses # sont géniaux!
+Les barres obliques inversées \, les apostrophes ', les guillemets " et les dièses # sont géniaux!
