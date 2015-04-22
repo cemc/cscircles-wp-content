@@ -115,16 +115,19 @@ class PLL_Settings {
 				// get the strings to translate
 				$data = PLL_Admin_Strings::get_strings();
 
-				$selected = empty($_REQUEST['group']) ? -1 : $_REQUEST['group'];
-				foreach ($data as $key=>$row) {
-					$groups[] = $row['context']; // get the groups
+				// get the groups
+				foreach ($data as $key => $row)
+					$groups[] = $row['context']; 
 
-					// filter for search string
-					if (($selected !=-1 && $row['context'] != $selected) || (!empty($_REQUEST['s']) && stripos($row['name'], $_REQUEST['s']) === false && stripos($row['string'], $_REQUEST['s']) === false))
+				$groups = array_unique($groups);				
+				$selected = empty($_REQUEST['group']) || !in_array($_REQUEST['group'], $groups) ? -1 : $_REQUEST['group'];
+				$s = empty($_REQUEST['s']) ? '' : wp_unslash($_REQUEST['s']);
+				
+				// filter for search string
+				foreach ($data as $key => $row) {
+					if (($selected !=-1 && $row['context'] != $selected) || (!empty($s) && stripos($row['name'], $s) === false && stripos($row['string'], $s) === false))
 						unset ($data[$key]);
 				}
-
-				$groups = array_unique($groups);
 
 				// load translations
 				foreach ($listlanguages as $language) {
@@ -135,12 +138,15 @@ class PLL_Settings {
 					$mo = new PLL_MO();
 					$mo->import_from_db($language);
 					foreach ($data as $key=>$row) {
-						$data[$key]['translations'][$language->name] = $mo->translate($row['string']);
+						$data[$key]['translations'][$language->slug] = $mo->translate($row['string']);
 						$data[$key]['row'] = $key; // store the row number for convenience
 					}
 				}
 
-				$string_table = new PLL_Table_String($groups, $selected);
+				// get an array with language slugs as keys, names as values
+				$languages = array_combine(wp_list_pluck($listlanguages, 'slug'), wp_list_pluck($listlanguages, 'name'));
+				
+				$string_table = new PLL_Table_String(compact('languages', 'groups', 'selected'));
 				$string_table->prepare_items($data);
 				break;
 
@@ -212,13 +218,13 @@ class PLL_Settings {
 					$strings = PLL_Admin_Strings::get_strings();
 
 					foreach ($this->model->get_languages_list() as $language) {
-						if(empty($_POST['translation'][$language->name])) // in case the language filter is active (thanks to John P. Bloch)
+						if (empty($_POST['translation'][$language->slug])) // in case the language filter is active (thanks to John P. Bloch)
 							continue;
 
 						$mo = new PLL_MO();
 						$mo->import_from_db($language);
 
-						foreach ($_POST['translation'][$language->name] as $key => $translation) {
+						foreach ($_POST['translation'][$language->slug] as $key => $translation) {
 							$translation = apply_filters('pll_sanitize_string_translation', $translation, $strings[$key]['name'], $strings[$key]['context']);
 							$mo->add_entry($mo->make_entry($strings[$key]['string'], $translation));
 						}
@@ -263,7 +269,6 @@ class PLL_Settings {
 					foreach ($_POST['domains'] as $key => $domain) {
 						$this->options['domains'][$key] = esc_url_raw(trim($domain));
 					}
-					$this->options['domains'][$this->options['default_lang']] = $this->links_model->home;
 				}
 
 				foreach (array('browser', 'hide_default', 'redirect_lang', 'media_support') as $key)
@@ -340,7 +345,8 @@ class PLL_Settings {
 			set_transient('settings_errors', $errors, 30);
 			$args['settings-updated'] = 1;
 		}
-		wp_redirect(add_query_arg($args,  wp_get_referer() ));
+		// remove possible 'pll_action' and 'lang' query args from the referer before redirecting
+		wp_redirect(add_query_arg($args,  remove_query_arg( array('pll_action', 'lang'), wp_get_referer() )));
 		exit;
 	}
 }

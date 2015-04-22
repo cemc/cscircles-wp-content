@@ -1,10 +1,11 @@
 === Google Analytics by Yoast ===
-Contributors: joostdevalk,PvW_NL
+Contributors: joostdevalk
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 5.2.8
+Tested up to: 4.2
+Stable tag: 5.4.2
+License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
 
@@ -12,13 +13,14 @@ Track your WordPress site easily with the latest tracking codes and lots added d
 
 The Google Analytics by Yoast plugin for WordPress allows you to track your blog easily and always stays up to date with the newest features in Google Analytics.
 
-> <strong>Development on GitHub</strong><br>
-> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, you have two options: either [buy the premium version of Google Analytics by Yoast on Yoast.com](https://yoast.com/wordpress/plugins/google-analytics/), this will give you access to our support team, or refer to the forums.
+> <strong>Upgrade to GA by Yoast Premium</strong><br>
+> If you need support or want to use custom dimensions, upgrade to [Google Analytics by Yoast Premium](https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wporg&utm_medium=readme&utm_campaign=wpgaplugin) today!
 
 Full list of features:
 
 * Simple installation through integration with Google Analytics API: authenticate, select the site you want to track and you're done.
 * This plugin uses the universal or the asynchronous Google Analytics tracking code, the fastest and most reliable tracking code Google Analytics offers.
+* Gives you incredibly nice visitor metric dashboards right in your WordPress install.
 * Option to enable demographics and interest reports.
 * Outbound link & downloads tracking.
 	* Configurable options to track outbound links either as pageviews or as events.
@@ -29,8 +31,8 @@ Full list of features:
 * Tracking of your search result pages and 404 pages.
 * Full [debug mode](http://yoast.com/google-analytics-debug-mode/), including Firebug lite and ga_debug.js for debugging Google Analytics issues.
 
-> <strong>Coming soon: dashboards!</strong><br>
-> We're working hard on the next iteration of the plugin which will contain a Dashboard within your WordPress admin with the most important stats from Google Analytics.
+> <strong>Development on GitHub</strong><br>
+> The development of Google Analytics by Yoast [takes place on GitHub](https://github.com/Yoast/google-analytics-for-wordpress). Bugs and pull requests are welcomed there. For support, you have two options: either [buy the premium version of Google Analytics by Yoast on Yoast.com](https://yoast.com/wordpress/plugins/google-analytics/), this will give you access to our support team, or refer to the forums.
 
 Other interesting stuff:
 
@@ -48,6 +50,102 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.4.2 =
+
+Release Date: April 21th, 2015
+
+* Bugfixes:
+    * Fixes a bug where our link tracking broke the content in case of multiline links.
+    * Fixes a bug where it was no longer possible to dismiss the i18n module.
+
+= 5.4.1 =
+
+Release Date: April 21th, 2015
+
+* Bugfixes:
+    * Fixes a bug where GA API was being pinged too often.
+    * Fixes a bug where users were unable to authenticate with Google Analytics. It might take a while for authentication to work again, as the API key within the plugin has to be within its quota limits again. We’re very sorry for the inconvenience. Note that for Premium users everything still works.
+
+= 5.4 =
+
+Release Date: April 20th, 2015
+
+* Enhancements:
+    * Complete technical overhaul of the way settings are being stored. Switched to WP Settings API and added input validation and sanitation for several settings.
+    * Made the settings more accessible by adding `for` attributes to the labels, connecting them with the corresponding form fields. Props to [Steve Repsher](https://github.com/steverep) for the awesome contribution!
+    * Made Universal tracking the default for new installs.
+    * Adds administrators to the default user roles to ignore for tracking.
+
+* Security:
+    * Fixes several security issues that were discovered during an elaborate security review performed by our friends from [Sucuri](https://sucuri.net/).
+    * Fixes two other XSS issues. Thanks to [Johannes Schmitt](https://github.com/schmittjoh) from [Scrutinizer CI](https://scrutinizer-ci.com/) and [Jouko Pynnönen](http://klikki.fi) for discovering and responsibly disclosing these issues.
+
+* Bugfixes:
+    * Fixes an issue where some GA dashboard style sheets and scripts were also loaded outside of the Google Analytics by Yoast dashboard, thereby unnecessarily slowing down the WP admin.
+    * Fixes a bug where a PHP warning could be raised on the dashboard when no data is available.
+
+= 5.3.3 =
+
+Release Date: March 19th, 2015
+
+* Several security fixes:
+    1. Fix minor XSS issue where admins could XSS each other through an unescaped manual UA field.
+    1. Fix stored XSS issue where changing a property's name in Google Analytics to contain malicious JS would allow execution of that JS in the admin as the profile name was not escaped properly.
+    1. Fix un-authenticated change of the GA profile list, allowing the previous XSS to become a slightly bigger issue. Issues 2 and 3 combined lead to a [DREAD score](http://blog.sucuri.net/2015/03/understanding-wordpress-plugin-vulnerabilities.html) of 5.
+* Other fixes:
+    * Small code style improvements.
+    * Throw an error and deactivate if either the PHP SPL or PHP filter libraries aren't loaded.
+    * Introduced a filter `yst_ga_track_super_admin` to allow disabling of super admin tracking on multi-site, defaulting to true.
+
+Big thanks to [Jouko Pynnönen](http://klikki.fi) for responsibly disclosing security issues #2 and #3.
+
+= 5.3.2 =
+
+Release Date: February 18th, 2015
+
+* Enhancements:
+	* Throws away the GA data when a user changes his GA profile.
+	* Makes a few strings translatable that were not translatable yet.
+
+* Bugfixes:
+	* Fixes the "Missing class information" Zend error that was caused by our api-libs package.
+
+= 5.3.1 =
+
+Release Date: February 11th, 2015
+
+* Enhancements:
+	* Added a filter (`yst-ga-filter-api-end-date`) to enable our [premium plugin](https://yoast.com/wordpress/plugins/google-analytics/) to show more recent data in the dashboards.
+
+* Features:
+	* Added [Enhanced link attribution](https://support.google.com/analytics/answer/2558867) for Universal tracking.
+
+* Bugfixes
+	* [Fixes a bug](https://github.com/markoheijnen/grunt-glotpress/pull/14) in the grunt task we use for downloading translations from GlotPress, which caused the translations to no longer be loaded.
+	* Fixes a bug where the links to our submenu pages were broken in case of a locale other than `en_US` being set.
+
+= 5.3 =
+
+Release Date: January 27th, 2015
+
+* Enhancements:
+	* Added an option for entirely disabling the dashboards functionality. If a user disables the dashboard, the menu item gets moved downward since there no longer is a reason for putting it so far up.
+	* Improved performance by making sure everything is autoloaded correctly and removing class inclusion checks everywhere.
+	* Makes sure the menu items become translatable.
+	* Added a button to save the GA authentication code as an alternative to hitting the return button.
+	* Format the page views number in the hover label of dashboards.
+	* Reduced the number of results retrieved from the Google Analytics API per call from 10,000 to 1,000. This is filterable through `yst-ga-filter-api-limit`.
+
+* Bugfixes:
+    * When toggling checkbox the authentication token input was showing up.
+    * Fixed internal links that were being tracked as outbound-article- (with trailing dash).
+	* Makes sure re-authentication notice is only shown when authentication has actually failed.
+	* Introduces a notice for when authentication isn't the problem but the plugin was somehow unable to fetch data from GA.
+
+* i18n:
+	* Added translations for `da_DK`, `es_MX`, `fr_FR`, `it_IT`, `nb_NO`, `pl_PL`, `pt_BR`.
+	* Updated translations for `en_GB`, `he_IL`, `nl_NL`, `ru_RU`.
 
 = 5.2.8 =
 
@@ -285,7 +383,7 @@ Complete rewrite of the Google Analytics plugin.
 
 = 4.3.4 =
 
-* Bugfix: 
+* Bugfix:
 	* Fixed error in a database query as reported by [mikeotgaar](http://wordpress.org/support/topic/wordpress-database-error-table-1) and applied some best practices for the database queries - props [Jrf](http://profiles.wordpress.org/jrf).
 	* Fixed error in a database query.
 	* Made check for customcode option more robust - props [Rarst](https://github.com/Rarst).
@@ -586,13 +684,20 @@ Complete rewrite of the Google Analytics plugin.
 = 1.5 =
 * Added option to enable admin tracking, off by default.
 
+== Upgrade Notice ==
+
+= 5.3.3 =
+This version fixes several issues related to your site's security. Update immediately.
+
 == Frequently Asked Questions ==
 
 For all frequently asked questions, and their answers, check the [Yoast Knowledge base](http://kb.yoast.com/category/43-google-analytics-for-wordpress).
 
 == Screenshots ==
 
-1. Screenshot of the general settings panel for this plugin.
-2. Screenshot of the universal settings panel.
-3. Screenshot of the advanced settings panel.
-4. Screenshot of the account selection drop down.
+1. Screenshot of the dashboards this plugin generates. To get dashboards for custom dimensions, upgrade to [GA by Yoast Premium](https://yoast.com/wordpress/plugins/google-analytics/#utm_source=wporg&utm_medium=readme&utm_campaign=wpgaplugin&utm_content=screenshot).
+2. Screenshot of the general settings panel for this plugin.
+3. Screenshot of the universal settings panel.
+4. Screenshot of the advanced settings panel.
+5. Screenshot of the account selection drop down.
+

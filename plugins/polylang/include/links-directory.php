@@ -36,7 +36,7 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 		add_action('setup_theme', array(&$this, 'add_permastruct'), 2);
 
 		// make sure to prepare rewrite rules when flushing
-		add_action('pre_option_rewrite_rules', array(&$this, 'prepare_rewrite_rules'), 20); // after Polylang
+		add_action('pre_option_rewrite_rules', array(&$this, 'prepare_rewrite_rules'));
 
 		// refresh rewrite rules if the 'page_on_front' option is modified
 		add_action('update_option_page_on_front', 'flush_rewrite_rules');
@@ -184,7 +184,7 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 						array('[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]'),
 						array('[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]'),
 						$rule
-					); // hopefully it is sufficient!
+					); // should be enough!
 
 				if ($this->options['hide_default']) {
 					$newrules[$key] = $rules[$key];
@@ -194,7 +194,7 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 			}
 
 			// rewrite rules filtered by language
-			elseif (in_array($filter, $this->always_rewrite) || ($cpts && preg_match($cpts, $rule) && !strpos($rule, 'name=')) || ($filter != 'rewrite_rules_array' && $this->options['force_lang'])) {
+			elseif (in_array($filter, $this->always_rewrite) || in_array($filter, $this->model->get_filtered_taxonomies()) || ($cpts && preg_match($cpts, $rule) && !strpos($rule, 'name=')) || ($filter != 'rewrite_rules_array' && $this->options['force_lang'])) {
 				if (isset($slug))
 					$newrules[$slug.str_replace($wp_rewrite->root, '', $key)] = str_replace(
 						array('[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?'),

@@ -72,6 +72,8 @@ class PLL_Admin extends PLL_Base {
 		// filter admin language for users
 		// we must not call user info before WordPress defines user roles in wp-settings.php
 		add_filter('setup_theme', array(&$this, 'init_user'));
+		add_filter('request', array(&$this, 'request'));
+
 
 		// adds the languages in admin bar
 		add_action('admin_bar_menu', array(&$this, 'admin_bar_menu'), 100); // 100 determines the position
@@ -98,6 +100,9 @@ class PLL_Admin extends PLL_Base {
 	 */
 	public function admin_enqueue_scripts() {
 		$screen = get_current_screen();
+		if (empty($screen))
+			return;
+			
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '.min';
 
 		// for each script:
@@ -108,7 +113,8 @@ class PLL_Admin extends PLL_Base {
 		// FIXME: check if I can load more scripts in footer
 		$scripts = array(
 			'admin' => array( array('settings_page_mlang'), array('jquery', 'wp-ajax-response', 'postbox'), 1 , 0),
-			'post'  => array( array('post', 'media', 'async-upload', 'edit'),  array('jquery', 'wp-ajax-response', 'inline-edit-post', 'post', 'jquery-ui-autocomplete'), 0 , 0),
+			'post'  => array( array('post', 'media', 'async-upload', 'edit'),  array('jquery', 'wp-ajax-response', 'post', 'jquery-ui-autocomplete'), 0 , 1),
+			'media' => array( array('upload'), array('jquery'), 0 , 1),
 			'term'  => array( array('edit-tags'), array('jquery', 'wp-ajax-response', 'jquery-ui-autocomplete'), 0, 1),
 			'user'  => array( array('profile', 'user-edit'), array('jquery'), 0 , 0),
 		);
@@ -118,11 +124,6 @@ class PLL_Admin extends PLL_Base {
 				wp_enqueue_script('pll_'.$script, POLYLANG_URL .'/js/'.$script.$suffix.'.js', $v[1], POLYLANG_VERSION, $v[3]);
 
 		wp_enqueue_style('polylang_admin', POLYLANG_URL .'/css/admin'.$suffix.'.css', array(), POLYLANG_VERSION);
-
-		// backward compatibility WP < 3.8
-		// don't load this for old versions
-		if (version_compare($GLOBALS['wp_version'], '3.8alpha' , '>='))
-			wp_enqueue_style('polylang_admin_mobi', POLYLANG_URL .'/css/admin-mobi'.$suffix.'.css', array(), POLYLANG_VERSION);
 	}
 
 	/*
@@ -214,6 +215,23 @@ class PLL_Admin extends PLL_Base {
 		else
 			do_action('pll_no_language_defined'); // to load overriden textdomains
 	}
+	
+	/*
+	 * avoids parsing a tax query when all languages are requested
+	 * fixes https://wordpress.org/support/topic/notice-undefined-offset-0-in-wp-includesqueryphp-on-line-3877 introduced in WP 4.1
+	 * @see the suggestion of @boonebgorges, https://core.trac.wordpress.org/ticket/31246
+	 * 
+	 * @since 1.6.5
+	 * 
+	 * @param array $qvars
+	 * @return array
+	 */
+	public function request($qvars) {
+			if (isset($qvars['lang']) && 'all' === $qvars['lang'])
+				unset($qvars['lang']);
+				
+			return $qvars;
+	}
 
 	/*
 	 * get the locale based on user preference
@@ -274,8 +292,6 @@ class PLL_Admin extends PLL_Base {
 		foreach (array_merge(array($all_item), $this->model->get_languages_list()) as $lang) {
 			if ($selected->slug == $lang->slug)
 				continue;
-
-			$img = empty($lang->flag) ? '' : (false !== strpos($lang->flag, 'img') ? $lang->flag . '&nbsp;' : $lang->flag);
 
 			$wp_admin_bar->add_menu(array(
 				'parent' => 'languages',

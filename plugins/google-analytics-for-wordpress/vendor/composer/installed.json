@@ -1,0 +1,260 @@
+[
+    {
+        "name": "composer/installers",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/composer/installers.git",
+            "reference": "f8c20b427de1cfe7a28a015c1640ce4e4eef1e33"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/composer/installers/zipball/f8c20b427de1cfe7a28a015c1640ce4e4eef1e33",
+            "reference": "f8c20b427de1cfe7a28a015c1640ce4e4eef1e33",
+            "shasum": ""
+        },
+        "replace": {
+            "roundcube/plugin-installer": "*",
+            "shama/baton": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.0.*@dev",
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2015-03-26 16:11:30",
+        "type": "composer-installer",
+        "extra": {
+            "class": "Composer\\Installers\\Installer",
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Composer\\Installers\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kyle Robinson Young",
+                "email": "kyle@dontkry.com",
+                "homepage": "https://github.com/shama"
+            }
+        ],
+        "description": "A multi-framework Composer library installer",
+        "homepage": "http://composer.github.com/installers/",
+        "keywords": [
+            "Craft",
+            "Dolibarr",
+            "Hurad",
+            "MODX Evo",
+            "OXID",
+            "SMF",
+            "Thelia",
+            "WolfCMS",
+            "agl",
+            "aimeos",
+            "annotatecms",
+            "bitrix",
+            "cakephp",
+            "chef",
+            "codeigniter",
+            "concrete5",
+            "croogo",
+            "dokuwiki",
+            "drupal",
+            "elgg",
+            "fuelphp",
+            "grav",
+            "installer",
+            "joomla",
+            "kohana",
+            "laravel",
+            "lithium",
+            "magento",
+            "mako",
+            "mediawiki",
+            "modulework",
+            "moodle",
+            "phpbb",
+            "piwik",
+            "ppi",
+            "puppet",
+            "roundcube",
+            "shopware",
+            "silverstripe",
+            "symfony",
+            "typo3",
+            "wordpress",
+            "zend",
+            "zikula"
+        ]
+    },
+    {
+        "name": "xrstf/composer-php52",
+        "version": "dev-default",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "hg",
+            "url": "https://bitbucket.org/xrstf/composer-php52",
+            "reference": "717c00a8bec1b40401384536d2ebaea57c7c35d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://bitbucket.org/xrstf/composer-php52/get/717c00a8bec1b40401384536d2ebaea57c7c35d4.zip",
+            "reference": "717c00a8bec1b40401384536d2ebaea57c7c35d4",
+            "shasum": ""
+        },
+        "time": "2015-02-01 13:29:12",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-default": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "xrstf\\Composer52": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "homepage": "http://www.xrstf.de/"
+    },
+    {
+        "name": "yoast/api-libs",
+        "version": "dev-trunk",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Yoast/api-libs.git",
+            "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Yoast/api-libs/zipball/0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
+            "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
+            "shasum": ""
+        },
+        "time": "2015-02-17 14:41:34",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "class-api-libs.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Team Yoast",
+                "email": "support@yoast.com",
+                "homepage": "https://yoast.com"
+            }
+        ],
+        "description": "Shared API libraries for Yoast projects.",
+        "homepage": "https://github.com/Yoast/api-libs",
+        "keywords": [
+            "wordpress"
+        ]
+    },
+    {
+        "name": "yoast/i18n-module",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Yoast/i18n-module.git",
+            "reference": "4648918ccf8bc6da12eadf57e4bece4829af29b3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Yoast/i18n-module/zipball/4648918ccf8bc6da12eadf57e4bece4829af29b3",
+            "reference": "4648918ccf8bc6da12eadf57e4bece4829af29b3",
+            "shasum": ""
+        },
+        "time": "2015-04-15 06:48:03",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "i18n-module.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Team Yoast",
+                "email": "support@yoast.com",
+                "homepage": "https://yoast.com"
+            }
+        ],
+        "description": "Handle i18n for WordPress plugins.",
+        "homepage": "https://github.com/Yoast/i18n-module",
+        "keywords": [
+            "wordpress"
+        ]
+    },
+    {
+        "name": "yoast/license-manager",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Yoast/License-Manager.git",
+            "reference": "8caf52202bf51011686e31c9a43b18731047f1be"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Yoast/License-Manager/zipball/8caf52202bf51011686e31c9a43b18731047f1be",
+            "reference": "8caf52202bf51011686e31c9a43b18731047f1be",
+            "shasum": ""
+        },
+        "time": "2015-03-16 11:51:33",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "class-api-request.php",
+                "class-license-manager.php",
+                "class-plugin-license-manager.php",
+                "class-plugin-update-manager.php",
+                "class-product.php",
+                "class-theme-license-manager.php",
+                "class-theme-update-manager.php",
+                "class-update-manager.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Team Yoast",
+                "email": "support@yoast.com",
+                "homepage": "https://yoast.com"
+            }
+        ],
+        "description": "Yoast License Manager.",
+        "homepage": "https://github.com/Yoast/License-Manager",
+        "keywords": [
+            "wordpress"
+        ]
+    }
+]

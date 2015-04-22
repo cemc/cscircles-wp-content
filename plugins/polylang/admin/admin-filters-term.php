@@ -8,6 +8,7 @@
 class PLL_Admin_Filters_Term {
 	public $links, $model, $options, $curlang, $pref_lang;
 	protected $pre_term_name; // used to store the term name before creating a slug if needed
+	protected $post_id; // used to store the current post_id when bulk editing posts
 
 	/*
 	 * constructor: setups filters and actions
@@ -34,9 +35,9 @@ class PLL_Admin_Filters_Term {
 
 		// adds actions related to languages when creating or saving categories and post tags
 		add_filter('wp_dropdown_cats', array(&$this, 'wp_dropdown_cats'));
-		add_filter('pre_insert_term', array(&$this, 'pre_insert_term'), 10, 2);
 		add_action('create_term', array(&$this, 'save_term'), 999, 3);
 		add_action('edit_term', array(&$this, 'save_term'), 999, 3); // late as it may conflict with other plugins, see http://wordpress.org/support/topic/polylang-and-wordpress-seo-by-yoast
+		add_action('pre_post_update', array(&$this, 'pre_post_update'));
 		add_filter('pre_term_name', array(&$this, 'pre_term_name'));
 		add_filter('pre_term_slug', array(&$this, 'pre_term_slug'), 10, 2);
 
@@ -47,14 +48,12 @@ class PLL_Admin_Filters_Term {
 		// filters categories and post tags by language
 		add_filter('terms_clauses', array(&$this, 'terms_clauses'), 10, 3);
 
-		// backward compatibility WP < 3.7
-		version_compare($GLOBALS['wp_version'], '3.7', '<') ?
-			add_action('wp_ajax_polylang-ajax-tag-search', array(&$this,'ajax_tag_search')) :
-			add_action('wp_ajax_polylang-ajax-tag-search', 'wp_ajax_ajax_tag_search'); // take profit of new filter, cache...
-
+		// allows to get the default categories in all languages
 		add_filter('option_default_category', array(&$this, 'option_default_category'));
+		add_action('update_option_default_category', array(&$this, 'update_option_default_category'), 10, 2);
 
-		//add_action('split_shared_term', array(&$this, 'split_shared_term'), 10, 4); // FIXME planned for WP 4.2
+		// updates the translations term ids when splitting a shared term
+		add_action('split_shared_term', array(&$this, 'split_shared_term'), 10, 4); // WP 4.2
 	}
 
 	/*
@@ -65,6 +64,10 @@ class PLL_Admin_Filters_Term {
 	public function add_term_form() {
 		$taxonomy = $_GET['taxonomy'];
 		$post_type = isset($GLOBALS['post_type']) ? $GLOBALS['post_type'] : $_REQUEST['post_type'];
+		
+		if (!taxonomy_exists($taxonomy) || !post_type_exists($post_type))
+			return;
+		
 		$lang = isset($_GET['new_lang']) ? $this->model->get_language($_GET['new_lang']) : $this->pref_lang;
 		$dropdown = new PLL_Walker_Dropdown();
 
@@ -106,7 +109,14 @@ class PLL_Admin_Filters_Term {
 		$lang = $this->model->get_term_language($term_id);
 		$taxonomy = $tag->taxonomy;
 		$post_type = isset($GLOBALS['post_type']) ? $GLOBALS['post_type'] : $_REQUEST['post_type'];
+		
+		if (!post_type_exists($post_type))
+			return;
+		
 		$dropdown = new PLL_Walker_Dropdown();
+
+		// disable the language dropdown and the translations input fields for default categories to prevent removal
+		$disabled = in_array(get_option('default_category'), $this->model->get_translations('term', $term_id));
 
 		wp_nonce_field('pll_language', '_pll_nonce');
 
@@ -125,6 +135,7 @@ class PLL_Admin_Filters_Term {
 				'name'     => 'term_lang_choice',
 				'value'    => 'term_id',
 				'selected' => $lang ? $lang->term_id : '',
+				'disabled' => $disabled,
 				'flag'     => true
 			)),
 			__('Sets the language', 'polylang')
@@ -145,34 +156,26 @@ class PLL_Admin_Filters_Term {
 	 * @return string modified html
 	 */
 	public function wp_dropdown_cats($output) {
-		if (isset($_GET['taxonomy'], $_GET['from_tag'], $_GET['new_lang']) && $id = get_term($_GET['from_tag'], $_GET['taxonomy'])->parent) {
-			if ($parent = $this->model->get_translation('term', $id, $_GET['new_lang']))
+		if (isset($_GET['taxonomy'], $_GET['from_tag'], $_GET['new_lang']) && taxonomy_exists($_GET['taxonomy']) && $id = get_term((int) $_GET['from_tag'], $_GET['taxonomy'])->parent) {
+			$lang = $this->model->get_language($_GET['new_lang']);
+			if ($parent = $this->model->get_translation('term', $id, $lang))
 				return str_replace('"'.$parent.'"', '"'.$parent.'" selected="selected"', $output);
 		}
 		return $output;
 	}
 
 	/*
-	 * prevents duplicating a term translation
-	 *
-	 * @since 1.3
-	 *
-	 * @param string $term The term to add or update.
-	 * @param string $taxonomy The taxonomy to which to add the term
-	 *
-	 * @return object|string WP_Error object if the translation already exits, unmodified $term otherwise
+	 * stores the current post_id when bulk editing posts for use in save_language and pre_term_slug
+	 * 
+	 * @since 1.7
+	 * 
+	 * @param int $post_id
 	 */
-	public function pre_insert_term($term, $taxonomy) {
-		if (isset($_POST['action'], $_POST['from_tag'], $_POST['term_lang_choice']) && 'add-tag' == $_POST['action'] && $this->model->get_translation('term', $_POST['from_tag'], $_POST['term_lang_choice'])) {
-			$from_term = get_term($_POST['from_tag'], $taxonomy);
-			return new WP_Error('term_translation_exists', sprintf(
-				__('A translation does already exist for %s', 'polylang'),
-				$from_term->name
-			));
-		}
-		return $term;
+	public function pre_post_update($post_id) {
+		if (isset($_GET['bulk_edit']))
+			$this->post_id = $post_id;
 	}
-
+	
 	/*
 	 * allows to set a language by default for terms if it has no language yet
 	 *
@@ -201,6 +204,7 @@ class PLL_Admin_Filters_Term {
 	 * @param string $taxonomy
 	 */
 	protected function save_language($term_id, $taxonomy) {
+		global $wpdb;
 		// security checks are necessary to accept language modifications
 		// as 'wp_update_term' can be called from outside WP admin
 
@@ -212,17 +216,45 @@ class PLL_Admin_Filters_Term {
 			else
 				check_admin_referer('pll_language', '_pll_nonce'); // edit tags or tags metabox
 
-			$this->model->set_term_language($term_id, $_POST['term_lang_choice']);
+			$this->model->set_term_language($term_id, $this->model->get_language($_POST['term_lang_choice']));
 		}
 
 		// *post* bulk edit, in case a new term is created
 		elseif (isset($_GET['bulk_edit'], $_GET['inline_lang_choice'])) {
-			// bulk edit does not modify the language
-			if ($_GET['inline_lang_choice'] == -1)
-				return;
-
 			check_admin_referer('bulk-posts');
-			$this->model->set_term_language($term_id, $_GET['inline_lang_choice']);
+
+			// bulk edit does not modify the language
+			// so we possibly create a tag in several languages
+			if ($_GET['inline_lang_choice'] == -1) {
+				// the language of the current term is set a according to the language of the current post
+				$this->model->set_term_language($term_id, $this->model->get_post_language($this->post_id)); 
+				$term = get_term($term_id, $taxonomy);
+
+				// get all terms with the same name
+				// FIXME backward compatibility WP < 4.2
+				// no WP function to get all terms with the exact same name so let's use a custom query
+				// $terms = get_terms($taxonomy, array('name' => $term->name, 'hide_empty' => false, 'fields' => 'ids')); should be OK in 4.2
+				// I may need to rework the loop below
+				$terms = $wpdb->get_results($wpdb->prepare("
+					SELECT t.term_id FROM $wpdb->terms AS t
+					INNER JOIN $wpdb->term_taxonomy AS tt ON t.term_id = tt.term_id
+					WHERE tt.taxonomy = %s AND t.name = %s",
+					$taxonomy, $term->name
+				)); 
+				
+				// if we have several terms with the same name, they are translations of each other
+				if (count($terms) > 1) {
+					foreach ($terms as $term) {
+							$translations[$this->model->get_term_language($term->term_id)->slug] = $term->term_id;
+					}
+
+					$this->model->save_translations('term', $term_id, $translations);
+				}
+			}
+			
+			else {
+				$this->model->set_term_language($term_id, $this->model->get_language($_GET['inline_lang_choice']));
+			}
 		}
 
 		// quick edit
@@ -232,16 +264,29 @@ class PLL_Admin_Filters_Term {
 				'_inline_edit'
 			);
 
-			if (isset($_POST['inline-save-tax']) && $this->model->get_term_language($term_id)->slug != $_POST['inline_lang_choice'])
-				$this->model->delete_translation('term', $term_id);
+			$old_lang = $this->model->get_term_language($term_id); // stores the old  language
+			$lang = $this->model->get_language($_POST['inline_lang_choice']); // new language
+			$translations = $this->model->get_translations('term', $term_id);
 
-			$this->model->set_term_language($term_id, $_POST['inline_lang_choice']);
+			// checks if the new language already exists in the translation group
+			if ($old_lang && $old_lang->slug != $lang->slug) {
+				if (array_key_exists($lang->slug, $translations)) {
+					$this->model->delete_translation('term', $term_id);
+				}
+
+				elseif (array_key_exists($old_lang->slug, $translations)) {
+					unset($translations[$old_lang->slug]);
+					$this->model->save_translations('term', $term_id, $translations);
+				}
+			}
+
+			$this->model->set_term_language($term_id, $lang); // set new language
 		}
 
 		// edit post
 		elseif (isset($_POST['post_lang_choice'])) {// FIXME should be useless now
 			check_admin_referer('pll_language', '_pll_nonce');
-			$this->model->set_term_language($term_id, $_POST['post_lang_choice']);
+			$this->model->set_term_language($term_id, $this->model->get_language($_POST['post_lang_choice']));
 		}
 
 		else
@@ -331,7 +376,8 @@ class PLL_Admin_Filters_Term {
 
 		// if the new term has the same name as a language, we *need* to differentiate the term
 		// see http://core.trac.wordpress.org/ticket/23199
-		if (term_exists($name, 'language') && !term_exists($name, $taxonomy) && (!$slug || $slug == $name))
+		// backward compatibility with WP < 4.1
+		if (version_compare($GLOBALS['wp_version'], '4.1', '<') && term_exists($name, 'language') && !term_exists($name, $taxonomy) && (!$slug || $slug == $name))
 			$slug = $name . '-' . $taxonomy; // a convenient slug which may be modified later by the user
 
 		// if the term already exists in another language
@@ -341,6 +387,17 @@ class PLL_Admin_Filters_Term {
 
 			elseif (isset($_POST['inline_lang_choice']))
 				$slug = $name . '-' . $this->model->get_language($_POST['inline_lang_choice'])->slug;
+				
+			// *post* bulk edit, in case a new term is created
+			elseif (isset($_GET['bulk_edit'], $_GET['inline_lang_choice'])) {
+				// bulk edit does not modify the language
+				if ($_GET['inline_lang_choice'] == -1) {
+					$slug = $name . '-' .  $this->model->get_post_language($this->post_id)->slug;
+				}
+				else {
+					$slug = $name . '-' . $this->model->get_language($_GET['inline_lang_choice'])->slug;
+				}
+			}
 		}
 
 		return $slug;
@@ -368,9 +425,12 @@ class PLL_Admin_Filters_Term {
 		check_ajax_referer('pll_language', '_pll_nonce');
 
 		$lang = $this->model->get_language($_POST['lang']);
-		$term_id = isset($_POST['term_id']) ? $_POST['term_id'] : null;
+		$term_id = isset($_POST['term_id']) ? (int) $_POST['term_id'] : null;
 		$taxonomy = $_POST['taxonomy'];
 		$post_type = $_POST['post_type'];
+		
+		if (!post_type_exists($post_type) || ! taxonomy_exists($taxonomy))
+			die(0);
 
 		ob_start();
 		if ($lang)
@@ -421,30 +481,40 @@ class PLL_Admin_Filters_Term {
 	 */
 	public function ajax_terms_not_translated() {
 		check_ajax_referer('pll_language', '_pll_nonce');
+		
+		$s = wp_unslash($_REQUEST['term']);
+		$post_type = $_REQUEST['post_type'];
+		$taxonomy = $_REQUEST['taxonomy'];
+		
+		if (!post_type_exists($post_type) || ! taxonomy_exists($taxonomy))
+			die(0);
+
+		$term_language = $this->model->get_language($_REQUEST['term_language']);
+		$translation_language = $this->model->get_language($_REQUEST['translation_language']);
 
 		$return = array();
 
 		// it is more efficient to use one common query for all languages as soon as there are more than 2
 		// pll_get_terms_not_translated arg to identify this query in terms_clauses filter
-		foreach (get_terms($_REQUEST['taxonomy'], 'hide_empty=0&pll_get_terms_not_translated=1&name__like=' . $_REQUEST['term']) as $term) {
+		foreach (get_terms($taxonomy, 'hide_empty=0&pll_get_terms_not_translated=1&name__like=' . $s) as $term) {
 			$lang = $this->model->get_term_language($term->term_id);
 
-			if ($lang && $lang->slug == $_REQUEST['translation_language'] && !$this->model->get_translation('term', $term->term_id, $_REQUEST['term_language']))
+			if ($lang && $lang->slug == $translation_language->slug && !$this->model->get_translation('term', $term->term_id, $term_language))
 				$return[] = array(
 					'id' => $term->term_id,
 					'value' => $term->name,
-					'link' => $this->edit_translation_link($term->term_id, $_REQUEST['taxonomy'], $_REQUEST['post_type'])
+					'link' => $this->edit_translation_link($term->term_id, $taxonomy, $post_type)
 				);
 		}
 
 		// add current translation in list
 		// not in add term for as term_id is not set
-		if ('undefined' !== $_REQUEST['term_id'] && $term_id = $this->model->get_translation('term', $_REQUEST['term_id'], $_REQUEST['translation_language'])) {
-			$term = get_term($term_id, $_REQUEST['taxonomy']);
+		if ('undefined' !== $_REQUEST['term_id'] && $term_id = $this->model->get_translation('term', (int) $_REQUEST['term_id'], $translation_language)) {
+			$term = get_term($term_id, $taxonomy);
 			array_unshift($return, array(
 				'id' => $term_id,
 				'value' => $term->name,
-				'link' => $this->edit_translation_link($term->term_id, $_REQUEST['taxonomy'], $_REQUEST['post_type'])
+				'link' => $this->edit_translation_link($term->term_id, $taxonomy, $post_type)
 			));
 		}
 
@@ -502,10 +572,6 @@ class PLL_Admin_Filters_Term {
 		if (isset($_POST['lang']))
 			$lang = $this->model->get_language($_POST['lang']);
 
-		// ajax tag search since WP 3.7
-		elseif (!empty($_GET['lang']) && isset($_GET['action']) && 'polylang-ajax-tag-search' == $_GET['action'])
-			$lang = $this->model->get_language($_GET['lang']);
-
 		// the post (or term) is created with the 'add new' (translation) link
 		// test of $args['page'] to avoid filtering the terms list table in edit-tags panel
 		elseif (!empty($_GET['new_lang']) && empty($args['page']))
@@ -530,7 +596,7 @@ class PLL_Admin_Filters_Term {
 
 		// for the parent dropdown list in edit term
 		elseif (isset($_GET['tag_ID']))
-			$lang = $this->model->get_term_language($_GET['tag_ID']);
+			$lang = $this->model->get_term_language((int) $_GET['tag_ID']);
 
 		// when a new category is created in the edit post panel
 		elseif (isset($_POST['term_lang_choice']))
@@ -542,50 +608,6 @@ class PLL_Admin_Filters_Term {
 
 		// adds our clauses to filter by current language
 		return !empty($lang) ? $this->model->terms_clauses($clauses, $lang) : $clauses;
-	}
-
-	/*
-	 * replaces ajax tag search of WP to filter tags by language
-	 * backward compatibility WP < 3.7
-	 * see http://core.trac.wordpress.org/ticket/25231
-	 *
-	 * @since 0.7
-	 */
-	public function ajax_tag_search() {
-		global $wpdb;
-
-		if ( isset( $_GET['tax'] ) ) {
-			$taxonomy = sanitize_key( $_GET['tax'] );
-			$tax = get_taxonomy( $taxonomy );
-			if ( ! $tax )
-				die( '0' );
-			if ( ! current_user_can( $tax->cap->assign_terms ) )
-				die( '-1' );
-		} else {
-			die('0');
-		}
-
-		$s = stripslashes( $_GET['q'] );
-
-		if ( false !== strpos( $s, ',' ) ) {
-			$s = explode( ',', $s );
-			$s = $s[count( $s ) - 1];
-		}
-		$s = trim( $s );
-		if ( strlen( $s ) < 2 )
-			die; // require 2 chars for matching
-
-		$lang = $this->model->get_language($_GET['lang']);
-
-		$results = $wpdb->get_col( $wpdb->prepare(
-			"SELECT t.name FROM $wpdb->term_taxonomy AS tt
-			INNER JOIN $wpdb->terms AS t ON tt.term_id = t.term_id
-			INNER JOIN $wpdb->term_relationships AS pll_tr ON pll_tr.object_id = t.term_id
-			WHERE tt.taxonomy = %s AND t.name LIKE (%s) AND pll_tr.term_taxonomy_id = %d",
-			$taxonomy, '%' . like_escape( $s ) . '%', $lang->tl_term_taxonomy_id ) );
-
-		echo join( $results, "\n" );
-		die;
 	}
 
 	/*
@@ -611,10 +633,34 @@ class PLL_Admin_Filters_Term {
 	}
 
 	/*
-	 * FIXME: splitting shared terms is not planned before WP 4.2. It is not clear if all terms will be splitted at once
-	 * when splitting a shared, splits translations if these are shared terms too
+	 * checks if the new default category is translated in all languages
+	 * if not, create the translations
 	 *
-	 * @since 1.6.2
+	 * @since 1.7
+	 *
+	 * @param int $old_value
+	 * @param int $value
+	 */
+	public function update_option_default_category($old_value, $value) {
+		$default_cat_lang = $this->model->get_term_language($value);
+
+		// assign a default language to default category
+		if (!$default_cat_lang) {
+			$default_cat_lang = $this->model->get_language($this->options['default_lang']);
+			$this->set_term_language((int) $value, $default_cat_lang);
+		}
+
+		foreach ($this->model->get_languages_list() as $language) {
+			if ($language->slug != $default_cat_lang->slug && !$this->model->get_translation('term', $value, $language))
+				$this->model->create_default_category($language);
+		}
+	}
+
+	/*
+	 * updates the translations term ids when splitting a shared term
+	 * splits translations if these are shared terms too
+	 *
+	 * @since 1.7
 	 *
 	 * @param int $term_id shared term_id
 	 * @param int $new_term_id
