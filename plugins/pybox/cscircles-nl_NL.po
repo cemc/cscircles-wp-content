@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-03 19:46-0400\n"
-"PO-Revision-Date: 2014-10-03 19:44-0400\n"
+"PO-Revision-Date: 2015-07-11 01:41-0400\n"
 "Last-Translator: Ries Kock <rieskock@xs4all.nl>\n"
 "Language-Team: Nederlands <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1102,7 +1102,6 @@ msgid "CEMC"
 msgstr "CEMC"
 
 #: ../wp-theme/footer.php:38
-#, fuzzy
 msgid "University of Waterloo, MC 5104"
 msgstr "Nederlandse Informatica Olympiade"
 
