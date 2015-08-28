@@ -381,6 +381,14 @@ cmed = {}; //list of code mirror instances, indexed by pyid
 hflex = {}; //history flexigrid instances
 hflexhelp = {};
 
+// ensure clicking mail messages open new window to that message's page
+$(".flexigrid tr a pre.prebox").live("click", function(e) {
+  var a = e.target.closest("a");
+  if (!a) return true;
+  window.open(a.getAttribute("href"));
+  return false;
+});
+
 $(".hintlink").live("click", function(e) {
   n = $(this).attr("id").substring(8);
   o = $("#hintbox" + n);

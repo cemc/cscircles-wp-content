@@ -595,7 +595,7 @@ function resendEmails() {
     
     $contents .= $r['body']."\n===\n";
     $contents .= __t("To send a reply message, please visit")."\n";
-    $contents .= cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m\n";
+    $contents .= cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m";
     $contents .= __t("Problem URL:")." " . $purl . "\n";
     $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
 

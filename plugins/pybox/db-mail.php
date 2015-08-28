@@ -99,7 +99,7 @@ function dbMail($limit, $sortname, $sortorder, $req = NULL) {
      $cell = array();
      $cell[__t('from')] = nicefiedUsername($r['ufrom']);
      $cell[__t('to')] = nicefiedUsername($r['uto']);
-     $url =  cscurl('mail') . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m\n";
+     $url =  cscurl('mail') . "?who=".$r['ustudent']."&what=".$r['problem']."&which=".$r['ID']."#m";
      $cell[__t('when')] = str_replace(' ', '<br>', $r['time']);
      if ($what=='')
        $cell[__t('problem')] = $r['problem'];
