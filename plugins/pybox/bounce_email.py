@@ -8,6 +8,10 @@
 import email.parser, email.message, email.mime.text, smtplib, sys, re
 import send_email
 
+with open('/home/cscircles/logs/bouncelog', 'a') as f:
+   print("hello", file=f)
+
+
 received = email.parser.Parser().parse(sys.stdin)
 
 textbody = ''
@@ -17,6 +21,13 @@ for part in received.walk():
       textbody += part.get_payload() + "\n"
    elif part.get_content_type() == 'text/html':
       htmlbody += part.get_payload() + "\n"
+
+import sys
+
+# don't rebounce if it gets caught in a loop
+if "=-=::=-=" in textbody or "=-=::=-=" in htmlbody:
+   sys.exit(0)
+
 if textbody != "":
     origbody = textbody
 else:
@@ -36,19 +47,19 @@ linkhint = linkhint.replace('=3D', '=')
 # after the .po is updated by a translator, update this file.
 
 if (link != None and link.group(1) == 'poste'): # french
-   bodytemplate = "Votre e-mail à {0} ne sera pas lu. Si vous avez répondu à pour l'aide sur un problème, vous devez utiliser le lien{1}dans le courriel précédent. \nUne copie de votre e-mail est copiée ci-dessous."
+   bodytemplate = "Votre e-mail au {0} ne sera pas lu. Si vous avez répondu à pour l'aide sur un problème, vous devez utiliser le lien{1}dans le courriel précédent. \nUne copie de votre e-mail est copiée ci-dessous."
    bouncerName = 'Rebondeur Cercles informatiques'
 elif (link != None and link.group(1) == 'post'): # german
    bodytemplate = "Deine Email an {0} wird nicht gelesen werden. Wenn du antwortest, um weitere Hilfsstellungen zu einem Problem zu erfragen, musst du den Link aus der vorherigen Email verwendenl \n{1}\nEs folgt eine Kopie deiner Email."
    bouncerName = 'EI:CSC (no-reply)'
 else:
-   bodytemplate = "Your e-mail to {0} will not be read. If you are replying to ask for follow-up help about a problem, you must use the link in the previous email{1} \nA copy of your e-mail follows."
+   bodytemplate = "Your e-mail to the {0} will not be read. If you are replying to ask for follow-up help about a problem, you must use the link in the previous email{1} \nA copy of your e-mail follows."
    bouncerName = 'CS Circles Bouncer'
 
-mFrom = '"' + bouncerName + '" <' + send_email.BOUNCE_ADDRESS + '>'
-body = bodytemplate.format(send_email.BOUNCE_ADDRESS, linkhint)
+mFrom = '"' + bouncerName + '" <noreply@cscircles.cemc.uwaterloo.ca>'
+body = bodytemplate.format(bouncerName, linkhint)
 
-body += "\n===\n" + origbody
+body += "\n=-=::=-=\n" + origbody
 
 subject = received.get("subject")
 if subject[0:3].lower() != 're:':	
@@ -56,5 +67,9 @@ if subject[0:3].lower() != 're:':
 
 mTo = received.get('from')
 
-send_email.send_unicode_email(mFrom, mTo, subject, body)
+with open('/home/cscircles/bouncelog', 'a') as f:
+   print((mFrom, mTo, subject, body), file=f)
+
+# send from noreply account
+send_email.send_unicode_email(mFrom, mTo, subject, body, True)
    

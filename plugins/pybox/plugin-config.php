@@ -10,7 +10,7 @@ define('DEVELOPMENT_LANGUAGES', serialize(array()));
 define('CSCIRCLES_ASST_ID_MAP', 
        serialize(array('de' => 11351, 
                        'nl' => 25033, 
-                       'lt' => 1359)));
+                       'lt' => 40943)));
 
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two

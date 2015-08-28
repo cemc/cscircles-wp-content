@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 BOUNCE_ADDRESS = 'bounces@cscircles.cemc.uwaterloo.ca'
+NOREPLY_ADDRESS = 'noreply@cscircles.cemc.uwaterloo.ca'
 WEBSITE_URL = 'http://cscircles.cemc.uwaterloo.ca/' # with trailing slash
 
 """Usage:
@@ -27,7 +28,7 @@ def format_address(name, email):
     name = Charset('iso-8859-1').header_encode(name)
     return formataddr((name, email))
 
-def send_unicode_email(mFrom, mTo, mSubject, mBody):
+def send_unicode_email(mFrom, mTo, mSubject, mBody, noreply = False):
     sender_name, sender_addr = parseaddr(mFrom)
     recipient_name, recipient_addr = parseaddr(mTo)
 
@@ -36,7 +37,8 @@ def send_unicode_email(mFrom, mTo, mSubject, mBody):
     composed['Reply-To'] = format_address(sender_name, sender_addr)
     composed['To'] = format_address(recipient_name, recipient_addr)
     composed['Subject'] = Header(mSubject, 'UTF-8')
-    composed['From'] = format_address(sender_name, BOUNCE_ADDRESS)
+    addr = BOUNCE_ADDRESS if (not noreply) else NOREPLY_ADDRESS
+    composed['From'] = format_address(sender_name, addr)
 
     try:
         srv = smtplib.SMTP('localhost')
