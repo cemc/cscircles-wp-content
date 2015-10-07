@@ -1,0 +1,3 @@
+<pre>
+if wachtwoord=='SesamOpenU':  <div style="margin:0px 20px; margin:0ch 1.9ch; background: #CCF; border: solid blue 1px; border: solid blue 0.1ch;">print('De gebruiker is ingelogd.')<br/>if uur&gt;18:
+<div style="margin:0px 20px; margin: 0ch 1.9ch; background: #FCC; border: solid red 1px; border: solid red 0.1ch;">print('Goedenavond!')</div>print('Type een opdracht in:')</div></pre>
