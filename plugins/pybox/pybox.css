@@ -1,6 +1,10 @@
 
 /*********************** general stuff **********************/
 
+.hide-if-no-customize {
+    display: none;
+}
+
 input.wpcf7-text, textarea.wpcf7-textarea {
   width: 100%;
   padding: 0px;
