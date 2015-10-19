@@ -1,4 +1,3 @@
-Yoast API libraries
+Yoast Google API libraries
 ==========================
-This repository currently contains client API libraries for the following services:
-* Google Analytics
+This repository contains the Google API client libraries which are used in Yoast plugins.

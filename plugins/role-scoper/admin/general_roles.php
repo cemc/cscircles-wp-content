@@ -80,7 +80,7 @@ if ( isset($_POST['rs_submit']) ) :	?>
 		
 		$blog_roles = array();
 		
-		$selected_roles = $_POST['roles'];
+		$selected_roles = array_map( 'sanitize_key', (array) $_POST['roles'] );
 		
 		$selected_agents = array();
 		foreach ( $role_bases as $role_basis ) {
@@ -117,10 +117,15 @@ if ( isset($_POST['rs_submit']) ) :	?>
 		
 			<?php 
 			foreach ( array_keys($selected_agents) as $role_basis ) {
-				foreach($selected_agents[$role_basis] as $agent_id)
+				$role_basis = sanitize_key( $role_basis );
+				
+				foreach($selected_agents[$role_basis] as $agent_id) {
+					$agent_id = (int) $agent_id;
+				
 					foreach($selected_roles as $role_code)
 						if ( $role_handle = array_search($role_code, $role_codes) )
 							$blog_roles[ $role_basis ][ $role_handle ][ $agent_id ] = $assign_for;
+				}
 				
 				if ( ROLE_BASIS_USER == $role_basis )
 					$agents_msg []= sprintf(_n("%d user", "%d users", count($selected_agents[$role_basis]), 'scoper'), count($selected_agents[$role_basis]) );
@@ -207,7 +212,7 @@ echo '</ul>';
 
 <ul class="rs-list_horiz"><li>
 <select id="assign_for" name="assign_for"><?php 
-	$retain_value = ( isset($_POST["assign_for"]) ) ? $_POST["assign_for"] : 0;
+	$retain_value = ( isset($_POST["assign_for"]) ) ? sanitize_key( $_POST["assign_for"] ) : 0;
 
 	foreach($assignment_modes as $status_id => $caption) {
 		$selected = ( $status_id === $retain_value ) ? 'selected="selected"' : '';

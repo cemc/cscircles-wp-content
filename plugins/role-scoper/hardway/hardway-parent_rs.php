@@ -18,7 +18,7 @@ class ScoperHardwayParent {
 				
 			if ( ! $is_new ) {
 				global $post;
-				$object_id = ( ! empty($post->ID) ) ? $post->ID : $GLOBALS['scoper']->data_sources->detect('id', 'post', 0, 'post');
+				$object_id = ( ! empty($post->ID) ) ? $post->ID : (int) $GLOBALS['scoper']->data_sources->detect('id', 'post', 0, 'post');
 
 				$stored_parent_id = ( ! empty($post->ID) ) ? $post->post_parent : get_post_field( 'post_parent', $object_id );
 			}

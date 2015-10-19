@@ -17,13 +17,13 @@ class ScoperHardwayParentLegacy {
 			global $post_ID;
 			
 			if ( empty($post_ID) )
-				$object_id = $scoper->data_sources->detect('id', 'post', 0, 'post');
+				$object_id = (int) $scoper->data_sources->detect('id', 'post', 0, 'post');
 			else
 				$object_id = $post_ID;
 		}
 		
 		if ( $object_id && ! is_numeric($stored_parent_id) )
-			$stored_parent_id = $scoper->data_sources->detect('parent', 'post', $object_id);
+			$stored_parent_id = (int) $scoper->data_sources->detect('parent', 'post', $object_id);
 		
 		// make sure the currently stored parent page remains in dropdown regardless of current user roles
 		if ( $stored_parent_id ) {

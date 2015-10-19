@@ -74,22 +74,6 @@ function scoper_use_posted_init_options() {
 	wpp_cache_init( IS_MU_RS && scoper_establish_group_scope() );
 }
 
-function get_posted_object_terms_cr( $taxonomy ) {
-	if ( 'category' == $taxonomy ) {
-		if ( ! empty($_POST['post_category']) )
-			return $_POST['post_category'];
-
-	} elseif( 'post_tag' == $taxonomy ) {
-		if ( ! empty($_POST['tags_input']) )
-			return $_POST['tags_input'];
-
-	} elseif( ! empty($_POST['tax_input'][$taxonomy]) ) {
-		return $_POST['tax_input'][$taxonomy];
-	}
-		
-	return array();
-}
-
 function agp_strtolower( $str ) {
 	if ( defined( 'SCOPER_MB_STRINGS' ) )
 		return mb_strtolower( $str );

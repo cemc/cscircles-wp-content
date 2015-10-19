@@ -1,5 +1,5 @@
 ***************
-*** 293,310 ****
+*** 297,314 ****
   		return $output;
   	}
   
@@ -18,7 +18,7 @@
   	if ( '_remote_ip' == $name ) {
   		if ( $remote_ip = $submission->get_meta( 'remote_ip' ) ) {
   			return $remote_ip;
---- 293,298 ----
+--- 297,302 ----
   		return $output;
   	}
   

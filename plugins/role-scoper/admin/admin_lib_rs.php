@@ -37,7 +37,7 @@ class ScoperAdminLib {
 		global $wpdb;
 		
 		if ( COL_ID_RS == $cols )
-			$results = scoper_get_col("SELECT user_id FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = '$role_type' AND role_name = '$role_name'");
+			$results = scoper_get_col( $wpdb->prepare( "SELECT user_id FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = %s AND role_name = %s", $role_type, $role_name ) );
 		else {
 			switch( $cols ) {
 				case COLS_ID_DISPLAYNAME_RS : 
@@ -52,9 +52,9 @@ class ScoperAdminLib {
 		
 			$query = "SELECT $qcols FROM $wpdb->users AS u "
 					. " INNER JOIN $wpdb->user2role2object_rs AS r ON r.user_id = u.ID"
-					. " WHERE r.scope = 'blog' AND r.role_type = '$role_type' AND r.role_name = '$role_name'";
+					. " WHERE r.scope = 'blog' AND r.role_type = %s AND r.role_name = %s";
 					
-			$results = scoper_get_results($query);
+			$results = scoper_get_results( $wpdb->prepare( $query, $role_type, $role_name ) );
 		}
 		
 		return $results;
@@ -171,9 +171,9 @@ class ScoperAdminLib {
 		global $wpdb;
 
 		$query = "SELECT $wpdb->groups_id_col AS ID, $wpdb->groups_name_col AS display_name, $wpdb->groups_descript_col as descript, $wpdb->groups_meta_id_col as meta_id"
-				. " FROM $wpdb->groups_rs WHERE $wpdb->groups_id_col='$group_id'";
+				. " FROM $wpdb->groups_rs WHERE $wpdb->groups_id_col=%d";
 
-		$results = scoper_get_results( $query );
+		$results = scoper_get_results( $wpdb->prepare( $query, $group_id ) );
 		if(isset($results) && isset($results[0]))
 		return $results[0];
 	}
@@ -367,13 +367,12 @@ class ScoperAdminLib {
 		$user_ids = (array) $user_ids;
 			
 		foreach( $user_ids as $user_id ) {
-			if ( $already_member = $wpdb->get_col( "SELECT $wpdb->user2group_uid_col FROM $wpdb->user2group_rs WHERE $wpdb->user2group_gid_col = '$group_id' AND $wpdb->user2group_uid_col = '$user_id'" ) )
+			if ( $already_member = $wpdb->get_col( $wpdb->prepare( "SELECT $wpdb->user2group_uid_col FROM $wpdb->user2group_rs WHERE $wpdb->user2group_gid_col = %d AND $wpdb->user2group_uid_col = %d", $group_id, $user_id ) ) )
 				continue;
 
 			//rs_errlog( "adding user to group $group_id" );
 				
-			$insert = "INSERT INTO $wpdb->user2group_rs ($wpdb->user2group_gid_col, $wpdb->user2group_uid_col, $wpdb->user2group_status_col)"
-					. " VALUES ('$group_id','$user_id','$status');";
+			$insert = $wpdb->prepare( "INSERT INTO $wpdb->user2group_rs ($wpdb->user2group_gid_col, $wpdb->user2group_uid_col, $wpdb->user2group_status_col) VALUES (%d,%d,%s);", $group_id, $user_id, $status );
 					
 			scoper_query( $insert );
 			
@@ -392,10 +391,10 @@ class ScoperAdminLib {
 	function remove_group_user($group_id, $user_ids) {
 		global $wpdb;
 
-		$user_ids = (array) $user_ids;
+		$user_ids = array_map( 'intval', (array) $user_ids );
 		
 		$id_in = "'" . implode("', '", $user_ids) . "'";
-		$delete = "DELETE FROM $wpdb->user2group_rs WHERE $wpdb->user2group_gid_col='$group_id' AND $wpdb->user2group_uid_col IN ($id_in)";
+		$delete = $wpdb->prepare( "DELETE FROM $wpdb->user2group_rs WHERE $wpdb->user2group_gid_col=%d AND $wpdb->user2group_uid_col IN ($id_in)", $group_id );
 		scoper_query( $delete );
 
 		foreach( $user_ids as $user_id )
@@ -413,19 +412,19 @@ class ScoperAdminLib {
 	function update_group_user( $group_id, $user_ids, $status ) {
 		global $wpdb;
 
-		$user_ids = (array) $user_ids;
+		$user_ids = array_map( 'intval', (array) $user_ids );
 		
 		$id_in = "'" . implode("', '", $user_ids) . "'";
 		
 		$prev_status = array();
-		$qry = "SELECT $wpdb->user2group_uid_col AS user_id, $wpdb->user2group_status_col AS status FROM $wpdb->user2group_rs WHERE $wpdb->user2group_gid_col='$group_id' AND $wpdb->user2group_uid_col IN ($id_in)";
-		if ( $results = scoper_get_results( $qry ) ) {
+		$qry = "SELECT $wpdb->user2group_uid_col AS user_id, $wpdb->user2group_status_col AS status FROM $wpdb->user2group_rs WHERE $wpdb->user2group_gid_col=%d AND $wpdb->user2group_uid_col IN ($id_in)";
+		if ( $results = scoper_get_results( $wpdb->prepare( $qry, $group_id ) ) ) {
 			foreach( $results as $row )
 				$prev_status[ $row->user_id ] = $row->status;	
 		}
 		
-		$qry = "UPDATE $wpdb->user2group_rs SET $wpdb->user2group_status_col='$status' WHERE $wpdb->user2group_gid_col='$group_id' AND $wpdb->user2group_uid_col IN ($id_in)";
-		scoper_query( $qry );
+		$qry = "UPDATE $wpdb->user2group_rs SET $wpdb->user2group_status_col=%s WHERE $wpdb->user2group_gid_col=%d AND $wpdb->user2group_uid_col IN ($id_in)";
+		scoper_query( $wpdb->prepare( $qry, $status, $group_id ) );
 
 		foreach( $user_ids as $user_id ) {
 			$prev = ( isset( $prev_status[$user_id] ) ) ? $prev_status[$user_id] : '';
@@ -600,10 +599,10 @@ class ScoperAdminLib {
 		
 		if ( ! empty($_POST[$csv_id]) ) {
 			$agent_names = explode(",", $_POST[$csv_id]);
-
+			
 			// role assignments for item
 			foreach ( $agent_names as $agent_name ) {
-				if ( empty($agent_name) ) continue; else $agent_name = trim($agent_name);
+				if ( empty($agent_name) ) continue; else $agent_name = sanitize_text_field( trim($agent_name) );
 
 				if ( ROLE_BASIS_GROUPS == $role_basis ) {
 					if ( isset($groups_by_name[$agent_name]) )

@@ -73,7 +73,7 @@ class ScoperAdminHardway_Ltd {
 			$use_term_roles = scoper_get_otype_option( 'use_term_roles', 'post', 'nav_menu' );
 
 			if ( empty ( $GLOBALS['current_user']->allcaps['edit_theme_options'] ) || ! empty( $use_term_roles['nav_menu'] ) ) {
-				if ( ! cr_user_can( $tx->cap->manage_terms, $_REQUEST['menu'], 0, array( 'skip_id_generation' => true, 'skip_any_term_check' => true ) ) ) {
+				if ( ! cr_user_can( $tx->cap->manage_terms, (int) $_REQUEST['menu'], 0, array( 'skip_id_generation' => true, 'skip_any_term_check' => true ) ) ) {
 					if ( $_REQUEST['menu'] )
 						wp_die( __('You do not have permission to update that Navigation Menu', 'scoper') );
 					else
@@ -90,7 +90,7 @@ class ScoperAdminHardway_Ltd {
 		} elseif ( $referer_name == 'move-menu_item' ) {
 			if ( scoper_get_option( 'admin_nav_menu_filter_items' ) ) {
 				require_once( SCOPER_ABSPATH . '/admin/filters-admin-nav_menus_rs.php' );
-				_rs_mnt_modify_nav_menu_item( $_REQUEST['menu-item'], 'move' );
+				_rs_mnt_modify_nav_menu_item( (int) $_REQUEST['menu-item'], 'move' );
 			}
 		} elseif ( 'add-bookmark' == $referer_name ) {
 			require_once( dirname(__FILE__).'/hardway-admin-links_rs.php' );
@@ -187,7 +187,7 @@ class ScoperAdminHardway_Ltd {
 		if ( 'admin.php' == $pagenow ) {
 			if ( strpos ($query, "ELECT ID, post_parent, post_title") && strpos($query, "FROM $posts WHERE post_parent =") && function_exists('parent_dropdown') ) {
 				$page_temp = '';
-				$object_id = $scoper->data_sources->detect( 'id', 'post' );
+				$object_id = (int) $scoper->data_sources->detect( 'id', 'post' );
 				if ( $object_id )
 					$page_temp = get_post( $object_id );
 

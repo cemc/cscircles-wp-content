@@ -89,9 +89,9 @@ class ScoperHardwayTaxonomy
 				if ( $tx = $scoper->taxonomies->get($taxonomies[0]) ) {
 					// is a Category Edit form being displayed?
 					if ( ! empty( $tx->uri_vars ) )
-						$term_id = $scoper->data_sources->detect('id', $tx);
+						$term_id = (int) $scoper->data_sources->detect('id', $tx);
 					else
-						$term_id = $scoper->data_sources->detect('id', $tx->source);
+						$term_id = (int) $scoper->data_sources->detect('id', $tx->source);
 					
 					if ( $term_id )
 						// don't filter current parent category out of selection UI even if current user can't manage it
@@ -121,7 +121,7 @@ class ScoperHardwayTaxonomy
 		// don't offer to set a category as its own parent
 		if ( 'edit-tags.php' == $GLOBALS['pagenow'] ) {			
 			if ( $tx_obj->hierarchical ) {
-				if ( $editing_cat_id = $scoper->data_sources->get_from_uri('id', 'term') ) {
+				if ( $editing_cat_id = (int) $scoper->data_sources->get_from_uri('id', 'term') ) {
 					if ( ! empty($args['exclude']) )
 						$args['exclude'] .= ',';
 	

@@ -109,9 +109,11 @@ class ScoperAnalyst {
 		
 		
 		if ( $attachment_id ) {
-			if ( is_array($attachment_id) )
+			if ( is_array($attachment_id) ) {
+				$attachment_id = array_map( 'intval', (array) $attachment_id );
 				$id_clause = "AND ID IN ('" . implode( "','", $attachment_id ) . "')";
-			else {
+			} else {
+				$attachment_id = (int) $attachment_id;
 				$id_clause = "AND ID = '$attachment_id'";
 				$limit_clause = 'LIMIT 1';
 			}
@@ -122,6 +124,7 @@ class ScoperAnalyst {
 	
 		if ( defined( 'SCOPER_NO_THUMBNAIL_FILTER' ) ) {
 			if ( $thumbnail_ids = scoper_get_col( "SELECT DISTINCT meta_value FROM $wpdb->postmeta WHERE meta_key = '_thumbnail_id'" ) ) {
+				$thumbnail_ids = array_map( 'intval', (array) $thumbnail_ids );
 				$id_clause .= " AND ID NOT IN ('" . implode( "','", $thumbnail_ids ) . "')";
 			}
 		}

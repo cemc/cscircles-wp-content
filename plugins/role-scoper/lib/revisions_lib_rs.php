@@ -33,8 +33,8 @@ function rs_get_post_revisions($post_id, $status = 'inherit', $args = array() ) 
 		}	
 			
 	} else {
-		$order_clause = ( $order && $orderby ) ? "ORDER BY $orderby $order" : '';
-		$revisions = scoper_get_results("SELECT * FROM $wpdb->posts WHERE post_type = 'revision' AND post_parent = '$post_id' AND post_status = '$status' $order_clause");
+		$order_clause = ( $order && $orderby ) ? $wpdb->prepare( "ORDER BY %s %s", $orderby, $order ) : '';
+		$revisions = scoper_get_results( $wpdb->prepare( "SELECT * FROM $wpdb->posts WHERE post_type = 'revision' AND post_parent = %d AND post_status = %s $order_clause", $post_id, $status ) );
 	}
 
 	return $revisions;

@@ -263,8 +263,8 @@ class WP_Scoped_User extends WP_User {
 		
 		$extra_cols = ( $include_role_duration_key ) ? ", uro.date_limited, uro.start_date_gmt, uro.end_date_gmt" : '';
 		
-		$qry = "SELECT uro.role_name, uro.content_date_limited, uro.content_min_date_gmt, uro.content_max_date_gmt $extra_cols FROM $wpdb->user2role2object_rs AS uro WHERE uro.scope = 'blog' AND uro.role_type = '$role_type' $duration_clause $u_g_clause";
-		$results =  scoper_get_results($qry);
+		$qry = "SELECT uro.role_name, uro.content_date_limited, uro.content_min_date_gmt, uro.content_max_date_gmt $extra_cols FROM $wpdb->user2role2object_rs AS uro WHERE uro.scope = 'blog' AND uro.role_type = %s $duration_clause $u_g_clause";
+		$results =  scoper_get_results( $wpdb->prepare( $qry, $role_type ) );
 
 		$role_handles = array( '' => array() );
 		
@@ -300,6 +300,8 @@ class WP_Scoped_User extends WP_User {
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
 			
+		$taxonomy = sanitize_key( $taxonomy );
+		
 		global $wpdb;
 		
 		if ( $enforce_duration_limits = $enforce_duration_limits && scoper_get_option( 'role_duration_limits' ) ) {

@@ -5,7 +5,7 @@ Plugin Name: List Pages Shortcode
 Plugin URI: http://wordpress.org/extend/plugins/list-pages-shortcode/
 Description: Introduces the [list-pages], [sibling-pages] and [child-pages] <a href="http://codex.wordpress.org/Shortcode_API">shortcodes</a> for easily displaying a list of pages within a post or page.  Both shortcodes accept all parameters that you can pass to the <a href="http://codex.wordpress.org/Template_Tags/wp_list_pages">wp_list_pages()</a> function.  For example, to show a page's child pages sorted by title simply add [child-pages sort_column="post_title"] in the page's content.
 Author: Ben Huson, Aaron Harp
-Version: 1.7.1
+Version: 1.7.2
 Author URI: http://www.aaronharp.com
 */
 
@@ -23,7 +23,7 @@ class List_Pages_Shortcode {
 	static function shortcode_list_pages( $atts, $content, $tag ) {
 		global $post;
 
-		do_action( 'shortcode_list_pages_before' );
+		do_action( 'shortcode_list_pages_before', $atts, $content, $tag );
 
 		// Child Pages
 		$child_of = 0;
@@ -93,7 +93,7 @@ class List_Pages_Shortcode {
 		}
 		$out = apply_filters( 'shortcode_list_pages', $out, $atts, $content, $tag );
 
-		do_action( 'shortcode_list_pages_after' );
+		do_action( 'shortcode_list_pages_after', $atts, $content, $tag );
 
 		return $out;
 	}

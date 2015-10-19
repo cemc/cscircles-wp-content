@@ -225,8 +225,8 @@ class ScoperAdmin
 			$src_name = 'post';
 			$object_type = cr_find_post_type();	
 		} elseif ( isset($_GET['src_name']) && isset($_GET['object_type']) ) {
-			$src_name = $_GET['src_name'];
-			$object_type = $_GET['object_type'];	
+			$src_name = sanitize_key( $_GET['src_name'] );
+			$object_type = sanitize_key( $_GET['object_type'] );	
 		}
 		
 		if ( ! empty($object_type) ) {
@@ -276,7 +276,7 @@ class ScoperAdmin
 					global $current_user;
 					$agent_id = $current_user->ID;	
 				} else
-					$agent_id = $_GET['user_id'];
+					$agent_id = (int) $_GET['user_id'];
 			}
 
 			require_once( dirname(__FILE__).'/user_search_ui_rs.php' );

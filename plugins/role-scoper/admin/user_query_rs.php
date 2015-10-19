@@ -22,7 +22,7 @@ if ( isset( $_GET['rs_user_search'] )  ) {
 	if ( $results ) {	
 		// determine all current users (of any status) for group in question
 		if ( ! empty( $_GET['rs_agent_id'] ) )
-			$users = ScoperAdminLib::get_group_members( $_GET['rs_agent_id'], COL_ID_RS, false, array( 'status' => 'any' ) );
+			$users = ScoperAdminLib::get_group_members( (int) $_GET['rs_agent_id'], COL_ID_RS, false, array( 'status' => 'any' ) );
 		else
 			$users = array();
 		
@@ -33,12 +33,13 @@ if ( isset( $_GET['rs_user_search'] )  ) {
 	}
 	
 } elseif ( isset( $_GET['rs_group_search'] ) ) {
+	global $wpdb;
 	
 	if ( ! empty( $_GET['rs_group_search'] ) ) {
 		$searches = array();
 		$where = 'AND (';
 		foreach ( array('group_name', 'group_description') as $col )
-			$searches[] = $col . " LIKE '%{$_GET['rs_group_search']}%'";
+			$searches[] = $col . " LIKE '%" . sanitize_text_field($_GET['rs_group_search'], '', 'query') . "%'";
 		$where .= implode(' OR ', $searches);
 		$where .= ')';
 	} else
@@ -53,7 +54,7 @@ if ( isset( $_GET['rs_user_search'] )  ) {
 
 	// determine all currently stored groups (of any status) for user in question (not necessarily logged user)
 	if ( ! empty( $_GET['rs_agent_id'] ) )
-		$user_groups = $GLOBALS['current_rs_user']->get_groups_for_user( $_GET['rs_agent_id'], array( 'status' => 'any' ) );
+		$user_groups = $GLOBALS['current_rs_user']->get_groups_for_user( (int) $_GET['rs_agent_id'], array( 'status' => 'any' ) );
 	else
 		$user_groups = array();
 		

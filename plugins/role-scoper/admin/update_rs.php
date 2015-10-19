@@ -265,7 +265,7 @@ function scoper_sync_wproles($user_ids = '', $role_name_arg = '', $blog_id_arg =
 	// synchronizing the user's user2role2object_rs blog role entries with their WP role and custom caps
 
 	// get each user's WP roles and caps
-	$user_clause = ( $user_ids ) ? 'AND user_id IN (' . implode(', ', $user_ids) . ')' : ''; 
+	$user_clause = ( $user_ids ) ? 'AND user_id IN (' . implode(', ', array_map( 'intval', $user_ids ) ) . ')' : ''; 
 	
 	$qry = "SELECT user_id, meta_value FROM $wpdb->usermeta WHERE meta_key = '{$wpdb->prefix}capabilities' $user_clause";
 	if ( ! $usermeta = scoper_get_results($qry) )
@@ -283,7 +283,7 @@ function scoper_sync_wproles($user_ids = '', $role_name_arg = '', $blog_id_arg =
 
 	$stored_assignments = array( 'wp' => array(), 'wp_cap' => array() );
 	foreach ( array_keys($stored_assignments) as $role_type ) {
-		$results = scoper_get_results("SELECT user_id, role_name, assignment_id FROM $uro_table WHERE role_type = '$role_type' AND user_id > 0 $user_clause");
+		$results = scoper_get_results( $wpdb->prepare( "SELECT user_id, role_name, assignment_id FROM $uro_table WHERE role_type = %s AND user_id > 0 $user_clause", $role_type ) );
 		foreach ( $results as $key => $row ) {
 			$stored_assignments[$role_type][$row->user_id][$row->assignment_id] = $row->role_name;
 			unset( $results[$key] );

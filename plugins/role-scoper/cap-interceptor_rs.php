@@ -759,15 +759,15 @@ class CapInterceptor_RS
 		
 		if ( $this->scoper->cap_defs->member_property( $required_cap, 'is_taxonomy_cap' ) ) {
 			if ( ! empty($_REQUEST['tag_ID']) )
-				return $_REQUEST['tag_ID'];
+				return (int) $_REQUEST['tag_ID'];
 		}
 		
 		global $pagenow;
 		if ( in_array( $pagenow, array( 'media-upload.php', 'async-upload.php' ) ) ) {
 			if ( ! empty($_POST['post_ID']) )
-				return $_POST['post_ID'];
+				return (int) $_POST['post_ID'];
 			elseif ( ! empty($_REQUEST['post_id']) )
-				return $_REQUEST['post_id'];
+				return (int) $_REQUEST['post_id'];
 			elseif ( ! empty($_REQUEST['attachment_id']) ) {
 				if ( $attachment = get_post( $_REQUEST['attachment_id'] ) )
 					return $attachment->post_parent;
@@ -786,10 +786,10 @@ class CapInterceptor_RS
 			// Similar situation with edit_others_posts, publish_posts.
 			// So... insert the object ID from POST vars
 			if ( 'post' == $src_name ) {
-				if ( ! $id = $this->scoper->data_sources->get_from_http_post('id', 'post') ) {
+				if ( ! $id = (int) $this->scoper->data_sources->get_from_http_post('id', 'post') ) {
 					
 					if ( 'async-upload.php' != $GLOBALS['pagenow'] ) {
-						if ( $attach_id = $this->scoper->data_sources->get_from_http_post('attachment_id', 'post') ) {
+						if ( $attach_id = (int) $this->scoper->data_sources->get_from_http_post('attachment_id', 'post') ) {
 							if ( $attach_id ) {
 								global $wpdb;
 								$id = scoper_get_var( "SELECT post_parent FROM $wpdb->posts WHERE post_type = 'attachment' AND ID = '$attach_id'" );
@@ -798,7 +798,7 @@ class CapInterceptor_RS
 							}
 						}
 					} elseif ( ! $id && ! empty($_POST['id']) ) // in case normal POST variable differs from ajax variable
-						$id = $_POST['id'];
+						$id = (int) $_POST['id'];
 				}
 			}
 
@@ -813,17 +813,17 @@ class CapInterceptor_RS
 			// special case for adding categories
 			if ( 'manage_categories' == $required_cap ) {
 				if ( ! empty($_POST['newcat_parent']) )
-					return $_POST['newcat_parent'];
+					return (int) $_POST['newcat_parent'];
 				elseif ( ! empty($_POST['category_parent']) )
-					return $_POST['category_parent'];
+					return (int) $_POST['category_parent'];
 			}
 			
 		} elseif ( defined('XMLRPC_REQUEST') ) {
 			if ( ! empty($GLOBALS['xmlrpc_post_id_rs']) )
-				return $GLOBALS['xmlrpc_post_id_rs'];
+				return (int) $GLOBALS['xmlrpc_post_id_rs'];
 		} else {
 			//rs_errlog("checking uri for source $src_name");
-			return $this->scoper->data_sources->get_from_uri('id', $src_name);
+			return (int) $this->scoper->data_sources->get_from_uri('id', $src_name);
 		}
 	}
 	

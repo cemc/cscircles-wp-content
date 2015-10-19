@@ -23,7 +23,7 @@ Class Rvy_Helper {
 		if ( ! empty( $revisionary->skip_revision_allowance ) || ! rvy_get_option('pending_revisions') )
 			return $rs_reqd_caps;
 		
-		$post_id = $scoper->data_sources->detect('id', 'post');
+		$post_id = (int) $scoper->data_sources->detect('id', 'post');
 
 		// don't need to fudge the capreq for post.php unless existing post has public/private status
 		$status = get_post_field( 'post_status', $post_id, 'post' );

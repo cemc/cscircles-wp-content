@@ -42,7 +42,7 @@ class ScoperHardwayUsersLegacy {
 			$have_cap = cr_user_can( $post_type_obj->cap->edit_others_posts, $object_id, 0, array( 'require_full_object_role' => true ) );
 		} else {
 			$src_name = 'ngg_gallery';
-			$object_id = $_REQUEST['gid'];
+			$object_id = (int) $_REQUEST['gid'];
 			$have_cap = ! empty( $current_user->allcaps[$post_type_obj->cap->edit_others_posts] );  // $post_type_obj defaults to 'post' type on NGG Manage Gallery page
 		}
 

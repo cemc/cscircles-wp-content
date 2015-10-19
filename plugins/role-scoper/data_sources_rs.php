@@ -98,7 +98,8 @@ class CR_Data_Sources extends AGP_Config_Items {
 			if ( empty($object_id) )
 				return array();
 
-			return scoper_get_row("SELECT $cols FROM $src->table WHERE {$src->cols->id} = '$object_id' LIMIT 1");
+			global $wpdb;
+			return scoper_get_row( $wpdb->prepare( "SELECT $cols FROM $src->table WHERE {$src->cols->id} = %d LIMIT 1", $object_id ) );
 		} // end switch
 	}
 	

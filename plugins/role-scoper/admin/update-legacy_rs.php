@@ -86,7 +86,7 @@ function scoper_fix_page_parent_recursion() {
 		// if a page's parent is also one of its children, set parent to Main
 		foreach ( $arr_parent as $page_id => $parent_id )
 			if ( isset($arr_children[$page_id]) && in_array($parent_id, $arr_children[$page_id]) )
-				scoper_query("UPDATE $wpdb->posts SET post_parent = '0' WHERE ID = '$page_id'");
+				scoper_query( $wpdb->prepare( "UPDATE $wpdb->posts SET post_parent = '0' WHERE ID = %d", $page_id ) );
 	}
 }
 

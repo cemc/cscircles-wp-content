@@ -21,9 +21,9 @@ class ScoperRoleAssignments {
 		}
 		
 		$qry = "SELECT assignment_id, $col_ug_id, role_name, date_limited, start_date_gmt, end_date_gmt, content_date_limited, content_min_date_gmt, content_max_date_gmt FROM $wpdb->user2role2object_rs"
-			. " WHERE role_type = '$role_type' AND scope = 'blog' $ug_clause";
+			. " WHERE role_type = %s AND scope = 'blog' $ug_clause";
 
-		$results = scoper_get_results($qry);
+		$results = scoper_get_results( $wpdb->prepare( $qry, $role_type ) );
 		
 		foreach($results as $blogrole) {
 			$role_handle = $role_type . '_' . $blogrole->role_name;
@@ -42,6 +42,9 @@ class ScoperRoleAssignments {
 		$defaults = array( 'id' => false, 'ug_id' => 0, 'join' => '', 'role_handles' => '' );
 		$args = array_merge($defaults, (array) $args);
 		extract($args);
+		
+		$id = ( is_string( $id ) ) ? (int) $id : $id;
+		$ug_id = ( is_string( $ug_id ) ) ? (int) $ug_id : $ug_id;
 		
 		if ( BLOG_SCOPE_RS == $scope )
 			return ScoperRoleAssignments::get_assigned_blog_roles($role_basis);
@@ -69,9 +72,9 @@ class ScoperRoleAssignments {
 			$role_clause = '';
 		
 		$qry = "SELECT $col_ug_id, obj_or_term_id, role_name, assign_for, assignment_id, inherited_from, date_limited, start_date_gmt, end_date_gmt, content_date_limited, content_min_date_gmt, content_max_date_gmt FROM $wpdb->user2role2object_rs AS uro "
-			. "$join WHERE role_type = 'rs' $role_clause AND scope = '$scope' AND src_or_tx_name = '$src_or_tx_name' $id_clause $ug_clause";
+			. "$join WHERE role_type = 'rs' $role_clause AND scope = %s AND src_or_tx_name = %s $id_clause $ug_clause";
 
-		$results = scoper_get_results($qry);
+		$results = scoper_get_results( $wpdb->prepare( $qry, $scope, $src_or_tx_name ) );
 		
 		foreach($results as $role) {
 			$role_handle = 'rs_' . $role->role_name;

@@ -212,7 +212,7 @@ class TermsInterceptor_RS
 						if ( ! empty($args['exclude']) )
 							$args['exclude'] .= ',';
 						
-						$args['exclude'] .= $_REQUEST['tag_ID'];
+						$args['exclude'] .= (int) $_REQUEST['tag_ID'];
 					}
 					
 				break;

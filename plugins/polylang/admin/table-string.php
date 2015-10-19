@@ -106,9 +106,9 @@ class PLL_Table_String extends WP_List_Table {
 	function get_columns() {
 		return array(
 			'cb'           => '<input type="checkbox" />', //checkbox
-			'context'      => __('Group', 'polylang'),
-			'name'         => __('Name', 'polylang'),
 			'string'       => __('String', 'polylang'),
+			'name'         => __('Name', 'polylang'),
+			'context'      => __('Group', 'polylang'),
 			'translations' => __('Translations', 'polylang'),
 		);
 	}
@@ -122,9 +122,9 @@ class PLL_Table_String extends WP_List_Table {
 	 */
 	function get_sortable_columns() {
 		return array(
-			'context' => array('context', false),
-			'name'    => array('name', false),
 			'string'  => array('string', false),
+			'name'    => array('name', false),
+			'context' => array('context', false),
 		);
 	}
 

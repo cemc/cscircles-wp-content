@@ -91,7 +91,7 @@ class QueryInterceptorBase_RS {
 					
 					// In edit.php, WP forces all objects into recordset for hierarchical post types.  But for perf enchancement, we need to know IDs of items which are actually listed
 					if ( 'edit.php' == $GLOBALS['pagenow'] ) {
-						$post_type = ( ! empty( $_GET['post_type'] ) ) ? $_GET['post_type'] : 'post';
+						$post_type = ( ! empty( $_GET['post_type'] ) ) ? sanitize_key( $_GET['post_type'] ) : 'post';
 						$determine_listed_ids = ! is_content_administrator_rs() && is_post_type_hierarchical( $post_type ) && ! empty( $GLOBALS['query_interceptor']->last_request[$src_name] ) && ! strpos( $GLOBALS['query_interceptor']->last_request[$src_name], 'LIMIT ' );
 
 						if ( $determine_listed_ids ) {

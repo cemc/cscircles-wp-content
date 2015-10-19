@@ -5,7 +5,7 @@ Tags: restrict, access, permissions, cms, user, private, category, pages, privac
 License: GPLv2
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable Tag: 1.3.63
+Stable Tag: 1.3.66
 
 CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
 
@@ -108,6 +108,19 @@ Basic Role Scoper support (bug fixes but not necessarily plugin conflict resolut
 8. [View more screenshots](http://agapetry.net/news/introducing-role-scoper/)
 
 == Changelog ==
+
+= 1.3.66 - 1 Oct 2015 =
+* Fixed : Category Roles bulk edit screen did not display current assignments (since 1.3.65)
+* Fixed : Group names and descriptions were incorrectly stored on new group creation (since 1.3.65)
+* Fixed : Group names search on Edit User screen failed in some cases (since 1.3.65)
+* Fixed : Groups CSV entry was not handled correctly (since 1.3.65)
+* Fixed : Fatal error when Nav Menu Management is filtered on WP > 4.0
+
+= 1.3.65 - 26 Aug 2015 =
+* Change: Improved query sanitization
+
+= 1.3.64 - 9 Jan 2015 =
+* License : Replaced Creative Commons code with GPL-compatible equivalent
 
 = 1.3.63 - 15 Oct 2013 =
 * Compat : Eyes Only User Access Shortcode (requires v 1.6)

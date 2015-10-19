@@ -2,9 +2,9 @@
 Contributors: joostdevalk
 Donate link: https://yoast.com/donate/
 Tags: analytics, google analytics, statistics, tracking, stats, google, yoast
-Requires at least: 3.8
-Tested up to: 4.2
-Stable tag: 5.4.2
+Requires at least: 3.9
+Tested up to: 4.3
+Stable tag: 5.4.6
 License: GPL v3
 
 Track your WordPress site easily with the latest tracking codes and lots added data for search result pages and error pages.
@@ -50,6 +50,44 @@ This section describes how to install the plugin and get it working.
 1. Go to the options panel under the 'Settings' menu and add your Analytics account number and set the settings you want.
 
 == Changelog ==
+
+= 5.4.6 =
+
+Release Date: August 25th, 2015
+
+* Bugfixes:
+    * Fixes the dashboard tables which were broken in WordPress 4.3 because of a new version of jQuery that was introduced.
+
+= 5.4.5 =
+
+Release Date: August 5th, 2015
+
+* Security:
+    * Fixes a small stored XSS issue (only exploitable by admins), thanks [Tom Adams](https://twitter.com/tom_dxw) from [dxw security](https://security.dxw.com/) for responsibly disclosing the issue.
+
+* Enhancements:
+    * Only allows showing and saving the custom code field for users with the `unfiltered_html` capability.
+    * Improves JavaScript output escaping on the frontend.
+
+= 5.4.4 =
+
+Release Date: July 21st, 2015
+
+* Enhancements:
+    * Makes sure core functionality is only loaded when needed, improving admin performance and preventing compatibility issues with the upcoming 2.3 release of Yoast SEO.
+
+= 5.4.3 =
+
+Release Date: July 15th, 2015
+
+* Enhancements:
+    * Improved form labels for remarketing / demographics and interests reports.
+    * Improved the notice that is shown in the head to non-admin users when their usergroup has been excluded from tracking or debug mode is enabled.
+    * Adds 4 translations: ca, en_AU, ja, pt_PT
+
+* Bugfixes:
+    * Fixes a bug where the plugin would fetch a refresh token from Google on every page request.
+    * Fixes an undefined index notice which was triggered when running WordPress using WP CLI.
 
 = 5.4.2 =
 

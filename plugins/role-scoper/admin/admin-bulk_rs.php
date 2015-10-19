@@ -125,7 +125,7 @@ function display_inputs($mode, $assignment_modes, $args = array()) {
 	if( ROLE_RESTRICTION_RS == $mode ) {
 		echo '<li>';
 		echo '<select id="max_scope" name="max_scope">';
-		$retain_value = ( isset($_POST["max_scope"]) ) ? $_POST["max_scope"] : '';
+		$retain_value = ( isset($_POST["max_scope"]) ) ? sanitize_key($_POST["max_scope"]) : '';
 		
 		foreach($max_scopes as $max_scope => $caption) {
 			$selected = ( ! empty($status_id) && $status_id === $retain_value ) ? 'selected="selected"' : '';
@@ -139,7 +139,7 @@ function display_inputs($mode, $assignment_modes, $args = array()) {
 	<?php
 	$for_name = ( ROLE_ASSIGNMENT_RS == $mode ) ? 'assign_for' : 'require_for';
 	echo "<select id='$for_name' name='$for_name'>";
-		$retain_value = ( isset($_POST[$for_name]) ) ? $_POST[$for_name] : 0;
+		$retain_value = ( isset($_POST[$for_name]) ) ? sanitize_key($_POST[$for_name]) : 0;
 
 		foreach($assignment_modes as $status_id => $caption) {
 			$selected = ( $status_id === $retain_value ) ? 'selected="selected"' : '';

@@ -63,7 +63,7 @@ class ScoperUserEdit {
 
 			// get the WP roles for user
 			global $wpdb;
-			$results = scoper_get_results( "SELECT user_id, role_name FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = 'wp' AND user_id IN ('" . implode( "','", $query_users ) . "')" );
+			$results = scoper_get_results( "SELECT user_id, role_name FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = 'wp' AND user_id IN ('" . implode( "','", array_map( 'intval', $query_users ) ) . "')" );
 	
 			//echo("SELECT user_id, role_name FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = 'wp' AND user_id IN ('" . implode( "','", $query_users ) . "')");
 			
@@ -119,9 +119,9 @@ class ScoperUserEdit {
 function awp_get_user_by_name( $name, $display_or_username = true ) {
 	global $wpdb;
 	
-	if ( ! $user = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE user_login = '$name'") )
+	if ( ! $user = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE user_login = %s", $name) ) )
 		if ( $display_or_username )
-			$user = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE display_name = '$name'");
+			$user = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE display_name = %s", $name ) );
 	
 	return $user;
 }
@@ -129,7 +129,7 @@ function awp_get_user_by_name( $name, $display_or_username = true ) {
 function awp_get_user_by_id( $id ) {
 	global $wpdb;
 	
-	if ( $user = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE ID = '$id'") )
+	if ( $user = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->users WHERE ID = %d", $id ) ) )
 
 	return $user;
 }

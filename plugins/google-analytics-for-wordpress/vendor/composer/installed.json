@@ -1,17 +1,17 @@
 [
     {
         "name": "composer/installers",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "v1.0.21",
+        "version_normalized": "1.0.21.0",
         "source": {
             "type": "git",
             "url": "https://github.com/composer/installers.git",
-            "reference": "f8c20b427de1cfe7a28a015c1640ce4e4eef1e33"
+            "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/composer/installers/zipball/f8c20b427de1cfe7a28a015c1640ce4e4eef1e33",
-            "reference": "f8c20b427de1cfe7a28a015c1640ce4e4eef1e33",
+            "url": "https://api.github.com/repos/composer/installers/zipball/d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
+            "reference": "d64e23fce42a4063d63262b19b8e7c0f3b5e4c45",
             "shasum": ""
         },
         "replace": {
@@ -22,7 +22,7 @@
             "composer/composer": "1.0.*@dev",
             "phpunit/phpunit": "4.1.*"
         },
-        "time": "2015-03-26 16:11:30",
+        "time": "2015-02-18 17:17:01",
         "type": "composer-installer",
         "extra": {
             "class": "Composer\\Installers\\Installer",
@@ -98,20 +98,20 @@
     },
     {
         "name": "xrstf/composer-php52",
-        "version": "dev-default",
-        "version_normalized": "9999999-dev",
+        "version": "v1.0.17",
+        "version_normalized": "1.0.17.0",
         "source": {
             "type": "hg",
             "url": "https://bitbucket.org/xrstf/composer-php52",
-            "reference": "717c00a8bec1b40401384536d2ebaea57c7c35d4"
+            "reference": "70b853668d6c3f97b63dafcfaeebb622bf08fd30"
         },
         "dist": {
             "type": "zip",
-            "url": "https://bitbucket.org/xrstf/composer-php52/get/717c00a8bec1b40401384536d2ebaea57c7c35d4.zip",
-            "reference": "717c00a8bec1b40401384536d2ebaea57c7c35d4",
+            "url": "https://bitbucket.org/xrstf/composer-php52/get/70b853668d6c3f97b63dafcfaeebb622bf08fd30.zip",
+            "reference": "70b853668d6c3f97b63dafcfaeebb622bf08fd30",
             "shasum": ""
         },
-        "time": "2015-02-01 13:29:12",
+        "time": "2015-02-01 14:28:15",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -132,20 +132,20 @@
     },
     {
         "name": "yoast/api-libs",
-        "version": "dev-trunk",
-        "version_normalized": "9999999-dev",
+        "version": "2.0",
+        "version_normalized": "2.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Yoast/api-libs.git",
-            "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac"
+            "reference": "e7361081a1d6ae79c0b96c8363379435ea736ef8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Yoast/api-libs/zipball/0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
-            "reference": "0bbe785c5ef52459acc56730d74d01c0fb4d14ac",
+            "url": "https://api.github.com/repos/Yoast/api-libs/zipball/e7361081a1d6ae79c0b96c8363379435ea736ef8",
+            "reference": "e7361081a1d6ae79c0b96c8363379435ea736ef8",
             "shasum": ""
         },
-        "time": "2015-02-17 14:41:34",
+        "time": "2015-07-14 10:25:59",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -172,8 +172,8 @@
     },
     {
         "name": "yoast/i18n-module",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.0",
+        "version_normalized": "1.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Yoast/i18n-module.git",
@@ -185,7 +185,7 @@
             "reference": "4648918ccf8bc6da12eadf57e4bece4829af29b3",
             "shasum": ""
         },
-        "time": "2015-04-15 06:48:03",
+        "time": "2015-04-22 12:48:39",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -212,8 +212,8 @@
     },
     {
         "name": "yoast/license-manager",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "version": "1.2",
+        "version_normalized": "1.2.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Yoast/License-Manager.git",

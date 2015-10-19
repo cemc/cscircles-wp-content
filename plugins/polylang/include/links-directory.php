@@ -21,6 +21,9 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	public function __construct(&$model) {
 		parent::__construct($model);
 
+		// inspired by wp-includes/rewrite.php
+		$this->root = preg_match('#^/*' . $this->index . '#', get_option('permalink_structure')) ? $this->index . '/' : '';
+
 		add_action('pll_init', array(&$this, 'init'));
 	}
 
@@ -30,9 +33,6 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 * @since 1.6
 	 */
 	public function init() {
-		// inspired by wp-includes/rewrite.php
-		$this->root = preg_match('#^/*' . $this->index . '#', get_option('permalink_structure')) ? $this->index . '/' : '';
-
 		add_action('setup_theme', array(&$this, 'add_permastruct'), 2);
 
 		// make sure to prepare rewrite rules when flushing
@@ -136,7 +136,7 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 		// don't modify the rules if there is no languages created yet
 		if ($this->model->get_languages_list() && !$done) {
 			// suppress the rules created by WordPress for our taxonomy
-			add_filter('language_rewrite_rules', create_function('$rules', 'return array();'));
+			add_filter('language_rewrite_rules', '__return_empty_array');
 
 			foreach ($this->get_rewrite_rules_filters() as $type)
 				add_filter($type . '_rewrite_rules', array(&$this, 'rewrite_rules'));

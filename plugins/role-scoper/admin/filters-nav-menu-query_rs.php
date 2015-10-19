@@ -19,8 +19,11 @@ class ScoperNavMenuQuery
 			$query->query_vars['include'] = '';
 			$query->query_vars['post__in'] = '';
 			
-			$query->query_vars_hash = '';
-			$query->query_vars_changed = true;
+			if ( ! awp_ver( '4.0' ) ) {
+				$query->query_vars_hash = '';
+				$query->query_vars_changed = true;
+			}
+			
 			$query->query['include'] = '';
 			$query->query['post__in'] = '';
 

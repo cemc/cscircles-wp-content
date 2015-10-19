@@ -35,28 +35,30 @@ switch ($mode) {
 	
 		check_admin_referer( 'scoper-edit-groups' );
 		
-		if ( ! empty($_POST['groupName']) ) {
-			$_POST['groupName'] = str_replace( '[', '', $_POST['groupName'] );
-			$_POST['groupName'] = str_replace( ']', '', $_POST['groupName'] );
-		}
-			
-		if( ! UserGroups_tp::isValidName($_POST['groupName'])) {
-			if($_POST['groupName'] == "")
+		$groupName = sanitize_text_field( $_POST['groupName'], '', 'query' );
+		
+		$groupName = str_replace( '[', '', $groupName );
+		$groupName = str_replace( ']', '', $groupName );
+		
+		if( ! UserGroups_tp::isValidName($groupName)) {
+			if($groupName == "")
 				$errorMessage = __("Please specify a name for the group.", 'scoper');
 			else
-				$errorMessage = sprintf( __("A group with the name <strong>%s</strong> already exists.", 'scoper'), $_POST['groupName']);
+				$errorMessage = sprintf( __("A group with the name <strong>%s</strong> already exists.", 'scoper'), $groupName);
 		} else {
-			if( UserGroups_tp::createGroup ($_POST['groupName'], $_POST['groupDesc'])){
-				$success_msg = sprintf( __("Group <strong>%s</strong> created successfuly.", 'scoper'), $_POST['groupName']);
+			$groupDesc = sanitize_text_field( $_POST['groupDesc'], '', 'query' );
+			
+			if( UserGroups_tp::createGroup ($groupName, $groupDesc)){
+				$success_msg = sprintf( __("Group <strong>%s</strong> created successfuly.", 'scoper'), $groupName);
 				
-				$group = UserGroups_tp::getGroupByName($_POST['groupName']);
+				$group = UserGroups_tp::getGroupByName($groupName);
 			}
 		}
 		//$suppress_groups_list = true;
 		break;
 		
 	case "edit":
-		$id = $_REQUEST['id'];
+		$id = (int) $_REQUEST['id'];
 		
 		if( ! is_user_administrator_rs() && ! current_user_can('recommend_group_membership', $id) && ! current_user_can('manage_groups', $id) )
 			wp_die(__awp('Cheatin&#8217; uh?'));
@@ -71,18 +73,17 @@ switch ($mode) {
 		break;
 		
 	case "editSubmit":
-		$group->ID = $_POST['groupID'];
+		$group->ID = (int) $_POST['groupID'];
 		
-		if ( $can_manage_all_groups || current_user_can( 'manage_groups', $_POST['groupID'] ) ) {
-			if ( ! empty($_POST['groupName']) ) {
-				$_POST['groupName'] = str_replace( '[', '', $_POST['groupName'] );
-				$_POST['groupName'] = str_replace( ']', '', $_POST['groupName'] );
-			}
+		if ( $can_manage_all_groups || current_user_can( 'manage_groups', $group->ID ) ) {
+			$groupName = sanitize_text_field( $_POST['groupName'], '', 'query' );
+			$groupName = str_replace( '[', '', $groupName );
+			$groupName = str_replace( ']', '', $groupName );
 			
 			//to continue edit
-			$group->display_name = $_POST['groupName'];
-			$group->prev_name = $_POST['prevName'];
-			$group->descript = $_POST['groupDesc'];
+			$group->display_name = $groupName;
+			$group->prev_name = sanitize_text_field( $_POST['prevName'], '', 'query' );
+			$group->descript = sanitize_text_field( $_POST['groupDesc'], '', 'query' );
 			
 			if ( $get_group = ScoperAdminLib::get_group($group->ID) )
 				$group->meta_id = $get_group->meta_id;
@@ -90,19 +91,19 @@ switch ($mode) {
 			check_admin_referer( 'scoper-edit-group_' . $group->ID );
 				
 			if ( ! $group->meta_id ) {  // editable metagroups can have users edited but not group name\
-				if(! UserGroups_tp::isValidName($_POST['groupName']) && $_POST['groupName'] != $_POST['prevName']){
-					if($_POST['groupName'] == ""){
+				if(! UserGroups_tp::isValidName($groupName) && $groupName != $group->prev_name){
+					if($groupName == ""){
 						$errorMessage = __("Please specify a name for the group.", 'scoper');
 						$mode = "edit";
 					} else {
-						$errorMessage = sprintf( __("A group with the name <strong>%s</strong> already exists.", 'scoper'), $_POST['groupName']);
+						$errorMessage = sprintf( __("A group with the name <strong>%s</strong> already exists.", 'scoper'), $groupName);
 						$mode = "edit";
 					}
 				} else {
-					if ( UserGroups_tp::updateGroup ($_POST['groupID'], $_POST['groupName'], $_POST['groupDesc']) ) {
-						$success_msg = sprintf( __("Group <strong>%s</strong> updated successfuly.", 'scoper'), $_POST['groupName']);
+					if ( UserGroups_tp::updateGroup ($group->ID, $groupName, $group->descript) ) {
+						$success_msg = sprintf( __("Group <strong>%s</strong> updated successfuly.", 'scoper'), $groupName);
 					} else {
-						$errorMessage = sprintf( __("Group <strong>%s</strong> was not updated successfuly.", 'scoper'), $_POST['prevName']);
+						$errorMessage = sprintf( __("Group <strong>%s</strong> was not updated successfuly.", 'scoper'), $group->prev_name);
 						$mode = "edit";
 					}
 				}
@@ -115,7 +116,7 @@ switch ($mode) {
 		break;
 		
 	case "delete":
-		$idDel = $_REQUEST['id'];
+		$idDel = (int) $_REQUEST['id'];
 		if($idDel != ""){
 			if( ! $can_manage_all_groups && ! current_user_can('manage_groups', $idDel) )
 				wp_die(__awp('Cheatin&#8217; uh?'));
@@ -132,19 +133,22 @@ switch ($mode) {
 		break;
 		
 	case "approve":
-		if( awp_ver('2.8') && scoper_get_option( 'group_ajax' ) ) {	
-			if ( $can_manage_all_groups || current_user_can( 'manage_groups', $_GET['id'] ) )
+		if( awp_ver('2.8') && scoper_get_option( 'group_ajax' ) ) {
+			$group_id = (int) $_GET['id'];
+			$user_id = (int) $_GET['user'];
+			
+			if ( $can_manage_all_groups || current_user_can( 'manage_groups', $group_id ) )
 				$status = 'active';
-			elseif ( current_user_can( 'recommend_group_membership', $_GET['id'] ) )
+			elseif ( current_user_can( 'recommend_group_membership', $group_id ) )
 				$status = 'recommended';
 			else
 				break;
 
-			$update_user = new WP_User( $_GET['user'] );
-			$update_group = ScoperAdminLib::get_group( $_GET['id'] );
+			$update_user = new WP_User( $user_id );
+			$update_group = ScoperAdminLib::get_group( $group_id );
 			
 			if ( $update_user->ID && $update_group->ID ) {
-				ScoperAdminLib::update_group_user( $_GET['id'], $_GET['user'], $status );
+				ScoperAdminLib::update_group_user( $group_id, $user_id, $status );
 				$success_msg = __("Group members updated successfuly.", 'scoper');
 			} else {
 				$errorMessage =  __("Error updating group membership.", 'scoper');
@@ -175,7 +179,7 @@ if ( ! $errorMessage && ( ('editSubmit' == $mode) || ('add' == $mode) || ('appro
 		UserGroups_tp::update_group_members_multi_status( $group->ID, $current_members );
 	} else {
 		$current_members = ScoperAdminLib::get_group_members($group->ID, COL_ID_RS);
-		$posted_members = ( isset($_POST['member']) ) ? $_POST['member'] : array();
+		$posted_members = ( isset($_POST['member']) ) ? array_map( 'intval', (array) $_POST['member'] ) : array();
 		
 		if ( ! empty($_POST['member_csv']) ) {
 			if ( $csv_for_item = ScoperAdminLib::agent_ids_from_csv( 'member_csv', 'user' ) )

@@ -18,7 +18,7 @@ require_once( dirname(__FILE__).'/groups-support.php');
 $mode = ( ! empty($_REQUEST['mode']) ) ? $_REQUEST['mode']: '';
 
 if($mode == "update"){
-	$group_temp = ScoperAdminLib::get_group($_REQUEST['id']);
+	$group_temp = ScoperAdminLib::get_group( (int) $_REQUEST['id'] );
 	UserGroups_tp::write( sprintf( __('<strong>%s</strong> group membership updated.', 'scoper'), $group_temp->display_name) );
 }
 
@@ -80,7 +80,7 @@ function printGroupMembers() {
 switch($mode){
 	case "edit":
 		if(isset($_REQUEST['id'])){
-			$groupID = $_REQUEST['id'];
+			$groupID = (int) $_REQUEST['id'];
 			
 			$group = ScoperAdminLib::get_group($groupID);
 			
@@ -124,14 +124,14 @@ switch($mode){
 	case "update":
 		//update groups members
 		if ( $_REQUEST['id'] ) {
-			$group_id = $_REQUEST['id'];
+			$group_id = (int) $_REQUEST['id'];
 			
 			check_admin_referer( 'scoper-edit-group-members_' . $group_id );
 			
 			// add/delete members
 			$current_members = ScoperAdminLib::get_group_members($group_id, COL_ID_RS);
 			
-			$posted_members = ( isset($_POST['member']) ) ? $_POST['member'] : array();
+			$posted_members = ( isset($_POST['member']) ) ? array_map( 'intval', (array) $_POST['member'] ) : array();
 		
 			if ( ! empty($_POST['member_csv']) ) {
 				if ( $csv_for_item = ScoperAdminLib::agent_ids_from_csv( 'member_csv', 'user' ) )

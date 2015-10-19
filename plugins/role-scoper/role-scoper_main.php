@@ -231,7 +231,7 @@ class Scoper
 		if ( $doing_cron = defined('DOING_CRON') )
 			if ( ! defined('DISABLE_QUERYFILTERS_RS') )
 				define('DISABLE_QUERYFILTERS_RS', true);
-				
+		
 		if ( ! $this->direct_file_access = strpos($_SERVER['QUERY_STRING'], 'rs_rewrite') )
 			$this->add_main_filters();
 			
@@ -578,10 +578,10 @@ class Scoper
 		if ( $force_refresh || ! is_array($default_strict) ) {
 			global $wpdb;
 			
-			$qry = "SELECT src_or_tx_name, role_name FROM $wpdb->role_scope_rs WHERE role_type = 'rs' AND topic = '$scope' AND max_scope = '$scope' AND obj_or_term_id = '0'";
+			$qry = "SELECT src_or_tx_name, role_name FROM $wpdb->role_scope_rs WHERE role_type = 'rs' AND topic = %s AND max_scope = %s AND obj_or_term_id = '0'";
 
 			$default_strict = array();
-			if ( $results = scoper_get_results($qry) ) {
+			if ( $results = scoper_get_results( $wpdb->prepare( $qry, $scope, $scope ) ) ) {
 				foreach ( $results as $row ) {
 					$role_handle = scoper_get_role_handle($row->role_name, 'rs');
 					$default_strict[$row->src_or_tx_name][$role_handle] = true;
@@ -686,7 +686,8 @@ class Scoper
 
 			$for_clause = ( $include_child_restrictions ) ? '' : "AND require_for IN ('entity', 'both')";
 			
-			$qry_base = "FROM $wpdb->role_scope_rs WHERE role_type = 'rs' AND topic = '$scope' AND max_scope = '$max_scope' AND src_or_tx_name = '$src_or_tx_name' $for_clause $role_clause";
+			$qry_base = "FROM $wpdb->role_scope_rs WHERE role_type = 'rs' AND topic = %s AND max_scope = %s AND src_or_tx_name = %s $for_clause $role_clause";
+			$qry_base = $wpdb->prepare( $qry_base, $scope, $max_scope, $src_or_tx_name );
 			
 			if ( COL_COUNT_RS == $cols )
 				$qry = "SELECT role_name, count(obj_or_term_id) AS item_count, require_for $qry_base GROUP BY role_name";

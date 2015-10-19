@@ -79,7 +79,7 @@
 		if ( $is_new_object ) {
 			$status_name = ( 'post' == $src_name ) ? 'draft' : '';
 		} else {
-			$status_name = $scoper->data_sources->detect('status', $src_name, $object_id);
+			$status_name = sanitize_key( $scoper->data_sources->detect('status', $src_name, $object_id) );
 		}
 
 		// TODO: is multi-value array ever passed?

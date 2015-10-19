@@ -43,7 +43,7 @@
 								'<option value="%1$s-%2$s-%3$s">%4$s - %2$s</option>'."\n",
 								esc_attr($lg[0]),
 								esc_attr($lg[1]),
-								isset($lg[3]) ? '1' : '0',
+								isset( $lg[3] ) && 'rtl' == $lg[3] ? '1' : '0',
 								esc_html($lg[2])
 							);
 						} ?>
@@ -63,7 +63,7 @@
 						'<input name="locale" id="lang_locale" type="text" value="%s" size="40" aria-required="true" />',
 						$action=='edit' ? esc_attr($edit_lang->locale) : ''
 					);?>
-					<p><?php _e('Wordpress Locale for the language (for example: en_US). You will need to install the .mo file for this language.', 'polylang');?></p>
+					<p><?php _e('WordPress Locale for the language (for example: en_US). You will need to install the .mo file for this language.', 'polylang');?></p>
 				</div>
 
 				<div class="form-field">
@@ -91,9 +91,16 @@
 					<label for="lang_order"><?php _e('Order', 'polylang');?></label>
 					<input name="term_group" id="lang_order" type="text" value="<?php if ($action=='edit') echo esc_attr($edit_lang->term_group);?>" />
 					<p><?php _e('Position of the language in the language switcher', 'polylang');?></p>
-				</div>
+				</div><?php
 
-				<?php submit_button( $action == 'edit' ? __('Update') : __('Add new language', 'polylang'), 'button'); // since WP 3.1 ?>
+				if ( 'edit' == $action ) {
+					do_action( 'pll_language_edit_form_fields', $edit_lang );
+				}
+				else {
+					do_action( 'pll_language_add_form_fields' );
+				}
+
+				submit_button( $action == 'edit' ? __('Update') : __('Add new language', 'polylang')); // since WP 3.1 ?>
 
 				</form>
 			</div><!-- form-wrap -->

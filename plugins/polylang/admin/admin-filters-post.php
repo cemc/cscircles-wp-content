@@ -45,12 +45,15 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 	/*
 	 * outputs a javascript list of terms ordered by language and hierarchical taxonomies
 	 * to filter the category checklist per post language in quick edit
+	 * outputs a javascript list of pages ordered by language
+	 * to filter the parent dropdown per post language in quick edit
 	 *
 	 * @since 1.7
 	 */
 	public function admin_enqueue_scripts() {
 		$screen = get_current_screen();
 
+		//hierarchical taxonomies
 		if ('edit' == $screen->base && $taxonomies = get_object_taxonomies($screen->post_type, 'object')) {
 			// get translated hierarchical taxonomies
 			foreach ($taxonomies as $taxonomy) {
@@ -70,6 +73,21 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 				if (!empty($term_languages)) {
 					wp_localize_script('pll_post', 'pll_term_languages', $term_languages);
 				}
+			}
+		}
+		
+		// hierarchical post types
+		if ('edit' == $screen->base && is_post_type_hierarchical($screen->post_type)) {
+			$pages = get_pages();
+
+			foreach($pages as $page) {
+				if ($lang = $this->model->get_post_language($page->ID))
+					$page_languages[$lang->slug][] = $page->ID;
+			}
+
+			// send all these data to javascript
+			if (!empty($page_languages)) {
+				wp_localize_script('pll_post', 'pll_page_languages', $page_languages);
 			}
 		}
 	}
@@ -210,11 +228,21 @@ class PLL_Admin_Filters_Post extends PLL_Admin_Filters_Post_Base {
 
 		// parent dropdown list (only for hierarchical post types)
 		if (in_array($post_type, get_post_types(array('hierarchical' => true)))) {
-			require_once( ABSPATH . 'wp-admin/includes/meta-boxes.php' );
-			ob_start();
-			page_attributes_meta_box(get_post($post_ID));
-			$x->Add(array('what' => 'pages', 'data' => ob_get_contents()));
-			ob_end_clean();
+			$post = get_post($post_ID);
+
+			// args and filter from 'page_attributes_meta_box' in wp-admin/includes/meta-boxes.php of WP 4.2.1
+			$dropdown_args = array(
+				'post_type'        => $post->post_type,
+				'exclude_tree'     => $post->ID,
+				'selected'         => $post->post_parent,
+				'name'             => 'parent_id',
+				'show_option_none' => __('(no parent)'),
+				'sort_column'      => 'menu_order, post_title',
+				'echo'             => 0,
+			);
+			$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post ); // since WP 3.3
+			
+			$x->Add(array('what' => 'pages', 'data' => wp_dropdown_pages( $dropdown_args )));
 		}
 
 		// flag

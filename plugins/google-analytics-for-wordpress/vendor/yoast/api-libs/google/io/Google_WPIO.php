@@ -20,7 +20,7 @@
  *
  */
 class Yoast_Google_WPIO extends Yoast_Google_IO {
-	private static $ENTITY_HTTP_METHODS = array( "POST" => null, "PUT" => null );
+	private static $ENTITY_HTTP_METHODS = array( "POST" => null, "PUT" => null, "DELETE" => null );
 	private static $HOP_BY_HOP = array(
 		'connection', 'keep-alive', 'proxy-authenticate', 'proxy-authorization',
 		'te', 'trailers', 'transfer-encoding', 'upgrade' );
@@ -60,8 +60,7 @@ class Yoast_Google_WPIO extends Yoast_Google_IO {
 			}
 		}
 
-		if ( array_key_exists( $request->getRequestMethod(),
-			self::$ENTITY_HTTP_METHODS ) ) {
+		if ( array_key_exists( $request->getRequestMethod(), self::$ENTITY_HTTP_METHODS ) ) {
 			$request = $this->processEntityRequest( $request );
 		}
 
@@ -72,7 +71,7 @@ class Yoast_Google_WPIO extends Yoast_Google_IO {
 		);
 
 		$curl_version = $this->get_curl_version();
-		if( $curl_version !== false ) {
+		if ( $curl_version !== false ) {
 			if ( version_compare( $curl_version, '7.19.0', '<=' ) && version_compare( $curl_version, '7.19.8', '>' ) ) {
 				add_filter( 'http_api_transports', array( $this, 'filter_curl_from_transports' ) );
 			}
@@ -87,6 +86,9 @@ class Yoast_Google_WPIO extends Yoast_Google_IO {
 			$params['headers'] = $requestHeaders;
 		}
 
+		// There might be some problems with decompressing, so we prevent this by setting the param to false
+		$params['decompress'] = false;
+
 
 		switch ( $request->getRequestMethod() ) {
 			case 'POST' :
@@ -94,6 +96,10 @@ class Yoast_Google_WPIO extends Yoast_Google_IO {
 				break;
 
 			case 'GET' :
+				$response = wp_remote_get( $request->getUrl(), $params );
+				break;
+			case 'DELETE' :
+				$params['method'] = 'DELETE';
 				$response = wp_remote_get( $request->getUrl(), $params );
 				break;
 		}
@@ -119,7 +125,6 @@ class Yoast_Google_WPIO extends Yoast_Google_IO {
 		$this->setCachedRequest( $request );
 
 		// And finally return it
-
 		return $request;
 	}
 

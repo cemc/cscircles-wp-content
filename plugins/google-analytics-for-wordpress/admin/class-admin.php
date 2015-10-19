@@ -9,18 +9,23 @@
 class Yoast_GA_Admin extends Yoast_GA_Options {
 
 	/**
-	 * @var boolean $api Store the API instance
-	 */
-	public $api;
-
-	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct();
 
 		add_action( 'plugins_loaded', array( $this, 'init_ga' ) );
-		add_action( 'admin_init', array( $this, 'init_settings' ) );
+
+		// Only run admin_init when there is a cron jon executed.
+		$current_page = filter_input( INPUT_GET, 'page' );
+
+		// Only when current page is not 'wpseo'.
+		if ( strpos( $current_page, 'wpseo' ) !== 0 ) {
+			if ( ( $this->is_running_cron() || $this->is_running_ajax() ) || strpos( $current_page, 'yst_ga' ) === 0 ) {
+				add_action( 'admin_init', array( $this, 'init_settings' ) );
+			}
+		}
+
 	}
 
 	/**
@@ -39,8 +44,18 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	 */
 	public function init_settings() {
 		$this->options = $this->get_options();
-		$this->api     = Yoast_Api_Libs::load_api_libraries( array( 'google', 'googleanalytics' ) );
-		$dashboards    = Yoast_GA_Dashboards::get_instance();
+
+		try {
+			// Loading Google Api Libs with minimal version 2.0.
+			new Yoast_Api_Libs( '2.0' );
+		}
+		catch( Exception $exception ) {
+			if ( $exception->getMessage() === 'required_version' ) {
+				add_action( 'admin_notices', array( $this, 'set_api_libs_error' ) );
+			}
+		}
+
+		$dashboards = Yoast_GA_Dashboards::get_instance();
 
 		// Listener for reconnecting with google analytics
 		$this->google_analytics_listener();
@@ -70,6 +85,13 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 	}
 
 	/**
+	 * There is an error with the API libs. So show a notice.
+	 */
+	public function set_api_libs_error() {
+		echo '<div class="error notice"><p>' . __( 'Yoast plugins share some code between them to make your site faster. As a result of that, we need all Yoast plugins to be up to date. We\'ve detected this isn\'t the case, so please update the Yoast plugins that aren\'t up to date yet.', 'google-analytics-for-wordpress' ) . '</p></div>';
+	}
+
+	/**
 	 * This function saves the settings in the option field and returns a wp success message on success
 	 *
 	 * @param array $data
@@ -80,9 +102,15 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 		foreach ( $data as $key => $value ) {
 			if ( $key != 'return_tab' ) {
-				if ( $key != 'custom_code' && is_string( $value ) ) {
-					$value = strip_tags( $value );
+				if ( is_string( $value ) ) {
+					if ( $key === 'custom_code' && ! current_user_can( 'unfiltered_html' ) ) {
+						continue;
+					}
+					else {
+						$value = strip_tags( $value );
+					}
 				}
+
 				$this->options[ $key ] = $value;
 			}
 		}
@@ -97,22 +125,7 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 			$this->options['analytics_profile_code'] = $this->get_ua_code_from_profile( $this->options['analytics_profile'] );
 		}
 
-		if ( ! empty( $this->options['manual_ua_code_field'] ) ) {
-			$this->options['manual_ua_code_field'] = trim( $this->options['manual_ua_code_field'] );
-			// en dash to minus, prevents issue with code copied from web with "fancy" dash
-			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
-
-			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
-
-				$this->add_notification( 'ga_notifications', array(
-					'type'        => 'error',
-					'description' => __( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' ),
-				) );
-
-				wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
-				exit;
-			}
-		}
+		$this->do_validation( $data['return_tab'] );
 
 		if ( $this->update_option( $this->options ) ) {
 			// Success, add a new notification
@@ -132,6 +145,55 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 		// redirect
 		wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $data['return_tab'], 301 );
 		exit;
+	}
+
+	/**
+	 * Redirect to settings with a validation error if there are validation errors
+	 *
+	 * @param string $return_tab The tab to return to when there is a validation error.
+	 */
+	protected function do_validation( $return_tab ) {
+		$validation = $this->validate_settings();
+		if ( is_wp_error( $validation ) ) {
+			$this->add_notification( 'ga_notifications', array(
+				'type' => 'error',
+				'description' => $validation->get_error_message(),
+			) );
+
+			wp_redirect( admin_url( 'admin.php' ) . '?page=yst_ga_settings#top#' . $return_tab, 301 );
+			exit;
+		}
+	}
+
+	/**
+	 * Validates the settings in the `options` attribute, returns an WP_Error object on error
+	 *
+	 * @return true|WP_Error true or an error object.
+	 */
+	protected function validate_settings() {
+
+		if ( ! empty( $this->options['manual_ua_code_field'] ) ) {
+			$this->options['manual_ua_code_field'] = trim( $this->options['manual_ua_code_field'] );
+			// en dash to minus, prevents issue with code copied from web with "fancy" dash
+			$this->options['manual_ua_code_field'] = str_replace( '–', '-', $this->options['manual_ua_code_field'] );
+
+			// Regex to tests if a valid UA code has been set. Valid codes follow: "UA-[4 digits]-[at least 1 digit]".
+			if ( ! preg_match( '|^UA-\d{4,}-\d+$|', $this->options['manual_ua_code_field'] ) ) {
+
+				return new WP_Error(
+					'ua-code-format',
+					__( 'The UA code needs to follow UA-XXXXXXXX-X format.', 'google-analytics-for-wordpress' )
+				);
+			}
+		}
+
+		/**
+		 * Filters the validation for the admin options
+		 *
+		 * @param true|WP_Error true if the validation is successful, WP_Error on error.
+		 * @param array $this->options The options that are being saved.
+		 */
+		return apply_filters( 'yst_ga_admin_validate_settings', true, $this->options );
 	}
 
 	/**
@@ -550,6 +612,22 @@ class Yoast_GA_Admin extends Yoast_GA_Options {
 
 			delete_transient( $transient_name );
 		}
+	}
+
+	/**
+	 * Check if there the aggregate data cron is executed
+	 * @return bool
+	 */
+	private function is_running_cron() {
+		return doing_action( 'yst_ga_aggregate_data' ) && defined( 'DOING_CRON' ) && DOING_CRON;
+	}
+
+	/**
+	 * Check if there the aggregate data cron is executed
+	 * @return bool
+	 */
+	private function is_running_ajax() {
+		return defined( 'DOING_AJAX' ) && DOING_AJAX && strpos( filter_input( INPUT_GET, 'action' ), 'yoast_dashboard' ) === 0;
 	}
 
 }

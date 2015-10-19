@@ -172,7 +172,7 @@ class Role_Usage_RS {
 						$join_assigned = $term_join . " INNER JOIN $wpdb->user2role2object_rs AS uro ON uro.obj_or_term_id = {$qvars->term->alias}.{$qvars->term->col_id}"
 												. " AND uro.scope = 'term' AND uro.role_type = 'rs' $role_clause AND uro.src_or_tx_name = '$taxonomy'";
 
-						$where = " AND {$src->table}.$col_id IN ('" . implode("', '", array_keys($listed_ids)) . "')";
+						$where = " AND {$src->table}.$col_id IN ('" . implode("', '", array_map( 'intval', array_keys($listed_ids)) ) . "')";
 	
 						$query = "SELECT DISTINCT $col_id, uro.role_name FROM $src->table $join_assigned WHERE 1=1 $where";
 

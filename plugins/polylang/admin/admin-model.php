@@ -44,11 +44,11 @@ class PLL_Admin_Model extends PLL_Model {
 		// don't want shared terms so use a different slug
 		wp_insert_term($args['name'], 'term_language', array('slug' => 'pll_' . $args['slug']));
 
+		$this->clean_languages_cache(); // udpate the languages list now !
+
 		// init a mo_id for this language
 		$mo = new PLL_MO();
 		$mo->export_to_db($this->get_language($args['slug']));
-
-		$this->clean_languages_cache(); // udpate the languages list now !
 
 		if (!isset($this->options['default_lang'])) {
 			// if this is the first language created, set it as default language
@@ -236,8 +236,8 @@ class PLL_Admin_Model extends PLL_Model {
 	 * @see PLL_Admin_Model::add_language
 	 */
 	protected function validate_lang($args, $lang = null) {
-		// validate locale
-		if ( !preg_match('#^[A-Za-z_]+$#', $args['locale']))
+		// validate locale with the same pattern as WP 4.3. See #28303
+		if ( !preg_match('#^[a-z]{2,3}(?:_[A-Z]{2})?(?:_[a-z0-9]+)?$#', $args['locale'], $matches))
 			add_settings_error('general', 'pll_invalid_locale', __('Enter a valid WordPress locale', 'polylang'));
 
 		// validate slug characters

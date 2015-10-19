@@ -104,6 +104,13 @@ class PLL_Admin_Filters_Media extends PLL_Admin_Filters_Post_Base {
 		$post_id = $post->ID;
 		$new_lang = $this->model->get_language($_GET['new_lang']); // make sure we get a valid language slug
 
+		// bails if the translations already exists
+		// see https://wordpress.org/support/topic/edit-translation-in-media-attachments?#post-7322303
+		if ( $this->model->get_translation( 'post', $post_id, $new_lang ) ) {
+			wp_safe_redirect( wp_get_referer() );
+			exit;
+		}
+
 		// create a new attachment (translate attachment parent if exists)
 		$post->ID = null; // will force the creation
 		$post->post_parent = ($post->post_parent && $tr_parent = $this->model->get_translation('post', $post->post_parent, $new_lang->slug)) ? $tr_parent : 0;
@@ -113,7 +120,7 @@ class PLL_Admin_Filters_Media extends PLL_Admin_Filters_Post_Base {
 
 		// copy alternative text to be consistent with title, caption and description copied when cloning the post
 		if ($meta = get_post_meta($post_id, '_wp_attachment_image_alt', true))
-			add_post_meta($tr_id, '_wp_attachment_image_alt', $meta); 
+			add_post_meta($tr_id, '_wp_attachment_image_alt', $meta);
 
 		$translations = $this->model->get_translations('post', $post_id);
 		if (!$translations && $lang = $this->model->get_post_language($post_id))
@@ -124,7 +131,7 @@ class PLL_Admin_Filters_Media extends PLL_Admin_Filters_Post_Base {
 
 		do_action('pll_translate_media', $tr_id, $post, $translations);
 
-		wp_redirect(admin_url(sprintf('post.php?post=%d&action=edit', $tr_id))); // WP 3.5+
+		wp_safe_redirect(admin_url(sprintf('post.php?post=%d&action=edit', $tr_id))); // WP 3.5+
 		exit;
 	}
 
@@ -163,10 +170,11 @@ class PLL_Admin_Filters_Media extends PLL_Admin_Filters_Post_Base {
 		global $wpdb;
 
 		$uploadpath = wp_upload_dir();
+
 		$ids = $wpdb->get_col($wpdb->prepare("
 			SELECT post_id FROM $wpdb->postmeta
 			WHERE meta_key = '_wp_attached_file' AND meta_value = '%s'",
-			ltrim($file, $uploadpath['basedir'])
+			substr_replace($file, '', 0, strlen(trailingslashit($uploadpath['basedir'])))
 		));
 
 		if (!empty($ids)) {

@@ -22,7 +22,7 @@ class PLL_Plugins_Compat {
 		// just makes YARPP aware of the language taxonomy (after Polylang registered it)
 		add_action('init', create_function('',"\$GLOBALS['wp_taxonomies']['language']->yarpp_support = 1;"), 20);
 
-		// WordPress SEO by Yoast
+		// Yoast SEO
 		add_action('pll_language_defined', array(&$this, 'wpseo_init'));
 
 		// Custom field template
@@ -32,13 +32,20 @@ class PLL_Plugins_Compat {
 		add_filter('pll_home_url_black_list', create_function('$arr', "return array_merge(\$arr, array(array('function' => 'aq_resize')));"));
 
 		// Twenty Fourteen
-		add_filter('transient_featured_content_ids', array(&$this, 'twenty_fourteen_featured_content_ids'));
-		add_filter('option_featured-content', array(&$this, 'twenty_fourteen_option_featured_content'));
+		if ( 'twentyfourteen' == get_template() ) {
+			add_filter('transient_featured_content_ids', array(&$this, 'twenty_fourteen_featured_content_ids'));
+			add_filter('option_featured-content', array(&$this, 'twenty_fourteen_option_featured_content'));
+		}
 
 		// Jetpack 3
 		add_action('jetpack_widget_get_top_posts', array(&$this, 'jetpack_widget_get_top_posts'), 10, 3);
 		add_filter('grunion_contact_form_field_html', array(&$this, 'grunion_contact_form_field_html_filter'), 10, 3);
 		add_filter('jetpack_open_graph_tags', array(&$this, 'jetpack_ogp'));
+
+		// Jetpack infinite scroll
+		if ( !defined( 'PLL_AJAX_ON_FRONT' ) && isset( $_GET['infinity'], $_POST['action'] ) && 'infinite_scroll' == $_POST['action'] ) {
+			define( 'PLL_AJAX_ON_FRONT', true );
+		}
 	}
 
 	/*
@@ -54,7 +61,7 @@ class PLL_Plugins_Compat {
 
 		return self::$instance;
 	}
-	
+
 	/*
 	 * WordPress Importer
 	 * if WordPress Importer is active, replace the wordpress_importer_init function
@@ -83,7 +90,7 @@ class PLL_Plugins_Compat {
 	}
 
 	/*
-	 * WordPress SEO by Yoast
+	 * Yoast SEO
 	 * translate options
 	 * add specific filters and actions
 	 *
@@ -113,9 +120,12 @@ class PLL_Plugins_Compat {
 		// one sitemap per language when using multiple domains or subdomains
 		// because WPSEO does not accept several domains or subdomains in one sitemap
 		if ($polylang->options['force_lang'] > 1) {
+			add_filter('wpseo_enable_xml_sitemap_transient_caching', '__return_false'); // disable cache! otherwise WPSEO keeps only one domain (thanks to Junaid Bhura)
 			add_filter('home_url', array(&$this, 'wpseo_home_url'), 10, 2); // fix home_url
 			add_filter('wpseo_posts_join', array(&$this, 'wpseo_posts_join'), 10, 2);
 			add_filter('wpseo_posts_where', array(&$this, 'wpseo_posts_where'), 10, 2);
+			add_filter('wpseo_typecount_join', array(&$this, 'wpseo_posts_join'), 10, 2);
+			add_filter('wpseo_typecount_where', array(&$this, 'wpseo_posts_where'), 10, 2);
 		}
 
 		// one sitemap for all languages when the language is set from the content or directory name
@@ -125,10 +135,11 @@ class PLL_Plugins_Compat {
 
 		add_filter('pll_home_url_white_list', create_function('$arr', "return array_merge(\$arr, array(array('file' => 'wordpress-seo')));"));
 		add_action('wpseo_opengraph', array(&$this, 'wpseo_ogp'), 2);
+		add_filter( 'wpseo_canonical', array( &$this, 'wpseo_canonical' ) );
 	}
 
 	/*
-	 * WordPress SEO by Yoast
+	 * Yoast SEO
 	 * fixes the home url as well as the stylesheet url
 	 * only when using multiple domains or subdomains
 	 *
@@ -149,7 +160,7 @@ class PLL_Plugins_Compat {
 	}
 
 	/*
-	 * WordPress SEO by Yoast
+	 * Yoast SEO
 	 * modifies the sql request for posts sitemaps
 	 * only when using multiple domains or subdomains
 	 *
@@ -165,7 +176,7 @@ class PLL_Plugins_Compat {
 	}
 
 	/*
-	 * WordPress SEO by Yoast
+	 * Yoast SEO
 	 * modifies the sql request for posts sitemaps
 	 * only when using multiple domains or subdomains
 	 *
@@ -181,7 +192,7 @@ class PLL_Plugins_Compat {
 	}
 
 	/*
-	 * WordPress SEO by Yoast
+	 * Yoast SEO
 	 * removes the language filter for the taxonomy sitemaps
 	 * only when the language is set from the content or directory name
 	 *
@@ -197,7 +208,7 @@ class PLL_Plugins_Compat {
 	}
 
 	/*
-	 * WordPress SEO by Yoast
+	 * Yoast SEO
 	 * adds opengraph support for translations
 	 *
 	 * @since 1.6
@@ -213,6 +224,19 @@ class PLL_Plugins_Compat {
 				}
 			}
 		}
+	}
+
+	/*
+	 * Yoast SEO
+	 * fixes the canonical front page url as unlike WP, WPSEO does not add a trailing slash to the canonical front page url
+	 *
+	 * @since 1.7.10
+	 *
+	 * @param string $url
+	 * @return $url
+	 */
+	public function wpseo_canonical( $url ) {
+		return is_front_page( $url ) ? trailingslashit( $url ) : $url;
 	}
 
 	/*

@@ -19,6 +19,10 @@ class WPCF7_Mail {
 
 	private function __construct() {}
 
+	public function name() {
+		return $this->name;
+	}
+
 	public static function get_current() {
 		return self::$current;
 	}
@@ -55,7 +59,7 @@ class WPCF7_Mail {
 			'recipient', 'additional_headers', 'attachments' );
 
 		$components = apply_filters( 'wpcf7_mail_components',
-			$components, wpcf7_get_current_contact_form() );
+			$components, wpcf7_get_current_contact_form(), $this );
 
 		$subject = wpcf7_strip_newline( $components['subject'] );
 		$sender = wpcf7_strip_newline( $components['sender'] );
@@ -293,6 +297,20 @@ function wpcf7_special_mail_tag( $output, $name, $html ) {
 		return $output;
 	}
 
+
+
+        if ( 'user_info' == $name ) {
+          if ( is_user_logged_in() ) {
+            $output = 'logged in';
+            $user = wp_get_current_user();
+            $output = '#' . $user->ID . ' ' . $user->user_login
+              . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
+              . " " . $user->display_name
+              . " " . $user->user_email;
+          } else $output = 'User not logged in.';
+          return $output;
+        }
+
 	if ( '_remote_ip' == $name ) {
 		if ( $remote_ip = $submission->get_meta( 'remote_ip' ) ) {
 			return $remote_ip;
@@ -308,18 +326,6 @@ function wpcf7_special_mail_tag( $output, $name, $html ) {
 			return '';
 		}
 	}
-
-        if ( 'user_info' == $name ) {
-          if ( is_user_logged_in() ) {
-            $output = 'logged in';
-            $user = wp_get_current_user();
-            $output = '#' . $user->ID . ' ' . $user->user_login
-              . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
-              . " " . $user->display_name
-              . " " . $user->user_email;
-          } else $output = 'User not logged in.';
-          return $output;
-        }
 
 	if ( '_url' == $name ) {
 		if ( $url = $submission->get_meta( 'url' ) ) {

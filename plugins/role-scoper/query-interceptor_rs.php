@@ -257,7 +257,7 @@ class QueryInterceptor_RS
 			// For Edit Form display, include currently stored terms.  User will still not be able to remove them without proper editing roles for object. (TODO: abstract for other data sources)
 			if ( ( 'post.php' == $GLOBALS['pagenow'] ) && empty( $_REQUEST['admin_bar'] ) ) {
 				if ( 'post' == $src_name ) {
-					if ( $object_id = $this->scoper->data_sources->detect( 'id', $src_name ) ) {
+					if ( $object_id = (int) $this->scoper->data_sources->detect( 'id', $src_name ) ) {
 						if ( $stored_terms = wp_get_object_terms( $object_id, $taxonomies[0] ) ) {
 							$tt_ids = array();
 							foreach( array_keys($stored_terms) as $key ) 

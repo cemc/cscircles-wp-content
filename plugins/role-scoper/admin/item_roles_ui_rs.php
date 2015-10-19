@@ -114,7 +114,7 @@ class ScoperItemRolesUI {
 					foreach ( array_keys($this->current_roles[ROLE_BASIS_USER]) as $role_handle )
 						$assignees = array_merge( $assignees, array_keys( $this->current_roles[ROLE_BASIS_USER][$role_handle]['assigned'] ) );
 
-				$assignees = array_unique( $assignees );
+				$assignees = array_unique( array_map( 'intval', $assignees ) );
 				
 				global $wpdb;
 				$this->all_agents[ROLE_BASIS_USER] = scoper_get_results( "SELECT ID, display_name FROM $wpdb->users WHERE ID IN ('" . implode("','", $assignees) . "')" );
@@ -147,7 +147,7 @@ class ScoperItemRolesUI {
 				
 				// might need to check term/blog assignment of a different role to reflect object's current status
 				if ( ! empty( $role_def->other_scopes_check_role) && ! empty($src->cols->status) ) {
-					$status = $this->scoper->data_sources->detect('status', $src, $object_id);
+					$status = sanitize_key( $this->scoper->data_sources->detect('status', $src, $object_id) );
 				
 					if ( isset($role_def->other_scopes_check_role[$status]) ) 
 						$blog_term_role_handle = $role_def->other_scopes_check_role[$status];

@@ -31,7 +31,7 @@ function wpcf7_ajax_onload() {
 		$items = apply_filters( 'wpcf7_ajax_onload', $items );
 	}
 
-	$echo = json_encode( $items );
+	$echo = wp_json_encode( $items );
 
 	if ( wpcf7_is_xhr() ) {
 		@header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
@@ -94,7 +94,7 @@ function wpcf7_ajax_json_echo() {
 		}
 	}
 
-	$echo = json_encode( $items );
+	$echo = wp_json_encode( $items );
 
 	if ( wpcf7_is_xhr() ) {
 		@header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ) );
@@ -132,48 +132,6 @@ function wpcf7_widget_text_filter( $content ) {
 	$content = do_shortcode( $content );
 
 	return $content;
-}
-
-/* Shortcodes */
-
-add_action( 'plugins_loaded', 'wpcf7_add_shortcodes' );
-
-function wpcf7_add_shortcodes() {
-	add_shortcode( 'contact-form-7', 'wpcf7_contact_form_tag_func' );
-	add_shortcode( 'contact-form', 'wpcf7_contact_form_tag_func' );
-}
-
-function wpcf7_contact_form_tag_func( $atts, $content = null, $code = '' ) {
-	if ( is_feed() )
-		return '[contact-form-7]';
-
-	if ( 'contact-form-7' == $code ) {
-		$atts = shortcode_atts( array(
-			'id' => 0,
-			'title' => '',
-			'html_id' => '',
-			'html_name' => '',
-			'html_class' => '',
-			'output' => 'form' ), $atts );
-
-		$id = (int) $atts['id'];
-		$title = trim( $atts['title'] );
-
-		if ( ! $contact_form = wpcf7_contact_form( $id ) )
-			$contact_form = wpcf7_get_contact_form_by_title( $title );
-
-	} else {
-		if ( is_string( $atts ) )
-			$atts = explode( ' ', $atts, 2 );
-
-		$id = (int) array_shift( $atts );
-		$contact_form = wpcf7_get_contact_form_by_old_id( $id );
-	}
-
-	if ( ! $contact_form )
-		return '[contact-form-7 404 "Not Found"]';
-
-	return $contact_form->form_html( $atts );
 }
 
 add_action( 'wp_enqueue_scripts', 'wpcf7_do_enqueue_scripts' );
@@ -262,5 +220,3 @@ function wpcf7_html5_fallback() {
 			wpcf7_plugin_url( 'includes/js/jquery-ui/themes/smoothness/jquery-ui.min.css' ), array(), '1.10.3', 'screen' );
 	}
 }
-
-?>

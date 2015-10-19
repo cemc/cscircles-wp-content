@@ -913,13 +913,13 @@ function cr_find_post_type( $post_arg = '', $return_default = true ) {
 		$object_type = $GLOBALS['wp_query']->queried_object->name;
 		
 	} elseif ( in_array( $pagenow, array( 'post-new.php', 'edit.php' ) ) ) {
-		$object_type = ! empty( $_GET['post_type'] ) ? $_GET['post_type'] : 'post';
+		$object_type = ! empty( $_GET['post_type'] ) ? sanitize_key( $_GET['post_type'] ) : 'post';
 		
 	} elseif ( in_array( $pagenow, array( 'edit-tags.php' ) ) ) {
-		$object_type = ! empty( $_GET['taxonomy'] ) ? $_GET['taxonomy'] : 'category';
+		$object_type = ! empty( $_GET['taxonomy'] ) ? sanitize_key( $_GET['taxonomy'] ) : 'category';
 
 	} elseif ( in_array( $pagenow, array( 'admin-ajax.php' ) ) && ! empty( $_REQUEST['taxonomy'] ) ) {
-		$object_type = $_REQUEST['taxonomy'];
+		$object_type = sanitize_key( $_REQUEST['taxonomy'] );
 		
 	} elseif ( ! empty( $_POST['post_ID'] ) ) {
 		if ( $_post = get_post( $_POST['post_ID'] ) )
@@ -964,7 +964,7 @@ function cr_find_object_type( $src_name, $object = '' ) {
 	$src = $scoper->data_sources->get( $src_name );
 	$object_id = ( is_object($object ) ) ? $src->cols->id : $object;
 
-	return $scoper->data_sources->detect( 'type', $src_name, $object_id );
+	return sanitize_key( $scoper->data_sources->detect( 'type', $src_name, $object_id ) );
 }
 
 function cr_get_type_object( $src_name, $object_type ) {
@@ -977,7 +977,7 @@ function cr_get_type_object( $src_name, $object_type ) {
 
 function scoper_get_object_id($src_name = 'post', $object_type = '') {
 	global $scoper;
-	return $scoper->data_sources->detect( 'id', $src_name, 0, $object_type );	
+	return (int) $scoper->data_sources->detect( 'id', $src_name, 0, $object_type );	
 }
 
 

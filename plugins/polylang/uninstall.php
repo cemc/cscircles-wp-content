@@ -49,12 +49,7 @@ class PLL_Uninstall {
 			$wpdb->query("DELETE FROM $wpdb->termmeta WHERE meta_key = '_language'");
 			$wpdb->query("DELETE FROM $wpdb->termmeta WHERE meta_key = '_rtl'");
 			$wpdb->query("DELETE FROM $wpdb->termmeta WHERE meta_key = '_translations'");
-
-			// delete the termmeta table only if it is empty as other plugins may use it
-			if (!$wpdb->get_var("SELECT COUNT(*) FROM $wpdb->termmeta;"))
-				$wpdb->query("DROP TABLE $wpdb->termmeta;");
 		}
-
 
 		// need to register the taxonomies
 		$pll_taxonomies = array('language', 'term_language', 'post_translations', 'term_translations');

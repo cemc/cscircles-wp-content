@@ -609,7 +609,7 @@ class ScoperAdminFilters
 			if ( $csv_for_item = ScoperAdminLib::agent_ids_from_csv( 'groups_csv', 'groups' ) )
 				$posted_groups = array_merge($posted_groups, $csv_for_item);
 		} else
-			$posted_groups = ( isset($_POST['group']) ) ? $_POST['group'] : array();
+			$posted_groups = ( isset($_POST['group']) ) ? array_map( 'intval', (array) $_POST['group'] ) : array();
 			
 		$posted_groups = array_unique( $posted_groups );
 		
@@ -688,9 +688,9 @@ class ScoperAdminFilters
 			foreach ( $posted as $group_id ) {
 				if ( in_array( $group_id, $editable_group_ids[$status] ) ) {
 					if ( ! in_array( $group_id, $all_stored_groups ) )
-						ScoperAdminLib::add_group_user($group_id, $user_id, $status);
+						ScoperAdminLib::add_group_user( (int) $group_id, $user_id, $status);
 					elseif ( ! in_array( $group_id, $stored_groups[$status] ) )
-						ScoperAdminLib::update_group_user($group_id, $user_id, $status);
+						ScoperAdminLib::update_group_user( (int) $group_id, $user_id, $status);
 				}
 			}
 		}

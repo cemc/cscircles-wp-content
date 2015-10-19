@@ -6,15 +6,15 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 global $scoper, $scoper_admin;
 
 if ( isset($_POST['rs_submit']) ) {
-	$src_name = $_POST['src_name'];
-	$object_type = $_POST['object_type'];
+	$src_name = sanitize_key( $_POST['src_name'] );
+	$object_type = sanitize_key( $_POST['object_type'] );
 	$object_name = $_POST['object_name'];
-	$object_id = $_POST['object_id'];
+	$object_id = (int) $_POST['object_id'];
 } else {
-	$src_name = isset($_GET['src_name']) ? $_GET['src_name'] : '';
-	$object_type = isset($_GET['object_type']) ? $_GET['object_type'] : '';
+	$src_name = isset($_GET['src_name']) ? sanitize_key( $_GET['src_name'] ) : '';
+	$object_type = isset($_GET['object_type']) ? sanitize_key( $_GET['object_type'] ) : '';
 	$object_name = isset($_GET['object_name']) ? $_GET['object_name'] : '';
-	$object_id = isset($_GET['object_id']) ? $_GET['object_id'] : '';
+	$object_id = isset($_GET['object_id']) ? (int) $_GET['object_id'] : '';
 }
 
 if ( ! $is_administrator && ! $scoper_admin->user_can_admin_object($src_name, $object_type, $object_id) )

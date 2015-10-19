@@ -32,6 +32,7 @@ return array(
     'Yoast_GA_Utils' => $baseDir . '/includes/class-utils.php',
     'Yoast_Google_Analytics' => $baseDir . '/admin/class-google-analytics.php',
     'Yoast_Google_Analytics_Notice' => $baseDir . '/admin/class-google-analytics.php',
+    'Yoast_Googleanalytics_Reporting' => $baseDir . '/admin/class-googleanalytics-reporting.php',
     'Yoast_License_Manager' => $vendorDir . '/yoast/license-manager/class-license-manager.php',
     'Yoast_Plugin_License_Manager' => $vendorDir . '/yoast/license-manager/class-plugin-license-manager.php',
     'Yoast_Plugin_Update_Manager' => $vendorDir . '/yoast/license-manager/class-plugin-update-manager.php',

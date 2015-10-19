@@ -20,7 +20,7 @@ require_once(dirname(__FILE__).'/groups-support.php');
 wp_nonce_field( 'scoper-assign-termroles' );
 
 if ( isset($_POST['rs_submit']) ) {
-	$stored_groups = ( isset($_POST['group']) ) ? $_POST['group'] : array();
+	$stored_groups = ( isset($_POST['group']) ) ? array_map( 'intval', (array) $_POST['group'] ) : array();
 
 	scoper_update_option( 'default_groups', $stored_groups );
 	

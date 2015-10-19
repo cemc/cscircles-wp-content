@@ -26,7 +26,7 @@
 		
 		if ( ! $status ) {
 			// determine current post status
-			if ( ! $status = $scoper->data_sources->get_from_http_post('status', $src) ) {
+			if ( ! $status = sanitize_key( $scoper->data_sources->get_from_http_post('status', $src) ) ) {
 				if ( $object_id )
 					$status = $scoper->data_sources->get_from_db('status', $src, $object_id);
 			}

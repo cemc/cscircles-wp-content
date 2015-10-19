@@ -87,7 +87,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		if ( $col_parent = $scoper->data_sources->member_property($src_name, 'cols', 'parent') ) {
 			if ( in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php', 'press-this.php' ) ) ) {
 				if ( isset($_POST[$col_parent]) ) 
-					$set_parent = $_POST[$col_parent];
+					$set_parent = (int) $_POST[$col_parent];
 			} else {
 				if ( isset($object->$col_parent) ) // this should also work for handling regular WP edit form, but leaving existing code above until further testing
 					$set_parent = $object->$col_parent;
@@ -391,9 +391,9 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 
 		// user can't associate / un-associate a page with Main page unless they have edit_pages blog-wide
 		if ( ! empty( $_POST['post_ID'] ) ) {
-			$post_id = $_POST['post_ID'];
-			$post_type = $_POST['post_type'];
-			$selected_parent_id = isset($_POST['parent_id']) ? $_POST['parent_id'] : 0;
+			$post_id = (int) $_POST['post_ID'];
+			$post_type = sanitize_key( $_POST['post_type'] );
+			$selected_parent_id = isset($_POST['parent_id']) ? (int) $_POST['parent_id'] : 0;
 		} elseif( ! empty($GLOBALS['post']) ) {
 			$post_id = $GLOBALS['post']->ID;
 			$post_type = $GLOBALS['post']->post_type;
@@ -457,7 +457,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		// Make sure the selected parent is valid.  Merely an anti-hacking precaution to deal with manually fudged POST data		
 		global $scoper, $wpdb;
 		
-		$post_type = $_POST['post_type'];
+		$post_type = sanitize_key( $_POST['post_type'] );
 		$plural_name = plural_name_from_cap_rs( get_post_type_object($post_type) );
 		
 		$args = array();
@@ -565,7 +565,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 			$selected_terms = scoper_filter_terms_for_status($taxonomy, $selected_terms, $user_terms);
 			
 			if ( 'post' == $src_name ) { // TODO: abstract for other data sources
-				if ( $object_id = $scoper->data_sources->detect('id', $src_name) ) {
+				if ( $object_id = (int) $scoper->data_sources->detect('id', $src_name) ) {
 					$stored_terms = wp_get_object_terms( $object_id, $taxonomy, array( 'fields' => 'ids' ) );
 
 					if ( $deselected_terms = array_diff( $stored_terms, $selected_terms ) ) {
@@ -649,11 +649,11 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		
 		if ( $col_parent = $scoper->taxonomies->member_property($taxonomy, 'source', 'cols', 'parent') ) {
 			$tx_src_name = $scoper->taxonomies->member_property($taxonomy, 'source', 'name');
-			$set_parent = $scoper->data_sources->get_from_http_post('parent', $tx_src_name);
+			$set_parent = (int) $scoper->data_sources->get_from_http_post('parent', $tx_src_name);
 		}
 
 		if ( empty($term_id) )
-			$term_id = $scoper->data_sources->get_from_http_post('id', $tx_src_name);
+			$term_id = (int) $scoper->data_sources->get_from_http_post('id', $tx_src_name);
 		
 		$saved_terms[$taxonomy][$term_id] = 1;
 		
@@ -715,8 +715,8 @@ function scoper_get_parent_restrictions($obj_or_term_id, $scope, $src_or_tx_name
 	global $wpdb;
 		
 	// Since this is a new object, propagate restrictions from parent (if any are marked for propagation)
-	$qry = "SELECT * FROM $wpdb->role_scope_rs WHERE topic = '$scope' AND require_for IN ('children', 'both') AND src_or_tx_name = '$src_or_tx_name' AND obj_or_term_id = '$parent_id' ORDER BY role_type, role_name";
-	$results = scoper_get_results($qry);
+	$qry = "SELECT * FROM $wpdb->role_scope_rs WHERE topic = %s AND require_for IN ('children', 'both') AND src_or_tx_name = %s AND obj_or_term_id = %d ORDER BY role_type, role_name";
+	$results = scoper_get_results( $wpdb->prepare( $qry, $scope, $src_or_tx_name, $parent_id ) );
 	return $results;
 }
 
@@ -773,8 +773,8 @@ function scoper_get_parent_roles($obj_or_term_id, $scope, $src_or_tx_name, $pare
 	}
 	
 	// Since this is a new object, propagate roles from parent (if any are marked for propagation)
-	$qry = "SELECT * FROM $wpdb->user2role2object_rs WHERE scope = '$scope' AND assign_for IN ('children', 'both') $role_clause AND src_or_tx_name = '$src_or_tx_name' AND obj_or_term_id = '$parent_id' ORDER BY role_type, role_name";
-	$results = scoper_get_results($qry);
+	$qry = "SELECT * FROM $wpdb->user2role2object_rs WHERE scope = %s AND assign_for IN ('children', 'both') $role_clause AND src_or_tx_name = %s AND obj_or_term_id = %d ORDER BY role_type, role_name";
+	$results = scoper_get_results( $wpdb->prepare( $qry, $scope, $src_or_tx_name, $parent_id ) );
 	return $results;
 }
 

@@ -3,15 +3,17 @@
 Plugin Name: Role Scoper
 Plugin URI: http://agapetry.net/
 Description: CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
-Version: 1.3.63
+Version: 1.3.66
 Author: Kevin Behrens
 Author URI: http://agapetry.net/
 Min WP Version: 3.0
+Text Domain: role-scoper
+Domain Path: /languages/
 License: GPL version 2 - http://www.opensource.org/licenses/gpl-license.php
 */
 
 /*
-Copyright (c) 2008-2013, Kevin Behrens.
+Copyright (c) 2008-2015, Kevin Behrens.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -41,7 +43,7 @@ if ( defined( 'SCOPER_VERSION' ) ) {
 	return;
 }
 
-define ('SCOPER_VERSION', '1.3.63');
+define ('SCOPER_VERSION', '1.3.66');
 define ('SCOPER_DB_VERSION', '1.1.4');
 
 // No filtering on dashboard Ajax or plugin installation/update, but run this check after defining version to prevent nuisance error message from Role Scoping for NGG

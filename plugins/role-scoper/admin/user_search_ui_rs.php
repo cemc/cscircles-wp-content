@@ -82,7 +82,7 @@ class ScoperUserSearch {
 			}
 		} else {
 			if ( ! empty( $_GET['page'] ) && ( 'rs-groups' == $_GET['page'] ) && ! empty( $_GET['id'] ) )
-				$group_id = $_GET['id'];
+				$group_id = (int) $_GET['id'];
 			else
 				$group_id = 0;
 	

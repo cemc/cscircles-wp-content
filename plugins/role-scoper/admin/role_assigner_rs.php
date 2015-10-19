@@ -162,10 +162,10 @@ class ScoperRoleAssigner
 			
 		$ug_clause = ( ROLE_BASIS_USER == $role_basis ) ? "AND user_id > 0" : "AND group_id > 0";
 				
-		$qry = "SELECT $col_ug_id, assignment_id, assign_for, inherited_from, role_name, date_limited, start_date_gmt, end_date_gmt, content_date_limited, content_min_date_gmt, content_max_date_gmt FROM $wpdb->user2role2object_rs WHERE scope = '$scope' $ug_clause"
-			. " AND role_type = 'rs' AND src_or_tx_name = '$src_or_tx_name' AND obj_or_term_id = '$item_id'";
+		$qry = "SELECT $col_ug_id, assignment_id, assign_for, inherited_from, role_name, date_limited, start_date_gmt, end_date_gmt, content_date_limited, content_min_date_gmt, content_max_date_gmt FROM $wpdb->user2role2object_rs WHERE scope = %s $ug_clause"
+			. " AND role_type = 'rs' AND src_or_tx_name = %s AND obj_or_term_id = %d";
 			
-		$results = scoper_get_results($qry);
+		$results = scoper_get_results( $wpdb->prepare( $qry, $scope, $src_or_tx_name, $item_id ) );
 
 		$stored_assignments = array();
 		$assignment_ids = array();
@@ -610,10 +610,10 @@ class ScoperRoleAssigner
 			else
 				$query_max_scope = ( $default_strict ) ? 'blog' : 'object'; // Storage of 'blog' max_scope as object restriction does not eliminate any term restrictions.  It merely indicates, for data sources that are default strict, that this object does not restrict roles
 				
-			$qry = "SELECT requirement_id AS assignment_id, require_for AS assign_for, inherited_from, role_name FROM $wpdb->role_scope_rs WHERE topic = '$scope' AND max_scope = '$query_max_scope'"
-				. " AND src_or_tx_name = '$src_or_tx_name' AND obj_or_term_id = '$item_id' AND role_type = 'rs' $role_clause";
+			$qry = "SELECT requirement_id AS assignment_id, require_for AS assign_for, inherited_from, role_name FROM $wpdb->role_scope_rs WHERE topic = %s AND max_scope = %s"
+				. " AND src_or_tx_name = %s AND obj_or_term_id = %d AND role_type = 'rs' $role_clause";
 
-			if ( $results = scoper_get_results($qry) ) {
+			if ( $results = scoper_get_results( $wpdb->prepare( $qry, $scope, $query_max_scope, $src_or_tx_name, $item_id ) ) ) {
 				foreach ($results as $key => $req) {
 					$role_handle = 'rs_' . $req->role_name;
 					
