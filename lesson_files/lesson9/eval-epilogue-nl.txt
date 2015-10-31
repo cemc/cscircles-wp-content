@@ -1,0 +1,1 @@
+Correct! De volgorde van uitvoeren maakt dit gelijk aan <pre>A or ((not B) and C)</pre>. Als we de waarden invullen krijgen we <pre>False or ((not True) and True)</pre> en steeds een stap versimpelen geeft dan<pre>False or ((not True) and True)<br/>= False or (False and True)<br/>= False or False<br/>= False</pre>
