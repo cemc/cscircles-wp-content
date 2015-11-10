@@ -158,7 +158,7 @@ require_once("shortcode-export-submissions.php");
 require_once("shortcode-vis.php");
 require_once("plugin-hooks.php");
 require_once("plugin-errorhint.php");
-require_once("plugin-new-user-email.php");
+//require_once("plugin-new-user-email.php");
 require_once("plugin-profile-options.php");
 require_once("js-translation.php");
 require_once("db-mail.php");
