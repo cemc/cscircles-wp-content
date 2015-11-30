@@ -4,4 +4,4 @@ nestedListContains([[9, 4, 5], [3, 8]], 3)
 nestedListContains([[9, 4, 5], [3, 8]], 6)
 nestedListContains([[[[[[[5]]]], 4]]], 3)
 nestedListContains([[[[[[[7]]]], 8]]], 7)
-
+nestedListContains([3,7,[5],9], 7)
