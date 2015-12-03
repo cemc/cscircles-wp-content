@@ -72,7 +72,7 @@ function cscurl($desc) {
     // normally for cscircles, show_on_front is page
     // (front page displays static page in Settings/Reading)
     if (get_option('show_on_front') != 'page')
-      return get_option('siteurl');
+      return str_replace('/dev/', '/', get_option('siteurl'));
 
     $res = get_option('page_on_front');
   }
