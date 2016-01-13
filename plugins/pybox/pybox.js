@@ -398,7 +398,7 @@ $(".hintlink").live("click", function(e) {
   o.css({"position":"relative"}); /* absolute gave ugly firefox bug! */
   o.css({"display":"block"});
   o.css({"top": e.pageY,"left": e.pageX});
-  o.draggable({ cancel: ".hintboxlink" });
+  o.draggable({ cancel: ".hintboxlink", containment: "parent" });
 });
 
 $(".hintboxlink").live("click", function(e) {
@@ -592,7 +592,7 @@ $( // this call to $ makes it delay until the DOM is loaded
       $('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
       if (typeof justVisualizing === 'undefined') {
-        $('ul.pyscramble').sortable();
+        $('ul.pyscramble').sortable({containment: "parent"});
 	$('.resizy').resizable({handles:'s',minHeight:50});
 
 	if (window.location.hash) {

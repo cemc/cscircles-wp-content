@@ -143,6 +143,7 @@ PRIMARY KEY  (ID)
 
 }
 
+wp_enqueue_script( 'jquery-touch-punch' );
 
 require_once("sweetcodes.php");
 require_once("shortcodes-exercises.php");
