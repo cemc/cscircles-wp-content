@@ -1,5 +1,10 @@
 $ = jQuery;
 
+var registerclick = function(selector, callback) {
+  $(selector).live('touchstart', callback);
+  $(selector).live('click', callback);
+};
+
 function __t(s) {
     if (translationArray == null) return s;
     return translationArray[s];
@@ -363,13 +368,13 @@ function pbSelectChange(event) {
 
 function stayHere(event) {
   //console.log('a');
-    if (!
-	($(event.target).hasClass('open-same-window')
-	 || $(event.target).parents('.open-same-window').length > 0)
-       )
-	$(event.target).attr('target', '_blank');
-   // console.log('A');
-    return true;
+  if (!
+      ($(event.target).hasClass('open-same-window')
+       || $(event.target).parents('.open-same-window').length > 0)
+     )
+    $(event.target).attr('target', '_blank');
+  // console.log('A');
+  return true;
 }
 
 function scrollToTop() {
@@ -382,14 +387,14 @@ hflex = {}; //history flexigrid instances
 hflexhelp = {};
 
 // ensure clicking mail messages open new window to that message's page
-$(".flexigrid tr a pre.prebox").live("click", function(e) {
+registerclick(".flexigrid tr a pre.prebox", function(e) {
   var a = e.target.closest("a");
   if (!a) return true;
   window.open(a.getAttribute("href"));
   return false;
 });
 
-$(".hintlink").live("click", function(e) {
+registerclick(".hintlink", function(e) {
   n = $(this).attr("id").substring(8);
   o = $("#hintbox" + n);
   if ($("#durn").length==0)
@@ -398,20 +403,20 @@ $(".hintlink").live("click", function(e) {
   o.css({"position":"relative"}); /* absolute gave ugly firefox bug! */
   o.css({"display":"block"});
   o.css({"top": e.pageY,"left": e.pageX});
-  o.draggable({ cancel: ".hintboxlink", containment: "parent" });
+  o.draggable({ cancel: ".hintboxlink" });
 });
 
-$(".hintboxlink").live("click", function(e) {
-    n = $(this).attr("id").substring(11);
-    $("#hintbox"+n).css("display","none");
+registerclick(".hintboxlink", function(e) {
+  n = $(this).attr("id").substring(11);
+  $("#hintbox"+n).css("display","none");
 });   
 
 $(".pbform").live("submit", pbFormSubmit);
 $(".selectmore").live("change", pbSelectChange);
-$('.entry-content a').live('click', stayHere);
-$('.hintbox').live('click', stayHere);
-$('.hintbox a').live('click', stayHere);
-$('.pyflexClose').live('click', function (e) {historyClick($(e.target).closest('.pybox').find('input[name="pyId"]').val(),"");});
+registerclick('.entry-content a', stayHere);
+registerclick('.hintbox', stayHere);
+registerclick('.hintbox a', stayHere);
+registerclick('.pyflexClose', function (e) {historyClick($(e.target).closest('.pybox').find('input[name="pyId"]').val(),"");});
 $('.flexigrid pre').live('dblclick', function (e) {
     jq = $(e.target);
     id = jq.closest('.pybox').find('input[name="pyId"]').val();
@@ -421,7 +426,7 @@ $('.flexigrid pre').live('dblclick', function (e) {
     var decoded = div.firstChild.nodeValue;
     pbSetText(id, decoded);
 });
-$('div.jqpHintLink a').live('click', function (e) {
+registerclick('div.jqpHintLink a', function (e) {
     $(e.target).closest('.jqpHintOuter').find('.jqpHintContent').dialog({'dialogClass' : 'wp-dialog','width':800});
 });
 
@@ -568,7 +573,7 @@ function toggleSibling(event) {
     return false;
 }
 
-$('.quoth').live('click', quoteIt);
+registerclick('.quoth', quoteIt);
 function quoteIt(event) {
     $('#mailform').insertAfter($(this).parents('.collapseContain'));
     var text = undo_htmlspecialchars($(this).parents('.collapseContain').find('pre').html());
@@ -588,7 +593,8 @@ function undo_htmlspecialchars(S) {
 $( // this call to $ makes it delay until the DOM is loaded
     function() {   
 
-      $('.collapseHead').live('click', toggleSibling);
+      registerclick('.collapseHead', toggleSibling);
+
       $('.collapseContain.showing > .collapseBody').css('display', 'block'); // fix weird bug with diappearing instead of sliding
 
       if (typeof justVisualizing === 'undefined') {
