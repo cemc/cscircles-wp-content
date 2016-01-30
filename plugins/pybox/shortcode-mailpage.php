@@ -19,9 +19,6 @@ function validate() {
   if ($student === False)
     return array("error", __t("No such student exists."));
   
-  if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin() || userIsAssistant()) )
-    return array("error", __t("Access denied. You may need to log in first."));
-
   if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin()))
     $mailcond = "(uto = ".getUserID()." OR ufrom = ".getUserID().")";
   else // if viewing as foreign-language assistant, only can view problems to/from self
@@ -35,6 +32,17 @@ function validate() {
       return array("error", __t("No such problem exists."));
   }
   
+  // You are allowed to see this page only in some circumstances.
+  if (! (getUserID() == $s || in_array($s, getStudents()) || userIsAdmin() || userIsAssistant()) ) {
+    // Allow for case where student's guru used to be this one, then changed.
+    $count = 0;
+    if ($p != '')
+      $count = $wpdb->get_var($wpdb->prepare("SELECT count(1) FROM ".$wpdb->prefix."pb_mail WHERE ustudent = %d AND problem = %s AND $mailcond ORDER BY ID desc",
+                                             $s, $p));
+    if ($count == 0)
+      return array("error", __t("Access denied. You may need to log in first."));
+  }
+
   $f = (int)getSoft($_GET, 'which', -1);
   
   return array("success", array("student"=>$student, "sid"=>$s, "problem"=>($p==''?NULL:$problem), "focus"=>$f));
