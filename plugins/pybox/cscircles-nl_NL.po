@@ -467,7 +467,7 @@ msgstr "Ga terug naar nakijkprogramma"
 
 #: ../wp-plugin/js-translation.php:12
 msgid "Hide history"
-msgstr "Historie verbergen"
+msgstr "Geschiedenis verbergen"
 
 #: ../wp-plugin/js-translation.php:13
 msgid "Hide input box"
@@ -476,7 +476,7 @@ msgstr "Verberg het invoer-veld"
 #: ../wp-plugin/js-translation.php:14
 #: ../wp-plugin/shortcodes-exercises.php:664
 msgid "History"
-msgstr "Historie"
+msgstr "Geschiedenis"
 
 #: ../wp-plugin/js-translation.php:15
 msgid "Incorrect, try again."
@@ -990,7 +990,7 @@ msgstr "Voorbeeld"
 
 #: ../wp-plugin/shortcodes-exercises.php:515
 msgid "Coding Exercise"
-msgstr "Coding Opgave"
+msgstr "Programmeeroefening"
 
 #: ../wp-plugin/shortcodes-exercises.php:529
 msgid "You need to create an account and log in to ask a question."
