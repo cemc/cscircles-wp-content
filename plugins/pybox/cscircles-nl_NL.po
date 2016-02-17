@@ -98,7 +98,7 @@ msgstr "Deze correcte uitvoer werd verwacht:"
 
 #: ../wp-plugin/action-submit-code.php:535
 msgid "Before running your code:"
-msgstr "Voordat jouw code uitgevoerd wordt:"
+msgstr "Voordat jouw code uitgevoerd werd:"
 
 #: ../wp-plugin/action-submit-code.php:540
 msgid "Input:"
@@ -236,8 +236,8 @@ msgid ""
 "up help about a problem, you must use the link in the previous email{1} \n"
 "A copy of your e-mail follows."
 msgstr ""
-"Je e-mail naar {0} zal niet worden gelezen. Wanneer je geantwoord hebt "
-"omverdere hulp te vragen, moet je de link in de vorige email{1} gebruiken \n"
+"Je e-mail naar {0} zal niet worden gelezen. Als je geantwoord hebt "
+"om verdere hulp te vragen, moet je de link in de vorige email{1} gebruiken.\n"
 "Een kopie van je e-mail staat hieronder."
 
 #: ../wp-plugin/bounce_email_strings.php:4
@@ -248,7 +248,7 @@ msgstr "CS Circles NL"
 #: ../wp-plugin/db-entire-history.php:18
 #: ../wp-plugin/db-problem-history.php:21
 msgid "Did not crash."
-msgstr "Is niet gecrashed."
+msgstr "Is niet gecrasht."
 
 #: ../wp-plugin/db-entire-history.php:19
 #: ../wp-plugin/db-problem-history.php:22
@@ -264,7 +264,7 @@ msgstr "Correct!"
 #: ../wp-plugin/db-entire-history.php:20
 #: ../wp-plugin/db-problem-history.php:23
 msgid "Incorrect."
-msgstr "Niet corect."
+msgstr "Niet correct."
 
 #: ../wp-plugin/db-entire-history.php:21
 #: ../wp-plugin/db-problem-history.php:24
@@ -290,12 +290,12 @@ msgstr "Nummer van gebruiker niet gevonden."
 #: ../wp-plugin/db-entire-history.php:48
 #, php-format
 msgid "User %s does not have you as their guru."
-msgstr "Gebruiker %s heeft jou niet als zijn goeroe"
+msgstr "Gebruiker %s heeft jou niet als zijn of haar goeroe."
 
 #: ../wp-plugin/db-entire-history.php:63
 #, php-format
 msgid "Problem %s is unknown."
-msgstr "Opgave %s is onbekend"
+msgstr "Opgave %s is onbekend."
 
 #: ../wp-plugin/db-entire-history.php:69
 #: ../wp-plugin/db-entire-history.php:106
@@ -340,7 +340,7 @@ msgstr "resultaat"
 
 #: ../wp-plugin/db-entire-history.php:94
 msgid "We do not have record of any submissions."
-msgstr "We hebben geen afschrift van een submissie."
+msgstr "Wij hebben nog geen inzendingen ontvangen."
 
 #: ../wp-plugin/db-entire-history.php:115
 #: ../wp-plugin/db-problem-history.php:75
@@ -412,7 +412,7 @@ msgstr "We hebben van %1$s geen inzendingen gevonden voor opgave %2$s."
 #: ../wp-plugin/shortcode-my-progress.php:29
 #, php-format
 msgid "Problem %s not found (at least in current language)"
-msgstr "Opgave %s niet gevonden (niet in het Nederlands)"
+msgstr "Opgave %s niet gevonden (of enkel in andere talen)"
 
 #: ../wp-plugin/db-problem-summary.php:71
 #: ../wp-plugin/db-problem-summary.php:77
@@ -438,8 +438,8 @@ msgid ""
 "Could not grade program because communication to the server was not "
 "possible. Ajax information: "
 msgstr ""
-"Je programma kon niet gejureerd worden omdat communicatie met de server niet "
-"mogelijk was. Ajax informatie: "
+"Je programma kon niet beoordeeld worden omdat communicatie met de server niet "
+"mogelijk was. Ajax-informatie: "
 
 #: ../wp-plugin/js-translation.php:6
 msgid "Displaying {from} to {to} of {total} items"
@@ -447,15 +447,15 @@ msgstr "In beeld: {from} tot en met {to} van {total} items"
 
 #: ../wp-plugin/js-translation.php:7
 msgid "Enter input"
-msgstr "Type invoer"
+msgstr "Tik invoer in"
 
 #: ../wp-plugin/js-translation.php:8
 msgid "Enter test input"
-msgstr "Voer test invoer in"
+msgstr "Voer testinvoer in"
 
 #: ../wp-plugin/js-translation.php:9
 msgid "Enter test statements"
-msgstr "Voer test opdrachten in "
+msgstr "Voer testopdrachten in "
 
 #: ../wp-plugin/js-translation.php:10
 msgid "Error: could not connect to database."
@@ -499,7 +499,7 @@ msgstr "Pagina"
 
 #: ../wp-plugin/js-translation.php:19
 msgid "Please enter a non-empty message."
-msgstr "Type een bericht is."
+msgstr "Tik een bericht in."
 
 #: ../wp-plugin/js-translation.php:20
 msgid ""
@@ -507,6 +507,9 @@ msgid ""
 "teacher or friend, select them as a guru on your Profile (available within "
 "the user menu, in the top right corner of the page)."
 msgstr ""
+"Selecteer een geldige ontvanger voor het bericht. Als een leerkracht of "
+"vriend je bijstaat, selecteer hen dan als goeroe op je Profielpagina, "
+"die je vindt via het gebruikersmenu in de rechterbovenhoek van elke pagina."
 
 #: ../wp-plugin/js-translation.php:21
 #: ../wp-plugin/shortcodes-exercises.php:649
@@ -568,7 +571,7 @@ msgstr "Je bericht is verzonden"
 
 #: ../wp-plugin/js-translation.php:32
 msgid "end of main program"
-msgstr "einde van het hoofd programma"
+msgstr "einde van het hoofdprogramma"
 
 #: ../wp-plugin/js-translation.php:33
 msgid "out of"
@@ -580,7 +583,7 @@ msgstr "begin van het testen"
 
 #: ../wp-plugin/js-translation.php:35
 msgid "timed out!"
-msgstr "uit de tijd gelopen"
+msgstr "duurde te lang!"
 
 #: ../wp-plugin/plugin-hooks.php:94
 msgid "Editor"
@@ -602,23 +605,23 @@ msgid ""
 "Thanks from the Computer Science Circles team!\n"
 "%siteurl%"
 msgstr ""
-"Er is een account voor je aangemaakt op de Computer Science Circles website, "
-"met een at willekeurig wachtwoord.\n"
+"Er is een account voor je aangemaakt op de Computer Science Circles-website, "
+"met een willekeurig wachtwoord.\n"
 "\n"
 "Gebruikersnaam: %username%\n"
 "Ingesteld wachtwoord: %password%\n"
 "\n"
 "Ga naar\n"
 "%loginurl%\n"
-"en verander je wachtwoord naar iets dat je kunt onthouden.\n"
+"en verander je wachtwoord naar iets wat je kunt onthouden.\n"
 "Druk op \"%upprof%\" zodra je klaar bent.\n"
 "\n"
-"Dank namens het Computer Science Circles team!\n"
+"Dank namens het Computer Science Circles-team!\n"
 "%siteurl%"
 
 #: ../wp-plugin/plugin-new-user-email.php:25
 msgid "Computer Science Circles: New account"
-msgstr "Computer Science Circles: Nieuw account"
+msgstr "Computer Science Circles: Nieuwe account"
 
 #: ../wp-plugin/plugin-new-user-email.php:31
 msgid "Update Profile"
@@ -632,19 +635,19 @@ msgstr "De gebruikersnaam %s bestaat niet."
 #: ../wp-plugin/plugin-profile-options.php:22
 #, php-format
 msgid "%s exists! They are your guru."
-msgstr "%s bestaat! Het is je goeroe."
+msgstr "%s bestaat! Hij/zij is je goeroe."
 
 #: ../wp-plugin/plugin-profile-options.php:25
 msgid ""
 "Enter the username of your guru. After you press <i>Update profile</i> we'll "
 "see if they exist."
 msgstr ""
-"Toets de gebruikersnaam van je guru. Nadat je op <i>Profiel Bijwerken</i> "
-"klikt controleren we hij/zij bestaat."
+"Toets de gebruikersnaam van je goeroe. Nadat je op <i>Profiel Bijwerken</i> "
+"klikt controleren we of hij/zij bestaat."
 
 #: ../wp-plugin/plugin-profile-options.php:32
 msgid "Guru&apos;s <i>Username</i> (blank for none)"
-msgstr "<i>Gebruikersnaam</i> van guru (of leeg voor geen)"
+msgstr "<i>Gebruikersnaam</i> van goeroe (of leeg voor geen)"
 
 #: ../wp-plugin/plugin-profile-options.php:34
 msgid ""
@@ -652,8 +655,8 @@ msgid ""
 "your guru. You can ask them direct questions when you get stuck, and they "
 "can view your progress."
 msgstr ""
-"Iedere persoon met een CS Circles account (bijvoorbeeld je docent) kan je "
-"guru zijn. Je kunt vragen aan je guru stellen als je vastzit. Je guru kan "
+"Iedere persoon met een CS Circles-account (bijvoorbeeld je docent) kan je "
+"goeroe zijn. Je kunt vragen aan je goeroe stellen als je vastzit. Je goeroe kan "
 "ook je voortgang bekijken."
 
 #: ../wp-plugin/plugin-profile-options.php:40
@@ -750,7 +753,7 @@ msgstr "Noot: deze student heeft het probleem om %s opgelost"
 
 #: ../wp-plugin/shortcode-mailpage.php:89
 msgid "Click on a message title to toggle the message open or closed."
-msgstr "Klik op de titel van een bricht om het bericht te openen of sluiten."
+msgstr "Klik op de titel van een bericht om het bericht te openen of sluiten."
 
 #: ../wp-plugin/shortcode-mailpage.php:99
 msgid "From"
@@ -777,15 +780,15 @@ msgstr "Stuur je vraag per e-mail naar: "
 #: ../wp-plugin/shortcode-mailpage.php:115
 #: ../wp-plugin/shortcodes-exercises.php:540
 msgid "My guru"
-msgstr "Mijn guru"
+msgstr "Mijn goeroe"
 
 #: ../wp-plugin/shortcode-mailpage.php:122
 msgid "(No guru is specified)"
-msgstr ""
+msgstr "(Geen goeroe ingesteld)"
 
 #: ../wp-plugin/shortcode-mailpage.php:130
 msgid "Type here to send a reply about this problem"
-msgstr "Type hier om een snelle reactie over dit probleem te sturen"
+msgstr "Tik hier om een snelle reactie over dit probleem te sturen"
 
 #: ../wp-plugin/shortcode-mailpage.php:136
 msgid "Just mark as read without replying"
@@ -802,7 +805,7 @@ msgstr "Voortgang van %s (nieuw venster)"
 
 #: ../wp-plugin/shortcode-mailpage.php:150
 msgid "Problem description for"
-msgstr "Opgave beschrijving voor"
+msgstr "Opgave-beschrijving voor"
 
 #: ../wp-plugin/shortcode-mailpage.php:156
 #, php-format
@@ -951,7 +954,7 @@ msgstr "Je hebt deze opgave nog niet afgerond."
 
 #: ../wp-plugin/shortcodes-exercises.php:166
 msgid "Short Answer Exercise"
-msgstr "Kort antwoord opgave"
+msgstr "Oefening met Kort Antwoord"
 
 #: ../wp-plugin/shortcodes-exercises.php:169
 msgid "Your answer"
@@ -982,7 +985,7 @@ msgstr "Selecteer iets"
 #: ../wp-plugin/shortcodes-exercises.php:265
 #: ../wp-plugin/shortcodes-exercises.php:515
 msgid "Scramble Exercise"
-msgstr "Scramble Opgave"
+msgstr "Volgorde-oefening"
 
 #: ../wp-plugin/shortcodes-exercises.php:511
 msgid "Example"
@@ -1033,11 +1036,11 @@ msgstr ""
 
 #: ../wp-plugin/shortcodes-exercises.php:629
 msgid "You may enter input for the program in the box below."
-msgstr "Type de invoer voor je programma hieronder in."
+msgstr "Tik de invoer voor je programma hieronder in."
 
 #: ../wp-plugin/shortcodes-exercises.php:655
 msgid "Open in console"
-msgstr "Open in the console"
+msgstr "Openen in de console"
 
 #: ../wp-plugin/shortcodes-exercises.php:658
 msgid "Visualize"
@@ -1263,7 +1266,7 @@ msgstr ", en "
 
 #: ../python3jail/static/_GRADER.py:54
 msgid "We defined "
-msgstr "We hebben gedefinieerd "
+msgstr "We stelden "
 
 #: ../python3jail/static/_GRADER.py:68 ../python3jail/static/_GRADER.py:92
 msgid "Error: {0} has wrong type {1}, expected {2}"
