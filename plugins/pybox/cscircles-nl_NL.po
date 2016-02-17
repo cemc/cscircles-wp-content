@@ -22,8 +22,8 @@ msgid ""
 "Submitted data (program and/or test input) too large. Reduce size or <a href "
 "= \"%s\">run at home</a>."
 msgstr ""
-"Aangeleverde data (programma en/of test invoer) te groot. Maak het kleiner "
-"<a href = \"%s\">thuis programma uitvoeren</a>."
+"Aangeleverde data (programma en/of test-invoer) te groot. Maak kleiner of "
+"<a href = \"%s\">voer thuis uit</a>."
 
 #: ../wp-plugin/action-send-message.php:31
 #: ../wp-plugin/plugin-utilities.php:169 ../wp-plugin/plugin-utilities.php:579
@@ -64,7 +64,7 @@ msgstr "VERZONDEN:"
 #: ../wp-plugin/action-send-message.php:62
 #, fuzzy, php-format
 msgid "THIS IS A COPY of a message you sent to %s."
-msgstr "DIT IS EEN KOPIE van een bericht dat jij verzonden hebt aan "
+msgstr "DIT IS EEN KOPIE van een bericht dat jij verzonden hebt naar %s."
 
 #: ../wp-plugin/action-send-message.php:103
 msgid "The user sent this code with the message:"
@@ -86,11 +86,11 @@ msgstr "Het programma heeft geen uitvoer gegeven."
 
 #: ../wp-plugin/action-submit-code.php:349
 msgid "(Did you forget to use </i><code>print</code><i>?)"
-msgstr "(Ben je vergeten </i><code>print</code><i> te gebruiken?"
+msgstr "(Ben je vergeten </i><code>print</code><i> te gebruiken?)"
 
 #: ../wp-plugin/action-submit-code.php:354
 msgid "Program output:"
-msgstr "Programma uitvoer:"
+msgstr "Uitvoer van het programma:"
 
 #: ../wp-plugin/action-submit-code.php:357
 msgid "Expected this correct output:"
@@ -98,7 +98,7 @@ msgstr "Deze correcte uitvoer werd verwacht:"
 
 #: ../wp-plugin/action-submit-code.php:535
 msgid "Before running your code:"
-msgstr "Voordat je de code runt:"
+msgstr "Voordat jouw code uitgevoerd wordt:"
 
 #: ../wp-plugin/action-submit-code.php:540
 msgid "Input:"
@@ -106,7 +106,7 @@ msgstr "Invoer:"
 
 #: ../wp-plugin/action-submit-code.php:553
 msgid "Error messages: "
-msgstr "Foutmelding: "
+msgstr "Foutmeldingen: "
 
 #: ../wp-plugin/action-submit-code.php:556
 msgid "Program executed without crashing."
@@ -114,23 +114,23 @@ msgstr "Het programma is uitgevoerd zonder te crashen."
 
 #: ../wp-plugin/action-submit-code.php:559
 msgid "Program crashed."
-msgstr "Het programma is gecrasht"
+msgstr "Het programma is gecrasht."
 
 #: ../wp-plugin/action-submit-code.php:561
 msgid "Program crashed &mdash; "
-msgstr "Programma is gecrasht &mdash;"
+msgstr "Programma is gecrasht &mdash; "
 
 #: ../wp-plugin/action-submit-code.php:565
 msgid "Memory Limit Exceeded"
-msgstr "Maximaal geheugen overschreden"
+msgstr "Maximaal Geheugen Overschreden"
 
 #: ../wp-plugin/action-submit-code.php:565
 msgid "Time Limit Exceeded"
-msgstr "Tijdslimiet overschreden"
+msgstr "Tijdslimiet Overschreden"
 
 #: ../wp-plugin/action-submit-code.php:566
 msgid "Command exited with non-zero status"
-msgstr "Opdracht beëindigd met niet-null status"
+msgstr "Opdracht eindigde met status verschillend van nul"
 
 #: ../wp-plugin/action-submit-code.php:567
 msgid "Command terminated by signal"
@@ -138,28 +138,28 @@ msgstr "Opdracht beëindigd door signaal"
 
 #: ../wp-plugin/action-submit-code.php:567
 msgid "Output Limit Exceeded"
-msgstr "Uitvoer tijd overschreden"
+msgstr "Uitvoerlimiet Overschreden"
 
 #: ../wp-plugin/action-submit-code.php:568
 msgid "Invalid Function"
-msgstr "Ongeldige functie"
+msgstr "Ongeldige Functie"
 
 #: ../wp-plugin/action-submit-code.php:568
 msgid "Internal Error"
-msgstr "Interne fout"
+msgstr "Interne Fout"
 
 #: ../wp-plugin/action-submit-code.php:593
 #: ../wp-plugin/action-submit-code.php:608
 msgid "The grader said:"
-msgstr "Het nakijkprogramma meldt:"
+msgstr "Het nakijkprogramma meldde:"
 
 #: ../wp-plugin/action-submit-code.php:596
 msgid "Automatic tests:"
-msgstr "Automatisch testen:"
+msgstr "Automatische tests:"
 
 #: ../wp-plugin/action-submit-code.php:638
 msgid "Result of grading: "
-msgstr "Resultaat van het nakijken:"
+msgstr "Resultaat van het nakijken: "
 
 #: ../wp-plugin/action-submit-code.php:679
 msgid "Success!"
@@ -168,12 +168,12 @@ msgstr "Succes!"
 #: ../wp-plugin/action-submit-code.php:685
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
-"Niet door alle testen gekomen. Bekijk de details beneden en probeer het nog "
+"Niet door alle testen gekomen. Kijk hieronder de details na en probeer het nog "
 "een keer."
 
 #: ../wp-plugin/action-submit-code.php:702
 msgid "You must log in to save data."
-msgstr "Je moet eerst inloggen om de gegevens op te kunnen slaan"
+msgstr "Je moet eerst inloggen om gegevens op te kunnen slaan."
 
 #: ../wp-plugin/action-submit-code.php:703
 msgid "Program saved."
@@ -183,12 +183,12 @@ msgstr "Het programma is bewaard."
 #, php-format
 msgid "Pybox error: problem hash %s not found. Try reloading the page."
 msgstr ""
-"Pybox fout: opgave hash %s niet gevonden. Probeer de pagina te verversen"
+"Pybox-fout: opgave-hash %s niet gevonden. Probeer de pagina te verversen."
 
 #: ../wp-plugin/action-submit-code.php:859
 #, php-format
 msgid "You cannot use %s in this exercise."
-msgstr "Je mag %s niet gebruiken in deze oefening"
+msgstr "Je mag %s niet gebruiken in deze oefening."
 
 #: ../wp-plugin/action-submit-code.php:871
 #, php-format
@@ -196,26 +196,26 @@ msgid ""
 "You are only allowed to change at most %s characters compared to the "
 "original version of the code."
 msgstr ""
-"Je mag slechts %s tekens aanpassen ten opzichte vande originele versie van "
+"Je mag slechts %s tekens aanpassen ten opzichte van de originele versie van "
 "de code."
 
 #: ../wp-plugin/action-submit-code.php:876
 #, php-format
 msgid "You changed %s or more."
-msgstr "Je hebt %s of meer tekens aangepast"
+msgstr "Je hebt er %s of meer aangepast."
 
 #: ../wp-plugin/action-submit-code.php:895
 #, php-format
 msgid "You changed %s."
-msgstr "Je hebt %s tekens aangepast"
+msgstr "Je hebt er %s aangepast."
 
 #: ../wp-plugin/action-submit-code.php:907
 msgid "Note: ran with user tests."
-msgstr ""
+msgstr "Merk op: uitgevoerd met gebruikerstests."
 
 #: ../wp-plugin/action-submit-code.php:910
 msgid "Note: ran with user inputs."
-msgstr ""
+msgstr "Merk op: uitgevoerd met gebruikersinvoer."
 
 #: ../wp-plugin/action-submit-code.php:912
 msgid " Click \"Go back to grading\" to switch back."
@@ -467,7 +467,7 @@ msgstr "Ga terug naar nakijkprogramma"
 
 #: ../wp-plugin/js-translation.php:12
 msgid "Hide history"
-msgstr "Historie verbergen"
+msgstr "Geschiedenis verbergen"
 
 #: ../wp-plugin/js-translation.php:13
 msgid "Hide input box"
@@ -476,7 +476,7 @@ msgstr "Verberg het invoer-veld"
 #: ../wp-plugin/js-translation.php:14
 #: ../wp-plugin/shortcodes-exercises.php:664
 msgid "History"
-msgstr "Historie"
+msgstr "Geschiedenis"
 
 #: ../wp-plugin/js-translation.php:15
 msgid "Incorrect, try again."
@@ -516,11 +516,11 @@ msgstr "Uitgebreide editor"
 #: ../wp-plugin/js-translation.php:22
 #: ../wp-plugin/shortcodes-exercises.php:718
 msgid "Run program"
-msgstr "Run programma"
+msgstr "Uitvoeren"
 
 #: ../wp-plugin/js-translation.php:23
 msgid "Run test"
-msgstr "Run de test"
+msgstr "Test uitvoeren"
 
 #: ../wp-plugin/js-translation.php:24
 msgid "Running..."
@@ -990,7 +990,7 @@ msgstr "Voorbeeld"
 
 #: ../wp-plugin/shortcodes-exercises.php:515
 msgid "Coding Exercise"
-msgstr "Coding Opgave"
+msgstr "Programmeeroefening"
 
 #: ../wp-plugin/shortcodes-exercises.php:529
 msgid "You need to create an account and log in to ask a question."
