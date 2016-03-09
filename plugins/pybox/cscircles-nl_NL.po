@@ -1295,7 +1295,7 @@ msgstr "Fout: lijst {9} heeft lengte {1}, maar dit moet {2} zijn"
 
 #: ../python3jail/static/_GRADER.py:108 ../python3jail/static/_GRADER.py:110
 msgid " its value {} is correct!"
-msgstr " de waade {} is correct!"
+msgstr " de waarde {} is correct!"
 
 #: ../python3jail/static/_GRADER.py:130 ../python3jail/static/_GRADER.py:144
 msgid "Running {} &hellip;"
