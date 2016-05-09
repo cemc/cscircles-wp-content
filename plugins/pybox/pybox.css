@@ -1,6 +1,10 @@
 
 /*********************** general stuff **********************/
 
+#wp-admin-bar-updates {
+display: none;
+}
+
 .hide-if-no-customize {
     display: none;
 }
