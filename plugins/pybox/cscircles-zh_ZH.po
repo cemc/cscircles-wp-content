@@ -1,0 +1,1453 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-03 19:46-0400\n"
+"PO-Revision-Date: 2016-08-29 17:16-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_ZH\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#: ../wp-plugin/action-optv3.php:26 ../wp-plugin/action-submit-code.php:733
+#, php-format
+msgid ""
+"Submitted data (program and/or test input) too large. Reduce size or <a href "
+"= \"%s\">run at home</a>."
+msgstr ""
+"提交数据 （程序和/或测试输入） 太大。减少尺寸或<a href=\"%s\">在家里运行</"
+"a>。"
+
+#: ../wp-plugin/action-send-message.php:31
+#: ../wp-plugin/plugin-utilities.php:169 ../wp-plugin/plugin-utilities.php:579
+#: ../wp-plugin/shortcode-mailpage.php:116
+#: ../wp-plugin/shortcode-mailpage.php:121
+#: ../wp-plugin/shortcodes-exercises.php:541
+#: ../wp-plugin/shortcodes-exercises.php:547
+msgid "CS Circles Assistant"
+msgstr "计算机科学圈小助手"
+
+#: ../wp-plugin/action-send-message.php:35
+msgid "CS Circles"
+msgstr "计算机科学圈"
+
+#: ../wp-plugin/action-send-message.php:35
+msgid "message about"
+msgstr "信息有关："
+
+#: ../wp-plugin/action-send-message.php:38
+#: ../wp-plugin/plugin-utilities.php:593
+msgid "To send a reply message, please visit"
+msgstr "要发送回复消息，请访问"
+
+#: ../wp-plugin/action-send-message.php:40
+#: ../wp-plugin/plugin-utilities.php:595
+msgid "Problem URL:"
+msgstr "问题 URL："
+
+#: ../wp-plugin/action-send-message.php:41
+#: ../wp-plugin/plugin-utilities.php:596
+msgid "Sent by CS Circles"
+msgstr "由计算机科学圈发送"
+
+#: ../wp-plugin/action-send-message.php:61
+msgid "SENT:"
+msgstr "已发送："
+
+#: ../wp-plugin/action-send-message.php:62
+#, php-format
+msgid "THIS IS A COPY of a message you sent to %s."
+msgstr "这是一条被你发送到 %s 的消息副本。"
+
+#: ../wp-plugin/action-send-message.php:103
+msgid "The user sent this code with the message:"
+msgstr "用户发送这个代码的消息 ︰"
+
+#: ../wp-plugin/action-submit-code.php:322
+#: ../wp-plugin/action-submit-code.php:338
+msgid "Program gave the following output:"
+msgstr "程序给出了以下输出"
+
+#: ../wp-plugin/action-submit-code.php:325
+msgid "Program gave the following correct output:"
+msgstr "程序给出了以下正确输出："
+
+#: ../wp-plugin/action-submit-code.php:336
+#: ../wp-plugin/action-submit-code.php:346
+msgid "Program printed no output."
+msgstr "程序没有可输出的打印。"
+
+#: ../wp-plugin/action-submit-code.php:349
+msgid "(Did you forget to use </i><code>print</code><i>?)"
+msgstr "(你是否忘记了使用 </i><code>print</code><i>?)"
+
+#: ../wp-plugin/action-submit-code.php:354
+msgid "Program output:"
+msgstr "程序输出："
+
+#: ../wp-plugin/action-submit-code.php:357
+msgid "Expected this correct output:"
+msgstr "这将是正确的输出："
+
+#: ../wp-plugin/action-submit-code.php:535
+msgid "Before running your code:"
+msgstr "在运行你的代码之前："
+
+#: ../wp-plugin/action-submit-code.php:540
+msgid "Input:"
+msgstr "输入："
+
+#: ../wp-plugin/action-submit-code.php:553
+msgid "Error messages: "
+msgstr "错误信息："
+
+#: ../wp-plugin/action-submit-code.php:556
+msgid "Program executed without crashing."
+msgstr "程序运行正常。"
+
+#: ../wp-plugin/action-submit-code.php:559
+msgid "Program crashed."
+msgstr "程序崩溃。"
+
+#: ../wp-plugin/action-submit-code.php:561
+msgid "Program crashed &mdash; "
+msgstr "程序崩溃 &mdash;"
+
+#: ../wp-plugin/action-submit-code.php:565
+msgid "Memory Limit Exceeded"
+msgstr "超过内存限制"
+
+#: ../wp-plugin/action-submit-code.php:565
+msgid "Time Limit Exceeded"
+msgstr "超过时限"
+
+#: ../wp-plugin/action-submit-code.php:566
+msgid "Command exited with non-zero status"
+msgstr "具有非零状态的命令退出 "
+
+#: ../wp-plugin/action-submit-code.php:567
+msgid "Command terminated by signal"
+msgstr "命令被终止"
+
+#: ../wp-plugin/action-submit-code.php:567
+msgid "Output Limit Exceeded"
+msgstr "输出超过限制"
+
+#: ../wp-plugin/action-submit-code.php:568
+msgid "Invalid Function"
+msgstr "无效的函数"
+
+#: ../wp-plugin/action-submit-code.php:568
+msgid "Internal Error"
+msgstr "内部错误"
+
+#: ../wp-plugin/action-submit-code.php:593
+#: ../wp-plugin/action-submit-code.php:608
+msgid "The grader said:"
+msgstr "评分器说："
+
+#: ../wp-plugin/action-submit-code.php:596
+msgid "Automatic tests:"
+msgstr "自动测试： "
+
+#: ../wp-plugin/action-submit-code.php:638
+msgid "Result of grading: "
+msgstr "评分结果："
+
+#: ../wp-plugin/action-submit-code.php:679
+msgid "Success!"
+msgstr "成功！"
+
+#: ../wp-plugin/action-submit-code.php:685
+msgid "Did not pass tests. Please check details below and try again."
+msgstr "没有通过测试。请检查下面的详细信息，然后再试一次。"
+
+#: ../wp-plugin/action-submit-code.php:702
+msgid "You must log in to save data."
+msgstr "你必须登录以保存数据。"
+
+#: ../wp-plugin/action-submit-code.php:703
+msgid "Program saved."
+msgstr "程序已保存。"
+
+#: ../wp-plugin/action-submit-code.php:765
+#, php-format
+msgid "Pybox error: problem hash %s not found. Try reloading the page."
+msgstr "Pybox错误：问题 %s 未识别。请尝试重新加载此页面。"
+
+#: ../wp-plugin/action-submit-code.php:859
+#, php-format
+msgid "You cannot use %s in this exercise."
+msgstr "在此练习中你无法使用 %s。"
+
+#: ../wp-plugin/action-submit-code.php:871
+#, php-format
+msgid ""
+"You are only allowed to change at most %s characters compared to the "
+"original version of the code."
+msgstr "在原始代码的基础上，你最多可以改变 %s 个字符。"
+
+#: ../wp-plugin/action-submit-code.php:876
+#, php-format
+msgid "You changed %s or more."
+msgstr "你更改了 %s 个或更多。"
+
+#: ../wp-plugin/action-submit-code.php:895
+#, php-format
+msgid "You changed %s."
+msgstr "你改变了 %s。"
+
+#: ../wp-plugin/action-submit-code.php:907
+msgid "Note: ran with user tests."
+msgstr "注：运行前别忘了用户测试。"
+
+#: ../wp-plugin/action-submit-code.php:910
+msgid "Note: ran with user inputs."
+msgstr "注：运行前别忘了用户输入。"
+
+#: ../wp-plugin/action-submit-code.php:912
+msgid " Click \"Go back to grading\" to switch back."
+msgstr "点击“回到评分”切换回来。"
+
+#: ../wp-plugin/action-submit-code.php:914
+msgid " Click \"Hide input box\" to switch back."
+msgstr "点击“隐藏输入框”切换回来。"
+
+#: ../wp-plugin/action-submit-code.php:941
+#, php-format
+msgid "Results for test case %1$s out of %2$s"
+msgstr "测试用例的结果：通过 %1$s ，共 %2$s 。"
+
+#: ../wp-plugin/bounce_email_strings.php:3
+msgid ""
+"Your e-mail to {0} will not be read. If you are replying to ask for follow-"
+"up help about a problem, you must use the link in the previous email{1} \n"
+"A copy of your e-mail follows."
+msgstr ""
+"你发送给{0}的电子邮件将不会被读取。如果你在回复求助解决一个后续问题，你必须使"
+"用以前电子邮件中的链接 {1} \n"
+" \n"
+"你电子邮件的副本将会附在下方。"
+
+#: ../wp-plugin/bounce_email_strings.php:4
+msgid "CS Circles Bouncer"
+msgstr "计算机科学圈回弹"
+
+#: ../wp-plugin/db-entire-history.php:18 ../wp-plugin/db-problem-history.php:21
+msgid "Did not crash."
+msgstr "没有崩溃。"
+
+#: ../wp-plugin/db-entire-history.php:19 ../wp-plugin/db-problem-history.php:22
+#: ../wp-plugin/shortcodes-exercises.php:181
+#: ../wp-plugin/shortcodes-exercises.php:229
+#: ../wp-plugin/shortcodes-exercises.php:280
+#: ../wp-content/lesson_files/graders/anyorder.py:12
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:16
+#: ../wp-content/lesson_files/graders/trim-lines.py:14
+msgid "Correct!"
+msgstr "正确！"
+
+#: ../wp-plugin/db-entire-history.php:20 ../wp-plugin/db-problem-history.php:23
+msgid "Incorrect."
+msgstr "不正确。"
+
+#: ../wp-plugin/db-entire-history.php:21 ../wp-plugin/db-problem-history.php:24
+msgid "Internal error."
+msgstr "内部错误。"
+
+#: ../wp-plugin/db-entire-history.php:22 ../wp-plugin/db-entire-history.php:23
+#: ../wp-plugin/db-problem-history.php:25
+#: ../wp-plugin/db-problem-history.php:26
+msgid "Saved."
+msgstr "已保存。"
+
+#: ../wp-plugin/db-entire-history.php:30 ../wp-plugin/db-problem-history.php:29
+#: ../wp-plugin/db-problem-summary.php:16
+msgid "You must log in to view past submissions."
+msgstr "你必须登录才能查看过去的提交。"
+
+#: ../wp-plugin/db-entire-history.php:41 ../wp-plugin/db-entire-history.php:46
+msgid "User number not found."
+msgstr "未找到用户帐号。"
+
+#: ../wp-plugin/db-entire-history.php:48
+#, php-format
+msgid "User %s does not have you as their guru."
+msgstr "用户 %s 没有你作为他们的导师。"
+
+#: ../wp-plugin/db-entire-history.php:63
+#, php-format
+msgid "Problem %s is unknown."
+msgstr "此问题 %s 未知。"
+
+#: ../wp-plugin/db-entire-history.php:69 ../wp-plugin/db-entire-history.php:106
+msgid "userid"
+msgstr "用户id"
+
+#: ../wp-plugin/db-entire-history.php:69 ../wp-plugin/db-entire-history.php:120
+#: ../wp-plugin/db-problem-history.php:59
+#: ../wp-plugin/db-problem-history.php:78
+msgid "time &amp; ID"
+msgstr "时间 &amp; ID"
+
+#: ../wp-plugin/db-entire-history.php:69 ../wp-plugin/db-entire-history.php:110
+#: ../wp-plugin/db-entire-history.php:113 ../wp-plugin/db-mail.php:87
+#: ../wp-plugin/db-mail.php:105
+msgid "problem"
+msgstr "问题"
+
+#: ../wp-plugin/db-entire-history.php:70 ../wp-plugin/db-entire-history.php:114
+#: ../wp-plugin/db-problem-history.php:59
+#: ../wp-plugin/db-problem-history.php:73
+msgid "user code"
+msgstr "用户代码"
+
+#: ../wp-plugin/db-entire-history.php:70 ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-problem-history.php:60
+#: ../wp-plugin/db-problem-history.php:75
+msgid "user input"
+msgstr "用户输入"
+
+#: ../wp-plugin/db-entire-history.php:70 ../wp-plugin/db-entire-history.php:117
+#: ../wp-plugin/db-entire-history.php:119
+#: ../wp-plugin/db-problem-history.php:60
+#: ../wp-plugin/db-problem-history.php:77
+msgid "result"
+msgstr "结果"
+
+#: ../wp-plugin/db-entire-history.php:94
+msgid "We do not have record of any submissions."
+msgstr "我们没有任何提交的记录。"
+
+#: ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-problem-history.php:75
+#: ../wp-plugin/shortcode-mailpage.php:241
+msgid "n/a"
+msgstr "不适用"
+
+#: ../wp-plugin/db-mail.php:39
+msgid "You must log in to view past mail."
+msgstr "你必须登录才能浏览过去的邮件。"
+
+#: ../wp-plugin/db-mail.php:54 ../wp-plugin/db-mail.php:63
+#: ../wp-plugin/db-mail.php:70
+#, php-format
+msgid "%s must be numeric."
+msgstr "%s 必须是数字。"
+
+#: ../wp-plugin/db-mail.php:59
+msgid "Access denied."
+msgstr "拒绝访问。"
+
+#: ../wp-plugin/db-mail.php:85 ../wp-plugin/db-mail.php:100
+msgid "from"
+msgstr "从"
+
+#: ../wp-plugin/db-mail.php:85 ../wp-plugin/db-mail.php:101
+#: ../wp-plugin/shortcode-mailpage.php:99
+msgid "to"
+msgstr "到"
+
+#: ../wp-plugin/db-mail.php:86 ../wp-plugin/db-mail.php:103
+msgid "when"
+msgstr "当"
+
+#: ../wp-plugin/db-mail.php:86 ../wp-plugin/db-mail.php:108
+msgid "message"
+msgstr "信息"
+
+#: ../wp-plugin/db-mail.php:87 ../wp-plugin/db-mail.php:107
+msgid "replied?"
+msgstr "已回复？"
+
+#: ../wp-plugin/db-mail.php:107
+msgid "no"
+msgstr "否"
+
+#: ../wp-plugin/db-mail.php:107
+msgid "yes"
+msgstr "是"
+
+#: ../wp-plugin/db-problem-history.php:18
+#: ../wp-plugin/db-problem-summary.php:21
+msgid "You must enter a non-empty problem name."
+msgstr "您必须输入一个非空的问题名称。"
+
+#: ../wp-plugin/db-problem-history.php:34
+#, php-format
+msgid "User number %s not found."
+msgstr "用户数字 %s 没有找到。"
+
+#: ../wp-plugin/db-problem-history.php:54
+#, php-format
+msgid ""
+"We do not have record of any submissions from user %1$s for problem %2$s."
+msgstr "我们并没有任何用户 %1$s提交的问题 %2$s的记录。"
+
+#: ../wp-plugin/db-problem-summary.php:31
+#: ../wp-plugin/shortcode-mailpage.php:194
+#: ../wp-plugin/shortcode-my-progress.php:29
+#, php-format
+msgid "Problem %s not found (at least in current language)"
+msgstr "找不到的问题%s  (至少在当前语言中)"
+
+#: ../wp-plugin/db-problem-summary.php:71
+#: ../wp-plugin/db-problem-summary.php:77
+msgid "latest correct"
+msgstr "最后修正"
+
+#: ../wp-plugin/db-problem-summary.php:72
+#: ../wp-plugin/db-problem-summary.php:78
+msgid "last time"
+msgstr "上一次"
+
+#: ../wp-plugin/db-problem-summary.php:73
+#: ../wp-plugin/db-problem-summary.php:79
+msgid "first time"
+msgstr "第一次"
+
+#: ../wp-plugin/js-translation.php:4
+msgid "Click to try again."
+msgstr "点击以再次尝试。"
+
+#: ../wp-plugin/js-translation.php:5
+msgid ""
+"Could not grade program because communication to the server was not "
+"possible. Ajax information: "
+msgstr "无法给程序打分因为无法连接到服务器。Ajax 信息："
+
+#: ../wp-plugin/js-translation.php:6
+msgid "Displaying {from} to {to} of {total} items"
+msgstr "显示{from} 到 {to} 共{total}个项目"
+
+#: ../wp-plugin/js-translation.php:7
+msgid "Enter input"
+msgstr "键入输入"
+
+#: ../wp-plugin/js-translation.php:8
+msgid "Enter test input"
+msgstr "键入测试输入"
+
+#: ../wp-plugin/js-translation.php:9
+msgid "Enter test statements"
+msgstr "键入测试语句"
+
+#: ../wp-plugin/js-translation.php:10
+msgid "Error: could not connect to database."
+msgstr "错误：无法连接至数据库。"
+
+#: ../wp-plugin/js-translation.php:11
+msgid "Go back to grading"
+msgstr "回到评分"
+
+#: ../wp-plugin/js-translation.php:12
+msgid "Hide history"
+msgstr "隐藏历史"
+
+#: ../wp-plugin/js-translation.php:13
+msgid "Hide input box"
+msgstr "隐藏输入框"
+
+#: ../wp-plugin/js-translation.php:14 ../wp-plugin/shortcodes-exercises.php:664
+msgid "History"
+msgstr "历史记录"
+
+#: ../wp-plugin/js-translation.php:15
+msgid "Incorrect, try again."
+msgstr "不正确，请重试。"
+
+#: ../wp-plugin/js-translation.php:16
+msgid "Marking all messages from this student about this problem as answered."
+msgstr "标记所有从这个学生发出的关于这个问题的提问为已回答。"
+
+#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes-exercises.php:696
+msgid "More actions..."
+msgstr "更多的动作..."
+
+#: ../wp-plugin/js-translation.php:18
+msgid "Page"
+msgstr "页"
+
+#: ../wp-plugin/js-translation.php:19
+msgid "Please enter a non-empty message."
+msgstr "请输入一条非空白信息"
+
+#: ../wp-plugin/js-translation.php:20
+msgid ""
+"Please select a valid recipient for the message. If you are working with a "
+"teacher or friend, select them as a guru on your Profile (available within "
+"the user menu, in the top right corner of the page)."
+msgstr ""
+"请为该消息选择一个有效的收件人。如果你正在与一位老师或朋友，请在用户设置选择"
+"他们作为你的导师（可在页面右上角的用户菜单中进入）。 "
+
+#: ../wp-plugin/js-translation.php:21 ../wp-plugin/shortcodes-exercises.php:649
+msgid "Rich editor"
+msgstr "丰富编辑器"
+
+#: ../wp-plugin/js-translation.php:22 ../wp-plugin/shortcodes-exercises.php:718
+msgid "Run program"
+msgstr "运行程序"
+
+#: ../wp-plugin/js-translation.php:23
+msgid "Run test"
+msgstr "运行测试"
+
+#: ../wp-plugin/js-translation.php:24
+msgid "Running..."
+msgstr "运行中..."
+
+#: ../wp-plugin/js-translation.php:25
+msgid "Simple editor"
+msgstr "简洁编辑器"
+
+#: ../wp-plugin/js-translation.php:26
+msgid ""
+"The code box is empty. It should instead contain your best partial solution "
+"so far."
+msgstr "该代码框是空的。你应该尝试输入你可以想到的任何答案。"
+
+#: ../wp-plugin/js-translation.php:27
+msgid "The database connected but found no data."
+msgstr "已连接至数据库但未找到数据。"
+
+#: ../wp-plugin/js-translation.php:28
+msgid ""
+"Unable to process 'send message' request. You might have lost your internet "
+"connection."
+msgstr "无法处理“发送信息”请求。你可能丢失了你的网络连接。"
+
+#: ../wp-plugin/js-translation.php:29
+msgid ""
+"Warning: unable to talk to server. Could not set 'completed' status for this "
+"problem."
+msgstr "注意：不能与服务器沟通。无法给此问题设置“完成”状态。"
+
+#: ../wp-plugin/js-translation.php:30 ../wp-plugin/shortcodes-exercises.php:54
+msgid "You have completed this problem at least once."
+msgstr "你已经完成这个问题至少一次"
+
+#: ../wp-plugin/js-translation.php:31
+msgid "Your message was sent."
+msgstr "你的信息已发送"
+
+#: ../wp-plugin/js-translation.php:32
+msgid "end of main program"
+msgstr "主程序的结尾"
+
+#: ../wp-plugin/js-translation.php:33
+msgid "out of"
+msgstr "得自"
+
+#: ../wp-plugin/js-translation.php:34
+msgid "start of tests"
+msgstr "开始测试"
+
+#: ../wp-plugin/js-translation.php:35
+msgid "timed out!"
+msgstr "超时！"
+
+#: ../wp-plugin/plugin-hooks.php:94
+msgid "Editor"
+msgstr "编辑器"
+
+#: ../wp-plugin/plugin-new-user-email.php:10
+msgid ""
+"An account has been created for you on the Computer Science Circles website, "
+"with a randomly generated password.\n"
+"\n"
+"User name: %username%\n"
+"Current random password: %password%\n"
+"\n"
+"Please visit\n"
+"%loginurl%\n"
+"and change your password to something you will remember. \n"
+"Press \"%upprof%\" once you are done.\n"
+"\n"
+"Thanks from the Computer Science Circles team!\n"
+"%siteurl%"
+msgstr ""
+"计算机科学圈网站已帮你创建了一个带有随机初始密码的帐号。\n"
+"\n"
+"用户名: %username%\n"
+"当前随即密码: %password%\n"
+"\n"
+"请访问\n"
+"%loginurl%\n"
+"并更改为你可以记住的密码。 \n"
+"当你完成后请按\"%upprof%\" 。\n"
+"\n"
+"计算机科学圈团队非常感谢你的访问！\n"
+"%siteurl%"
+
+#: ../wp-plugin/plugin-new-user-email.php:25
+msgid "Computer Science Circles: New account"
+msgstr "计算机科学圈：新帐号"
+
+#: ../wp-plugin/plugin-new-user-email.php:31
+msgid "Update Profile"
+msgstr "更新档案"
+
+#: ../wp-plugin/plugin-profile-options.php:19
+#, php-format
+msgid "The username %s does not exist."
+msgstr "用户名 %s 不存在。"
+
+#: ../wp-plugin/plugin-profile-options.php:22
+#, php-format
+msgid "%s exists! They are your guru."
+msgstr "%s 已存在！他们是你的导师。"
+
+#: ../wp-plugin/plugin-profile-options.php:25
+msgid ""
+"Enter the username of your guru. After you press <i>Update profile</i> we'll "
+"see if they exist."
+msgstr ""
+"请输入你导师的用户名。在你按下<i>更新档案</i>后，我们会检查他们是否存在。"
+
+#: ../wp-plugin/plugin-profile-options.php:32
+msgid "Guru&apos;s <i>Username</i> (blank for none)"
+msgstr "导师&apos;s <i>用户名</i> (空白为没有)"
+
+#: ../wp-plugin/plugin-profile-options.php:34
+msgid ""
+"Any other person with a CS Circles account (such as your teacher) can be "
+"your guru. You can ask them direct questions when you get stuck, and they "
+"can view your progress."
+msgstr ""
+"任何人如果有CS圈帐号（例如你的老师）都可以作为你的导师。当你在一些问题卡住"
+"时，你可以直接询问他们问题，同时他们也能查看你的进展。"
+
+#: ../wp-plugin/plugin-profile-options.php:40
+msgid "Don&apos;t Send Mail Copies"
+msgstr "请勿发送邮件副本"
+
+#: ../wp-plugin/plugin-profile-options.php:43
+msgid ""
+"(default: unchecked) If checked, you will not receive a carbon copy when you "
+"send a message."
+msgstr "(默认:未勾选) 如果勾选，当你发送消息时你不会收到一份副本。"
+
+#: ../wp-plugin/plugin-profile-options.php:47
+msgid "Opt Out of Mass Emails"
+msgstr "撤出大量邮件"
+
+#: ../wp-plugin/plugin-profile-options.php:50
+msgid ""
+"(default: unchecked) If checked, you will not receive announcements from CS "
+"Circles. They are pretty infrequent, about once per year."
+msgstr ""
+"(默认: 未勾选)如果肉选，你将不再会收到计算机科学圈的通告。你每年大约只会收到"
+"一份通告。"
+
+#: ../wp-plugin/plugin-utilities.php:167
+msgid "me"
+msgstr "我"
+
+#: ../wp-plugin/plugin-utilities.php:169
+msgid "Asst."
+msgstr "助手"
+
+#: ../wp-plugin/plugin-utilities.php:305
+#, php-format
+msgid "[Too long; only first %1$s out of %2$s characters shown]"
+msgstr "过长; 只显示%2$s 个字符中的%1$s  个]"
+
+#: ../wp-plugin/plugin-utilities.php:452
+msgid "Return to Computer Science Circles"
+msgstr "返回计算机科学圈"
+
+#: ../wp-plugin/plugin-utilities.php:619
+msgid "View definition"
+msgstr "查看定义"
+
+#: ../wp-plugin/plugin-utilities.php:631
+msgid "View page source"
+msgstr "查看页面源代码"
+
+#: ../wp-plugin/shortcode-mailpage.php:12
+msgid "Student ID must be a number."
+msgstr "学生ID必须是数字。"
+
+#: ../wp-plugin/shortcode-mailpage.php:20
+msgid "No such student exists."
+msgstr "此学生不存在。"
+
+#: ../wp-plugin/shortcode-mailpage.php:23
+msgid "Access denied. You may need to log in first."
+msgstr "拒绝访问。你可能需要先登录。"
+
+#: ../wp-plugin/shortcode-mailpage.php:35
+msgid "No such problem exists."
+msgstr "此问题不存在。"
+
+#: ../wp-plugin/shortcode-mailpage.php:45
+msgid "You must login to view the mail page."
+msgstr "你必须登录才能查看邮件页面。"
+
+#: ../wp-plugin/shortcode-mailpage.php:73
+#, php-format
+msgid "Mail about %1$s [%3$s] for %2$s"
+msgstr "邮件关于 %1$s [%3$s] 为用户 %2$s"
+
+#: ../wp-plugin/shortcode-mailpage.php:77
+msgid "link to original page"
+msgstr "原始页链接"
+
+#: ../wp-plugin/shortcode-mailpage.php:82
+msgid " has completed this problem."
+msgstr "已完成此问题。"
+
+#: ../wp-plugin/shortcode-mailpage.php:84
+msgid " has not completed this problem."
+msgstr "还未完成此问题。"
+
+#: ../wp-plugin/shortcode-mailpage.php:87
+#, php-format
+msgid "Note: this student completed the problem at %s"
+msgstr "注: 这个学生在%s 完成了这个问题"
+
+#: ../wp-plugin/shortcode-mailpage.php:89
+msgid "Click on a message title to toggle the message open or closed."
+msgstr "单击某条消息的标题来切换打开或关闭此消息。"
+
+#: ../wp-plugin/shortcode-mailpage.php:99
+msgid "From"
+msgstr "从"
+
+#: ../wp-plugin/shortcode-mailpage.php:100
+msgid "(newest)"
+msgstr "(最新)"
+
+#: ../wp-plugin/shortcode-mailpage.php:101
+msgid "(oldest)"
+msgstr "(最以前)"
+
+#: ../wp-plugin/shortcode-mailpage.php:103
+msgid "Quote/<br/>Reply"
+msgstr "引用/<br/>回复"
+
+#: ../wp-plugin/shortcode-mailpage.php:112
+#: ../wp-plugin/shortcodes-exercises.php:538
+#: ../wp-plugin/shortcodes-exercises.php:545
+msgid "Send a question by e-mail to: "
+msgstr "用邮件发送一个问题至："
+
+#: ../wp-plugin/shortcode-mailpage.php:115
+#: ../wp-plugin/shortcodes-exercises.php:540
+msgid "My guru"
+msgstr "我的导师"
+
+#: ../wp-plugin/shortcode-mailpage.php:122
+msgid "(No guru is specified)"
+msgstr "(未指定导师)"
+
+#: ../wp-plugin/shortcode-mailpage.php:130
+msgid "Type here to send a reply about this problem"
+msgstr "请输入关于此问题的回复"
+
+#: ../wp-plugin/shortcode-mailpage.php:136
+msgid "Just mark as read without replying"
+msgstr "只标记为已读并不回复"
+
+#: ../wp-plugin/shortcode-mailpage.php:138
+msgid "Send this message!"
+msgstr "发送这条信息！"
+
+#: ../wp-plugin/shortcode-mailpage.php:146
+#, php-format
+msgid "%s's progress page (new window)"
+msgstr "%s的进展页(新窗口)"
+
+#: ../wp-plugin/shortcode-mailpage.php:150
+msgid "Problem description for"
+msgstr "以下问题的描述"
+
+#: ../wp-plugin/shortcode-mailpage.php:156
+#, php-format
+msgid "%1$s's submissions for %2$s"
+msgstr "%1$s的提交为了 %2$s"
+
+#: ../wp-plugin/shortcode-mailpage.php:158
+#, php-format
+msgid "My previous submissions for %s"
+msgstr "我以前为了%s 的所有提交"
+
+#: ../wp-plugin/shortcode-mailpage.php:162
+#, php-format
+msgid "My other messages about %s"
+msgstr "我其他关于%s 的消息"
+
+#: ../wp-plugin/shortcode-mailpage.php:165
+msgid "My messages for other programs"
+msgstr "我关于其他程序的消息"
+
+#: ../wp-plugin/shortcode-mailpage.php:166
+#, php-format
+msgid "Messages to/from %s for other problems"
+msgstr "消息 从/至 %s 的关于其他的问题"
+
+#: ../wp-plugin/shortcode-mailpage.php:172
+#, php-format
+msgid "All messages ever about %s's work"
+msgstr "所有有关%s的作业的消息"
+
+#: ../wp-plugin/shortcode-mailpage.php:175
+msgid "All messages ever to or from me"
+msgstr "所有关于我的消息"
+
+#: ../wp-plugin/shortcode-mailpage.php:202
+#, php-format
+msgid "View mail with one of your students? (you have %s)"
+msgstr "与你的学生一起查看邮件? (你有 %s)"
+
+#: ../wp-plugin/shortcode-mailpage.php:204
+msgid "Me"
+msgstr "我"
+
+#: ../wp-plugin/shortcode-mailpage.php:222
+msgid "View mail for another problem?"
+msgstr "查看另一个问题的邮件？"
+
+#: ../wp-plugin/shortcode-mailpage.php:231
+#: ../wp-plugin/shortcode-my-progress.php:66
+msgid "Submit"
+msgstr "提交"
+
+#: ../wp-plugin/shortcode-my-progress.php:9
+msgid "You must login to view your user page."
+msgstr "你必须登录才能查看你的用户页面。"
+
+#: ../wp-plugin/shortcode-my-progress.php:36
+#, php-format
+msgid "View one of your students? (you have %s)"
+msgstr "查看你其中的一个学生? (你有 %s)"
+
+#: ../wp-plugin/shortcode-my-progress.php:38
+msgid "Show only me"
+msgstr "只显示我"
+
+#: ../wp-plugin/shortcode-my-progress.php:39
+msgid "Summary of all my students"
+msgstr "我所有学生的摘要"
+
+#: ../wp-plugin/shortcode-my-progress.php:55
+msgid "Just show submissions for one problem?"
+msgstr "只显示一个问题的提交？"
+
+#: ../wp-plugin/shortcode-my-progress.php:57
+msgid "Show all"
+msgstr "显示所有"
+
+#: ../wp-plugin/shortcode-my-progress.php:58
+msgid "Console"
+msgstr "控制台"
+
+#: ../wp-plugin/shortcode-my-progress.php:89
+msgid "User id must be numeric."
+msgstr "用户ID必须是数字。"
+
+#: ../wp-plugin/shortcode-my-progress.php:93
+#: ../wp-plugin/shortcode-my-progress.php:97
+msgid "Invalid user id."
+msgstr "无效的用户ID。"
+
+#: ../wp-plugin/shortcode-my-progress.php:101
+#, php-format
+msgid "Now viewing %s for "
+msgstr "现在正查看%s 为"
+
+#: ../wp-plugin/shortcode-my-progress.php:104
+#, php-format
+msgid "Now viewing %s for all of your students"
+msgstr "为你所有的学生查看%s"
+
+#: ../wp-plugin/shortcode-my-progress.php:117
+#, php-format
+msgid "Solutions by my students for %s"
+msgstr "我学生为 %s 的答案"
+
+#: ../wp-plugin/shortcode-my-progress.php:129
+msgid "Submitted code"
+msgstr "已提交的代码"
+
+#: ../wp-plugin/shortcode-my-progress.php:130
+#, php-format
+msgid "Submitted code for %s"
+msgstr "%s 的已提交代码"
+
+#: ../wp-plugin/shortcode-my-progress.php:142
+msgid "Latest problems completed"
+msgstr "最近完成的问题"
+
+#: ../wp-plugin/shortcode-my-progress.php:221
+msgid "List of all problems"
+msgstr "所有问题的列表"
+
+#: ../wp-plugin/shortcode-my-progress.php:222
+msgid "(with #completed)"
+msgstr "(有 #个已完成)"
+
+#: ../wp-plugin/shortcode-my-progress.php:222
+msgid "(with #submissions)"
+msgstr "(有 #份提交)"
+
+#: ../wp-plugin/shortcodes-exercises.php:36
+#, php-format
+msgid "Internal error, details below; please <a href='%s'>contact staff</a>."
+msgstr "内部错误，以下是详细内容，请<a href='%s'>联系工作人员</a>。"
+
+#: ../wp-plugin/shortcodes-exercises.php:36
+msgid "Timestamp:"
+msgstr "时间戳："
+
+#: ../wp-plugin/shortcodes-exercises.php:56
+msgid "You have not yet completed this problem."
+msgstr "你还没有完成这个问题。"
+
+#: ../wp-plugin/shortcodes-exercises.php:166
+msgid "Short Answer Exercise"
+msgstr "简答练习"
+
+#: ../wp-plugin/shortcodes-exercises.php:169
+msgid "Your answer"
+msgstr "你的答案"
+
+#: ../wp-plugin/shortcodes-exercises.php:170
+msgid "enter a number"
+msgstr "输入一个数"
+
+#: ../wp-plugin/shortcodes-exercises.php:178
+#: ../wp-plugin/shortcodes-exercises.php:226
+#: ../wp-plugin/shortcodes-exercises.php:275
+msgid "Check answer"
+msgstr "检查答案"
+
+#: ../wp-plugin/shortcodes-exercises.php:210
+msgid "Multiple Choice Exercise"
+msgstr "选择题练习"
+
+#: ../wp-plugin/shortcodes-exercises.php:214
+msgid "Your choice:"
+msgstr "你的选择："
+
+#: ../wp-plugin/shortcodes-exercises.php:214
+msgid "Select one"
+msgstr "请选择一个"
+
+#: ../wp-plugin/shortcodes-exercises.php:265
+#: ../wp-plugin/shortcodes-exercises.php:515
+msgid "Scramble Exercise"
+msgstr "综合练习"
+
+#: ../wp-plugin/shortcodes-exercises.php:511
+msgid "Example"
+msgstr "示例"
+
+#: ../wp-plugin/shortcodes-exercises.php:515
+msgid "Coding Exercise"
+msgstr "编程练习"
+
+#: ../wp-plugin/shortcodes-exercises.php:529
+msgid "You need to create an account and log in to ask a question."
+msgstr "你需要创建一个账号并登录才能问一个问题。"
+
+#: ../wp-plugin/shortcodes-exercises.php:548
+msgid "(No guru specified in your profile)"
+msgstr "(你的档案中未指定导师)"
+
+#: ../wp-plugin/shortcodes-exercises.php:552
+msgid ""
+"Enter text for the message below. <i>Be sure to explain where you're stuck "
+"and what you've tried so far. Your partial solution code will be "
+"automatically included with the message.</i>"
+msgstr ""
+"输入以下信息。<i>请解释你在哪处碰到问题以及你到现在所做的尝试。你已完成的代码"
+"部分将会自动包含在消息中</i>"
+
+#: ../wp-plugin/shortcodes-exercises.php:554
+msgid "Send this message"
+msgstr "发送这条信息"
+
+#: ../wp-plugin/shortcodes-exercises.php:555
+msgid "Cancel"
+msgstr "取消"
+
+#: ../wp-plugin/shortcodes-exercises.php:574
+msgid "# delete this comment and enter your code here"
+msgstr "# 删除这条注释并在此输入你的代码"
+
+#: ../wp-plugin/shortcodes-exercises.php:626
+msgid ""
+"Enter testing statements like <tt>print(myfunction(\"test argument\"))</tt> "
+"below."
+msgstr ""
+"在下方输入测试语句，例如 <tt>print(myfunction(\"test argument\"))</tt> 。"
+
+#: ../wp-plugin/shortcodes-exercises.php:629
+msgid "You may enter input for the program in the box below."
+msgstr "你可以在下面的框中输入程序的输入。"
+
+#: ../wp-plugin/shortcodes-exercises.php:655
+msgid "Open in console"
+msgstr "在控制台中打开"
+
+#: ../wp-plugin/shortcodes-exercises.php:658
+msgid "Visualize"
+msgstr "显示"
+
+#: ../wp-plugin/shortcodes-exercises.php:672
+msgid "Reset code to default"
+msgstr "重置代码至默认"
+
+#: ../wp-plugin/shortcodes-exercises.php:677
+msgid "Help"
+msgstr "帮助"
+
+#: ../wp-plugin/shortcodes-misc.php:21
+#, php-format
+msgid ""
+"New around here? Read <a %1$s>Using this Website</a>. You can also <a "
+"%2$s>click here to create an account or log in</a>."
+msgstr ""
+"刚来到这里？ 阅读 <a %1$s>怎样使用本网站</a>。你也可以 <a %2$s>点击这里来创建"
+"一个账户或登录</a>。"
+
+#: ../wp-plugin/shortcodes-misc.php:99
+msgid "Edit my profile"
+msgstr "编辑我的档案"
+
+#: ../wp-plugin/shortcodes-misc.php:100
+msgid "Log out now"
+msgstr "立刻登出"
+
+#: ../wp-plugin/shortcodes-misc.php:103
+msgid "Log in or create a new account"
+msgstr "登录或创建一个新帐户"
+
+#: ../wp-theme/404.php:19
+msgid "Error 404. Not enough internets."
+msgstr "错误404，没有足够的网络。"
+
+#: ../wp-theme/404.php:24
+#, php-format
+msgid "We cannot find anything at the address %s"
+msgstr "我们无法在该地址 %s 找到任何内容"
+
+#: ../wp-theme/404.php:25
+#, php-format
+msgid ""
+"Try a different address, a search, or <a %1$s>contact us</a> if the website "
+"sent you here via a broken link."
+msgstr ""
+"如果网站发送给你无法正常工作的链接，请尝试不同的地址，搜索，或<a %1$s>联系我"
+"们</a> 。"
+
+#: ../wp-theme/footer.php:34
+#, php-format
+msgid ""
+"Computer Science Circles is a free service of the <a %1$s>Centre for "
+"Education in Mathematics and Computing</a> at the <a %2$s>University of "
+"Waterloo</a>. <br> Total number of exercises completed by all users: %3$s"
+msgstr ""
+"计算机科学圈是<a %2$s>滑铁卢大学</a><a %1$s>数学与计算机教育中心</a>的一项免"
+"费服务。<br> 累计所有用户完成的总练习数: %3$s"
+
+#: ../wp-theme/footer.php:37
+msgid "CEMC"
+msgstr "数学与计算机教育中心"
+
+#: ../wp-theme/footer.php:38
+msgid "University of Waterloo, MC 5104"
+msgstr "University of Waterloo, MC 5104"
+
+#: ../wp-theme/footer.php:39
+msgid "200 University Avenue West"
+msgstr "200 University Avenue West"
+
+#: ../wp-theme/footer.php:40
+msgid "Waterloo, Ontario, Canada N2L 3G1"
+msgstr "Waterloo, Ontario, Canada N2L 3G1"
+
+#: ../wp-theme/footer.php:41
+msgid "Phone: 519 888 4808"
+msgstr "电话: 519 888 4808"
+
+#: ../wp-theme/footer.php:43
+msgid "contact us"
+msgstr "联系我们"
+
+#: ../wp-theme/footer-prevnext.php:45
+msgid "(goes to top of current page)"
+msgstr "（移动至当前页面的顶部）"
+
+#: ../wp-theme/footer-prevnext.php:48
+msgid "Next"
+msgstr "下一课"
+
+#: ../wp-theme/functions.php:139
+msgid "Computer Science Circles"
+msgstr "计算机科学圈"
+
+#: ../wp-theme/functions.php:140
+msgid "Log In or Create Account"
+msgstr "登录或创建新帐户"
+
+#: ../wp-theme/functions.php:149
+msgid "Create a new account"
+msgstr "创建新帐号"
+
+#: ../wp-theme/functions.php:176
+msgid "My Progress"
+msgstr "我的进度"
+
+#: ../wp-theme/functions.php:178
+msgid "Mail"
+msgstr "邮编"
+
+#: ../wp-theme/functions.php:179
+msgid "Console (new window)"
+msgstr "控制台 (新窗口)"
+
+#: ../wp-theme/functions.php:180
+msgid "Visualizer (new window)"
+msgstr "可视化工具 (新窗口)"
+
+#: ../wp-theme/functions.php:181
+msgid "Resources (new window)"
+msgstr "资源 (新窗口)"
+
+#: ../wp-theme/functions.php:182
+msgid "Contact Us (new window)"
+msgstr "联系我们 (新窗口)"
+
+#: ../wp-theme/functions.php:186
+msgid "scroll to top"
+msgstr "滚动到顶部"
+
+#: ../wp-theme/functions.php:210
+msgid "goto oldest unanswered mail"
+msgstr "转到最久以前未答复的邮件"
+
+#: ../wp-theme/functions.php:264
+msgid "Filter Listed Pages"
+msgstr "筛选列出的网页"
+
+#: ../wp-theme/functions.php:310
+msgid "<p>Create free account / login</p><p>to save your progress</p>"
+msgstr "<p>创建免费帐号或者登录</p><p>来保存你的进度</p>"
+
+#: ../wp-theme/functions.php:329
+#, php-format
+msgid "%s's menu"
+msgstr "%s的菜单"
+
+#: ../wp-theme/header.php:103
+msgid "wordmark-uw.gif"
+msgstr "wordmark-uw.gif"
+
+#: ../wp-theme/header.php:104
+msgid "wordmark-cemc.png"
+msgstr "wordmark-cemi.png"
+
+#: ../wp-theme/header.php:110
+msgid "Click here for the original site"
+msgstr "点击查看原网站"
+
+#: ../wp-theme/header.php:131
+msgid "/themes/pybox2011childTheme/images/header.jpg"
+msgstr "/themes/pybox2011childTheme/images/header.jpg"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "Integer"
+msgstr "整数"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "String"
+msgstr "字符串"
+
+#: ../python3jail/static/_GRADER.py:8
+msgid "Floating Point Number"
+msgstr "浮点数"
+
+#: ../python3jail/static/_GRADER.py:9
+msgid "Function Type"
+msgstr "函数类型"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "Boolean"
+msgstr "布尔"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "\"None\" Type"
+msgstr "“无”类型"
+
+#: ../python3jail/static/_GRADER.py:10
+msgid "Range Type"
+msgstr "范围类型"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "List"
+msgstr "列表"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "Dictionary"
+msgstr "字典"
+
+#: ../python3jail/static/_GRADER.py:11
+msgid "Tuple"
+msgstr "数组"
+
+#: ../python3jail/static/_GRADER.py:32
+msgid "a function "
+msgstr "一个函数 "
+
+#: ../python3jail/static/_GRADER.py:34
+msgid " equal to "
+msgstr "等于 "
+
+#: ../python3jail/static/_GRADER.py:50
+msgid " and "
+msgstr "和 "
+
+#: ../python3jail/static/_GRADER.py:52
+msgid ", and "
+msgstr ", 和 "
+
+#: ../python3jail/static/_GRADER.py:54
+msgid "We defined "
+msgstr "我们定义了 "
+
+#: ../python3jail/static/_GRADER.py:68 ../python3jail/static/_GRADER.py:92
+msgid "Error: {0} has wrong type {1}, expected {2}"
+msgstr "错误： {0}有错误的类型{1}，预期类型为{2}"
+
+#: ../python3jail/static/_GRADER.py:73 ../python3jail/static/_GRADER.py:112
+msgid "Error: {0} has wrong value {1}, expected {2}"
+msgstr "错误： {0}有错误的值{1} ，预期值为{2}"
+
+#: ../python3jail/static/_GRADER.py:77
+msgid "its value is correct!"
+msgstr "它的值是正确的！"
+
+#: ../python3jail/static/_GRADER.py:83 ../python3jail/static/_GRADER.py:88
+msgid "finished!"
+msgstr "完成！"
+
+#: ../python3jail/static/_GRADER.py:85
+msgid "value "
+msgstr "值 "
+
+#: ../python3jail/static/_GRADER.py:90
+msgid "finished! (returned a value {} but did not need to return anything)"
+msgstr "完成了！ （返回了一个值{} ，但并不需要返回任何东西）"
+
+#: ../python3jail/static/_GRADER.py:98
+msgid "Error: list {0} has wrong length {1}, expected {2}"
+msgstr "错误：列表{0}有错误的长度{1} ，预期长度为{2}"
+
+#: ../python3jail/static/_GRADER.py:108 ../python3jail/static/_GRADER.py:110
+msgid " its value {} is correct!"
+msgstr " 它的值 {} 是正确的！"
+
+#: ../python3jail/static/_GRADER.py:130 ../python3jail/static/_GRADER.py:144
+msgid "Running {} &hellip;"
+msgstr "运行 {} &hellip;"
+
+#: ../python3jail/static/_GRADER.py:136
+msgid "Error: function {} not defined"
+msgstr "错误：函数 {} 没有被定义"
+
+#: ../python3jail/static/_GRADER.py:139
+msgid "Error: {0} should be defined as a function, but found type {1}"
+msgstr "错误: {0} 应该被定义为一个函数，但却为 {1} 类型"
+
+#: ../python3jail/static/_GRADER.py:158
+msgid ""
+"Your output is incorrect, but just barely. Whitespace characters (space, "
+"newline, tab) are either missing, or extra ones are present."
+msgstr "你的输出有一些小错误。 空白字符（空格，换行，制表符）可能缺失或过多。"
+
+#: ../python3jail/static/_GRADER.py:160
+msgid "Your output is not correct."
+msgstr "你的输出不正确。"
+
+#: ../python3jail/static/_GRADER.py:203
+msgid "Checking {} &hellip; "
+msgstr "检视 {} &hellip; "
+
+#: ../python3jail/static/_GRADER.py:207
+msgid "Error: variable {} not defined"
+msgstr "错误： 变量 {} 没有被定义"
+
+#: ../python3jail/static/_GRADER.py:212
+msgid "Setting {0} to {1}"
+msgstr "把 {0} 设置为 {1}"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:3
+msgid "Error: Your output should consist of exactly 1 line."
+msgstr "错误：你的输出应该正好只有1行。"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:6
+msgid "Error: Your output should not contain any spaces."
+msgstr "错误：你的输出应该不包含任何空格。"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:8
+msgid "Error: The last character of your output is wrong."
+msgstr "错误：你的输出的最后一个字符是错误的。"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:10
+msgid "Error: Could not interpret {} as a float."
+msgstr "错误：无法将{}译为float。"
+
+#: ../wp-content/lesson_files/graders/15b.degrees.py:13
+msgid "Error: Numbers are different."
+msgstr "错误： 数值不相同。"
+
+#: ../wp-content/lesson_files/graders/anyorder.py:7
+msgid "Line {}: too many copies of '{}'"
+msgstr "行 {}: 太多 '{}' 的复制"
+
+#: ../wp-content/lesson_files/graders/anyorder.py:8
+msgid "Line {}: not a correct output line: '{}'"
+msgstr "行 {}: 并不是一行正确的输出: '{}'"
+
+#: ../wp-content/lesson_files/graders/anyorder.py:11
+msgid "Missing at least one line of output: '{}'"
+msgstr "缺少至少一行输出: '{}'"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:6
+#: ../wp-content/lesson_files/graders/real-per-line.py:5
+#: ../wp-content/lesson_files/graders/trim-lines.py:4
+msgid "Not enough lines of output: {0} expected, {1} found"
+msgstr "没有足够的输出行: {0} 预期, {1} 找到"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:9
+#: ../wp-content/lesson_files/graders/real-per-line.py:8
+msgid "Error: Output line {0} '{1}' was not a number"
+msgstr "错误: 输出行 {0} '{1}' 不是一个数值"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:11
+#: ../wp-content/lesson_files/graders/real-per-line.py:10
+msgid "Output line {0}, value {1}, did not match expected value {2}"
+msgstr "输出行 {0}, 值 {1}, 没有匹配预期值 {2}"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:14
+#: ../wp-content/lesson_files/graders/real-per-line.py:13
+#: ../wp-content/lesson_files/graders/trim-lines.py:12
+msgid "Too many lines of output: {0} expected, {1} found"
+msgstr "输出行太多： 预期{0} , 找到 {1}"
+
+#: ../wp-content/lesson_files/graders/pendulum-grader.py:16
+msgid "Here is the plot of the output:"
+msgstr "这里是输出的情况："
+
+#: ../wp-content/lesson_files/graders/trim-lines.py:7
+msgid "Error: output line {0} {1} did not match expected line {2}"
+msgstr "错误: 输出行 {0} {1} 没有匹配应输出的代码行 {2}"
+
+#: ../wp-content/lesson_files/graders/warmup.py:7
+msgid "Your program produced no output. Please try again."
+msgstr "你的程序没有产生输出。请再试一次。"
+
+#: ../wp-content/lesson_files/graders/warmup.py:9
+msgid "Your program produced too many lines of output. Please try again."
+msgstr "你的程序产生的输出行数太多。请再试一次。"
+
+#: ../wp-content/lesson_files/graders/warmup.py:11
+msgid "Your program produced too few lines of output. Please try again."
+msgstr "你的程序产生的输出行数太少。请再试一次。"
+
+#: ../wp-content/lesson_files/graders/warmup.py:13
+msgid "Exactly correct, good job!"
+msgstr "完全正确，干的不错！"
+
+#: ../wp-content/lesson_files/graders/warmup.py:15
+msgid "Almost correct but ensure you correctly use upper and lower case."
+msgstr "几乎正确的，但请确保你正确使用了大小写。"
+
+#: ../wp-content/lesson_files/graders/warmup.py:17
+msgid "Almost correct but ensure you correctly use punctuation and spacing."
+msgstr "几乎正确的，但请保证你已正确使用了标点符号和空格。"
+
+#: ../wp-content/lesson_files/graders/warmup.py:19
+msgid ""
+"Partially correct; ensure upper/lower case, punctuation, and spacing are "
+"correct."
+msgstr "部分正确的;请确保大/小写​​，标点和间距是正确的。"
+
+#: ../wp-content/lesson_files/graders/warmup.py:21
+msgid "Incorrect answer, please try again."
+msgstr "错误答案，请再次尝试。"
+
+#~ msgid "Original lesson page containing %s (new window)"
+#~ msgstr "Page de la leçon originale contenant %s (nouvelle fenêtre)"
+
+#~ msgid "Reload with a different view? (you have %s students)"
+#~ msgstr "Recharger avec un point de vue différent ? (Vous avez %s élèves)"
+
+#~ msgid "Select different user?"
+#~ msgstr "Sélectionnez autre utilisateur ?"
+
+#~ msgid "Mail for which problem?"
+#~ msgstr "Messages pour quel problème ?"
+
+#~ msgid "Overview"
+#~ msgstr "Aperçu"
+
+#~ msgid "Show all visible"
+#~ msgstr "Voir toutes visibles"
+
+#~ msgid "Your program produced no output."
+#~ msgstr "Votre programme n'a donne rien de sortie."
+
+#~ msgid ""
+#~ "Your program produced more than one line of output.\n"
+#~ "It should print exactly one line."
+#~ msgstr ""
+#~ "Votre programme a produit plus d'une ligne de production.\n"
+#~ " Il doit sortir exactement une ligne."
+
+#~ msgid "In this test case we set"
+#~ msgstr "Dans ce cas test, nous avons mis"
+
+#~ msgid "Your program printed "
+#~ msgstr "Votre programme imprimé "
+
+#~ msgid "Your answer is correct!"
+#~ msgstr "Votre réponse est correcte !"
+
+#~ msgid "The correct answer is "
+#~ msgstr "La bonne réponse est "
+
+#~ msgid "\"CS Circles Bouncer\" <bounces@cscircles.cemc.uwaterloo.ca>"
+#~ msgstr ""
+#~ "\"Rebondeur Cercles informatiques\" <bounces@cscircles.cemc.uwaterloo.ca>"
+
+#~ msgid "Computer Science Circles, powered by WordPress"
+#~ msgstr "Cercles informatiques, propulsé par WordPress"
+
+#~ msgid "click and type to search website"
+#~ msgstr "cliquez et tapez pour rechercher"
+
+#~ msgid "How do you want your name displayed?"
+#~ msgstr "Comment voulez-vous votre nom affiché ?"
+
+#~ msgid "Change Password"
+#~ msgstr "Changer mon mot de passe"
+
+#~ msgid "Hi, %s!"
+#~ msgstr "Salut, %s !"
+
+#~ msgid "THIS IS A COPY of a message you sent to the CS Circles Assistant."
+#~ msgstr ""
+#~ "VOICI UNE COPIE d'un message que vous avez envoyé au assistant aux "
+#~ "Cercles informatiques"

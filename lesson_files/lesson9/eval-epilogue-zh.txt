@@ -1,0 +1,1 @@
+正确! 运算方式让这个等价于<pre>A or ((not B) and C)</pre>替换值，我们得到<pre>False or ((not True) and True)</pre>，然后简化得到<pre>False or ((not True) and True)<br/>= False or (False and True)<br/>= False or False<br/>= False</pre>
