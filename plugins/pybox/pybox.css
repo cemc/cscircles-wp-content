@@ -1,6 +1,10 @@
 
 /*********************** general stuff **********************/
 
+.ab-empty-item {
+color: darkgreen !important;
+}
+
 #wp-admin-bar-updates {
 display: none;
 }

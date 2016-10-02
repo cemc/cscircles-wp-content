@@ -1,5 +1,5 @@
 /*
-Theme Name: Twenty Fifteen
+Theme Name: Twenty Sixteen
 Description: Used to style the TinyMCE editor.
 */
 
@@ -19,23 +19,27 @@ Description: Used to style the TinyMCE editor.
 
 
 /**
- * 1.0 Body
+ * 1.0 - Body
  */
 
 body {
-	color: #333;
-	font-family: "Noto Serif", serif;
+	color: #1a1a1a;
+	font-family: Merriweather, Georgia, serif;
+	font-size: 16px;
 	font-weight: 400;
-	font-size: 17px;
-	line-height: 1.6471;
+	line-height: 1.75;
 	margin: 20px 40px;
-	max-width: 660px;
+	max-width: 600px;
 	vertical-align: baseline;
+}
+
+body.post-type-page {
+	max-width: 840px;
 }
 
 
 /**
- * 2.0 Typography
+ * 2.0 - Typography
  */
 
 h1,
@@ -45,36 +49,39 @@ h4,
 h5,
 h6 {
 	clear: both;
-	font-weight: 700;
+	font-weight: 900;
 	margin: 56px 0 28px;
 }
 
 h1 {
-	font-size: 35px;
-	line-height: 1.2308;
+	font-size: 33px;
+	line-height: 1.2727272727;
 }
 
 h2 {
-	font-size: 29px;
-	line-height: 1.2069;
+	font-size: 28px;
+	line-height: 1.25;
 }
 
 h3 {
-	font-size: 24px;
-	line-height: 1.1667;
+	font-size: 23px;
+	line-height: 1.2173913043;
+}
+
+h4,
+h5,
+h6 {
+	font-size: 19px;
+	line-height: 1.1052631579;
 }
 
 h4 {
-	font-size: 20px;
-	line-height: 1.4;
+	letter-spacing: 0.13333em;
+	text-transform: uppercase;
 }
 
-h5,
 h6 {
-	font-size: 17px;
-	letter-spacing: 0.1em;
-	line-height: 1.2353;
-	text-transform: uppercase;
+	font-style: italic;
 }
 
 h1:first-child,
@@ -103,33 +110,43 @@ i {
 }
 
 blockquote {
-	border-left: 4px solid #707070;
-	color: #707070;
-	font-size: 20px;
+	border-left: 4px solid #1a1a1a;
+	color: #686868;
+	font-size: 19px;
 	font-style: italic;
-	line-height: 1.8182;
-	margin: 0 0 35px -21px;
-	padding-left: 17px;
+	line-height: 1.4736842105;
+	margin-bottom: 28px;
+	overflow: hidden;
+	padding: 0 0 0 24px;
 }
 
-blockquote > blockquote {
+blockquote:not(.alignleft):not(.alignright) {
+	margin-left: -28px;
+}
+
+blockquote blockquote:not(.alignleft):not(.alignright) {
 	margin-left: 0;
 }
 
-blockquote p {
-	margin-bottom: 35px;
+blockquote:before,
+blockquote:after {
+	content: "";
+	display: table;
 }
 
-blockquote > p:last-child {
+blockquote:after {
+	clear: both;
+}
+
+blockquote > :last-child {
 	margin-bottom: 0;
 }
 
 blockquote cite,
 blockquote small {
-	color: #333;
-	font-family: "Noto Sans", sans-serif;
-	font-size: 17px;
-	line-height: 1.6471;
+	color: #1a1a1a;
+	font-size: 16px;
+	line-height: 1.75;
 }
 
 blockquote em,
@@ -141,6 +158,15 @@ blockquote cite {
 blockquote strong,
 blockquote b {
 	font-weight: 400;
+}
+
+blockquote.alignleft,
+blockquote.alignright {
+	border: 0 solid #1a1a1a;
+	border-top-width: 4px;
+	padding: 18px 0 0;
+	width: -webkit-calc(50% - 14px);
+	width: calc(50% - 14px);
 }
 
 address {
@@ -158,11 +184,10 @@ pre {
 }
 
 pre {
-	background-color: #fcfcfc;
-	border: 1px solid #eaeaea;
-	font-size: 17px;
-	line-height: 1.2353;
-	margin-bottom: 28px;
+	border: 1px solid #d1d1d1;
+	font-size: 16px;
+	line-height: 1.3125;
+	margin: 0 0 28px;
 	max-width: 100%;
 	overflow: auto;
 	padding: 14px;
@@ -171,14 +196,21 @@ pre {
 	word-wrap: break-word;
 }
 
+code {
+	background-color: #d1d1d1;
+	padding: 2px 4px;
+}
+
 abbr[title] {
-	border-bottom: 1px dotted #eaeaea;
+	border-bottom: 1px dotted #d1d1d1;
 	cursor: help;
 }
 
 mark,
 ins {
-	background-color: #fff9c0;
+	background: #007acc;
+	color: #fff;
+	padding: 2px 4px;
 	text-decoration: none;
 }
 
@@ -191,16 +223,16 @@ sub {
 	vertical-align: baseline;
 }
 
-sup {
-	bottom: 1ex;
+sub {
+	top: -6px;
 }
 
-sub {
-	top: .5ex;
+sup {
+	bottom: -3px;
 }
 
 small {
-	font-size: 75%;
+	font-size: 80%;
 }
 
 big {
@@ -209,11 +241,11 @@ big {
 
 
 /**
- * 3.0 Elements
+ * 3.0 - Elements
  */
 
 hr {
-	background-color: #eaeaea;
+	background-color: #d1d1d1;
 	border: 0;
 	height: 1px;
 	margin-bottom: 28px;
@@ -235,12 +267,17 @@ ol {
 
 li > ul,
 li > ol {
-	margin: 0 0 0 23px;
+	margin-bottom: 0;
 }
 
-blockquote > ul,
+li > ul,
+blockquote > ul {
+	margin-left: 20px;
+}
+
+li > ol,
 blockquote > ol {
-	margin-left: 28px;
+	margin-left: 24px;
 }
 
 dl {
@@ -261,11 +298,11 @@ td,
 .mce-item-table,
 .mce-item-table th,
 .mce-item-table td {
-	border: 1px solid #eaeaea;
+	border: 1px solid #d1d1d1;
 }
 
 table a {
-	color: #333;
+	color: #007acc;
 }
 
 table,
@@ -281,8 +318,7 @@ table th,
 .mce-item-table th,
 table caption {
 	border-width: 0 1px 1px 0;
-	font-family: "Noto Serif", serif;
-	font-size: 17px;
+	font-size: 16px;
 	font-weight: 700;
 	padding: 7px;
 	text-align: left;
@@ -292,8 +328,7 @@ table caption {
 table td,
 .mce-item-table td {
 	border-width: 0 1px 1px 0;
-	font-family: "Noto Serif", serif;
-	font-size: 17px;
+	font-size: 16px;
 	padding: 7px;
 	vertical-align: baseline;
 }
@@ -305,6 +340,10 @@ img {
 	vertical-align: middle;
 }
 
+a img {
+	display: block;
+}
+
 figure {
 	margin: 0;
 }
@@ -314,86 +353,90 @@ del {
 }
 
 a {
-	border-bottom: 1px solid #333;
-	color: #333;
+	box-shadow: 0 1px 0 0 currentColor;
+	color: #007acc;
 	text-decoration: none;
+}
+
+fieldset {
+	border: 1px solid #d1d1d1;
+	margin: 0 0 28px;
+	padding: 14px;
 }
 
 
 /**
- * 4.0 Alignment
+ * 4.0 - Alignment
  */
 
 .alignleft {
 	float: left;
-	margin: 7px 28px 28px 0;
+	margin: 6px 28px 28px 0;
 }
 
 .alignright {
 	float: right;
-	margin: 7px 0 28px 28px;
+	margin: 6px 0 28px 28px;
 }
 
 .aligncenter {
 	clear: both;
 	display: block;
-	margin: 7px auto;
+	margin: 0 auto 28px;
 }
 
 
 /**
- * 5.0 Caption
+ * 5.0 - Caption
  */
 
 .wp-caption {
 	background: transparent;
 	border: none;
-	color: #707070;
-	font-family: "Noto Sans", sans-serif;
-	margin: 0 0 28px 0;
+	margin-bottom: 28px;
 	max-width: 100%;
 	padding: 0;
 	text-align: inherit;
 }
 
-.wp-caption.alignleft {
-	margin: 7px 28px 21px 0;
-}
-
-.wp-caption.alignright {
-	margin: 7px 0 21px 28px;
-}
-
-.wp-caption.aligncenter {
-	margin: 7px auto;
-}
-
-.wp-caption .wp-caption-text,
+.wp-caption-text,
 .wp-caption-dd {
-	font-size: 14px;
-	line-height: 1.5;
-	padding: 7px 0;
+	color: #686868;
+	font-size: 13px;
+	font-style: italic;
+	line-height: 1.6153846154;
+	padding-top: 7px;
 }
 
 
 /**
- * 6.0 Galleries
+ * 6.0 - Galleries
  */
 
-.gallery-item {
+.mce-content-body .wpview-wrap {
+	margin-bottom: 28px;
+}
+
+.gallery {
+	margin: 0 -1.1666667%;
+	padding: 0;
+}
+
+.gallery .gallery-item {
 	display: inline-block;
-	padding: 1.79104477%;
+	max-width: 33.33%;
+	padding: 0 1.1400652% 2.2801304%;
 	text-align: center;
 	vertical-align: top;
 	width: 100%;
 }
 
-.gallery-columns-2 .gallery-item {
-	max-width: 50%;
+.gallery-columns-1 .gallery-item {
+	max-width: 100%;
 }
 
-.gallery-columns-3 .gallery-item {
-	max-width: 33.33%;
+.gallery-columns-2 .gallery-item {
+	max-width: 50%;
 }
 
 .gallery-columns-4 .gallery-item {
@@ -421,12 +464,8 @@ a {
 }
 
 .gallery .gallery-caption {
-	color: #707070;
-	display: block;
-	font-family: "Noto Sans", sans-serif;
-	font-size: 14px;
-	line-height: 1.5;
-	padding: 7px 0;
+	font-size: 13px;
+	margin: 0;
 }
 
 .gallery-columns-6 .gallery-caption,
@@ -438,45 +477,71 @@ a {
 
 
 /**
- * 7.0 Audio / Video
+ * 7.0 - Audio / Video
  */
 
-.mce-content-body .wpview-wrap {
-	margin-bottom: 32px;
+.wp-audio-shortcode a,
+.wp-playlist a {
+	box-shadow: none;
 }
 
 .mce-content-body .wp-audio-playlist {
 	margin: 0;
+	padding-bottom: 0;
+}
+
+.mce-content-body .wp-playlist-tracks {
+	margin-top: 0;
+}
+
+.mce-content-body  .wp-playlist-item {
+	padding: 10px 0;
+}
+
+.mce-content-body .wp-playlist-item-length {
+	top: 10px;
 }
 
 
 /**
- * 8.0 RTL
+ * 8.0 - RTL
  */
 
-body.rtl {
-	font-family: Arial, Tahoma, sans-serif;
-}
-
 .rtl blockquote {
-	border-left: none;
-	border-right: 4px solid #707070;
-	margin: 0 -21px 35px 0;
-	padding-left: 0;
-	padding-right: 17px;
+	border: 0 solid #1a1a1a;
+	border-right-width: 4px;
 }
 
-.rtl blockquote > blockquote {
-	margin-left: auto;
+.rtl blockquote.alignleft,
+.rtl blockquote.alignright {
+	border: 0 solid #1a1a1a;
+	border-top-width: 4px;
+}
+
+.rtl blockquote:not(.alignleft):not(.alignright) {
+	margin-right: -28px;
+	padding: 0 24px 0 0;
+}
+
+.rtl blockquote blockquote:not(.alignleft):not(.alignright) {
 	margin-right: 0;
+	margin-left: auto;
 }
 
 .rtl li > ul,
-.rtl li > ol {
-	margin: 0 23px 0 0;
+.rtl blockquote > ul {
+	margin-right: 20px;
+	margin-left: auto;
+}
+
+.rtl li > ol,
+.rtl blockquote > ol {
+	margin-right: 24px;
+	margin-left: auto;
 }
 
 .rtl table th,
+.rtl .mce-item-table th,
 .rtl table caption {
 	text-align: right;
 }
