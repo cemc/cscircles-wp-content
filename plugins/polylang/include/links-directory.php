@@ -1,68 +1,68 @@
 <?php
 
-/*
- * links model for use when the language code is added in url as a directory
+/**
+ * Links model for use when the language code is added in url as a directory
  * for example mysite.com/en/something
  * implements the "links_model interface"
  *
  * @since 1.2
  */
 class PLL_Links_Directory extends PLL_Links_Permalinks {
-	protected $index = 'index.php'; // need this before $wp_rewrite is created, also harcoded in wp-includes/rewrite.php
-	protected $root;
 
-	/*
-	 * constructor
+	/**
+	 * Constructor
 	 *
 	 * @since 1.2
 	 *
 	 * @param object $model PLL_Model instance
 	 */
-	public function __construct(&$model) {
-		parent::__construct($model);
+	public function __construct( &$model ) {
+		parent::__construct( $model );
 
-		// inspired by wp-includes/rewrite.php
-		$this->root = preg_match('#^/*' . $this->index . '#', get_option('permalink_structure')) ? $this->index . '/' : '';
-
-		add_action('pll_init', array(&$this, 'init'));
+		if ( did_action( 'pll_init' ) ) {
+			$this->init();
+		} else {
+			add_action( 'pll_init', array( $this, 'init' ) );
+		}
 	}
 
-	/*
-	 * called only at first object creation to avoid duplicating filters when switching blog
+	/**
+	 * Called only at first object creation to avoid duplicating filters when switching blog
 	 *
 	 * @since 1.6
 	 */
 	public function init() {
-		add_action('setup_theme', array(&$this, 'add_permastruct'), 2);
+		if ( did_action( 'setup_theme' ) ) {
+			$this->add_permastruct();
+		} else {
+			add_action( 'setup_theme', array( $this, 'add_permastruct' ), 2 );
+		}
 
-		// make sure to prepare rewrite rules when flushing
-		add_action('pre_option_rewrite_rules', array(&$this, 'prepare_rewrite_rules'));
-
-		// refresh rewrite rules if the 'page_on_front' option is modified
-		add_action('update_option_page_on_front', 'flush_rewrite_rules');
+		// Make sure to prepare rewrite rules when flushing
+		add_action( 'pre_option_rewrite_rules', array( $this, 'prepare_rewrite_rules' ) );
 	}
 
-	/*
-	 * adds the language code in url
+	/**
+	 * Adds the language code in url
 	 * links_model interface
 	 *
 	 * @since 1.2
 	 *
-	 * @param string $url url to modify
+	 * @param string $url  url to modify
 	 * @param object $lang language
 	 * @return string modified url
 	 */
-	public function add_language_to_link($url, $lang) {
-		if (!empty($lang)) {
+	public function add_language_to_link( $url, $lang ) {
+		if ( ! empty( $lang ) ) {
 			$base = $this->options['rewrite'] ? '' : 'language/';
 			$slug = $this->options['default_lang'] == $lang->slug && $this->options['hide_default'] ? '' : $base . $lang->slug . '/';
-			return str_replace($this->home . '/' . $this->root, $this->home . '/' . $this->root . $slug, $url);
+			return str_replace( $this->home . '/' . $this->root, $this->home . '/' . $this->root . $slug, $url );
 		}
 		return $url;
 	}
 
-	/*
-	 * returns the url without language code
+	/**
+	 * Returns the url without language code
 	 * links_model interface
 	 *
 	 * @since 1.2
@@ -70,36 +70,43 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 * @param string $url url to modify
 	 * @return string modified url
 	 */
-	function remove_language_from_link($url) {
-		foreach ($this->model->get_languages_list() as $language)
-			if (!$this->options['hide_default'] || $this->options['default_lang'] != $language->slug)
+	function remove_language_from_link( $url ) {
+		foreach ( $this->model->get_languages_list() as $language ) {
+			if ( ! $this->options['hide_default'] || $this->options['default_lang'] != $language->slug ) {
 				$languages[] = $language->slug;
+			}
+		}
 
-		if (!empty($languages)) {
-			$pattern = str_replace('/', '\/', $this->home . '/' . $this->root);
-			$pattern = '#' . $pattern . ($this->options['rewrite'] ? '' : 'language\/') . '('.implode('|', $languages).')(\/|$)#';
-			$url = preg_replace($pattern,  $this->home . '/' . $this->root, $url);
+		if ( ! empty( $languages ) ) {
+			$pattern = str_replace( '/', '\/', $this->home . '/' . $this->root );
+			$pattern = '#' . $pattern . ( $this->options['rewrite'] ? '' : 'language\/' ) . '('.implode( '|', $languages ).')(\/|$)#';
+			$url = preg_replace( $pattern,  $this->home . '/' . $this->root, $url );
 		}
 		return $url;
 	}
 
-	/*
-	 * returns the language based on language code in url
+	/**
+	 * Returns the language based on language code in url
 	 * links_model interface
 	 *
 	 * @since 1.2
+	 * @since 2.0 add $url argument
 	 *
+	 * @param string $url optional, defaults to current url
 	 * @return string language slug
 	 */
-	public function get_language_from_url() {
-		$requested_url  = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-		$pattern = str_replace('/', '\/', $this->home . '/' . $this->root . ($this->options['rewrite'] ? '' : 'language/'));
-		$pattern = '#' . $pattern . '('. implode('|', $this->model->get_languages_list(array('fields' => 'slug'))) . ')(\/|$)#';
-		return preg_match($pattern, trailingslashit($requested_url), $matches) ? $matches[1] : ''; // $matches[1] is the slug of the requested language
+	public function get_language_from_url( $url = '' ) {
+		if ( empty( $url ) ) {
+			$url  = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		}
+
+		$pattern = str_replace( '/', '\/', $this->home . '/' . $this->root . ( $this->options['rewrite'] ? '' : 'language/' ) );
+		$pattern = '#' . $pattern . '('. implode( '|', $this->model->get_languages_list( array( 'fields' => 'slug' ) ) ) . ')(\/|$)#';
+		return preg_match( $pattern, trailingslashit( $url ), $matches ) ? $matches[1] : ''; // $matches[1] is the slug of the requested language
 	}
 
-	/*
-	 * returns the home url
+	/**
+	 * Returns the home url
 	 * links_model interface
 	 *
 	 * @since 1.3.1
@@ -107,49 +114,49 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 * @param object $lang PLL_Language object
 	 * @return string
 	 */
-	public function home_url($lang) {
-		return $this->options['hide_default'] && $lang->slug == $this->options['default_lang'] ? $this->home : get_term_link($lang, 'language');
+	public function home_url( $lang ) {
+		$base = $this->options['rewrite'] ? '' : 'language/';
+		$slug = $this->options['default_lang'] == $lang->slug && $this->options['hide_default'] ? '' : '/' . $this->root . $base . $lang->slug;
+		return trailingslashit( $this->home . $slug );
 	}
 
-	/*
-	 * optionaly removes 'language' in permalinks so that we get http://www.myblog/en/ instead of http://www.myblog/language/en/
+	/**
+	 * Optionaly removes 'language' in permalinks so that we get http://www.myblog/en/ instead of http://www.myblog/language/en/
 	 *
 	 * @since 1.2
 	 */
 	function add_permastruct() {
-		// language information always in front of the uri ('with_front' => false)
-		// the 3rd parameter structure has been modified in WP 3.4
-		add_permastruct('language', $this->options['rewrite'] ? '%language%' : 'language/%language%', array('with_front' => false));
+		// Language information always in front of the uri ( 'with_front' => false )
+		// The 3rd parameter structure has been modified in WP 3.4
+		add_permastruct( 'language', $this->options['rewrite'] ? '%language%' : 'language/%language%', array( 'with_front' => false ) );
 	}
 
-	/*
-	 * prepares rewrite rules filters
+	/**
+	 * Prepares rewrite rules filters
 	 *
 	 * @since 0.8.1
 	 *
 	 * @param array $pre not used
 	 * @return unmodified $pre
 	 */
-	public function prepare_rewrite_rules($pre) {
-		static $done = false; // make sure to add filters only one time
+	public function prepare_rewrite_rules( $pre ) {
+		// Don't modify the rules if there is no languages created yet
+		// Make sure to add filter only once and if all custom post types and taxonomies have been registered
+		if ( $this->model->get_languages_list() && did_action( 'wp_loaded' ) && ! has_filter( 'language_rewrite_rules', '__return_empty_array' ) ) {
+			// Suppress the rules created by WordPress for our taxonomy
+			add_filter( 'language_rewrite_rules', '__return_empty_array' );
 
-		// don't modify the rules if there is no languages created yet
-		if ($this->model->get_languages_list() && !$done) {
-			// suppress the rules created by WordPress for our taxonomy
-			add_filter('language_rewrite_rules', '__return_empty_array');
+			foreach ( $this->get_rewrite_rules_filters() as $type ) {
+				add_filter( $type . '_rewrite_rules', array( $this, 'rewrite_rules' ) );
+			}
 
-			foreach ($this->get_rewrite_rules_filters() as $type)
-				add_filter($type . '_rewrite_rules', array(&$this, 'rewrite_rules'));
-
-			add_filter('rewrite_rules_array', array(&$this, 'rewrite_rules')); // needed for post type archives
-
-			$done = true;
+			add_filter( 'rewrite_rules_array', array( $this, 'rewrite_rules' ) ); // needed for post type archives
 		}
 		return $pre;
 	}
 
-	/*
-	 * the rewrite rules !
+	/**
+	 * The rewrite rules !
 	 * always make sure the default language is at the end in case the language information is hidden for default language
 	 * thanks to brbrbr http://wordpress.org/support/topic/plugin-polylang-rewrite-rules-not-correct
 	 *
@@ -158,60 +165,86 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 * @param array $rules rewrite rules
 	 * @return array modified rewrite rules
 	 */
-	public function rewrite_rules($rules) {
-		$filter = str_replace('_rewrite_rules', '', current_filter());
+	public function rewrite_rules( $rules ) {
+		$filter = str_replace( '_rewrite_rules', '', current_filter() );
 
 		global $wp_rewrite;
 		$newrules = array();
 
-		$languages = $this->model->get_languages_list(array('fields' => 'slug'));
-		if ($this->options['hide_default'])
-			$languages = array_diff($languages, array($this->options['default_lang']));
+		$languages = $this->model->get_languages_list( array( 'fields' => 'slug' ) );
+		if ( $this->options['hide_default'] ) {
+			$languages = array_diff( $languages, array( $this->options['default_lang'] ) );
+		}
 
-		if (!empty($languages))
-			$slug = $wp_rewrite->root . ($this->options['rewrite'] ? '' : 'language/') . '('.implode('|', $languages).')/';
+		if ( ! empty( $languages ) ) {
+			$slug = $wp_rewrite->root . ( $this->options['rewrite'] ? '' : 'language/' ) . '(' . implode( '|', $languages ) . ')/';
+		}
 
-		// for custom post type archives
-		$cpts = array_intersect($this->model->get_translated_post_types(), get_post_types(array('_builtin' => false)));
-		$cpts = $cpts ? '#post_type=('.implode('|', $cpts).')#' : '';
+		// For custom post type archives
+		$cpts = array_intersect( $this->model->get_translated_post_types(), get_post_types( array( '_builtin' => false ) ) );
+		$cpts = $cpts ? '#post_type=(' . implode( '|', $cpts ) . ')#' : '';
 
-		foreach ($rules as $key => $rule) {
-			// we don't need the lang parameter for post types and taxonomies
-			// moreover adding it would create issues for pages and taxonomies
-			if ($this->options['force_lang'] && in_array($filter, array_merge($this->model->get_translated_post_types(), $this->model->get_translated_taxonomies()))) {
-				if (isset($slug))
-					$newrules[$slug.str_replace($wp_rewrite->root, '', $key)] = str_replace(
-						array('[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]'),
-						array('[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]'),
+		foreach ( $rules as $key => $rule ) {
+			// Special case for translated post types and taxonomies to allow canonical redirection
+			if ( $this->options['force_lang'] && in_array( $filter, array_merge( $this->model->get_translated_post_types(), $this->model->get_translated_taxonomies() ) ) ) {
+
+				/**
+				 * Filters the rewrite rules to modify
+				 *
+				 * @since 1.9.1
+				 *
+				 * @param bool        $modify  whether to modify or not the rule, defaults to true
+				 * @param array       $rule    original rewrite rule
+				 * @param string      $filter  current set of rules being modified
+				 * @param string|bool $archive custom post post type archive name or false if it is not a cpt archive
+				 */
+				if ( ! apply_filters( 'pll_modify_rewrite_rule', true, array( $key => $rule ), $filter, false ) ) {
+					continue;
+				}
+
+				if ( isset( $slug ) ) {
+					$newrules[ $slug . str_replace( $wp_rewrite->root, '', $key ) ] = str_replace(
+						array( '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?' ),
+						array( '[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '?lang=$matches[1]&' ),
 						$rule
-					); // should be enough!
+					); // Should be enough!
+				}
 
-				if ($this->options['hide_default']) {
-					$newrules[$key] = $rules[$key];
-					// unset only if we hide the code for the default language as check_language_code_in_url will do its job in other cases
-					unset($rules[$key]);
+				if ( $this->options['hide_default'] ) {
+					$newrules[ $key ] = $rules[ $key ];
+					// Unset only if we hide the code for the default language as check_language_code_in_url will do its job in other cases
+					unset( $rules[ $key ] );
 				}
 			}
 
-			// rewrite rules filtered by language
-			elseif (in_array($filter, $this->always_rewrite) || in_array($filter, $this->model->get_filtered_taxonomies()) || ($cpts && preg_match($cpts, $rule) && !strpos($rule, 'name=')) || ($filter != 'rewrite_rules_array' && $this->options['force_lang'])) {
-				if (isset($slug))
-					$newrules[$slug.str_replace($wp_rewrite->root, '', $key)] = str_replace(
-						array('[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?'),
-						array('[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '?lang=$matches[1]&'),
+			// Rewrite rules filtered by language
+			elseif ( in_array( $filter, $this->always_rewrite ) || in_array( $filter, $this->model->get_filtered_taxonomies() ) || ( $cpts && preg_match( $cpts, $rule, $matches ) && ! strpos( $rule, 'name=' ) ) || ( 'rewrite_rules_array' != $filter && $this->options['force_lang'] ) ) {
+
+				/** This filter is documented in include/links-directory.php */
+				if ( ! apply_filters( 'pll_modify_rewrite_rule', true, array( $key => $rule ), $filter, empty( $matches[1] ) ? false : $matches[1] ) ) {
+					continue;
+				}
+
+				if ( isset( $slug ) ) {
+					$newrules[ $slug . str_replace( $wp_rewrite->root, '', $key ) ] = str_replace(
+						array( '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?' ),
+						array( '[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '?lang=$matches[1]&' ),
 						$rule
-					); // should be enough!
+					); // Should be enough!
+				}
 
-				if ($this->options['hide_default'])
-					$newrules[$key] = str_replace('?', '?lang='.$this->options['default_lang'].'&', $rule);
+				if ( $this->options['hide_default'] ) {
+					$newrules[ $key ] = str_replace( '?', '?lang=' . $this->options['default_lang'] . '&', $rule );
+				}
 
-				unset($rules[$key]); // now useless
+				unset( $rules[ $key ] ); // Now useless
 			}
 		}
 
-		// the home rewrite rule
-		if ($filter == 'root' && isset($slug))
-			$newrules[$slug.'?$'] = $wp_rewrite->index.'?lang=$matches[1]';
+		// The home rewrite rule
+		if ( 'root' == $filter && isset( $slug ) ) {
+			$newrules[ $slug . '?$' ] = $wp_rewrite->index.'?lang=$matches[1]';
+		}
 
 		return $newrules + $rules;
 	}

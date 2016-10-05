@@ -1,10 +1,11 @@
 <?php
 
-if(!class_exists('WP_Widget_Recent_Posts')){
+if ( ! class_exists( 'WP_Widget_Recent_Posts' ) ) {
 	require_once( ABSPATH . '/wp-includes/default-widgets.php' );
 }
 
 /*
+ * backward compatibility with WP < 4.4
  * obliged to rewrite the whole functionnality to have a language dependant cache key
  * code base is WP 4.2
  *
@@ -21,7 +22,7 @@ class PLL_Widget_Recent_Posts extends WP_Widget_Recent_Posts {
 	 * @param array $args Display arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
-	public function widget($args, $instance) {
+	public function widget( $args, $instance ) {
 		$cache = array();
 		if ( ! $this->is_preview() ) {
 			$cache = wp_cache_get( 'widget_recent_posts', 'widget' );
@@ -36,8 +37,8 @@ class PLL_Widget_Recent_Posts extends WP_Widget_Recent_Posts {
 		}
 
 		$lang = pll_current_language(); #added
-		if ( isset( $cache[ $args['widget_id'] ] [$lang] ) ) { #modified#
-			echo $cache[ $args['widget_id'] ] [$lang]; #modified#
+		if ( isset( $cache[ $args['widget_id'] ][ $lang ] ) ) { #modified#
+			echo $cache[ $args['widget_id'] ][ $lang ]; #modified#
 			return;
 		}
 
@@ -69,7 +70,7 @@ class PLL_Widget_Recent_Posts extends WP_Widget_Recent_Posts {
 			'ignore_sticky_posts' => true
 		) ) );
 
-		if ($r->have_posts()) :
+		if ( $r->have_posts() ) :
 ?>
 		<?php echo $args['before_widget']; ?>
 		<?php if ( $title ) {
@@ -93,21 +94,10 @@ class PLL_Widget_Recent_Posts extends WP_Widget_Recent_Posts {
 		endif;
 
 		if ( ! $this->is_preview() ) {
-			$cache[ $args['widget_id'] ] [$lang] = ob_get_flush(); #modified#
+			$cache[ $args['widget_id'] ][ $lang ] = ob_get_flush(); #modified#
 			wp_cache_set( 'widget_recent_posts', $cache, 'widget' );
 		} else {
 			ob_end_flush();
 		}
-	}
-
-	/*
-	 * backward compatibility with WP < 3.9
-	 *
-	 * @since 1.5
-	 *
-	 * @return bool
-	 */
-	function is_preview() {
-		return version_compare($GLOBALS['wp_version'], '3.9', '<') ? false : parent::is_preview();
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * a class to manage WP pointers
  * offers the possibility to have customized buttons
  *
@@ -9,7 +9,7 @@
 class PLL_Pointer {
 	protected $args;
 
-	/*
+	/**
 	 * constructor
 	 * enqueues the pointer script
 	 *
@@ -31,29 +31,30 @@ class PLL_Pointer {
 	 *
 	 * @param array $args
 	 */
-	public function __construct($args) {
+	public function __construct( $args ) {
 		$this->args = $args;
-		add_action('admin_enqueue_scripts', array(&$this, 'enqueue_scripts'));
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 
-	/*
+	/**
 	 * enqueue javascripts and styles if the pointer has not been dismissed
 	 *
 	 * @since 1.7.7
 	 */
 	public function enqueue_scripts() {
-		$dismissed = explode(',', get_user_meta(get_current_user_id(), 'dismissed_wp_pointers', true));
-		if (in_array($this->args['pointer'], $dismissed) || !current_user_can('manage_options'))
+		$dismissed = explode( ',', get_user_meta( get_current_user_id(), 'dismissed_wp_pointers', true ) );
+		if ( in_array( $this->args['pointer'], $dismissed ) || ! current_user_can( 'manage_options' ) ) {
 			return;
+		}
 
 		// Add pointer javascript
-		add_action('admin_print_footer_scripts', array(&$this, 'print_js'));
+		add_action( 'admin_print_footer_scripts', array( $this, 'print_js' ) );
 
-		wp_enqueue_style('wp-pointer');
-		wp_enqueue_script('wp-pointer');
+		wp_enqueue_style( 'wp-pointer' );
+		wp_enqueue_script( 'wp-pointer' );
 	}
 
-	/*
+	/**
 	 * adds the javascript of our pointer to the page
 	 *
 	 * @since 1.7.7
@@ -61,48 +62,48 @@ class PLL_Pointer {
 	public function print_js() {
 
 		// add optional buttons
-		if (!empty($this->args['buttons'])) {
+		if ( ! empty( $this->args['buttons'] ) ) {
 			$b = "
-				var widget = pointer.pointer('widget');
-				var buttons = $('.wp-pointer-buttons', widget);
-				$('a.close', widget).remove();"; // removes the WP button
+				var widget = pointer.pointer( 'widget' );
+				var buttons = $( '.wp-pointer-buttons', widget );
+				$( 'a.close', widget ).remove();"; // removes the WP button
 
 			// all the buttons use the standard WP ajax action to remember the pointer has been dismissed
-			foreach ($this->args['buttons'] as $button) {
-				$b .= sprintf("
-					$('<a>').addClass('%s').html('%s').css('margin-left', '10px').click(function() {
-						$.post(ajaxurl, {
+			foreach ( $this->args['buttons'] as $button ) {
+				$b .= sprintf( "
+					$( '<a>' ).addClass( '%s' ).html( '%s' ).css( 'margin-left', '10px' ).click( function() {
+						$.post( ajaxurl, {
 							pointer: '%s',
 							action: 'dismiss-wp-pointer'
-						}, function(response) {
+						}, function( response ) {
 							%s
-						});
-					}).appendTo(buttons);",
-					empty($button['link']) ? 'button' : 'button button-primary',
-					$button['label'],
+						} );
+					} ).appendTo( buttons );",
+					empty( $button['link'] ) ? 'button' : 'button button-primary',
+					esc_html( $button['label'] ),
 					$this->args['pointer'],
-					empty($button['link']) ? "pointer.pointer('close')" : sprintf("location.href = '%s'", $button['link'])
+					empty( $button['link'] ) ? "pointer.pointer( 'close' )" : sprintf( "location.href = '%s'", $button['link'] )
 				);
 			}
 		}
 
-		$js = sprintf("
+		$js = sprintf( "
 			//<![CDATA[
-			jQuery(document).ready(function($) {
-				var pointer = $('#%s').pointer({
+			jQuery( document ).ready( function( $ ) {
+				var pointer = $( '#%s' ).pointer( {
 					content: '%s',
 					%s
 					%s
-				});
-				pointer.pointer('open');
+				} );
+				pointer.pointer( 'open' );
 				%s
-			});
+			} );
 			// ]]>",
 			$this->args['id'],
-			sprintf('<h3>%s</h3><p>%s</p>', $this->args['title'], $this->args['content']),
-			empty($this->args['position']) ? '' : sprintf('position: {edge: "%s", align: "%s",},', $this->args['position']['edge'], $this->args['position']['align']),
-			empty($this->args['width']) ? '' : sprintf('pointerWidth: %d,', $this->args['width']),
-			empty($b) ? '' : $b
+			sprintf( '<h3>%s</h3><p>%s</p>', esc_html( $this->args['title'] ), esc_html( $this->args['content'] ) ),
+			empty( $this->args['position'] ) ? '' : sprintf( 'position: {edge: "%s", align: "%s",},', $this->args['position']['edge'], $this->args['position']['align'] ),
+			empty( $this->args['width'] ) ? '' : sprintf( 'pointerWidth: %d,', $this->args['width'] ),
+			empty( $b ) ? '' : $b
 		);
 		echo "<script type='text/javascript'>" .$js. "</script>";
 	}

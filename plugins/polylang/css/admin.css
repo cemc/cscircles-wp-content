@@ -1,6 +1,25 @@
 /* languages admin panel */
-.column-term_group, .column-flag, .column-count {
+#add-lang select {
+	width: 95%;
+}
+
+.column-locale,
+.languages .column-slug {
+	width : 15%
+}
+
+.column-default_lang {
+	width : 5%;
+}
+
+.column-term_group,
+.column-flag, .column-count {
 	width : 10%;
+}
+
+.icon-default-lang:before {
+	font-family: 'dashicons';
+	content: "\f155";
 }
 
 .form-field input[type="radio"] {
@@ -9,11 +28,12 @@
 }
 
 /* about Polylang metabox */
-#pll_about_box p, #pll_recommended p {
+#pll-about-box p,
+#pll-recommended p {
 	text-align: justify;
 }
 
-#pll_about_box input {
+#pll-about-box input {
 	margin: 0;
 	padding: 0;
 	float: right;
@@ -24,7 +44,8 @@
 	margin: 16px 0 8px 0;
 }
 
-.stringstranslations .column-name, .stringstranslations .column-context {
+.stringstranslations .column-name,
+.stringstranslations .column-context {
 	width: 10%;
 }
 
@@ -38,55 +59,126 @@
 	vertical-align: top;
 }
 
-.translation input, .translation textarea {
+.translation input,
+.translation textarea {
 	width: 72%;
 }
 
 /* settings */
-.pll_inline_block {
+.pll-settings .plugin-title {
+	width: 25%;
+}
+
+#wpbody-content .pll-settings .pll-configure tr {
+	display: table-row;
+}
+
+#wpbody-content .pll-settings .pll-configure td {
+	display: table-cell;
+}
+
+#wpbody-content .pll-settings .pll-configure > td {
+	padding: 20px 20px 20px 40px;
+}
+
+.pll-configure legend {
+	font-size: 14px;
+	font-weight: 600;
+	margin-bottom: 0.5em;
+}
+
+.pll-configure td .description {
+	margin-top: 2px;
+	margin-bottom: 0.5em;
+}
+
+.pll-configure p.submit {
+	margin-top: 20px;
+}
+
+.pll-configure .button {
+	margin-right: 20px;
+}
+
+.pll-configure fieldset {
+	margin-bottom: 1.5em;
+}
+
+.pll-inline-block-list {
 	margin: 0;
 }
 
-.pll_inline_block li {
+.pll-inline-block-list li {
 	display: inline-block;
 	margin: 0;
 	width: 250px;
 }
 
+/* settings URL modifications */
 #pll-domains-table td {
 	padding: 2px 2px 2px 1.5em;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: none;
 }
 
-#pll-force-lang .description {
-	margin-top: 0;
-	margin-bottom: 0.5em;
+.pll-settings-url-col {
+	display: inline-block;
+	width: 49%;
+	vertical-align: top;
+}
+
+/* settings Activation keys */
+#pll-licenses-table td {
+	vertical-align: top;
+}
+
+#pll-licenses-table label {
+	font-size: 1em;
+	font-weight: 600;
+}
+
+.pll-configure .pll-deactivate-license {
+	margin: 0 0 0 20px;
 }
 
 /* language columns in edit.php and edit-tags.php */
-th[class*='column-language_'], td[class*='column-language_'] {
-	width: 2em;
+th[class*='column-language_'],
+td[class*='column-language_'] {
+	width: 1.5em;
 }
 
 
 /* languages metabox in post.php */
+#post-translations p {
+	float: left;
+}
+
 #post-translations table {
 	table-layout: fixed;
 	width: 100%;
+	clear: both;
 }
 
 #post-translations a {
 	text-decoration: none;
 }
 
-#post-translations .pll-language-column, #post-translations .pll-edit-column {
+#post-translations .pll-language-column,
+#post-translations .pll-edit-column {
 	width: 20px;
+}
+
+#post-translations .tr_lang {
+	width: 100%;
 }
 
 #post-translations td {
 	padding: 2px;
 }
 
-#post-translations .spinner, #term-translations .spinner {
+#post-translations .spinner,
+#term-translations .spinner {
 	float: none;
 	margin: 0;
 	background-position: center;
@@ -127,17 +219,32 @@ th[class*='column-language_'], td[class*='column-language_'] {
 	margin-right: 4px;
 }
 
-#add-term-translations, #edit-term-translations {
+#term-translations p {
+	/* same style as label */
+	font-size: 12px;
+	font-style: normal;
+	padding: 2px;
+	color: #23282d;
+}
+
+#add-term-translations,
+#edit-term-translations {
 	width: 95%;
 }
 
 #term-translations .pll-language-column {
-  line-height: 28px;
-  width: 20%;
+	line-height: 28px;
+	width: 20%;
 }
 
-#term-translations .pll-edit-column, #add-term-translations .pll-language-column {
-  width: 20px;
+#term-translations .pll-edit-column,
+#add-term-translations .pll-language-column {
+	width: 20px;
+}
+
+#edit-term-translations .pll-language-column {
+	padding: 15px 10px;
+	font-weight: normal;
 }
 
 /* icon fonts */
@@ -172,10 +279,48 @@ th[class*='column-language_'], td[class*='column-language_'] {
 }
 
 @media screen and ( max-width: 782px ) {
+	/* settings */
+	#wpbody-content .pll-settings .pll-configure > td {
+		padding: 20px;
+	}
+
+	#wpbody-content .pll-settings #cb {
+		padding: 20px 9px;
+	}
+
+	/* settings URL modifications */
+	.pll-inline-block {
+		width: auto;
+	}
+
+	.pll-settings-url-col {
+		display: block;
+		width: 100%;
+	}
+
+	/* settings licenses */
+	#wpbody-content .pll-settings #pll-licenses-table td {
+		display: block;
+	}
+
+	.pll-configure .pll-deactivate-license {
+		margin: 10px 0 5px;
+	}
+
 	/* strings translations table */
 	.stringstranslations .column-context,
 	.stringstranslations .column-name {
-		display: none;
+		display: none; /* backward compatibility WP < 4.3 */
+	}
+
+	.translation label {
+		display: block;
+		width: 95%;
+		padding-left: 0;
+	}
+
+	.translation input {
+		width: 95%;
 	}
 
 	/* hide selected language flag and translations language name */
@@ -214,7 +359,7 @@ th[class*='column-language_'], td[class*='column-language_'] {
 	}
 
 	/* admin bar */
-	#wpadminbar li#wp-admin-bar-languages {
+	#wpadminbar #wp-admin-bar-languages {
 		display: block; /*shows our menu on mobile devices */
 	}
 
