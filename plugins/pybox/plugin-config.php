@@ -16,8 +16,8 @@ define('CSCIRCLES_ASST_ID_MAP',
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two
 // PYBOXLOG constants
-define ('ON_CEMC_SERVER', UWPHOME == 'http://cscircles.cemc.uwaterloo.ca/'
-        || UWPHOME == 'http://cscircles.cemc.uwaterloo.ca/dev/');
+define ('ON_CEMC_SERVER', UWPHOME == 'https://cscircles.cemc.uwaterloo.ca/'
+        || UWPHOME == 'https://cscircles.cemc.uwaterloo.ca/dev/');
 if (ON_CEMC_SERVER) {
   // if you want some of these, remove them from the 'if' block
   define('PYBOXLOG_EMAIL', 'daveagp@gmail.com');        // e-mail notifications for logging

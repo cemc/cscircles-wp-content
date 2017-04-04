@@ -2,7 +2,7 @@
 
 BOUNCE_ADDRESS = 'bounces@cscircles.cemc.uwaterloo.ca'
 NOREPLY_ADDRESS = 'noreply@cscircles.cemc.uwaterloo.ca'
-WEBSITE_URL = 'http://cscircles.cemc.uwaterloo.ca/' # with trailing slash
+WEBSITE_URL = 'https://cscircles.cemc.uwaterloo.ca/' # with trailing slash
 
 """Usage:
 - first line is sender in the format: full name <address@doma.in>
