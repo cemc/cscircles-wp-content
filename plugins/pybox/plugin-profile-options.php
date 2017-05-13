@@ -1,9 +1,9 @@
 <?php
 
 function user_pb_options_fields( $user ) { 
-  /*  $checkd = "";
+  $checkd = "";
   if (get_the_author_meta( 'pbplain', $user->ID )=='true') $checkd = ' checked="yes"  ';
-  $oh = "";
+  /* $oh = "";
   if (get_the_author_meta( 'pboldhistory', $user->ID )=='true') $oh = ' checked="yes"  ';*/
   $nocc = "";
   if (get_the_author_meta( 'pbnocc', $user->ID )=='true') $nocc = ' checked="yes"  ';
@@ -37,6 +37,13 @@ function user_pb_options_fields( $user ) {
        </td>
        </tr>
        <tr>
+	     <th><label for="pbplain"><?php echo __t("Disable Rich Editor");?></label></th>
+       <td>
+     <input type="checkbox" name="pbplain" id="pbplain"<?php echo $checkd ." > ".
+     __t("(default: unchecked) If checked, the rich editor (see Lesson 7) is always replaced by a plain editor."); ?></input>
+       </td>
+       </tr>
+       <tr>
 	     <th><label for="pbnocc"><?php echo __t("Don&apos;t Send Mail Copies");?></label></th>
        <td>
      <input type="checkbox" name="pbnocc" id="pbnocc"<?php echo $nocc ." > ".
@@ -61,8 +68,10 @@ function user_pb_options_fields_save( $user_id ) {
   //pyboxlog('save' . print_r($_POST, TRUE));
   if ( !current_user_can( 'edit_user', $user_id ) )
     return false;
-  /*  update_user_meta( $user_id, 'pbplain', ($_POST['pbplain']=='on')?'true':'false' );
-   update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );*/
+  update_user_meta( $user_id, 'pbplain', ($_POST['pbplain']=='on')?'true':'false' );
+  echo 'fdlfnd';
+  echo $_POST['pbplain'];
+  /* update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );*/
   update_user_meta( $user_id, 'pbguru', ($_POST['pbguru']));
   update_user_meta( $user_id, 'pbnocc', ($_POST['pbnocc']=='on')?'true':'false' );
   update_user_meta( $user_id, 'pboptout', ($_POST['pboptout']=='on')?'true':'false' );
