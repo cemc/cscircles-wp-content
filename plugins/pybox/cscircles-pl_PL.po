@@ -54,7 +54,7 @@ msgstr "Problem z URL:"
 #: ../wp-plugin/action-send-message.php:41
 #: ../wp-plugin/plugin-utilities.php:596
 msgid "Sent by CS Circles"
-msgstr "Wysłane przez CS Circles"
+msgstr "Wysłane z CS Circles"
 
 #: ../wp-plugin/action-send-message.php:61
 msgid "SENT:"
@@ -63,7 +63,7 @@ msgstr "WYŚLIJ:"
 #: ../wp-plugin/action-send-message.php:62
 #, php-format
 msgid "THIS IS A COPY of a message you sent to %s."
-msgstr "TO JEST KOPIA WYSŁANEJ WIADOMOŚCI %s."
+msgstr "TO JEST KOPIA wiadomości wysłanej do %s."
 
 #: ../wp-plugin/action-send-message.php:103
 msgid "The user sent this code with the message:"
@@ -85,7 +85,7 @@ msgstr "Program nie wyświetił żadnych wyników."
 
 #: ../wp-plugin/action-submit-code.php:349
 msgid "(Did you forget to use </i><code>print</code><i>?)"
-msgstr "(Zapomniałeś użyć d'utiliser </i><code>print</code><i> ?)"
+msgstr "(Zapomniałeś użyć </i><code>print</code><i>?)"
 
 #: ../wp-plugin/action-submit-code.php:354
 msgid "Program output:"
@@ -101,7 +101,7 @@ msgstr "Przed uruchomieniem twojego kodu:"
 
 #: ../wp-plugin/action-submit-code.php:540
 msgid "Input:"
-msgstr "Wprowadź:"
+msgstr "Wprowadzono:"
 
 #: ../wp-plugin/action-submit-code.php:553
 msgid "Error messages: "
@@ -113,11 +113,11 @@ msgstr "Program wykonany bez awarii."
 
 #: ../wp-plugin/action-submit-code.php:559
 msgid "Program crashed."
-msgstr "Awaria programu"
+msgstr "Awaria programu."
 
 #: ../wp-plugin/action-submit-code.php:561
 msgid "Program crashed &mdash; "
-msgstr "Program zawiesił się&mdash; "
+msgstr "Program zawiesił się &mdash; "
 
 #: ../wp-plugin/action-submit-code.php:565
 msgid "Memory Limit Exceeded"
@@ -168,13 +168,11 @@ msgstr "Sukces!"
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
 "Nie przeszedł testów. Sprawdź szczegóły poniżej i spróbuj ponownie."
-"spróbuj ponownie."
 
 #: ../wp-plugin/action-submit-code.php:702
 msgid "You must log in to save data."
-msgstr ""
-"Musisz się zalogować, aby zapisać dane"
-"logowanie"
+msgstr "Musisz się zalogować, aby zapisać dane"
+
 
 #: ../wp-plugin/action-submit-code.php:703
 msgid "Program saved."
@@ -183,8 +181,8 @@ msgstr "Program zapisany."
 #: ../wp-plugin/action-submit-code.php:765
 #, php-format
 msgid "Pybox error: problem hash %s not found. Try reloading the page."
-msgstr ""
-"Błąd PyBox: problem ze znalezieniem hasz %s. Spróbuj ponownie załadować stronę."
+msgstr "Błąd PyBox: problem ze znalezieniem hasz %s. "
+"Spróbuj ponownie załadować stronę."
 
 #: ../wp-plugin/action-submit-code.php:859
 #, php-format
@@ -237,7 +235,7 @@ msgid ""
 "up help about a problem, you must use the link in the previous email{1} \n"
 "A copy of your e-mail follows."
 msgstr ""
-"Twój e-mail do {0} nie będzie przeczytany. Jeśli chcesz udzielić  l' pomocy w rozwiązaniu "
+"Twój e-mail do {0} nie będzie przeczytany. Jeśli chcesz udzielić  pomocy w rozwiązaniu "
 "problemu, należy skorzystać  z linku {1}\n"
 "w poprzednim e-mailu. \n"
 "Kopia twojego e-maila poniżej."
@@ -434,7 +432,7 @@ msgstr "pierwszy raz"
 
 #: ../wp-plugin/js-translation.php:4
 msgid "Click to try again."
-msgstr "Kliknij, aby spróbować jeszcze raz."
+msgstr "Kliknij, aby ponownie spróbować."
 
 #: ../wp-plugin/js-translation.php:5
 msgid ""
@@ -454,11 +452,11 @@ msgstr "Wprowadź dane"
 
 #: ../wp-plugin/js-translation.php:8
 msgid "Enter test input"
-msgstr "Wprowadź dane testujące"
+msgstr "Wprowadź dane testowe"
 
 #: ../wp-plugin/js-translation.php:9
 msgid "Enter test statements"
-msgstr "Wprowadź instrukcje testowe"
+msgstr "Wprowadź polecenia testowe"
 
 #: ../wp-plugin/js-translation.php:10
 msgid "Error: could not connect to database."
@@ -466,11 +464,11 @@ msgstr "Błąd: nie ma dostepu do bazy."
 
 #: ../wp-plugin/js-translation.php:11
 msgid "Go back to grading"
-msgstr "Powróć"
+msgstr "Powróć do testera"
 
 #: ../wp-plugin/js-translation.php:12
 msgid "Hide history"
-msgstr "Ukryj'historię"
+msgstr "Ukryj historię"
 
 #: ../wp-plugin/js-translation.php:13
 msgid "Hide input box"
@@ -511,7 +509,7 @@ msgid ""
 msgstr ""
 "Wybierz adresata wiadomości. Jeśli pracujesz z "
 "nauczycielem lub przyjacielem wybierz go jako guru "
-"na swoim profilu (dostępny w menu użytkownika "
+"na swoim profilu (w menu użytkownika "
 "w prawym górnym rogu strony)."
 
 #: ../wp-plugin/js-translation.php:21
@@ -541,19 +539,19 @@ msgid ""
 "The code box is empty. It should instead contain your best partial solution "
 "so far."
 msgstr ""
-"Pole wprowadzania kodu jest puste. Powinno zawierać częściowe rozwiązanie  "
+"Pole wprowadzania kodu jest puste. Powinno zawierać częściowe rozwiązanie "
 "najlepsze jak do tej pory."
 
 #: ../wp-plugin/js-translation.php:27
 msgid "The database connected but found no data."
-msgstr "Jest połączenie z bazą, ale danych nie znaleziono ."
+msgstr "Jest połączenie z bazą, ale danych nie znaleziono."
 
 #: ../wp-plugin/js-translation.php:28
 msgid ""
 "Unable to process 'send message' request. You might have lost your internet "
 "connection."
 msgstr ""
-"Proces wysyłania wiadomości ' niedostępny. Może zostało zerwane "
+"Proces 'wysyłanie wiadomości' niedostępny. Może zostało zerwane "
 "łącze internetowe."
 
 #: ../wp-plugin/js-translation.php:29
@@ -561,12 +559,12 @@ msgid ""
 "Warning: unable to talk to server. Could not set 'completed' status for this "
 "problem."
 msgstr ""
-"Ostrzeżenie: Nie łączności z serwerem. Nie udało się "
+"Ostrzeżenie: Nie ma łączności z serwerem. Nie udało się "
 "ustalić przyczyny tego problemu."
 
 #: ../wp-plugin/js-translation.php:30 ../wp-plugin/shortcodes-exercises.php:54
 msgid "You have completed this problem at least once."
-msgstr "Problem ten był rozwiazany, co najmniej raz."
+msgstr "Problem ten był rozwiażany, co najmniej raz."
 
 #: ../wp-plugin/js-translation.php:31
 msgid "Your message was sent."
@@ -617,7 +615,7 @@ msgstr ""
 "Proszę odwiedź\n"
 "%loginurl%\n"
 "i zmień hasło na takie, które zapamiętasz.\n"
-"Naciśnij \"%upprof%\" lorsque vous avez terminé.\n"
+"Naciśnij \"%upprof%\" jeśli skończysz.\n"
 "\n"
 "Podziękowania od zespołu Computer Science Circles!!\n"
 "%siteurl%"
@@ -633,7 +631,7 @@ msgstr "Uaktualnienie Profilu"
 #: ../wp-plugin/plugin-profile-options.php:19
 #, php-format
 msgid "The username %s does not exist."
-msgstr "Taki użytkownik %s n'nie istnieje."
+msgstr "Taki użytkownik %s nie istnieje."
 
 #: ../wp-plugin/plugin-profile-options.php:22
 #, php-format
@@ -645,8 +643,8 @@ msgid ""
 "Enter the username of your guru. After you press <i>Update profile</i> we'll "
 "see if they exist."
 msgstr ""
-"Wprowadź nzwę użytkownika twojego guru. Następnie kliknij <i>Uaktualnienie Profilu"
-"profil</i>, spójrz, czy istnieje."
+"Wprowadź nazwę użytkownika twojego guru. Następnie kliknij <i>Uaktualnienie Profilu</i>,"
+"spójrz, czy istnieje."
 
 #: ../wp-plugin/plugin-profile-options.php:32
 msgid "Guru&apos;s <i>Username</i> (blank for none)"
@@ -688,7 +686,7 @@ msgstr ""
 
 #: ../wp-plugin/plugin-utilities.php:167
 msgid "me"
-msgstr "moi"
+msgstr "mnie"
 
 #: ../wp-plugin/plugin-utilities.php:169
 msgid "Asst."
@@ -698,7 +696,7 @@ msgstr "Asystent"
 #, php-format
 msgid "[Too long; only first %1$s out of %2$s characters shown]"
 msgstr ""
-"[Zbyt długi; tylko pirwsze %1$s z %2$s są wyświetlane]"
+"[Zbyt długi; tylko pierwsze %1$s z %2$s są wyświetlane]"
 
 #: ../wp-plugin/plugin-utilities.php:452
 msgid "Return to Computer Science Circles"
@@ -714,7 +712,7 @@ msgstr "Wyświetl źródło strony"
 
 #: ../wp-plugin/shortcode-mailpage.php:12
 msgid "Student ID must be a number."
-msgstr "ID studenta musi mieć liczbą."
+msgstr "ID studenta musi być liczbą."
 
 #: ../wp-plugin/shortcode-mailpage.php:20
 msgid "No such student exists."
@@ -739,7 +737,7 @@ msgstr "Mail o %1$s [%3$s] dla %2$s"
 
 #: ../wp-plugin/shortcode-mailpage.php:77
 msgid "link to original page"
-msgstr "link do orginalnej strony"
+msgstr "link do oryginalnej strony"
 
 #: ../wp-plugin/shortcode-mailpage.php:82
 msgid " has completed this problem."
@@ -752,7 +750,7 @@ msgstr " problem nie jest zakończony."
 #: ../wp-plugin/shortcode-mailpage.php:87
 #, php-format
 msgid "Note: this student completed the problem at %s"
-msgstr "Uwaga: ten uczeń ukończył problem z %s"
+msgstr "Uwaga: ten uczeń zakończył problem z %s"
 
 #: ../wp-plugin/shortcode-mailpage.php:89
 msgid "Click on a message title to toggle the message open or closed."
@@ -772,7 +770,7 @@ msgstr "(najstarszy)"
 
 #: ../wp-plugin/shortcode-mailpage.php:103
 msgid "Quote/<br/>Reply"
-msgstr "Citer/<br/>Répondre"
+msgstr "Cudzysłów/<br/>Odpowiedz"
 
 #: ../wp-plugin/shortcode-mailpage.php:112
 #: ../wp-plugin/shortcodes-exercises.php:538
@@ -863,7 +861,7 @@ msgstr "Zgłoś"
 
 #: ../wp-plugin/shortcode-my-progress.php:9
 msgid "You must login to view your user page."
-msgstr "Musisz być zalogowany, aby zobaczyć stonę uzytkownika."
+msgstr "Musisz być zalogowany, aby zobaczyć stonę użytkownika."
 
 #: ../wp-plugin/shortcode-my-progress.php:36
 #, php-format
@@ -942,9 +940,7 @@ msgstr "(z #zgłoszone)"
 #: ../wp-plugin/shortcodes-exercises.php:36
 #, php-format
 msgid "Internal error, details below; please <a href='%s'>contact staff</a>."
-msgstr ""
-"Błąd wewnętrzny, szczegóły poniżej, proszę o <a href = '%s'>kontakt z personelem "
-"contactez</a>."
+msgstr "Błąd wewnętrzny, szczegóły poniżej, proszę o <a href = '%s'>kontakt z personelem </a>."
 
 #: ../wp-plugin/shortcodes-exercises.php:36
 msgid "Timestamp:"
@@ -999,8 +995,7 @@ msgstr "Zadanie na kodowanie "
 
 #: ../wp-plugin/shortcodes-exercises.php:529
 msgid "You need to create an account and log in to ask a question."
-msgstr ""
-"Ty potrzebujesz utworzyć konto i zalogować się, by zadać pytanie."
+msgstr "Ty potrzebujesz utworzyć konto i zalogować się, by zadać pytanie."
 
 #: ../wp-plugin/shortcodes-exercises.php:548
 msgid "(No guru specified in your profile)"
@@ -1038,8 +1033,7 @@ msgstr ""
 
 #: ../wp-plugin/shortcodes-exercises.php:629
 msgid "You may enter input for the program in the box below."
-msgstr ""
-"Możesz wprowadzić dane dla programu w poniższym polu."
+msgstr "Możesz wprowadzić dane dla programu w poniższym polu."
 
 #: ../wp-plugin/shortcodes-exercises.php:655
 msgid "Open in console"
@@ -1047,11 +1041,11 @@ msgstr "Otwórz w konsoli"
 
 #: ../wp-plugin/shortcodes-exercises.php:658
 msgid "Visualize"
-msgstr "Wizualizacja"
+msgstr "Wizualizer"
 
 #: ../wp-plugin/shortcodes-exercises.php:672
 msgid "Reset code to default"
-msgstr "Zresetuj kod do domyślnego"
+msgstr "Reset kodu do domyślnego"
 
 #: ../wp-plugin/shortcodes-exercises.php:677
 msgid "Help"
@@ -1064,7 +1058,7 @@ msgid ""
 "$s>click here to create an account or log in</a>."
 msgstr ""
 "Nowy? Przeczytaj <a %1$s>Korzystanie Z Tej Witryny</a>. Możesz również "
-"$s>kliknąć tutaj, aby założyć konto i zalogowaćsię.</a>."
+"$s>kliknąć tutaj, aby założyć konto i zalogować się.</a>."
 "a>."
 
 #: ../wp-plugin/shortcodes-misc.php:99
@@ -1081,7 +1075,7 @@ msgstr "Zaloguj się lub utwórz nowe konto"
 
 #: ../wp-theme/404.php:19
 msgid "Error 404. Not enough internets."
-msgstr "Błąd 404. Nie ma dostatecznej łączności internetowej."
+msgstr "Błąd 404. Nie dobrej łączności internetowej."
 
 #: ../wp-theme/404.php:24
 #, php-format
@@ -1168,7 +1162,7 @@ msgstr "Konsola (nowe okno)"
 
 #: ../wp-theme/functions.php:180
 msgid "Visualizer (new window)"
-msgstr "Wizualizator(nowe oknoe)"
+msgstr "Wizualizer (nowe oknoe)"
 
 #: ../wp-theme/functions.php:181
 msgid "Resources (new window)"
@@ -1226,7 +1220,7 @@ msgstr "Łańcuch"
 
 #: ../python3jail/static/_GRADER.py:8
 msgid "Floating Point Number"
-msgstr "Liczba zmiennoprzecinkowa"
+msgstr "Liczba Zmiennoprzecinkowa"
 
 #: ../python3jail/static/_GRADER.py:9
 msgid "Function Type"
@@ -1298,8 +1292,7 @@ msgstr "wartość "
 
 #: ../python3jail/static/_GRADER.py:90
 msgid "finished! (returned a value {} but did not need to return anything)"
-msgstr ""
-"skończone! (zwrócono wartość {}, ale nie potrzebował niczego zwracać)"
+msgstr "skończone! (zwrócono wartość {}, ale nie potrzebował niczego zwracać)"
 
 #: ../python3jail/static/_GRADER.py:98
 msgid "Error: list {0} has wrong length {1}, expected {2}"
@@ -1388,13 +1381,12 @@ msgstr "Nie ma wystarczającej ilości linii wyjściowych: {0} oczekiwano, {1} z
 #: ../wp-content/lesson_files/graders/pendulum-grader.py:9
 #: ../wp-content/lesson_files/graders/real-per-line.py:8
 msgid "Error: Output line {0} '{1}' was not a number"
-msgstr "Błąd: linia wyjściowaa {0} '{1}' nie ma numeru"
+msgstr "Błąd: linia wyjściowa {0} '{1}' nie ma numeru"
 
 #: ../wp-content/lesson_files/graders/pendulum-grader.py:11
 #: ../wp-content/lesson_files/graders/real-per-line.py:10
 msgid "Output line {0}, value {1}, did not match expected value {2}"
-msgstr ""
-"Linia wyjściowa {0}, wartość {1}, nie odpowiada oczekiwanej wartości {2}"
+msgstr "Linia wyjściowa {0}, wartość {1}, nie odpowiada oczekiwanej wartości {2}"
 "{2}"
 
 #: ../wp-content/lesson_files/graders/pendulum-grader.py:14
@@ -1409,8 +1401,7 @@ msgstr "Oto wykres:"
 
 #: ../wp-content/lesson_files/graders/trim-lines.py:7
 msgid "Error: output line {0} {1} did not match expected line {2}"
-msgstr ""
-"Błąd: wyjściowa linia {0} {1} nie zgadza się z linią {2}"
+msgstr "Błąd: wyjściowa linia {0} {1} nie zgadza się z linią {2}"
 
 #: ../wp-content/lesson_files/graders/warmup.py:7
 msgid "Your program produced no output. Please try again."
@@ -1418,14 +1409,11 @@ msgstr "Twój program nie wyświetla żadnej linii. Spróbuj jeszcze raz."
 
 #: ../wp-content/lesson_files/graders/warmup.py:9
 msgid "Your program produced too many lines of output. Please try again."
-msgstr ""
-"Twój program wyświetla zbyt wiele linii. Spróbuj jeszcze raz."
-"de nouveau."
+msgstr "Twój program wyświetla zbyt wiele linii. Spróbuj jeszcze raz."
 
 #: ../wp-content/lesson_files/graders/warmup.py:11
 msgid "Your program produced too few lines of output. Please try again."
-msgstr ""
-"Program wyświetla zbyt mało linii na wyjściu. "
+msgstr "Program wyświetla zbyt mało linii na wyjściu. "
 "Spróbuj jeszcze raz."
 
 #: ../wp-content/lesson_files/graders/warmup.py:13
@@ -1434,14 +1422,12 @@ msgstr "Znakomicie, dobra robota!"
 
 #: ../wp-content/lesson_files/graders/warmup.py:15
 msgid "Almost correct but ensure you correctly use upper and lower case."
-msgstr ""
-"Prawie poprawne, ale upewnij się, że prawidłowo używasz małych i dużych liter. "
-"minuscules."
+msgstr "Prawie poprawnie, ale upewnij się, że prawidłowo używasz małych i dużych liter."
 
 #: ../wp-content/lesson_files/graders/warmup.py:17
 msgid "Almost correct but ensure you correctly use punctuation and spacing."
-msgstr ""
-"Prawie poprawne, ale upewnij się, że prawidłowo stosujesz znaki interpunkcyjne i odstępy."
+msgstr "Prawie poprawnie, ale upewnij się, że prawidłowo stosujesz znaki "
+"interpunkcyjne i odstępy."
 
 #: ../wp-content/lesson_files/graders/warmup.py:19
 msgid ""
@@ -1456,7 +1442,7 @@ msgid "Incorrect answer, please try again."
 msgstr "Zła odpowiedź, spróbuj jeszcze raz."
 
 #~ msgid "Original lesson page containing %s (new window)"
-#~ msgstr "Strona zawierajac oryginalną lekcję %s (nowe okno)"
+#~ msgstr "Strona zawierająca oryginalną lekcję %s (nowe okno)"
 
 #~ msgid "Reload with a different view? (you have %s students)"
 #~ msgstr "Załadować ponownie inny widok? (Ty masz %s studentów)"
@@ -1465,10 +1451,10 @@ msgstr "Zła odpowiedź, spróbuj jeszcze raz."
 #~ msgstr "Wybrać innego studenta?"
 
 #~ msgid "Mail for which problem?"
-#~ msgstr "Do którego problemu wiadomości?"
+#~ msgstr "Wiadomość odnośnie którego problemu?"
 
 #~ msgid "Overview"
-#~ msgstr "Aperçu"
+#~ msgstr "Podgląd"
 
 #~ msgid "Show all visible"
 #~ msgstr "Pokaż wszystkie widoczne"
@@ -1481,7 +1467,7 @@ msgstr "Zła odpowiedź, spróbuj jeszcze raz."
 #~ "It should print exactly one line."
 #~ msgstr ""
 #~ "Twój program wygenerował więcej niż jedną linię.\n"
-#~ " Powinien wygenerować dokładnie jedną linię."
+#~ "Powinien wygenerować dokładnie jedną linię."
 
 #~ msgid "In this test case we set"
 #~ msgstr "Wtym przypadku testowym ustalamy"
@@ -1496,8 +1482,7 @@ msgstr "Zła odpowiedź, spróbuj jeszcze raz."
 #~ msgstr "Poprawną odpowiedzią jest "
 
 #~ msgid "\"CS Circles Bouncer\" <bounces@cscircles.cemc.uwaterloo.ca>"
-#~ msgstr ""
-#~ "\"Rebondeur Cercles informatiques\" <bounces@cscircles.cemc.uwaterloo.ca>"
+#~ msgstr "\"CS Circles Bouncer\" <bounces@cscircles.cemc.uwaterloo.ca>"
 
 #~ msgid "Computer Science Circles, powered by WordPress"
 #~ msgstr "Computer Science Circles, na bazie WordPress"
@@ -1506,7 +1491,7 @@ msgstr "Zła odpowiedź, spróbuj jeszcze raz."
 #~ msgstr "kliknij i wpisz, aby znaleźć stronę"
 
 #~ msgid "How do you want your name displayed?"
-#~ msgstr "Jak chcesz, aby twoja nawzwa była wyświetlana?"
+#~ msgstr "Jak chcesz, aby twoja nazwa była wyświetlana?"
 
 #~ msgid "Change Password"
 #~ msgstr "Zmień Hasło"
@@ -1515,6 +1500,5 @@ msgstr "Zła odpowiedź, spróbuj jeszcze raz."
 #~ msgstr "Cześć %s !"
 
 #~ msgid "THIS IS A COPY of a message you sent to the CS Circles Assistant."
-#~ msgstr ""
-#~ "TO JEST KOPIA wiadomości,  którą wysłałeś do Asystenta "
+#~ msgstr "TO JEST KOPIA wiadomości,  którą wysłałeś do Asystenta "
 #~ "CS Circles."
