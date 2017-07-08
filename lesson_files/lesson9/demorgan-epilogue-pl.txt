@@ -1,0 +1,11 @@
+Bardzo dobrze!
+Oto jeden ze sposobów uzyskania odpowiedzi. 
+Po pierwsze, <code>not (A or B)</code> jest tylko wtedy prawdziwe, gdy oba <code>A</code> i <code>B</code> są fałszywe. 
+Należy również pamiętać, że <code>(not A) and (not B)</code> jest tylko wtedy prawdziwe, gdy oba <code>not A</code> i <code>not B</code> są prawdziwe,
+tzn. jeśli oba <code>A</code> i <code>B</code> są fałszywe. 
+Mamy więc następujące równości:<pre>(not A) and (not B) = not (A or B)</pre>
+Umieszczając <code>not</code> po obu stronach, możemy wnioskować
+<pre>not ((not A) and (not B)) = not (not (A or B))</pre>
+zauważamy, że <code>not(not X))</code> zawsze równe jest <code>X</code>, więc 
+<pre>not ((not A) and (not B)) = not (not (A or B)) = A or B</pre>
+Ten sposób zapisywania wyrażeń boolowskich jest jednym z <a href='https://pl.wikipedia.org/wiki/Prawa_De_Morgana'>praw De Morgana</a>.

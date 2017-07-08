@@ -1,0 +1,6 @@
+Bardzo dobrze! Kolejność operacji jest jednakowa dla
+<pre>A or ((not B) and C)</pre>
+zastępując wartościami, otrzymujemy
+<pre>False or ((not True) and True)</pre>
+i  teraz upraszczając otrzymujemy
+<pre>False or ((not True) and True)<br/>= False or (False and True)<br/>= False or False<br/>= False</pre>
