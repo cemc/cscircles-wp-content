@@ -1162,7 +1162,7 @@ msgstr "Konsola (nowe okno)"
 
 #: ../wp-theme/functions.php:180
 msgid "Visualizer (new window)"
-msgstr "Wizualizer (nowe oknoe)"
+msgstr "Wizualizer (nowe okno)"
 
 #: ../wp-theme/functions.php:181
 msgid "Resources (new window)"
@@ -1268,7 +1268,7 @@ msgstr ", i "
 
 #: ../python3jail/static/_GRADER.py:54
 msgid "We defined "
-msgstr "My definiujemy "
+msgstr "My definiujemy: "
 
 #: ../python3jail/static/_GRADER.py:68 ../python3jail/static/_GRADER.py:92
 msgid "Error: {0} has wrong type {1}, expected {2}"
@@ -1321,8 +1321,7 @@ msgid ""
 "newline, tab) are either missing, or extra ones are present."
 msgstr ""
 "Twój wynik jest nieprawidłowy, ale tylko trochę. Brakuje znaków odstępów  "
-"(spacji, nowej linii, tabulatora) a niektóre są  "
-"zbędne."
+"(spacji, nowej linii, tabulatora) lub zbędne są obecne."
 
 #: ../python3jail/static/_GRADER.py:160
 msgid "Your output is not correct."
