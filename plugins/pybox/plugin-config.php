@@ -2,8 +2,8 @@
 
   // this file contains things you might need to personalize
 
-define('PRODUCTION_LANGUAGES', serialize(array('en', 'fr', 'de', 'nl', 'lt')));
-define('DEVELOPMENT_LANGUAGES', serialize(array('es', 'zh', 'pl')));
+define('PRODUCTION_LANGUAGES', serialize(array('en', 'fr', 'de', 'nl', 'lt', 'zh')));
+define('DEVELOPMENT_LANGUAGES', serialize(array('es', 'pl')));
 
 // user id of cscircles assistant for each language, defaults to dave/troy/sandy (0)
 // 2 should change
@@ -11,7 +11,8 @@ define('CSCIRCLES_ASST_ID_MAP',
        serialize(array('de' => 11351, 
                        'nl' => 25033, 
                        'lt' => 40943,
-                       'fr' => 147)));
+                       'fr' => 147,
+                       'zh' => 79886)));
 
 // optional reporting and exporting.
 // if you want logging to work, you must define one of the two

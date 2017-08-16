@@ -1200,7 +1200,7 @@ msgstr "wordmark-uw.gif"
 
 #: ../wp-theme/header.php:104
 msgid "wordmark-cemc.png"
-msgstr "wordmark-cemi.png"
+msgstr "wordmark-cemc.png"
 
 #: ../wp-theme/header.php:110
 msgid "Click here for the original site"

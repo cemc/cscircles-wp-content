@@ -25,7 +25,7 @@ def mohel(s):
 def format_address(name, email):
     if not name:
         return email
-    name = Charset('iso-8859-1').header_encode(name)
+    name = str(Header(name, 'utf-8'))
     return formataddr((name, email))
 
 def send_unicode_email(mFrom, mTo, mSubject, mBody, noreply = False):

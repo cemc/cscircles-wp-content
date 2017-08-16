@@ -123,7 +123,7 @@ function pb_mail($from, $to, $subject, $body) {
     if (proc_close($process) == 0) $sent = TRUE;
   } 
   if (!$sent) {
-    pyboxlog( "Used fallback for pb_mail", TRUE );
+    pyboxlog( "Used fallback for pb_mail: $ensemble", TRUE );
     wp_mail( $to, $subject, $body, "From: " . $from . '\n');
   }
 }
