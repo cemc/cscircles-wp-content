@@ -197,6 +197,7 @@ function pb_menu_items($wp_admin_bar) {
       $where = $where . "AND unanswered = 1";
       $count = $wpdb->get_var("SELECT COUNT(1) FROM ".$wpdb->prefix."pb_mail WHERE $where");
       if ($count > 0) {
+        echo "<!--" . (user_can(11351, 'level_10') ? 'y':'n') . " SELECT ustudent, problem, ID FROM ".$wpdb->prefix."pb_mail WHERE $where ORDER BY ID ASC LIMIT 1 -->";
         $msg = $wpdb->get_row("SELECT ustudent, problem, ID FROM ".$wpdb->prefix."pb_mail 
                              WHERE $where ORDER BY ID ASC LIMIT 1", ARRAY_A);
         

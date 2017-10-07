@@ -22,13 +22,13 @@ function cscircles_students_page() {
         $id = substr($key, 1);
         if ($val == 'hide') {
           if ($newhide != '') $newhide .= ",";
-          $newhide .= substr($key, 1);
+          $newhide .= $id;
           $h++;
         }
         else if ($val == 'remove') {
-          if (strtolower(get_user_meta(substr($key, 1), 'pbguru', true))==
+          if (trim(strtolower(get_user_meta($id, 'pbguru', true)))==
               strtolower(wp_get_current_user()->user_login))
-            update_user_meta( substr($key, 1), 'pbguru', '');
+            update_user_meta($id, 'pbguru', '');
           $d++;
         }
       }

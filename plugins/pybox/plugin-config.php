@@ -12,6 +12,7 @@ define('CSCIRCLES_ASST_ID_MAP',
                        'nl' => 25033, 
                        'lt' => 40943,
                        'fr' => 147,
+                       //7648 79886
                        'zh' => 79886)));
 
 // optional reporting and exporting.
