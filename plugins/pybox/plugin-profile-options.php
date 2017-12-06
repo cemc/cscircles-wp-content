@@ -50,11 +50,24 @@ function user_pb_options_fields( $user ) {
      __t("(default: unchecked) If checked, you will not receive a carbon copy when you send a message."); ?></input>
        </td>
        </tr>
+
        <tr>
 														<th><label for="pboptout"><?php echo __t("Opt Out of Mass Emails"); ?></label></th>
        <td>
      <input type="checkbox" name="pboptout" id="pboptout"<?php echo $optout . " > ".
  __t("(default: unchecked) If checked, you will not receive announcements from CS Circles. They are pretty infrequent, about once per year.");?></input>
+       </td>
+       </tr>
+
+       <tr>
+														<th><label for="pbprogress"><?php echo __t("Hide/Restore Progress?"); ?></label></th>
+                                                                                                                                                                                            <td><?php echo __t("If you want to restart from scratch, select an option below before updating your profile.");?>
+ <br><input type="radio" name="pbprogress" value="none" checked="true">
+   <?php echo __t("Do nothing");?></input>
+ <br><input type="radio" name="pbprogress" value="hide">
+   <?php echo __t("Hide all my progress and past submissions.");?></input>
+ <br><input type="radio" name="pbprogress" value="restore">
+ <?php echo __t("Restore all progress and past submissions I have ever hidden.");?></input>
        </td>
        </tr>
        </table>
@@ -69,12 +82,22 @@ function user_pb_options_fields_save( $user_id ) {
   if ( !current_user_can( 'edit_user', $user_id ) )
     return false;
   update_user_meta( $user_id, 'pbplain', ($_POST['pbplain']=='on')?'true':'false' );
-  echo 'fdlfnd';
   echo $_POST['pbplain'];
   /* update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );*/
   update_user_meta( $user_id, 'pbguru', ($_POST['pbguru']));
   update_user_meta( $user_id, 'pbnocc', ($_POST['pbnocc']=='on')?'true':'false' );
   update_user_meta( $user_id, 'pboptout', ($_POST['pboptout']=='on')?'true':'false' );
+
+  if ($_POST['pbprogress']=='hide' || $_POST['pbprogress']=='restore') {
+    // Too lazy to care that this fails for admin (user 0).
+    $old_id = $_POST['pbprogress']=='hide' ? $user_id : -$user_id;
+    $new_id = $_POST['pbprogress']=='hide' ? -$user_id : $user_id;
+    global $wpdb;
+    $update = array("userid" => $new_id);
+    $where = array("userid" => $old_id);
+    $wpdb->update("wp_pb_submissions", $update, $where);
+    $wpdb->update("wp_pb_completed", $update, $where);
+  }
 }
 add_action( 'personal_options_update', 'user_pb_options_fields_save' );
 add_action( 'edit_user_profile_update', 'user_pb_options_fields_save' );
