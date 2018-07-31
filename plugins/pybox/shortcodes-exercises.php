@@ -550,7 +550,7 @@ if (!$facultative && !$scramble) {
       $r .= '<br/></div>';
     }
     $r .= __t("Enter text for the message below. <i>Be sure to explain where you're stuck and what you've tried so far. Your partial solution code will be automatically included with the message.</i>");
-    $r .= "<textarea style='font-family: serif'></textarea>";
+    $r .= "<textarea style='font-family: serif; white-space: pre-wrap'></textarea>";
     $r .= "<table class='helpControls'><tr class='wp-core-ui'><td style='width: 50%'><a class='button' onclick='sendMessage($id,\"$slug\")'>".__t("Send this message")."</a></td><td style='width: 50%'>
            <a class='button' onclick='helpClick($id)'>".__t("Cancel")."</a></td></tr></table>";
   }
