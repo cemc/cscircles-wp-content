@@ -323,6 +323,11 @@ a.locator:hover {
 
 #content .flexigrid pre {
     padding: 2px;
+    white-space: pre-wrap;
+}
+
+#content .pyflex tbody {
+    max-width: 100%;
 }
 
 .flexcontain {
