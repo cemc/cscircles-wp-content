@@ -269,7 +269,7 @@ Execute code using
 
 <p>To share this visualization, click the 'Generate URL' button above
 and share that URL. You can use it to share with others or 
-<a href="<?php cscurl('contact'); ?>">report a bug</a>.
+<a href="<?php echo cscurl('contact'); ?>">report a bug</a>.
 
 <!--
 <div id="embedLinkDiv">
