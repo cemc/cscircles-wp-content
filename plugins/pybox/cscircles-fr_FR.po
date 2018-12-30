@@ -167,7 +167,7 @@ msgstr "Succès !"
 #: ../wp-plugin/action-submit-code.php:685
 msgid "Did not pass tests. Please check details below and try again."
 msgstr ""
-"N'a pas passer des tests. S'il vous plaît vérifier les détails ci-dessous et "
+"N'a pas passé des tests. S'il vous plaît vérifier les détails ci-dessous et "
 "essayez à nouveau."
 
 #: ../wp-plugin/action-submit-code.php:702
