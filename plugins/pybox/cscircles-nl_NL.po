@@ -925,7 +925,7 @@ msgstr "Ingezonden code"
 #: ../wp-plugin/shortcode-my-progress.php:142
 #, fuzzy
 msgid "Latest problems completed"
-msgstr "Recent afgeronden opgaven"
+msgstr "Recent afgeronde opgaven"
 
 #: ../wp-plugin/shortcode-my-progress.php:221
 msgid "List of all problems"
@@ -972,7 +972,7 @@ msgstr "Controleer het antwoord"
 
 #: ../wp-plugin/shortcodes-exercises.php:210
 msgid "Multiple Choice Exercise"
-msgstr "Meerkeuze Opgave"
+msgstr "Meerkeuze-opgave"
 
 #: ../wp-plugin/shortcodes-exercises.php:214
 msgid "Your choice:"
