@@ -227,7 +227,7 @@ function pb_menu_items($wp_admin_bar) {
     $more_links = array(
 			'Wordpress Dashboard' => get_bloginfo('wpurl') .'/wp-admin/index.php',
 			'Edit THIS Page' => get_edit_post_link());
-    if ($_SERVER['SERVER_NAME'] = 'cscircles.cemc.uwaterloo.ca') {
+    if ($_SERVER['SERVER_NAME'] == 'cscircles.cemc.uwaterloo.ca') {
       $more_links['MySQL Frontend'] = "/~atkong/pma/"; 
       $more_links['[rebuild /export directory]'] = '/nav/?export=Y';
     }
