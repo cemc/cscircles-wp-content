@@ -107,7 +107,7 @@ if (isset($post)) {
 day October 9&ndash;Wednesday October 10.</center></div>-->
 <header id="branding" role="banner">
 <?php
-if (WP_HOME != "http://cscircles.cemc.uwaterloo.ca/" && !get_option("cscircles_hide_ack", "0")=="1")
+if ($WP_HOME != "http://cscircles.cemc.uwaterloo.ca/" && !get_option("cscircles_hide_ack", "0")=="1")
   echo '<div style="position:absolute;top:30px;right:-140px;transform:rotate(90deg);-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg)">
  <a href="http://cscircles.cemc.uwaterloo.ca">' . __t("Click here for the original site") . "</a></div>";
 
