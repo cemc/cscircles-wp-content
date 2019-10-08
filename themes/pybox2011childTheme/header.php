@@ -103,7 +103,9 @@ if (isset($post)) {
   <a href="http://www.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-uw.gif');?>" style="margin: 0px;"/></a>
 <a href="http://cemc.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-cemc.png');?>" style="margin: 0px; position: absolute; right: 0px;"></a>
 	  </div>
-	<header id="branding" role="banner">
+<!--<div><center>This site will be unavailable for maintenance for parts of Tues
+day October 9&ndash;Wednesday October 10.</center></div>-->
+<header id="branding" role="banner">
 <?php
 if (WP_HOME != "http://cscircles.cemc.uwaterloo.ca/" && !get_option("cscircles_hide_ack", "0")=="1")
   echo '<div style="position:absolute;top:30px;right:-140px;transform:rotate(90deg);-webkit-transform:rotate(90deg);-ms-transform:rotate(90deg)">
