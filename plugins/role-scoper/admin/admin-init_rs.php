@@ -70,8 +70,10 @@ function scoper_use_posted_init_options() {
 	define ( 'DEFINE_GROUPS_RS', ! empty($arr['define_usergroups']) );
 	define ( 'GROUP_ROLES_RS', ! empty($arr['define_usergroups']) && ! empty($arr['enable_group_roles']) );
 	define ( 'USER_ROLES_RS', ! empty($arr['enable_user_roles']) );
-
-	wpp_cache_init( IS_MU_RS && scoper_establish_group_scope() );
+	
+	if ( IS_MU_RS ) {
+		scoper_establish_group_scope();
+	}
 }
 
 function agp_strtolower( $str ) {

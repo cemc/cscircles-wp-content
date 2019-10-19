@@ -34,7 +34,7 @@ class ScoperAdmin
 	var $role_assigner;	//object reference
 	var $tinymce_readonly;
 	
-	function ScoperAdmin() {
+	function __construct() {
 		global $pagenow, $plugin_page_cr;
 		
 		$this->scoper =& $GLOBALS['scoper'];

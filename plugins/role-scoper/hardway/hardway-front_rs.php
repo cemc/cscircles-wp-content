@@ -38,11 +38,11 @@ function _rs_is_active_widget_prefix( $id_prefix ) {
 	
 class ScoperHardwayFront
 {	
-	function include_jquery() {
+	public static function include_jquery() {
 		wp_enqueue_script( 'jquery' );	
 	}
 
-	function flt_hide_empty_menus() {
+	public static function flt_hide_empty_menus() {
 		if ( ! wp_script_is('jquery') )
 			return;
 ?>
@@ -56,7 +56,7 @@ jQuery(document).ready( function($) {
 	}
 
 	// filter "Add New" links out of admin bar if user lacks site-wide capability
-	function flt_admin_bar_menu( &$bar ) {
+	public static function flt_admin_bar_menu( &$bar ) {
 		if ( is_content_administrator_rs() )
 			return;
 
@@ -72,7 +72,7 @@ jQuery(document).ready( function($) {
 		}
 	}
 
-	function flt_get_the_category( $cats, $context = '' ) {
+	public static function flt_get_the_category( $cats, $context = '' ) {
 		if ( $context && ( 'display' != $context ) )
 			return;
 	
@@ -85,7 +85,7 @@ jQuery(document).ready( function($) {
 		return $cats;
 	}
 	
-	function flt_calendar( $query ) {
+	public static function flt_calendar( $query ) {
 		if ( strpos( $query, "DISTINCT DAYOFMONTH" ) || strpos( $query, "post_title, DAYOFMONTH(post_date)" ) || strpos( $query, "MONTH(post_date) AS month" ) ) {
 			$query = apply_filters( 'objects_request_rs', $query, 'post', '' );
 		}
@@ -93,7 +93,7 @@ jQuery(document).ready( function($) {
 		return $query;
 	}
 	
-	function flt_snazzy_archives( $query ) {
+	public static function flt_snazzy_archives( $query ) {
 		if ( strpos( $query, "posts WHERE post_status = 'publish' AND post_password = '' AND post_type IN (" ) ) {
 			
 			// TODO: update this to deal with custom types
@@ -142,7 +142,7 @@ jQuery(document).ready( function($) {
 	}
 	*/
 
-	function flt_get_tags( $results, $taxonomies, $args ) {
+	public static function flt_get_tags( $results, $taxonomies, $args ) {
 		if ( ! is_array($taxonomies) )
 			$taxonomies = (array) $taxonomies;
 

@@ -11,7 +11,7 @@ class ScoperUserSearch {
 	var $restore_button = array();
 	var $restore_all_button = array();
 	
-	function ScoperUserSearch( $agent_type = 'users' ) {	
+	function __construct( $agent_type = 'users' ) {	
 		$remove = __( 'Remove', 'scoper' );
 		$remove_btn = __( 'Remove&nbsp;>', 'scoper' );
 		$remove_all = __( '>>', 'scoper' );

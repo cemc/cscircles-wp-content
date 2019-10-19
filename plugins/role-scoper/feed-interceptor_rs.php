@@ -64,7 +64,7 @@ if ( ! empty($_GET[HTTP_AUTH_RS]) ) {
 }
  
 class FeedInterceptor_RS {	
-	function FeedInterceptor_RS() {
+	function __construct() {
 		$http_auth_if = scoper_get_option( 'feed_link_http_auth' );
 		
 		if ( 'logged' == $http_auth_if ) {

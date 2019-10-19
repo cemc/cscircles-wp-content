@@ -1,7 +1,7 @@
 <?php
 
 class ScoperMU_Custom {
-	function current_user_logged_into_main( $wp_blogcaps, $orig_reqd_caps ) {
+	public static function current_user_logged_into_main( $wp_blogcaps, $orig_reqd_caps ) {
 		global $current_site, $current_blog;
 		
 		$prev_blog = $current_blog->blog_id;

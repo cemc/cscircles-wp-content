@@ -16,7 +16,7 @@ add_action('admin_notices', array('ScoperEditListingFilters', 'act_maybe_hide_qu
 
 class ScoperEditListingFilters {
 	
-	function flt_manage_posts_columns($defaults) {
+	public static function flt_manage_posts_columns($defaults) {
 		global $current_user, $scoper, $scoper_role_usage;
 
 		$object_type = cr_find_post_type();
@@ -54,7 +54,7 @@ class ScoperEditListingFilters {
 		return $defaults;
 	}
 	
-	function flt_manage_posts_custom_column($column_name, $id) {
+	public static function flt_manage_posts_custom_column($column_name, $id) {
 		global $scoper, $scoper_role_usage, $posts;
 
 		switch ( $column_name ) {
@@ -103,7 +103,7 @@ class ScoperEditListingFilters {
 	
 	// Quick Edit provides access to some properties which some content-specific editors should not modify (Page parent, post/page visibility and status)
 	// For now, avoid this complication and filtering overhead by turning off Quick Edit for users lacking blog-wide edit_others capability
-	function act_maybe_hide_quickedit() {
+	public static function act_maybe_hide_quickedit() {
 		if ( is_content_administrator_rs() )
 			return;
 

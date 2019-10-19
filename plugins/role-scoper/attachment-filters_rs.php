@@ -71,10 +71,10 @@ function agp_return_file( $file_path, $attachment_id = 0 ) {
 
 class AttachmentFilters_RS {
 
-	function user_can_read_file( $file ) {
+	public static function user_can_read_file( $file ) {
 		$return_attachment_id = 0;
 		$matched_public_post = array();
-		return AttachmentFilters_RS::_user_can_read_file( $file, $return_attachment_id, $matched_public_post );
+		return self::_user_can_read_file( $file, $return_attachment_id, $matched_public_post );
 	}
 	
 	function _user_can_read_file( $file, &$return_attachment_id, &$matched_published_post, $uploads = '' ) {
@@ -158,7 +158,7 @@ class AttachmentFilters_RS {
 	
 	
 	// handle access to uploaded file where request was a direct file URL, which was rewritten according to our .htaccess addition
-	function parse_query_for_direct_access ( &$query ) {
+	public static function parse_query_for_direct_access ( &$query ) {
 		if ( empty($query->query_vars['attachment']) || ( false === strpos($_SERVER['QUERY_STRING'], 'rs_rewrite') ) )
 			return;
 

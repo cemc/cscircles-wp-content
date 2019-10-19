@@ -11,24 +11,24 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
  */
 
 class UserGroups_tp {
-	function getUsersWithGroup($group_id) {
+	public static function getUsersWithGroup($group_id) {
 		return ScoperAdminLib::get_group_members($group_id);
 	}
 	
-	function addGroupMembers ($group_id, $user_ids){
+	public static function addGroupMembers ($group_id, $user_ids){
 		ScoperAdminLib::add_group_user($group_id, $user_ids);
 	}
 	
-	function deleteGroupMembers ($group_id, $user_ids) {
+	public static function deleteGroupMembers ($group_id, $user_ids) {
 		ScoperAdminLib::remove_group_user($group_id, $user_ids);
 	}
 		
 	
-	function GetGroup($group_id) {
+	public static function GetGroup($group_id) {
 		return ScoperAdminLib::get_group($group_id);
 	}
 	
-	function getGroupByName($name) {
+	public static function getGroupByName($name) {
 		return ScoperAdminLib::get_group_by_name($name);
 	}
 	
@@ -39,7 +39,7 @@ class UserGroups_tp {
 	 * @param string $description - Group description (optional)
 	 * @return group ID on successful creation
 	 **/
-	function createGroup ($name, $description = ''){
+	public static function createGroup ($name, $description = ''){
 		global $wpdb;
 
 		if( ! UserGroups_tp::isValidName($name) )
@@ -48,12 +48,6 @@ class UserGroups_tp {
 		$insert = "INSERT INTO $wpdb->groups_rs ($wpdb->groups_name_col, $wpdb->groups_descript_col) VALUES ('$name','$description')";
 		scoper_query( $insert );
 
-		wpp_cache_flush_group('all_usergroups');
-		wpp_cache_flush_group('group_members' );
-		wpp_cache_flush_group('usergroups_for_user');
-		wpp_cache_flush_group('usergroups_for_groups');
-		wpp_cache_flush_group('usergroups_for_ug');
-		
 		do_action('created_group_rs', (int) $wpdb->insert_id);
 		
 		return (int) $wpdb->insert_id;
@@ -66,19 +60,13 @@ class UserGroups_tp {
 	 * @param int $id - Identifier of the group to delete
 	 * @param boolean True if the deletion is successful
 	 **/
-	function deleteGroup ($group_id){
+	public static function deleteGroup ($group_id){
 		global $wpdb;
 
 		if( ! $group_id || ! UserGroups_tp::getGroup($group_id) )
 			return false;
 
 		do_action('delete_group_rs', $group_id);
-		
-		wpp_cache_flush_group( 'all_usergroups' );
-		wpp_cache_flush_group( 'group_members' );
-		wpp_cache_flush_group( 'usergroups_for_user' );
-		wpp_cache_flush_group( 'usergroups_for_groups' );
-		wpp_cache_flush_group( 'usergroups_for_ug' );
 		
 		// first delete all cache entries related to this group
 		if ( $group_members = ScoperAdminLib::get_group_members( $group_id, COL_ID_RS ) ) {
@@ -92,35 +80,15 @@ class UserGroups_tp {
 		//if ( $got_blogrole = scoper_get_var("SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = 'rs' AND group_id = '$group_id' LIMIT 1") ) {
 			scoper_query("DELETE FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = 'rs' AND group_id = '$group_id'");
 		
-			scoper_flush_roles_cache( BLOG_SCOPE_RS, ROLE_BASIS_GROUPS );
-			
-			if ( $any_user_roles )
-				scoper_flush_roles_cache( BLOG_SCOPE_RS, ROLE_BASIS_USER_AND_GROUPS, $group_members );
 		//}
 		
 		//if ( $got_taxonomyrole = scoper_get_var("SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE scope = 'term' AND role_type = 'rs' AND group_id = '$group_id' LIMIT 1") ) {
 			scoper_query("DELETE FROM $wpdb->user2role2object_rs WHERE scope = 'term' AND role_type = 'rs' AND group_id = '$group_id'");
 		
-			scoper_flush_roles_cache( TERM_SCOPE_RS, ROLE_BASIS_GROUPS );
-			
-			if ( $any_user_roles )
-				scoper_flush_roles_cache( TERM_SCOPE_RS, ROLE_BASIS_USER_AND_GROUPS, $group_members );
 		//}
 		
 		//if ( $got_objectrole = scoper_get_var("SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE scope = 'object' AND role_type = 'rs' AND group_id = '$group_id' LIMIT 1") ) {
 			scoper_query("DELETE FROM $wpdb->user2role2object_rs WHERE scope = 'object' AND role_type = 'rs' AND group_id = '$group_id'");
-
-			scoper_flush_roles_cache( OBJECT_SCOPE_RS, ROLE_BASIS_GROUPS );
-			
-			if ( $any_user_roles )
-				scoper_flush_roles_cache( OBJECT_SCOPE_RS, ROLE_BASIS_USER_AND_GROUPS, $group_members );
-		//}
-		
-		//if ( $got_blogrole || $got_taxonomyrole || $got_objectrole ) {
-			scoper_flush_results_cache( ROLE_BASIS_GROUPS );
-			
-			if ( $any_user_roles )
-				scoper_flush_results_cache( ROLE_BASIS_USER_AND_GROUPS, $group_members );
 		//}
 		
 		$delete = "DELETE FROM $wpdb->groups_rs WHERE $wpdb->groups_id_col='$group_id'";
@@ -138,7 +106,7 @@ class UserGroups_tp {
 	 * @param string $name - Name of the group to test
 	 * @return boolean True if the group exists, false otherwise.
 	 **/
-	function groupExists($name) {
+	public static function groupExists($name) {
 		global $wpdb;
 
 		$query = "SELECT COUNT(*) FROM $wpdb->groups_rs WHERE $wpdb->groups_name_col = '$name'";
@@ -153,7 +121,7 @@ class UserGroups_tp {
 	 * @param string $string - Name of the group
 	 * @return boolean True if the name is valid, false otherwise.
 	 **/
-	function isValidName($string){
+	public static function isValidName($string){
 		if($string == "" || UserGroups_tp::groupExists($string)){
 			return false;
 		}
@@ -168,7 +136,7 @@ class UserGroups_tp {
 	 * @param string $description - Group description (optional)
 	 * @return boolean True on successful update
 	 **/
-	function updateGroup ($group_id, $name, $description = ''){
+	public static function updateGroup ($group_id, $name, $description = ''){
 		global $wpdb;
 
 		$description = strip_tags($description);
@@ -188,16 +156,10 @@ class UserGroups_tp {
 		$query = "UPDATE $wpdb->groups_rs SET $wpdb->groups_name_col = '$name', $wpdb->groups_descript_col='$description' WHERE $wpdb->groups_id_col='$group_id';";
 		scoper_query( $query );
 
-		wpp_cache_flush_group('all_usergroups');
-		wpp_cache_flush_group('group_members' );
-		wpp_cache_flush_group('usergroups_for_user');
-		wpp_cache_flush_group('usergroups_for_groups');
-		wpp_cache_flush_group('usergroups_for_ug');
-		
 		return true;
 	}
 	
-	function update_group_members_multi_status( $group_id, $current_members ) {
+	public static function update_group_members_multi_status( $group_id, $current_members ) {
 		$posted_members = array();
 		
 		$is_administrator = is_user_administrator_rs();
@@ -251,7 +213,7 @@ class UserGroups_tp {
 	
 	// Called once each for members checklist, managers checklist in admin UI.
 	// In either case, current (checked) members are at the top of the list.
-	function group_members_checklist( $group_id, $user_class = 'member', $all_users = '' ) {
+	public static function group_members_checklist( $group_id, $user_class = 'member', $all_users = '' ) {
 		global $scoper;
 		
 		if ( ! $all_users )
@@ -338,7 +300,7 @@ class UserGroups_tp {
 	 * @param string $string - message to be displayed
 	 * @param boolean $success - boolean that defines if is a success(true) or error(false) message
 	 **/
-	function write($string, $success=true, $id="message"){
+	public static function write($string, $success=true, $id="message"){
 		if($success){
 			echo '<div id="'.$id.'" class="updated fade"><p>'.$string.'</p></div>';
 		}else{

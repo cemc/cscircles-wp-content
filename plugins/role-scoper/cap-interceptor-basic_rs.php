@@ -5,7 +5,7 @@ class CapInterceptorBasic_RS
 	var $scoper;
 	var $query_interceptor;
 	
-	function CapInterceptorBasic_RS() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 		$this->query_interceptor =& $GLOBALS['query_interceptor'];
 		

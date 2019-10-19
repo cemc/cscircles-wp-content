@@ -2,7 +2,7 @@
 
 class ScoperGroupNotification {
 
-function membership_request_notify( $group_id, $user_id, $is_update = false ) {
+public static function membership_request_notify( $group_id, $user_id, $is_update = false ) {
 	global $scoper;
 	
 	$group = ScoperAdminLib::get_group( $group_id );
@@ -47,7 +47,7 @@ function membership_request_notify( $group_id, $user_id, $is_update = false ) {
 }
 
 
-function membership_recommendation_notify( $group_id, $user_id, $is_update = false ) {
+public static function membership_recommendation_notify( $group_id, $user_id, $is_update = false ) {
 	global $scoper, $current_user;
 	
 	$group = ScoperAdminLib::get_group( $group_id );
@@ -74,7 +74,7 @@ function membership_recommendation_notify( $group_id, $user_id, $is_update = fal
 }
 
 
-function membership_activation_notify( $group_id, $user_id, $is_update = false ) {
+public static function membership_activation_notify( $group_id, $user_id, $is_update = false ) {
 	global $scoper;
 	
 	$group = ScoperAdminLib::get_group( $group_id );

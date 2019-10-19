@@ -8,7 +8,7 @@ class RS_UpdateWatch {
 		}
 	}
 	
-	function plugin_install( $plugin = '' ) {
+	public static function plugin_install( $plugin = '' ) {
 		require_once( dirname(__FILE__).'/plugin-update_rs.php' );
 		RS_Updater::install( $plugin );
 	}

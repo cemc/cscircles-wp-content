@@ -24,14 +24,15 @@ jQuery( document ).ready(function( $ ) {
 	// extends selectmenu to add flags in menu items
 	$.widget( "custom.iconselectmenu", $.ui.selectmenu, {
 		_renderItem: function( ul, item ) {
-			var li = $( "<li>", { text: item.label } );
+			var li  = $( "<li>", { text: item.label } );
+			var el  = $( item.element );
+			var url = el.data( "url" );
 
-			if ( item.value ) {
-				$( "<img>", {
-					src: pll_flag_base_url + item.value + '.png',
-					"class": "ui-icon"
-				}).appendTo( li );
-			}
+			if ( url ) {
+				var w = el.data( "width" );
+				var h = el.data( "height" );
+				$( "<img class='ui-icon' />" ).prop( "src", url ).prop( "width", w ).prop( "height", h ).appendTo( li );
+ 			}
 
 			return li.appendTo( ul );
 		}
@@ -39,11 +40,14 @@ jQuery( document ).ready(function( $ ) {
 
 	// allows to display the flag for the selected menu item
 	function add_icon( event, ui ) {
-		var value = $( this ).val();
-		if ( value ) {
+		var sel = $( this ).find( ":selected" );
+		var url = sel.data( "url" );
+
+		if ( url ) {
 			var txt = $( this ).iconselectmenu( "widget" ).children( ":last" );
-			var img = $( '<img class="ui-icon" >' ).appendTo( txt );
-			img.attr( "src", pll_flag_base_url + value + '.png' );
+			var w = sel.data( "width" );
+			var h = sel.data( "height" );
+			$( "<img class='ui-icon' />" ).prop( "src", url ).prop( "width", w ).prop( "height", h ).appendTo( txt );
 		}
 	}
 
@@ -57,7 +61,7 @@ jQuery( document ).ready(function( $ ) {
 	// fills the fields based on the language dropdown list choice
 	$( '#lang_list' ).change(function() {
 		var value = $( this ).val().split( ':' );
-		var selected = $( "select option:selected" ).text().split( ' - ' );
+		var selected = $( "option:selected", this ).text().split( ' - ' );
 		$( '#lang_slug' ).val( value[0] );
 		$( '#lang_locale' ).val( value[1] );
 		$( 'input[name="rtl"]' ).val( [value[2]] );
@@ -118,7 +122,7 @@ jQuery( document ).ready(function( $ ) {
 						tr.hide().prev().show(); // close only if there is no error
 					case 'error':
 						$( '.settings-error' ).remove(); // remove previous messages if any
-						$( '.nav-tab-wrapper' ).after( this.data );
+						$( 'h1' ).after( this.data );
 
 						// Make notices dismissible
 						// copy paste of common.js from WP 4.2.2
@@ -171,6 +175,7 @@ jQuery( document ).ready(function( $ ) {
 		pll_toggle( $( '#pll-domains-table' ), 3 == value );
 		pll_toggle( $( "#pll-hide-default" ), 3 > value );
 		pll_toggle( $( "#pll-rewrite" ), 2 > value );
+		pll_toggle( $( "#pll-redirect-lang" ), 2 > value );
 	});
 
 	// settings license

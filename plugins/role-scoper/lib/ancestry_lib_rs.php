@@ -4,7 +4,7 @@ class ScoperAncestry {
 	// ( derived from WP core _get_term_hierarchy() )
 	// Removed option buffering since hierarchy is user-specific (get_terms query will be wp-cached anyway)
 	// Also adds support for taxonomies that don't use wp_term_taxonomy schema
-	function get_terms_children( $taxonomy, $option_value = '' ) {
+	public static function get_terms_children( $taxonomy, $option_value = '' ) {
 		if ( ! is_taxonomy_hierarchical($taxonomy) )
 			return array();
 		
@@ -28,7 +28,7 @@ class ScoperAncestry {
 	}
 	
 	// note: rs_get_page_children() is no longer used internally by Role scoper
-	function get_page_children() {
+	public static function get_page_children() {
 		$children = array();
 	
 		global $wpdb;
@@ -41,19 +41,19 @@ class ScoperAncestry {
 		return $children;
 	}
 	
-	function _walk_ancestors($child_id, $ancestors, $parents) {
+	public static function _walk_ancestors($child_id, $ancestors, $parents) {
 		if ( isset($parents[$child_id]) ) {
 			if ( in_array( $parents[$child_id], $ancestors ) )  // prevent infinite recursion if a page has a descendant set as its parent page
 			  return $ancestors;
 	
 			$ancestors []= $parents[$child_id];
-			$ancestors = ScoperAncestry::_walk_ancestors($parents[$child_id], $ancestors, $parents);
+			$ancestors = self::_walk_ancestors($parents[$child_id], $ancestors, $parents);
 		}
 		return $ancestors;
 	}
 	
 	
-	function get_page_ancestors() {
+	public static function get_page_ancestors() {
 		$ancestors = get_option("scoper_page_ancestors");
 	
 		if ( is_array($ancestors) )
@@ -87,7 +87,7 @@ class ScoperAncestry {
 		return $ancestors;
 	}
 	
-	function get_term_ancestors($taxonomy) {
+	public static function get_term_ancestors($taxonomy) {
 		$ancestors = get_option("{$taxonomy}_ancestors_rs");
 	
 		if ( is_array($ancestors) )

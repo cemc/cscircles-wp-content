@@ -31,7 +31,7 @@ class ScoperItemRolesUI {
 	
 	var $drew_objroles_marker;
 	
-	function ScoperItemRolesUI() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 		$this->scoper_admin =& $GLOBALS['scoper_admin'];
 	}

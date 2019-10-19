@@ -5,7 +5,7 @@ Plugin Name: List Pages Shortcode
 Plugin URI: http://wordpress.org/extend/plugins/list-pages-shortcode/
 Description: Introduces the [list-pages], [sibling-pages] and [child-pages] <a href="http://codex.wordpress.org/Shortcode_API">shortcodes</a> for easily displaying a list of pages within a post or page.  Both shortcodes accept all parameters that you can pass to the <a href="http://codex.wordpress.org/Template_Tags/wp_list_pages">wp_list_pages()</a> function.  For example, to show a page's child pages sorted by title simply add [child-pages sort_column="post_title"] in the page's content.
 Author: Ben Huson, Aaron Harp
-Version: 1.7.2
+Version: 1.7.4
 Author URI: http://www.aaronharp.com
 */
 
@@ -16,8 +16,12 @@ add_filter( 'list_pages_shortcode_excerpt', array( 'List_Pages_Shortcode', 'exce
 
 class List_Pages_Shortcode {
 
-	function List_Pages_Shortcode() {
+	public function __construct() {
 		// @todo  Deprecate use of constructor
+	}
+
+	public function List_Pages_Shortcode() {
+		// @todo  Deprecate use of PHP4 constructor
 	}
 
 	static function shortcode_list_pages( $atts, $content, $tag ) {
@@ -77,7 +81,8 @@ class List_Pages_Shortcode {
 		$atts = apply_filters( 'shortcode_list_pages_attributes', $atts, $content, $tag );
 
 		// Catch <ul> tags in wp_list_pages()
-		if ( $atts['list_type'] != 'ul' && ! empty( $atts['list_type']) ) {
+		$atts['list_type'] = self::validate_list_type( $atts['list_type'] );
+		if ( 'ul' != $atts['list_type'] ) {
 			add_filter( 'wp_list_pages', array( 'List_Pages_Shortcode', 'ul2list_type' ), 10, 2 );
 		}
 
@@ -107,12 +112,26 @@ class List_Pages_Shortcode {
 	 * @return string HTML output.
 	 */
 	static function ul2list_type( $output, $args = null ) {
-		if ( ! empty( $args['list_type'] ) ) {
-			$output = str_replace( '<ul>', '<' . $args['list_type'] . '>', $output );
-			$output = str_replace( '<ul ', '<' . $args['list_type'] . ' ', $output );
-			$output = str_replace( '</ul> ', '</' . $args['list_type'] . '>', $output );
+
+		$list_type = self::validate_list_type( $args['list_type'] );
+
+		if ( 'ul' != $list_type ) {
+
+			// <ul>
+			$output = str_replace( '<ul>', '<' . $list_type . '>', $output );
+			$output = str_replace( '<ul ', '<' . $list_type . ' ', $output );
+			$output = str_replace( '</ul> ', '</' . $list_type . '>', $output );
+
+			// <li>
+			$list_type = 'span' == $list_type ? 'span' : 'div';
+			$output = str_replace( '<li>', '<' . $list_type . '>', $output );
+			$output = str_replace( '<li ', '<' . $list_type . ' ', $output );
+			$output = str_replace( '</li> ', '</' . $list_type . '>', $output );
+
 		}
+
 		return $output;
+
 	}
 
 	/**
@@ -127,6 +146,22 @@ class List_Pages_Shortcode {
 			return ' <div class="excerpt">' . $text . '</div>';
 		}
 		return $text;
+	}
+
+	/**
+	 * Validate List Type
+	 *
+	 * @param   string  $list_type  List type tag.
+	 * @return  string              Valid tag.
+	 */
+	public static function validate_list_type( $list_type ) {
+
+		if ( empty( $list_type ) || ! in_array( $list_type, array( 'ul', 'div', 'span', 'article', 'aside', 'section' ) ) ) {
+			$list_type = 'ul';
+		}
+
+		return $list_type;
+
 	}
 
 }
@@ -146,7 +181,7 @@ class List_Pages_Shortcode_Walker_Page extends Walker_Page {
 	 */
 	function start_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat( "\t", $depth );
-		$list_type = empty( $args['list_type'] ) ? 'ul' : $args['list_type'];
+		$list_type = List_Pages_Shortcode::validate_list_type( $args['list_type'] );
 		$output .= "\n$indent<" . $list_type . " class='children'>\n";
 	}
 
@@ -159,7 +194,7 @@ class List_Pages_Shortcode_Walker_Page extends Walker_Page {
 	 */
 	function end_lvl( &$output, $depth = 0, $args = array() ) {
 		$indent = str_repeat( "\t", $depth );
-		$list_type = empty( $args['list_type'] ) ? 'ul' : $args['list_type'];
+		$list_type = List_Pages_Shortcode::validate_list_type( $args['list_type'] );
 		$output .= "$indent</" . $list_type . ">\n";
 	}
 

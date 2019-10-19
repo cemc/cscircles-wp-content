@@ -11,7 +11,7 @@ require_once( dirname(__FILE__).'/rewrite-rules_rs.php' );
  * 
  */
 class ScoperRewriteMU {
-	function default_file_rule_pos($rules) {
+	public static function default_file_rule_pos($rules) {
 		$default_file_redirect_rule = array();
 		$default_file_redirect_rule []= 'RewriteRule ^([_0-9a-zA-Z-]+/)?files/(.+) wp-includes/ms-files.php?file=$2 [L]';  // WP 3.0 - subdomain
 		$default_file_redirect_rule []= 'RewriteRule ^files/(.+) wp-includes/ms-files.php?file=$1 [L]'; // WP 3.0 - subdirectory
@@ -26,7 +26,7 @@ class ScoperRewriteMU {
 	}
 
 	// directly inserts essential RS rules into the main wp-mu .htaccess file
-	function update_mu_htaccess( $include_rs_rules = true ) {
+	public static function update_mu_htaccess( $include_rs_rules = true ) {
 		//rs_errlog( "update_mu_htaccess: arg = $include_rs_rules" );
 		
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
@@ -69,7 +69,7 @@ class ScoperRewriteMU {
 	
 	// Note: this filter is never applied by WP Multisite as of WP 3.1.3
 	// In case a modified or future MU regenerates the site .htaccess, filter contents to include RS rules
-	function insert_site_rules( $rules = '' ) {
+	public static function insert_site_rules( $rules = '' ) {
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
 			return $rules;
 	
@@ -82,7 +82,7 @@ class ScoperRewriteMU {
 		return $rules;
 	}
 	
-	function build_blog_file_redirects() {
+	public static function build_blog_file_redirects() {
 		global $wpdb, $blog_id, $base;
 		
 		if ( ! ScoperRewrite::site_config_supports_rewrite() || defined( 'SCOPER_NO_HTACCESS' ) )
@@ -136,7 +136,7 @@ class ScoperRewriteMU {
 	
 	
 	// remove RS rules from every .htaccess file in the wp-MU "files" folders
-	function clear_all_file_rules() {
+	public static function clear_all_file_rules() {
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
 			return;
 		

@@ -3,26 +3,33 @@
 ** A base module for [quiz]
 **/
 
-/* Shortcode handler */
+/* form_tag handler */
 
-add_action( 'wpcf7_init', 'wpcf7_add_shortcode_quiz' );
+add_action( 'wpcf7_init', 'wpcf7_add_form_tag_quiz', 10, 0 );
 
-function wpcf7_add_shortcode_quiz() {
-	wpcf7_add_shortcode( 'quiz', 'wpcf7_quiz_shortcode_handler', true );
+function wpcf7_add_form_tag_quiz() {
+	wpcf7_add_form_tag( 'quiz',
+		'wpcf7_quiz_form_tag_handler',
+		array(
+			'name-attr' => true,
+			'do-not-store' => true,
+			'not-for-mail' => true,
+		)
+	);
 }
 
-function wpcf7_quiz_shortcode_handler( $tag ) {
-	$tag = new WPCF7_Shortcode( $tag );
-
-	if ( empty( $tag->name ) )
+function wpcf7_quiz_form_tag_handler( $tag ) {
+	if ( empty( $tag->name ) ) {
 		return '';
+	}
 
 	$validation_error = wpcf7_get_validation_error( $tag->name );
 
 	$class = wpcf7_form_controls_class( $tag->type );
 
-	if ( $validation_error )
+	if ( $validation_error ) {
 		$class .= ' wpcf7-not-valid';
+	}
 
 	$atts = array();
 
@@ -30,19 +37,22 @@ function wpcf7_quiz_shortcode_handler( $tag ) {
 	$atts['maxlength'] = $tag->get_maxlength_option();
 	$atts['minlength'] = $tag->get_minlength_option();
 
-	if ( $atts['maxlength'] && $atts['minlength'] && $atts['maxlength'] < $atts['minlength'] ) {
+	if ( $atts['maxlength'] and $atts['minlength']
+	and $atts['maxlength'] < $atts['minlength'] ) {
 		unset( $atts['maxlength'], $atts['minlength'] );
 	}
 
 	$atts['class'] = $tag->get_class_option( $class );
 	$atts['id'] = $tag->get_id_option();
-	$atts['tabindex'] = $tag->get_option( 'tabindex', 'int', true );
+	$atts['tabindex'] = $tag->get_option( 'tabindex', 'signed_int', true );
+	$atts['autocomplete'] = 'off';
 	$atts['aria-required'] = 'true';
 	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
 
 	$pipes = $tag->pipes;
 
-	if ( $pipes instanceof WPCF7_Pipes && ! $pipes->zero() ) {
+	if ( $pipes instanceof WPCF7_Pipes
+	and ! $pipes->zero() ) {
 		$pipe = $pipes->random_pipe();
 		$question = $pipe->before;
 		$answer = $pipe->after;
@@ -74,8 +84,6 @@ function wpcf7_quiz_shortcode_handler( $tag ) {
 add_filter( 'wpcf7_validate_quiz', 'wpcf7_quiz_validation_filter', 10, 2 );
 
 function wpcf7_quiz_validation_filter( $result, $tag ) {
-	$tag = new WPCF7_Shortcode( $tag );
-
 	$name = $tag->name;
 
 	$answer = isset( $_POST[$name] ) ? wpcf7_canonicalize( $_POST[$name] ) : '';
@@ -97,17 +105,19 @@ function wpcf7_quiz_validation_filter( $result, $tag ) {
 
 /* Ajax echo filter */
 
-add_filter( 'wpcf7_ajax_onload', 'wpcf7_quiz_ajax_refill' );
-add_filter( 'wpcf7_ajax_json_echo', 'wpcf7_quiz_ajax_refill' );
+add_filter( 'wpcf7_ajax_onload', 'wpcf7_quiz_ajax_refill', 10, 1 );
+add_filter( 'wpcf7_ajax_json_echo', 'wpcf7_quiz_ajax_refill', 10, 1 );
 
 function wpcf7_quiz_ajax_refill( $items ) {
-	if ( ! is_array( $items ) )
+	if ( ! is_array( $items ) ) {
 		return $items;
+	}
 
-	$fes = wpcf7_scan_shortcode( array( 'type' => 'quiz' ) );
+	$fes = wpcf7_scan_form_tags( array( 'type' => 'quiz' ) );
 
-	if ( empty( $fes ) )
+	if ( empty( $fes ) ) {
 		return $items;
+	}
 
 	$refill = array();
 
@@ -115,10 +125,12 @@ function wpcf7_quiz_ajax_refill( $items ) {
 		$name = $fe['name'];
 		$pipes = $fe['pipes'];
 
-		if ( empty( $name ) )
+		if ( empty( $name ) ) {
 			continue;
+		}
 
-		if ( $pipes instanceof WPCF7_Pipes && ! $pipes->zero() ) {
+		if ( $pipes instanceof WPCF7_Pipes
+		and ! $pipes->zero() ) {
 			$pipe = $pipes->random_pipe();
 			$question = $pipe->before;
 			$answer = $pipe->after;
@@ -133,8 +145,9 @@ function wpcf7_quiz_ajax_refill( $items ) {
 		$refill[$name] = array( $question, wp_hash( $answer, 'wpcf7_quiz' ) );
 	}
 
-	if ( ! empty( $refill ) )
+	if ( ! empty( $refill ) ) {
 		$items['quiz'] = $refill;
+	}
 
 	return $items;
 }
@@ -142,19 +155,25 @@ function wpcf7_quiz_ajax_refill( $items ) {
 
 /* Messages */
 
-add_filter( 'wpcf7_messages', 'wpcf7_quiz_messages' );
+add_filter( 'wpcf7_messages', 'wpcf7_quiz_messages', 10, 1 );
 
 function wpcf7_quiz_messages( $messages ) {
-	return array_merge( $messages, array( 'quiz_answer_not_correct' => array(
-		'description' => __( "Sender doesn't enter the correct answer to the quiz", 'contact-form-7' ),
-		'default' => __( 'Your answer is not correct.', 'contact-form-7' )
-	) ) );
+	$messages = array_merge( $messages, array(
+		'quiz_answer_not_correct' => array(
+			'description' =>
+				__( "Sender doesn't enter the correct answer to the quiz", 'contact-form-7' ),
+			'default' =>
+				__( "The answer to the quiz is incorrect.", 'contact-form-7' ),
+		),
+	) );
+
+	return $messages;
 }
 
 
 /* Tag generator */
 
-add_action( 'wpcf7_admin_init', 'wpcf7_add_tag_generator_quiz', 40 );
+add_action( 'wpcf7_admin_init', 'wpcf7_add_tag_generator_quiz', 40, 0 );
 
 function wpcf7_add_tag_generator_quiz() {
 	$tag_generator = WPCF7_TagGenerator::get_instance();
@@ -168,7 +187,7 @@ function wpcf7_tag_generator_quiz( $contact_form, $args = '' ) {
 
 	$description = __( "Generate a form-tag for a question-answer pair. For more details, see %s.", 'contact-form-7' );
 
-	$desc_link = wpcf7_link( __( 'http://contactform7.com/quiz/', 'contact-form-7' ), __( 'Quiz', 'contact-form-7' ) );
+	$desc_link = wpcf7_link( __( 'https://contactform7.com/quiz/', 'contact-form-7' ), __( 'Quiz', 'contact-form-7' ) );
 
 ?>
 <div class="control-box">

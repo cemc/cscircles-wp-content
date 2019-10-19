@@ -9,7 +9,7 @@ class ScoperAdminFiltersItemUI {
 	var $meta_box_ids = array();
 	var $item_roles_ui;
 	
-	function ScoperAdminFiltersItemUI () {
+	function __construct () {
 		$this->scoper =& $GLOBALS['scoper'];
 		$this->scoper_admin =& $GLOBALS['scoper_admin'];
 

@@ -7,7 +7,7 @@ require_once( dirname(__FILE__).'/attachment-interceptor_rs.php' );
 class AttachmentTemplate_RS {
 	// Filter attachment page content prior to display by attachment template.
 	// Note: teaser-subject direct file URL requests also land here
-	function attachment_access() {
+	public static function attachment_access() {
 		global $post, $wpdb;
 
 		if ( empty($post) ) {
@@ -43,7 +43,7 @@ class AttachmentTemplate_RS {
 		}
 	}
 	
-	function impose_post_teaser(&$object, $post_type, $use_teaser_type = 'fixed') {
+	public static function impose_post_teaser(&$object, $post_type, $use_teaser_type = 'fixed') {
 		global $current_user, $scoper, $wp_query;
 
 		require_once( dirname(__FILE__).'/teaser_rs.php');

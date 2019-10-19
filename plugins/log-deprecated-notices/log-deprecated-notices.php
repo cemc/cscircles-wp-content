@@ -6,7 +6,7 @@
  * Plugin Name: Log Deprecated Notices
  * Plugin URI: http://wordpress.org/extend/plugins/log-deprecated-notices/
  * Description: Logs the usage of deprecated files, functions, hooks, and function arguments, offers the alternative if available, and identifies where the deprecated functionality is being used. WP_DEBUG not required (but its general use is strongly recommended).
- * Version: 0.3
+ * Version: 0.4.1
  * Author: Andrew Nacin
  * Author URI: http://nacin.com/
  * License: GPLv2 or later
@@ -69,7 +69,7 @@ class Deprecated_Log {
 	/**
 	 * Constructor. Adds hooks.
 	 */
-	function Deprecated_Log() {
+	function __construct() {
 		self::$instance = $this;
 
 		// Bail without 3.0.
@@ -519,6 +519,7 @@ class Deprecated_Log {
 .widefat .column-deprecated_modified, .widefat .column-deprecated_version { width: 10%; }
 .widefat .column-deprecated_count { width: 10%; text-align: right }
 .widefat .column-deprecated_cb { padding: 0; width: 2.2em }
+.post-type-deprecated_log .page-title-action{ display:none; }
 </style>
 	<?php
 	}
@@ -834,6 +835,13 @@ jQuery(document).ready( function($) {
 		if ( isset( $actions['post-new.php?post_type=deprecated_log'] ) )
 			unset( $actions['post-new.php?post_type=deprecated_log'] );
 		return $actions;
+	}
+
+	/**
+ 	 * Old Constructor kept incase it's being called
+	 */ 
+	function Deprecated_Log() {
+		$this->__construct();
 	}
 
 }

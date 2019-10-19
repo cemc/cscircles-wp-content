@@ -18,7 +18,7 @@ class ScoperAdminFiltersUI
 	var $scoper;
 	var $scoper_admin;
 	
-	function ScoperAdminFiltersUI() {
+	function __construct() {
 		global $pagenow, $plugin_page_cr;
 
 		$this->scoper =& $GLOBALS['scoper'];

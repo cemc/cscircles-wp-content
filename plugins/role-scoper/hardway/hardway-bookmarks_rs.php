@@ -8,7 +8,7 @@ class ScoperHardwayBookmarks {
 	//	 Currently, scoped roles cannot be enforced without replicating the whole function 
 	//
 	// Enforces cap requirements as specified in CR_Data_Source::reqd_caps
-	function flt_get_bookmarks($results, $args) {
+	public static function flt_get_bookmarks($results, $args) {
 		global $wpdb;
 
 		$defaults = array(

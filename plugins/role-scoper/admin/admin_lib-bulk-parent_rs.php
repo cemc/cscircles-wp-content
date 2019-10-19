@@ -3,7 +3,7 @@
 class ScoperAdminBulkParent {
 
 	// object_array = db results 2D array
-	function order_by_hierarchy($object_array, $col_id, $col_parent, $id_key = false) {
+	public static function order_by_hierarchy($object_array, $col_id, $col_parent, $id_key = false) {
 		$ordered_results = array();
 		$find_parent_id = 0;
 		$last_parent_id = array();
@@ -39,7 +39,7 @@ class ScoperAdminBulkParent {
 	
 	// listed_objects[object_id] = object, including at least the parent property
 	// unlisted_objects[object_id] = object, including at least the parent property
-	function add_missing_parents($listed_objects, $unlisted_objects, $col_parent) {
+	public static function add_missing_parents($listed_objects, $unlisted_objects, $col_parent) {
 		$need_obj_ids = array();
 		foreach ( $listed_objects as $obj )
 			if ( $obj->$col_parent && ! isset($listed_objects[ $obj->$col_parent ]) )
@@ -70,7 +70,7 @@ class ScoperAdminBulkParent {
 		return $listed_objects;
 	}
 	
-	function get_page_titles() {
+	public static function get_page_titles() {
 		global $wpdb;
 		
 		$is_administrator = is_content_administrator_rs();
@@ -92,7 +92,7 @@ class ScoperAdminBulkParent {
 		return scoper_get_property_array( $all_pages, 'ID', 'post_title' );
 	}	
 	
-	function get_objects_info($object_ids, &$object_names, &$object_status, &$unlisted_objects, $src, $otype, $ignore_hierarchy) {
+	public static function get_objects_info($object_ids, &$object_names, &$object_status, &$unlisted_objects, $src, $otype, $ignore_hierarchy) {
 		global $wpdb;
 
 		// buffer titles in case they are translated

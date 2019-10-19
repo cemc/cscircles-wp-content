@@ -35,7 +35,7 @@ switch ($mode) {
 	
 		check_admin_referer( 'scoper-edit-groups' );
 		
-		$groupName = sanitize_text_field( $_POST['groupName'], '', 'query' );
+		$groupName = sanitize_text_field( $_POST['groupName'] );
 		
 		$groupName = str_replace( '[', '', $groupName );
 		$groupName = str_replace( ']', '', $groupName );
@@ -46,7 +46,7 @@ switch ($mode) {
 			else
 				$errorMessage = sprintf( __("A group with the name <strong>%s</strong> already exists.", 'scoper'), $groupName);
 		} else {
-			$groupDesc = sanitize_text_field( $_POST['groupDesc'], '', 'query' );
+			$groupDesc = sanitize_text_field( $_POST['groupDesc'] );
 			
 			if( UserGroups_tp::createGroup ($groupName, $groupDesc)){
 				$success_msg = sprintf( __("Group <strong>%s</strong> created successfuly.", 'scoper'), $groupName);
@@ -76,14 +76,14 @@ switch ($mode) {
 		$group->ID = (int) $_POST['groupID'];
 		
 		if ( $can_manage_all_groups || current_user_can( 'manage_groups', $group->ID ) ) {
-			$groupName = sanitize_text_field( $_POST['groupName'], '', 'query' );
+			$groupName = sanitize_text_field( $_POST['groupName'] );
 			$groupName = str_replace( '[', '', $groupName );
 			$groupName = str_replace( ']', '', $groupName );
 			
 			//to continue edit
 			$group->display_name = $groupName;
-			$group->prev_name = sanitize_text_field( $_POST['prevName'], '', 'query' );
-			$group->descript = sanitize_text_field( $_POST['groupDesc'], '', 'query' );
+			$group->prev_name = sanitize_text_field( $_POST['prevName'] );
+			$group->descript = sanitize_text_field( $_POST['groupDesc'] );
 			
 			if ( $get_group = ScoperAdminLib::get_group($group->ID) )
 				$group->meta_id = $get_group->meta_id;

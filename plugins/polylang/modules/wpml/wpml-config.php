@@ -8,7 +8,7 @@
  * @since 1.0
  */
 class PLL_WPML_Config {
-	static protected $instance; // For singleton
+	protected static $instance; // For singleton
 	protected $xmls, $options;
 
 	/**
@@ -29,7 +29,7 @@ class PLL_WPML_Config {
 	 *
 	 * @return object
 	 */
-	static public function instance() {
+	public static function instance() {
 		if ( empty( self::$instance ) ) {
 			self::$instance = new self();
 		}
@@ -44,6 +44,17 @@ class PLL_WPML_Config {
 	public function init() {
 		$this->xmls = array();
 
+		// Plugins
+		// Don't forget sitewide active plugins thanks to Reactorshop http://wordpress.org/support/topic/polylang-and-yoast-seo-plugin/page/2?replies=38#post-4801829
+		$plugins = ( is_multisite() && $sitewide_plugins = get_site_option( 'active_sitewide_plugins' ) ) && is_array( $sitewide_plugins ) ? array_keys( $sitewide_plugins ) : array();
+		$plugins = array_merge( $plugins, get_option( 'active_plugins', array() ) );
+
+		foreach ( $plugins as $plugin ) {
+			if ( file_exists( $file = WP_PLUGIN_DIR . '/' . dirname( $plugin ) . '/wpml-config.xml' ) && false !== $xml = simplexml_load_file( $file ) ) {
+				$this->xmls[ dirname( $plugin ) ] = $xml;
+			}
+		}
+
 		// Theme
 		if ( file_exists( $file = ( $template = get_template_directory() ) . '/wpml-config.xml' ) && false !== $xml = simplexml_load_file( $file ) ) {
 			$this->xmls[ get_template() ] = $xml;
@@ -54,24 +65,14 @@ class PLL_WPML_Config {
 			$this->xmls[ get_stylesheet() ] = $xml;
 		}
 
-		// Plugins
-		// Don't forget sitewide active plugins thanks to Reactorshop http://wordpress.org/support/topic/polylang-and-yoast-seo-plugin/page/2?replies=38#post-4801829
-		$plugins = ( is_multisite() && $sitewide_plugins = get_site_option( 'active_sitewide_plugins' ) ) && is_array( $sitewide_plugins ) ? array_keys( $sitewide_plugins ) : array();
-		$plugins = array_merge( $plugins, get_option( 'active_plugins' ) );
-
-		foreach ( $plugins as $plugin ) {
-			if ( file_exists( $file = WP_PLUGIN_DIR . '/' . dirname( $plugin ) . '/wpml-config.xml' ) && false !== $xml = simplexml_load_file( $file ) ) {
-				$this->xmls[ dirname( $plugin ) ] = $xml;
-			}
-		}
-
 		// Custom
 		if ( file_exists( $file = PLL_LOCAL_DIR . '/wpml-config.xml' ) && false !== $xml = simplexml_load_file( $file ) ) {
 			$this->xmls['Polylang'] = $xml;
 		}
 
 		if ( ! empty( $this->xmls ) ) {
-			add_filter( 'pll_copy_post_metas', array( $this, 'copy_post_metas' ), 10, 2 );
+			add_filter( 'pll_copy_post_metas', array( $this, 'copy_post_metas' ), 20, 2 );
+			add_filter( 'pll_copy_term_metas', array( $this, 'copy_term_metas' ), 20, 2 );
 			add_filter( 'pll_get_post_types', array( $this, 'translate_types' ), 10, 2 );
 			add_filter( 'pll_get_taxonomies', array( $this, 'translate_taxonomies' ), 10, 2 );
 
@@ -103,10 +104,33 @@ class PLL_WPML_Config {
 		foreach ( $this->xmls as $xml ) {
 			foreach ( $xml->xpath( 'custom-fields/custom-field' ) as $cf ) {
 				$attributes = $cf->attributes();
-				if ( 'copy' == $attributes['action'] || ( ! $sync && 'translate' == $attributes['action'] ) ) {
+				if ( 'copy' == $attributes['action'] || ( ! $sync && in_array( $attributes['action'], array( 'translate', 'copy-once' ) ) ) ) {
 					$metas[] = (string) $cf;
 				} else {
-					$metas = array_diff( $metas,  array( (string) $cf ) );
+					$metas = array_diff( $metas, array( (string) $cf ) );
+				}
+			}
+		}
+		return $metas;
+	}
+
+	/**
+	 * Adds term metas to the list of metas to copy when creating a new translation
+	 *
+	 * @since 2.6
+	 *
+	 * @param array $metas The list of term metas to copy or synchronize.
+	 * @param bool  $sync  True for sync, false for copy.
+	 * @return array The list of term metas to copy or synchronize.
+	 */
+	public function copy_term_metas( $metas, $sync ) {
+		foreach ( $this->xmls as $xml ) {
+			foreach ( $xml->xpath( 'custom-term-fields/custom-term-field' ) as $cf ) {
+				$attributes = $cf->attributes();
+				if ( 'copy' == $attributes['action'] || ( ! $sync && in_array( $attributes['action'], array( 'translate', 'copy-once' ) ) ) ) {
+					$metas[] = (string) $cf;
+				} else {
+					$metas = array_diff( $metas, array( (string) $cf ) );
 				}
 			}
 		}
@@ -164,7 +188,7 @@ class PLL_WPML_Config {
 	 *
 	 * @since 1.0
 	 *
-	 * @param array|string either a string to translate or a list of strings to translate
+	 * @param array|string $value Either a string to translate or a list of strings to translate
 	 * @return array|string translated string(s)
 	 */
 	public function translate_strings( $value ) {
@@ -187,13 +211,36 @@ class PLL_WPML_Config {
 			foreach ( $children as $child ) {
 				$attributes = $child->attributes();
 				$name = (string) $attributes['name'];
-				if ( isset( $options[ $name ] ) ) {
+				if ( '*' === $name && is_array( $options ) ) {
+					foreach ( $options as $n => $option ) {
+						$this->register_wildcard_options_recursive( $context, $option, $n );
+					}
+				} elseif ( isset( $options[ $name ] ) ) {
 					$this->register_string_recursive( $context, $options[ $name ], $child );
 				}
 			}
 		} else {
 			$attributes = $key->attributes();
-			pll_register_string( (string) $attributes['name'], $options, $context );
+			pll_register_string( (string) $attributes['name'], $options, $context, true ); // Multiline as in WPML
+		}
+	}
+
+	/**
+	 * Recursively registers strings with a wildcard
+	 *
+	 * @since 2.1
+	 *
+	 * @param string $context the group in which the strings will be registered
+	 * @param array  $options
+	 * @param string $name    Option name
+	 */
+	protected function register_wildcard_options_recursive( $context, $options, $name ) {
+		if ( is_array( $options ) ) {
+			foreach ( $options as $n => $option ) {
+				$this->register_wildcard_options_recursive( $context, $option, $n );
+			}
+		} else {
+			pll_register_string( $name, $options, $context );
 		}
 	}
 
@@ -212,7 +259,11 @@ class PLL_WPML_Config {
 			foreach ( $children as $child ) {
 				$attributes = $child->attributes();
 				$name = (string) $attributes['name'];
-				if ( isset( $values[ $name ] ) ) {
+				if ( '*' === $name && is_array( $values ) ) {
+					foreach ( $values as $n => $v ) {
+						$values[ $n ] = $this->translate_wildcard_options_recursive( $v, $n );
+					}
+				} elseif ( isset( $values[ $name ] ) ) {
 					$values[ $name ] = $this->translate_strings_recursive( $values[ $name ], $child );
 				}
 			}
@@ -220,5 +271,25 @@ class PLL_WPML_Config {
 			$values = pll__( $values );
 		}
 		return $values;
+	}
+
+	/**
+	 * Recursively translates strings registered by a wildcard
+	 *
+	 * @since 2.1
+	 *
+	 * @param array|string $options Either a string to translate or a list of strings to translate
+	 * @param string       $name    Option name
+	 * @return array|string Translated string(s)
+	 */
+	protected function translate_wildcard_options_recursive( $options, $name ) {
+		if ( is_array( $options ) ) {
+			foreach ( $options as $n => $option ) {
+				$options[ $n ] = $this->translate_wildcard_options_recursive( $option, $n );
+			}
+		} else {
+			$options = pll__( $options );
+		}
+		return $options;
 	}
 }

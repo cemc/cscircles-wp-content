@@ -39,7 +39,7 @@ class ScoperHardwayTaxonomy
 	//	Currently, scoped roles cannot be enforced without replicating the whole function 
 	// 
 	// Cap requirements depend on access type, and are specified by Scoper::get_terms_reqd_caps() corresponding to taxonomy in question
-	function flt_get_terms($results, $taxonomies, $args) {
+	public static function flt_get_terms($results, $taxonomies, $args) {
 		global $wpdb;
 		$empty_array = array();
 		
@@ -580,7 +580,7 @@ class ScoperHardwayTaxonomy
 	}
 	
 	
-	function flt_cat_not_in_subquery( $where ) {
+	public static function flt_cat_not_in_subquery( $where ) {
 		if ( strpos( $where, "ID NOT IN ( SELECT tr.object_id" ) ) {
 			global $wp_query;
 			global $wpdb;

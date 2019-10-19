@@ -2,7 +2,7 @@
 
 class ScoperHardwayParent {
 
-	function flt_dropdown_pages($orig_options_html) {
+	public static function flt_dropdown_pages($orig_options_html) {
 		if ( 'no_parent_filter' == scoper_get_option( 'lock_top_pages' ) )
 			return $orig_options_html;
 

@@ -22,7 +22,7 @@ if ( strpos( $_SERVER['REQUEST_URI'], 'nggallery' ) ) // Role Scoping for NGG ca
 
 class ScoperAdminLib {
 	// filter page dropdown contents for Page Parent controls; leave others alone
-	function flt_dropdown_pages($orig_options_html) {
+	public static function flt_dropdown_pages($orig_options_html) {
 		if ( ! strpos( $orig_options_html, 'parent_id' ) && ! strpos( $orig_options_html, 'post_parent' ) )
 			return $orig_options_html;
 
@@ -33,7 +33,7 @@ class ScoperAdminLib {
 		return ScoperHardwayParent::flt_dropdown_pages($orig_options_html);
 	}
 	
-	function get_blogrole_users($role_name, $role_type, $cols = COLS_ALL_RS) {
+	static function get_blogrole_users($role_name, $role_type, $cols = COLS_ALL_RS) {
 		global $wpdb;
 		
 		if ( COL_ID_RS == $cols )
@@ -60,7 +60,7 @@ class ScoperAdminLib {
 		return $results;
 	}
 	
-	function get_group_members($group_id, $cols = COLS_ALL_RS, $maybe_metagroup = false, $args = array() ) {
+	public static function get_group_members($group_id, $cols = COLS_ALL_RS, $maybe_metagroup = false, $args = array() ) {
 		global $wpdb;
 		
 		// If $group_id is an array of group objects, extract IDs into a separate array 
@@ -133,7 +133,7 @@ class ScoperAdminLib {
 			foreach( $meta_ids as $meta_id ) {
 				if ( 0 === strpos($meta_id, 'wp_role_') ) {
 					$role_name = substr($meta_id, 8);
-					if ( $_results = ScoperAdminLib::get_blogrole_users($role_name, 'wp', $cols) )
+					if ( $_results = self::get_blogrole_users($role_name, 'wp', $cols) )
 						$results = array_merge( $results, $_results );
 				}
 			}
@@ -155,7 +155,7 @@ class ScoperAdminLib {
 	 * @param string $description - Group description (optional)
 	 * @return boolean True on successful creation
 	 **/
-	function create_group ($name, $description = ''){
+	public static function create_group ($name, $description = ''){
 		require_once( dirname(__FILE__).'/groups-support.php' );
 		return UserGroups_tp::CreateGroup($name, $description);
 	}
@@ -167,7 +167,7 @@ class ScoperAdminLib {
 	 * @param int $id - Group Identifier
 	 * @return Object An object with the group details
 	 **/
-	function get_group($group_id) {
+	public static function get_group($group_id) {
 		global $wpdb;
 
 		$query = "SELECT $wpdb->groups_id_col AS ID, $wpdb->groups_name_col AS display_name, $wpdb->groups_descript_col as descript, $wpdb->groups_meta_id_col as meta_id"
@@ -185,7 +185,7 @@ class ScoperAdminLib {
 	 * @param string $name - Group Name
 	 * @return Object An object with the group details
 	 **/
-	function get_group_by_name($name) {
+	public static function get_group_by_name($name) {
 		global $wpdb;
 
 		$query = "SELECT $wpdb->groups_id_col AS ID, $wpdb->groups_name_col AS display_name, $wpdb->groups_descript_col as descript "
@@ -198,7 +198,7 @@ class ScoperAdminLib {
 	
     // (adapted from WP-Group-Restriction plugin)
     // returns all groups, or all groups the current user can manage
-	function get_all_groups( $filtering = UNFILTERED_RS, $cols = COLS_ALL_RS, $args = array() ) {
+	public static function get_all_groups( $filtering = UNFILTERED_RS, $cols = COLS_ALL_RS, $args = array() ) {
 		$defaults = array ( 'include_norole_groups' => false, 'reqd_caps' => 'manage_groups', 'where' => '' );
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
@@ -295,7 +295,7 @@ class ScoperAdminLib {
 		return $cache[$ckey];
 	}
 	
-	function get_metagroup_name( $meta_id, $default_name = '' ) {
+	public static function get_metagroup_name( $meta_id, $default_name = '' ) {
 		global $wp_roles;
 		
 		if ( 0 === strpos( $meta_id, 'wp_role_' ) ) {
@@ -312,7 +312,7 @@ class ScoperAdminLib {
 		} 
 	}
 	
-	function get_metagroup_descript( $meta_id, $default_descript = '' ) {
+	public static function get_metagroup_descript( $meta_id, $default_descript = '' ) {
 		if ( 0 === strpos( $meta_id, 'wp_role_' ) ) {
 			$role_display_name = ScoperAdminLib::get_metagroup_name( $meta_id );
 			$role_display_name = str_replace('[WP ', '', $role_display_name);
@@ -325,43 +325,16 @@ class ScoperAdminLib {
 			return $default_descript;	
 		}
 	}
-		
-	function flush_user_cache( $user_ids ) {
-		$user_ids = (array) $user_ids;
-		
-		scoper_flush_results_cache( ROLE_BASIS_USER, $user_ids );
-		scoper_flush_roles_cache( OBJECT_SCOPE_RS, ROLE_BASIS_USER, $user_ids);
-		scoper_flush_roles_cache( TERM_SCOPE_RS, ROLE_BASIS_USER, $user_ids);
-		scoper_flush_roles_cache( BLOG_SCOPE_RS, ROLE_BASIS_USER, $user_ids);	
-	}
 	
-	function flush_groups_cache_for_user( $user_ids ) {
-		wpp_cache_flush();
-		
-		/* work around reported omission in the selective cache flush: http://agapetry.net/forum/role-scoper/issue-with-role-cache-and-add_group_user/page-1/post-5530/#p5530
-		$user_ids = (array) $user_ids;
-		
-		wpp_cache_flush_group( 'group_members' );
-		//wpp_cache_flush_group( 'group_membership_for_user' );
-		
-		foreach ( $user_ids as $user_id ) {
-			//rs_errlog( "calling wpp_cache_delete from user $user_id group_memb" );
-			wpp_cache_delete($user_id, 'group_membership_for_user');
-		}
-	
-		scoper_flush_results_cache( ROLE_BASIS_USER_AND_GROUPS, $user_ids );
-		scoper_flush_roles_cache( OBJECT_SCOPE_RS, ROLE_BASIS_USER_AND_GROUPS, $user_ids);
-		scoper_flush_roles_cache( TERM_SCOPE_RS, ROLE_BASIS_USER_AND_GROUPS, $user_ids);
-		scoper_flush_roles_cache( BLOG_SCOPE_RS, ROLE_BASIS_USER_AND_GROUPS, $user_ids);
-		*/
-	}
+	public static function flush_user_cache( $user_ids ) {}
+	public static function flush_groups_cache_for_user( $user_ids ) {}
 	
 	/**
 	 * Adds a user to a group  (adapted from WP-Group-Restriction plugin)
 	 * @param int $groupID - Group Identifier
 	 * @param int $userID - Identifier of the User to add
 	 **/
-	function add_group_user( $group_id, $user_ids, $status = 'active' ){
+	public static function add_group_user( $group_id, $user_ids, $status = 'active' ){
 		global $wpdb;
 		
 		$user_ids = (array) $user_ids;
@@ -378,8 +351,6 @@ class ScoperAdminLib {
 			
 			do_action('add_group_user_rs', $group_id, $user_id, $status);	
 		}
-		
-		ScoperAdminLib::flush_groups_cache_for_user( $user_ids );
 	}
 	
 	/** 
@@ -388,7 +359,7 @@ class ScoperAdminLib {
 	 * @param int $group_id - Group Identifier
 	 * @param int $user_id - Identifier of the User to remove
 	 **/
-	function remove_group_user($group_id, $user_ids) {
+	public static function remove_group_user($group_id, $user_ids) {
 		global $wpdb;
 
 		$user_ids = array_map( 'intval', (array) $user_ids );
@@ -399,8 +370,6 @@ class ScoperAdminLib {
 
 		foreach( $user_ids as $user_id )
 			do_action('delete_group_user_rs', $group_id, $user_id);
-
-		ScoperAdminLib::flush_groups_cache_for_user( $user_ids );
 	}
 	
 	/** 
@@ -409,7 +378,7 @@ class ScoperAdminLib {
 	 * @param int $group_id - Group Identifier
 	 * @param int $user_id - Identifier of the User to remove
 	 **/
-	function update_group_user( $group_id, $user_ids, $status ) {
+	public static function update_group_user( $group_id, $user_ids, $status ) {
 		global $wpdb;
 
 		$user_ids = array_map( 'intval', (array) $user_ids );
@@ -430,8 +399,6 @@ class ScoperAdminLib {
 			$prev = ( isset( $prev_status[$user_id] ) ) ? $prev_status[$user_id] : '';
 			do_action( 'update_group_user_rs', $group_id, $user_id, $status, $prev );
 		}
-			
-		ScoperAdminLib::flush_groups_cache_for_user( $user_ids );
 	}
 	
 	/**
@@ -439,18 +406,16 @@ class ScoperAdminLib {
 	 *
 	 * @param int $user - User Identifier
 	 **/
-	function delete_user_from_groups($user_id){
+	public static function delete_user_from_groups($user_id){
 		global $wpdb;
 
 		// possible todo: pre-query user groups so we can do_action delete_group_user_rs
 		
 		$delete = "DELETE FROM $wpdb->user2group_rs WHERE $wpdb->user2group_uid_col='$user_id';";
 		scoper_query( $delete );
-
-		ScoperAdminLib::flush_groups_cache_for_user( $user_id );
 	}
 
-	function delete_users( $user_ids, $blog_id_arg = 0 ) {
+	public static function delete_users( $user_ids, $blog_id_arg = 0 ) {
 		global $wpdb;
 		
 		if ( ! $user_ids )
@@ -473,12 +438,10 @@ class ScoperAdminLib {
 		foreach ( $user_ids as $user_id ) {
 			if ( ! MULTISITE || ! scoper_get_site_option( 'mu_sitewide_groups' ) )
 			   ScoperAdminLib::delete_user_from_groups($user_id);
-			
-			ScoperAdminLib::flush_user_cache( $user_id );
 		}
 	}
 
-	function clear_roles( $scope, $src_or_tx_name, $obj_or_term_id, $args = array() ) {
+	public static function clear_roles( $scope, $src_or_tx_name, $obj_or_term_id, $args = array() ) {
 		$defaults = array ( 'inherited_only' => false, 'clear_propagated' => false );
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
@@ -503,7 +466,7 @@ class ScoperAdminLib {
 		}
 	}
 	
-	function clear_restrictions ( $scope, $src_or_tx_name, $obj_or_term_id, $args = array() ) {
+	public static function clear_restrictions ( $scope, $src_or_tx_name, $obj_or_term_id, $args = array() ) {
 		$defaults = array ( 'inherited_only' => false, 'clear_propagated' => false );
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);	
@@ -525,7 +488,7 @@ class ScoperAdminLib {
 		}
 	}
 	
-	function any_custom_caps_assigned() {
+	public static function any_custom_caps_assigned() {
 		global $wpdb;
 		
 		$got_any = scoper_get_var("SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE scope = 'blog' AND role_type = 'wp_cap' LIMIT 1");
@@ -533,7 +496,7 @@ class ScoperAdminLib {
 	}
 
 	// this function is currently RoleManager-specific
-	function rename_role($role_name_old, $role_type = 'rs') {
+	public static function rename_role($role_name_old, $role_type = 'rs') {
 		$role_name_new = $_POST['role-name'];
 		if ( ! $role_name_old )
 			return;
@@ -541,36 +504,29 @@ class ScoperAdminLib {
 		global $wpdb;
 		scoper_query("UPDATE $wpdb->user2role2object_rs SET role_name = '$role_name_new' WHERE role_type = '$role_type' AND role_name = '$role_name_old'");
 
-		ScoperAdminLib::schedule_role_sync();	// sync_wp_roles() will also flush cache on role rename
+		ScoperAdminLib::schedule_role_sync();
 	}
 
-	function add_user( $user_id, $role_name = '', $blog_id = '' ) {
+	public static function add_user( $user_id, $role_name = '', $blog_id = '' ) {
 		// enroll user in default group(s)
 		if ( $default_groups = scoper_get_option( 'default_groups' ) )
 			foreach ($default_groups as $group_id)
 				ScoperAdminLib::add_group_user($group_id, $user_id);
 		
-		global $scoper_role_types;
-	
-		foreach ( $scoper_role_types as $role_type ) {	
-			wpp_cache_flush_group("{$role_type}_users_who_can");
-			wpp_cache_flush_group("{$role_type}_groups_who_can");
-		}
-	
 		ScoperAdminLib::sync_wproles( $user_id, $role_name, $blog_id );
 	}
 
-	function sync_wproles( $user_ids = '', $role_name = '', $blog_id_arg = '' ) {
+	public static function sync_wproles( $user_ids = '', $role_name = '', $blog_id_arg = '' ) {
 		require_once( dirname(__FILE__).'/update_rs.php');
 		scoper_sync_wproles( $user_ids, $role_name, $blog_id_arg );
 	} // end sync_wproles function
 	
 	// simplifies attaching this function to hook which pass irrelevant argument
-	function sync_all_wproles() {
+	public static function sync_all_wproles() {
 		ScoperAdminLib::sync_wproles();
 	} // end sync_wproles function
 
-	function schedule_role_sync() {
+	public static function schedule_role_sync() {
 		static $done;
 		
 		if ( ! empty($done) )
@@ -579,11 +535,10 @@ class ScoperAdminLib {
 		$done = true;
 			
 		// Role Manager / Capability Manager don't actually create the role until after the option update we're hooking on, so defer our maintenance operation
-		wpp_cache_flush();
 		add_action( 'shutdown', array('ScoperAdminLib', 'sync_all_wproles') );
 	}
 
-	function agent_ids_from_csv( $csv_id, $role_basis ) {
+	public static function agent_ids_from_csv( $csv_id, $role_basis ) {
 		static $groups_by_name;
 	
 		if ( ( ROLE_BASIS_GROUPS == $role_basis ) && ( ! empty($_POST[$csv_id]) ) ) {
@@ -623,7 +578,7 @@ class ScoperAdminLib {
 		return $agent_ids;
 	}
 	
-	function dashboard_dismiss_msg() {
+	public static function dashboard_dismiss_msg() {
 		$dismissals = get_option( 'scoper_dismissals' );
 		if ( ! is_array( $dismissals ) )
 			$dismissals = array();

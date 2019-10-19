@@ -22,7 +22,7 @@ function plural_name_from_cap_rs( $type_obj ) {
 } 
 
 class WP_Cap_Helper_CR {
-	function establish_status_caps() {
+	public static function establish_status_caps() {
 		global $wp_post_types;
 		
 		$use_post_types = scoper_get_option( 'use_post_types' );
@@ -104,7 +104,7 @@ class WP_Cap_Helper_CR {
 
 	}
 
-	function force_distinct_post_caps() {  // but only if the post type has RS usage enabled
+	public static function force_distinct_post_caps() {  // but only if the post type has RS usage enabled
 		global $wp_post_types;
 		
 		$type_caps = array();
@@ -188,7 +188,7 @@ class WP_Cap_Helper_CR {
 		}
 	}
 	
-	function force_distinct_taxonomy_caps() {
+	public static function force_distinct_taxonomy_caps() {
 		global $wp_taxonomies;
 	
 		$use_taxonomies = scoper_get_option( 'use_taxonomies' );

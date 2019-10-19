@@ -2,7 +2,7 @@
 add_filter( 'the_comments', array( 'CommentsInterceptorAdmin_RS', 'log_comment_post_ids' ) );
 
 class CommentsInterceptorAdmin_RS {
-	function get_reqd_caps() {
+	public static function get_reqd_caps() {
 		$reqd_caps = array();
 		
 		$generic_uri = in_array( $GLOBALS['pagenow'], array( 'index.php', 'comments.php' ) );
@@ -36,7 +36,7 @@ class CommentsInterceptorAdmin_RS {
 		return $reqd_caps;
 	}
 	
-	function log_comment_post_ids( $comments ) {
+	public static function log_comment_post_ids( $comments ) {
 		global $scoper;
 		
 		// buffer the listed IDs for more efficient user_has_cap calls

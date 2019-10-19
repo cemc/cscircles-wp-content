@@ -3,7 +3,7 @@ add_filter( 'comments_clauses', array( 'CommentsInterceptor_RS', 'flt_comments_c
 add_filter( 'wp_count_comments', array( 'CommentsInterceptor_RS', 'wp_count_comments_override'), 99, 2 );
 
 class CommentsInterceptor_RS {
-	function flt_comments_clauses( $clauses, &$qry_obj ) {
+	public static function flt_comments_clauses( $clauses, $qry_obj ) {
 		global $wpdb;
 		
 		if ( did_action( 'comment_post' ) )  // don't filter comment retrieval for email notification
@@ -78,7 +78,7 @@ class CommentsInterceptor_RS {
 		return $clauses;
 	}
 	
-	function wp_count_comments_clauses( $clauses, &$qry_obj ) {
+	public static function wp_count_comments_clauses( $clauses, $qry_obj ) {
 		if ( ! strpos( $clauses['where'], 'GROUP BY' ) ) {
 			$clauses['fields'] = 'comment_approved, COUNT( * ) AS num_comments';
 			$clauses['where'] .= ' GROUP BY comment_approved';
@@ -87,7 +87,7 @@ class CommentsInterceptor_RS {
 	}
 	
 	// force wp_count_comments() through WP_Comment_Query filtering
-	function wp_count_comments_override( $comments, $post_id = 0 ) {
+	public static function wp_count_comments_override( $comments, $post_id = 0 ) {
 		add_filter( 'comments_clauses', array( 'CommentsInterceptor_RS', 'wp_count_comments_clauses' ), 99, 2 );
 		$count = get_comments( array( 'post_id' => $post_id ) );
 		remove_filter( 'comments_clauses', array( 'CommentsInterceptor_RS', 'wp_count_comments_clauses' ), 99, 2 );
@@ -99,11 +99,13 @@ class CommentsInterceptor_RS {
 		foreach ( (array) $count as $row ) {
 			$row = (array) $row;  // RS modification
 		
-			// Don't count post-trashed toward totals
-			if ( 'post-trashed' != $row['comment_approved'] && 'trash' != $row['comment_approved'] )
-				$total += $row['num_comments'];
-			if ( isset( $approved[$row['comment_approved']] ) )
-				$stats[$approved[$row['comment_approved']]] = $row['num_comments'];
+			if ( isset( $row['num_comments'] ) ) {
+				// Don't count post-trashed toward totals
+				if ( 'post-trashed' != $row['comment_approved'] && 'trash' != $row['comment_approved'] )
+					$total += $row['num_comments'];
+				if ( isset( $approved[$row['comment_approved']] ) )
+					$stats[$approved[$row['comment_approved']]] = $row['num_comments'];
+			}
 		}
 
 		$stats['total_comments'] = $total;

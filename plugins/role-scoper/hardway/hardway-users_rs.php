@@ -13,7 +13,7 @@ else
 
 class ScoperHardwayUsers {
 	// Filter the otherwise unfilterable get_editable_user_ids() result set, which affects the admin UI
-	function flt_editable_user_ids($query) {
+	public static function flt_editable_user_ids($query) {
 		// Only display users who can read / edit the object in question
 		if ( strpos ($query, "user_id FROM") && strpos ($query, "meta_key =") ) {
 			global $wpdb;
@@ -47,7 +47,7 @@ class ScoperHardwayUsers {
 		return $query;
 	}
 	
-	function act_wp_user_query( &$query_obj ) {
+	public static function act_wp_user_query( &$query_obj ) {
 		// filter Author dropdown on post edit form
 		if ( in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php' ) ) && ( 'authors' == $query_obj->query_vars['who'] ) ) {
 			global $current_user, $scoper, $wpdb;
@@ -84,7 +84,7 @@ class ScoperHardwayUsers {
 		}
 	}
 	
-	function flt_get_editable_authors($unfiltered_results) {
+	public static function flt_get_editable_authors($unfiltered_results) {
 		global $wpdb, $scoper, $post;
 		
 		if ( ! $post_type = cr_find_post_type() )

@@ -1,6 +1,6 @@
 <?php
 class Relevanssi_Admin_Helper_RS {
-	function rvi_reindex() {
+	public static function rvi_reindex() {
 		if ( function_exists( 'relevanssi_truncate_cache' ) )
 			relevanssi_truncate_cache( true );
 

@@ -6,7 +6,7 @@ require_once( dirname(__FILE__).'/lib/agapetry_config_items.php');
 
 class CR_Taxonomies extends AGP_Config_Items {
 	// creates related data source and taxonomy objects
-	function &add( $name, $defining_module, $label_singular, $label_name, $uses_standard_schema = true, $default_strict = true, $args = array() ) {	
+	function &add_item( $name, $defining_module, $label_singular, $label_name, $uses_standard_schema = true, $default_strict = true, $args = array() ) {	
 		if ( $this->locked ) {
 			$notice = sprintf('A plugin or theme (%1$s) is too late in its attempt to define a taxonomy (%2$s).', $defining_module, $name)
 					. '<br /><br />' . 'This must be done via the define_taxonomies_rs hook.';
@@ -186,9 +186,9 @@ class CR_Taxonomy extends AGP_Config_Item {
 	var $table_term2obj;				// auto-generated upon ScoperConfig::load_config
 	var $table_term2obj_alias = '';
 	
-	function CR_Taxonomy($name, $defining_module, $label_singular, $label_name, $uses_standard_schema = true, $requires_term = false, $args = array() ) {
-		$this->AGP_Config_Item($name, $defining_module, $args);
-
+	function __construct($name, $defining_module, $label_singular, $label_name, $uses_standard_schema = true, $requires_term = false, $args = array() ) {
+		parent::__construct( $name, $defining_module, $args );
+		
 		$this->labels->name = $label_name;
 		$this->labels->singular_name = $label_singular;
 

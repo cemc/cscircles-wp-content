@@ -39,7 +39,7 @@ if ( isset( $_GET['rs_user_search'] )  ) {
 		$searches = array();
 		$where = 'AND (';
 		foreach ( array('group_name', 'group_description') as $col )
-			$searches[] = $col . " LIKE '%" . sanitize_text_field($_GET['rs_group_search'], '', 'query') . "%'";
+			$searches[] = $col . " LIKE '%" . sanitize_text_field($_GET['rs_group_search']) . "%'";
 		$where .= implode(' OR ', $searches);
 		$where .= ')';
 	} else

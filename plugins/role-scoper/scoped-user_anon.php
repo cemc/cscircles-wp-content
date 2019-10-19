@@ -27,7 +27,7 @@ class WP_Scoped_User_Anon extends WP_User { // Special skeleton class for ANONYM
 	var $is_administrator;				//  cut down on unnecessary filtering by assuming that if a user can activate plugins, they can do anything
 	var $is_module_administrator = array();
 	
-	function WP_Scoped_User_Anon() {
+	function __construct() {
 		if ( method_exists( $this, 'WP_User' ) ) {
 			$this->WP_User(0, '');
 		} else {
@@ -62,36 +62,17 @@ class WP_Scoped_User_Anon extends WP_User { // Special skeleton class for ANONYM
 		return $this->cache_set( $entry, $cache_flag, $append_blog_suffix, true );
 	}
 	
+	public static function _get_groups_for_user( $user_id, $args = array() ) {
+		return array();
+	}
+	
 	function get_groups_for_user( $user_id, $args = array() ) {
 		return array();
-		
-		if ( empty($args['no_cache']) ) {
-			// use -1 here to ignore accidental storage of other groups for zero user_id
-			$cache = wpp_cache_get( -1, 'group_membership_for_user' );
-			if ( is_array($cache) )
-				return $cache;
-		}
-
-		global $wpdb;
-		
-		if ( empty($wpdb->groups_rs) )
-			return array();
-
-		// include WP metagroup for anonymous user
-		$user_groups = scoper_get_col( "SELECT $wpdb->groups_id_col FROM $wpdb->groups_rs WHERE {$wpdb->groups_rs}.{$wpdb->groups_meta_id_col} = 'wp_anon'" );
-
-		if ( $user_groups && empty($args['no_cache']) ) {  // users should always be in at least a metagroup.  Problem with caching empty result on user creation beginning with WP 2.8
-			$user_groups = array_fill_keys($user_groups, 1);
-			
-			wpp_cache_set( -1, $user_groups, 'group_membership_for_user' );
-		}
-
-		return $user_groups;
 	}
 	
 	// return group_id as array keys
 	function _get_usergroups($args = array()) {
-		return WP_Scoped_User_Anon::get_groups_for_user( -1 );
+		return WP_Scoped_User_Anon::_get_groups_for_user( -1 );
 	}
 	
 	function get_blog_roles( $role_type = 'rs' ) {
@@ -115,6 +96,6 @@ class WP_Scoped_User_Anon extends WP_User { // Special skeleton class for ANONYM
 	function merge_scoped_blogcaps() {	
 	}
 	
-} // end class WP_Scoped_User
+} // end class WP_Scoped_User_Anon
 }
 ?>

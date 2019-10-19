@@ -17,7 +17,7 @@ define ('ELIGIBLE_ITEMS_RS', 'eligible');
 require_once( dirname(__FILE__).'/admin_ui_lib_rs.php' );
 
 class ScoperAgentsChecklist {
-	function all_agents_checklist( $role_bases, $agents, $args, $class = 'rs-agents' ) {
+	public static function all_agents_checklist( $role_bases, $agents, $args, $class = 'rs-agents' ) {
 		if ( MULTISITE && scoper_get_site_option( 'mu_sitewide_groups' ) )
 			$groups_url = ( awp_ver('3.1') ) ? 'network/users.php?page=rs-groups' : 'ms-admin.php?page=rs-groups';
 		else
@@ -50,7 +50,7 @@ class ScoperAgentsChecklist {
 			echo "<div $div_style>$edit_groups_link</div>";
 	}
 	
-	function agents_checklist( $role_basis, $all_agents, $id_prefix = '', $stored_assignments = '', $args = array()) {
+	public static function agents_checklist( $role_basis, $all_agents, $id_prefix = '', $stored_assignments = '', $args = array()) {
 		if ( empty($all_agents) && ! scoper_get_option("{$role_basis}_role_assignment_csv" ) )
 			return;
 
@@ -59,12 +59,12 @@ class ScoperAgentsChecklist {
 		
 		// list current selections on top first
 		if ( $stored_assignments ) {
-			ScoperAgentsChecklist::_agents_checklist_display( CURRENT_ITEMS_RS, $role_basis, $all_agents, $id_prefix, $stored_assignments, $args, $key, $action_links); 
+			self::_agents_checklist_display( CURRENT_ITEMS_RS, $role_basis, $all_agents, $id_prefix, $stored_assignments, $args, $key, $action_links); 
 			if ( ! empty( $GLOBALS['is_IE'] ) )
 				echo '<p class="rs-agents-spacer-ie">&nbsp;</p>';
 		}
 			
-		ScoperAgentsChecklist::_agents_checklist_display( ELIGIBLE_ITEMS_RS, $role_basis, $all_agents, $id_prefix, $stored_assignments, $args, $key, $action_links); 
+		self::_agents_checklist_display( ELIGIBLE_ITEMS_RS, $role_basis, $all_agents, $id_prefix, $stored_assignments, $args, $key, $action_links); 
 		if ( ! empty( $GLOBALS['is_IE'] ) )
 			echo '<div class="rs-agents-spacer-ie">&nbsp;</div>';
 		
@@ -89,7 +89,7 @@ class ScoperAgentsChecklist {
 		}
 	}
 	
-	function eligible_agents_input_box( $role_basis, $id_prefix, $propagation ) {
+	public static function eligible_agents_input_box( $role_basis, $id_prefix, $propagation ) {
 		$id = "{$id_prefix}_csv";
 		$msg = ( ROLE_BASIS_GROUPS == $role_basis ) ? __( "Enter additional Group Names or IDs (comma-separate)", 'scoper') : __( "Enter additional User Names or IDs (comma-separate)", 'scoper');
 		echo '<br /><div class="rs-agents_caption"><strong>' . $msg . ':</strong></div>';
@@ -104,7 +104,7 @@ class ScoperAgentsChecklist {
 	}
 	
 	// stored_assignments[agent_id][inherited_from] = progenitor_assignment_id (note: this function treats progenitor_assignment_id as a boolean)
-	function _agents_checklist_display( $agents_subset, $role_basis, $all_agents, $id_prefix, $stored_assignments, $args, &$key, &$action_links) {
+	static function _agents_checklist_display( $agents_subset, $role_basis, $all_agents, $id_prefix, $stored_assignments, $args, &$key, &$action_links) {
 		$defaults = array( 
 		'eligible_ids' => '', 			'locked_ids' => '',
 		'suppress_extra_prefix' => false, 					 				'check_for_incomplete_submission' => false,

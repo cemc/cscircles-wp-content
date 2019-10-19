@@ -4,9 +4,6 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 
 	
 function scoper_version_updated( $prev_version ) {
-	if ( function_exists( 'wpp_cache_flush' ) )
-		wpp_cache_flush_all_sites();
-
 	// single-pass do loop to easily skip unnecessary version checks
 	do {
 		// role_name column width of 32 was too narrow for long post type / taxonomy names. Thanks to http://wordpress.org/support/profile/vmattila
@@ -36,15 +33,6 @@ function scoper_version_updated( $prev_version ) {
 
 			scoper_query( "DELETE FROM $wpdb->role_scope_rs WHERE src_or_tx_name = 'post' AND obj_or_term_id IN ( SELECT ID FROM $wpdb->posts WHERE post_type IN ('attachment', 'revision') OR post_status = 'auto-draft' )" );
 			scoper_query( "DELETE FROM $wpdb->user2role2object_rs WHERE src_or_tx_name = 'post' AND obj_or_term_id IN ( SELECT ID FROM $wpdb->posts WHERE post_type IN ('attachment', 'revision') OR post_status = 'auto-draft' )" );
-		}
-
-		// 1.3.RC4 changed RS cache path to subfolder, so flush the root-stored cache one last time (only for MU / Multisite due to potentially large # of folders, files)
-		if ( IS_MU_RS && version_compare( $prev_version, '1.3.RC4', '<') && ! defined( 'SKIP_CACHE_MAINT_RS' ) ) {
-			global $wpp_object_cache;
-			$wpp_object_cache = new WP_Persistent_Object_Cache( false );
-			$wpp_object_cache->global_groups = array( '' );	 // forces use of cache root for this maint operation
-			$wpp_object_cache->rm_cache_dir( '' );		// will delete any files and folders in cache root except .htaccess
-			$wpp_object_cache->cache_enabled = false;	// avoid further updating cache in this http session
 		}
 		
 		// 1.2.8 Beta disabled caps for custom post type roles under some circumstances
@@ -250,16 +238,6 @@ function scoper_sync_wproles($user_ids = '', $role_name_arg = '', $blog_id_arg =
 			//rs_errlog( "INSERT INTO $groups_table ( $wpdb->groups_meta_id_col, $wpdb->groups_name_col, $wpdb->groups_descript_col ) VALUES ( '$metagroup_id', '$metagroup_names[$metagroup_id]', '$metagroup_descripts[$metagroup_id]' )" );
 		}
 	}
-	
-	if ( ! empty($delete_metagroup_ids) || ! empty($update_metagroup_ids) ) {
-		wpp_cache_flush();  // role deletion / rename might affect other cached data or settings, so flush the whole cache
-
-	} elseif ( ! empty($insert_group_ids) ) {
-		wpp_cache_flush_group( 'all_usergroups' );
-		wpp_cache_flush_group( 'usergroups_for_groups' );
-		wpp_cache_flush_group( 'usergroups_for_user' );
-		wpp_cache_flush_group( 'usergroups_for_ug' );
-	}
 
 	// Now step through every WP usermeta record, 
 	// synchronizing the user's user2role2object_rs blog role entries with their WP role and custom caps
@@ -433,7 +411,6 @@ function delete_roles_orphaned_from_item( $scope, $src_or_tx_name ) {
 		if ( $items_to_delete = scoper_get_var( "SELECT assignment_id FROM $wpdb->user2role2object_rs WHERE 1=1 $where LIMIT 1" ) ) {
 			$qry = "DELETE FROM $wpdb->user2role2object_rs WHERE 1=1 $where";
 			scoper_query( $qry );
-			wpp_cache_flush();
 		}
 	}
 }
@@ -467,7 +444,6 @@ function delete_restrictions_orphaned_from_item( $scope, $src_or_tx_name ) {
 		if ( $items_to_delete = scoper_get_var( "SELECT requirement_id FROM $wpdb->role_scope_rs WHERE 1=1 $where LIMIT 1" ) ) {
 			$qry = "DELETE FROM $wpdb->role_scope_rs WHERE 1=1 $where";
 			scoper_query( $qry );
-			wpp_cache_flush();
 		}
 	}
 }

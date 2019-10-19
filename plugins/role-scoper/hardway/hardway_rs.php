@@ -46,7 +46,7 @@ class ScoperHardway
 	//	Currently, scoped roles cannot be enforced without replicating the whole function  
 	//
 	//	Enforces cap requirements as specified in cr_get_reqd_caps
-	function flt_get_pages($results, $args = array()) {
+	public static function flt_get_pages($results, $args = array()) {
 		$results = (array) $results;
 
 		global $wpdb;
@@ -430,7 +430,7 @@ class ScoperHardway
 	
 	
 	
-	function remap_tree( &$items, $ancestors, $col_id, $col_parent, $args ) {
+	public static function remap_tree( &$items, $ancestors, $col_id, $col_parent, $args ) {
 		$defaults = array(
 			'child_of' => 0, 			'parent' => -1,
 			'orderby' => 'post_title',	'depth' => 0,

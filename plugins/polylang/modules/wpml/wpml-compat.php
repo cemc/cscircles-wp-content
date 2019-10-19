@@ -8,8 +8,8 @@
  * @since 1.0.2
  */
 class PLL_WPML_Compat {
-	static protected $instance; // For singleton
-	static protected $strings; // Used for cache
+	protected static $instance; // For singleton
+	protected static $strings; // Used for cache
 	public $api;
 
 	/**
@@ -19,13 +19,14 @@ class PLL_WPML_Compat {
 	 */
 	protected function __construct() {
 		// Load the WPML API
-		require_once( PLL_MODULES_INC . '/wpml/wpml-legacy-api.php' );
+		require_once PLL_MODULES_INC . '/wpml/wpml-legacy-api.php';
 		$this->api = new PLL_WPML_API();
 
 		self::$strings = get_option( 'polylang_wpml_strings', array() );
 
 		add_action( 'pll_language_defined', array( $this, 'define_constants' ) );
-		add_action( 'pll_get_strings', array( $this, 'get_strings' ) );
+		add_action( 'pll_no_language_defined', array( $this, 'define_constants' ) );
+		add_filter( 'pll_get_strings', array( $this, 'get_strings' ) );
 	}
 
 	/**
@@ -35,7 +36,7 @@ class PLL_WPML_Compat {
 	 *
 	 * @return object
 	 */
-	static public function instance() {
+	public static function instance() {
 		if ( empty( self::$instance ) ) {
 			self::$instance = new self();
 		}
@@ -76,13 +77,30 @@ class PLL_WPML_Compat {
 	 *
 	 * @since 1.0.2
 	 *
-	 * @param string $context the group in which the string is registered, defaults to 'polylang'
-	 * @param string $name    a unique name for the string
-	 * @param string $string  the string to register
+	 * @param string $context The group in which the string is registered.
+	 * @param string $name    A unique name for the string.
+	 * @param string $string  The string to register.
 	 */
 	public function register_string( $context, $name, $string ) {
-		// Registers the string if it does not exist yet
-		$to_register = array( 'context' => $context, 'name' => $name, 'string' => $string, 'multiline' => false, 'icl' => true );
+		// If a string has already been registered with the same name and context, let's replace it.
+		$exist_string = $this->get_string_by_context_and_name( $context, $name );
+		if ( $exist_string && $exist_string !== $string ) {
+			$languages = PLL()->model->get_languages_list();
+
+			// Assign translations of the old string to the new string, except for the default language.
+			foreach ( $languages as $language ) {
+				if ( pll_default_language() !== $language->slug ) {
+					$mo = new PLL_MO();
+					$mo->import_from_db( $language );
+					$mo->add_entry( $mo->make_entry( $string, $mo->translate( $exist_string ) ) );
+					$mo->export_to_db( $language );
+				}
+			}
+			$this->unregister_string( $context, $name );
+		}
+
+		// Registers the string if it does not exist yet (multiline as in WPML).
+		$to_register = array( 'context' => $context, 'name' => $name, 'string' => $string, 'multiline' => true, 'icl' => true );
 		if ( ! in_array( $to_register, self::$strings ) && $to_register['string'] ) {
 			self::$strings[] = $to_register;
 			update_option( 'polylang_wpml_strings', self::$strings );

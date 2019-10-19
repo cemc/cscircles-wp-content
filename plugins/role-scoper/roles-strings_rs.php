@@ -2,7 +2,7 @@
 
 class ScoperRoleStrings {
 
-	function get_display_name( $role_handle, $context = '' ) {
+	public static function get_display_name( $role_handle, $context = '' ) {
 		switch( $role_handle ) {
 			case 'rs_post_reader' :
 				return __('Post Reader', 'scoper');
@@ -119,7 +119,7 @@ class ScoperRoleStrings {
 		//return apply_filters( 'role_display_name_rs', $str, $role_handle );			
 	}
 	
-	function get_abbrev( $role_handle, $context = '' ) {
+	public static function get_abbrev( $role_handle, $context = '' ) {
 		if ( strpos( $role_handle, '_reader' ) ) {
 			if ( ( false === strpos( $role_handle, 'private_' ) ) || ( ( OBJECT_UI_RS == $context ) && ! defined( 'DISABLE_OBJSCOPE_EQUIV_' . $role_handle ) ) )
 				return __('Readers', 'scoper');
@@ -153,7 +153,7 @@ class ScoperRoleStrings {
 		return ucwords( trim( str_replace( '_', ' ', substr($role_handle, 2 ) ) ) );
 	}
 	
-	function get_micro_abbrev( $role_handle, $context = '' ) {
+	public static function get_micro_abbrev( $role_handle, $context = '' ) {
 		switch( $role_handle ) {
 			case 'rs_post_reader' :
 			case 'rs_page_reader' :

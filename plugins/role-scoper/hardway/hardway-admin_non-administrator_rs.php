@@ -11,7 +11,7 @@ if ( 'nav-menus.php' == $GLOBALS['pagenow'] ) {	// nav-menus.php only needs admi
 }
 
 class ScoperAdminHardway_Ltd {
-	function add_filters() {
+	public static function add_filters() {
 		add_action( 'check_admin_referer', array('ScoperAdminHardway_Ltd', 'act_check_admin_referer') );
 	
 		add_action( 'check_ajax_referer', array('ScoperAdminHardway_Ltd', 'act_check_ajax_referer') );
@@ -29,7 +29,7 @@ class ScoperAdminHardway_Ltd {
 	}
 
 	// next-best way to handle any permission checks for non-Ajax operations which can't be done via has_cap filter
-	function act_check_admin_referer( $referer_name ) {
+	public static function act_check_admin_referer( $referer_name ) {
 		
 		if ( ! empty($_POST['tag_ID']) && ( 'update-tag_' . $_POST['tag_ID'] == $referer_name ) ) {
 			// filter category parent selection for Category editing
@@ -106,7 +106,7 @@ class ScoperAdminHardway_Ltd {
 	
 	
 	// next-best way to handle permission checks for Ajax operations which can't be done via has_cap filter
-	function act_check_ajax_referer( $referer_name ) {
+	public static function act_check_ajax_referer( $referer_name ) {
 		if ( 'add-tag' == $referer_name ) {			
 			if ( $tx_obj = get_taxonomy( $_POST['taxonomy'] ) )
 				$cap_name = $tx_obj->cap->manage_terms;
@@ -125,14 +125,14 @@ class ScoperAdminHardway_Ltd {
 		}
 	}
 	
-	function flt_last_resort_query($query) {
+	public static function flt_last_resort_query($query) {
 		static $in_process = false;
 		
 		if ( $in_process )
 			return $query;
 			
 		$in_process = true;
-		$query = ScoperAdminHardway_Ltd::_flt_last_resort_query($query);
+		$query = self::_flt_last_resort_query($query);
 		$in_process = false;
 		return $query;
 	}
@@ -140,7 +140,7 @@ class ScoperAdminHardway_Ltd {
 	// low-level filtering of otherwise unhookable queries
 	//
 	// Todo: review all queries for version-specificity; apply regular expressions to make it less brittle
-	function _flt_last_resort_query($query) {
+	static function _flt_last_resort_query($query) {
 		// no recursion
 		if ( scoper_querying_db() || $GLOBALS['cap_interceptor']->in_process )
 			return $query;

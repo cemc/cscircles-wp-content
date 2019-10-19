@@ -12,12 +12,12 @@ class PLL_Widget_Languages extends WP_Widget {
 	 *
 	 * @since 0.1
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct(
 			'polylang',
-			__( 'Language Switcher', 'polylang' ),
+			__( 'Language switcher', 'polylang' ),
 			array(
-				'description' => __( 'Displays a language switcher', 'polylang' ),
+				'description'                 => __( 'Displays a language switcher', 'polylang' ),
 				'customize_selective_refresh' => true,
 			)
 		);
@@ -31,7 +31,7 @@ class PLL_Widget_Languages extends WP_Widget {
 	 * @param array $args     Display arguments including before_title, after_title, before_widget, and after_widget.
 	 * @param array $instance The settings for the particular instance of the widget
 	 */
-	function widget( $args, $instance ) {
+	public function widget( $args, $instance ) {
 		// Sets a unique id for dropdown
 		$instance['dropdown'] = empty( $instance['dropdown'] ) ? 0 : $args['widget_id'];
 
@@ -40,12 +40,17 @@ class PLL_Widget_Languages extends WP_Widget {
 			/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
 			$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
-			echo $args['before_widget'];
+			echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 			if ( $title ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo $args['before_title'] . $title . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput
 			}
-			echo $instance['dropdown'] ? $list : "<ul>\n" . $list . "</ul>\n";
-			echo $args['after_widget'];
+			if ( $instance['dropdown'] ) {
+				echo '<label class="screen-reader-text" for="' . esc_attr( 'lang_choice_' . $instance['dropdown'] ) . '">' . esc_html__( 'Choose a language', 'polylang' ) . '</label>';
+				echo $list; // phpcs:ignore WordPress.Security.EscapeOutput
+			} else {
+				echo "<ul>\n" . $list . "</ul>\n"; // phpcs:ignore WordPress.Security.EscapeOutput
+			}
+			echo $args['after_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 	}
 
@@ -58,8 +63,8 @@ class PLL_Widget_Languages extends WP_Widget {
 	 * @param array $old_instance Old settings for this instance
 	 * @return array Settings to save or bool false to cancel saving
 	 */
-	function update( $new_instance, $old_instance ) {
-		$instance['title'] = strip_tags( $new_instance['title'] );
+	public function update( $new_instance, $old_instance ) {
+		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		foreach ( array_keys( PLL_Switcher::get_switcher_options( 'widget' ) ) as $key ) {
 			$instance[ $key ] = ! empty( $new_instance[ $key ] ) ? 1 : 0;
 		}
@@ -74,34 +79,31 @@ class PLL_Widget_Languages extends WP_Widget {
 	 *
 	 * @param array $instance Current settings
 	 */
-	function form( $instance ) {
+	public function form( $instance ) {
 		// Default values
 		$instance = wp_parse_args( (array) $instance, array_merge( array( 'title' => '' ), PLL_Switcher::get_switcher_options( 'widget', 'default' ) ) );
 
 		// Title
 		printf(
 			'<p><label for="%1$s">%2$s</label><input class="widefat" id="%1$s" name="%3$s" type="text" value="%4$s" /></p>',
-			$this->get_field_id( 'title' ),
+			esc_attr( $this->get_field_id( 'title' ) ),
 			esc_html__( 'Title:', 'polylang' ),
-			$this->get_field_name( 'title' ),
+			esc_attr( $this->get_field_name( 'title' ) ),
 			esc_attr( $instance['title'] )
 		);
 
-		$fields = '';
 		foreach ( PLL_Switcher::get_switcher_options( 'widget' ) as $key => $str ) {
-			$fields .= sprintf(
+			printf(
 				'<div%5$s%6$s><input type="checkbox" class="checkbox %7$s" id="%1$s" name="%2$s"%3$s /><label for="%1$s">%4$s</label></div>',
-				$this->get_field_id( $key ),
-				$this->get_field_name( $key ),
-				$instance[ $key ] ? ' checked="checked"' : '',
+				esc_attr( $this->get_field_id( $key ) ),
+				esc_attr( $this->get_field_name( $key ) ),
+				checked( $instance[ $key ], true, false ),
 				esc_html( $str ),
-				in_array( $key, array( 'show_names', 'show_flags', 'hide_current' ) ) ? ' class="no-dropdown-' . $this->id . '"' : '',
-				! empty( $instance['dropdown'] ) && in_array( $key, array( 'show_names', 'show_flags', 'hide_current' ) ) ? ' style="display:none;"' : '',
-				'pll-' . $key
+				in_array( $key, array( 'show_names', 'show_flags', 'hide_current' ) ) ? sprintf( ' class="no-dropdown-%s"', esc_attr( $this->id ) ) : '',
+				( ! empty( $instance['dropdown'] ) && in_array( $key, array( 'show_names', 'show_flags', 'hide_current' ) ) ? ' style="display:none;"' : '' ),
+				esc_attr( 'pll-' . $key )
 			);
 		}
-
-		echo $fields;
 
 		// FIXME echoing script in form is not very clean
 		// but it does not work if enqueued properly :
@@ -121,7 +123,8 @@ class PLL_Widget_Languages extends WP_Widget {
 			return;
 		}
 
-		$done = true; ?>
+		$done = true;
+		?>
 		<script type='text/javascript'>
 			//<![CDATA[
 			jQuery( document ).ready( function( $ ) {
@@ -147,6 +150,7 @@ class PLL_Widget_Languages extends WP_Widget {
 				} );
 			} );
 			//]]>
-		</script><?php
+		</script>
+		<?php
 	}
 }

@@ -19,7 +19,7 @@ class ScoperAdminFilters
 	var $user_levels;	// this is only populated for performance as a buffer for currently queried / listed users
 	var $last_post_status = array();
 	
-	function ScoperAdminFilters() {
+	function __construct() {
 		global $scoper;
 		
 		// --------- CUSTOMIZABLE HOOK WRAPPING ---------
@@ -195,8 +195,6 @@ class ScoperAdminFilters
 		}
 		
 		add_action( 'load-post.php', array( &$this, 'maybe_override_kses' ) );
-
-		add_action( 'add_link', 'wpp_cache_flush' );
 	}
 	
 	function maybe_override_kses() {
@@ -447,15 +445,6 @@ class ScoperAdminFilters
 
 		if ( empty($object_type) )
 			$object_type = cr_find_object_type($src_name, $object_id);
-			
-		if ( 'post' == $src_name ) {
-			if ( $post_type_obj = get_post_type_object( $object_type ) ) {
-				if ( $post_type_obj->hierarchical )
-					scoper_flush_cache_groups('get_pages');
-			}
-		}
-			
-		scoper_flush_roles_cache(OBJECT_SCOPE_RS);
 	}
 	
 	function mnt_create_object($src_name, $args, $object_id, $object = '') {
@@ -490,9 +479,6 @@ class ScoperAdminFilters
 		
 		if ( 'post' == $src_name ) {
 			$post_type_obj = get_post_type_object( $object_type );
-			
-			if ( $post_type_obj->hierarchical )
-				scoper_flush_cache_groups('get_pages');
 		}
 	}
 	
@@ -502,7 +488,6 @@ class ScoperAdminFilters
 
 		$this->mnt_save_term( $taxonomy, $args, $term_id, $unused_tt_id, $taxonomy );
 
-		scoper_term_cache_flush();
 		delete_option( "{$taxonomy}_children_rs" );
 	}
 	
@@ -550,10 +535,6 @@ class ScoperAdminFilters
 		$this->item_deletion_aftermath( TERM_SCOPE_RS, $taxonomy, $term_id );
 
 		delete_option( "{$taxonomy}_children_rs" );
-		
-		scoper_term_cache_flush();
-		scoper_flush_roles_cache(TERM_SCOPE_RS, '', '', $taxonomy);
-		scoper_flush_cache_flag_once("rs_$taxonomy");
 	}
 
 	function item_deletion_aftermath( $scope, $src_or_tx_name, $obj_or_term_id ) {
@@ -770,40 +751,9 @@ function init_role_assigner() {
 	return $scoper_role_assigner;
 }
 
-function scoper_flush_cache_flag_once ($cache_flag) {
-	static $flushed_wpcache_flags;
-
-	if ( ! isset($flushed_wpcache_flags) )
-		$flushed_wpcache_flags = array();
-
-	if ( ! isset( $flushed_wpcache_flags[$cache_flag]) ) {
-		wpp_cache_flush_group($cache_flag);
-		$flushed_wpcache_flags[$cache_flag] = true;
-	}
-}
-
-// flush a specified portion of Role Scoper's persistant cache
-function scoper_flush_cache_groups($base_cache_flag) {
-	$scoper_role_types = array('rs', 'wp', 'wp_cap');
-	
-	foreach ( $scoper_role_types as $role_type ) {
-		scoper_flush_cache_flag_once($role_type . '_' . $base_cache_flag . '_for_groups' );
-		scoper_flush_cache_flag_once($role_type . '_' . $base_cache_flag . '_for_user' );
-		scoper_flush_cache_flag_once($role_type . '_' . $base_cache_flag . '_for_ug' );
-	}
-}
-
-function scoper_term_cache_flush() {
-	// flush_cache_groups will expand this base flag to "rs_get_terms_for_user", etc.
-	scoper_flush_cache_groups('get_terms');
-	scoper_flush_cache_groups('scoper_get_terms');
-
-	scoper_flush_cache_flag_once('all_terms');
-		
-	// TODO: implement this for custom taxonomies that are hierarchical and use taxonomies?
-	//if ( scoper_get_otype_option( 'use_term_roles', 'post', 'page' ) ) 
-	//	scoper_flush_cache_groups('get_pages');
-}
+function scoper_flush_cache_flag_once ($cache_flag) {}
+function scoper_flush_cache_groups($base_cache_flag) {}
+function scoper_term_cache_flush() {}
 
 // modifies WP core _update_post_term_count to include private posts in the count, since RS roles can grant access to them
 function scoper_update_post_term_count( $terms ) {

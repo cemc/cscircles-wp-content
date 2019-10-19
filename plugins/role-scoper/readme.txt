@@ -5,7 +5,7 @@ Tags: restrict, access, permissions, cms, user, private, category, pages, privac
 License: GPLv2
 Requires at least: 3.0
 Tested up to: 3.6.1
-Stable Tag: 1.3.66
+Stable Tag: 1.4.4
 
 CMS-like permissions for reading and editing. Content-specific restrictions and roles supplement/override WordPress roles. User groups optional.
 
@@ -107,14 +107,41 @@ Basic Role Scoper support (bug fixes but not necessarily plugin conflict resolut
 7. [View an html sample of Role Scoper Options](http://agapetry.net/demos/rs-options_demo.htm)
 8. [View more screenshots](http://agapetry.net/news/introducing-role-scoper/)
 
+== Upgrade Notice ==
+
+= 1.4.2 =
+Security Notice: disable Roles > Options > Internal Cache or upgrade to Role Scoper 1.4.2
+
 == Changelog ==
 
+= 1.4.4 - 14 Mar 2017
+* Fixed : class redeclaration error on some servers
+* Fixed : a few PHP warnings for undefined variables, byref function arguments
+
+= 1.4.3 - 27 Feb 2017 =
+* Compat : Renamed class WP_Nonpersistent_Object_Cache to avoid conflict with unknown 3rd party code
+
+= 1.4.3 - 27 Feb 2017 =
+* Compat : Renamed class WP_Nonpersistent_Object_Cache to avoid conflict with unknown 3rd party code
+
+= 1.4.2 - 22 Feb 2017 =
+* Security : Disabled peristent cache due to vulnerability
+
+= 1.4.1 - 12 Dec 2016 =
+* Compat : WP 4.7 - Fatal error when non-Administrator saves a post
+
+= 1.4 - 18 Apr 2016 =
+* Compat : PHP 7 - Eliminated notices for function constructors and static calls
+
+= 1.3.67 - 29 Oct 2015 =
+* Fixed : XSS vulnerability in wp-admin for logged administrators
+
 = 1.3.66 - 1 Oct 2015 =
+* Fixed : Fatal error when Nav Menu Management is filtered on WP > 4.0
 * Fixed : Category Roles bulk edit screen did not display current assignments (since 1.3.65)
 * Fixed : Group names and descriptions were incorrectly stored on new group creation (since 1.3.65)
 * Fixed : Group names search on Edit User screen failed in some cases (since 1.3.65)
 * Fixed : Groups CSV entry was not handled correctly (since 1.3.65)
-* Fixed : Fatal error when Nav Menu Management is filtered on WP > 4.0
 
 = 1.3.65 - 26 Aug 2015 =
 * Change: Improved query sanitization

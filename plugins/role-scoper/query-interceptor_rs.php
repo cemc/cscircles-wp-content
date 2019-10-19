@@ -7,7 +7,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
  * query-interceptor_rs.php
  * 
  * @author 		Kevin Behrens
- * @copyright 	Copyright 2011
+ * @copyright 	Copyright 2011-2016
  * 
  */
 
@@ -17,7 +17,7 @@ class QueryInterceptor_RS
 	var $skip_teaser; 	// this is only used by templates making a direct call to query_posts but wishing to get non-teased results
 	var $last_request = array();
 	
-	function QueryInterceptor_RS() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 
 		$is_administrator = is_content_administrator_rs();
@@ -1445,7 +1445,7 @@ class QueryInterceptor_RS
 		if ( ! $object_types || ( is_array($object_types) && count($object_types) > 1 ) )
 			$object_type = cr_find_post_type();
 		else
-			$object_type = strval( $object_types );
+			$object_type = strval( reset($object_types) );
 
 		if ( ( 'edit.php' == $GLOBALS['pagenow'] ) && ! is_content_administrator_rs() ) {
 			$post_type_obj = get_post_type_object( $object_type );

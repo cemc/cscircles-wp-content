@@ -15,11 +15,11 @@ class PLL_Switcher {
 	 *
 	 * @param string $type optional either 'menu' or 'widget', defaults to 'widget'
 	 * @param string $key  optional either 'string' or 'default', defaults to 'string'
-	 * @return array list of switcher options srings or default values
+	 * @return array list of switcher options strings or default values
 	 */
-	static public function get_switcher_options( $type = 'widget', $key = 'string' ) {
+	public static function get_switcher_options( $type = 'widget', $key = 'string' ) {
 		$options = array(
-			'dropdown'               => array( 'string' => __( 'Displays as dropdown', 'polylang' ), 'default' => 0 ),
+			'dropdown'               => array( 'string' => __( 'Displays as a dropdown', 'polylang' ), 'default' => 0 ),
 			'show_names'             => array( 'string' => __( 'Displays language names', 'polylang' ), 'default' => 1 ),
 			'show_flags'             => array( 'string' => __( 'Displays flags', 'polylang' ), 'default' => 0 ),
 			'force_home'             => array( 'string' => __( 'Forces link to front page', 'polylang' ), 'default' => 0 ),
@@ -33,8 +33,7 @@ class PLL_Switcher {
 	/**
 	 * Get the language elements for use in a walker
 	 *
-	 * List of parameters accepted in $args:
-	 * @see PLL_Switcher::the_languages
+	 * @see list of parameters accepted in $args documented for PLL_Switcher::the_languages
 	 *
 	 * @since 1.2
 	 *
@@ -68,7 +67,7 @@ class PLL_Switcher {
 				}
 			}
 
-			if ( null !== $args['post_id'] && ( $tr_id = $links->model->post->get( $args['post_id'], $language ) ) && $links->current_user_can_read( $tr_id ) ) {
+			if ( null !== $args['post_id'] && ( $tr_id = $links->model->post->get( $args['post_id'], $language ) ) && $links->model->post->current_user_can_read( $tr_id ) ) {
 				$url = get_permalink( $tr_id );
 			} elseif ( null === $args['post_id'] ) {
 				$url = $links->get_translation_url( $language );
@@ -94,7 +93,7 @@ class PLL_Switcher {
 				continue;
 			}
 
-			$url = empty( $url ) || $args['force_home'] ? $links->get_home_url( $language ) : $url ; // If the page is not translated, link to the home page
+			$url = empty( $url ) || $args['force_home'] ? $links->get_home_url( $language ) : $url; // If the page is not translated, link to the home page
 
 			$name = $args['show_names'] || ! $args['show_flags'] || $args['raw'] ? ( 'slug' == $args['display_names_as'] ? $slug : $language->name ) : '';
 			$flag = $args['raw'] && ! $args['show_flags'] ? $language->flag_url : ( $args['show_flags'] ? $language->flag : '' );
@@ -116,12 +115,13 @@ class PLL_Switcher {
 	 * hide_if_empty          => hides languages with no posts ( or pages ) if set to 1, defaults to 1
 	 * show_flags             => displays flags if set to 1, defaults to 0
 	 * show_names             => show language names if set to 1, defaults to 1
-	 * display_names_as       => wether to display the language name or its slug, valid options are 'slug' and 'name', defaults to name
+	 * display_names_as       => whether to display the language name or its slug, valid options are 'slug' and 'name', defaults to name
 	 * force_home             => will always link to home in translated language if set to 1, defaults to 0
 	 * hide_if_no_translation => hide the link if there is no translation if set to 1, defaults to 0
 	 * hide_current           => hide the current language if set to 1, defaults to 0
 	 * post_id                => returns links to translations of post defined by post_id if set, defaults not set
 	 * raw                    => return a raw array instead of html markup if set to 1, defaults to 0
+	 * item_spacing           => whether to preserve or discard whitespace between list items, valid options are 'preserve' and 'discard', defaults to preserve
 	 *
 	 * @since 0.1
 	 *
@@ -143,6 +143,7 @@ class PLL_Switcher {
 			'hide_current'           => 0, // don't hide current language
 			'post_id'                => null, // if not null, link to translations of post defined by post_id
 			'raw'                    => 0, // set this to true to build your own custom language switcher
+			'item_spacing'           => 'preserve', // 'preserve' or 'discard' whitespace between list items
 		);
 		$args = wp_parse_args( $args, $defaults );
 
@@ -180,7 +181,7 @@ class PLL_Switcher {
 		 *
 		 * @since 0.8
 		 *
-		 * @param string $html html returned/outputed by the template tag
+		 * @param string $html html returned/outputted by the template tag
 		 * @param array  $args arguments passed to the template tag
 		 */
 		$out = apply_filters( 'pll_the_languages', $walker->walk( $elements, $args ), $args );
@@ -188,12 +189,13 @@ class PLL_Switcher {
 		// Javascript to switch the language when using a dropdown list
 		if ( $args['dropdown'] ) {
 			foreach ( $links->model->get_languages_list() as $language ) {
-				$urls[ $language->slug ] = $args['force_home'] || ( $url = $links->get_translation_url( $language ) ) === null ? $links->get_home_url( $language ) : $url;
+				$url = $links->get_translation_url( $language );
+				$urls[ $language->slug ] = $args['force_home'] || empty( $url ) ? $links->get_home_url( $language ) : $url;
 			}
 
 			// Accept only few valid characters for the urls_x variable name ( as the widget id includes '-' which is invalid )
-			$out .= sprintf( '
-				<script type="text/javascript">
+			$out .= sprintf(
+				'<script type="text/javascript">
 					//<![CDATA[
 					var %1$s = %2$s;
 					document.getElementById( "%3$s" ).onchange = function() {
@@ -201,12 +203,14 @@ class PLL_Switcher {
 					}
 					//]]>
 				</script>',
-				'urls_' . preg_replace( '#[^a-zA-Z0-9]#', '', $args['dropdown'] ), json_encode( $urls ), esc_js( $args['name'] )
+				'urls_' . preg_replace( '#[^a-zA-Z0-9]#', '', $args['dropdown'] ),
+				wp_json_encode( $urls ),
+				esc_js( $args['name'] )
 			);
 		}
 
 		if ( $args['echo'] ) {
-			echo $out;
+			echo $out; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 		return $out;
 	}

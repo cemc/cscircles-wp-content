@@ -4,7 +4,7 @@ add_filter('wp_dropdown_users', array('ScoperHardwayUsersLegacy', 'flt_wp_dropdo
 
 class ScoperHardwayUsersLegacy {
 	//horrible reverse engineering of dropdown_users execution because until recently, only available filter was on html output
-	function flt_wp_dropdown_users($wp_output) {
+	public static function flt_wp_dropdown_users($wp_output) {
 		// just filter Post Author dropdown
 		if ( ! strpos( $wp_output, "name='post_author_override'" ) )
 			return $wp_output;

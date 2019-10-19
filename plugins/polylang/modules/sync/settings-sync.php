@@ -8,22 +8,25 @@
 class PLL_Settings_Sync extends PLL_Settings_Module {
 
 	/**
-	 * constructor
+	 * Constructor
 	 *
 	 * @since 1.8
 	 *
 	 * @param object $polylang polylang object
 	 */
 	public function __construct( &$polylang ) {
-		parent::__construct( $polylang, array(
-			'module'      => 'sync',
-			'title'       => __( 'Synchronization', 'polylang' ),
-			'description' => __( 'The synchronization options allow to maintain exact same values (or translations in the case of taxonomies and page parent) of meta content between the translations of a post or page.', 'polylang' ),
-		) );
+		parent::__construct(
+			$polylang,
+			array(
+				'module'      => 'sync',
+				'title'       => __( 'Synchronization', 'polylang' ),
+				'description' => __( 'The synchronization options allow to maintain exact same values (or translations in the case of taxonomies and page parent) of meta content between the translations of a post or page.', 'polylang' ),
+			)
+		);
 	}
 
 	/**
-	 * deactivates the module
+	 * Deactivates the module
 	 *
 	 * @since 1.8
 	 */
@@ -33,25 +36,29 @@ class PLL_Settings_Sync extends PLL_Settings_Module {
 	}
 
 	/**
-	 * displays the settings form
+	 * Displays the settings form
 	 *
 	 * @since 1.8
 	 */
-	protected function form() {?>
-		<ul class="pll-inline-block-list"><?php
+	protected function form() {
+		?>
+		<ul class="pll-inline-block-list">
+			<?php
 			foreach ( self::list_metas_to_sync() as $key => $str ) {
 				printf(
 					'<li><label><input name="sync[%s]" type="checkbox" value="1" %s /> %s</label></li>',
 					esc_attr( $key ),
-					in_array( $key, $this->options['sync'] ) ? 'checked="checked"' : '',
+					checked( in_array( $key, $this->options['sync'] ), true, false ),
 					esc_html( $str )
 				);
-			} ?>
-		</ul><?php
+			}
+			?>
+		</ul>
+		<?php
 	}
 
 	/**
-	 * sanitizes the settings before saving
+	 * Sanitizes the settings before saving
 	 *
 	 * @since 1.8
 	 *
@@ -63,7 +70,7 @@ class PLL_Settings_Sync extends PLL_Settings_Module {
 	}
 
 	/**
-	 * get the row actions
+	 * Get the row actions
 	 *
 	 * @since 1.8
 	 *
@@ -74,13 +81,13 @@ class PLL_Settings_Sync extends PLL_Settings_Module {
 	}
 
 	/**
-	 * list the post metas to synchronize
+	 * List the post metas to synchronize
 	 *
 	 * @since 1.0
 	 *
 	 * @return array
 	 */
-	static public function list_metas_to_sync() {
+	public static function list_metas_to_sync() {
 		return array(
 			'taxonomies'        => __( 'Taxonomies', 'polylang' ),
 			'post_meta'         => __( 'Custom fields', 'polylang' ),

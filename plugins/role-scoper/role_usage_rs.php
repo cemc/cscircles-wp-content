@@ -14,7 +14,7 @@ class Role_Usage_RS {
 	var $have_objrole_ids = array();
 	var $have_termrole_ids = array();
 	
-	function Role_Usage_RS() {
+	function __construct() {
 		add_filter( 'posts_request', array( $this, 'clear_checked_ids' ) );	
 	}
 	

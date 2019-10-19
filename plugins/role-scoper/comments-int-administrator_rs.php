@@ -2,7 +2,7 @@
 add_filter( 'comments_clauses', array( 'CommentsInterceptor_Administrator_RS', 'flt_comments_clauses' ), 10, 2 );
 
 class CommentsInterceptor_Administrator_RS {
-	function flt_comments_clauses( $clauses, &$qry_obj ) {
+	public static function flt_comments_clauses( $clauses, &$qry_obj ) {
 		global $wpdb;
 		
 		if ( is_content_administrator_rs() ) {

@@ -7,7 +7,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
  * role-scoper_main.php
  * 
  * @author 		Kevin Behrens
- * @copyright 	Copyright 2012
+ * @copyright 	Copyright 2012-2016
  * 
  */
 class Scoper
@@ -28,7 +28,7 @@ class Scoper
 	var $default_restrictions = array();
 
 	// minimal config retrieval to support pre-init usage by WP_Scoped_User before text domain is loaded
-	function Scoper() {
+	function __construct() {
 		$this->definitions = array( 'data_sources' => 'Data_Sources', 'taxonomies' => 'Taxonomies', 'cap_defs' => 'Capabilities', 'role_defs' => 'Roles' );	
 		require_once( dirname(__FILE__).'/definitions_cr.php' );
 		
@@ -207,7 +207,7 @@ class Scoper
 			} else
 				$caps = array();
 
-			$role_defs->add( $role_name, 'wordpress', '', '', 'wp' );
+			$role_defs->add_item( $role_name, 'wordpress', '', '', 'wp' );
 
 			// temp hardcode for site-wide Nav Menu cap
 			if ( ! empty( $caps['edit_theme_options'] ) )
@@ -238,14 +238,6 @@ class Scoper
 		// ===== Special early exit if this is a plugin install script
 		if ( is_admin() ) {
 			if ( in_array( $GLOBALS['pagenow'], array( 'plugin-install.php', 'plugin-editor.php' ) ) ) {
-				// flush RS cache on activation of any plugin, in case we cached results based on its presence / absence
-				if ( ( ! empty($_POST) ) || ( ! empty($_REQUEST['action']) ) ) {
-					if ( ! empty($_POST['networkwide']) || ( 'plugin-editor.php' == $GLOBALS['pagenow'] ) )
-						wpp_cache_flush_all_sites();
-					else
-						wpp_cache_flush();
-				}
-
 				do_action( 'scoper_init' );
 				return; // no further filtering on WP plugin maintenance scripts
 			}
@@ -265,7 +257,6 @@ class Scoper
 
 			if ( in_array( $GLOBALS['pagenow'], $always_filter_uris ) || in_array( $GLOBALS['plugin_page_cr'], $always_filter_uris ) ) {
 				$disable_queryfilters = false;
-				return;
 			}
 		}
 		

@@ -6,7 +6,6 @@
  * @since 1.8
  */
 class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
-	public $curlang;
 	public $cache; // Our internal non persistent cache object
 
 	/**
@@ -28,9 +27,6 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 		foreach ( array( 'feed_link', 'author_link', 'search_link', 'year_link', 'month_link', 'day_link' ) as $filter ) {
 			add_filter( $filter, array( $this, 'archive_link' ), 20 );
 		}
-
-		// Rewrites post types archives links to filter them by language
-		add_filter( 'post_type_archive_link', array( $this, 'post_type_archive_link' ), 20, 2 );
 
 		// Meta in the html head section
 		add_action( 'wp_head', array( $this, 'wp_head' ) );
@@ -62,40 +58,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @return string modified link
 	 */
 	public function archive_link( $link ) {
-		return $this->links_model->add_language_to_link( $link, $this->curlang );
-	}
-
-	/**
-	 * Modifies the post type archive links to add the language parameter
-	 * only if the post type is translated
-	 *
-	 * @since 1.7.6
-	 *
-	 * @param string $link
-	 * @param string $post_type
-	 * @return string modified link
-	 */
-	public function post_type_archive_link( $link, $post_type ) {
-		return $this->model->is_translated_post_type( $post_type ) && 'post' !== $post_type ? $this->links_model->add_language_to_link( $link, $this->curlang ) : $link;
-	}
-
-	/**
-	 * Modifies post & page links
-	 * and caches the result
-	 *
-	 * @since 0.7
-	 *
-	 * @param string $link post link
-	 * @param object $post post object
-	 * @return string modified post link
-	 */
-	public function post_link( $link, $post ) {
-		$cache_key = 'post:' . $post->ID;
-		if ( false === $_link = $this->cache->get( $cache_key ) ) {
-			$_link = parent::post_link( $link, $post );
-			$this->cache->set( $cache_key, $_link );
-		}
-		return $_link;
+		return $this->links_model->switch_language_in_link( $link, $this->curlang );
 	}
 
 	/**
@@ -109,7 +72,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @return string modified post link
 	 */
 	public function _get_page_link( $link, $post_id ) {
-		$cache_key = 'post:' . $post_id;
+		$cache_key = "post:{$post_id}:{$link}";
 		if ( false === $_link = $this->cache->get( $cache_key ) ) {
 			$_link = parent::_get_page_link( $link, $post_id );
 			$this->cache->set( $cache_key, $_link );
@@ -128,7 +91,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @return string modified attachment link
 	 */
 	public function attachment_link( $link, $post_id ) {
-		$cache_key = 'post:' . $post_id;
+		$cache_key = "post:{$post_id}:{$link}";
 		if ( false === $_link = $this->cache->get( $cache_key ) ) {
 			$_link = parent::attachment_link( $link, $post_id );
 			$this->cache->set( $cache_key, $_link );
@@ -147,7 +110,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @return string modified post link
 	 */
 	public function post_type_link( $link, $post ) {
-		$cache_key = 'post:' . $post->ID;
+		$cache_key = "post:{$post->ID}:{$link}";
 		if ( false === $_link = $this->cache->get( $cache_key ) ) {
 			$_link = parent::post_type_link( $link, $post );
 			$this->cache->set( $cache_key, $_link );
@@ -167,10 +130,10 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @return string modified link
 	 */
 	public function term_link( $link, $term, $tax ) {
-		$cache_key = 'term:' . $term->term_id;
+		$cache_key = "term:{$term->term_id}:{$link}";
 		if ( false === $_link = $this->cache->get( $cache_key ) ) {
 			if ( in_array( $tax, $this->model->get_filtered_taxonomies() ) ) {
-				$_link = $this->links_model->add_language_to_link( $link, $this->curlang );
+				$_link = $this->links_model->switch_language_in_link( $link, $this->curlang );
 
 				/** This filter is documented in include/filters-links.php */
 				$_link = apply_filters( 'pll_term_link', $_link, $this->curlang, $term );
@@ -190,6 +153,12 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @since 0.1
 	 */
 	public function wp_head() {
+		// Don't output anything on paged archives: see https://wordpress.org/support/topic/hreflang-on-page2
+		// Don't output anything on paged pages and paged posts
+		if ( is_paged() || ( is_singular() && ( $page = get_query_var( 'page' ) ) && $page > 1 ) ) {
+			return;
+		}
+
 		// Google recommends to include self link https://support.google.com/webmasters/answer/189077?hl=en
 		foreach ( $this->model->get_languages_list() as $language ) {
 			if ( $url = $this->links->get_translation_url( $language ) ) {
@@ -197,9 +166,9 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			}
 		}
 
-		// Ouptputs the section only if there are translations ( $urls always contains self link )
-		// Don't output anything on paged archives: see https://wordpress.org/support/topic/hreflang-on-page2
-		if ( ! empty( $urls ) && count( $urls ) > 1 && ! is_paged() ) {
+		// Outputs the section only if there are translations ( $urls always contains self link )
+		if ( ! empty( $urls ) && count( $urls ) > 1 ) {
+
 			// Prepare the list of languages to remove the country code
 			foreach ( array_keys( $urls ) as $locale ) {
 				$split = explode( '-', $locale );
@@ -210,13 +179,26 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 			foreach ( $urls as $locale => $url ) {
 				$lang = $count[ $languages[ $locale ] ] > 1 ? $locale : $languages[ $locale ]; // Output the country code only when necessary
-				printf( '<link rel="alternate" href="%s" hreflang="%s" />'."\n", esc_url( $url ), esc_attr( $lang ) );
+				$hreflangs[ $lang ] = $url;
 			}
 
 			// Adds the site root url when the default language code is not hidden
 			// See https://wordpress.org/support/topic/implementation-of-hreflangx-default
 			if ( is_front_page() && ! $this->options['hide_default'] && $this->options['force_lang'] < 3 ) {
-				printf( '<link rel="alternate" href="%s" hreflang="x-default" />'."\n", esc_url( home_url( '/' ) ) );
+				$hreflangs['x-default'] = home_url( '/' );
+			}
+
+			/**
+			 * Filters the list of rel hreflang attributes
+			 *
+			 * @since 2.1
+			 *
+			 * @param array $hreflangs Array of urls with language codes as keys
+			 */
+			$hreflangs = apply_filters( 'pll_rel_hreflang_attributes', $hreflangs );
+
+			foreach ( $hreflangs as $lang => $url ) {
+				printf( '<link rel="alternate" href="%s" hreflang="%s" />' . "\n", esc_url( $url ), esc_attr( $lang ) );
 			}
 		}
 	}
@@ -231,7 +213,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	 * @return string
 	 */
 	public function home_url( $url, $path ) {
-		if ( ! ( did_action( 'template_redirect' ) || did_action( 'login_init' ) ) || rtrim( $url,'/' ) != $this->links_model->home ) {
+		if ( ! ( did_action( 'template_redirect' ) || did_action( 'login_init' ) ) || rtrim( $url, '/' ) != $this->links_model->home ) {
 			return $url;
 		}
 
@@ -254,12 +236,15 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			 *
 			 * @param array $args
 			 */
-			$white_list = apply_filters( 'pll_home_url_white_list',  array(
-				array( 'file' => $theme_root ),
-				array( 'function' => 'wp_nav_menu' ),
-				array( 'function' => 'login_footer' ),
-				array( 'function' => 'get_custom_logo' ),
-			) );
+			$white_list = apply_filters(
+				'pll_home_url_white_list',
+				array(
+					array( 'file' => $theme_root ),
+					array( 'function' => 'wp_nav_menu' ),
+					array( 'function' => 'login_footer' ),
+					array( 'function' => 'get_custom_logo' ),
+				)
+			);
 		}
 
 		// We don't want to filter the home url in these cases
@@ -275,13 +260,16 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			 *
 			 * @param array $args
 			 */
-			$black_list = apply_filters( 'pll_home_url_black_list',  array(
-				array( 'file' => 'searchform.php' ), // Since WP 3.6 searchform.php is passed through get_search_form
-				array( 'function' => 'get_search_form' ),
-			) );
+			$black_list = apply_filters(
+				'pll_home_url_black_list',
+				array(
+					array( 'file' => 'searchform.php' ), // Since WP 3.6 searchform.php is passed through get_search_form
+					array( 'function' => 'get_search_form' ),
+				)
+			);
 		}
 
-		$traces = version_compare( PHP_VERSION, '5.2.5', '>=' ) ? debug_backtrace( false ) : debug_backtrace();
+		$traces = version_compare( PHP_VERSION, '5.2.5', '>=' ) ? debug_backtrace( false ) : debug_backtrace(); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
 		unset( $traces[0], $traces[1] ); // We don't need the last 2 calls: this function + call_user_func_array (or apply_filters on PHP7+)
 
 		foreach ( $traces as $trace ) {
@@ -335,18 +323,18 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 		}
 
 		// Don't redirect mysite.com/?attachment_id= to mysite.com/en/?attachment_id=
-		if ( 1 == $this->options['force_lang'] && is_attachment() && isset( $_GET['attachment_id'] ) ) {
+		if ( 1 == $this->options['force_lang'] && is_attachment() && isset( $_GET['attachment_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			return;
 		}
 
 		// If the default language code is not hidden and the static front page url contains the page name
 		// the customizer lands here and the code below would redirect to the list of posts
-		if ( isset( $_POST['wp_customize'], $_POST['customized'] ) ) {
+		if ( is_customize_preview() ) {
 			return;
 		}
 
 		if ( empty( $requested_url ) ) {
-			$requested_url  = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$requested_url = pll_get_requested_url();
 		}
 
 		if ( is_single() || is_page() ) {
@@ -357,7 +345,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 		elseif ( is_category() || is_tag() || is_tax() ) {
 			$obj = $wp_query->get_queried_object();
-			if ( $this->model->is_translated_taxonomy( $obj->taxonomy ) ) {
+			if ( ! empty( $obj ) && $this->model->is_translated_taxonomy( $obj->taxonomy ) ) {
 				$language = $this->model->term->get_language( (int) $obj->term_id );
 			}
 		}
@@ -373,12 +361,23 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 			$language = $this->model->post->get_language( (int) $id );
 		}
 
+		if ( 3 === $this->options['force_lang'] ) {
+			$requested_host = wp_parse_url( $requested_url, PHP_URL_HOST );
+			foreach ( $this->options['domains'] as $lang => $domain ) {
+				$host = wp_parse_url( $domain, PHP_URL_HOST );
+				if ( 'www.' . $requested_host === $host || 'www.' . $host === $requested_host ) {
+					$language = $this->model->get_language( $lang );
+					$redirect_url = str_replace( '://' . $requested_host, '://' . $host, $requested_url );
+				}
+			}
+		}
+
 		if ( empty( $language ) ) {
 			$language = $this->curlang;
 			$redirect_url = $requested_url;
-		} else {
+		} elseif ( empty( $redirect_url ) ) {
 			// First get the canonical url evaluated by WP
-			// Workaround a WP bug wich removes the port for some urls and get it back at second call to redirect_canonical
+			// Workaround a WP bug which removes the port for some urls and get it back at second call to redirect_canonical
 			$_redirect_url = ( ! $_redirect_url = redirect_canonical( $requested_url, false ) ) ? $requested_url : $_redirect_url;
 			$redirect_url = ( ! $redirect_url = redirect_canonical( $_redirect_url, false ) ) ? $_redirect_url : $redirect_url;
 
@@ -400,7 +399,7 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 		// The language is not correctly set so let's redirect to the correct url for this object
 		if ( $do_redirect && $redirect_url && $requested_url != $redirect_url ) {
-			wp_redirect( $redirect_url, 301 );
+			wp_safe_redirect( $redirect_url, 301, POLYLANG );
 			exit;
 		}
 

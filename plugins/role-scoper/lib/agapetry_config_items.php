@@ -8,7 +8,7 @@ class AGP_Config_Items {
 	var $members = array();		// collection array used by each base class	
 	var $locked = 0;			// used to prevent inappropriate calls to the add method
 	
-	function AGP_Config_Items( $arr = '', $action_hook = '' ) {
+	function __construct( $arr = '', $action_hook = '' ) {
 		$this->init( $arr, $action_hook );
 	}
 
@@ -171,23 +171,31 @@ class AGP_Config_Items {
 		
 		if ( ! isset( $this->members[$args[0]] ) )
 			return;
-			
-		if ( ! isset( $this->members[$args[0]]->$args[1] ) )
+		
+		$arg0 = $args[0];
+		$arg1 = $args[1];
+		
+		if ( ! isset( $this->members[$arg0]->$arg1 ) )
 			return;
+		
+		//if ( ! isset( $this->members[$args[0]]->$args[1] ) )
+		//	return;
 			
-		$val = $this->members[$args[0]]->$args[1];
+		$val = $this->members[$arg0]->$arg1;
 		
 		// if additional args were passed in, treat them as array or object keys
 		for ( $i = 2; $i < count($args); $i++ ) {
+			$arg = $args[$i];
+			
 			if ( is_array($val) ) {
-				if ( isset($val[ $args[$i] ]) )
-					$val = $val[ $args[$i] ];
+				if ( isset($val[ $arg ]) )
+					$val = $val[ $arg ];
 				else
 					return;
 			
 			} elseif ( is_object($val) ) {
-				if ( isset($val->$args[$i]) )
-					$val = $val->$args[$i];
+				if ( isset($val->$arg) )
+					$val = $val->$arg;
 				else
 					return;
 			}
@@ -226,7 +234,7 @@ class AGP_Config_Item {
 	var $defining_module;
 	var $labels;
 	
-	function AGP_Config_Item ( $name, $defining_module, $args = array() ) {
+	function __construct ( $name, $defining_module, $args = array() ) {
 		$this->name = $name;
 		$this->defining_module = $defining_module;
 		

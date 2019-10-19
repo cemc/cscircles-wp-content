@@ -14,12 +14,12 @@ add_action( 'check_admin_referer', array('ScoperAdminUsers', 'act_rolemanager_re
 
 class ScoperAdminUsers {
 
-	function flt_users_columns($defaults) {
+	public static function flt_users_columns($defaults) {
 		$defaults['rs_groups'] = __('Groups', 'scoper');
 		return $defaults;
 	}
 
-	function flt_users_custom_column($content = '', $column_name, $id) {
+	public static function flt_users_custom_column($content = '', $column_name, $id) {
 		if ( 'rs_groups' == $column_name ) {
 			global $scoper, $current_user;
 			static $all_groups;
@@ -31,7 +31,7 @@ class ScoperAdminUsers {
 				return;
 				
 			// query for group membership without cache because otherwise we'll clutter groups col with WP Role Metagroup display  
-			if ( $group_ids = WP_Scoped_User::get_groups_for_user($id, array('no_cache' => true) ) ) {
+			if ( $group_ids = WP_Scoped_User::_get_groups_for_user($id, array('no_cache' => true) ) ) {
 				
 				$group_names = array();
 				foreach ( $group_ids as $group_id ) {
@@ -56,7 +56,7 @@ class ScoperAdminUsers {
 			return $content;
 	}
 	
-	function act_rolemanager_referer($action) {
+	public static function act_rolemanager_referer($action) {
 		// Role Manager referers
 		if ( strpos($action, 'rolemanager') ) { // don't search for 1st char or strpos will return zero
 

@@ -32,7 +32,7 @@ class RS_Updater {
 </style>
 <?php
 			$upgrader = new RS_Core_Upgrader( new RS_Installer_Skin( compact('title', 'url', 'nonce', 'plugin') ) );
-			$upgrader->install( $plugin, "http://presspermit.com/index.php?PPServerRequest=download&update=$slug&version=VERSION&key=KEY&site=URL" );
+			$upgrader->install_pkg( $plugin, "http://presspermit.com/index.php?PPServerRequest=download&update=$slug&version=VERSION&key=KEY&site=URL" );
 		}
 	}
 
@@ -165,7 +165,7 @@ class RS_Upgrader extends Plugin_Upgrader {
  * @author Kevin Behrens
  **/
 class RS_Core_Upgrader extends RS_Upgrader {
-	function install_strings($plugin) {
+	function install_pkg_strings($plugin) {
 		if ( $title = ucwords( str_replace( '-', ' ', $plugin ) ) ) {
 			$this->strings['no_package'] = __awp('Install package not available.');
 			$this->strings['downloading_package'] = sprintf(__awp('Downloading install package from <span class="code">%s</span>&#8230;'),untrailingslashit('http://presspermit.com/'));
@@ -176,9 +176,9 @@ class RS_Core_Upgrader extends RS_Upgrader {
 		}
 	}
 	
-	function install( $slug, $package_url ) {
+	function install_pkg( $slug, $package_url ) {
 		$this->init();
-		$this->install_strings($slug);
+		$this->install_pkg_strings($slug);
 
 		if ( defined( 'RSU_VERSION' ) ) { 
 			echo '<br />';

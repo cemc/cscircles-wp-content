@@ -16,7 +16,7 @@ function scoper_pp_msg( $on_options_page = false ) {
 	$rs_migration_url = wp_nonce_url($install_url, "{$slug}_$slug");
 	//$install_link =  "<span><a href='$url' class='thickbox' target='_blank'>" . __awp('install', 'pp') . '</a></span>';
 
-	$msg = sprintf( __('Role Scoper development and support is winding down.&nbsp;&nbsp;For WP 3.7+ compat and a better permissions model, %1$slearn more%2$s, %3$sinstall the migration advisor%4$s, grab %5$s and buy %6$s.', 'scoper'), '<a href="' . $more_url . '">', '</a>', '<span><a href="' . $rs_migration_url . '" class="thickbox" title="install Role Scoper Migration Advisor">', '</a></span>', '<span class="plugins update-message"><a href="' . awp_plugin_info_url('press-permit-core') . '" class="thickbox" title=" Press Permit Core">Press&nbsp;Permit&nbsp;Core</a></span>', "<a href='http://presspermit.com'>Press&nbsp;Permit&nbsp;Pro</a>", '<span style="font-weight:bold;color:#c00">', '</span>' );
+	$msg = sprintf( __('Role Scoper development and support is winding down.&nbsp;&nbsp;For compatibility with the current WP version and a better permissions model, %1$slearn more%2$s, %3$sinstall the migration advisor%4$s, grab %5$s and buy %6$s.', 'scoper'), '<a href="' . $more_url . '">', '</a>', '<span><a href="' . $rs_migration_url . '" class="thickbox" title="install Role Scoper Migration Advisor">', '</a></span>', '<span class="plugins update-message"><a href="' . awp_plugin_info_url('press-permit-core') . '" class="thickbox" title=" Press Permit Core">Press&nbsp;Permit&nbsp;Core</a></span>', "<a href='http://presspermit.com'>Press&nbsp;Permit&nbsp;Pro</a>", '<span style="font-weight:bold;color:#c00">', '</span>' );
 
 	return $msg;
 }

@@ -12,14 +12,14 @@ add_filter( 'option_sticky_posts', array('QueryInterceptorFront_RS', 'flt_sticky
 add_filter( 'bp_has_activities', array('QueryInterceptorFront_RS', 'bp_has_activities'), 10, 2 );
 
 class QueryInterceptorFront_RS {
-	function bp_has_activities( $bp_activities, $bp_activities_template ) {
+	public static function bp_has_activities( $bp_activities, $bp_activities_template ) {
 		require_once( dirname(__FILE__). '/bp-helper_rs.php' );
 		return _scoper_bp_has_activities( $bp_activities, $bp_activities_template );
 	}
 
 	// custom wrapper to clean up after get_previous_post_where, get_next_post_where nonstandard arg syntax 
 	// (uses alias p for post table, passes "WHERE post_type=...)
-	function flt_adjacent_post_where( $where ) {
+	public static function flt_adjacent_post_where( $where ) {
 		global $wpdb, $query_interceptor, $current_user;
 
 		if ( ! empty($current_user->ID) )
@@ -37,7 +37,7 @@ class QueryInterceptorFront_RS {
 	}
 	
 	// custom wrapper to clean up after get_archives() nonstandard arg syntax (passes "WHERE post_type=...)
-	function flt_getarchives_where ( $where ) {
+	public static function flt_getarchives_where ( $where ) {
 		global $current_user, $wpdb;
 		
 		$where = str_replace( "WHERE ", "WHERE $wpdb->posts.post_date > 0 AND ", $where );
@@ -55,7 +55,7 @@ class QueryInterceptorFront_RS {
 		return $where;
 	}
 	
-	function flt_sticky_posts( $post_ids ) {
+	public static function flt_sticky_posts( $post_ids ) {
 		if ( $post_ids && ! is_content_administrator_rs() ) {
 			global $wpdb;
 			$post_ids = scoper_get_col( apply_filters( 'objects_request_rs', "SELECT ID FROM $wpdb->posts WHERE ID IN ('" . implode( "','", $post_ids ) . "')", 'post' ) );

@@ -7,7 +7,7 @@
  */
 abstract class PLL_Translated_Object {
 	public $model;
-	protected $object_type, $tax_language, $tax_translations, $tax_tt;
+	protected $object_type, $type, $tax_language, $tax_translations, $tax_tt;
 
 	/**
 	 * Constructor
@@ -38,7 +38,7 @@ abstract class PLL_Translated_Object {
 	 * @return bool|object the term associated to the object in the requested taxonomy if exists, false otherwise
 	 */
 	public function get_object_term( $object_id, $taxonomy ) {
-		if ( empty( $object_id ) ) {
+		if ( empty( $object_id ) || is_wp_error( $object_id ) ) {
 			return false;
 		}
 
@@ -50,7 +50,7 @@ abstract class PLL_Translated_Object {
 			$taxonomies = array( $this->tax_language, $this->tax_translations );
 
 			// query terms
-			foreach ( wp_get_object_terms( $object_id, $taxonomies ) as $t ) {
+			foreach ( wp_get_object_terms( $object_id, $taxonomies, array( 'update_term_meta_cache' => false ) ) as $t ) {
 				$terms[ $t->taxonomy ] = $t;
 				if ( $t->taxonomy == $taxonomy ) {
 					$term = $t;
@@ -71,14 +71,17 @@ abstract class PLL_Translated_Object {
 	}
 
 	/**
-	 * Tells wether to store a translation term
+	 * Tells whether a translation term must be updated
 	 *
-	 * @since 1.8
+	 * @since 2.3
 	 *
-	 * @param array $translations an associative array of translations with language code as key and translation id as value
+	 * @param array $id           Post id or term id
+	 * @param array $translations An associative array of translations with language code as key and translation id as value
 	 */
-	protected function keep_translation_group( $translations ) {
-		return count( $translations ) > 1;
+	protected function should_update_translation_group( $id, $translations ) {
+		// Don't do anything if no translations have been added to the group
+		$old_translations = $this->get_translations( $id ); // Includes at least $id itself
+		return count( array_diff_assoc( $translations, $old_translations ) ) > 0;
 	}
 
 	/**
@@ -86,8 +89,8 @@ abstract class PLL_Translated_Object {
 	 *
 	 * @since 0.5
 	 *
-	 * @param int   $id           post id or term id
-	 * @param array $translations an associative array of translations with language code as key and translation id as value
+	 * @param int   $id           Post id or term id
+	 * @param array $translations An associative array of translations with language code as key and translation id as value
 	 */
 	public function save_translations( $id, $translations ) {
 		$id = (int) $id;
@@ -105,22 +108,21 @@ abstract class PLL_Translated_Object {
 				$this->delete_translation( $object_id );
 			}
 
-			// don't create a translation group for untranslated posts as it is useless
-			// but we need one for terms to allow relationships remap when importing from a WXR file
-			if ( $this->keep_translation_group( $translations ) ) {
+			// Check id we need to create or update the translation group
+			if ( $this->should_update_translation_group( $id, $translations ) ) {
 				$terms = wp_get_object_terms( $translations, $this->tax_translations );
 				$term = reset( $terms );
 
 				// create a new term if necessary
 				if ( empty( $term ) ) {
-					wp_insert_term( $group = uniqid( 'pll_' ), $this->tax_translations, array( 'description' => serialize( $translations ) ) );
+					wp_insert_term( $group = uniqid( 'pll_' ), $this->tax_translations, array( 'description' => maybe_serialize( $translations ) ) );
 				}
 				else {
 					// take care not to overwrite extra data stored in description field, if any
-					$d = unserialize( $term->description );
+					$d = maybe_unserialize( $term->description );
 					$d = is_array( $d ) ? array_diff_key( $d, $old_translations ) : array(); // remove old translations
 					$d = array_merge( $d, $translations ); // add new one
-					wp_update_term( $group = (int) $term->term_id, $this->tax_translations, array( 'description' => serialize( $d ) ) );
+					wp_update_term( $group = (int) $term->term_id, $this->tax_translations, array( 'description' => maybe_serialize( $d ) ) );
 				}
 
 				// link all translations to the new term
@@ -151,7 +153,7 @@ abstract class PLL_Translated_Object {
 		$term = $this->get_object_term( $id, $this->tax_translations );
 
 		if ( ! empty( $term ) ) {
-			$d = unserialize( $term->description );
+			$d = maybe_unserialize( $term->description );
 			$slug = array_search( $id, $this->get_translations( $id ) ); // in case some plugin stores the same value with different key
 			unset( $d[ $slug ] );
 
@@ -159,7 +161,7 @@ abstract class PLL_Translated_Object {
 				wp_delete_term( (int) $term->term_id, $this->tax_translations );
 			}
 			else {
-				wp_update_term( (int) $term->term_id, $this->tax_translations, array( 'description' => serialize( $d ) ) );
+				wp_update_term( (int) $term->term_id, $this->tax_translations, array( 'description' => maybe_serialize( $d ) ) );
 			}
 		}
 	}
@@ -174,9 +176,9 @@ abstract class PLL_Translated_Object {
 	 */
 	public function get_translations( $id ) {
 		$term = $this->get_object_term( $id, $this->tax_translations );
-		$translations = empty( $term ) ? array() : unserialize( $term->description );
+		$translations = empty( $term ) ? array() : maybe_unserialize( $term->description );
 
-		// make sure we return only translations ( thus we allow plugins to store other informations in the array )
+		// make sure we return only translations ( thus we allow plugins to store other information in the array )
 		if ( is_array( $translations ) ) {
 			$translations = array_intersect_key( $translations, array_flip( $this->model->get_languages_list( array( 'fields' => 'slug' ) ) ) );
 		}
@@ -218,6 +220,7 @@ abstract class PLL_Translated_Object {
 	 * @return bool|int the translation post id  or term id if exists, otherwise the post id or term id, false if the post has no language
 	 */
 	public function get( $id, $lang ) {
+		$id = (int) $id;
 		$obj_lang = $this->get_language( $id ); // FIXME is this necessary?
 		if ( ! $lang || ! $obj_lang ) {
 			return false;
@@ -232,7 +235,7 @@ abstract class PLL_Translated_Object {
 	 *
 	 * @since 1.2
 	 *
-	 * @param object|array|string $lang a PLL_Language object or a comma separated list of languag slug or an array of language slugs
+	 * @param object|array|string $lang a PLL_Language object or a comma separated list of language slug or an array of language slugs
 	 * @return string where clause
 	 */
 	public function where_clause( $lang ) {
@@ -242,14 +245,14 @@ abstract class PLL_Translated_Object {
 		// $lang is an object
 		// generally the case if the query is coming from Polylang
 		if ( is_object( $lang ) ) {
-			return $wpdb->prepare( ' AND pll_tr.term_taxonomy_id = %d', $lang->$tt_id );
+			return ' AND pll_tr.term_taxonomy_id = ' . absint( $lang->$tt_id );
 		}
 
 		// $lang is a comma separated list of slugs ( or an array of slugs )
 		// generally the case is the query is coming from outside with 'lang' parameter
 		$slugs = is_array( $lang ) ? $lang : explode( ',', $lang );
 		foreach ( $slugs as $slug ) {
-			$languages[] = (int) $this->model->get_language( $slug )->$tt_id;
+			$languages[] = absint( $this->model->get_language( $slug )->$tt_id );
 		}
 
 		return ' AND pll_tr.term_taxonomy_id IN ( ' . implode( ',', $languages ) . ' )';
@@ -268,5 +271,43 @@ abstract class PLL_Translated_Object {
 		global $wpdb;
 		$tt_id = $this->tax_tt;
 		return $wpdb->get_col( $wpdb->prepare( "SELECT object_id FROM $wpdb->term_relationships WHERE term_taxonomy_id = %d", $lang->$tt_id ) );
+	}
+
+	/**
+	 * Check if a user can synchronize translations
+	 *
+	 * @since 2.6
+	 *
+	 * @param int $id Object id
+	 * @return bool
+	 */
+	public function current_user_can_synchronize( $id ) {
+		/**
+		 * Filters whether a synchronization capability check should take place
+		 *
+		 * @since 2.6
+		 *
+		 * @param $check null to enable the capability check,
+		 *               true to always allow the synchronization,
+		 *               false to always disallow the synchronization.
+		 *               Defaults to true.
+		 * @param $id    The synchronization source object id
+		 */
+		$check = apply_filters( "pll_pre_current_user_can_synchronize_{$this->type}", true, $id );
+		if ( null !== $check ) {
+			return $check;
+		}
+
+		if ( ! current_user_can( "edit_{$this->type}", $id ) ) {
+			return false;
+		}
+
+		foreach ( $this->get_translations( $id ) as $tr_id ) {
+			if ( $tr_id !== $id && ! current_user_can( "edit_{$this->type}", $tr_id ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

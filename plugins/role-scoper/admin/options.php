@@ -14,7 +14,7 @@ class ScoperOptionUI {
 	var $def_otype_options;
 	var $display_hints;
 	
-	function ScoperOptionUI( $sitewide, $customize_defaults ) {
+	function __construct( $sitewide, $customize_defaults ) {
 		$this->sitewide = $sitewide;
 		$this->customize_defaults = $customize_defaults;
 	}
@@ -134,8 +134,6 @@ if ( $sitewide )
 $ui = new ScoperOptionUI( $sitewide, $customize_defaults );
 		
 if ( isset($_POST['all_otype_options']) ) {
-	wpp_cache_flush( $sitewide );
-
 	//global $wp_rewrite;
 	//if ( ! empty($wp_rewrite) )
 	//	$wp_rewrite->flush_rules();	
@@ -145,9 +143,6 @@ if ( isset($_POST['all_otype_options']) ) {
 			
 	if ( isset($_POST['rs_defaults']) )
 		$msg = __('Role Scoper options were reset to defaults.', 'scoper');
-		
-	elseif ( isset($_POST['rs_flush_cache']) )
-		$msg = __('The persistent cache was flushed.', 'scoper');
 	else
 		$msg = __('Role Scoper options were updated.', 'scoper');
 
@@ -188,7 +183,6 @@ $ui->section_captions = array(
 		'media_library' => __('Media Library', 'scoper'),
 		'file_filtering' =>	__('File Filtering', 'scoper'),
 		'date_limits' =>	__('Role Date Limits', 'scoper'),
-		'internal_cache' =>	__('Internal Cache', 'scoper'),	
 		'version' =>		__('Version', 'scoper'),
 		'rss_feeds' =>		__('RSS Feeds', 'scoper'),
 		'hidden_content_teaser' => __('Hidden Content Teaser', 'scoper')
@@ -223,7 +217,6 @@ $ui->section_captions = array(
 
 // TODO: replace individual _e calls with these (and section, tab captions)
 $ui->option_captions = array(
-	'persistent_cache' => __('Cache roles and groups to disk', 'scoper'),
 	'define_usergroups' => __('Enabled', 'scoper'),
 	'group_ajax' => __('Use jQuery selection UI', 'scoper' ),
 	'group_requests' => __('Enable membership requests', 'scoper' ),
@@ -294,7 +287,6 @@ $ui->form_options = array(
 	'media_library' =>		array( 'admin_others_attached_files', 'admin_others_unattached_files' ),
 	'file_filtering' =>		array( 'file_filtering', 'file_filtering_regen_key' ),
 	'date_limits' =>		array( 'role_duration_limits', 'role_content_date_limits' ),
-	'internal_cache' =>		array( 'persistent_cache' ),
 	'rss_feeds' =>			array( 'feed_link_http_auth', 'rss_private_feed_mode', 'rss_nonprivate_feed_mode', 'feed_teaser' ),
 	'hidden_content_teaser' => array( 'do_teaser' ) /* NOTE: all teaser options follow scope setting of do_teaser */
 	
@@ -995,54 +987,6 @@ if ( ! empty( $ui->form_options[$tab][$section] ) ) : ?>
 	$ret = $ui->option_checkbox( 'role_content_date_limits', $tab, $section, $hint, '' );	
 	?>
 	
-	</td></tr>
-<?php endif; // any options accessable in this section
-
-
-
-$section = 'internal_cache';
-if ( ! empty( $ui->form_options[$tab][$section] ) ) :
-									// --- PERSISTENT CACHE SECTION ---
-?>
-	<tr valign="top">
-	<th scope="row"><?php echo $ui->section_captions[$tab][$section]; ?></th>
-	<td>
-		
-	<?php if ( in_array( 'persistent_cache', $ui->form_options[$tab][$section] ) ) :
-		$ui->all_options []= 'persistent_cache';
-						
-		$cache_selected = scoper_get_option('persistent_cache', $sitewide, $customize_defaults);
-		$cache_enabled = $cache_selected && ! defined('DISABLE_PERSISTENT_CACHE');
-		?>
-		<label for="persistent_cache">
-		<input name="persistent_cache" type="checkbox" id="persistent_cache" value="1" <?php checked(true, $cache_enabled);?> />
-		<?php echo $ui->option_captions['persistent_cache']; ?></label>
-		<br />
-		<span class="rs-subtext">
-		<?php 
-		if ( $ui->display_hints) _e('Group membership, role restrictions, role assignments and some filtered results (including term listings and WP page, category and bookmark listings) will be stored to disk, on a user-specific or group-specific basis where applicable.  This does not cache content such as post listings or page views.', 'scoper');
-		echo '</span>';
-		
-		$cache_msg = '';
-		if ( $cache_selected && ! wpp_cache_test( $cache_msg, 'scoper' ) ) {
-			echo '<div class="agp-vspaced_input"><span class="rs-warning">';
-			echo $cache_msg;
-			echo '</span></div>';
-		} elseif ( $cache_enabled && ! file_exists('../rs_cache_flush.php') && ! file_exists('..\rs_cache_flush.php') ) {
-			echo '<div class="agp-vspaced_input"><span class="rs-warning">';	
-			_e('<strong>Note:</strong> The internal caching code contains numerous safeguards against corruption.  However, if it does become corrupted your site may be inaccessable.  For optimal reliability, copy rs_cache_flush.php into your WP root directory so it can be executed directly if needed.', 'scoper');
-			echo '</span></div>';
-		}
-		?>
-		
-		<?php if($cache_enabled):?>
-		<br />
-		<span class="submit" style="border:none;float:left;margin-top:0">
-		<input type="submit" name="rs_flush_cache" value="<?php _e('Flush Cache', 'scoper') ?>" />
-		</span>
-		<?php endif;?>
-	<?php endif;?>
-		
 	</td></tr>
 <?php endif; // any options accessable in this section
 

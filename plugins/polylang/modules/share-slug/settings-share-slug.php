@@ -8,18 +8,21 @@
 class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 
 	/**
-	 * constructor
+	 * Constructor
 	 *
 	 * @since 1.9
 	 *
 	 * @param object $polylang polylang object
 	 */
 	public function __construct( &$polylang ) {
-		parent::__construct( $polylang, array(
-			'module'      => 'share-slugs',
-			'title'       => __( 'Share slugs', 'polylang' ),
-			'description' => __( 'Allows to share the same url slug accross languages for posts and terms.', 'polylang' ),
-		) );
+		parent::__construct(
+			$polylang,
+			array(
+				'module'      => 'share-slugs',
+				'title'       => __( 'Share slugs', 'polylang' ),
+				'description' => __( 'Allows to share the same url slug across languages for posts and terms.', 'polylang' ),
+			)
+		);
 
 		if ( class_exists( 'PLL_Share_Post_Slug', true ) && get_option( 'permalink_structure' ) ) {
 			add_action( 'admin_print_footer_scripts', array( $this, 'print_js' ) );
@@ -27,7 +30,7 @@ class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 	}
 
 	/**
-	 * tells if the module is active
+	 * Tells if the module is active
 	 *
 	 * @since 1.9
 	 *
@@ -38,7 +41,7 @@ class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 	}
 
 	/**
-	 * displays upgrade message
+	 * Displays upgrade message
 	 *
 	 * @since 1.9
 	 *
@@ -49,7 +52,7 @@ class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 	}
 
 	/**
-	 * displays the javascript to handle dynamically the change in url modifications
+	 * Displays the javascript to handle dynamically the change in url modifications
 	 * as sharing slugs is not possible when the language is set from the content
 	 *
 	 * @since 1.9
@@ -58,7 +61,7 @@ class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 		wp_enqueue_script( 'jquery' );
 
 		$activated = sprintf( '<span class="activated">%s</span>', $this->action_links['activated'] );
-		$deactivated = sprintf( '<span class="deactivated">%s</span>',  $this->action_links['deactivated'] );
+		$deactivated = sprintf( '<span class="deactivated">%s</span>', $this->action_links['deactivated'] );
 
 		?>
 		<script type='text/javascript'>
@@ -67,14 +70,15 @@ class PLL_Settings_Share_Slug extends PLL_Settings_Module {
 				$( "input[name='force_lang']" ).change( function() {
 					var value = $( this ).val();
 					if ( value > 0 ) {
-						$( "#pll-module-share-slugs" ).removeClass( "inactive" ).addClass( "active" ).children( "td" ).children( ".row-actions" ).html( '<?php echo $activated; ?>' );
+						$( "#pll-module-share-slugs" ).removeClass( "inactive" ).addClass( "active" ).children( "td" ).children( ".row-actions" ).html( '<?php echo $activated; // phpcs:ignore WordPress.Security.EscapeOutput ?>' );
 					}
 					else {
-						$( "#pll-module-share-slugs" ).removeClass( "active" ).addClass( "inactive" ).children( "td" ).children( ".row-actions" ).html( '<?php echo $deactivated; ?>' );
+						$( "#pll-module-share-slugs" ).removeClass( "active" ).addClass( "inactive" ).children( "td" ).children( ".row-actions" ).html( '<?php echo $deactivated; // phpcs:ignore WordPress.Security.EscapeOutput ?>' );
 					}
 				} );
 			} )( jQuery );
 			// ]]>
-		</script><?php
+		</script>
+		<?php
 	}
 }

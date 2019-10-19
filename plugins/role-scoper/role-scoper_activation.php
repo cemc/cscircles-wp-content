@@ -19,9 +19,6 @@ function _scoper_activate() {
 
 if ( ! function_exists( '_scoper_deactivate' ) ) {
 function _scoper_deactivate() {
-	if ( function_exists( 'wpp_cache_flush' ) )
-		wpp_cache_flush_all_sites();
-	
 	delete_option('scoper_page_ancestors');
 	
 	global $wp_taxonomies;

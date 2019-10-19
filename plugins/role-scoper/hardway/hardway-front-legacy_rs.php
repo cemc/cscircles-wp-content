@@ -6,7 +6,7 @@ add_filter('query', array('ScoperHardwayFrontLegacy', 'flt_recent_comments') );
 
 class ScoperHardwayFrontLegacy
 {	
-	function flt_recent_comments($query) {
+	public static function flt_recent_comments($query) {
 		// Due to missing get_comments hook prior to WP 3.1, this filter operates on every front-end query.
 		// If query doesn't pertain to comments, skip out with as little overhead as possible.
 		if ( strpos($query, 'comment')

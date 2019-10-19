@@ -22,7 +22,7 @@ class CapInterceptor_RS
 	var $skip_any_object_check = false;
 	var $ignore_object_roles = false;
 	
-	function CapInterceptor_RS() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 		$this->query_interceptor =& $GLOBALS['query_interceptor'];
 		$this->scoper_admin =& $GLOBALS['scoper_admin'];

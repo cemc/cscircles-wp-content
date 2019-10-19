@@ -4,7 +4,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 
 class ScoperRoleAssignments {
 
-	function get_assigned_blog_roles($role_basis, $role_type = 'rs') {
+	public static function get_assigned_blog_roles($role_basis, $role_type = 'rs') {
 		global $wpdb;	
 
 		$blog_roles = array();
@@ -36,7 +36,7 @@ class ScoperRoleAssignments {
 
 	// Return all assigned term or object roles for specified arguments
 	// (NOTE: key order differs from front end implementation)
-	function get_assigned_roles($scope, $role_basis, $src_or_tx_name, $args = array()) {
+	public static function get_assigned_roles($scope, $role_basis, $src_or_tx_name, $args = array()) {
 		global $wpdb;
 
 		$defaults = array( 'id' => false, 'ug_id' => 0, 'join' => '', 'role_handles' => '' );
@@ -85,7 +85,7 @@ class ScoperRoleAssignments {
 	}
 	
 	// wrapper used for single object edit
-	function organize_assigned_roles($scope, $src_or_tx_name, $obj_or_term_id, $role_handles = '', $role_basis = ROLE_BASIS_USER, $get_defaults = false) {
+	public static function organize_assigned_roles($scope, $src_or_tx_name, $obj_or_term_id, $role_handles = '', $role_basis = ROLE_BASIS_USER, $get_defaults = false) {
 		$assignments = array();
 
 		if ( $get_defaults )

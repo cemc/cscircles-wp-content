@@ -22,7 +22,7 @@ class WP_Scoped_User extends WP_User {
 	var $assigned_term_roles = array();	//	$assigned_term_roles[taxonomy][role_handle] = array of term ids 
 	var $qualified_terms = array();		//  $qualified_terms[taxonomy][$capreqs_key] = previous result for qualify_terms call on this set of capreqs
 	
-	function WP_Scoped_User($id = 0, $name = '', $args = array()) {
+	function __construct($id = 0, $name = '', $args = array()) {
 		//log_mem_usage_rs( 'begin WP_Scoped_User' );
 		
 		if ( method_exists( $this, 'WP_User' ) ) {
@@ -148,8 +148,7 @@ class WP_Scoped_User extends WP_User {
 		return $this->cache_set( $entry, $cache_flag, $append_blog_suffix, true );
 	}
 
-	// can be called statically by external modules
-	function get_groups_for_user( $user_id, $args = array() ) {
+	public static function _get_groups_for_user( $user_id, $args = array() ) {
 		if ( empty($args['status']) )
 			$status = 'active';
 		elseif ( 'any' == $args['status'] ) {
@@ -210,6 +209,11 @@ class WP_Scoped_User extends WP_User {
 		return $user_groups;
 	}
 	
+	// can be called statically by external modules
+	function get_groups_for_user( $user_id, $args = array() ) {
+		return self::_get_groups_for_user( $user_id, $args );
+	}
+	
 	// return group_id as array keys
 	function _get_usergroups($args = array()) {
 		if ( ! $this->ID && ! defined( 'SCOPER_ANON_METAGROUP' ) )
@@ -220,7 +224,7 @@ class WP_Scoped_User extends WP_User {
 		if ( ! empty($this->assigned_blog_roles) )
 			$args['metagroup_roles'] = $this->assigned_blog_roles[ANY_CONTENT_DATE_RS];
 			
-		$user_groups = WP_Scoped_User::get_groups_for_user( $this->ID, $args );
+		$user_groups = self::_get_groups_for_user( $this->ID, $args );
 		
 		return $user_groups;
 	}

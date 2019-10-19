@@ -7,7 +7,7 @@ require_once( dirname(__FILE__).'/lib/agapetry_config_items.php');
 class CR_Capabilities extends AGP_Config_Items {
 	// defining_module could be a plugin name, theme name, etc.
 	// args: status, base_cap, anon_user_has, is_taxonomy_cap
-	function &add($name, $defining_module, $src_name, $object_type, $op_type, $args = array()) {
+	function &add_item( $name, $defining_module, $src_name, $object_type, $op_type, $args = array()) {
 		if ( $this->locked ) {
 			$notice = sprintf('A plugin or theme (%1$s) is too late in its attempt to define a capability (%2$s).', $defining_module, $name)
 					. '<br /><br />' . 'This must be done via the define_capabilities_rs hook.';
@@ -234,8 +234,8 @@ class CR_Capability extends AGP_Config_Item {
 	var $is_taxonomy_cap;	// 		''
 	
 	// args: status, base_cap, anon_user_has, is_taxonomy_cap 
-	function CR_Capability($name, $defining_module, $src_name, $object_type = '', $op_type = '', $args) {
-		$this->AGP_Config_Item($name, $defining_module, $args);
+	function __construct($name, $defining_module, $src_name, $object_type = '', $op_type = '', $args) {
+		parent::__construct($name, $defining_module, $args);
 		
 		$this->src_name = $src_name;
 		

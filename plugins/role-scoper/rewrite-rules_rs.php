@@ -11,7 +11,7 @@
  
 class ScoperRewrite {
 	
-	function insert_with_markers( $file_path, $marker_text, $insertion ) {
+	public static function insert_with_markers( $file_path, $marker_text, $insertion ) {
 		if ( ! function_exists( 'insert_with_markers' ) ) {
 			if ( file_exists( ABSPATH . '/wp-admin/includes/misc.php' ) )
 				include_once( ABSPATH . '/wp-admin/includes/misc.php' );
@@ -31,7 +31,7 @@ class ScoperRewrite {
 	}
 	
 	
-	function update_site_rules( $include_rs_rules = true ) {
+	public static function update_site_rules( $include_rs_rules = true ) {
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
 			return;
 		
@@ -68,7 +68,7 @@ class ScoperRewrite {
 		}
 	}
 	
-	function build_site_rules( $ifmodule_wrapper = true ) {
+	public static function build_site_rules( $ifmodule_wrapper = true ) {
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
 			return;
 	
@@ -107,7 +107,7 @@ class ScoperRewrite {
 	}
 
 	
-	function site_config_supports_rewrite() {
+	public static function site_config_supports_rewrite() {
 		require_once( dirname(__FILE__).'/uploads_rs.php' );
 		$uploads = scoper_get_upload_info();
 		
@@ -131,7 +131,7 @@ class ScoperRewrite {
 		return true;
 	}
 	
-	function update_blog_file_rules( $include_rs_rules = true ) {
+	public static function update_blog_file_rules( $include_rs_rules = true ) {
 		global $blog_id;
 		
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
@@ -148,12 +148,12 @@ class ScoperRewrite {
 		
 		$include_rs_rules = $include_rs_rules && scoper_get_option( 'file_filtering' );
 		
-		if ( ! ScoperRewrite::site_config_supports_rewrite() ) {
+		if ( ! self::site_config_supports_rewrite() ) {
 			return;
 		} elseif ( ! $include_rs_rules )
 			$rules = '';
 		else {
-			$rules = ScoperRewrite::build_blog_file_rules();
+			$rules = self::build_blog_file_rules();
 		}
 			
 		require_once( dirname(__FILE__).'/uploads_rs.php' );
@@ -166,7 +166,7 @@ class ScoperRewrite {
 		}
 	}
 	
-	function &build_blog_file_rules() {
+	static function &build_blog_file_rules() {
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
 			return '';
 		
@@ -285,7 +285,7 @@ class ScoperRewrite {
 	}
 	
 	// called by agp_return_file() in abnormal cases where file access is approved, but key for protected file is lost/corrupted in postmeta record or .htaccess file
-	function resync_file_rules() {
+	public static function resync_file_rules() {
 		if ( defined( 'SCOPER_NO_HTACCESS' ) )
 			return;
 	

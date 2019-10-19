@@ -3,7 +3,7 @@ class Relevanssi_Search_Filter_RS {
 	var $valid_stati = array();
 	var $relevanssi_results = array();
 	
-	function Relevanssi_Search_Filter_RS() {
+	function __construct() {
 		$this->valid_stati = array_merge( get_post_stati( array( 'public' => true ) ), get_post_stati( array( 'private' => true ) ) );
 
 		if ( ! empty($GLOBALS['relevanssi_variables']) || ! empty($GLOBALS['relevanssi_free_plugin_version']) || ! empty($GLOBALS['relevanssi_plugin_version']) ) {

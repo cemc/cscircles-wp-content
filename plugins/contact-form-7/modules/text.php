@@ -7,31 +7,32 @@
 ** 	[tel] and [tel*]		# Telephone number
 **/
 
-/* Shortcode handler */
+/* form_tag handler */
 
-add_action( 'wpcf7_init', 'wpcf7_add_shortcode_text' );
+add_action( 'wpcf7_init', 'wpcf7_add_form_tag_text', 10, 0 );
 
-function wpcf7_add_shortcode_text() {
-	wpcf7_add_shortcode(
+function wpcf7_add_form_tag_text() {
+	wpcf7_add_form_tag(
 		array( 'text', 'text*', 'email', 'email*', 'url', 'url*', 'tel', 'tel*' ),
-		'wpcf7_text_shortcode_handler', true );
+		'wpcf7_text_form_tag_handler', array( 'name-attr' => true ) );
 }
 
-function wpcf7_text_shortcode_handler( $tag ) {
-	$tag = new WPCF7_Shortcode( $tag );
-
-	if ( empty( $tag->name ) )
+function wpcf7_text_form_tag_handler( $tag ) {
+	if ( empty( $tag->name ) ) {
 		return '';
+	}
 
 	$validation_error = wpcf7_get_validation_error( $tag->name );
 
 	$class = wpcf7_form_controls_class( $tag->type, 'wpcf7-text' );
 
-	if ( in_array( $tag->basetype, array( 'email', 'url', 'tel' ) ) )
+	if ( in_array( $tag->basetype, array( 'email', 'url', 'tel' ) ) ) {
 		$class .= ' wpcf7-validates-as-' . $tag->basetype;
+	}
 
-	if ( $validation_error )
+	if ( $validation_error ) {
 		$class .= ' wpcf7-not-valid';
+	}
 
 	$atts = array();
 
@@ -39,25 +40,32 @@ function wpcf7_text_shortcode_handler( $tag ) {
 	$atts['maxlength'] = $tag->get_maxlength_option();
 	$atts['minlength'] = $tag->get_minlength_option();
 
-	if ( $atts['maxlength'] && $atts['minlength'] && $atts['maxlength'] < $atts['minlength'] ) {
+	if ( $atts['maxlength'] and $atts['minlength']
+	and $atts['maxlength'] < $atts['minlength'] ) {
 		unset( $atts['maxlength'], $atts['minlength'] );
 	}
 
 	$atts['class'] = $tag->get_class_option( $class );
 	$atts['id'] = $tag->get_id_option();
-	$atts['tabindex'] = $tag->get_option( 'tabindex', 'int', true );
+	$atts['tabindex'] = $tag->get_option( 'tabindex', 'signed_int', true );
 
-	if ( $tag->has_option( 'readonly' ) )
+	$atts['autocomplete'] = $tag->get_option( 'autocomplete',
+		'[-0-9a-zA-Z]+', true );
+
+	if ( $tag->has_option( 'readonly' ) ) {
 		$atts['readonly'] = 'readonly';
+	}
 
-	if ( $tag->is_required() )
+	if ( $tag->is_required() ) {
 		$atts['aria-required'] = 'true';
+	}
 
 	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
 
 	$value = (string) reset( $tag->values );
 
-	if ( $tag->has_option( 'placeholder' ) || $tag->has_option( 'watermark' ) ) {
+	if ( $tag->has_option( 'placeholder' )
+	or $tag->has_option( 'watermark' ) ) {
 		$atts['placeholder'] = $value;
 		$value = '';
 	}
@@ -98,8 +106,6 @@ add_filter( 'wpcf7_validate_tel', 'wpcf7_text_validation_filter', 10, 2 );
 add_filter( 'wpcf7_validate_tel*', 'wpcf7_text_validation_filter', 10, 2 );
 
 function wpcf7_text_validation_filter( $result, $tag ) {
-	$tag = new WPCF7_Shortcode( $tag );
-
 	$name = $tag->name;
 
 	$value = isset( $_POST[$name] )
@@ -107,49 +113,49 @@ function wpcf7_text_validation_filter( $result, $tag ) {
 		: '';
 
 	if ( 'text' == $tag->basetype ) {
-		if ( $tag->is_required() && '' == $value ) {
+		if ( $tag->is_required() and '' == $value ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
 		}
 	}
 
 	if ( 'email' == $tag->basetype ) {
-		if ( $tag->is_required() && '' == $value ) {
+		if ( $tag->is_required() and '' == $value ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
-		} elseif ( '' != $value && ! wpcf7_is_email( $value ) ) {
+		} elseif ( '' != $value and ! wpcf7_is_email( $value ) ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_email' ) );
 		}
 	}
 
 	if ( 'url' == $tag->basetype ) {
-		if ( $tag->is_required() && '' == $value ) {
+		if ( $tag->is_required() and '' == $value ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
-		} elseif ( '' != $value && ! wpcf7_is_url( $value ) ) {
+		} elseif ( '' != $value and ! wpcf7_is_url( $value ) ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_url' ) );
 		}
 	}
 
 	if ( 'tel' == $tag->basetype ) {
-		if ( $tag->is_required() && '' == $value ) {
+		if ( $tag->is_required() and '' == $value ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_required' ) );
-		} elseif ( '' != $value && ! wpcf7_is_tel( $value ) ) {
+		} elseif ( '' != $value and ! wpcf7_is_tel( $value ) ) {
 			$result->invalidate( $tag, wpcf7_get_message( 'invalid_tel' ) );
 		}
 	}
 
-	if ( ! empty( $value ) ) {
+	if ( '' !== $value ) {
 		$maxlength = $tag->get_maxlength_option();
 		$minlength = $tag->get_minlength_option();
 
-		if ( $maxlength && $minlength && $maxlength < $minlength ) {
+		if ( $maxlength and $minlength and $maxlength < $minlength ) {
 			$maxlength = $minlength = null;
 		}
 
-		$code_units = wpcf7_count_code_units( $value );
+		$code_units = wpcf7_count_code_units( stripslashes( $value ) );
 
 		if ( false !== $code_units ) {
-			if ( $maxlength && $maxlength < $code_units ) {
+			if ( $maxlength and $maxlength < $code_units ) {
 				$result->invalidate( $tag, wpcf7_get_message( 'invalid_too_long' ) );
-			} elseif ( $minlength && $code_units < $minlength ) {
+			} elseif ( $minlength and $code_units < $minlength ) {
 				$result->invalidate( $tag, wpcf7_get_message( 'invalid_too_short' ) );
 			}
 		}
@@ -161,30 +167,39 @@ function wpcf7_text_validation_filter( $result, $tag ) {
 
 /* Messages */
 
-add_filter( 'wpcf7_messages', 'wpcf7_text_messages' );
+add_filter( 'wpcf7_messages', 'wpcf7_text_messages', 10, 1 );
 
 function wpcf7_text_messages( $messages ) {
-	return array_merge( $messages, array(
+	$messages = array_merge( $messages, array(
 		'invalid_email' => array(
-			'description' => __( "Email address that the sender entered is invalid", 'contact-form-7' ),
-			'default' => __( 'Email address seems invalid.', 'contact-form-7' )
+			'description' =>
+				__( "Email address that the sender entered is invalid", 'contact-form-7' ),
+			'default' =>
+				__( "The e-mail address entered is invalid.", 'contact-form-7' ),
 		),
 
 		'invalid_url' => array(
-			'description' => __( "URL that the sender entered is invalid", 'contact-form-7' ),
-			'default' => __( 'URL seems invalid.', 'contact-form-7' )
+			'description' =>
+				__( "URL that the sender entered is invalid", 'contact-form-7' ),
+			'default' =>
+				__( "The URL is invalid.", 'contact-form-7' ),
 		),
 
 		'invalid_tel' => array(
-			'description' => __( "Telephone number that the sender entered is invalid", 'contact-form-7' ),
-			'default' => __( 'Telephone number seems invalid.', 'contact-form-7' )
-		) ) );
+			'description' =>
+				__( "Telephone number that the sender entered is invalid", 'contact-form-7' ),
+			'default' =>
+				__( "The telephone number is invalid.", 'contact-form-7' ),
+		),
+	) );
+
+	return $messages;
 }
 
 
 /* Tag generator */
 
-add_action( 'wpcf7_admin_init', 'wpcf7_add_tag_generator_text', 15 );
+add_action( 'wpcf7_admin_init', 'wpcf7_add_tag_generator_text', 15, 0 );
 
 function wpcf7_add_tag_generator_text() {
 	$tag_generator = WPCF7_TagGenerator::get_instance();
@@ -216,7 +231,7 @@ function wpcf7_tag_generator_text( $contact_form, $args = '' ) {
 		$description = __( "Generate a form-tag for a single-line telephone number input field. For more details, see %s.", 'contact-form-7' );
 	}
 
-	$desc_link = wpcf7_link( __( 'http://contactform7.com/text-fields/', 'contact-form-7' ), __( 'Text Fields', 'contact-form-7' ) );
+	$desc_link = wpcf7_link( __( 'https://contactform7.com/text-fields/', 'contact-form-7' ), __( 'Text Fields', 'contact-form-7' ) );
 
 ?>
 <div class="control-box">

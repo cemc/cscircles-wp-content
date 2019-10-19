@@ -52,7 +52,7 @@ abstract class PLL_Links_Model {
 	 * @return array list of hosts
 	 */
 	public function get_hosts() {
-		return array( parse_url( $this->home, PHP_URL_HOST ) );
+		return array( wp_parse_url( $this->home, PHP_URL_HOST ) );
 	}
 
 	/**
@@ -65,7 +65,7 @@ abstract class PLL_Links_Model {
 	 */
 	public function home_url( $lang ) {
 		$url = trailingslashit( $this->home );
-		return $this->options['hide_default'] && $lang->slug == $this->options['default_lang'] ? $url: $this->add_language_to_link( $url, $lang );
+		return $this->options['hide_default'] && $lang->slug == $this->options['default_lang'] ? $url : $this->add_language_to_link( $url, $lang );
 	}
 
 	/**
@@ -82,7 +82,7 @@ abstract class PLL_Links_Model {
 	}
 
 	/**
-	 * Sets the home urls before it is persistently cached
+	 * Sets the home urls and flags before the languages are persistently cached
 	 *
 	 * @since 1.8
 	 *
@@ -92,6 +92,7 @@ abstract class PLL_Links_Model {
 	public function pll_languages_list( $languages ) {
 		foreach ( $languages as $language ) {
 			$this->set_home_url( $language );
+			$language->set_flag();
 		}
 		return $languages;
 	}

@@ -7,7 +7,7 @@ class ScoperRoleAssigner
 	var $scoper;
 	var $scoper_admin;
 	
-	function ScoperRoleAssigner() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 		$this->scoper_admin =& $GLOBALS['scoper_admin'];
 	}
@@ -301,7 +301,7 @@ class ScoperRoleAssigner
 				$this->insert_role_assignments($scope, $role_handle, $src_or_tx_name, $item_id, $col_ug_id, $agents, $propagate_agents, $args );
 		} // end foreach roles
 		
-		// delete assignments; flush user/group roles cache
+		// delete assignments;
 		$this->role_assignment_aftermath( $scope, $role_basis, $role_change_agent_ids, $delete_assignments, '', $force_flush || ! empty($update_assign_for) );
 	
 		// possible todo: reinstate this after further testing
@@ -317,40 +317,6 @@ class ScoperRoleAssigner
 			$qry = "DELETE FROM $wpdb->user2role2object_rs WHERE assignment_id IN ($id_in) OR (inherited_from IN ($id_in) AND inherited_from != '0')";
 			
 			scoper_query($qry);
-		}
-		
-		if ( count($role_change_agent_ids) || $force_flush ) {
-			$role_change_user_ids = array();
-		
-			// just flush entire cache until selective auto-flushing can be re-verified
-			wpp_cache_flush();
-			
-			/*
-			if ( ROLE_BASIS_GROUPS == $role_basis ) {
-				scoper_flush_roles_cache( $scope, ROLE_BASIS_GROUPS );
-				scoper_flush_results_cache( ROLE_BASIS_GROUPS );
-
-				// also delete corresponding combined user/group roles cache for all group members
-				if ( isset($role_change_agent_ids['groups']) ) {
-					foreach ( array_keys($role_change_agent_ids['groups']) as $group_id ) {
-						$group_members = ScoperAdminLib::get_group_members( $group_id, COL_ID_RS );
-						$role_change_user_ids = array_merge($role_change_user_ids, $group_members);
-					}
-				}
-				
-				if ( $role_change_user_ids ) {
-					$role_change_user_ids = array_unique($role_change_user_ids);
-					scoper_flush_roles_cache( $scope, ROLE_BASIS_USER_AND_GROUPS, $role_change_user_ids );
-					scoper_flush_results_cache( ROLE_BASIS_USER_AND_GROUPS, $role_change_user_ids );
-				}
-			} else {
-				scoper_flush_roles_cache( $scope, ROLE_BASIS_USER, array_keys($role_change_user_ids) );
-				scoper_flush_results_cache( ROLE_BASIS_USER, array_keys($role_change_user_ids) );
-				
-				scoper_flush_roles_cache( $scope, ROLE_BASIS_USER_AND_GROUPS, array_keys($role_change_user_ids) );
-				scoper_flush_results_cache( ROLE_BASIS_USER_AND_GROUPS, array_keys($role_change_user_ids) );
-			}
-			*/
 		}
 	}
 	
@@ -697,7 +663,7 @@ class ScoperRoleAssigner
 			} // end foreach roles
 		}
 		
-		// delete assignments; flush user,group results cache
+		// delete assignments;
 		if ( $role_change || ! empty($delete_reqs) || $update_require_for || $force_flush ) {
 			$this->role_restriction_aftermath($scope, $delete_reqs);
 			
@@ -719,14 +685,6 @@ class ScoperRoleAssigner
 			
 			scoper_query($qry);
 		}
-
-		// just flush entire cache until selective auto-flushing can be re-verified
-		wpp_cache_flush();
-		
-		/*
-		scoper_flush_restriction_cache( $scope );
-		scoper_flush_results_cache();
-		*/
 	}
 	
 	// $insert_restriction = require_for value for insertion ('entity', 'children' or 'both')

@@ -2,7 +2,7 @@
 if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 	die();
 
-require_once( dirname(__FILE__).'/hardway/cache-persistent.php');
+require_once( dirname(__FILE__) . '/hardway/cache-persistent.php' );
 
 //if ( ! awp_ver( '3.0' ) )
 //	require_once( dirname(__FILE__).'/wp-legacy_rs.php' );
@@ -176,8 +176,17 @@ function scoper_get_init_options() {
 	
 	if ( ! defined('DISABLE_PERSISTENT_CACHE') && ! scoper_get_option('persistent_cache') )
 		define ( 'DISABLE_PERSISTENT_CACHE', true );
-
-	wpp_cache_init( IS_MU_RS && scoper_establish_group_scope() );
+	
+	if ( IS_MU_RS ) {
+		scoper_establish_group_scope();
+	}
+	
+	// Persistent cache has been disabled due to a vulnerability; delete cache files
+	$dir = (defined('CACHE_PATH')) ? CACHE_PATH . 'rs' : WP_CONTENT_DIR . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . 'rs';
+	if ( file_exists( $dir ) ) {
+		require_once( dirname(__FILE__) . '/hardway/cache-purge.php' );
+		scoper_purge_cache_files( $dir );
+	}
 }
 
 function scoper_refresh_options() {

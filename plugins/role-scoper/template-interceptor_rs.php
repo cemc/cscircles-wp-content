@@ -15,7 +15,7 @@ class TemplateInterceptor_RS
 {	
 	var $scoper;
 
-	function TemplateInterceptor_RS() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];	
 
 		if ( scoper_get_option( 'strip_private_caption' ) ) {

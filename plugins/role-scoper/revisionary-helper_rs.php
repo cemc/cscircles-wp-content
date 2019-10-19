@@ -6,7 +6,7 @@ else
 
 
 Class Rvy_Helper {
-	function init_rvy_interface() {
+	public static function init_rvy_interface() {
 		if ( ! empty($GLOBALS['revisionary']) && method_exists( $GLOBALS['revisionary'], 'set_content_roles' ) ) {
 		
 			if ( class_exists('RevisionaryContentRoles') ) {
@@ -17,7 +17,7 @@ Class Rvy_Helper {
 	}
 	
 	// Allow contributors and revisors to edit published post/page, with change stored as a revision pending review
-	function convert_post_edit_caps( $rs_reqd_caps, $post_type )	{
+	public static function convert_post_edit_caps( $rs_reqd_caps, $post_type )	{
 		global $revisionary, $scoper;
 				
 		if ( ! empty( $revisionary->skip_revision_allowance ) || ! rvy_get_option('pending_revisions') )
@@ -48,7 +48,7 @@ Class Rvy_Helper {
 	}
 	
 	// ensure proper cap requirements when a non-Administrator Quick-Edits or Bulk-Edits Posts/Pages (which may be included in the edit listing only for revision submission)
-	function fix_table_edit_reqd_caps( $rs_reqd_caps, $orig_meta_cap, $_post, $object_type_obj ) {
+	public static function fix_table_edit_reqd_caps( $rs_reqd_caps, $orig_meta_cap, $_post, $object_type_obj ) {
 		foreach( array( 'edit', 'delete' ) as $op ) {
 			if ( in_array( $orig_meta_cap, array( "{$op}_post", "{$op}_page" ) ) ) {
 				$status_obj = get_post_status_object( $_post->post_status );

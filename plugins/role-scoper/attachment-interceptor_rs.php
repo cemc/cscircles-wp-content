@@ -4,7 +4,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 
 class AttachmentInterceptor_RS {
 
-	function AttachmentInterceptor_RS() {
+	function __construct() {
 		add_action('parse_query', array(&$this, 'act_parse_query_for_direct_access') );
 		add_action('template_redirect', array(&$this, 'act_attachment_access') );
 

@@ -3,7 +3,7 @@ if ( 'nav-menus.php' != $GLOBALS['pagenow'] )	// nav-menus.php only needs admin_
 	ScoperAdminHardway_Ltd_Legacy::add_filters();
 
 class ScoperAdminHardway_Ltd_Legacy {
-	function add_filters() {
+	public static function add_filters() {
 		// URIs ending in specified filename will not be subjected to low-level query filtering
 		$nomess_uris = apply_filters( 'scoper_skip_lastresort_filter_uris', array( 'categories.php', 'themes.php', 'plugins.php', 'profile.php', 'link.php' ) );
 		
@@ -17,19 +17,19 @@ class ScoperAdminHardway_Ltd_Legacy {
 		add_filter('get_others_drafts', array('ScoperAdminHardway_Ltd_Legacy', 'flt_get_others_drafts'), 50, 1);
 	}
 
-	function flt_last_resort_query($query) {
+	public static function flt_last_resort_query($query) {
 		static $in_process = false;
 		
 		if ( $in_process )
 			return $query;
 			
 		$in_process = true;
-		$query = ScoperAdminHardway_Ltd_Legacy::_flt_last_resort_query($query);
+		$query = self::_flt_last_resort_query($query);
 		$in_process = false;
 		return $query;
 	}
 	
-	function _flt_last_resort_query($query) {
+	static function _flt_last_resort_query($query) {
 		global $wpdb, $pagenow, $scoper;
 		
 		$posts = $wpdb->posts;
@@ -231,7 +231,7 @@ class ScoperAdminHardway_Ltd_Legacy {
 	} // end function
 	
 	// Note: this filter is never invoked by WP core as of WP 2.7
-	function flt_get_others_drafts($results) {
+	public static function flt_get_others_drafts($results) {
 		global $wpdb, $current_user, $scoper;
 		
 		// buffer titles in case they were filtered previously

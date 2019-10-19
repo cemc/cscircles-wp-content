@@ -5,7 +5,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 class QueryInterceptorBase_RS {
 	var $scoper;
 	
-	function QueryInterceptorBase_RS() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 
 		add_filter('posts_where', array(&$this, 'flt_defeat_publish_filter'), 40); // have to run this filter before QueryInterceptor_RS::flt_objects_where

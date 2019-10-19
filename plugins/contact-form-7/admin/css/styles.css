@@ -16,14 +16,25 @@ span.shortcode.old {
 	color: #fff;
 }
 
-span.shortcode > input {
-	background: inherit;
-	color: inherit;
+span.shortcode input {
 	font-size: 12px;
 	border: none;
 	box-shadow: none;
 	padding: 4px 8px;
 	margin: 0;
+}
+
+#wpcf7-contact-form-list-table span.shortcode input,
+#wpcf7-contact-form-editor span.shortcode input {
+	background: transparent;
+}
+
+#wpcf7-contact-form-list-table span.shortcode input {
+	color: #444;
+}
+
+#wpcf7-contact-form-editor span.shortcode input {
+	color: #fff;
 }
 
 #submitpost input.copy {
@@ -39,6 +50,10 @@ span.shortcode > input {
 	color: #a00;
 }
 
+#submitpost input.delete:hover {
+	color: #f00;
+}
+
 #submitpost input.delete:focus {
 	outline: thin dotted;
 }
@@ -50,6 +65,46 @@ span.shortcode > input {
 .keyboard-interaction {
 	visibility: hidden;
 	color: #23282d;
+}
+
+div.config-error, span.config-error, ul.config-error {
+	color: #444;
+	font-style: normal;
+	font-size: 13px;
+}
+
+ul.config-error {
+	margin: 2px 0;
+}
+
+ul.config-error li {
+	list-style: none;
+	padding: 2px 2px;
+	margin: 0;
+}
+
+[data-config-field][aria-invalid="true"] {
+	border-color: #d00;
+}
+
+#contact-form-editor-tabs li a .icon-in-circle,
+#contact-form-editor .config-error .icon-in-circle,
+.wp-list-table .config-error .icon-in-circle,
+.icon-in-circle {
+	display: inline-block;
+	vertical-align: text-top;
+	margin: 1px 6px 0;
+	padding: 0 5px;
+	min-width: 7px;
+	height: 17px;
+	border-radius: 11px;
+	background-color: #ca4a1f;
+	color: #fff;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 17px;
+	text-align: center;
+	z-index: 26;
 }
 
 /*
@@ -103,7 +158,15 @@ span.shortcode > input {
 	color: #000;
 }
 
-#contact-form-editor .contact-form-editor-panel h3 {
+#contact-form-editor .contact-form-editor-panel > div.config-error {
+	margin-bottom: 1.4em;
+}
+
+#contact-form-editor-tabs li.ui-tabs-active a .icon-in-circle {
+	display: none;
+}
+
+#contact-form-editor .contact-form-editor-panel h2 {
 	font-size: 18px;
 	font-weight: 400;
 	line-height: 24px;
@@ -128,7 +191,7 @@ span.shortcode > input {
 }
 
 /*
- * Form Panel
+ * Form Tab
  */
 #tag-generator-list a.button {
 	font-size: 12px;
@@ -177,6 +240,10 @@ span.shortcode > input {
 
 .tag-generator-panel .control-box input.oneline {
 	width: 200px;
+}
+
+.tag-generator-panel .control-box input.large-text {
+	width: 400px;
 }
 
 .tag-generator-panel .control-box textarea.values {
@@ -239,7 +306,7 @@ span.shortcode > input {
 }
 
 /*
- * Mail Panel
+ * Mail Tab
  */
 .contact-form-editor-box-mail span.mailtag {
 	display: inline-block;
@@ -251,6 +318,17 @@ span.shortcode > input {
 
 .contact-form-editor-box-mail span.mailtag.used {
 	color: #666;
+}
+
+.contact-form-editor-box-mail span.mailtag.unused {
+	font-weight: bold;
+}
+
+/*
+ * Messages Tab
+ */
+#messages-panel p.description {
+	margin: 5px 0 10px;
 }
 
 /*
@@ -267,13 +345,40 @@ span.shortcode > input {
 /*
  * Welcome Panel
  */
-.welcome-panel p.message {
-	line-height: 1.4em;
-	margin-right: 25px;
+.welcome-panel .welcome-panel-column,
+.welcome-panel .welcome-panel-column:first-child {
+	width: 48%;
+	padding: 0 2% 0 0;
+	margin: 0 0 1em 0;
 }
 
-.welcome-panel li {
-	margin-bottom: 12px;
+@media screen and (max-width: 870px) {
+	.welcome-panel .welcome-panel-column,
+	.welcome-panel .welcome-panel-column:first-child {
+		display: block;
+		float: none;
+		width: 100%;
+	}
+}
+
+.welcome-panel h3 {
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 2.1em;
+	margin: 1em 0 1.2em;
+}
+
+.welcome-panel h3 .dashicons {
+	position: relative;
+	top: -2px;
+	display: inline-block;
+	width: 60px;
+	color: #575757;
+	font-size: 40px;
+}
+
+.welcome-panel p a {
+	font-weight: bold;
 }
 
 .welcome-panel-close {
@@ -304,9 +409,11 @@ span.shortcode > input {
 	margin: 8px 8px 8px -8px;
 }
 
-.card h3.title {
+.card h2.title {
 	float: left;
 	max-width: 240px;
+	font-size: 1.3em;
+	font-weight: 600;
 }
 
 .card .infobox {
@@ -325,4 +432,8 @@ span.shortcode > input {
 
 .card .inside .form-table td {
 	padding: 10px 10px;
+}
+
+.card .checkboxes li {
+	margin: 0;
 }

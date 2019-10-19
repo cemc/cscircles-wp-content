@@ -3,7 +3,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 	die();
 
 class ScoperAdminBulkLib {
-	function role_assignment_list($roles, $agent_names, $checkbox_base_id = '', $role_basis = 'user') {
+	public static function role_assignment_list($roles, $agent_names, $checkbox_base_id = '', $role_basis = 'user') {
 		$agent_grouping = array();
 		$agent_list = array();
 		$role_propagated = array();
@@ -112,7 +112,7 @@ class ScoperAdminBulkLib {
 			return implode(', ', $agent_list);
 	}
 	
-	function taxonomy_scroll_links($tx, $terms, $admin_terms = '') {
+	public static function taxonomy_scroll_links($tx, $terms, $admin_terms = '') {
 		$max_terms = ( defined( 'SCOPER_MAX_TAXONOMY_SCROLL_LINKS' ) ) ? SCOPER_MAX_TAXONOMY_SCROLL_LINKS : 100;
 
 		if ( empty($terms) || ( is_array($admin_terms) && empty($admin_terms) ) || ( count($terms) > $max_terms ) )
@@ -191,7 +191,7 @@ class ScoperAdminBulkLib {
 		return $text;
 	}
 
-	function display_date_limit_inputs( $role_duration = true, $content_date_limits = true ) {
+	public static function display_date_limit_inputs( $role_duration = true, $content_date_limits = true ) {
 		echo '
 		<div id="poststuff" class="metabox-holder">
 		<div id="post-body">
@@ -235,12 +235,12 @@ class ScoperAdminBulkLib {
 			
 			echo '<li>';
 			_e('Grant Role on:', 'scoper');
-			ScoperAdminBulkLib::display_touch_time( '', '', 'start_date_gmt_' );
+			self::display_touch_time( '', '', 'start_date_gmt_' );
 			echo '</li>';
 			
 			echo '<li>';
 			_e('Expire Role on:', 'scoper');
-			ScoperAdminBulkLib::display_touch_time( '', '', 'end_date_gmt_' );
+			self::display_touch_time( '', '', 'end_date_gmt_' );
 			echo '</li>';
 			
 			echo '</ul>';
@@ -286,12 +286,12 @@ $('#<?php echo $topic;?>_keep-timestamp').click(function() {
 			
 			echo '<li>';
 			_e('Min Content Date:', 'scoper');
-			ScoperAdminBulkLib::display_touch_time( '', '', 'content_min_date_gmt_' );
+			self::display_touch_time( '', '', 'content_min_date_gmt_' );
 			echo '</li>';
 			
 			echo '<li>';
 			_e('Max Content Date:', 'scoper');
-			ScoperAdminBulkLib::display_touch_time( '', '', 'content_max_date_gmt_' );
+			self::display_touch_time( '', '', 'content_max_date_gmt_' );
 			echo '</li>';
 
 			echo '</ul>';
@@ -313,7 +313,7 @@ $('#<?php echo $topic;?>_keep-timestamp').click(function() {
 		';
 	}
 	
-	function display_touch_time( $stamp, $date, $id_prefix = '', $class = 'curtime', $edit = 1, $for_post = 1, $tab_index = 0, $multi = 0, $suppress_hidden_inputs = true, $suppress_current_inputs = true, $use_js = false, $empty_month_option = true ) {  // todo: move to $args array, default suppress to false
+	static function display_touch_time( $stamp, $date, $id_prefix = '', $class = 'curtime', $edit = 1, $for_post = 1, $tab_index = 0, $multi = 0, $suppress_hidden_inputs = true, $suppress_current_inputs = true, $use_js = false, $empty_month_option = true ) {  // todo: move to $args array, default suppress to false
 		if ( $use_js ) {
 			echo '<span id="' . $id_prefix . 'timestamp">';
 			printf($stamp, $date);
@@ -329,13 +329,13 @@ $('#<?php echo $topic;?>_keep-timestamp').click(function() {
 			
 		echo '<div id="' . $id_prefix . 'timestampdiv" class="' . $class . 'clear" style="clear:both;">';
 	
-		ScoperAdminBulkLib::touch_time( $edit, $for_post, $tab_index, $multi, $id_prefix, $suppress_hidden_inputs, $suppress_current_inputs, $use_js, $empty_month_option );
+		self::touch_time( $edit, $for_post, $tab_index, $multi, $id_prefix, $suppress_hidden_inputs, $suppress_current_inputs, $use_js, $empty_month_option );
 		
 		echo '</div>';
 	}
 	
 	// from WP 2.8.4 core, add id_prefix argument
-	function touch_time( $edit = 1, $for_post = 1, $tab_index = 0, $multi = 0, $id_prefix = '', $suppress_hidden_inputs = false, $suppress_current_inputs = false, $use_js = true, $empty_month_option = false ) {
+	static function touch_time( $edit = 1, $for_post = 1, $tab_index = 0, $multi = 0, $id_prefix = '', $suppress_hidden_inputs = false, $suppress_current_inputs = false, $use_js = true, $empty_month_option = false ) {
 		global $wp_locale, $post, $comment;
 	
 		if ( $for_post ) {
@@ -439,7 +439,7 @@ $('#<?php echo $topic;?>_keep-timestamp').click(function() {
 	}
 
 	
-	function process_role_date_entries() {
+	public static function process_role_date_entries() {
 		$return = array();
 		$prefixes = array( 'start_date_gmt_', 'end_date_gmt_', 'content_min_date_gmt_', 'content_max_date_gmt_' );
 						
@@ -492,7 +492,7 @@ $('#<?php echo $topic;?>_keep-timestamp').click(function() {
 	}
 	
 	
-	function date_limits_js() {
+	public static function date_limits_js() {
 		$ajax_url = site_url( 'wp-admin/admin-ajax.php' );
 ?>
 <script type="text/javascript">

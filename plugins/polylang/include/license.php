@@ -21,7 +21,7 @@ class PLL_License {
 	 * @param string $author
 	 * @param string $api_url optional
 	 */
-	function __construct( $file, $item_name, $version, $author, $api_url = null ) {
+	public function __construct( $file, $item_name, $version, $author, $api_url = null ) {
 		$this->id      = sanitize_title( $item_name );
 		$this->file    = $file;
 		$this->name    = $item_name;
@@ -30,13 +30,14 @@ class PLL_License {
 		$this->api_url = empty( $api_url ) ? $this->api_url : $api_url;
 
 		$licenses = get_option( 'polylang_licenses' );
-		$this->license_key = empty( $licenses[ $this->id ]['key'] ) ? '' :  $licenses[ $this->id ]['key'];
+		$this->license_key = empty( $licenses[ $this->id ]['key'] ) ? '' : $licenses[ $this->id ]['key'];
 		if ( ! empty( $licenses[ $this->id ]['data'] ) ) {
 			$this->license_data = $licenses[ $this->id ]['data'];
 		}
 
 		// Updater
 		add_action( 'admin_init', array( $this, 'auto_updater' ), 0 );
+		add_action( 'cli_init', array( $this, 'auto_updater' ), 0 ); // For WP CLI.
 
 		// Register settings
 		add_filter( 'pll_settings_licenses', array( $this, 'settings' ) );

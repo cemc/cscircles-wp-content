@@ -7,10 +7,10 @@ require_once( dirname(__FILE__).'/lib/agapetry_config_items.php');
 class CR_Data_Sources extends AGP_Config_Items {
 
 	// optionally, populate with StdObject objects by passing in array of members
-	function CR_Data_Sources( $arr = '', $action_hook = '' ) {  
+	function __construct( $arr = '', $action_hook = '' ) {  
 		global $wpdb;
 
-		$this->AGP_Config_Items( $arr, $action_hook );
+		parent::__construct( $arr, $action_hook );
 		
 		// add default WP taxonomy data source
 		// note: term_taxonomy must be registered as the source table to support abstract descendant retrieval function.
@@ -25,10 +25,10 @@ class CR_Data_Sources extends AGP_Config_Items {
 		); // end outer array
 		
 		// $src_name, $table_basename, $label_singular, $label_name, $col_id, $col_name
-		$this->add('term', 'role-scoper', __('Term', 'scoper'), __('Terms', 'scoper'), 'terms', 'term_id', 'name', $args );
+		$this->add_item('term', 'role-scoper', __('Term', 'scoper'), __('Terms', 'scoper'), 'terms', 'term_id', 'name', $args );
 	}
 	
-	function &add( $name, $defining_module, $label_singular, $label_name, $table_basename, $col_id, $col_name, $args) {	
+	function &add_item( $name, $defining_module, $label_singular, $label_name, $table_basename, $col_id, $col_name, $args) {	
 		if ( $this->locked ) {
 			$notice = sprintf('A plugin or theme (%1$s) is too late in its attempt to define a data source (%2$s).', $defining_module, $name)
 					. '<br /><br />' . 'This must be done via the define_data_sources_rs hook.';
@@ -424,10 +424,10 @@ class CR_Data_Source extends AGP_Config_Item {
 	var $no_object_roles = 0;
 	var $edit_url = '';				// URL to object editor, includes [id] placeholder
 	
-	function CR_Data_Source( $name, $defining_module, $label_singular, $label_name, $table_basename, $col_id, $col_name, $args = array() ) {
+	function __construct( $name, $defining_module, $label_singular, $label_name, $table_basename, $col_id, $col_name, $args = array() ) {
 		$this->cols = (object) array( 'id' => $col_id, 'name' => $col_name );
 	
-		$this->AGP_Config_Item($name, $defining_module, $args);	
+		parent::__construct($name, $defining_module, $args);	
 	
 		$this->labels->name = $label_name;
 		$this->labels->singular_name = $label_singular;

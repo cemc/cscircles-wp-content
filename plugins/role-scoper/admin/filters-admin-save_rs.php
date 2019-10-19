@@ -351,7 +351,6 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 			$_post = get_post($object_id);
 			if ( 'auto-draft' != $_post->post_status ) {
 				delete_option('scoper_page_ancestors');
-				scoper_flush_cache_groups('get_pages');
 			}
 		}
 				
@@ -359,9 +358,6 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 		if ( is_admin() && isset( $GLOBALS['scoper_admin_filters_item_ui'] ) ) {
 			$GLOBALS['scoper_admin_filters_item_ui']->act_tweak_metaboxes();
 		}
-
-		// possible TODO: remove other conditional calls since we're doing it here on every save
-		scoper_flush_results_cache();	
 	}
 
 	
@@ -701,9 +697,6 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 				scoper_inherit_parent_restrictions($term_id, TERM_SCOPE_RS, $taxonomy, $set_parent);
 			}
 		} // endif new parent selection (or new object)
-		
-		scoper_term_cache_flush();
-		scoper_flush_roles_cache(TERM_SCOPE_RS, '', '', $taxonomy);
 		
 		delete_option("{$taxonomy}_children");
 		delete_option("{$taxonomy}_children_rs");

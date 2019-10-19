@@ -8,6 +8,7 @@
  * @since 1.2
  */
 class PLL_Links_Directory extends PLL_Links_Permalinks {
+	protected $home_relative;
 
 	/**
 	 * Constructor
@@ -18,6 +19,8 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 */
 	public function __construct( &$model ) {
 		parent::__construct( $model );
+
+		$this->home_relative = home_url( '/', 'relative' );
 
 		if ( did_action( 'pll_init' ) ) {
 			$this->init();
@@ -56,7 +59,13 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 		if ( ! empty( $lang ) ) {
 			$base = $this->options['rewrite'] ? '' : 'language/';
 			$slug = $this->options['default_lang'] == $lang->slug && $this->options['hide_default'] ? '' : $base . $lang->slug . '/';
-			return str_replace( $this->home . '/' . $this->root, $this->home . '/' . $this->root . $slug, $url );
+			$root = ( false === strpos( $url, '://' ) ) ? $this->home_relative . $this->root : preg_replace( '/^https?:\/\//', '://', $this->home . '/' . $this->root );
+
+			if ( false === strpos( $url, $new = $root . $slug ) ) {
+				$pattern = str_replace( '/', '\/', $root );
+				$pattern = '#' . $pattern . '#';
+				return preg_replace( $pattern, $new, $url, 1 ); // Only once
+			}
 		}
 		return $url;
 	}
@@ -70,7 +79,7 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 * @param string $url url to modify
 	 * @return string modified url
 	 */
-	function remove_language_from_link( $url ) {
+	public function remove_language_from_link( $url ) {
 		foreach ( $this->model->get_languages_list() as $language ) {
 			if ( ! $this->options['hide_default'] || $this->options['default_lang'] != $language->slug ) {
 				$languages[] = $language->slug;
@@ -78,9 +87,11 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 		}
 
 		if ( ! empty( $languages ) ) {
-			$pattern = str_replace( '/', '\/', $this->home . '/' . $this->root );
-			$pattern = '#' . $pattern . ( $this->options['rewrite'] ? '' : 'language\/' ) . '('.implode( '|', $languages ).')(\/|$)#';
-			$url = preg_replace( $pattern,  $this->home . '/' . $this->root, $url );
+			$root = ( false === strpos( $url, '://' ) ) ? $this->home_relative . $this->root : preg_replace( '/^https?:\/\//', '://', $this->home . '/' . $this->root );
+
+			$pattern = str_replace( '/', '\/', $root );
+			$pattern = '#' . $pattern . ( $this->options['rewrite'] ? '' : 'language\/' ) . '(' . implode( '|', $languages ) . ')(\/|$)#';
+			$url = preg_replace( $pattern, $root, $url );
 		}
 		return $url;
 	}
@@ -97,12 +108,16 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	 */
 	public function get_language_from_url( $url = '' ) {
 		if ( empty( $url ) ) {
-			$url  = ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+			$url = pll_get_requested_url();
 		}
 
-		$pattern = str_replace( '/', '\/', $this->home . '/' . $this->root . ( $this->options['rewrite'] ? '' : 'language/' ) );
-		$pattern = '#' . $pattern . '('. implode( '|', $this->model->get_languages_list( array( 'fields' => 'slug' ) ) ) . ')(\/|$)#';
-		return preg_match( $pattern, trailingslashit( $url ), $matches ) ? $matches[1] : ''; // $matches[1] is the slug of the requested language
+		$path = wp_parse_url( $url, PHP_URL_PATH );
+		$root = ( false === strpos( $url, '://' ) ) ? $this->home_relative . $this->root : $this->home . '/' . $this->root;
+
+		$pattern = wp_parse_url( $root . ( $this->options['rewrite'] ? '' : 'language/' ), PHP_URL_PATH );
+		$pattern = str_replace( '/', '\/', $pattern );
+		$pattern = '#' . $pattern . '(' . implode( '|', $this->model->get_languages_list( array( 'fields' => 'slug' ) ) ) . ')(\/|$)#';
+		return preg_match( $pattern, trailingslashit( $path ), $matches ) ? $matches[1] : ''; // $matches[1] is the slug of the requested language
 	}
 
 	/**
@@ -121,14 +136,17 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 	}
 
 	/**
-	 * Optionaly removes 'language' in permalinks so that we get http://www.myblog/en/ instead of http://www.myblog/language/en/
+	 * Optionally removes 'language' in permalinks so that we get http://www.myblog/en/ instead of http://www.myblog/language/en/
 	 *
 	 * @since 1.2
 	 */
-	function add_permastruct() {
+	public function add_permastruct() {
 		// Language information always in front of the uri ( 'with_front' => false )
 		// The 3rd parameter structure has been modified in WP 3.4
-		add_permastruct( 'language', $this->options['rewrite'] ? '%language%' : 'language/%language%', array( 'with_front' => false ) );
+		// Leads to error 404 for pages when there is no language created yet
+		if ( $this->model->get_languages_list() ) {
+			add_permastruct( 'language', $this->options['rewrite'] ? '%language%' : 'language/%language%', array( 'with_front' => false ) );
+		}
 	}
 
 	/**
@@ -198,54 +216,49 @@ class PLL_Links_Directory extends PLL_Links_Permalinks {
 				 * @param string      $filter  current set of rules being modified
 				 * @param string|bool $archive custom post post type archive name or false if it is not a cpt archive
 				 */
-				if ( ! apply_filters( 'pll_modify_rewrite_rule', true, array( $key => $rule ), $filter, false ) ) {
-					continue;
-				}
-
-				if ( isset( $slug ) ) {
-					$newrules[ $slug . str_replace( $wp_rewrite->root, '', $key ) ] = str_replace(
+				if ( isset( $slug ) && apply_filters( 'pll_modify_rewrite_rule', true, array( $key => $rule ), $filter, false ) ) {
+					$newrules[ $slug . str_replace( $wp_rewrite->root, '', ltrim( $key, '^' ) ) ] = str_replace(
 						array( '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?' ),
 						array( '[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '?lang=$matches[1]&' ),
 						$rule
 					); // Should be enough!
 				}
 
-				if ( $this->options['hide_default'] ) {
-					$newrules[ $key ] = $rules[ $key ];
-					// Unset only if we hide the code for the default language as check_language_code_in_url will do its job in other cases
-					unset( $rules[ $key ] );
-				}
+				$newrules[ $key ] = $rule;
 			}
 
 			// Rewrite rules filtered by language
 			elseif ( in_array( $filter, $this->always_rewrite ) || in_array( $filter, $this->model->get_filtered_taxonomies() ) || ( $cpts && preg_match( $cpts, $rule, $matches ) && ! strpos( $rule, 'name=' ) ) || ( 'rewrite_rules_array' != $filter && $this->options['force_lang'] ) ) {
 
 				/** This filter is documented in include/links-directory.php */
-				if ( ! apply_filters( 'pll_modify_rewrite_rule', true, array( $key => $rule ), $filter, empty( $matches[1] ) ? false : $matches[1] ) ) {
-					continue;
-				}
+				if ( apply_filters( 'pll_modify_rewrite_rule', true, array( $key => $rule ), $filter, empty( $matches[1] ) ? false : $matches[1] ) ) {
+					if ( isset( $slug ) ) {
+						$newrules[ $slug . str_replace( $wp_rewrite->root, '', ltrim( $key, '^' ) ) ] = str_replace(
+							array( '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?' ),
+							array( '[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '?lang=$matches[1]&' ),
+							$rule
+						); // Should be enough!
+					}
 
-				if ( isset( $slug ) ) {
-					$newrules[ $slug . str_replace( $wp_rewrite->root, '', $key ) ] = str_replace(
-						array( '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '[1]', '?' ),
-						array( '[9]', '[8]', '[7]', '[6]', '[5]', '[4]', '[3]', '[2]', '?lang=$matches[1]&' ),
-						$rule
-					); // Should be enough!
+					if ( $this->options['hide_default'] ) {
+						$newrules[ $key ] = str_replace( '?', '?lang=' . $this->options['default_lang'] . '&', $rule );
+					}
+				} else {
+					$newrules[ $key ] = $rule;
 				}
+			}
 
-				if ( $this->options['hide_default'] ) {
-					$newrules[ $key ] = str_replace( '?', '?lang=' . $this->options['default_lang'] . '&', $rule );
-				}
-
-				unset( $rules[ $key ] ); // Now useless
+			// Unmodified rules
+			else {
+				$newrules[ $key ] = $rule;
 			}
 		}
 
 		// The home rewrite rule
 		if ( 'root' == $filter && isset( $slug ) ) {
-			$newrules[ $slug . '?$' ] = $wp_rewrite->index.'?lang=$matches[1]';
+			$newrules[ $slug . '?$' ] = $wp_rewrite->index . '?lang=$matches[1]';
 		}
 
-		return $newrules + $rules;
+		return $newrules;
 	}
 }

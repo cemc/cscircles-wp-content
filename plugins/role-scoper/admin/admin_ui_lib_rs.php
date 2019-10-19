@@ -15,7 +15,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
  *
  */
 class ScoperAdminUI {
-	function set_agent_formatting( $date_limits, &$title, &$limit_class, &$link_class, &$limit_style, $title_wrap = true ) {
+	public static function set_agent_formatting( $date_limits, &$title, &$limit_class, &$link_class, &$limit_style, $title_wrap = true ) {
 		
 		static $current_gmt, $default_gmt_time, $gmt_seconds, $datef_no_time, $datef_time;
 		static $starts_caption, $started_caption, $expired_caption, $expires_caption, $content_range_caption, $content_min_caption, $content_max_caption;
@@ -106,7 +106,7 @@ class ScoperAdminUI {
 			$title = implode(", ", $title_captions) . ' ' . $content_title_caption;
 	}
 	
-	function restriction_captions( $scope, $tx = '', $item_label_singular = '', $item_label = '') {
+	public static function restriction_captions( $scope, $tx = '', $item_label_singular = '', $item_label = '') {
 		$table_captions = array();
 	
 		if ( TERM_SCOPE_RS == $scope ) {
@@ -135,7 +135,7 @@ class ScoperAdminUI {
 		return $table_captions;
 	}
 	
-	function role_owners_key($tx_or_otype, $args = array()) {
+	public static function role_owners_key($tx_or_otype, $args = array()) {
 		$defaults = array( 'display_links' => true, 'display_restriction_key' => true, 'restriction_caption' => '',
 							'role_basis' => '', 'agent_caption' => '', 'single_item' => false );
 		$args = array_merge( $defaults, (array) $args);
@@ -198,7 +198,7 @@ class ScoperAdminUI {
 	}
 	
 	// Role Scoping for NGG calls ScoperAdminUI::dropdown_pages
-	function dropdown_pages($object_id = '', $stored_parent_id = '') {
+	public static function dropdown_pages($object_id = '', $stored_parent_id = '') {
 		require_once( SCOPER_ABSPATH . '/hardway/hardway-parent-legacy_rs.php');
 		return ScoperHardwayParentLegacy::dropdown_pages( $object_id, $stored_parent_id );
 	}

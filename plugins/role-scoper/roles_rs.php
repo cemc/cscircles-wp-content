@@ -11,9 +11,9 @@ class CR_Roles extends AGP_Config_Items {
 	var $abbrevs = array();
 	var $micro_abbrevs = array();
 	
-	function CR_Roles( $arr = '', $action_hook = '') {
+	function __construct( $arr = '', $action_hook = '') {
 		$this->role_types = array( 'rs', 'wp' );
-		$this->AGP_Config_Items( $arr, $action_hook );
+		parent::__construct( $arr, $action_hook );
 	}
 
 	function get_display_name( $role_handle, $context = '' ) {
@@ -44,7 +44,7 @@ class CR_Roles extends AGP_Config_Items {
 		return $return;
 	}
 	
-	function &add($name, $defining_module, $display_name = '', $abbrev = '', $role_type = 'rs', $args = array()) {
+	function &add_item( $name, $defining_module, $display_name = '', $abbrev = '', $role_type = 'rs', $args = array()) {
 		if ( $this->locked ) {
 			$notice = sprintf('A plugin or theme (%1$s) is too late in its attempt to define a role (%2$s).', $defining_module, $name)
 					. '<br /><br />' . 'This must be done via the define_roles_rs hook.';
@@ -397,8 +397,8 @@ class CR_Role extends AGP_Config_Item {
 	var $valid_scopes;
 	var $objscope_equivalents;
 	
-	function CR_Role($name, $defining_module, $role_type = 'rs', $args = array() ) {
-		$this->AGP_Config_Item($name, $defining_module, $args);
+	function __construct($name, $defining_module, $role_type = 'rs', $args = array() ) {
+		parent::__construct( $name, $defining_module, $args );
 		
 		$this->role_type = $role_type;
 	}

@@ -42,7 +42,7 @@ class UsersInterceptor_RS
 	var $user_cache = array();	  //$user_cache[query] = results;
 	var $all_terms_count = array();
 	
-	function UsersInterceptor_RS() {
+	function __construct() {
 		$this->scoper =& $GLOBALS['scoper'];
 
 		// ---------------- HANDLERS for ROLE SCOPER HOOKS ---------------
@@ -307,7 +307,7 @@ class UsersInterceptor_RS
 
 									if ( GROUP_ROLES_RS && ! $ignore_group_roles ) {
 										if ( ! isset($owner_groups) )
-											$owner_groups = WP_Scoped_User::get_groups_for_user( $stored_owner_id[$src_name][$this_src_object_id] );
+											$owner_groups = WP_Scoped_User::_get_groups_for_user( $stored_owner_id[$src_name][$this_src_object_id] );
 											//$owner_groups = scoper_get_col("SELECT $wpdb->user2group_gid_col FROM $wpdb->user2group_rs WHERE $wpdb->user2group_uid_col = '{$stored_owner_id[$src_name][$this_src_object_id]}'");
 										
 										if ( $owner_groups )

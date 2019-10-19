@@ -8,12 +8,12 @@ global $scoper, $scoper_admin;
 if ( isset($_POST['rs_submit']) ) {
 	$src_name = sanitize_key( $_POST['src_name'] );
 	$object_type = sanitize_key( $_POST['object_type'] );
-	$object_name = $_POST['object_name'];
+	$object_name = sanitize_text_field( $_POST['object_name'] );
 	$object_id = (int) $_POST['object_id'];
 } else {
 	$src_name = isset($_GET['src_name']) ? sanitize_key( $_GET['src_name'] ) : '';
 	$object_type = isset($_GET['object_type']) ? sanitize_key( $_GET['object_type'] ) : '';
-	$object_name = isset($_GET['object_name']) ? $_GET['object_name'] : '';
+	$object_name = isset($_GET['object_name']) ? sanitize_text_field( $_GET['object_name'] ) : '';
 	$object_id = isset($_GET['object_id']) ? (int) $_GET['object_id'] : '';
 }
 

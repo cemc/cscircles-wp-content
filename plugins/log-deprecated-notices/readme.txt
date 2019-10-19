@@ -1,9 +1,9 @@
 === Log Deprecated Notices ===
-Contributors: nacin
+Contributors: nacin, jorbin
 Tags: deprecated, logging, admin, WP_DEBUG, E_NOTICE, developer
 Requires at least: 3.0
-Tested up to: 4.1-alpha
-Stable tag: 0.3
+Tested up to: 5.0-alpha
+Stable tag: 0.4.1
 
 Logs the usage of deprecated files, functions, and function arguments, and identifies where the deprecated functionality is being used.
 
@@ -15,7 +15,7 @@ This is a plugin for developers. WP_DEBUG is not needed, though its general usag
 
 This plugin also logs incorrect function usage, which WordPress started reporting in 3.1.
 
-Please report any bugs to plugins at [andrewnacin.com](http://andrewnacin.com/), or find me in IRC #wordpress-dev or @[nacin](http://twitter.com/nacin) on Twitter.
+Please report any bugs to plugins in a [support thread](https://wordpress.org/support/plugin/log-deprecated-notices).
 
 This is young software. It works, but there's a lot left on the todo (check out the Other Notes tab). Have an idea? Let me know.
 
@@ -57,6 +57,12 @@ Want to add something here? I'm all ears. plugins at [andrewnacin.com](http://an
 I will prioritize these tasks based on feedback, so let me know what you'd like to see.
 
 == Upgrade Notice ==
+
+= 0.4.1 =
+Hide "Add new" on Deprecated Calls viewer
+
+= 0.4 =
+Eliminate Deprecated Constructor
 
 = 0.3 =
 Updated to handle a new deprecated message in WordPress 4.0.

@@ -8,7 +8,7 @@ require_once( SCOPER_ABSPATH . '/hardway/hardway-parent_rs.php');
 
 class ScoperAdminBulk {
 
-function get_agents($role_bases = '') {
+public static function get_agents($role_bases = '') {
 	if ( empty($role_bases) )
 		$role_bases = array(ROLE_BASIS_USER, ROLE_BASIS_GROUPS);
 	
@@ -28,7 +28,7 @@ function get_agents($role_bases = '') {
 	return $agents;
 }
 
-function agent_names($agents) {
+public static function agent_names($agents) {
 	$agent_names = array();
 	foreach ( array_keys($agents) as $role_basis )
 		foreach( $agents[$role_basis] as $agent )
@@ -37,7 +37,7 @@ function agent_names($agents) {
 	return $agent_names;
 }
 
-function agent_list_prefixes() {
+public static function agent_list_prefixes() {
 	$agent_list_prefix = array();
 	$agent_list_prefix[ROLE_BASIS_USER] = '';
 	$agent_list_prefix[ROLE_BASIS_GROUPS] = __('Groups') . ': ';
@@ -45,7 +45,7 @@ function agent_list_prefixes() {
 	return $agent_list_prefix;
 }
 
-function agent_captions_plural($role_bases) {
+public static function agent_captions_plural($role_bases) {
 	if ( count($role_bases) > 1 )
 		return __('Users or Groups', 'scoper');
 	elseif ( in_array(ROLE_BASIS_USER, $role_bases) )
@@ -54,7 +54,7 @@ function agent_captions_plural($role_bases) {
 		return __('Groups', 'scoper');
 }
 
-function agent_captions($role_bases) {
+public static function agent_captions($role_bases) {
 	if ( count($role_bases) > 1 )
 		return  __('User / Group', 'scoper');
 	elseif ( in_array(ROLE_BASIS_USER, $role_bases) )
@@ -63,7 +63,7 @@ function agent_captions($role_bases) {
 		return  __('Group', 'scoper');
 }
 
-function get_role_codes() {
+public static function get_role_codes() {
 	global $scoper;
 	
 	$role_defs = $scoper->role_defs->get_matching('rs');
@@ -77,7 +77,7 @@ function get_role_codes() {
 	return $role_codes;
 }
 
-function display_inputs($mode, $assignment_modes, $args = array()) {
+public static function display_inputs($mode, $assignment_modes, $args = array()) {
 	$defaults = array( 'role_bases' => '', 'agents' => '', 'agent_caption_plural' => '', 'max_scopes' => array(), 'scope' => '', 'src_or_tx_name' => '' );
 	$args = array_merge($defaults, (array) $args);
 	extract($args);
@@ -193,7 +193,7 @@ function display_inputs($mode, $assignment_modes, $args = array()) {
 	}
 }
 
-function role_submission($scope, $mode, $role_bases, $src_or_tx_name, $role_codes, $agent_caption_plural, $nonce_id) {
+public static function role_submission($scope, $mode, $role_bases, $src_or_tx_name, $role_codes, $agent_caption_plural, $nonce_id) {
 	global $scoper;
 	$role_assigner = init_role_assigner();
 	
@@ -369,7 +369,7 @@ function role_submission($scope, $mode, $role_bases, $src_or_tx_name, $role_code
 	return $err;
 }
 
-function get_objects_info($object_ids, &$object_names, &$object_status, &$unlisted_objects, $src, $otype, $ignore_hierarchy) {
+public static function get_objects_info($object_ids, &$object_names, &$object_status, &$unlisted_objects, $src, $otype, $ignore_hierarchy) {
 	global $wpdb;
 	
 	// buffer titles in case they are translated
@@ -446,7 +446,7 @@ function get_objects_info($object_ids, &$object_names, &$object_status, &$unlist
 	return $listed_objects;
 }
 
-function filter_objects_listing($mode, &$role_settings, $src, $object_type) {
+public static function filter_objects_listing($mode, &$role_settings, $src, $object_type) {
 	global $wpdb;
 	
 	$filter_args = array();
@@ -496,7 +496,7 @@ function filter_objects_listing($mode, &$role_settings, $src, $object_type) {
 	return $cu_admin_results;
 }
 
-function item_tree_jslinks($mode, $args='') {
+public static function item_tree_jslinks($mode, $args='') {
 	$defaults = array ( 'role_bases' => '', 'default_hide_empty' => false, 'hide_roles' => false, 'scope' => '', 'src' => '', 'otype' => '' );
 	$args = array_merge($defaults, (array) $args);
 	extract($args);
@@ -634,7 +634,7 @@ function item_tree_jslinks($mode, $args='') {
 	}
 }
 
-function item_tree($scope, $mode, $src, $otype_or_tx, $all_items, $assigned_roles, $strict_items, $role_defs_by_otype, $role_codes, $args = array()) {
+public static function item_tree($scope, $mode, $src, $otype_or_tx, $all_items, $assigned_roles, $strict_items, $role_defs_by_otype, $role_codes, $args = array()) {
 
 	$defaults = array ( 'admin_items' => '', 	'editable_roles' => '',
 				'ul_class' => 'rs-termlist', 	'ie_link_style' => '',		'object_names' => '',		

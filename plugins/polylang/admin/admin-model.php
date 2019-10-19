@@ -28,17 +28,17 @@ class PLL_Admin_Model extends PLL_Model {
 	 * @return bool true if success / false if failed
 	 */
 	public function add_language( $args ) {
-		if ( ! $this->validate_lang( $args ) ) {
-			return false;
+		$errors = $this->validate_lang( $args );
+		if ( $errors->get_error_code() ) { // Using has_errors() would be more meaningful but is available only since WP 5.0
+			return $errors;
 		}
 
 		// First the language taxonomy
-		$description = serialize( array( 'locale' => $args['locale'], 'rtl' => (int) $args['rtl'], 'flag_code' => empty( $args['flag'] ) ? '' : $args['flag'] ) );
+		$description = maybe_serialize( array( 'locale' => $args['locale'], 'rtl' => (int) $args['rtl'], 'flag_code' => empty( $args['flag'] ) ? '' : $args['flag'] ) );
 		$r = wp_insert_term( $args['name'], 'language', array( 'slug' => $args['slug'], 'description' => $description ) );
 		if ( is_wp_error( $r ) ) {
 			// Avoid an ugly fatal error if something went wrong ( reported once in the forum )
-			add_settings_error( 'general', 'pll_add_language', __( 'Impossible to add the language.', 'polylang' ) );
-			return false;
+			return new WP_Error( 'pll_add_language', __( 'Impossible to add the language.', 'polylang' ) );
 		}
 		wp_update_term( (int) $r['term_id'], 'language', array( 'term_group' => (int) $args['term_group'] ) ); // can't set the term group directly in wp_insert_term
 
@@ -46,7 +46,7 @@ class PLL_Admin_Model extends PLL_Model {
 		// Don't want shared terms so use a different slug
 		wp_insert_term( $args['name'], 'term_language', array( 'slug' => 'pll_' . $args['slug'] ) );
 
-		$this->clean_languages_cache(); // Udpate the languages list now !
+		$this->clean_languages_cache(); // Update the languages list now !
 
 		if ( ! isset( $this->options['default_lang'] ) ) {
 			// If this is the first language created, set it as default language
@@ -74,8 +74,6 @@ class PLL_Admin_Model extends PLL_Model {
 
 		$this->clean_languages_cache(); // Again to set add mo_id in the cached languages list
 		flush_rewrite_rules(); // Refresh rewrite rules
-
-		add_settings_error( 'general', 'pll_languages_created', __( 'Language added.', 'polylang' ), 'updated' );
 		return true;
 	}
 
@@ -88,6 +86,10 @@ class PLL_Admin_Model extends PLL_Model {
 	 */
 	public function delete_language( $lang_id ) {
 		$lang = $this->get_language( (int) $lang_id );
+
+		if ( empty( $lang ) ) {
+			return false;
+		}
 
 		// Oops ! we are deleting the default language...
 		// Need to do this before loosing the information for default category translations
@@ -131,9 +133,8 @@ class PLL_Admin_Model extends PLL_Model {
 
 		// Delete users options
 		foreach ( get_users( array( 'fields' => 'ID' ) ) as $user_id ) {
-			delete_user_meta( $user_id, 'user_lang', $lang->locale );
 			delete_user_meta( $user_id, 'pll_filter_content', $lang->slug );
-			delete_user_meta( $user_id, 'description_'.$lang->slug );
+			delete_user_meta( $user_id, 'description_' . $lang->slug );
 		}
 
 		// Delete the string translations
@@ -154,7 +155,7 @@ class PLL_Admin_Model extends PLL_Model {
 
 		update_option( 'polylang', $this->options );
 		flush_rewrite_rules(); // refresh rewrite rules
-		add_settings_error( 'general', 'pll_languages_deleted', __( 'Language deleted.', 'polylang' ), 'updated' );
+		return true;
 	}
 
 	/**
@@ -178,8 +179,10 @@ class PLL_Admin_Model extends PLL_Model {
 	 */
 	public function update_language( $args ) {
 		$lang = $this->get_language( (int) $args['lang_id'] );
-		if ( ! $this->validate_lang( $args, $lang ) ) {
-			return false;
+
+		$errors = $this->validate_lang( $args, $lang );
+		if ( $errors->get_error_code() ) { // Using has_errors() would be more meaningful but is available only since WP 5.0
+			return $errors;
 		}
 
 		// Update links to this language in posts and terms in case the slug has been modified
@@ -232,7 +235,7 @@ class PLL_Admin_Model extends PLL_Model {
 		update_option( 'polylang', $this->options );
 
 		// And finally update the language itself
-		$description = serialize( array( 'locale' => $args['locale'], 'rtl' => (int) $args['rtl'], 'flag_code' => empty( $args['flag'] ) ? '' : $args['flag'] ) );
+		$description = maybe_serialize( array( 'locale' => $args['locale'], 'rtl' => (int) $args['rtl'], 'flag_code' => empty( $args['flag'] ) ? '' : $args['flag'] ) );
 		wp_update_term( (int) $lang->term_id, 'language', array( 'slug' => $slug, 'name' => $args['name'], 'description' => $description, 'term_group' => (int) $args['term_group'] ) );
 		wp_update_term( (int) $lang->tl_term_id, 'term_language', array( 'slug' => 'pll_' . $slug, 'name' => $args['name'] ) );
 
@@ -247,12 +250,12 @@ class PLL_Admin_Model extends PLL_Model {
 
 		$this->clean_languages_cache();
 		flush_rewrite_rules(); // Refresh rewrite rules
-		add_settings_error( 'general', 'pll_languages_updated', __( 'Language updated.', 'polylang' ), 'updated' );
 		return true;
 	}
 
 	/**
 	 * Validates data entered when creating or updating a language
+	 *
 	 * @see PLL_Admin_Model::add_language
 	 *
 	 * @since 0.4
@@ -262,33 +265,45 @@ class PLL_Admin_Model extends PLL_Model {
 	 * @return bool true if success / false if failed
 	 */
 	protected function validate_lang( $args, $lang = null ) {
+		$errors = new WP_Error();
+
 		// Validate locale with the same pattern as WP 4.3. See #28303
 		if ( ! preg_match( '#^[a-z]{2,3}(?:_[A-Z]{2})?(?:_[a-z0-9]+)?$#', $args['locale'], $matches ) ) {
-			add_settings_error( 'general', 'pll_invalid_locale', __( 'Enter a valid WordPress locale', 'polylang' ) );
+			$errors->add( 'pll_invalid_locale', __( 'Enter a valid WordPress locale', 'polylang' ) );
 		}
 
 		// Validate slug characters
 		if ( ! preg_match( '#^[a-z_-]+$#', $args['slug'] ) ) {
-			add_settings_error( 'general', 'pll_invalid_slug', __( 'The language code contains invalid characters', 'polylang' ) );
+			$errors->add( 'pll_invalid_slug', __( 'The language code contains invalid characters', 'polylang' ) );
 		}
 
 		// Validate slug is unique
-		if ( $this->get_language( $args['slug'] ) && ( null === $lang || ( isset( $lang ) && $lang->slug != $args['slug'] ) ) ) {
-			add_settings_error( 'general', 'pll_non_unique_slug', __( 'The language code must be unique', 'polylang' ) );
+		foreach ( $this->get_languages_list() as $language ) {
+			if ( $language->slug === $args['slug'] && ( null === $lang || ( isset( $lang ) && $lang->term_id != $language->term_id ) ) ) {
+				$errors->add( 'pll_non_unique_slug', __( 'The language code must be unique', 'polylang' ) );
+			}
 		}
 
 		// Validate name
 		// No need to sanitize it as wp_insert_term will do it for us
 		if ( empty( $args['name'] ) ) {
-			add_settings_error( 'general', 'pll_invalid_name',  __( 'The language must have a name', 'polylang' ) );
+			$errors->add( 'pll_invalid_name', __( 'The language must have a name', 'polylang' ) );
 		}
 
 		// Validate flag
 		if ( ! empty( $args['flag'] ) && ! file_exists( POLYLANG_DIR . '/flags/' . $args['flag'] . '.png' ) ) {
-			add_settings_error( 'general', 'pll_invalid_flag', __( 'The flag does not exist', 'polylang' ) );
+			$flag = PLL_Language::get_flag_informations( $args['flag'] );
+
+			if ( ! empty( $flag['url'] ) ) {
+				$response = function_exists( 'vip_safe_wp_remote_get' ) ? vip_safe_wp_remote_get( esc_url_raw( $flag['url'] ) ) : wp_remote_get( esc_url_raw( $flag['url'] ) );
+			}
+
+			if ( empty( $response ) || is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+				$errors->add( 'pll_invalid_flag', __( 'The flag does not exist', 'polylang' ) );
+			}
 		}
 
-		return get_settings_errors() ? false : true;
+		return $errors;
 	}
 
 	/**
@@ -305,19 +320,21 @@ class PLL_Admin_Model extends PLL_Model {
 
 		$ids = array_map( 'intval', $ids );
 		$lang = $this->get_language( $lang );
-		$tt_id = 'term' == $type ? $lang->tl_term_taxonomy_id : $lang->term_taxonomy_id;
+		$tt_id = 'term' === $type ? $lang->tl_term_taxonomy_id : $lang->term_taxonomy_id;
 
 		foreach ( $ids as $id ) {
 			$values[] = $wpdb->prepare( '( %d, %d )', $id, $tt_id );
 		}
 
 		if ( ! empty( $values ) ) {
-			$values = array_unique( $values );
-			$wpdb->query( "INSERT INTO $wpdb->term_relationships ( object_id, term_taxonomy_id ) VALUES " . implode( ',', $values ) );
+			// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query( "INSERT INTO {$wpdb->term_relationships} ( object_id, term_taxonomy_id ) VALUES " . implode( ',', array_unique( $values ) ) );
 			$lang->update_count(); // Updating term count is mandatory ( thanks to AndyDeGroo )
 		}
 
-		if ( 'term' == $type ) {
+		if ( 'term' === $type ) {
+			clean_term_cache( $ids, 'term_language' );
+
 			foreach ( $ids as $id ) {
 				$translations[] = array( $lang->slug => $id );
 			}
@@ -325,6 +342,8 @@ class PLL_Admin_Model extends PLL_Model {
 			if ( ! empty( $translations ) ) {
 				$this->set_translation_in_mass( 'term', $translations );
 			}
+		} else {
+			clean_term_cache( $ids, 'language' );
 		}
 	}
 
@@ -339,40 +358,44 @@ class PLL_Admin_Model extends PLL_Model {
 	public function set_translation_in_mass( $type, $translations ) {
 		global $wpdb;
 
+		$taxonomy = $type . '_translations';
+
 		foreach ( $translations as $t ) {
 			$term = uniqid( 'pll_' ); // the term name
-			$terms[] = $wpdb->prepare( '( "%1$s", "%1$s" )', $term );
-			$slugs[] = $wpdb->prepare( '"%s"', $term );
-			$description[ $term ] = serialize( $t );
+			$terms[] = $wpdb->prepare( '( %s, %s )', $term, $term );
+			$slugs[] = $wpdb->prepare( '%s', $term );
+			$description[ $term ] = maybe_serialize( $t );
 			$count[ $term ] = count( $t );
 		}
 
 		// Insert terms
 		if ( ! empty( $terms ) ) {
-			$terms = array_unique( $terms );
-			$wpdb->query( "INSERT INTO $wpdb->terms ( slug, name ) VALUES " . implode( ',', $terms ) );
+			// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query( "INSERT INTO {$wpdb->terms} ( slug, name ) VALUES " . implode( ',', array_unique( $terms ) ) );
 		}
 
 		// Get all terms with their term_id
-		$terms = $wpdb->get_results( "SELECT term_id, slug FROM $wpdb->terms WHERE slug IN ( " . implode( ',', $slugs ) . " )" );
+		// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
+		$terms = $wpdb->get_results( "SELECT term_id, slug FROM {$wpdb->terms} WHERE slug IN ( " . implode( ',', $slugs ) . ' )' );
 
 		// Prepare terms taxonomy relationship
 		foreach ( $terms as $term ) {
-			$tts[] = $wpdb->prepare( '( %d, "%s", "%s", %d )', $term->term_id, $type . '_translations', $description[ $term->slug ], $count[ $term->slug ] );
+			$term_ids[] = $term->term_id;
+			$tts[] = $wpdb->prepare( '( %d, %s, %s, %d )', $term->term_id, $taxonomy, $description[ $term->slug ], $count[ $term->slug ] );
 		}
 
 		// Insert term_taxonomy
 		if ( ! empty( $tts ) ) {
-			$tts = array_unique( $tts );
-			$wpdb->query( "INSERT INTO $wpdb->term_taxonomy ( term_id, taxonomy, description, count ) VALUES " . implode( ',', $tts ) );
+			// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query( "INSERT INTO {$wpdb->term_taxonomy} ( term_id, taxonomy, description, count ) VALUES " . implode( ',', array_unique( $tts ) ) );
 		}
 
 		// Get all terms with term_taxonomy_id
-		$terms = get_terms( $type . '_translations', array( 'hide_empty' => false ) );
+		$terms = get_terms( $taxonomy, array( 'hide_empty' => false ) );
 
 		// Prepare objects relationships
 		foreach ( $terms as $term ) {
-			$t = unserialize( $term->description );
+			$t = maybe_unserialize( $term->description );
 			if ( in_array( $t, $translations ) ) {
 				foreach ( $t as $object_id ) {
 					if ( ! empty( $object_id ) ) {
@@ -384,37 +407,69 @@ class PLL_Admin_Model extends PLL_Model {
 
 		// Insert term_relationships
 		if ( ! empty( $trs ) ) {
-			$wpdb->query( "INSERT INTO $wpdb->term_relationships ( object_id, term_taxonomy_id ) VALUES " . implode( ',', $trs ) );
+			// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query( "INSERT INTO {$wpdb->term_relationships} ( object_id, term_taxonomy_id ) VALUES " . implode( ',', $trs ) );
 			$trs = array_unique( $trs );
 		}
+
+		clean_term_cache( $term_ids, $taxonomy );
 	}
 
 	/**
-	 * Returns unstranslated posts and terms ids ( used in settings )
+	 * Returns untranslated posts and terms ids ( used in settings )
 	 *
 	 * @since 0.9
+	 * @since 2.2.6 Add the $limit argument
 	 *
-	 * @return array array made of an array of post ids and an array of term ids
+	 * @param in $limit Max number of posts or terms to return. Defaults to -1 (no limit).
+	 * @return array Array made of an array of post ids and an array of term ids
 	 */
-	public function get_objects_with_no_lang() {
-		$posts = get_posts( array(
-			'numberposts' => -1,
-			'nopaging'    => true,
-			'post_type'   => $this->get_translated_post_types(),
-			'post_status' => 'any',
-			'fields'      => 'ids',
-			'tax_query'   => array( array(
-				'taxonomy' => 'language',
-				'terms'    => $this->get_languages_list( array( 'fields' => 'term_id' ) ),
-				'operator' => 'NOT IN',
-			) )
-		) );
+	public function get_objects_with_no_lang( $limit = -1 ) {
+		global $wpdb;
 
-		$terms = get_terms( $this->get_translated_taxonomies(), array( 'get' => 'all', 'fields' => 'ids' ) );
-		$groups = $this->get_languages_list( array( 'fields' => 'tl_term_id' ) );
-		$tr_terms = get_objects_in_term( $groups, 'term_language' );
-		$terms = array_unique( array_diff( $terms, $tr_terms ) ); // array_unique to avoid duplicates if a term is in more than one taxonomy
-		$terms = array_map( 'intval', $terms );
+		/**
+		 * Filters the max number of posts or terms to return when searching objects with no language
+		 * This filter can be used to decrease the memory usage in case the number of objects
+		 * without language is too big. Using a negative value is equivalent to have no limit.
+		 *
+		 * @since 2.2.6
+		 *
+		 * @param int $limit Max number of posts or terms to retrieve from the database
+		 */
+		$limit = (int) apply_filters( 'get_objects_with_no_lang_limit', $limit );
+
+		$posts = get_posts(
+			array(
+				'numberposts' => $limit,
+				'nopaging'    => $limit <= 0,
+				'post_type'   => $this->get_translated_post_types(),
+				'post_status' => 'any',
+				'fields'      => 'ids',
+				'tax_query'   => array(
+					array(
+						'taxonomy' => 'language',
+						'terms'    => $this->get_languages_list( array( 'fields' => 'term_id' ) ),
+						'operator' => 'NOT IN',
+					),
+				),
+			)
+		);
+
+		// PHPCS:disable WordPress.DB.PreparedSQL
+		$terms = $wpdb->get_col(
+			sprintf(
+				"SELECT {$wpdb->term_taxonomy}.term_id FROM {$wpdb->term_taxonomy}
+				WHERE taxonomy IN ('%s')
+				AND {$wpdb->term_taxonomy}.term_id NOT IN (
+					SELECT object_id FROM {$wpdb->term_relationships} WHERE term_taxonomy_id IN (%s)
+				)
+				%s",
+				implode( "','", array_map( 'esc_sql', $this->get_translated_taxonomies() ) ),
+				implode( ',', array_map( 'intval', $this->get_languages_list( array( 'fields' => 'tl_term_taxonomy_id' ) ) ) ),
+				$limit > 0 ? "LIMIT {$limit}" : ''
+			)
+		);
+		// PHPCS:enable
 
 		/**
 		 * Filter the list of untranslated posts ids and terms ids
@@ -432,7 +487,7 @@ class PLL_Admin_Model extends PLL_Model {
 	 * @since 0.5
 	 *
 	 * @param string $old_slug the old language slug
-	 * @param string $new_slug optional, the new language slug, if not set it means the correspondant has been deleted
+	 * @param string $new_slug optional, the new language slug, if not set it means the correspondent has been deleted
 	 */
 	public function update_translations( $old_slug, $new_slug = '' ) {
 		global $wpdb;
@@ -440,7 +495,8 @@ class PLL_Admin_Model extends PLL_Model {
 		$terms = get_terms( array( 'post_translations', 'term_translations' ) );
 
 		foreach ( $terms as $term ) {
-			$tr = unserialize( $term->description );
+			$term_ids[ $term->taxonomy ][] = $term->term_id;
+			$tr = maybe_unserialize( $term->description );
 			if ( ! empty( $tr[ $old_slug ] ) ) {
 				if ( $new_slug ) {
 					$tr[ $new_slug ] = $tr[ $old_slug ]; // Suppress this for delete
@@ -454,7 +510,7 @@ class PLL_Admin_Model extends PLL_Model {
 					$dt['t'][] = (int) $term->term_id;
 					$dt['tt'][] = (int) $term->term_taxonomy_id;
 				} else {
-					$ut['case'][] = $wpdb->prepare( 'WHEN %d THEN %s', $term->term_id, serialize( $tr ) );
+					$ut['case'][] = $wpdb->prepare( 'WHEN %d THEN %s', $term->term_id, maybe_serialize( $tr ) );
 					$ut['in'][] = (int) $term->term_id;
 				}
 			}
@@ -462,30 +518,36 @@ class PLL_Admin_Model extends PLL_Model {
 
 		// Delete relationships
 		if ( ! empty( $dr ) ) {
-			$wpdb->query( "
-				DELETE FROM $wpdb->term_relationships
-				WHERE object_id IN ( " . implode( ',', $dr['id'] ) . " )
-				AND term_taxonomy_id IN ( " . implode( ',', $dr['tt'] ) . " )
-			" );
+			// PHPCS:disable WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query(
+				"DELETE FROM $wpdb->term_relationships
+				WHERE object_id IN ( " . implode( ',', $dr['id'] ) . ' )
+				AND term_taxonomy_id IN ( ' . implode( ',', $dr['tt'] ) . ' )'
+			);
+			// PHPCS:enable
 		}
 
 		// Delete terms
 		if ( ! empty( $dt ) ) {
-			$wpdb->query( "DELETE FROM $wpdb->terms WHERE term_id IN ( " . implode( ',', $dt['t'] ) . " ) " );
-			$wpdb->query( "DELETE FROM $wpdb->term_taxonomy WHERE term_taxonomy_id IN ( " . implode( ',', $dt['tt'] ) . " ) " );
+			$wpdb->query( "DELETE FROM $wpdb->terms WHERE term_id IN ( " . implode( ',', $dt['t'] ) . ' )' ); // PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query( "DELETE FROM $wpdb->term_taxonomy WHERE term_taxonomy_id IN ( " . implode( ',', $dt['tt'] ) . ' )' ); // PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
 		}
 
 		// Update terms
 		if ( ! empty( $ut ) ) {
-			$wpdb->query( "
-				UPDATE $wpdb->term_taxonomy
-				SET description = ( CASE term_id " . implode( ' ', $ut['case'] ) . " END )
-				WHERE term_id IN ( " . implode( ',', $ut['in'] ) . " )
-			" );
+			// PHPCS:disable WordPress.DB.PreparedSQL.NotPrepared
+			$wpdb->query(
+				"UPDATE $wpdb->term_taxonomy
+				SET description = ( CASE term_id " . implode( ' ', $ut['case'] ) . ' END )
+				WHERE term_id IN ( ' . implode( ',', $ut['in'] ) . ' )'
+			);
+			// PHPCS:enable
 		}
 
-		foreach ( $terms as $term ) {
-			clean_term_cache( $term->term_id, $term->taxonomy );
+		if ( ! empty( $term_ids ) ) {
+			foreach ( $term_ids as $taxonomy => $ids ) {
+				clean_term_cache( $ids, $taxonomy );
+			}
 		}
 	}
 

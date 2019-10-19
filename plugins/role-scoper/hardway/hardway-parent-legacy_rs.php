@@ -7,7 +7,7 @@ require_once( SCOPER_ABSPATH . '/admin/admin_lib-bulk-parent_rs.php' );
 class ScoperHardwayParentLegacy {
 
 	// TODO: move this to legacy file (called by Role Scoping for NGG)
-	function dropdown_pages($object_id = '', $stored_parent_id = '') {
+	public static function dropdown_pages($object_id = '', $stored_parent_id = '') {
 		global $scoper, $wpdb;
 
 		// buffer titles in case they are filtered on get_pages hook
@@ -90,7 +90,7 @@ class ScoperHardwayParentLegacy {
 		if ( $object_id ) {
 			$args['object_id'] = $object_id;
 			$args['retain_page_ids'] = true; // retain static log to avoid redundant entries by subsequent call with use_parent_clause=false
-			ScoperHardwayParentLegacy::walk_parent_dropdown($output, $args, true, $stored_parent_id);
+			self::walk_parent_dropdown($output, $args, true, $stored_parent_id);
 		}
 	
 		// next we'll add disjointed branches, but don't allow this page's descendants to be offered as a parent
@@ -126,7 +126,7 @@ class ScoperHardwayParentLegacy {
 			$args['descendants'] = $descendants;
 		}
 
-		ScoperHardwayParentLegacy::walk_parent_dropdown($output, $args, false, $stored_parent_id);
+		self::walk_parent_dropdown($output, $args, false, $stored_parent_id);
 		
 		//log_mem_usage_rs( 'end dropdown_pages()' );
 		
@@ -135,7 +135,7 @@ class ScoperHardwayParentLegacy {
 	
 			
 	// slightly modified transplant of WP 2.6 core parent_dropdown
-	function walk_parent_dropdown( &$output, &$args, $use_parent_clause = true, $default = 0, $parent = 0, $level = 0 ) {
+	public static function walk_parent_dropdown( &$output, &$args, $use_parent_clause = true, $default = 0, $parent = 0, $level = 0 ) {
 		static $use_class;
 		static $page_ids;
 		
@@ -182,7 +182,7 @@ class ScoperHardwayParentLegacy {
 			$pad = str_repeat( '&nbsp;', $level * 3 );
 			$output .= "\n\t<option " . $class . 'value="' . $id . '"' . $current . '>' . $pad . esc_html($args['pages'][$key]->post_title) . '</option>';
 			
-			ScoperHardwayParentLegacy::walk_parent_dropdown( $output, $args, true, $default, $id, $level +1 );
+			self::walk_parent_dropdown( $output, $args, true, $default, $id, $level +1 );
 		}
 		
 		if ( ! $level && empty($args['retain_page_ids']) )

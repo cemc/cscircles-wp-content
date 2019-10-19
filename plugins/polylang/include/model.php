@@ -6,9 +6,9 @@
  * @since 1.2
  */
 class PLL_Model {
-	public $cache; // our internal non persistent cache object
+	public $cache; // Our internal non persistent cache object
 	public $options;
-	public $post, $term; // translated objects models
+	public $post, $term; // Translated objects models
 
 	/**
 	 * Constructor
@@ -26,13 +26,15 @@ class PLL_Model {
 		$this->post = new PLL_Translated_Post( $this ); // translated post sub model
 		$this->term = new PLL_Translated_Term( $this ); // translated term sub model
 
-		// we need to clean languages cache when editing a language and when modifying the permalink structure
+		// We need to clean languages cache when editing a language and when modifying the permalink structure
 		add_action( 'edited_term_taxonomy', array( $this, 'clean_languages_cache' ), 10, 2 );
 		add_action( 'update_option_permalink_structure', array( $this, 'clean_languages_cache' ) );
 		add_action( 'update_option_siteurl', array( $this, 'clean_languages_cache' ) );
 		add_action( 'update_option_home', array( $this, 'clean_languages_cache' ) );
 
-		// just in case someone would like to display the language description ;- )
+		add_filter( 'get_terms_args', array( $this, 'get_terms_args' ) );
+
+		// Just in case someone would like to display the language description ;- )
 		add_filter( 'language_description', '__return_empty_string' );
 	}
 
@@ -41,7 +43,7 @@ class PLL_Model {
 	 * caches the list in a db transient ( except flags ), unless PLL_CACHE_LANGUAGES is set to false
 	 * caches the list ( with flags ) in the private property $languages
 	 *
-	 * list of parameters accepted in $args:
+	 * List of parameters accepted in $args:
 	 *
 	 * hide_empty => hides languages with no posts if set to true ( defaults to false )
 	 * fields     => return only that field if set ( see PLL_Language for a list of fields )
@@ -54,7 +56,7 @@ class PLL_Model {
 	public function get_languages_list( $args = array() ) {
 		if ( false === $languages = $this->cache->get( 'languages' ) ) {
 
-			// create the languages from taxonomies
+			// Create the languages from taxonomies
 			if ( ( defined( 'PLL_CACHE_LANGUAGES' ) && ! PLL_CACHE_LANGUAGES ) || false === ( $languages = get_transient( 'pll_languages_list' ) ) ) {
 				$languages = get_terms( 'language', array( 'hide_empty' => false, 'orderby' => 'term_group' ) );
 				$languages = empty( $languages ) || is_wp_error( $languages ) ? array() : $languages;
@@ -64,12 +66,12 @@ class PLL_Model {
 					array() : array_combine( wp_list_pluck( $term_languages, 'slug' ), $term_languages );
 
 				if ( ! empty( $languages ) && ! empty( $term_languages ) ) {
-					// don't use array_map + create_function to instantiate an autoloaded class as it breaks badly in old versions of PHP
+					// Don't use array_map + create_function to instantiate an autoloaded class as it breaks badly in old versions of PHP
 					foreach ( $languages as $k => $v ) {
 						$languages[ $k ] = new PLL_Language( $v, $term_languages[ 'pll_' . $v->slug ] );
 					}
 
-					// we will need the languages list to allow its access in the filter below
+					// We will need the languages list to allow its access in the filter below
 					$this->cache->set( 'languages', $languages );
 
 					/**
@@ -83,24 +85,24 @@ class PLL_Model {
 					 */
 					$languages = apply_filters( 'pll_languages_list', $languages, $this );
 
-					// don't store directly objects as it badly break with some hosts ( GoDaddy ) due to race conditions when using object cache
-					// thanks to captin411 for catching this!
-					// see https://wordpress.org/support/topic/fatal-error-pll_model_languages_list?replies=8#post-6782255;
+					// Don't store directly objects as it badly break with some hosts ( GoDaddy ) due to race conditions when using object cache
+					// Thanks to captin411 for catching this!
+					// See https://wordpress.org/support/topic/fatal-error-pll_model_languages_list?replies=8#post-6782255;
 					set_transient( 'pll_languages_list', array_map( 'get_object_vars', $languages ) );
 				}
 				else {
-					$languages = array(); // in case something went wrong
+					$languages = array(); // In case something went wrong
 				}
 			}
 
-			// create the languages directly from arrays stored in transients
+			// Create the languages directly from arrays stored in transients
 			else {
 				foreach ( $languages as $k => $v ) {
 					$languages[ $k ] = new PLL_Language( $v );
 				}
 			}
 
-			// custom flags
+			// Custom flags
 			if ( ! PLL_ADMIN ) {
 				foreach ( $languages as $language ) {
 					$language->set_custom_flag();
@@ -121,7 +123,7 @@ class PLL_Model {
 
 		$args = wp_parse_args( $args, array( 'hide_empty' => false ) );
 
-		// remove empty languages if requested
+		// Remove empty languages if requested
 		if ( $args['hide_empty'] ) {
 			$languages = wp_list_filter( $languages, array( 'count' => 0 ), 'NOT' );
 		}
@@ -140,12 +142,6 @@ class PLL_Model {
 	 * @param string $taxonomy taxonomy name
 	 */
 	public function clean_languages_cache( $term = 0, $taxonomy = null ) {
-		// depending on WP version, the action is passed an object or a string
-		// backward compatibility with WP < 4.2
-		if ( ! empty( $taxonomy ) && is_object( $taxonomy ) ) {
-			$taxonomy = $taxonomy->name;
-		}
-
 		if ( empty( $taxonomy ) || 'language' == $taxonomy ) {
 			delete_transient( 'pll_languages_list' );
 			$this->cache->clean();
@@ -153,11 +149,26 @@ class PLL_Model {
 	}
 
 	/**
+	 * Don't query term metas when only our taxonomies are queried
+	 *
+	 * @since 2.3
+	 *
+	 * @param array $args WP_Term_Query arguments
+	 * @return array
+	 */
+	public function get_terms_args( $args ) {
+		if ( isset( $args['taxonomy'] ) && ! array_diff( (array) $args['taxonomy'], array( 'language', 'term_language', 'post_translations', 'term_translations' ) ) ) {
+			$args['update_term_meta_cache'] = false;
+		}
+		return $args;
+	}
+
+	/**
 	 * Returns the language by its term_id, tl_term_id, slug or locale
 	 *
 	 * @since 0.1
 	 *
-	 * @param int|string term_id, tl_term_id, slug or locale of the queried language
+	 * @param int|string $value term_id, tl_term_id, slug or locale of the queried language
 	 * @return object|bool PLL_Language object, false if no language found
 	 */
 	public function get_language( $value ) {
@@ -185,7 +196,7 @@ class PLL_Model {
 	 *
 	 * @param array  $clauses the list of sql clauses in terms query
 	 * @param object $lang    PLL_Language object
-	 * @return array modifed list of clauses
+	 * @return array modified list of clauses
 	 */
 	public function terms_clauses( $clauses, $lang ) {
 		if ( ! empty( $lang ) && false === strpos( $clauses['join'], 'pll_tr' ) ) {
@@ -207,14 +218,14 @@ class PLL_Model {
 	 */
 	public function get_translated_post_types( $filter = true ) {
 		if ( false === $post_types = $this->cache->get( 'post_types' ) ) {
-			$post_types = array( 'post' => 'post', 'page' => 'page' );
+			$post_types = array( 'post' => 'post', 'page' => 'page', 'wp_block' => 'wp_block' );
 
 			if ( ! empty( $this->options['media_support'] ) ) {
 				$post_types['attachment'] = 'attachment';
 			}
 
 			if ( ! empty( $this->options['post_types'] ) && is_array( $this->options['post_types'] ) ) {
-				$post_types = array_merge( $post_types,  array_combine( $this->options['post_types'], $this->options['post_types'] ) );
+				$post_types = array_merge( $post_types, array_combine( $this->options['post_types'], $this->options['post_types'] ) );
 			}
 
 			/**
@@ -248,7 +259,7 @@ class PLL_Model {
 	 */
 	public function is_translated_post_type( $post_type ) {
 		$post_types = $this->get_translated_post_types( false );
-		return ( is_array( $post_type ) && array_intersect( $post_type, $post_types ) || in_array( $post_type, $post_types ) );
+		return ( is_array( $post_type ) && array_intersect( $post_type, $post_types ) || in_array( $post_type, $post_types ) || 'any' === $post_type && ! empty( $post_types ) );
 	}
 
 	/**
@@ -256,7 +267,7 @@ class PLL_Model {
 	 *
 	 * @since 1.2
 	 *
-	 * @param bool $filter true if we should return only valid registered taxonmies
+	 * @param bool $filter true if we should return only valid registered taxonomies
 	 * @return array array of registered taxonomy names for which Polylang manages languages and translations
 	 */
 	public function get_translated_taxonomies( $filter = true ) {
@@ -298,31 +309,6 @@ class PLL_Model {
 	public function is_translated_taxonomy( $tax ) {
 		$taxonomies = $this->get_translated_taxonomies( false );
 		return ( is_array( $tax ) && array_intersect( $tax, $taxonomies ) || in_array( $tax, $taxonomies ) );
-	}
-
-	/**
-	 * Check if translated taxonomy is queried
-	 * Compatible with nested queries introduced in WP 4.1
-	 * @see https://wordpress.org/support/topic/tax_query-bug
-	 *
-	 * @since 1.7
-	 *
-	 * @param array $tax_queries
-	 * @return bool
-	 */
-	public function have_translated_taxonomy( $tax_queries ) {
-		foreach ( $tax_queries as $tax_query ) {
-			if ( isset( $tax_query['taxonomy'] ) && $this->is_translated_taxonomy( $tax_query['taxonomy'] ) && ! ( isset( $tax_query['operator'] ) && 'NOT IN' === $tax_query['operator'] ) ) {
-				return true;
-			}
-
-			// Nested queries
-			elseif ( is_array( $tax_query ) && $this->have_translated_taxonomy( $tax_query ) ) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**
@@ -399,7 +385,7 @@ class PLL_Model {
 
 		// create a new category
 		// FIXME this is translated in admin language when we would like it in $lang
-		$cat_name = __( 'Uncategorized' );
+		$cat_name = __( 'Uncategorized', 'polylang' );
 		$cat_slug = sanitize_title( $cat_name . '-' . $lang->slug );
 		$cat = wp_insert_term( $cat_name, 'category', array( 'slug' => $cat_slug ) );
 
@@ -452,16 +438,17 @@ class PLL_Model {
 			$where .= $wpdb->prepare( ' AND tt.parent = %d', $parent );
 		}
 
+		// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
 		return $wpdb->get_var( $select . $join . $where );
 	}
 
 	/**
-	 * Gets the number of posts per language in a date, author or post type archive
+	 * Gets the number of posts per language in a date, author or post type archive.
 	 *
 	 * @since 1.2
 	 *
-	 * @param object $lang
-	 * @param array  $q WP_Query arguments ( accepted: post_type, m, year, monthnum, day, author, author_name, post_format )
+	 * @param object $lang PLL_Language instance.
+	 * @param array  $q    WP_Query arguments ( accepted: post_type, m, year, monthnum, day, author, author_name, post_format ).
 	 * @return int
 	 */
 	public function count_posts( $lang, $q = array() ) {
@@ -480,17 +467,17 @@ class PLL_Model {
 		}
 
 		if ( empty( $q['post_type'] ) ) {
-			$q['post_type'] = array( 'post' ); // we *need* a post type
+			$q['post_type'] = array( 'post' ); // We *need* a post type.
 		}
 
-		$cache_key = md5( serialize( $q ) );
-		$counts = wp_cache_get( $cache_key, 'pll_count_posts' );
+		$cache_key = 'pll_count_posts_' . md5( maybe_serialize( $q ) );
+		$counts = wp_cache_get( $cache_key, 'counts' );
 
 		if ( false === $counts ) {
 			$select = "SELECT pll_tr.term_taxonomy_id, COUNT( * ) AS num_posts FROM {$wpdb->posts}";
 			$join = $this->post->join_clause();
 			$where = " WHERE post_status = 'publish'";
-			$where .= $wpdb->prepare( " AND {$wpdb->posts}.post_type IN ( '%s' )", join( "', '", $q['post_type'] ) );
+			$where .= sprintf( " AND {$wpdb->posts}.post_type IN ( '%s' )", join( "', '", esc_sql( $q['post_type'] ) ) );
 			$where .= $this->post->where_clause( $this->get_languages_list() );
 			$groupby = ' GROUP BY pll_tr.term_taxonomy_id';
 
@@ -518,7 +505,7 @@ class PLL_Model {
 			}
 
 			if ( ! empty( $q['author_name'] ) ) {
-				$author = get_user_by( 'slug',  sanitize_title_for_query( $q['author_name'] ) );
+				$author = get_user_by( 'slug', sanitize_title_for_query( $q['author_name'] ) );
 				if ( $author ) {
 					$q['author'] = $author->ID;
 				}
@@ -528,7 +515,7 @@ class PLL_Model {
 				$where .= $wpdb->prepare( " AND {$wpdb->posts}.post_author = %d", $q['author'] );
 			}
 
-			// filtered taxonomies ( post_format )
+			// Filtered taxonomies ( post_format ).
 			foreach ( $this->get_filtered_taxonomies_query_vars() as $tax_qv ) {
 
 				if ( ! empty( $q[ $tax_qv ] ) ) {
@@ -539,12 +526,13 @@ class PLL_Model {
 				}
 			}
 
+			// PHPCS:ignore WordPress.DB.PreparedSQL.NotPrepared
 			$res = $wpdb->get_results( $select . $join . $where . $groupby, ARRAY_A );
 			foreach ( (array) $res as $row ) {
 				$counts[ $row['term_taxonomy_id'] ] = $row['num_posts'];
 			}
 
-			wp_cache_set( $cache_key, $counts, 'pll_count_posts' );
+			wp_cache_set( $cache_key, $counts, 'counts' );
 		}
 
 		return empty( $counts[ $lang->term_taxonomy_id ] ) ? 0 : $counts[ $lang->term_taxonomy_id ];
@@ -560,6 +548,17 @@ class PLL_Model {
 	public function get_links_model() {
 		$c = array( 'Directory', 'Directory', 'Subdomain', 'Domain' );
 		$class = get_option( 'permalink_structure' ) ? 'PLL_Links_' . $c[ $this->options['force_lang'] ] : 'PLL_Links_Default';
+
+		/**
+		 * Filter the links model class to use
+		 * /!\ this filter is fired *before* the $polylang object is available
+		 *
+		 * @since 2.1.1
+		 *
+		 * @param string $class A class name: PLL_Links_Default, PLL_Links_Directory, PLL_Links_Subdomain, PLL_Links_Domain
+		 */
+		$class = apply_filters( 'pll_links_model', $class );
+
 		return new $class( $this );
 	}
 
@@ -570,16 +569,16 @@ class PLL_Model {
 	 *
 	 * @since 1.8
 	 *
-	 * @param string $func function name
-	 * @param array $args function arguments
+	 * @param string $func Function name
+	 * @param array  $args Function arguments
 	 */
 	public function __call( $func, $args ) {
 		$f = $func;
 
 		switch ( $func ) {
 			case 'get_object_term':
-				$o = false === strpos( $args[1], 'term' ) ? 'post' : 'term';
-			break;
+				$o = ( false === strpos( $args[1], 'term' ) ) ? 'post' : 'term';
+				break;
 
 			case 'save_translations':
 			case 'delete_translation':
@@ -588,7 +587,7 @@ class PLL_Model {
 			case 'join_clause':
 				$o = ( 'post' == $args[0] || $this->is_translated_post_type( $args[0] ) ) ? 'post' : ( 'term' == $args[0] || $this->is_translated_taxonomy( $args[0] ) ? 'term' : false );
 				unset( $args[0] );
-			break;
+				break;
 
 			case 'set_post_language':
 			case 'get_post_language':
@@ -600,29 +599,43 @@ class PLL_Model {
 				$str = explode( '_', $func );
 				$f = empty( $str[2] ) ? $str[0] : $str[0] . '_' . $str[2];
 				$o = $str[1];
-			break;
+				break;
 
 			case 'where_clause':
 			case 'get_objects_in_language':
 				$o = $args[1];
 				unset( $args[1] );
-			break;
+				break;
 		}
 
 		if ( ! empty( $o ) && is_object( $this->$o ) && method_exists( $this->$o, $f ) ) {
 			if ( WP_DEBUG ) {
-				$debug = debug_backtrace();
+				$debug = debug_backtrace(); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
 				$i = 1 + empty( $debug[1]['line'] ); // the file and line are in $debug[2] if the function was called using call_user_func
 
-				trigger_error( sprintf(
-					'%1$s was called incorrectly in %4$s on line %5$s: the call to $polylang->model->%1$s() has been deprecated in Polylang 1.8, use PLL()->model->%2$s->%3$s() instead.' . "\nError handler",
-					$func, $o, $f, $debug[ $i ]['file'], $debug[ $i ]['line']
-				) );
+				trigger_error( // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+					sprintf(
+						'%1$s was called incorrectly in %4$s on line %5$s: the call to $polylang->model->%1$s() has been deprecated in Polylang 1.8, use PLL()->model->%2$s->%3$s() instead.' . "\nError handler",
+						esc_html( $func ),
+						esc_html( $o ),
+						esc_html( $f ),
+						esc_html( $debug[ $i ]['file'] ),
+						absint( $debug[ $i ]['line'] )
+					)
+				);
 			}
 			return call_user_func_array( array( $this->$o, $f ), $args );
 		}
 
-		$debug = debug_backtrace();
-		trigger_error( sprintf( 'Call to undefined function PLL()->model->%1$s() in %2$s on line %3$s' . "\nError handler", $func, $debug[0]['file'], $debug[0]['line'] ), E_USER_ERROR );
+		$debug = debug_backtrace(); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+		trigger_error( // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+			sprintf(
+				'Call to undefined function PLL()->model->%1$s() in %2$s on line %3$s' . "\nError handler",
+				esc_html( $func ),
+				esc_html( $debug[0]['file'] ),
+				absint( $debug[0]['line'] )
+			),
+			E_USER_ERROR
+		);
 	}
 }

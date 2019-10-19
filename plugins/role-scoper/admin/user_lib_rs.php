@@ -3,7 +3,7 @@
 class ScoperUserEdit {
 
 	// optional filter for WP role edit based on user level
-	function editable_roles( $roles ) {
+	public static function editable_roles( $roles ) {
 		global $current_user;
 
 		$role_levels = ScoperUserEdit::get_role_levels();
@@ -18,7 +18,7 @@ class ScoperUserEdit {
 	}	
 	
 
-	function has_edit_user_cap($wp_blogcaps, $orig_reqd_caps, $args) {		
+	public static function has_edit_user_cap($wp_blogcaps, $orig_reqd_caps, $args) {		
 		// prevent anyone from editing or deleting a user whose level is higher than their own
 		$levels = ScoperUserEdit::get_user_level( array( $args[1], $args[2] ) );
 		
@@ -31,7 +31,7 @@ class ScoperUserEdit {
 	}
 	
 	
-	function get_user_level( $user_ids ) {
+	public static function get_user_level( $user_ids ) {
 		static $user_levels;
 		
 		$return_array = is_array( $user_ids );  // if an array was passed in, return results as an array
@@ -92,7 +92,7 @@ class ScoperUserEdit {
 	
 
 	// NOTE: user/role levels are used only for optional limiting of user edit - not for content filtering
-	function get_role_levels() {
+	public static function get_role_levels() {
 		static $role_levels;
 		
 		if ( isset($role_levels) )

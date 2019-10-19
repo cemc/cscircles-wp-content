@@ -2,7 +2,7 @@
 
 class ScoperCustomAdminFiltersSave {
 	// called by scoper_mnt_save_object for non-post data sources
-	function log_object_save( $src_name, $object_id, $is_new_object, $col_parent, $set_parent ) {
+	public static function log_object_save( $src_name, $object_id, $is_new_object, $col_parent, $set_parent ) {
 		global $wpdb;
 		
 		$is_new_object = true;

@@ -26,9 +26,39 @@ abstract class PLL_Base {
 
 		// User defined strings translations
 		add_action( 'pll_language_defined', array( $this, 'load_strings_translations' ), 5 );
+		add_action( 'change_locale', array( $this, 'load_strings_translations' ) ); // Since WP 4.7
 
 		// Switch_to_blog
 		add_action( 'switch_blog', array( $this, 'switch_blog' ), 10, 2 );
+	}
+
+	/**
+	 * Instantiate classes always needed
+	 *
+	 * @since 2.6
+	 */
+	public function init() {
+		// REST API
+		if ( class_exists( 'PLL_REST_API' ) ) {
+			$this->rest_api = new PLL_REST_API( $this );
+		}
+
+		if ( $this->model->get_languages_list() ) {
+			// Used by content duplicate and post synchronization
+			if ( class_exists( 'PLL_Sync_Content' ) ) {
+				$this->sync_content = new PLL_Sync_Content( $this );
+			}
+
+			// Active languages
+			if ( class_exists( 'PLL_Active_Languages' ) ) {
+				$this->active_languages = new PLL_Active_Languages( $this );
+			}
+
+			// Share post slugs
+			if ( get_option( 'permalink_structure' ) && $this->options['force_lang'] && class_exists( 'PLL_Share_Post_Slug' ) ) {
+				$this->share_post_slug = new PLL_Share_Post_Slug( $this );
+			}
+		}
 	}
 
 	/**
@@ -44,32 +74,30 @@ abstract class PLL_Base {
 			unregister_widget( 'WP_Widget_Calendar' );
 			register_widget( 'PLL_Widget_Calendar' );
 		}
-
-		// Backward compatibility with WP < 4.4
-		// Overwrites the recent posts and recent comments widget to use a language dependant cache key
-		// Useful only if using a cache plugin
-		if ( version_compare( $GLOBALS['wp_version'], '4.4', '<' ) && defined( 'WP_CACHE' ) && WP_CACHE ) {
-			if ( ! defined( 'PLL_WIDGET_RECENT_POSTS' ) || PLL_WIDGET_RECENT_POSTS ) {
-				unregister_widget( 'WP_Widget_Recent_Posts' );
-				register_widget( 'PLL_Widget_Recent_Posts' );
-			}
-
-			if ( ! defined( 'PLL_WIDGET_RECENT_COMMENTS' ) || PLL_WIDGET_RECENT_COMMENTS ) {
-				unregister_widget( 'WP_Widget_Recent_Comments' );
-				register_widget( 'PLL_Widget_Recent_Comments' );
-			}
-		}
 	}
 
 	/**
 	 * Loads user defined strings translations
 	 *
 	 * @since 1.2
+	 * @since 2.1.3 $locale parameter added.
+	 *
+	 * @param string $locale Locale. Defaults to current locale.
 	 */
-	public function load_strings_translations() {
-		$mo = new PLL_MO();
-		$mo->import_from_db( $this->model->get_language( get_locale() ) );
-		$GLOBALS['l10n']['pll_string'] = &$mo;
+	public function load_strings_translations( $locale = '' ) {
+		if ( empty( $locale ) ) {
+			$locale = get_locale();
+		}
+
+		$language = $this->model->get_language( $locale );
+
+		if ( ! empty( $language ) ) {
+			$mo = new PLL_MO();
+			$mo->import_from_db( $language );
+			$GLOBALS['l10n']['pll_string'] = &$mo;
+		} else {
+			unset( $GLOBALS['l10n']['pll_string'] );
+		}
 	}
 
 	/**
@@ -78,6 +106,8 @@ abstract class PLL_Base {
 	 *
 	 * @since 1.5.1
 	 *
+	 * @param int $new_blog
+	 * @param int $old_blog
 	 * @return bool not used by WP but by child class
 	 */
 	public function switch_blog( $new_blog, $old_blog ) {
@@ -88,6 +118,7 @@ abstract class PLL_Base {
 		// 3rd test needed when Polylang is networked activated and a new site is created
 		if ( $new_blog != $old_blog && in_array( POLYLANG_BASENAME, $plugins ) && get_option( 'polylang' ) ) {
 			$this->options = get_option( 'polylang' ); // Needed for menus
+			remove_action( 'pre_option_rewrite_rules', array( $this->links_model, 'prepare_rewrite_rules' ) );
 			$this->links_model = $this->model->get_links_model();
 			return true;
 		}
@@ -108,18 +139,31 @@ abstract class PLL_Base {
 		foreach ( $this as $prop => &$obj ) {
 			if ( is_object( $obj ) && method_exists( $obj, $func ) ) {
 				if ( WP_DEBUG ) {
-					$debug = debug_backtrace();
+					$debug = debug_backtrace(); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
 					$i = 1 + empty( $debug[1]['line'] ); // The file and line are in $debug[2] if the function was called using call_user_func
-					trigger_error( sprintf(
-						'%1$s was called incorrectly in %3$s on line %4$s: the call to $polylang->%1$s() has been deprecated in Polylang 1.2, use PLL()->%2$s->%1$s() instead.' . "\nError handler",
-						$func, $prop, $debug[ $i ]['file'], $debug[ $i ]['line']
-					) );
+					trigger_error( // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+						sprintf(
+							'%1$s was called incorrectly in %3$s on line %4$s: the call to $polylang->%1$s() has been deprecated in Polylang 1.2, use PLL()->%2$s->%1$s() instead.' . "\nError handler",
+							esc_html( $func ),
+							esc_html( $prop ),
+							esc_html( $debug[ $i ]['file'] ),
+							absint( $debug[ $i ]['line'] )
+						)
+					);
 				}
 				return call_user_func_array( array( $obj, $func ), $args );
 			}
 		}
 
-		$debug = debug_backtrace();
-		trigger_error( sprintf( 'Call to undefined function PLL()->%1$s() in %2$s on line %3$s' . "\nError handler", $func, $debug[0]['file'], $debug[0]['line'] ), E_USER_ERROR );
+		$debug = debug_backtrace(); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+		trigger_error( // phpcs:ignore WordPress.PHP.DevelopmentFunctions
+			sprintf(
+				'Call to undefined function PLL()->%1$s() in %2$s on line %3$s' . "\nError handler",
+				esc_html( $func ),
+				esc_html( $debug[0]['file'] ),
+				absint( $debug[0]['line'] )
+			),
+			E_USER_ERROR
+		);
 	}
 }

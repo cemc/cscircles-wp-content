@@ -6,7 +6,7 @@ class ScoperTeaser {
 	
 	// Manipulate the results set in various ways to prepare it for teaser filtering
 	// Determine which listed items are readabled (i.e. will not be teased). Clear private status so teased items will not be hidden completely or trigger a 404
-	function posts_teaser_prep_results($results, $tease_otypes, $args = '') {
+	public static function posts_teaser_prep_results($results, $tease_otypes, $args = '') {
 		$defaults = array('user' => '', 'use_object_roles' => -1, 'use_term_roles' => -1, 'request' => '', 'object_type' => '' );
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
@@ -158,7 +158,7 @@ class ScoperTeaser {
 	}
 	
 	// apply teaser modifications to the recordset.  Note: this is applied later than 
-	function posts_teaser($results, $tease_otypes, $args = '') {
+	public static function posts_teaser($results, $tease_otypes, $args = '') {
 		$defaults = array('user' => '', 'use_object_roles' => -1, 'use_term_roles' => -1, 'request' => '' );
 		$args = array_merge( $defaults, (array) $args );
 		extract($args);
@@ -243,7 +243,7 @@ class ScoperTeaser {
 	}
 	
 	
-	function get_teaser_text( $teaser_operation, $variable, $src_name, $object_type, $user = '' ) {
+	public static function get_teaser_text( $teaser_operation, $variable, $src_name, $object_type, $user = '' ) {
 		if ( ! is_object($user) ) {
 			global $current_user;	
 			$user = $current_user;
@@ -264,7 +264,7 @@ class ScoperTeaser {
 		}
 	}
 	
-	function apply_teaser( &$object, $src_name, $object_type, $args = '' ) {
+	public static function apply_teaser( &$object, $src_name, $object_type, $args = '' ) {
 		$defaults = array( 'col_excerpt' => '', 'col_content' => '', 		'excerpt_teaser' => '', 'col_id' => '',
 				'teaser_prepend' => '',		 	'teaser_append' => '', 		'teaser_replace' => '', 'more_teaser' => '',
 				'x_chars_teaser' => ''	);

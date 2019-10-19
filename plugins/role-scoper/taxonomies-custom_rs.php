@@ -4,7 +4,7 @@ if( basename(__FILE__) == basename($_SERVER['SCRIPT_FILENAME']) )
 
 class ScoperCustomTaxonomyHelper {
 
-	function get_terms_query_vars($tx, $terms_only = false) {
+	public static function get_terms_query_vars($tx, $terms_only = false) {
 		global $scoper;
 		
 		// query on custom taxonomy schema does not involve any object data, so refer to term_id in term table
@@ -65,7 +65,7 @@ class ScoperCustomTaxonomyHelper {
 	}
 
 	// This function is only used for custom taxonomies that don't use wp_term_taxonomy
-	function get_terms_query($tx, $cols = COLS_ALL_RS, $object_id = 0, $terms_only = true) {
+	public static function get_terms_query($tx, $cols = COLS_ALL_RS, $object_id = 0, $terms_only = true) {
 		$join = $where = $orderby = '';
 
 		// this taxonomy uses a custom schema

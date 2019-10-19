@@ -21,8 +21,8 @@ class PLL_Links_Domain extends PLL_Links_Abstract_Domain {
 
 		$this->hosts = $this->get_hosts();
 
-		 // Filrer the site url ( mainly to get the correct login form )
-		 add_filter( 'site_url', array( $this, 'site_url' ) );
+		// Filter the site url ( mainly to get the correct login form )
+		add_filter( 'site_url', array( $this, 'site_url' ) );
 	}
 
 
@@ -38,7 +38,7 @@ class PLL_Links_Domain extends PLL_Links_Abstract_Domain {
 	 */
 	public function add_language_to_link( $url, $lang ) {
 		if ( ! empty( $lang ) && ! empty( $this->hosts[ $lang->slug ] ) ) {
-			$url = str_replace( '://' . parse_url( $this->home, PHP_URL_HOST ), '://' . $this->hosts[ $lang->slug ], $url );
+			$url = preg_replace( '#:\/\/(' . wp_parse_url( $this->home, PHP_URL_HOST ) . ')($|\/.*)#', '://' . $this->hosts[ $lang->slug ] . '$2', $url );
 		}
 		return $url;
 	}
@@ -54,24 +54,9 @@ class PLL_Links_Domain extends PLL_Links_Abstract_Domain {
 	 */
 	public function remove_language_from_link( $url ) {
 		if ( ! empty( $this->hosts ) ) {
-			$url = preg_replace( '#:\/\/(' . implode( '|', $this->hosts ) . ')#', '://' . parse_url( $this->home, PHP_URL_HOST ), $url );
+			$url = preg_replace( '#:\/\/(' . implode( '|', $this->hosts ) . ')($|\/.*)#', '://' . wp_parse_url( $this->home, PHP_URL_HOST ) . '$2', $url );
 		}
 		return $url;
-	}
-
-	/**
-	 * Returns the language based on language code in url
-	 * links_model interface
-	 *
-	 * @since 1.2
-	 * @since 2.0 add $url argument
-	 *
-	 * @param string $url optional, defaults to current url
-	 * @return string language slug
-	 */
-	public function get_language_from_url( $url = '' ) {
-		$host = empty( $url ) ? $_SERVER['HTTP_HOST'] : parse_url( $url, PHP_URL_HOST );
-		return ( $lang = array_search( $host , $this->hosts ) ) ? $lang : '';
 	}
 
 	/**
@@ -83,7 +68,7 @@ class PLL_Links_Domain extends PLL_Links_Abstract_Domain {
 	 * @param object $lang PLL_Language object
 	 * @return string
 	 */
-	function home_url( $lang ) {
+	public function home_url( $lang ) {
 		return trailingslashit( empty( $this->options['domains'][ $lang->slug ] ) ? $this->home : $this->options['domains'][ $lang->slug ] );
 	}
 
@@ -97,8 +82,16 @@ class PLL_Links_Domain extends PLL_Links_Abstract_Domain {
 	public function get_hosts() {
 		$hosts = array();
 		foreach ( $this->options['domains'] as $lang => $domain ) {
-			$hosts[ $lang ] = parse_url( $domain, PHP_URL_HOST );
+			$host = wp_parse_url( $domain, PHP_URL_HOST );
+			// idn_to_ascii is much faster than the WordPress method.
+			if ( function_exists( 'idn_to_ascii' ) ) {
+				// The use of the constant is mandatory in PHP 7.2 and PHP 7.3 to avoid a deprecated notice.
+				$hosts[ $lang ] = defined( 'INTL_IDNA_VARIANT_UTS46' ) ? idn_to_ascii( $host, 0, INTL_IDNA_VARIANT_UTS46 ) : idn_to_ascii( $host );
+			} else {
+				$hosts[ $lang ] = Requests_IDNAEncoder::encode( $host );
+			}
 		}
+
 		return $hosts;
 	}
 }

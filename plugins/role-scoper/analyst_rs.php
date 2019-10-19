@@ -11,11 +11,11 @@
  
 class ScoperAnalyst {
 
-	function identify_protected_attachments( $attachment_id = 0, $guid = '', $cols = '', $args = array() ) {
+	public static function identify_protected_attachments( $attachment_id = 0, $guid = '', $cols = '', $args = array() ) {
 		if ( $guid && empty( $args['guid'] ) )
 			$args = array_merge( $args, array( 'guid' => $guid ) );
 
-		return ScoperAnalyst::identify_protected_posts( $attachment_id, true, $cols, $args );
+		return self::identify_protected_posts( $attachment_id, true, $cols, $args );
 	}
 	
 	

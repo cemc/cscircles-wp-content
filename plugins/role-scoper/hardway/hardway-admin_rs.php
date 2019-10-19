@@ -35,7 +35,7 @@ if ( in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php' ) ) || str
  */
 class ScoperAdminHardway {
 	// WP autosave wipes out page parent and sets author to current user
-	function flt_autosave_bugstomper($query) {
+	public static function flt_autosave_bugstomper($query) {
 		global $wpdb;
 
 		if ( ( strpos($query, "PDATE $wpdb->posts ") && strpos($query, "post_parent") ) ) {

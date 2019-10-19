@@ -26,7 +26,6 @@ $GLOBALS['rs_forbidden_taxonomies'] = (array) apply_filters( 'forbidden_taxonomi
 
 function scoper_default_options() {
 	$def = array(
-		'persistent_cache' => 1,
 		'define_usergroups' => 1,
 		'group_ajax' => 1,
 		'group_requests' => 0,

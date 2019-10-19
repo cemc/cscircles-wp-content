@@ -26,7 +26,7 @@ class TermsInterceptor_RS
 	var $current_cache_key = array();
 	var $no_cache;
 	
-	function TermsInterceptor_RS() {
+	function __construct() {
 		global $scoper;
 
 		// flt_get_pages is required on the front end (even for administrators) to enable the inclusion of private pages
@@ -80,7 +80,7 @@ class TermsInterceptor_RS
 		if ( ! isset( $this->current_cache_key[$taxonomy][$arg_ser] ) ) {
 			extract( $criteria );
 			if ( ! isset($required_operation) ) { $required_operation = ''; }
-			$this->current_cache_key[$taxonomy][$arg_ser] = md5( $taxonomy . serialize( $args ) . $filter_key . serialize( $GLOBALS['scoper']->get_terms_reqd_caps($taxonomy, $required_operation, $is_term_admin) ) );
+			$this->current_cache_key[$taxonomy][$arg_ser] = md5( $taxonomy . serialize( $args ) . $filter_key . serialize( $GLOBALS['scoper']->get_terms_reqd_caps($taxonomy, $required_operation, ! empty($is_term_admin) ) ) );
 		}
 		
 		return $this->current_cache_key[$taxonomy][$arg_ser];
@@ -131,6 +131,9 @@ class TermsInterceptor_RS
 		if ( ( 'link_category' == $taxonomy ) && $scoper->is_front() )
 			return true;
 		
+		if ( ! empty( $args['object_ids'] ) && empty( $args['required_operation'] ) )  // WP 4.7 pushes wp_get_object_terms call through get_terms()
+			return true;
+		
 		if ( $args['child_of'] || $args['parent'] ) {
 			$children = ScoperAncestry::get_terms_children($taxonomy);
 			
@@ -163,7 +166,7 @@ class TermsInterceptor_RS
 			}
 		}
 
-		if ( '' === $args['is_term_admin'] ) {
+		if ( isset( $args['is_term_admin'] ) && ( '' === $args['is_term_admin'] ) ) {
 			$return['is_term_admin'] = in_array( $GLOBALS['pagenow'], array( 'edit-tags.php', 'edit-link-categories.php' ) );
 		} else {
 			// support Quick Post Widget plugin
@@ -411,9 +414,10 @@ class TermsInterceptor_RS
 		// Replace DB-stored term counts with actual number of posts this user can read.
 		// In addition, without the rs_tally_term_counts() call, WP will hide terms that have no public posts (even if this user can read some of the pvt posts).
 		// Post counts will be incremented to include child terms only if $pad_counts is true
-		if ( ! defined('XMLRPC_REQUEST') && in_array( $fields, array( 'all', 'ids', 'names' ) ) && ! $is_term_admin ) {
+		if ( ! defined('XMLRPC_REQUEST') && in_array( $fields, array( 'all', 'ids', 'names' ) ) && empty($is_term_admin) ) {
 			if ( ! is_admin() || ! in_array( $GLOBALS['pagenow'], array( 'post.php', 'post-new.php' ) ) ) {
 				// rs_tally_term_counts() is RS equivalent to WP _pad_term_counts()
+				if ( ! isset($post_type) ) $post_type = '';
 				rs_tally_term_counts($terms, $taxonomy, array('pad_counts' => $pad_counts, 'skip_teaser' => ! $this->doing_teaser($args), 'post_type' => $post_type ) );
 			}
 		}

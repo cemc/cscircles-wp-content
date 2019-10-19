@@ -6,7 +6,7 @@ require_once( dirname(__FILE__).'/admin_ui_lib_rs.php' );
 
 class ScoperProfileUI {
 
-	function display_ui_user_roles($user, $groups_only = false) {
+	public static function display_ui_user_roles($user, $groups_only = false) {
 		global $scoper;
 
 		$blog_roles = array();
@@ -21,7 +21,7 @@ class ScoperProfileUI {
 				$blog_roles[''][''] = ( isset($blog_roles['']['']) ) ? array_merge( $current_rs_user->assigned_blog_roles[''] ) : $current_rs_user->assigned_blog_roles[''];
 		}
 		
-		foreach ( $this->scoper->taxonomies->get_all() as $taxonomy => $tx )	
+		foreach ( $scoper->taxonomies->get_all() as $taxonomy => $tx )	
 			$term_roles[$taxonomy] = $user->get_term_roles_daterange( $taxonomy, 'rs', array( 'include_role_duration_key' => true, 'enforce_duration_limits' => false ) );	// arg: return array with additional key dimension for role duration
 
 		$duration_limits_enabled = scoper_get_option( 'role_duration_limits' );
@@ -61,10 +61,10 @@ class ScoperProfileUI {
 
 				$html .= sprintf( __("<strong>Assigned WordPress Role:</strong> %s", 'scoper'), implode(", ", $display_names) );
 			
-				if ( $contained_roles = $this->scoper->role_defs->get_contained_roles( array_keys($wp_blog_roles), false, 'rs' ) ) {
+				if ( $contained_roles = $scoper->role_defs->get_contained_roles( array_keys($wp_blog_roles), false, 'rs' ) ) {
 					$display_names = array();			
 					foreach (array_keys($contained_roles) as $role_handle)
-						$display_names []= $this->scoper->role_defs->get_display_name($role_handle);
+						$display_names []= $scoper->role_defs->get_display_name($role_handle);
 					
 					$html .= '<br /><span class="rs-gray">';
 					$html .= sprintf( __("(contains %s)", 'scoper'), implode(", ", $display_names) );
@@ -104,9 +104,9 @@ class ScoperProfileUI {
 					$date_caption = '<span class="rs-gray"> ' . trim($date_caption) . '</span>';
 				}
 					
-				if ( $rs_blog_roles = $this->scoper->role_defs->filter( $blog_roles[$duration_key][$date_key], array( 'role_type' => 'rs' ) ) ) {
+				if ( $rs_blog_roles = $scoper->role_defs->filter( $blog_roles[$duration_key][$date_key], array( 'role_type' => 'rs' ) ) ) {
 					foreach ( array_keys($rs_blog_roles) as $role_handle )
-						$display_names []= $this->scoper->role_defs->get_display_name($role_handle);
+						$display_names []= $scoper->role_defs->get_display_name($role_handle);
 					
 					$url = "admin.php?page=rs-general_roles";
 					$linkopen = "<strong><a href='$url'>";
@@ -118,10 +118,10 @@ class ScoperProfileUI {
 					else
 						$html .= sprintf( _n('<strong>Additional %1$sGeneral Role%2$s</strong>%4$s: %3$s', '<strong>Additional %1$sGeneral Roles%2$s</strong>%4$s: %3$s', count($display_names), 'scoper'), $linkopen, $linkclose, $list, $date_caption);
 				
-					if ( $contained_roles = $this->scoper->role_defs->get_contained_roles( array_keys($rs_blog_roles), false, 'rs' ) ) {
+					if ( $contained_roles = $scoper->role_defs->get_contained_roles( array_keys($rs_blog_roles), false, 'rs' ) ) {
 						$display_names = array();
 						foreach (array_keys($contained_roles) as $role_handle)
-							$display_names []= $this->scoper->role_defs->get_display_name($role_handle);
+							$display_names []= $scoper->role_defs->get_display_name($role_handle);
 						
 						$html .= '<br /><span class="rs-gray">';
 						$html .= sprintf( __("(contains %s)", 'scoper'), implode(", ", $display_names) );
@@ -152,18 +152,18 @@ class ScoperProfileUI {
 			}
 		}
 
-		foreach ( $this->scoper->taxonomies->get_all() as $taxonomy => $tx ) {
+		foreach ( $scoper->taxonomies->get_all() as $taxonomy => $tx ) {
 			if ( empty($term_roles[$taxonomy]) )
 				continue;
 			
 			$val = ORDERBY_HIERARCHY_RS;
 			$args = array( 'order_by' => $val );
-			if ( ! $terms = $this->scoper->get_terms($taxonomy, UNFILTERED_RS, COLS_ALL_RS, 0, $args) )
+			if ( ! $terms = $scoper->get_terms($taxonomy, UNFILTERED_RS, COLS_ALL_RS, 0, $args) )
 				continue;
 
 			$object_types = array();
 			
-			$obj_src = $this->scoper->data_sources->get( $tx->object_source );
+			$obj_src = $scoper->data_sources->get( $tx->object_source );
 			
 			if ( ! $obj_src || ! is_array($obj_src->object_types) )
 				continue;
@@ -177,13 +177,13 @@ class ScoperProfileUI {
 
 			$object_types []= $taxonomy;
 				
-			$admin_terms = ( $disable_role_admin ) ? array() : $this->scoper->get_terms($taxonomy, ADMIN_TERMS_FILTER_RS, COL_ID_RS);
+			$admin_terms = ( $disable_role_admin ) ? array() : $scoper->get_terms($taxonomy, ADMIN_TERMS_FILTER_RS, COL_ID_RS);
 
-			$strict_terms = $this->scoper->get_restrictions(TERM_SCOPE_RS, $taxonomy);
+			$strict_terms = $scoper->get_restrictions(TERM_SCOPE_RS, $taxonomy);
 
-			$role_defs = $this->scoper->role_defs->get_matching('rs', $tx->object_source, $object_types);
+			$role_defs = $scoper->role_defs->get_matching('rs', $tx->object_source, $object_types);
 
-			$tx_src = $this->scoper->data_sources->get( $tx->source );
+			$tx_src = $scoper->data_sources->get( $tx->source );
 			$col_id = $tx_src->cols->id;
 			$col_name = $tx_src->cols->name;
 			
@@ -239,7 +239,7 @@ class ScoperProfileUI {
 						if ( isset( $term_roles[$taxonomy][$duration_key][$date_key][$role_handle] ) ) {
 		
 							$role_terms = $term_roles[$taxonomy][$duration_key][$date_key][$role_handle];
-							$role_display = $this->scoper->role_defs->get_display_name($role_handle);
+							$role_display = $scoper->role_defs->get_display_name($role_handle);
 
 							$term_role_list = array();
 							foreach ( $role_terms as $term_id ) {
@@ -294,7 +294,7 @@ class ScoperProfileUI {
 
 	
 	
-	function display_ui_group_roles($group_id) {
+	public static function display_ui_group_roles($group_id) {
 			
 		$users = ScoperAdminLib::get_group_members($group_id, COL_ID_RS);
 			
@@ -338,7 +338,7 @@ class ScoperProfileUI {
 	}
 	
 	
-	function display_ui_user_groups() {
+	public static function display_ui_user_groups() {
 		if ( ! $all_groups = ScoperAdminLib::get_all_groups(UNFILTERED_RS) )
 			return;
 
