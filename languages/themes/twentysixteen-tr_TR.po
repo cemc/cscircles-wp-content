@@ -1,0 +1,373 @@
+# Translation of Themes - Twenty Sixteen in Turkish
+# This file is distributed under the same license as the Themes - Twenty Sixteen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-03-26 12:02:34+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: tr\n"
+"Project-Id-Version: Themes - Twenty Sixteen\n"
+
+#. Theme Name of the theme
+msgid "Twenty Sixteen"
+msgstr "Yirmi Onaltı"
+
+#. Description of the theme
+msgid "Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere."
+msgstr "Yirmi Onaltı popüler WordPress düzeninin modernize edilmiş halidir — yatay üst alan ve tercihe bağlı sağ sütun ile bloglar ve web siteleri için mükemmel çalışır. Özel renk geçenekleri, harikulade varsayılan renk paletleri, mobil öncelikli akışkan ızgara sistemi ve iyice cilalanmış bir sürü detay içerir. Yirmi Onaltı WordPress sisteminizin her yerde güzel gözükmesini sağlayacak."
+
+#: functions.php:202
+msgid "Bright Red"
+msgstr "Parlak kırmızı"
+
+#: functions.php:197
+msgid "Dark Red"
+msgstr "Koyu kırmızı"
+
+#: functions.php:192
+msgid "Medium Brown"
+msgstr "Kahverengi"
+
+#: functions.php:187
+msgid "Dark Brown"
+msgstr "Koyu kahverengi"
+
+#: functions.php:182
+msgid "Light Blue"
+msgstr "Açık mavi"
+
+#: functions.php:177
+msgid "Bright Blue"
+msgstr "Parlak mavi"
+
+#: functions.php:172
+msgid "Blue Gray"
+msgstr "Mavi gri"
+
+#: functions.php:167
+msgid "White"
+msgstr "Beyaz"
+
+#: functions.php:162
+msgid "Light Gray"
+msgstr "Açık gri"
+
+#: functions.php:157
+msgid "Medium Gray"
+msgstr "Orta gri"
+
+#: functions.php:152
+msgid "Dark Gray"
+msgstr "Koyu gri"
+
+#. translators: %s: Name of current post
+#: template-parts/content.php:29 inc/template-tags.php:194
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Okumaya devam et<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#. translators: %s: Name of current post
+#: template-parts/content.php:53 template-parts/content-page.php:39
+#: template-parts/content-search.php:28 template-parts/content-search.php:43
+#: template-parts/content-single.php:47 image.php:88
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Düzenle<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: inc/customizer.php:345
+msgid "Red"
+msgstr "Kırmızı"
+
+#. translators: %s: post title
+#: comments.php:31
+msgctxt "comments title"
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr "&ldquo;%s&rdquo; için bir yorum"
+
+#: searchform.php:16
+msgctxt "submit button"
+msgid "Search"
+msgstr "Ara"
+
+#: searchform.php:14
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Ara &hellip;"
+
+#: searchform.php:13
+msgctxt "label"
+msgid "Search for:"
+msgstr "Ara:"
+
+#: footer.php:30
+msgid "Footer Social Links Menu"
+msgstr "Alt kısım sosyal bağlantılar menüsü"
+
+#: footer.php:17
+msgid "Footer Primary Menu"
+msgstr "Alt kısım birincil menü"
+
+#: functions.php:267
+msgid "Add widgets here to appear in your sidebar."
+msgstr "Yan sütunda gözükecek bileşenleri buradan ekleyin."
+
+#: template-parts/content.php:14
+msgid "Featured"
+msgstr "Öne Çıkan"
+
+#: template-parts/content-none.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Görünen o ki bakındığınız her ne ise bulamıyoruz. Belki arama özelliği yardımcı olabilir."
+
+#: template-parts/content-none.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Üzgünüz, arama terimlerinizle hiçbir şey eşleşmedi. Lütfen farklı anahtar kelimelerle tekrar deneyin."
+
+#: template-parts/content-none.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "İlk yazınızı yayımlamak için hazır mısınız? <a href=\"%1$s\">Buradan başlayın</a>."
+
+#: template-parts/content-none.php:13
+msgid "Nothing Found"
+msgstr "Hiçbir şey bulunamadı"
+
+#: template-parts/biography.php:33
+msgid "View all posts by %s"
+msgstr "%s tarafından yazılan tüm yazılar"
+
+#: template-parts/biography.php:28
+msgid "Author:"
+msgstr "Yazar:"
+
+#: single.php:42
+msgid "Previous post:"
+msgstr "Önceki yazı:"
+
+#: single.php:41
+msgid "Previous"
+msgstr "Önceki"
+
+#: single.php:39
+msgid "Next post:"
+msgstr "Sonraki yazı:"
+
+#: single.php:38
+msgid "Next"
+msgstr "Sonraki"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "Arama sonuçları: %s"
+
+#: inc/template-tags.php:112
+msgctxt "Used before tag names."
+msgid "Tags"
+msgstr "Etiketler"
+
+#: inc/template-tags.php:103
+msgctxt "Used before category names."
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: inc/template-tags.php:99 inc/template-tags.php:108
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:83
+msgctxt "Used before publish date."
+msgid "Posted on"
+msgstr "Yayın tarihi"
+
+#: inc/template-tags.php:40
+msgctxt "Used before post format."
+msgid "Format"
+msgstr "Biçim"
+
+#: inc/template-tags.php:52
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "<span class=\"screen-reader-text\">%s için</span> bir yorum yapın"
+
+#: inc/template-tags.php:26
+msgctxt "Used before post author name."
+msgid "Author"
+msgstr "Yazar"
+
+#: functions.php:207 inc/customizer.php:355
+msgid "Yellow"
+msgstr "Sarı"
+
+#: inc/customizer.php:335
+msgid "Gray"
+msgstr "Gri"
+
+#: inc/customizer.php:325
+msgid "Dark"
+msgstr "Koyu"
+
+#: inc/customizer.php:221
+msgid "Main Text Color"
+msgstr "Ana yazı rengi"
+
+#: inc/customizer.php:315
+msgid "Default"
+msgstr "Varsayılan"
+
+#: inc/customizer.php:242
+msgid "Secondary Text Color"
+msgstr "İkincil yazı rengi"
+
+#: inc/customizer.php:200
+msgid "Link Color"
+msgstr "Bağlantı rengi"
+
+#: inc/customizer.php:176
+msgid "Page Background Color"
+msgstr "Sayfa arka planı rengi"
+
+#: single.php:31 image.php:107
+msgctxt "Parent post link"
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
+msgstr "<span class=\"meta-nav\">Yayın yeri</span><span class=\"post-title\">%title</span>"
+
+#: inc/back-compat.php:41 inc/back-compat.php:54 inc/back-compat.php:72
+msgid "Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again."
+msgstr "Yirmi Onaltı'yı kullanabilmeniz için en az WordPress 4.4 sürümüne sahip olmalısınız. %s sürümünü kullanıyorsunuz. Lütfen güncelleyin ve tekrar deneyin."
+
+#: inc/customizer.php:153
+msgid "Base Color Scheme"
+msgstr "Taban renk şeması"
+
+#: image.php:77
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "Tam boyut"
+
+#: template-parts/content.php:36 template-parts/content-page.php:24
+#: template-parts/content-single.php:26 image.php:58
+msgid "Pages:"
+msgstr "Sayfalar"
+
+#: image.php:26
+msgid "Next Image"
+msgstr "Sonraki görsel"
+
+#: image.php:25
+msgid "Previous Image"
+msgstr "Önceki görsel"
+
+#: header.php:50
+msgid "Menu"
+msgstr "Menü"
+
+#: header.php:28
+msgid "Skip to content"
+msgstr "İçeriğe geç"
+
+#: functions.php:407
+msgid "expand child menu"
+msgstr "Alt menüyü genişlet"
+
+#: functions.php:408
+msgid "collapse child menu"
+msgstr "Alt menüyü toparla"
+
+#. translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:327
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:277
+msgid "Content Bottom 1"
+msgstr "Alt içerik 1"
+
+#: functions.php:279 functions.php:291
+msgid "Appears at the bottom of the content on posts and pages."
+msgstr "Yazı ve sayfalarda içeriğin en altında görünür"
+
+#: functions.php:289
+msgid "Content Bottom 2"
+msgstr "Alt içerik 2"
+
+#. translators: If there are characters in your language that are not supported
+#. by Merriweather, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:317
+msgctxt "Merriweather font: on or off"
+msgid "on"
+msgstr "açık"
+
+#. translators: If there are characters in your language that are not supported
+#. by Montserrat, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:322
+msgctxt "Montserrat font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:265
+msgid "Sidebar"
+msgstr "Yan Menü"
+
+#: functions.php:93 header.php:67
+msgid "Social Links Menu"
+msgstr "Sosyal bağlantılar menüsü"
+
+#: functions.php:92 header.php:54
+msgid "Primary Menu"
+msgstr "Birincil menü"
+
+#: footer.php:61
+msgid "Proudly powered by %s"
+msgstr "%s gururla sunar"
+
+#: comments.php:71
+msgid "Comments are closed."
+msgstr "Yorumlar kapatıldı."
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:35
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo; için %1$s yorum"
+msgstr[1] "&ldquo;%2$s&rdquo; için %1$s yorum"
+
+#: archive.php:53 template-parts/content.php:40
+#: template-parts/content-page.php:28 template-parts/content-single.php:30
+#: search.php:41 index.php:50 image.php:62
+msgid "Page"
+msgstr "Sayfa"
+
+#: archive.php:52 search.php:40 index.php:49
+msgid "Next page"
+msgstr "Sonraki sayfa"
+
+#: archive.php:51 search.php:39 index.php:48
+msgid "Previous page"
+msgstr "Önceki sayfa"
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Burada bir şey bulamadık. Bir de aramayı denemek ister misiniz?"
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Amanın! O sayfa bulunamadı."
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentysixteen/"
+msgstr "https://wordpress.org/themes/twentysixteen/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress ekibi"
+
+#. Author URI of the theme
+#: footer.php:60
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"

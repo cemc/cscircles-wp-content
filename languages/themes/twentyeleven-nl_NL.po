@@ -1,0 +1,587 @@
+# Translation of Themes - Twenty Eleven in Dutch
+# This file is distributed under the same license as the Themes - Twenty Eleven package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-01-21 15:12:01+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: nl\n"
+"Project-Id-Version: Themes - Twenty Eleven\n"
+
+#. Description of the theme
+msgid "The 2011 theme for WordPress is sophisticated, lightweight, and adaptable. Make it yours with a custom menu, header image, and background -- then go further with available theme options for light or dark color scheme, custom link colors, and three layout choices. Twenty Eleven comes equipped with a Showcase page template that transforms your front page into a showcase to show off your best content, widget support galore (sidebar, three footer areas, and a Showcase page widget area), and a custom \"Ephemera\" widget to display your Aside, Link, Quote, or Status posts. Included are styles for print and for the admin editor, support for featured images (as custom header images on posts and pages and as large images on featured \"sticky\" posts), and special styles for six different post formats."
+msgstr "Het thema 2011 voor WordPress is geavanceerd, lichtgewicht en aanpasbaar. Maak het persoonlijk met een aangepast menu, headerafbeelding en achtergrond - en ga vervolgens verder met de beschikbare themaopties voor lichte of donkere kleurstelling, aangepaste linkkleuren, layout en drie layoutkeuzes. 'Twenty Eleven' is uitgerust met een Showcase-sjabloon dat de homepagina verandert in een overzicht met de beste content, widgetondersteuning (sidebar, drie footers, en een showcasepagina-widget), een aangepaste &#39;Ephemera&#39;-widget om de kantlijn-, link-, citaat-, of status van de berichten te tonen. Inbegrepen zijn: stijlen voor printen en de editor voor de beheerder, ondersteuning voor 'uitgelichte' afbeeldingen (zoals aangepaste headers voor berichten en pagina&#39;s, en als grote afbeeldingen op de uitgelichte &#39;sticky&#39; berichten). Tevens zijn er speciale stijlen voor zes verschillende berichtformats."
+
+#. Theme Name of the theme
+msgid "Twenty Eleven"
+msgstr "'Twenty Eleven'"
+
+#. Template Name of the theme
+msgid "Sidebar Template"
+msgstr "Sidebar sjabloon"
+
+#. Template Name of the theme
+msgid "Showcase Template"
+msgstr "Showcase-sjabloon"
+
+#: tag.php:20
+msgid "Tag Archives: %s"
+msgstr "Tagarchief: %s"
+
+#: single.php:23
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Volgende <span class=\"meta-nav\">&rarr;</span>"
+
+#: single.php:22
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> Vorige"
+
+#: sidebar.php:26
+msgid "Meta"
+msgstr "Meta"
+
+#: sidebar.php:19
+msgid "Archives"
+msgstr "Archieven"
+
+#: showcase.php:170
+msgid "Recent Posts"
+msgstr "Meest recente berichten"
+
+#: showcase.php:160
+msgid "Featuring: %s"
+msgstr "Uitgelicht: %s"
+
+#: showcase.php:83
+msgid "Featured Post"
+msgstr "Uitgelicht bericht"
+
+#: searchform.php:11 searchform.php:12 searchform.php:13
+msgid "Search"
+msgstr "Zoeken"
+
+#: search.php:51
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "Helaas, geen resultaten voldeden aan de zoekcriteria. Probeer het opnieuw met andere zoekwoorden."
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "Zoekresultaten voor: %s"
+
+#: inc/widgets.php:197
+msgid "Number of posts to show:"
+msgstr "Aantal te tonen berichten:"
+
+#: inc/widgets.php:194
+msgid "Title:"
+msgstr "Titel:"
+
+#: inc/widgets.php:118 inc/widgets.php:127
+msgid "% <span class=\"reply\">comments &rarr;</span>"
+msgstr "% <span class=\"reply\">reacties &rarr;</span>"
+
+#: inc/widgets.php:118 inc/widgets.php:127
+msgid "1 <span class=\"reply\">comment &rarr;</span>"
+msgstr "Één <span class=\"reply\">reactie &rarr;</span>"
+
+#: inc/widgets.php:118 inc/widgets.php:127
+msgid "0 <span class=\"reply\">comments &rarr;</span>"
+msgstr "<span class=\"reply\">geen reacties &rarr;</span>"
+
+#: inc/widgets.php:74
+msgid "Ephemera"
+msgstr "Ephemera"
+
+#: inc/widgets.php:23
+msgid "Twenty Eleven Ephemera"
+msgstr "'Twenty Eleven Ephemera'"
+
+#: inc/widgets.php:26
+msgid "Use this widget to list your recent Aside, Status, Quote, and Link posts"
+msgstr "Gebruik deze widget om een lijst met recente aside, status, citaten en linkberichten te tonen."
+
+#: inc/theme-options.php:600
+msgid "Layout"
+msgstr "Layout"
+
+#: inc/theme-options.php:341
+msgid "%s Theme Options"
+msgstr "%s Themaopties"
+
+#: inc/theme-options.php:305
+msgid "Default color: %s"
+msgstr "Standaardkleur: %s"
+
+#: inc/theme-options.php:302
+msgid "Select a Color"
+msgstr "Een kleur kiezen"
+
+#: inc/theme-options.php:193
+msgid "One-column, no sidebar"
+msgstr "Enkele kolom, geen sidebar"
+
+#: inc/theme-options.php:188
+msgid "Content on right"
+msgstr "Inhoud rechts"
+
+#: inc/theme-options.php:183
+msgid "Content on left"
+msgstr "Inhoud links"
+
+#: inc/theme-options.php:158
+msgid "Dark"
+msgstr "Donker"
+
+#: inc/theme-options.php:152
+msgid "Light"
+msgstr "Licht "
+
+#: inc/theme-options.php:130
+msgid "Overview"
+msgstr "Overzicht"
+
+#: inc/theme-options.php:122
+msgid "<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</a>"
+msgstr "<a href=\"http://nl.forums.wordpress.org/\" target=\"_blank\">Nederlandstalige ondersteuningsforums</a>"
+
+#: inc/theme-options.php:121
+msgid "<a href=\"https://codex.wordpress.org/Appearance_Theme_Options_Screen\" target=\"_blank\">Documentation on Theme Options</a>"
+msgstr "<a href=\"https://codex.wordpress.org/Appearance_Theme_Options_Screen\" target=\"_blank\">Documentatie over themainstellingen</a>"
+
+#: inc/theme-options.php:120
+msgid "For more information:"
+msgstr "Voor meer informatie:"
+
+#: inc/theme-options.php:118
+msgid "Remember to click \"Save Changes\" to save any changes you have made to the theme options."
+msgstr "Let erop dat je op &#39;Wijzigingen opslaan&#39; klikt om de aanpassingen aan dit thema op te slaan."
+
+#: inc/theme-options.php:116
+msgid "<strong>Default Layout</strong>: You can choose if you want your site&#8217;s default layout to have a sidebar on the left, the right, or not at all."
+msgstr "<strong>Standaard Layout</strong>: Je kan ervoor kiezen om je website&#8217;s een standaard layout te geven met een sidebar links, rechts, of zonder sidebar."
+
+#: inc/theme-options.php:115
+msgid "<strong>Link Color</strong>: You can choose the color used for text links on your site. You can enter the HTML color or hex code, or you can choose visually by clicking the \"Select a Color\" button to pick from a color wheel."
+msgstr "<strong>Linkkleur</strong>: Je kunt de kleur kiezen die gebruikt wordt voor tekstlinks op de site. Hier kun je de HTML-kleur of hex-code invoeren, of kies een kleur uit het kleurenpalet door te klikken op de knop &#39;Kleur kiezen&#39;."
+
+#: inc/theme-options.php:114
+msgid "<strong>Color Scheme</strong>: You can choose a color palette of \"Light\" (light background with dark text) or \"Dark\" (dark background with light text) for your site."
+msgstr "<strong>Kleurenschema</strong>: Je kunt kiezen uit de kleurpalet of \"Licht\" (lichte achtergrond met een donkere tekst) of \"Donker\" (donkere achtergrond met een lichte tekst) voor je site."
+
+#: inc/theme-options.php:112
+msgid "Some themes provide customization options that are grouped together on a Theme Options screen. If you change themes, options may change or disappear, as they are theme-specific. Your current theme, Twenty Eleven, provides the following Theme Options:"
+msgstr "Diverse thema&#39;s bieden maatwerk instellingen die zijn gegroepeerd op een thema-opties pagina. Wanner het thema wordt gewijzigd, kunnen instellingen veranderen of verdwijnen omdat ze specifiek voor het thema zijn. Het huidige thema, Twenty Eleven, biedt de volgende thema instellingen:"
+
+#: inc/theme-options.php:95 inc/theme-options.php:96
+msgid "Theme Options"
+msgstr "Thema opties"
+
+#: inc/theme-options.php:63
+msgid "Default Layout"
+msgstr "Standaardlayout"
+
+#: inc/theme-options.php:62 inc/theme-options.php:589
+msgid "Link Color"
+msgstr "Linkkleur"
+
+#: inc/theme-options.php:56 inc/theme-options.php:564
+msgid "Color Scheme"
+msgstr "Kleurenschema"
+
+#: image.php:34
+msgid "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class=\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "<span class=\"meta-prep meta-prep-entry-date\">Gepubliceerd </span> <span class=\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> at <a href=\"%3$s\" title=\"Link naar volledige afbeelding\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Terug naar %7$s\" rel=\"gallery\">%8$s</a>"
+
+#: image.php:23
+msgid "Next &rarr;"
+msgstr "Volgende &rarr;"
+
+#: image.php:22
+msgid "&larr; Previous"
+msgstr "&larr; Vorige"
+
+#: image.php:21
+msgid "Image navigation"
+msgstr "Afbeeldingsnavigatie"
+
+#: header.php:146
+msgid "Skip to secondary content"
+msgstr "Spring naar de secundaire inhoud"
+
+#: header.php:144
+msgid "Skip to primary content"
+msgstr "Spring naar de primaire inhoud"
+
+#: header.php:142
+msgid "Main menu"
+msgstr "Hoofdmenu"
+
+#: header.php:45
+msgid "Page %s"
+msgstr "Pagina %s"
+
+#: functions.php:785
+msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+msgstr "<span class=\"sep\">Geplaatst op </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> door </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+
+#: functions.php:759
+msgid "Reply <span>&darr;</span>"
+msgstr "Antwoorden <span>&darr;</span>"
+
+#: functions.php:745
+msgid "Your comment is awaiting moderation."
+msgstr "Je reactie is in afwachting van moderatie."
+
+#. translators: 1: date, 2: time
+#: functions.php:736
+msgid "%1$s at %2$s"
+msgstr "%1$s om %2$s"
+
+#: functions.php:729
+msgid "%1$s on %2$s <span class=\"says\">said:</span>"
+msgstr "%1$s op %2$s <span class=\"says\">schreef:</span>"
+
+#: functions.php:710
+msgid "Pingback:"
+msgstr "Pingback:"
+
+#: functions.php:605
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Nieuwere berichten <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:604
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> Oudere berichten"
+
+#: single.php:21 functions.php:603
+msgid "Post navigation"
+msgstr "Berichtnavigatie"
+
+#: functions.php:577
+msgid "Footer Area Three"
+msgstr "Footergebied drie"
+
+#: functions.php:565
+msgid "Footer Area Two"
+msgstr "Footergebied twee"
+
+#: functions.php:555 functions.php:567 functions.php:579
+msgid "An optional widget area for your site footer"
+msgstr "Een optionele widget die je in de footer kunt gebruiken"
+
+#: functions.php:553
+msgid "Footer Area One"
+msgstr "Footergebied een"
+
+#: functions.php:543
+msgid "The sidebar for the optional Showcase Template"
+msgstr "De sidebar voor het optionele Showcase-sjabloon"
+
+#: functions.php:541
+msgid "Showcase Sidebar"
+msgstr "Showcase sidebar"
+
+#: functions.php:530
+msgid "Main Sidebar"
+msgstr "Hoofd sidebar"
+
+#. translators: header image description
+#: functions.php:278
+msgid "Hanoi Plant"
+msgstr "Hanoi-plant"
+
+#. translators: header image description
+#: functions.php:272
+msgid "Willow"
+msgstr "Wilg"
+
+#. translators: header image description
+#: functions.php:266
+msgid "Lanterns"
+msgstr "Lantaarns"
+
+#. translators: header image description
+#: functions.php:260
+msgid "Chessboard"
+msgstr "Schaakbord"
+
+#. translators: header image description
+#: functions.php:254
+msgid "Pine Cone"
+msgstr "Pijnappel"
+
+#. translators: header image description
+#: functions.php:248
+msgid "Trolley"
+msgstr "Trolley"
+
+#. translators: header image description
+#: functions.php:242
+msgid "Shore"
+msgstr "Kust"
+
+#. translators: header image description
+#: functions.php:236
+msgid "Wheel"
+msgstr "Wiel"
+
+#: functions.php:142
+msgid "Primary Menu"
+msgstr "Primair menu"
+
+#: footer.php:35
+msgid "Proudly powered by %s"
+msgstr "Ondersteund door %s"
+
+#: footer.php:34
+msgid "Semantic Personal Publishing Platform"
+msgstr "'Semantic Personal Publishing Platform'"
+
+#: content.php:16
+msgid "Featured"
+msgstr "Uitgelicht"
+
+#: content-status.php:19
+msgid "Status"
+msgstr "Status"
+
+#: content-single.php:74
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Bekijk alle berichten van %s <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:46
+msgid "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Dit bericht is geplaatst door <a href=\"%6$s\">%5$s</a>. Maak dit favoriet <a href=\"%3$s\" title=\"Permalink naar %4$s\" rel=\"bookmark\">permalink</a>."
+
+#: content-single.php:44
+msgid "This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Dit bericht werd geplaatst in %1$s door <a href=\"%6$s\">%5$s </a>. Bookmark de <a href=\"%3$s\" title=\"Permalink om %4$s\" rel=\"bookmark\"> permalink </a>."
+
+#: content-single.php:42
+msgid "This entry was posted in %1$s and tagged %2$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Dit bericht werd geplaatst in %1$s en getagd %2$s door <a href=\"%6$s\">%5$s </a>. Bookmark de <a href=\"%3$s\" title=\"Permalink om %4$s\" rel=\"bookmark\"> permalink </a>."
+
+#: content-quote.php:15
+msgid "Quote"
+msgstr "Citeren"
+
+#: content-link.php:19
+msgid "Link"
+msgstr "Link"
+
+#: content-image.php:49 functions.php:791
+msgid "View all posts by %s"
+msgstr "Alle berichten tonen van %s"
+
+#: content-image.php:44
+msgid "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+msgstr "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> door </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+
+#: content-image.php:18
+msgid "Image"
+msgstr "Afbeelding"
+
+#: content-gallery.php:93 content-image.php:70 content-quote.php:71
+#: content.php:80
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">Getagged</span> %2$s"
+
+#: content-gallery.php:78 content-image.php:61 content-quote.php:56
+#: content.php:63
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">Geplaatst in</span> %2$s"
+
+#: content-gallery.php:50 showcase.php:128
+msgid "Permalink to %s"
+msgstr "Permalink naar %s"
+
+#: content-gallery.php:49
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "Deze galerij bevat <a %1$s>%2$s foto</a>."
+msgstr[1] "Deze galerij bevat <a %1$s>%2$s foto&#39;s</a>."
+
+#: content-gallery.php:19
+msgid "Gallery"
+msgstr "Galerij"
+
+#: content-featured.php:40
+msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Dit bericht is geplaatst in %1$s. Bookmark de <a href=\"%3$s\" title=\"Permalink naar %4$s\" rel=\"bookmark\">permalink</a>."
+
+#: content-featured.php:38
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "Dit bericht is geplaatst in %1$s met de tags %2$s. Bookmark de <a href=\"%3$s\" title=\"Permalink naar %4$s\" rel=\"bookmark\">permalink</a>."
+
+#. translators: used between list items, there is a space after the comma
+#: content-gallery.php:73 content-gallery.php:85 content-image.php:57
+#: content-image.php:66 content-single.php:37 content-single.php:40
+#: content-quote.php:51 content-quote.php:63 content-featured.php:36
+#: content-featured.php:45 content.php:58 content.php:72
+msgid ", "
+msgstr ", "
+
+#: content-gallery.php:106 content-aside.php:53 content-status.php:66
+#: content-image.php:79 content-single.php:59 content-link.php:53
+#: content-intro.php:26 content-page.php:28 content-quote.php:84 image.php:45
+#: functions.php:710 functions.php:741 content-featured.php:52 content.php:94
+msgid "Edit"
+msgstr "Bewerken"
+
+#: content-gallery.php:103 content-aside.php:51 content-status.php:64
+#: content-image.php:75 content-link.php:51 content-quote.php:81
+#: showcase.php:214 content.php:91
+msgid "<b>%</b> Replies"
+msgstr "<b>%</b> reacties"
+
+#: content-gallery.php:103 content-aside.php:51 content-status.php:64
+#: content-image.php:75 content-link.php:51 content-quote.php:81
+#: showcase.php:214 content.php:91
+msgid "<b>1</b> Reply"
+msgstr "<b>1</b> reactie"
+
+#: content-gallery.php:103 content-aside.php:51 content-status.php:64
+#: content-image.php:75 content-link.php:51 content-quote.php:81
+#: showcase.php:214 content.php:91
+msgid "Leave a reply"
+msgstr "Geef een reactie"
+
+#: content-gallery.php:61 content-aside.php:39 content-status.php:52
+#: content-image.php:33 content-single.php:27 content-link.php:39
+#: content-intro.php:21 content-page.php:21 content-quote.php:39 image.php:119
+#: content-featured.php:26 content.php:45
+msgid "Pages:"
+msgstr "Pagina&#39;s:"
+
+#: content-gallery.php:34 content-aside.php:35 content-status.php:48
+#: content-image.php:29 content-link.php:35 content-quote.php:35
+#: functions.php:457 content.php:41
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "Lees verder <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-aside.php:24 content-status.php:24 content-image.php:23
+#: content-link.php:24 content-quote.php:24 content.php:30
+msgctxt "comments number"
+msgid "%"
+msgstr "%"
+
+#: content-aside.php:24 content-status.php:24 content-image.php:23
+#: content-link.php:24 content-quote.php:24 content.php:30
+msgctxt "comments number"
+msgid "1"
+msgstr "1"
+
+#: content-aside.php:24 content-status.php:24 content-image.php:23
+#: content-link.php:24 content-quote.php:24 content.php:30
+msgid "Reply"
+msgstr "Beantwoorden"
+
+#: content-aside.php:19
+msgid "Aside"
+msgstr "'Aside'"
+
+#: comments.php:78
+msgid "Comments are closed."
+msgstr "Reacties zijn gesloten."
+
+#: comments.php:46 comments.php:67
+msgid "Newer Comments &rarr;"
+msgstr "Nieuwere reacties &rarr;"
+
+#: comments.php:45 comments.php:66
+msgid "&larr; Older Comments"
+msgstr "&larr; Oudere reacties"
+
+#: comments.php:44 comments.php:65
+msgid "Comment navigation"
+msgstr "Reactienavigatie"
+
+#: comments.php:35
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "Een gedachte over &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s gedachten over &ldquo;%2$s&rdquo;"
+
+#: comments.php:17
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "Dit bericht is beveiligd met een wachtwoord. Geef het wachtwoord om reacties te bekijken."
+
+#: category.php:20
+msgid "Category Archives: %s"
+msgstr "Categoriearchief: %s"
+
+#: content-single.php:70 author.php:61
+msgid "About %s"
+msgstr "Over %s"
+
+#: author.php:29
+msgid "Author Archives: %s"
+msgstr "Auteursarchief: %s"
+
+#: archive.php:64 index.php:44 tag.php:69 category.php:68 author.php:94
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "Excuses, er werden geen resultaten gevonden voor het gevraagde archief. Misschien zal zoeken helpen een gerelateerd bericht te vinden."
+
+#: archive.php:60 index.php:40 tag.php:65 search.php:47 category.php:64
+#: author.php:90
+msgid "Nothing Found"
+msgstr "Niets gevonden"
+
+#: archive.php:31
+msgid "Blog Archives"
+msgstr "Sitearchief"
+
+#: archive.php:29
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: archive.php:29
+msgid "Yearly Archives: %s"
+msgstr "Jaarlijks archief: %s"
+
+#: archive.php:27
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: archive.php:27
+msgid "Monthly Archives: %s"
+msgstr "Maandelijks archief: %s"
+
+#: archive.php:25
+msgid "Daily Archives: %s"
+msgstr "Dagelijks archief: %s"
+
+#. translators: %1$s: smilie
+#: 404.php:46
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Probeer eens te zoeken in het maandelijks archief: %1$s"
+
+#: 404.php:28
+msgid "Most Used Categories"
+msgstr "Meest gebruikte categorie&#235;n"
+
+#: 404.php:21
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help."
+msgstr "Het lijkt erop dat we niet kunnen vinden waar je naar zoekt. Gebruik het zoekformulier of &#233;&#233;n van de links hieronder."
+
+#: 404.php:17
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr "Dit is een beetje genant, nietwaar?."
+
+#. Author URI of the theme
+#: footer.php:34
+msgid "https://wordpress.org/"
+msgstr "https://nl.wordpress.org/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "het WordPressteam"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentyeleven/"
+msgstr "https://wordpress.org/themes/twentyeleven/"

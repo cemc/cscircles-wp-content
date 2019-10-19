@@ -1,0 +1,332 @@
+# Translation of Themes - Twenty Seventeen in Lithuanian
+# This file is distributed under the same license as the Themes - Twenty Seventeen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-11-20 14:31:38+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: lt\n"
+"Project-Id-Version: Themes - Twenty Seventeen\n"
+
+#. Description of the theme
+msgid "Twenty Seventeen brings your site to life with header video and immersive featured images. With a focus on business sites, it features multiple sections on the front page as well as widgets, navigation and social menus, a logo, and more. Personalize its asymmetrical grid with a custom color scheme and showcase your multimedia content with post formats. Our default theme for 2017 works great in many languages, for any abilities, and on any device."
+msgstr "Twenty Seventeen padeda sukurti dinamišką tinklalapį - su video antraštėje ir įtraukiančiais specialiaisiais paveikslėliais. Kadangi tema kurta galvojant apie verslo tinklalapius, ji turi kelias skiltis pradiniame puslapyje, taip pat valdiklius, tinklalapio ir socialinius meniu, logotipą ir dar daugiau. Asimetrišką išdėstymo tinklelį galite pritaikyti pagal savo poreikius pakeisdami spalvas, bei akcentuodami savo multimedia turinį skirtingais įrašų tipais. Oficiali WordPress 2017-ųjų tema tinka bet kokiai kalbai, bet kokiems sugebėjimams ir bet kokiam įrenginiui."
+
+#. Theme Name of the theme
+msgid "Twenty Seventeen"
+msgstr "Twenty Seventeen"
+
+#: template-parts/footer/footer-widgets.php:18
+msgid "Footer"
+msgstr "Poraštė"
+
+#: functions.php:338
+msgid "Add widgets here to appear in your sidebar on blog posts and archive pages."
+msgstr "Pridėkite valdiklius čia, ir jie bus rodomi šoninėje juostoje įrašuose ir įrašų archyvuose."
+
+#: sidebar.php:18 functions.php:336
+msgid "Blog Sidebar"
+msgstr "Įrašų šoninė juosta"
+
+#: template-parts/navigation/navigation-top.php:31
+#: template-parts/header/site-branding.php:34
+msgid "Scroll down to content"
+msgstr "Paeikite žemyn prie turinio"
+
+#: functions.php:179
+msgctxt "Theme starter content"
+msgid "Coffee"
+msgstr "Kava"
+
+#: functions.php:175
+msgctxt "Theme starter content"
+msgid "Sandwich"
+msgstr "Sumuštiniai"
+
+#: functions.php:171
+msgctxt "Theme starter content"
+msgid "Espresso"
+msgstr "Espresso"
+
+#: inc/custom-header.php:128
+msgid "Pause background video"
+msgstr "Sustabdyti fono video"
+
+#: inc/custom-header.php:127
+msgid "Play background video"
+msgstr "Paleisti fono video"
+
+#: inc/template-tags.php:151
+msgid "Front Page Section %1$s Placeholder"
+msgstr "Pradinio puslapio skilties %1$s tekstas"
+
+#: inc/customizer.php:109
+msgid "When the two-column layout is assigned, the page title is in one column and content is in the other."
+msgstr "Kai nustatytas dviejų stulpelių išdėstymas, puslapio pavadinimas yra viename stulpelyje, o turinys - kitame."
+
+#: single.php:34
+msgid "Next Post"
+msgstr "Kitas įrašas"
+
+#: index.php:27
+msgid "Posts"
+msgstr "Įrašai"
+
+#: inc/template-tags.php:89
+msgid "Tags"
+msgstr "Žymos"
+
+#: inc/template-tags.php:85
+msgid "Categories"
+msgstr "Kategorijos"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:66
+msgid ", "
+msgstr ", "
+
+#. translators: %s: post date
+#: inc/template-tags.php:52
+msgid "<span class=\"screen-reader-text\">Posted on</span> %s"
+msgstr "<span class=\"screen-reader-text\">Paskelbta</span> %s"
+
+#. translators: %s: post author
+#: inc/template-tags.php:21
+msgid "by %s"
+msgstr "%s"
+
+#: inc/icon-functions.php:44
+msgid "Please define an SVG icon filename."
+msgstr "Nurodykite SVG piktogramos failą."
+
+#: inc/icon-functions.php:39
+msgid "Please define default parameters in the form of an array."
+msgstr "Nurodykite standartinius parametrus masyvo formatu."
+
+#: inc/customizer.php:143
+msgid "Select pages to feature in each area from the dropdowns. Add an image to a section by setting a featured image in the page editor. Empty sections will not be displayed."
+msgstr "Pasirinkite puslapius kurie bus rodomi kiekvienoje zonoje naudodami išsiskleidžiančius meniu. Pridėkite sekcijai paveikslėlį nustatydami spec. paveikslėlį atitinkamam puslapiui. Tuščios sekcijos nebus rodomos."
+
+#. translators: %d is the front page section number
+#: inc/customizer.php:142
+msgid "Front Page Section %d Content"
+msgstr "Pradinio puslapio sekcijos %d turinys"
+
+#: inc/customizer.php:112 inc/customizer.php:171
+msgid "Two Column"
+msgstr "Du stulpeliai"
+
+#: inc/customizer.php:111 inc/customizer.php:170
+msgid "One Column"
+msgstr "Vienas stulpelis"
+
+#: inc/customizer.php:106
+msgid "Page Layout"
+msgstr "Puslapio išdėstymas"
+
+#: inc/customizer.php:89
+msgid "Theme Options"
+msgstr "Temos nustatymai"
+
+#: inc/customizer.php:64
+msgid "Custom"
+msgstr "Nustatyta"
+
+#: inc/customizer.php:62
+msgid "Light"
+msgstr "Šviesi"
+
+#: inc/customizer.php:60
+msgid "Color Scheme"
+msgstr "Spalvų schema"
+
+#: inc/custom-header.php:56
+msgid "Default Header Image"
+msgstr "Numatytas antraštės paveikslėlis"
+
+#: functions.php:360
+msgid "Footer 2"
+msgstr "Poraštė 2"
+
+#: functions.php:350 functions.php:362
+msgid "Add widgets here to appear in your footer."
+msgstr "Pridėkite skydelius kurie matysis tinklalapio poraštėje."
+
+#: functions.php:348
+msgid "Footer 1"
+msgstr "Poraštė 2"
+
+#: functions.php:289
+msgctxt "Libre Franklin font: on or off"
+msgid "on"
+msgstr "on"
+
+#: template-parts/navigation/navigation-top.php:12 functions.php:64
+#: functions.php:203
+msgid "Top Menu"
+msgstr "Viršutinis meniu"
+
+#: comments.php:62
+msgid "Reply"
+msgstr "Atsakyti"
+
+#: template-parts/post/content-none.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Deja, neradome to, ko Jūs ieškote. Galbūt pasisektų, jei pasinaudotumėte paieška."
+
+#: search.php:54
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Deja, pagal Jūsų užklausą nieko nerasta. Pabandykite dar kartą, naudodami kitokius raktažodžius."
+
+#: template-parts/post/content-none.php:24
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Pasirengę paskelbti pirmąjį įrašą? <a href=\"%1$s\">Pradėkite čia</a>."
+
+#: template-parts/post/content-none.php:17 search.php:21
+msgid "Nothing Found"
+msgstr "Nepavyko rasti"
+
+#: single.php:33
+msgid "Previous Post"
+msgstr "Ankstesnis įrašas"
+
+#: single.php:33 comments.php:71
+msgid "Previous"
+msgstr "Ankstesnis"
+
+#: single.php:34 comments.php:72
+msgid "Next"
+msgstr "Kitas"
+
+#: searchform.php:20
+msgctxt "submit button"
+msgid "Search"
+msgstr "Ieškoti"
+
+#: searchform.php:19
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Paieška &hellip;"
+
+#: searchform.php:17
+msgctxt "label"
+msgid "Search for:"
+msgstr "Ieškoti:"
+
+#: search.php:19
+msgid "Search Results for: %s"
+msgstr "Paieškos rezultatai pagal: %s"
+
+#. translators: %s: Name of current post
+#: template-parts/page/content-front-page-panels.php:45
+#: template-parts/page/content-front-page.php:42
+#: template-parts/post/content-audio.php:84 template-parts/post/content.php:57
+#: template-parts/post/content-gallery.php:71
+#: template-parts/post/content-video.php:83
+#: template-parts/post/content-image.php:61 functions.php:390
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Toliau skaityti<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: inc/customizer.php:63
+msgid "Dark"
+msgstr "Tamsi"
+
+#: inc/back-compat.php:39 inc/back-compat.php:52 inc/back-compat.php:70
+msgid "Twenty Seventeen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
+msgstr "Twenty Seventeen reikalinga bent jau 4.7 WordPress versija. Jūsų naudojama versija yra %s. Atnaujinkite WordPress ir pabandykite vėl."
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:117
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Redaguoti<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: template-parts/page/content-page.php:26
+#: template-parts/post/content-audio.php:91 template-parts/post/content.php:64
+#: template-parts/post/content-gallery.php:78
+#: template-parts/post/content-video.php:90
+#: template-parts/post/content-image.php:68
+msgid "Pages:"
+msgstr "Puslapiai:"
+
+#: template-parts/navigation/navigation-top.php:17
+msgid "Menu"
+msgstr "Meniu"
+
+#: header.php:28
+msgid "Skip to content"
+msgstr "Eiti prie turinio"
+
+#: functions.php:482
+msgid "Collapse child menu"
+msgstr "Suskleisti sub-meniu"
+
+#: functions.php:481
+msgid "Expand child menu"
+msgstr "išskleisti sub-meniu"
+
+#: functions.php:65 functions.php:214
+msgid "Social Links Menu"
+msgstr "Socialinių nuorodų meniu"
+
+#: template-parts/footer/site-info.php:19
+msgid "Proudly powered by %s"
+msgstr "Sistema: %s"
+
+#: footer.php:26
+msgid "Footer Social Links Menu"
+msgstr "Poraštės meniu socialinėms nuorodoms"
+
+#: comments.php:82
+msgid "Comments are closed."
+msgstr "Komentarai uždrausti."
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s atsakymas į &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s atsakymai į &ldquo;%2$s&rdquo;"
+msgstr[2] "%1$s atsakymų į &ldquo;%2$s&rdquo;"
+
+#. translators: %s: post title
+#: comments.php:37
+msgctxt "comments title"
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr "Vienas atsakymas į &ldquo;%s&rdquo;"
+
+#: archive.php:50 search.php:47 index.php:54
+msgid "Page"
+msgstr "Puslapis"
+
+#: 404.php:21
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Deja, toks puslapis nerastas."
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Panašu, kad čia nieko nerasta. Pasinaudokite paieška."
+
+#: archive.php:48 search.php:45 index.php:52
+msgid "Previous page"
+msgstr "Ankstesnis puslapis"
+
+#: archive.php:49 search.php:46 index.php:53
+msgid "Next page"
+msgstr "Tolesnis puslapis"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress komanda"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentyseventeen/"
+msgstr "https://wordpress.org/themes/twentyseventeen/"
+
+#. Author URI of the theme
+#: template-parts/footer/site-info.php:18
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"

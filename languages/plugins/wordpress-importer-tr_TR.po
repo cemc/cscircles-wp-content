@@ -1,0 +1,205 @@
+# Translation of Stable (latest release) in Turkish
+# This file is distributed under the same license as the Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2015-08-01 21:43:51+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/1.0-alpha-1100\n"
+"Project-Id-Version: Stable (latest release)\n"
+
+#. Author of the plugin/theme
+msgid "wordpressdotorg"
+msgstr "wordpressdotorg"
+
+#. Author URI of the plugin/theme
+msgid "http://wordpress.org/"
+msgstr "http://wordpress.org/"
+
+#: wordpress-importer.php:266
+msgid "Assign Authors"
+msgstr "Yazar Atayın"
+
+#: wordpress-importer.php:286
+msgid "Submit"
+msgstr "Onayla"
+
+#: wordpress-importer.php:1056
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr "Bir WXR (.xml) dosyası seçin, yükle butonuna basın ve içeri aktarılsın."
+
+#: wordpress-importer.php:928
+msgid "Zero size file downloaded"
+msgstr "Sıfır boyutlu dosya indirildi"
+
+#: wordpress-importer.php:916
+msgid "Remote server returned error response %1$d %2$s"
+msgstr "Uzak sunucu hata mesajı döndürdü %1$d %2$s"
+
+#: wordpress-importer.php:240
+msgid "Failed to import author %s. Their posts will be attributed to the current user."
+msgstr "%s yazarını içeri aktarma başarısız. Yazıları şu anki kullanıcıya aktarılacak."
+
+#: wordpress-importer.php:267
+msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
+msgstr "İçeri aktarılan içeriğin düzenlenmesi ve kaydedilmesinin kolaylaşması için, içeri aktarılan yazıların yazarlarını var olan bir kullanıcı olarak belirleyebilirsiniz. Örneğin, içeri aktarılan tüm metinlerin yazarı <code>admin</code> olarak belirleyebilirsiniz."
+
+#: wordpress-importer.php:537
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr "Aktarım başarısız &#8220;%s&#8221;: Geçersiz yazı tipi %s"
+
+#: wordpress-importer.php:511 wordpress-importer.php:652
+msgid "Failed to import %s %s"
+msgstr "%s %s aktarımı başarısız"
+
+#: wordpress-importer.php:425
+msgid "Failed to import category %s"
+msgstr "%s kategorisinin aktarımı başarısız"
+
+#: wordpress-importer.php:465
+msgid "Failed to import post tag %s"
+msgstr "%s yazı etiketinin aktarımı başarısız"
+
+#: wordpress-importer.php:559
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr "%s &#8220;%s&#8221; zaten var."
+
+#: wordpress-importer.php:783
+msgid "Menu item skipped due to missing menu slug"
+msgstr "Menü kısa ismi olmadığı için menü elemanı pas geçildi"
+
+#: wordpress-importer.php:618
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr "İçeri aktarma başarısız %s &#8220;%s&#8221;"
+
+#: wordpress-importer.php:321
+msgid "assign posts to an existing user:"
+msgstr "yazıları var olan bir kullanıcıya ata:"
+
+#: wordpress-importer.php:313
+msgid "as a new user:"
+msgstr "yeni bir kullanıcı olarak:"
+
+#: wordpress-importer.php:215
+msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
+msgstr "WXR dosyası (sürüm %s) içeri aktarıcının bu sürümü ile uyumlu değil. Lütfen güncelleme yapın."
+
+#: wordpress-importer.php:269
+msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
+msgstr "Eğer WordPress tarafından yeni bir kullanıcı oluşturulursa, rastgele bir parola oluşturulacak ve yeni kullanıcıya %s rolü atanacak. Gerekliyse yeni kullanıcının bilgilerini kendiniz değiştirebilirsiniz."
+
+#: wordpress-importer.php:790
+msgid "Menu item skipped due to invalid menu slug: %s"
+msgstr "Geçersiz kısa isim nedeniyle menü elemanı pas geçildi: %s"
+
+#: wordpress-importer.php:853
+msgid "Fetching attachments is not enabled"
+msgstr "Eklentileri aktarma etkin değil"
+
+#: wordpress-importer.php:179
+msgid "Remember to update the passwords and roles of imported users."
+msgstr "İçeri aktarılan kullanıcıların rollerini ve parolalarını güncellemeyi unutmayın."
+
+#: wordpress-importer.php:135
+msgid "The file does not exist, please try again."
+msgstr "Dosya bulunamadı, tekrar deneyin."
+
+#: parsers.php:84 parsers.php:89 parsers.php:279 parsers.php:468
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr "Bu dosya WXR dosyası değil, WXR numarası eksik/geçersiz"
+
+#: parsers.php:43
+msgid "Details are shown above. The importer will now try again with a different parser..."
+msgstr "Detaylar aşağıda gösterilmişlerdir. Aktarıcı başka bir yöntem ile tekrar deneyecek..."
+
+#. Description of the plugin/theme
+msgid "Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file."
+msgstr "Bir WordPress aktarım dosyasından yazıları, sayfaları, yorumları, özel alanları, kategorileri, etiketleri ve daha fazlasını içeri aktarın."
+
+#: wordpress-importer.php:1040
+msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files."
+msgstr "Bu aktarıcının yeni bir sürümü mevcut. Lütfen yeni aktarım dosyaları ile uyum sağlanabilmesi için %s sürümüne yükseltin."
+
+#: parsers.php:42 parsers.php:72 parsers.php:80
+msgid "There was an error when reading this WXR file"
+msgstr "WXR dosyası okunurken bir hata oluştu"
+
+#: wordpress-importer.php:310
+msgid "or create new user with login name:"
+msgstr "ya da yeni bir kullanıcı oluşturun:"
+
+#: wordpress-importer.php:374
+msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
+msgstr "%s için yeni kullanıcı oluşturma başarısız. Yazıları mevcut kullanıcıya aktarılacak."
+
+#: wordpress-importer.php:323
+msgid "or assign posts to an existing user:"
+msgstr "ya da var olan bir kullanıcı seçin:"
+
+#: wordpress-importer.php:1055
+msgid "Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site."
+msgstr "Merhaba! WordPress eXtended RSS (WXR) dosyanızı yükleyin, sonra yazıları, sayfaları, yorumları, özel alanları, kategorileri ve etiketleri bu siteye aktaracağız."
+
+#: wordpress-importer.php:1033
+msgid "Import WordPress"
+msgstr "Wordpress&#8217;ten İçe Aktar"
+
+#: wordpress-importer.php:299
+msgid "Import author:"
+msgstr "Yazarı içe aktar:"
+
+#: wordpress-importer.php:279
+msgid "Import Attachments"
+msgstr "Ekli dosyaları içe aktar"
+
+#: wordpress-importer.php:282
+msgid "Download and import file attachments"
+msgstr "Dosya eklerini indir ve içe aktar"
+
+#: wordpress-importer.php:324
+msgid "- Select -"
+msgstr "- Seç -"
+
+#: wordpress-importer.php:178
+msgid "All done."
+msgstr "Hepsi tamamlandı."
+
+#: wordpress-importer.php:178
+msgid "Have fun!"
+msgstr "İyi eğlenceler!"
+
+#: wordpress-importer.php:866
+msgid "Invalid file type"
+msgstr "Geçersiz dosya türü"
+
+#: wordpress-importer.php:910
+msgid "Remote server did not respond"
+msgstr "Uzak sunucu cevap vermedi"
+
+#: wordpress-importer.php:923
+msgid "Remote file is incorrect size"
+msgstr "Uzak dosyanın boyutu hatalı"
+
+#: wordpress-importer.php:934
+msgid "Remote file is too large, limit is %s"
+msgstr "Uzak dosya fazla büyük, limit %s"
+
+#: wordpress-importer.php:134 wordpress-importer.php:143
+#: wordpress-importer.php:194 wordpress-importer.php:198
+#: wordpress-importer.php:207
+msgid "Sorry, there has been an error."
+msgstr "Üzgünüz, bir hata oluştu."
+
+#: wordpress-importer.php:1130
+msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
+msgstr "Bir WordPress aktarım dosyasından <strong>yazıları, sayfaları, yorumları, özel alanları, kategorileri ve etiketleri</strong> içe aktarın."
+
+#. Plugin Name of the plugin/theme
+msgid "WordPress Importer"
+msgstr "WordPress aktarıcısı"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/wordpress-importer/"
+msgstr "http://wordpress.org/extend/plugins/wordpress-importer/"

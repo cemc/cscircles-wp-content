@@ -1,0 +1,331 @@
+# Translation of Themes - Twenty Seventeen in Turkish
+# This file is distributed under the same license as the Themes - Twenty Seventeen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-11-14 09:59:45+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: tr\n"
+"Project-Id-Version: Themes - Twenty Seventeen\n"
+
+#. Description of the theme
+msgid "Twenty Seventeen brings your site to life with header video and immersive featured images. With a focus on business sites, it features multiple sections on the front page as well as widgets, navigation and social menus, a logo, and more. Personalize its asymmetrical grid with a custom color scheme and showcase your multimedia content with post formats. Our default theme for 2017 works great in many languages, for any abilities, and on any device."
+msgstr "Yirmi Onyedi üst alan videosu ve sürükleyici öne çıkan görseller ile sitenizi canlandırır. Kurumsal siteler odakta olmak üzere ön sayfada bileşenler, dolaşım ve sosyal menüler, bir logo ve daha fazlasını içeren bir çok bölüm içerir. Asimetrik ızgara yapısını özel bir renk şeması ile kişiselleştirin ve ortam içeriklerinizi özel yazı tipleri ile gösterin. 2017 varsayılan temamız bir çok dilde, her türlü beceri ve tüm cihazlarda harika çalışır."
+
+#. Theme Name of the theme
+msgid "Twenty Seventeen"
+msgstr "Yirmi Onyedi"
+
+#: template-parts/footer/footer-widgets.php:18
+msgid "Footer"
+msgstr "Alt bölüm"
+
+#: functions.php:338
+msgid "Add widgets here to appear in your sidebar on blog posts and archive pages."
+msgstr "Blog yazılarınız ve arşiv satfalarınızın yan sütununda görüntülenmesi için bileşenlerinizi buradan ekleyin."
+
+#: sidebar.php:18 functions.php:336
+msgid "Blog Sidebar"
+msgstr "Blog yan sütunu"
+
+#: template-parts/navigation/navigation-top.php:31
+#: template-parts/header/site-branding.php:34
+msgid "Scroll down to content"
+msgstr "İçeriğe kaydır"
+
+#: functions.php:179
+msgctxt "Theme starter content"
+msgid "Coffee"
+msgstr "Kahve"
+
+#: functions.php:175
+msgctxt "Theme starter content"
+msgid "Sandwich"
+msgstr "Sandviç"
+
+#: functions.php:171
+msgctxt "Theme starter content"
+msgid "Espresso"
+msgstr "Ekspresso"
+
+#: inc/custom-header.php:128
+msgid "Pause background video"
+msgstr "Arka plan videosunu durdur"
+
+#: inc/custom-header.php:127
+msgid "Play background video"
+msgstr "Arka plan videosunu oynat"
+
+#: inc/template-tags.php:151
+msgid "Front Page Section %1$s Placeholder"
+msgstr "Ön sayfa bölümü %1$s yer tutucusu"
+
+#: inc/customizer.php:109
+msgid "When the two-column layout is assigned, the page title is in one column and content is in the other."
+msgstr "İki sütun yerleşimi atandığında sayfa başlığı bir kolonda, içerik diğer kolonda olur."
+
+#: single.php:34
+msgid "Next Post"
+msgstr "Sonraki Yazı"
+
+#: index.php:27
+msgid "Posts"
+msgstr "İletiler"
+
+#: inc/template-tags.php:89
+msgid "Tags"
+msgstr "Etiketler"
+
+#: inc/template-tags.php:85
+msgid "Categories"
+msgstr "Kategoriler"
+
+#. translators: used between list items, there is a space after the comma
+#: inc/template-tags.php:66
+msgid ", "
+msgstr ", "
+
+#. translators: %s: post date
+#: inc/template-tags.php:52
+msgid "<span class=\"screen-reader-text\">Posted on</span> %s"
+msgstr "<span class=\"screen-reader-text\">Yayım tarihi</span> %s"
+
+#. translators: %s: post author
+#: inc/template-tags.php:21
+msgid "by %s"
+msgstr "(%s)"
+
+#: inc/icon-functions.php:44
+msgid "Please define an SVG icon filename."
+msgstr "Lütfen SVN simge dosya ismini tanımlayın."
+
+#: inc/icon-functions.php:39
+msgid "Please define default parameters in the form of an array."
+msgstr "Lütfen bir dizi formunda varsayılan parametreleri tanımlayın."
+
+#: inc/customizer.php:143
+msgid "Select pages to feature in each area from the dropdowns. Add an image to a section by setting a featured image in the page editor. Empty sections will not be displayed."
+msgstr "Her bir alan için açılır menülerden öne çıkarılacak sayfaları seçin. Sayda düzenleyicide öne çıkan görsel ataması yaparak bölüm görsellerini ekleyin. Boş bölümler görüntülenmeyeceklerdir."
+
+#. translators: %d is the front page section number
+#: inc/customizer.php:142
+msgid "Front Page Section %d Content"
+msgstr "Ön sayfa bölümü %d içeriği"
+
+#: inc/customizer.php:112 inc/customizer.php:171
+msgid "Two Column"
+msgstr "İki sütun"
+
+#: inc/customizer.php:111 inc/customizer.php:170
+msgid "One Column"
+msgstr "Bir Sütun"
+
+#: inc/customizer.php:106
+msgid "Page Layout"
+msgstr "Sayfa yerleşimi"
+
+#: inc/customizer.php:89
+msgid "Theme Options"
+msgstr "Tema Seçenekleri"
+
+#: inc/customizer.php:64
+msgid "Custom"
+msgstr "Özel"
+
+#: inc/customizer.php:62
+msgid "Light"
+msgstr "Açık"
+
+#: inc/customizer.php:60
+msgid "Color Scheme"
+msgstr "Renk Şeması"
+
+#: inc/custom-header.php:56
+msgid "Default Header Image"
+msgstr "Varsayılan üst alan görseli"
+
+#: functions.php:360
+msgid "Footer 2"
+msgstr "Alt Kısım 2"
+
+#: functions.php:350 functions.php:362
+msgid "Add widgets here to appear in your footer."
+msgstr "Alt alanda gözükmek üzere buraya bileşenler ekleyin."
+
+#: functions.php:348
+msgid "Footer 1"
+msgstr "Alt Kısım 1"
+
+#: functions.php:289
+msgctxt "Libre Franklin font: on or off"
+msgid "on"
+msgstr "on"
+
+#: template-parts/navigation/navigation-top.php:12 functions.php:64
+#: functions.php:203
+msgid "Top Menu"
+msgstr "Üst menü"
+
+#: comments.php:62
+msgid "Reply"
+msgstr "Yanıtla"
+
+#: template-parts/post/content-none.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Görünen o ki bakındığınız her ne ise bulamıyoruz. Belki arama özelliği yardımcı olabilir."
+
+#: search.php:54
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Üzgünüz, arama terimlerinizle hiçbir şey eşleşmedi. Lütfen farklı anahtar kelimelerle tekrar deneyin."
+
+#: template-parts/post/content-none.php:24
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "İlk yazınızı yayımlamak için hazır mısınız? <a href=\"%1$s\">Buradan başlayın</a>."
+
+#: template-parts/post/content-none.php:17 search.php:21
+msgid "Nothing Found"
+msgstr "Hiçbir şey bulunamadı"
+
+#: single.php:33
+msgid "Previous Post"
+msgstr "Önceki Yazı"
+
+#: single.php:33 comments.php:71
+msgid "Previous"
+msgstr "Önceki"
+
+#: single.php:34 comments.php:72
+msgid "Next"
+msgstr "Sonraki"
+
+#: searchform.php:20
+msgctxt "submit button"
+msgid "Search"
+msgstr "Ara"
+
+#: searchform.php:19
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Ara &hellip;"
+
+#: searchform.php:17
+msgctxt "label"
+msgid "Search for:"
+msgstr "Ara:"
+
+#: search.php:19
+msgid "Search Results for: %s"
+msgstr "%s için arama sonuçları"
+
+#. translators: %s: Name of current post
+#: template-parts/page/content-front-page-panels.php:45
+#: template-parts/page/content-front-page.php:42
+#: template-parts/post/content-audio.php:84 template-parts/post/content.php:57
+#: template-parts/post/content-gallery.php:71
+#: template-parts/post/content-video.php:83
+#: template-parts/post/content-image.php:61 functions.php:390
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Okumaya devam et<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: inc/customizer.php:63
+msgid "Dark"
+msgstr "Koyu"
+
+#: inc/back-compat.php:39 inc/back-compat.php:52 inc/back-compat.php:70
+msgid "Twenty Seventeen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
+msgstr "Yirmi Onyedi en az WordPress 4.7 sürümünü gerektirir. Siz %s sürümünü kullanıyorsunuz. Lütfen yükseltip tekrar deneyin."
+
+#. translators: %s: Name of current post
+#: inc/template-tags.php:117
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Düzenle<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: template-parts/page/content-page.php:26
+#: template-parts/post/content-audio.php:91 template-parts/post/content.php:64
+#: template-parts/post/content-gallery.php:78
+#: template-parts/post/content-video.php:90
+#: template-parts/post/content-image.php:68
+msgid "Pages:"
+msgstr "Sayfalar"
+
+#: template-parts/navigation/navigation-top.php:17
+msgid "Menu"
+msgstr "Menü"
+
+#: header.php:28
+msgid "Skip to content"
+msgstr "İçeriğe geç"
+
+#: functions.php:482
+msgid "Collapse child menu"
+msgstr "Alt menüyü toparla"
+
+#: functions.php:481
+msgid "Expand child menu"
+msgstr "Alt menüyü genişlet"
+
+#: functions.php:65 functions.php:214
+msgid "Social Links Menu"
+msgstr "Sosyal bağlantılar menüsü"
+
+#: template-parts/footer/site-info.php:19
+msgid "Proudly powered by %s"
+msgstr "%s gururla sunar"
+
+#: footer.php:26
+msgid "Footer Social Links Menu"
+msgstr "Alt kısım sosyal bağlantılar menüsü"
+
+#: comments.php:82
+msgid "Comments are closed."
+msgstr "Yorumlar kapatıldı."
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s Reply to &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s Replies to &ldquo;%2$s&rdquo;"
+msgstr[0] "&ldquo;%2$s&rdquo; için %1$s yanıt"
+msgstr[1] "&ldquo;%2$s&rdquo; için %1$s yanıt"
+
+#. translators: %s: post title
+#: comments.php:37
+msgctxt "comments title"
+msgid "One Reply to &ldquo;%s&rdquo;"
+msgstr "&ldquo;%s&rdquo; için bir yanıt"
+
+#: archive.php:50 search.php:47 index.php:54
+msgid "Page"
+msgstr "Sayfa"
+
+#: 404.php:21
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Amanın! O sayfa bulunamadı."
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Burada bir şey bulamadık. Bir de aramayı denemek ister misiniz?"
+
+#: archive.php:48 search.php:45 index.php:52
+msgid "Previous page"
+msgstr "Önceki sayfa"
+
+#: archive.php:49 search.php:46 index.php:53
+msgid "Next page"
+msgstr "Sonraki sayfa"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress ekibi"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentyseventeen/"
+msgstr "https://wordpress.org/themes/twentyseventeen/"
+
+#. Author URI of the theme
+#: template-parts/footer/site-info.php:18
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"

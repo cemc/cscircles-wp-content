@@ -1,0 +1,374 @@
+# Translation of Themes - Twenty Sixteen in Lithuanian
+# This file is distributed under the same license as the Themes - Twenty Sixteen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2018-12-07 09:37:39+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: lt\n"
+"Project-Id-Version: Themes - Twenty Sixteen\n"
+
+#. Theme Name of the theme
+msgid "Twenty Sixteen"
+msgstr "Twenty Sixteen"
+
+#. Description of the theme
+msgid "Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere."
+msgstr "„Twenty Sixteen“ - modernizuotas visad populiaraus WordPress išdėstymo - horizontalios antraštinės dalies ir, esant poreikiui, dešininės šoninės juostos - variantas, puikiai tinkantis tiek tinklaraščiams, tiek kitokiems tinklalapiams. Ši tema turi spalvų pasirinkimo nustatymus su puikiomis standartinėmis spalvų schemomis, harmoningą tinklelį, kurtą pirmiausiai mobiliesiems įrenginiams, ir iki smulkmenų nugludintas detales. „Twenty Sixteen“ jūsų WordPress svetainę pavers gražia visuose įrenginiuose."
+
+#: functions.php:202
+msgid "Bright Red"
+msgstr "Ryškiai raudona"
+
+#: functions.php:197
+msgid "Dark Red"
+msgstr "Tamsiai raudona"
+
+#: functions.php:192
+msgid "Medium Brown"
+msgstr "Ruda"
+
+#: functions.php:187
+msgid "Dark Brown"
+msgstr "Tamsiai ruda"
+
+#: functions.php:182
+msgid "Light Blue"
+msgstr "Šviesiai mėlyna"
+
+#: functions.php:177
+msgid "Bright Blue"
+msgstr "Ryškiai mėlyna"
+
+#: functions.php:172
+msgid "Blue Gray"
+msgstr "Mėlynai pilka"
+
+#: functions.php:167
+msgid "White"
+msgstr "Balta"
+
+#: functions.php:162
+msgid "Light Gray"
+msgstr "Šviesiai pilka"
+
+#: functions.php:157
+msgid "Medium Gray"
+msgstr "Pilka"
+
+#: functions.php:152
+msgid "Dark Gray"
+msgstr "Tamsiai pilka"
+
+#. translators: %s: Name of current post
+#: template-parts/content.php:29 inc/template-tags.php:194
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Toliau skaityti<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#. translators: %s: Name of current post
+#: template-parts/content.php:53 template-parts/content-page.php:39
+#: template-parts/content-search.php:28 template-parts/content-search.php:43
+#: template-parts/content-single.php:47 image.php:88
+msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Taisyti<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: inc/customizer.php:345
+msgid "Red"
+msgstr "Raudona"
+
+#. translators: %s: post title
+#: comments.php:31
+msgctxt "comments title"
+msgid "One thought on &ldquo;%s&rdquo;"
+msgstr "Viena mintis apie „%s“"
+
+#: searchform.php:16
+msgctxt "submit button"
+msgid "Search"
+msgstr "Ieškoti"
+
+#: searchform.php:14
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Paieška &hellip;"
+
+#: searchform.php:13
+msgctxt "label"
+msgid "Search for:"
+msgstr "Ieškoti:"
+
+#: footer.php:30
+msgid "Footer Social Links Menu"
+msgstr "Poraštės meniu socialinėms nuorodoms"
+
+#: footer.php:17
+msgid "Footer Primary Menu"
+msgstr "Pagrindinis poraštės meniu"
+
+#: functions.php:267
+msgid "Add widgets here to appear in your sidebar."
+msgstr "Sudėkite valdiklius čia, ir jie atsiras Jūsų tinklalapio šoninėje srityje."
+
+#: template-parts/content.php:14
+msgid "Featured"
+msgstr "Siūloma"
+
+#: template-parts/content-none.php:28
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Deja, neradome to, ko Jūs ieškote. Galbūt pasisektų, jei pasinaudotumėte paieška."
+
+#: template-parts/content-none.php:23
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Deja, pagal Jūsų užklausą nieko nerasta. Pabandykite dar kartą, naudodami kitokius raktažodžius."
+
+#: template-parts/content-none.php:19
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Pasirengę paskelbti pirmąjį įrašą? <a href=\"%1$s\">Pradėkite čia</a>."
+
+#: template-parts/content-none.php:13
+msgid "Nothing Found"
+msgstr "Nepavyko rasti"
+
+#: template-parts/biography.php:33
+msgid "View all posts by %s"
+msgstr "Peržiūrėti visus įrašus, kuriuos parašė %s"
+
+#: template-parts/biography.php:28
+msgid "Author:"
+msgstr "Autorius:"
+
+#: single.php:42
+msgid "Previous post:"
+msgstr "Ankstesnis įrašas:"
+
+#: single.php:41
+msgid "Previous"
+msgstr "Ankstesnis"
+
+#: single.php:39
+msgid "Next post:"
+msgstr "Kitas įrašas:"
+
+#: single.php:38
+msgid "Next"
+msgstr "Kitas"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "Paieškos rezultatai skirti: %s"
+
+#: inc/template-tags.php:112
+msgctxt "Used before tag names."
+msgid "Tags"
+msgstr "Žymos"
+
+#: inc/template-tags.php:103
+msgctxt "Used before category names."
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: inc/template-tags.php:99 inc/template-tags.php:108
+msgctxt "Used between list items, there is a space after the comma."
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:83
+msgctxt "Used before publish date."
+msgid "Posted on"
+msgstr "Paskelbta"
+
+#: inc/template-tags.php:40
+msgctxt "Used before post format."
+msgid "Format"
+msgstr "Formatas"
+
+#: inc/template-tags.php:52
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "Komentuokite<span class=\"screen-reader-text\"> įrašą %s</span>"
+
+#: inc/template-tags.php:26
+msgctxt "Used before post author name."
+msgid "Author"
+msgstr "Autorius"
+
+#: functions.php:207 inc/customizer.php:355
+msgid "Yellow"
+msgstr "Geltona"
+
+#: inc/customizer.php:335
+msgid "Gray"
+msgstr "Pilka"
+
+#: inc/customizer.php:325
+msgid "Dark"
+msgstr "Tamsi"
+
+#: inc/customizer.php:221
+msgid "Main Text Color"
+msgstr "Pagrindinė teksto spalva"
+
+#: inc/customizer.php:315
+msgid "Default"
+msgstr "Numatytieji"
+
+#: inc/customizer.php:242
+msgid "Secondary Text Color"
+msgstr "Papildoma teksto spalva"
+
+#: inc/customizer.php:200
+msgid "Link Color"
+msgstr "Nuorodų spalva"
+
+#: inc/customizer.php:176
+msgid "Page Background Color"
+msgstr "Puslapio fono spalva"
+
+#: single.php:31 image.php:107
+msgctxt "Parent post link"
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
+msgstr "<span class=\"meta-nav\">Paskelbta įraše:</span><span class=\"post-title\">%title</span>"
+
+#: inc/back-compat.php:41 inc/back-compat.php:54 inc/back-compat.php:72
+msgid "Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again."
+msgstr "Twenty Sixteen reikalinga bent jau 4.4 WordPress versija. Jūsų naudojama versija yra %s. Atsinaujinkite ir pabandykite vėl."
+
+#: inc/customizer.php:153
+msgid "Base Color Scheme"
+msgstr "Pagrindinė spalvų schema"
+
+#: image.php:77
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "Pilnas dydis"
+
+#: template-parts/content.php:36 template-parts/content-page.php:24
+#: template-parts/content-single.php:26 image.php:58
+msgid "Pages:"
+msgstr "Puslapiai:"
+
+#: image.php:26
+msgid "Next Image"
+msgstr "Kitas paveikslėlis"
+
+#: image.php:25
+msgid "Previous Image"
+msgstr "Ankstesnis paveikslėlis"
+
+#: header.php:50
+msgid "Menu"
+msgstr "Meniu"
+
+#: header.php:28
+msgid "Skip to content"
+msgstr "Eiti prie turinio"
+
+#: functions.php:407
+msgid "expand child menu"
+msgstr "išskleisti sub-meniu"
+
+#: functions.php:408
+msgid "collapse child menu"
+msgstr "suskleisti sub-meniu"
+
+#. translators: If there are characters in your language that are not supported
+#. by Inconsolata, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:327
+msgctxt "Inconsolata font: on or off"
+msgid "on"
+msgstr "off"
+
+#: functions.php:277
+msgid "Content Bottom 1"
+msgstr "Turinys apačioje 1"
+
+#: functions.php:279 functions.php:291
+msgid "Appears at the bottom of the content on posts and pages."
+msgstr "Rodomas apačioje, po įrašų ir puslapių tekstu."
+
+#: functions.php:289
+msgid "Content Bottom 2"
+msgstr "Turinys apačioje 2"
+
+#. translators: If there are characters in your language that are not supported
+#. by Merriweather, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:317
+msgctxt "Merriweather font: on or off"
+msgid "on"
+msgstr "off"
+
+#. translators: If there are characters in your language that are not supported
+#. by Montserrat, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:322
+msgctxt "Montserrat font: on or off"
+msgid "on"
+msgstr "off"
+
+#: functions.php:265
+msgid "Sidebar"
+msgstr "Valdiklių sritis"
+
+#: functions.php:93 header.php:67
+msgid "Social Links Menu"
+msgstr "Socialinių nuorodų meniu"
+
+#: functions.php:92 header.php:54
+msgid "Primary Menu"
+msgstr "Pagrindinis meniu"
+
+#: footer.php:61
+msgid "Proudly powered by %s"
+msgstr "Sistema: %s"
+
+#: comments.php:71
+msgid "Comments are closed."
+msgstr "Komentarai uždrausti."
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:35
+msgctxt "comments title"
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s mintis apie „%2$s“"
+msgstr[1] "%1$s mintys apie „%2$s“"
+msgstr[2] "%1$s minčių apie „%2$s“"
+
+#: archive.php:53 template-parts/content.php:40
+#: template-parts/content-page.php:28 template-parts/content-single.php:30
+#: search.php:41 index.php:50 image.php:62
+msgid "Page"
+msgstr "Puslapis"
+
+#: archive.php:52 search.php:40 index.php:49
+msgid "Next page"
+msgstr "Tolesnis puslapis"
+
+#: archive.php:51 search.php:39 index.php:48
+msgid "Previous page"
+msgstr "Ankstesnis puslapis"
+
+#: 404.php:21
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Panašu, kad čia nieko nerasta. Pasinaudokite paieška."
+
+#: 404.php:17
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Deja, toks puslapis nerastas."
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentysixteen/"
+msgstr "https://wordpress.org/themes/twentysixteen/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress komanda"
+
+#. Author URI of the theme
+#: footer.php:60
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
