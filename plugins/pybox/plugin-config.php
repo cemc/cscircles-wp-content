@@ -19,6 +19,7 @@ define('CSCIRCLES_ASST_ID_MAP',
 // if you want logging to work, you must define one of the two
 // PYBOXLOG constants
 define ('ON_CEMC_SERVER', UWPHOME == 'https://cscircles.cemc.uwaterloo.ca/'
+        || UWPHOME == 'https://cemclinux11.math.uwaterloo.ca/'
         || UWPHOME == 'https://cscircles.cemc.uwaterloo.ca/dev/');
 if (ON_CEMC_SERVER) {
   // if you want some of these, remove them from the 'if' block

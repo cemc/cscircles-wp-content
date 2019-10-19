@@ -265,7 +265,7 @@ class Scoper
 
 			if ( in_array( $GLOBALS['pagenow'], $always_filter_uris ) || in_array( $GLOBALS['plugin_page_cr'], $always_filter_uris ) ) {
 				$disable_queryfilters = false;
-				break;
+				return;
 			}
 		}
 		
