@@ -24,8 +24,7 @@ on the lesson slugs; contact us for help if needed.)</div>";
     $s = $page->post_title;
     $m = preg_match('/^([0-9]+)([A-Za-z]?)\: (.*)$/', $s, $matches);
     if (class_exists('PLL_Base')) {
-      global $polylang;
-      $lang = $polylang->get_post_language($page->ID);
+      $lang = PLL()->model->get_post_language($page->ID);
       if ($lang != NULL) $lang = $lang->slug;
       else $lang = substr(get_bloginfo("language"), 0, 2);
     }

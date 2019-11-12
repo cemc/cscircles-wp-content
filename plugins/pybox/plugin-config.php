@@ -29,7 +29,8 @@ if (ON_CEMC_SERVER) {
 }
 
 // messages sent by CS Circles will have this return address:
-define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca'); 
+//define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cscircles.cemc.uwaterloo.ca'); 
+define('CSCIRCLES_BOUNCE_EMAIL', 'bounces@cemclinux11.math.uwaterloo.ca'); 
 /* this means they will bounce to the cemc.uwaterloo.ca site and not yours,
    and the links generated might not be correct.
 

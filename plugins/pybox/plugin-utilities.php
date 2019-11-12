@@ -87,7 +87,7 @@ function cscurl($desc) {
       if ($res=="") $res = $old; // there was no translation
     }
     else {
-      $lang = substr(get_user_meta( wp_get_current_user()->ID, "user_lang", true), 0, 2);
+      $lang = pll_current_language();
       if ($lang=='') $lang=substr(get_bloginfo("language"), 0, 2);
       if ($lang=='0') $lang=substr(get_bloginfo("language"), 0, 2);
       $res = pll_get_post($res, $lang);
@@ -155,6 +155,8 @@ function userIsAssistant() {
 }
 
 function userIsTranslator() {
+  // TODO: fix this to work without role scoped, which is deprecated
+  return false;
   if (!class_exists('PLL_Base')) return false;
   if (!is_user_logged_in()) return false;
   if (!ON_CEMC_SERVER) return false;

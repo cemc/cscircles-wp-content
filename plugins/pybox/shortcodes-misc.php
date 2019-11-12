@@ -66,10 +66,9 @@ add_shortcode('list-pybox-pages', 'list_pybox_pages');
 function list_pybox_pages($options, $content) {
   $out = get_pages(array('parent'=>0, 'status'=>'publish'));
   $links = array();
-  global $polylang;
   foreach ($out as $page) {
 
-    if ($polylang->model->get_translation('post', $page->ID, 'en') == $page->ID) { //english only
+    if (PLL()->model->get_translation('post', $page->ID, 'en') == $page->ID) { //english only
 
       $links[] = array("url"=>get_page_link( $page->ID), "title"=>$page->post_title);
       if (isSoft($_GET, 'export', 'Y')) {
