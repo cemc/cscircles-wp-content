@@ -3,7 +3,7 @@
   // this file contains things you might need to personalize
 
 define('PRODUCTION_LANGUAGES', serialize(array('en', 'fr', 'de', 'nl', 'lt', 'zh')));
-define('DEVELOPMENT_LANGUAGES', serialize(array('es', 'pl', 'tr')));
+define('DEVELOPMENT_LANGUAGES', serialize(array('pl', 'tr')));
 
 // user id of cscircles assistant for each language, defaults to dave/troy/sandy (0)
 // 2 should change
