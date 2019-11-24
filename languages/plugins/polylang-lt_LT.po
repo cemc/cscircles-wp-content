@@ -1,0 +1,1877 @@
+# Translation of Plugins - Polylang - Stable (latest release) in Lithuanian
+# This file is distributed under the same license as the Plugins - Polylang - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-08-18 14:24:03+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: lt\n"
+"Project-Id-Version: Plugins - Polylang - Stable (latest release)\n"
+
+#: settings/flags.php:156
+msgid "North Macedonia"
+msgstr "Šiaurės Makedonija"
+
+#: modules/wpml/settings-wpml.php:23
+msgid "Polylang's WPML compatibility mode"
+msgstr "Polylang režimas suderinamas su WPML"
+
+#. translators: %1$s is a date, %2$s is link start tag, %3$s is link end tag.
+#: settings/settings-licenses.php:156
+msgid "Your license key will expire soon! Precisely, it will expire on %1$s. %2$sRenew your license key today!%3$s."
+msgstr "Jūsų licencija greitai nustos galioti! Jei tiksliai - %1$s. %2$sAtnaujinkite šiandien!%3$s."
+
+#: settings/settings-module.php:233
+msgid "To enable this feature, you need Polylang Pro."
+msgstr "Norint įjungti šią funkciją, reikalingas Polylang Pro."
+
+#: admin/admin-classic-editor.php:309
+msgid "If you attempt to modify them anyway, your changes will not be saved."
+msgstr "Jei vistiek bandysite juos keisti, Jūsų pakeitimai nebus išsaugoti."
+
+#: admin/admin-classic-editor.php:307
+msgid "Some taxonomies or metadata may be synchronized with existing translations that you are not allowed to modify."
+msgstr "Kai kurios taksonomijos ir meta-duomenys gali būti sinchronizuojami su esamais vertimais, kurių neleidžiama keisti."
+
+#. translators: %s is a comma separated list of native language names
+#: admin/admin-static-pages.php:221
+msgid "You must translate your static front page in %s."
+msgstr "Turite išversti statinį pradinį puslapį: %s"
+
+#: admin/admin-base.php:183 admin/admin-base.php:191
+msgid "You are about to overwrite an existing translation. Are you sure you want to proceed?"
+msgstr "Jūs bandote pakeisti egzistuojantį vertimą. Ar tikrai norite tęsti?"
+
+#. Author of the plugin
+msgid "WP SYNTEX"
+msgstr "WP SYNTEX"
+
+#. translators: accessibility text
+#: admin/admin-notices.php:159
+msgid "Dismiss this notice."
+msgstr "Nerodyti"
+
+#: include/filters.php:356
+msgid "User"
+msgstr "Vartotojas"
+
+#. translators: %s is a language native name
+#: include/filters.php:347
+msgid "User description - %s"
+msgstr "Vartotojo aprašymas - %s"
+
+#: include/filters.php:323
+msgid "Translated user descriptions"
+msgstr "Išversti vartotojų aprašymai"
+
+#: settings/flags.php:231
+msgid "Tibet"
+msgstr "Tibetas"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://polylang.pro"
+msgstr "https://polylang.pro"
+
+#: settings/settings-module.php:235
+msgid "Upgrade now."
+msgstr "Pirkti dabar."
+
+#. translators: %s is a date
+#: settings/settings-licenses.php:164
+msgid "Your license key expires on %s."
+msgstr "Jūsų licencija baigia galioti %s."
+
+#: settings/settings-licenses.php:151
+msgid "The license key never expires."
+msgstr "Jūsų licencija neturi galiojimo pabaigos."
+
+#: settings/settings-licenses.php:23
+msgid "License keys"
+msgstr "Licencijos raktai"
+
+#: install/plugin-updater.php:479
+msgid "Error"
+msgstr "Klaida "
+
+#. translators: %1$s is link start tag, %2$s is link end tag.
+#: settings/view-about.php:23
+msgid "Support and extra features are available to %1$sPolylang Pro%2$s users."
+msgstr "Pagalba ir papildomos funkcijos prieinamos tik %1$sPolylang Pro%2$s vartotojams."
+
+#: modules/translate-slugs/settings-translate-slugs.php:22
+msgid "Allows to translate custom post types and taxonomies slugs in urls."
+msgstr "Leidžia išversti sukurtų įrašų tipų ir taksonomijų dalis nuorodose."
+
+#: modules/translate-slugs/settings-translate-slugs.php:21
+msgid "Translate slugs"
+msgstr "Išversti nuorodų dalis"
+
+#: modules/share-slug/settings-share-slug.php:23
+msgid "Allows to share the same url slug across languages for posts and terms."
+msgstr "Leidžia naudoti tas pačias įrašų ir terminų nuorodų dalis skirtingose kalbose."
+
+#: modules/share-slug/settings-share-slug.php:22
+msgid "Share slugs"
+msgstr "Naudoti tas pačias nuorodų dalis"
+
+#: install/plugin-updater.php:479
+msgid "You do not have permission to install plugin updates"
+msgstr "Jūs negalite diegti įskiepių atnaujinimų"
+
+#. translators: %1$s plugin name, %3$s plugin version, %2$s and %5$s are link
+#. start tags, %4$s and %6$s are link end tags.
+#: install/plugin-updater.php:241
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s."
+msgstr "Yra nauja %1$s versija. %2$sPeržiūrėti jos %3$s informaciją%4$s arba %5$satnaujinti dabar%6$s."
+
+#. translators: %1$s plugin name, %3$s plugin version, %2$s is link start tag,
+#. %4$s is link end tag.
+#: install/plugin-updater.php:232
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr "Yra nauja %1$s versija. %2$sPeržiūrėti jos %3$s informaciją%4$s."
+
+#. translators: Post calendar label. 1: Date
+#: include/widget-calendar.php:236
+msgid "Posts published on %s"
+msgstr "Įrašai paskelbti %s"
+
+#: include/widget-calendar.php:234
+msgctxt "daily archives date format"
+msgid "F j, Y"
+msgstr "F j, Y"
+
+#: settings/view-tab-lang.php:143
+msgid "Choose a flag for the language."
+msgstr "Parinkti kalbai vėliavą."
+
+#. translators: accessibility text
+#: settings/table-string.php:312
+msgid "Filter by group"
+msgstr "Filtruoti pagal grupę"
+
+#. translators:  accessibility text, %s is a string potentially in any language
+#: settings/table-string.php:73
+msgid "Select %s"
+msgstr "Pasirinkti %s"
+
+#: settings/table-settings.php:147
+msgid "Description"
+msgstr "Aprašymas"
+
+#: settings/table-settings.php:146
+msgid "Module"
+msgstr "Modulis"
+
+#: settings/settings-module.php:66
+msgid "Save Changes"
+msgstr "Išsaugoti pakeitimus"
+
+#: settings/settings-module.php:65
+msgid "Cancel"
+msgstr "Atšaukti"
+
+#: settings/table-languages.php:87 settings/table-languages.php:202
+msgid "Edit this language"
+msgstr "Redaguoti kalbą"
+
+#: settings/settings.php:335
+msgid "You can set them all to the default language."
+msgstr "Nustatyti viskam numatytąją kalbą"
+
+#: settings/settings.php:333
+msgid "There are posts, pages, categories or tags without language."
+msgstr "Yra įrašų, puslapių, kategorijų ir žymų, kuriems nepriskirta kalba."
+
+#. translators: %s is an url
+#: settings/settings-url.php:295
+msgid "Polylang was unable to access the %s URL. Please check that the URL is valid."
+msgstr "Polylang negali pasiekti URL %s. Patikrinkite ar nuoroda veikianti."
+
+#. translators: %s is a native language name
+#: settings/settings-url.php:240
+msgid "Please enter a valid URL for %s."
+msgstr "Įrašykite veikiančią nuorodą į %s."
+
+#: settings/settings-tools.php:23
+msgid "Decide whether to remove all data when deleting Polylang."
+msgstr "Nuspręskite, ar norite ištrinti visus duomenis, trindami Polylang."
+
+#: settings/table-languages.php:110
+msgid "Select as default language"
+msgstr "Pasirinkti kaip numatytąją kalbą"
+
+#. translators: accessibility text, %s is a native language name
+#: settings/table-languages.php:113
+msgid "Choose %s as default language"
+msgstr "Pasirinkti %s kaip numatytąją kalbą"
+
+#: settings/table-languages.php:208
+msgid "Delete this language and all its associated data"
+msgstr "Trinti šią kalbą ir visus susijusius duomenis"
+
+#: settings/settings-url.php:23
+msgid "Decide how your URLs will look like."
+msgstr "Nustatykite kaip atrodys Jūsų nuorodos."
+
+#: settings/settings-module.php:61
+msgid "Deactivated"
+msgstr "Išjungta"
+
+#: settings/settings-tools.php:22
+msgid "Tools"
+msgstr "Įrankiai"
+
+#: settings/settings-module.php:56
+msgid "Activate this module"
+msgstr "Įjungti modulį"
+
+#: settings/settings-module.php:44
+msgid "Configure this module"
+msgstr "Konfigūruoti modulį"
+
+#: settings/settings-module.php:52 settings/settings-licenses.php:148
+msgid "Deactivate"
+msgstr "Išjungti"
+
+#: settings/settings-module.php:50
+msgid "Deactivate this module"
+msgstr "Išjungti modulį"
+
+#: settings/settings-cpt.php:24
+msgid "Activate languages and translations management for the custom post types and the taxonomies."
+msgstr "Aktyvuoti kalbų ir vertimo valdymą sukurtiems įrašų tipams ir taksonomijoms."
+
+#: settings/settings-cpt.php:23
+msgid "Custom post types and Taxonomies"
+msgstr "Sukurti įrašų tipai ir taksonomijos"
+
+#: settings/flags.php:263
+msgid "Zimbabwe"
+msgstr "Zimbabvė"
+
+#: settings/flags.php:262
+msgid "Zambia"
+msgstr "Zambija"
+
+#: settings/flags.php:259
+msgid "Yemen"
+msgstr "Jemenas"
+
+#: settings/flags.php:260
+msgid "Mayotte"
+msgstr "Majotas"
+
+#: settings/flags.php:261
+msgid "South Africa"
+msgstr "Pietų Afrika"
+
+#: settings/flags.php:258
+msgid "Western Samoa"
+msgstr "Vakarų Samoa"
+
+#: settings/flags.php:255
+msgid "Vanuatu"
+msgstr "Vanuatu"
+
+#: settings/flags.php:256
+msgid "Wales"
+msgstr "Velsas"
+
+#: settings/flags.php:257
+msgid "Wallis and Futuna"
+msgstr "Volisas ir Futūna"
+
+#: settings/flags.php:254
+msgid "Vietnam"
+msgstr "Vietnamas"
+
+#: settings/flags.php:249
+msgid "Saint Vincent and the Grenadines"
+msgstr "Sent Vinsentas ir Grenadinai"
+
+#: settings/flags.php:250
+msgid "Venezuela"
+msgstr "Venesuela"
+
+#: settings/flags.php:251
+msgid "Veneto"
+msgstr "Venetas"
+
+#: settings/flags.php:252
+msgid "British Virgin Islands"
+msgstr "Britų Mergelių salos"
+
+#: settings/flags.php:253
+msgid "United States Virgin Islands"
+msgstr "Mergelių salos"
+
+#: settings/flags.php:246
+msgid "Uruguay"
+msgstr "Urugvajus"
+
+#: settings/flags.php:247
+msgid "Uzbekistan"
+msgstr "Uzbekistanas"
+
+#: settings/flags.php:248
+msgid "Vatican"
+msgstr "Vatikanas"
+
+#: settings/flags.php:243
+msgid "Ukraine"
+msgstr "Ukraina"
+
+#: settings/flags.php:244
+msgid "Uganda"
+msgstr "Uganda"
+
+#: settings/flags.php:245
+msgid "United States"
+msgstr "Jungtinės Valstijos"
+
+#: settings/flags.php:239
+msgid "Trinidad and Tobago"
+msgstr "Trinidadas ir Tobagas"
+
+#: settings/flags.php:240
+msgid "Tuvalu"
+msgstr "Tuvalu"
+
+#: settings/flags.php:241
+msgid "Taiwan"
+msgstr "Taivanas"
+
+#: settings/flags.php:242
+msgid "Tanzania"
+msgstr "Tanzanija"
+
+#: settings/flags.php:236
+msgid "Tunisia"
+msgstr "Tunisas"
+
+#: settings/flags.php:237
+msgid "Tonga"
+msgstr "Tonga"
+
+#: settings/flags.php:238
+msgid "Turkey"
+msgstr "Turkija"
+
+#: settings/flags.php:235
+msgid "Turkmenistan"
+msgstr "Turkmėnija"
+
+#: settings/flags.php:232
+msgid "Tajikistan"
+msgstr "Tadžikistanas"
+
+#: settings/flags.php:233
+msgid "Tokelau"
+msgstr "Tokelau"
+
+#: settings/flags.php:234
+msgid "Timor-Leste"
+msgstr "Rytų Timoras"
+
+#: settings/flags.php:227
+msgid "Chad"
+msgstr "Čadas"
+
+#: settings/flags.php:228
+msgid "French Southern Territories"
+msgstr "Prancūzijos Pietų Sritys"
+
+#: settings/flags.php:229
+msgid "Togo"
+msgstr "Togas"
+
+#: settings/flags.php:230
+msgid "Thailand"
+msgstr "Tailandas"
+
+#: settings/flags.php:224
+msgid "Syria"
+msgstr "Sirija"
+
+#: settings/flags.php:225
+msgid "Swaziland"
+msgstr "Svazilendas"
+
+#: settings/flags.php:226
+msgid "Turks and Caicos Islands"
+msgstr "Terksas ir Kaikosas"
+
+#: settings/flags.php:221
+msgid "South Sudan"
+msgstr "Pietų Sudanas"
+
+#: settings/flags.php:220
+msgid "Suriname"
+msgstr "Surinamas"
+
+#: settings/flags.php:223
+msgid "El Salvador"
+msgstr "Salvadoras"
+
+#: settings/flags.php:222
+msgid "São Tomé and Príncipe"
+msgstr "San Tomė ir Prinsipė"
+
+#: settings/flags.php:218
+msgid "Senegal"
+msgstr "Senegalas"
+
+#: settings/flags.php:219
+msgid "Somalia"
+msgstr "Somalis"
+
+#: settings/flags.php:214
+msgid "Slovenia"
+msgstr "Slovėnija"
+
+#: settings/flags.php:215
+msgid "Slovakia"
+msgstr "Slovakija"
+
+#: settings/flags.php:216
+msgid "Sierra Leone"
+msgstr "Siera Leonė"
+
+#: settings/flags.php:217
+msgid "San Marino"
+msgstr "San Marinas"
+
+#: settings/flags.php:213
+msgid "Saint Helena"
+msgstr "Šv. Elenos Sala"
+
+#: settings/flags.php:211
+msgid "Sweden"
+msgstr "Švedija"
+
+#: settings/flags.php:212
+msgid "Singapore"
+msgstr "Singapūras"
+
+#: settings/flags.php:208
+msgid "Seychelles"
+msgstr "Seišeliai"
+
+#: settings/flags.php:209
+msgid "Scotland"
+msgstr "Škotija"
+
+#: settings/flags.php:210
+msgid "Sudan"
+msgstr "Sudanas"
+
+#: settings/flags.php:207
+msgid "Solomon Islands"
+msgstr "Saliamono Salos"
+
+#: settings/flags.php:204
+msgid "Russia"
+msgstr "Rusija"
+
+#: settings/flags.php:205
+msgid "Rwanda"
+msgstr "Ruanda"
+
+#: settings/flags.php:206
+msgid "Saudi Arabia"
+msgstr "Saudo Arabija"
+
+#: settings/flags.php:201
+msgid "Quebec"
+msgstr "Kvebekas"
+
+#: settings/flags.php:202
+msgid "Romania"
+msgstr "Rumunija"
+
+#: settings/flags.php:203
+msgid "Serbia"
+msgstr "Serbija"
+
+#: settings/flags.php:198
+msgid "Belau"
+msgstr "Palau"
+
+#: settings/flags.php:199
+msgid "Paraguay"
+msgstr "Paragvajus"
+
+#: settings/flags.php:200
+msgid "Qatar"
+msgstr "Kataras"
+
+#: settings/flags.php:197
+msgid "Portugal"
+msgstr "Portugalija"
+
+#: settings/flags.php:196
+msgid "Palestinian Territory"
+msgstr "Palestinos teritorija"
+
+#: settings/flags.php:193
+msgid "Saint Pierre and Miquelon"
+msgstr "Sen Pjeras ir Mikelonas"
+
+#: settings/flags.php:194
+msgid "Pitcairn"
+msgstr "Pitkernas"
+
+#: settings/flags.php:195
+msgid "Puerto Rico"
+msgstr "Puerto Rikas"
+
+#: settings/flags.php:190
+msgid "Philippines"
+msgstr "Filipinai"
+
+#: settings/flags.php:191
+msgid "Pakistan"
+msgstr "Pakistanas"
+
+#: settings/flags.php:192
+msgid "Poland"
+msgstr "Lenkija"
+
+#: settings/flags.php:187
+msgid "Peru"
+msgstr "Peru"
+
+#: settings/flags.php:188
+msgid "French Polynesia"
+msgstr "Prancūzijos Polinezija"
+
+#: settings/flags.php:189
+msgid "Papua New Guinea"
+msgstr "Papua Naujoji Gvinėja"
+
+#: settings/flags.php:183
+msgid "New Zealand"
+msgstr "Naujoji Zelandija"
+
+#: settings/flags.php:184
+msgid "Occitania"
+msgstr "Oksitanija"
+
+#: settings/flags.php:185
+msgid "Oman"
+msgstr "Omanas"
+
+#: settings/flags.php:186
+msgid "Panama"
+msgstr "Panama"
+
+#: settings/flags.php:181
+msgid "Nauru"
+msgstr "Nauru"
+
+#: settings/flags.php:182
+msgid "Niue"
+msgstr "Niujė"
+
+#: settings/flags.php:178
+msgid "Netherlands"
+msgstr "Nyderlandai"
+
+#: settings/flags.php:179
+msgid "Norway"
+msgstr "Norvegija"
+
+#: settings/flags.php:180
+msgid "Nepal"
+msgstr "Nepalas"
+
+#: settings/flags.php:174
+msgid "Niger"
+msgstr "Nigeris"
+
+#: settings/flags.php:176
+msgid "Nigeria"
+msgstr "Nigerija"
+
+#: settings/flags.php:177
+msgid "Nicaragua"
+msgstr "Nikaragva"
+
+#: settings/flags.php:175
+msgid "Norfolk Island"
+msgstr "Norfolkas"
+
+#: settings/flags.php:170
+msgid "Malaysia"
+msgstr "Malaizija"
+
+#: settings/flags.php:171
+msgid "Mozambique"
+msgstr "Mozambikas"
+
+#: settings/flags.php:172
+msgid "Namibia"
+msgstr "Namibija"
+
+#: settings/flags.php:173
+msgid "New Caledonia"
+msgstr "Naujoji Kaledonija"
+
+#: settings/flags.php:167
+msgid "Maldives"
+msgstr "Maldyvai"
+
+#: settings/flags.php:168
+msgid "Malawi"
+msgstr "Malavis"
+
+#: settings/flags.php:169
+msgid "Mexico"
+msgstr "Meksika"
+
+#: settings/flags.php:166
+msgid "Mauritius"
+msgstr "Mauricijus"
+
+#: settings/flags.php:164
+msgid "Montserrat"
+msgstr "Montseratas"
+
+#: settings/flags.php:165
+msgid "Malta"
+msgstr "Malta"
+
+#: settings/flags.php:163
+msgid "Mauritania"
+msgstr "Mauritanija"
+
+#: settings/flags.php:162
+msgid "Martinique"
+msgstr "Martinika"
+
+#: settings/flags.php:161
+msgid "Northern Mariana Islands"
+msgstr "Šiaurės Marianos Salos"
+
+#: settings/flags.php:160
+msgid "Macao"
+msgstr "Makao"
+
+#: settings/flags.php:158
+msgid "Myanmar"
+msgstr "Mianmaras"
+
+#: settings/flags.php:159
+msgid "Mongolia"
+msgstr "Mongolija"
+
+#: settings/flags.php:155
+msgid "Marshall Islands"
+msgstr "Maršalo salos"
+
+#: settings/flags.php:157
+msgid "Mali"
+msgstr "Malis"
+
+#: settings/flags.php:152
+msgid "Moldova"
+msgstr "Moldova"
+
+#: settings/flags.php:153
+msgid "Montenegro"
+msgstr "Juodkalnija"
+
+#: settings/flags.php:154
+msgid "Madagascar"
+msgstr "Madagaskaras"
+
+#: settings/flags.php:149
+msgid "Libya"
+msgstr "Libija"
+
+#: settings/flags.php:150
+msgid "Morocco"
+msgstr "Marokas"
+
+#: settings/flags.php:151
+msgid "Monaco"
+msgstr "Monakas"
+
+#: settings/flags.php:148
+msgid "Latvia"
+msgstr "Latvija"
+
+#: settings/flags.php:147
+msgid "Luxembourg"
+msgstr "Liuksemburgas"
+
+#: settings/flags.php:144
+msgid "Liberia"
+msgstr "Liberija"
+
+#: settings/flags.php:145
+msgid "Lesotho"
+msgstr "Lesotas"
+
+#: settings/flags.php:146
+msgid "Lithuania"
+msgstr "Lietuva"
+
+#: settings/flags.php:141
+msgid "Saint Lucia"
+msgstr "Sent Lusija"
+
+#: settings/flags.php:142
+msgid "Liechtenstein"
+msgstr "Lichtenšteinas"
+
+#: settings/flags.php:143
+msgid "Sri Lanka"
+msgstr "Šri Lanka"
+
+#: settings/flags.php:138
+msgid "Kazakhstan"
+msgstr "Kazachstanas"
+
+#: settings/flags.php:139
+msgid "Laos"
+msgstr "Laosas"
+
+#: settings/flags.php:140
+msgid "Lebanon"
+msgstr "Libanas"
+
+#: settings/flags.php:135
+msgid "Kurdistan"
+msgstr "Kurdistanas"
+
+#: settings/flags.php:136
+msgid "Kuwait"
+msgstr "Kuveitas"
+
+#: settings/flags.php:137
+msgid "Cayman Islands"
+msgstr "Kaimanų salos"
+
+#: settings/flags.php:132
+msgid "Saint Kitts and Nevis"
+msgstr "Sent Kitsas ir Nevis"
+
+#: settings/flags.php:133
+msgid "North Korea"
+msgstr "Šiaurės Korėja"
+
+#: settings/flags.php:134
+msgid "South Korea"
+msgstr "Pietų Korėja"
+
+#: settings/flags.php:129
+msgid "Cambodia"
+msgstr "Kambodža"
+
+#: settings/flags.php:130
+msgid "Kiribati"
+msgstr "Kiribatis"
+
+#: settings/flags.php:131
+msgid "Comoros"
+msgstr "Komorų salos"
+
+#: settings/flags.php:125
+msgid "Jordan"
+msgstr "Jordanija"
+
+#: settings/flags.php:126
+msgid "Japan"
+msgstr "Japonija"
+
+#: settings/flags.php:127
+msgid "Kenya"
+msgstr "Kenija"
+
+#: settings/flags.php:128
+msgid "Kyrgyzstan"
+msgstr "Kirgizija"
+
+#: settings/flags.php:124
+msgid "Jamaica"
+msgstr "Jamaika"
+
+#: settings/flags.php:120
+msgid "Iraq"
+msgstr "Irakas"
+
+#: settings/flags.php:121
+msgid "Iran"
+msgstr "Iranas"
+
+#: settings/flags.php:122
+msgid "Iceland"
+msgstr "Islandija"
+
+#: settings/flags.php:123
+msgid "Italy"
+msgstr "Italija"
+
+#: settings/flags.php:117
+msgid "Israel"
+msgstr "Izraelis"
+
+#: settings/flags.php:118
+msgid "India"
+msgstr "Indija"
+
+#: settings/flags.php:119
+msgid "British Indian Ocean Territory"
+msgstr "Indijos Vandenyno Britų Sritis"
+
+#: settings/flags.php:113
+msgid "Haiti"
+msgstr "Haitis"
+
+#: settings/flags.php:114
+msgid "Hungary"
+msgstr "Vengrija"
+
+#: settings/flags.php:115
+msgid "Indonesia"
+msgstr "Indonezija"
+
+#: settings/flags.php:116
+msgid "Republic of Ireland"
+msgstr "Airija"
+
+#: settings/flags.php:110
+msgid "Heard Island and McDonald Islands"
+msgstr "Herdas ir Makdonaldas"
+
+#: settings/flags.php:111
+msgid "Honduras"
+msgstr "Hondūras"
+
+#: settings/flags.php:112
+msgid "Croatia"
+msgstr "Kroatija"
+
+#: settings/flags.php:109
+msgid "Hong Kong"
+msgstr "Honkongas"
+
+#: settings/flags.php:107
+msgid "Guinea-Bissau"
+msgstr "Gvinėja Bisau"
+
+#: settings/flags.php:108
+msgid "Guyana"
+msgstr "Gajana"
+
+#: settings/flags.php:106
+msgid "Guam"
+msgstr "Guamas"
+
+#: settings/flags.php:104
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Pietų Džordžijos ir Pietų Sandvičo Salos"
+
+#: settings/flags.php:105
+msgid "Guatemala"
+msgstr "Gvatemala"
+
+#: settings/flags.php:102
+msgid "Equatorial Guinea"
+msgstr "Pusiaujo Gvinėja"
+
+#: settings/flags.php:103
+msgid "Greece"
+msgstr "Graikija"
+
+#: settings/flags.php:99
+msgid "Gambia"
+msgstr "Gambija"
+
+#: settings/flags.php:100
+msgid "Guinea"
+msgstr "Gvinėja"
+
+#: settings/flags.php:101
+msgid "Guadeloupe"
+msgstr "Gvadelupė"
+
+#: settings/flags.php:97
+msgid "Gibraltar"
+msgstr "Gibraltaras"
+
+#: settings/flags.php:98
+msgid "Greenland"
+msgstr "Grenlandija"
+
+#: settings/flags.php:96
+msgid "Ghana"
+msgstr "Gana"
+
+#: settings/flags.php:95
+msgid "Georgia"
+msgstr "Sakartvelas"
+
+#: settings/flags.php:92
+msgid "Galicia"
+msgstr "Galicija"
+
+#: settings/flags.php:93
+msgid "United Kingdom"
+msgstr "Jungtinė Karalystė"
+
+#: settings/flags.php:94
+msgid "Grenada"
+msgstr "Grenada"
+
+#: settings/flags.php:89
+msgid "Faroe Islands"
+msgstr "Farerų salos"
+
+#: settings/flags.php:90
+msgid "France"
+msgstr "Prancūzija"
+
+#: settings/flags.php:91
+msgid "Gabon"
+msgstr "Gabonas"
+
+#: settings/flags.php:87
+msgid "Falkland Islands"
+msgstr "Folklendas"
+
+#: settings/flags.php:88
+msgid "Micronesia"
+msgstr "Mikronezija"
+
+#: settings/flags.php:83
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: settings/flags.php:84
+msgid "Ethiopia"
+msgstr "Etiopija"
+
+#: settings/flags.php:85
+msgid "Finland"
+msgstr "Suomija"
+
+#: settings/flags.php:86
+msgid "Fiji"
+msgstr "Fidžis"
+
+#: settings/flags.php:80
+msgid "England"
+msgstr "Anglija"
+
+#: settings/flags.php:81
+msgid "Eritrea"
+msgstr "Eritrėja"
+
+#: settings/flags.php:82
+msgid "Spain"
+msgstr "Ispanija"
+
+#: settings/flags.php:77
+msgid "Estonia"
+msgstr "Estija"
+
+#: settings/flags.php:78
+msgid "Egypt"
+msgstr "Egiptas"
+
+#: settings/flags.php:79
+msgid "Western Sahara"
+msgstr "Vakarų Sachara"
+
+#: settings/flags.php:74
+msgid "Dominican Republic"
+msgstr "Dominika"
+
+#: settings/flags.php:75
+msgid "Algeria"
+msgstr "Alžyras"
+
+#: settings/flags.php:76
+msgid "Ecuador"
+msgstr "Ekvadoras"
+
+#: settings/flags.php:73
+msgid "Dominica"
+msgstr "Dominika"
+
+#: settings/flags.php:72
+msgid "Denmark"
+msgstr "Danija"
+
+#: settings/flags.php:70
+msgid "Germany"
+msgstr "Vokietija"
+
+#: settings/flags.php:71
+msgid "Djibouti"
+msgstr "Džibutis"
+
+#: settings/flags.php:67
+msgid "Christmas Island"
+msgstr "Kalėdų Sala"
+
+#: settings/flags.php:68
+msgid "Cyprus"
+msgstr "Kipras"
+
+#: settings/flags.php:69
+msgid "Czech Republic"
+msgstr "Čekija"
+
+#: settings/flags.php:65
+msgid "Cuba"
+msgstr "Kuba"
+
+#: settings/flags.php:66
+msgid "Cape Verde"
+msgstr "Žaliasis Kyšulys"
+
+#: settings/flags.php:62
+msgid "China"
+msgstr "Kinija"
+
+#: settings/flags.php:63
+msgid "Colombia"
+msgstr "Kolumbija"
+
+#: settings/flags.php:64
+msgid "Costa Rica"
+msgstr "Kosta Rika"
+
+#: settings/flags.php:60
+msgid "Chile"
+msgstr "Čilė"
+
+#: settings/flags.php:61
+msgid "Cameroon"
+msgstr "Kamerūnas"
+
+#: settings/flags.php:58
+msgid "Ivory Coast"
+msgstr "Dramblio Kaulo Krantas"
+
+#: settings/flags.php:59
+msgid "Cook Islands"
+msgstr "Kuko Salos"
+
+#: settings/flags.php:56
+msgid "Congo"
+msgstr "Kongas"
+
+#: settings/flags.php:55
+msgid "Central African Republic"
+msgstr "Centrinės Afrikos Respublika"
+
+#: settings/flags.php:57
+msgid "Switzerland"
+msgstr "Šveicarija"
+
+#: settings/flags.php:54
+msgid "Democratic Republic of the Congo"
+msgstr "Kongo Demokratinė Respublika"
+
+#: settings/flags.php:51
+msgid "Canada"
+msgstr "Kanada"
+
+#: settings/flags.php:52
+msgid "Catalonia"
+msgstr "Katalonija"
+
+#: settings/flags.php:53
+msgid "Cocos"
+msgstr "Kokosų (Kilingo) Salos"
+
+#: settings/flags.php:49
+msgid "Belarus"
+msgstr "Baltarusija"
+
+#: settings/flags.php:50
+msgid "Belize"
+msgstr "Belizas"
+
+#: settings/flags.php:46
+msgid "Bahamas"
+msgstr "Bahamai"
+
+#: settings/flags.php:47
+msgid "Bhutan"
+msgstr "Butanas"
+
+#: settings/flags.php:48
+msgid "Botswana"
+msgstr "Botsvana"
+
+#: settings/flags.php:44
+msgid "Bolivia"
+msgstr "Bolivija"
+
+#: settings/flags.php:45
+msgid "Brazil"
+msgstr "Brazilija"
+
+#: settings/flags.php:43
+msgid "Brunei"
+msgstr "Brunėjus"
+
+#: settings/flags.php:42
+msgid "Bermuda"
+msgstr "Bermudai"
+
+#: settings/flags.php:40
+msgid "Burundi"
+msgstr "Burundis"
+
+#: settings/flags.php:41
+msgid "Benin"
+msgstr "Beninas"
+
+#: settings/flags.php:37
+msgid "Burkina Faso"
+msgstr "Burkina Fasas"
+
+#: settings/flags.php:38
+msgid "Bulgaria"
+msgstr "Bulgarija"
+
+#: settings/flags.php:39
+msgid "Bahrain"
+msgstr "Bahreinas"
+
+#: settings/flags.php:35
+msgid "Bangladesh"
+msgstr "Bangladešas"
+
+#: settings/flags.php:36
+msgid "Belgium"
+msgstr "Belgija"
+
+#: settings/flags.php:34
+msgid "Barbados"
+msgstr "Barbadosas"
+
+#: settings/flags.php:30
+msgid "Åland Islands"
+msgstr "Alandai"
+
+#: settings/flags.php:31
+msgid "Azerbaijan"
+msgstr "Azerbaidžanas"
+
+#: settings/flags.php:32
+msgid "Bosnia and Herzegovina"
+msgstr "Bosnija ir Hercegovina"
+
+#: settings/flags.php:33
+msgid "Basque Country"
+msgstr "Baskija"
+
+#: settings/flags.php:29
+msgid "Aruba"
+msgstr "Aruba"
+
+#: settings/flags.php:28
+msgid "Australia"
+msgstr "Australija"
+
+#: settings/flags.php:25
+msgid "Arab league"
+msgstr "Arabų lyga"
+
+#: settings/flags.php:26
+msgid "American Samoa"
+msgstr "Amerikos Samoa"
+
+#: settings/flags.php:27
+msgid "Austria"
+msgstr "Austrija"
+
+#: settings/flags.php:22
+msgid "Netherlands Antilles"
+msgstr "Nyderlandų Antilai"
+
+#: settings/flags.php:23
+msgid "Angola"
+msgstr "Angola"
+
+#: settings/flags.php:24
+msgid "Argentina"
+msgstr "Argentina"
+
+#: settings/flags.php:20
+msgid "Albania"
+msgstr "Albanija"
+
+#: settings/flags.php:21
+msgid "Armenia"
+msgstr "Armėnija"
+
+#: settings/flags.php:17
+msgid "Afghanistan"
+msgstr "Afganistanas"
+
+#: settings/flags.php:18
+msgid "Antigua and Barbuda"
+msgstr "Antigva ir Barbuda"
+
+#: settings/flags.php:19
+msgid "Anguilla"
+msgstr "Angilija"
+
+#: settings/flags.php:16
+msgid "United Arab Emirates"
+msgstr "Jungtiniai Arabų Emiratai"
+
+#: modules/wpml/settings-wpml.php:22
+msgid "WPML compatibility"
+msgstr "WPML suderinamumas"
+
+#: settings/flags.php:15
+msgid "Andorra"
+msgstr "Andora"
+
+#: admin/admin-static-pages.php:99
+msgid "Posts Page"
+msgstr "Įrašų puslapis"
+
+#. translators: accessibility text
+#: admin/view-translations-term.php:76 admin/view-translations-post.php:57
+msgid "Translation"
+msgstr "Vertimas"
+
+#: admin/admin-static-pages.php:95
+msgid "Front Page"
+msgstr "Pradinis puslapis"
+
+#. translators: accessibility text, %s is a native language name
+#: admin/admin-links.php:24
+msgid "Add a translation in %s"
+msgstr "Pridėti vertimą į %s"
+
+#: admin/admin-model.php:302
+msgid "The flag does not exist"
+msgstr "Vėliava neegzistuoja"
+
+#: admin/admin-nav-menu.php:75
+msgid "Add to Menu"
+msgstr "Įtraukti į meniu"
+
+#. translators: accessibility text, %s is a native language name
+#: admin/admin-filters-columns.php:152 admin/admin-filters-columns.php:279
+msgid "This item is in %s"
+msgstr "Elementas yra priskirtas kalbai %s"
+
+#. translators: accessibility text, %s is a native language name
+#: admin/admin-links.php:51 admin/admin-filters-columns.php:139
+#: admin/admin-filters-columns.php:266
+msgid "Edit the translation in %s"
+msgstr "Redaguoti vertimą kalbai %s"
+
+#. translators: accessibility text, %s is a native language name
+#: admin/admin-filters-columns.php:135 admin/admin-filters-columns.php:262
+msgid "Edit this item in %s"
+msgstr "Redaguoti elementą kalbai %s"
+
+#: lingotek/lingotek.php:99
+msgid "Polylang is now fully integrated with Lingotek, a professional translation management system!"
+msgstr "Dabar Polylang visiškai integruotas kartu su profesionalia vertimo valdymo sistema – Lingotek!"
+
+#: lingotek/lingotek.php:103
+msgid "Polylang is now fully integrated with Lingotek!"
+msgstr "Dabar Polylang visiškai integruotas su Lingotek! "
+
+#: lingotek/lingotek.php:114
+msgid "Do you need to connect to a professional translation management system?"
+msgstr "Ar jums reikalinga profesionali vertimo valdymo sistema?"
+
+#: lingotek/lingotek.php:117
+msgid "Access an online translator workbench."
+msgstr "Prisijungti prie internetinio vertėjo darbastalio"
+
+#: lingotek/lingotek.php:118
+msgid "Have linguists compare side-by-side versions of original and translated text."
+msgstr "Kalbininkai palygins originalų ir išverstą tekstą."
+
+#: lingotek/lingotek.php:129
+msgid "Start the process of getting a professional translation bid."
+msgstr "Gaukite profesionalaus vertimo pasiūlymą."
+
+#: lingotek/lingotek.php:131
+msgid "Once activated, click on the \"request translation bid\" and a certified translation project manager will contact you for a no-obligations translation bid."
+msgstr "Aktyvavus vertimo pasiūlymo užklausą, sertifikuotas vertimo projektų vadovas susisieks su jumis ir pateiks neįpareigojančią vertimo kainą. "
+
+#: lingotek/lingotek.php:138
+msgid "Need extra services?"
+msgstr "Reikia papildomų paslaugų?"
+
+#: lingotek/lingotek.php:142
+msgid "Do you need someone to run your localization project?"
+msgstr "Ar jums reikia kažkieno pagalbos lokalizuojant jūsų projektą?"
+
+#: lingotek/lingotek.php:143
+msgid "Do you need customized workflows?"
+msgstr "Ar jums reikia pritaikyto darbo proceso?"
+
+#: lingotek/lingotek.php:145
+msgid "Do you need help creating glossaries and terminologies?"
+msgstr "Ar jums reikia pagalbos kuriant žodynėlį ir terminologiją?"
+
+#: lingotek/lingotek.php:265
+msgid "Learn more..."
+msgstr "Sužinokite daugiau..."
+
+#. Plugin Name of the plugin
+msgid "Polylang"
+msgstr "Polylang"
+
+#. Description of the plugin
+msgid "Adds multilingual capability to WordPress"
+msgstr "Prideda daugiakalbystę WordPress tinklalapiui"
+
+#: lingotek/lingotek.php:144
+msgid "Do you have existing Translation Memories you would like to use?"
+msgstr "Ar turite vertimo atminties įrankį, kurį norėtumėte panaudoti?"
+
+#: lingotek/lingotek.php:139
+msgid "Do you need help translating your site?"
+msgstr "Jums reikia pagalbos verčiant jūsų tinklalapį?"
+
+#: lingotek/lingotek.php:126
+msgid "Professionally translate my site"
+msgstr "Profesionaliai išverskite mano tinklalapį"
+
+#: lingotek/lingotek.php:102
+msgid "Automatically translate my site"
+msgstr "Automatiškai išverskite mano tinklalapį"
+
+#: lingotek/lingotek.php:81 settings/settings-module.php:58
+msgid "Activate"
+msgstr "Įjungti"
+
+#: lingotek/lingotek.php:81 settings/settings-module.php:60
+msgid "Activated"
+msgstr "Įjungta"
+
+#: lingotek/lingotek.php:86
+msgid "Request Translation"
+msgstr "Užsakyti vertimą"
+
+#: lingotek/lingotek.php:92
+msgid "Request Services"
+msgstr "Užsakyti paslaugas"
+
+#: lingotek/lingotek.php:105 lingotek/lingotek.php:116
+msgid "Access free machine translation for your site for up to 100,000 characters."
+msgstr "Galite nemokamai automatiškai išversti tinklalapio turinio iki 100 000 simbolių."
+
+#: lingotek/lingotek.php:113
+msgid "Translation Management System"
+msgstr "Vertimo valdymo sistema"
+
+#: lingotek/lingotek.php:141
+msgid "Start the process of getting extra services."
+msgstr "Gaukite papildomų paslaugų."
+
+#: include/nav-menu.php:44 include/translated-post.php:107
+#: admin/admin-notices.php:73 admin/admin-base.php:82 admin/admin-base.php:104
+#: admin/admin-classic-editor.php:50 admin/admin-nav-menu.php:65
+#: admin/admin-nav-menu.php:68 admin/admin-nav-menu.php:98
+#: settings/settings.php:119
+msgid "Languages"
+msgstr "Kalbos"
+
+#: include/switcher.php:23
+msgid "Displays language names"
+msgstr "Rodyti kalbų pavadinimus"
+
+#: include/switcher.php:24
+msgid "Displays flags"
+msgstr "Rodyti vėliavėles"
+
+#: include/switcher.php:25
+msgid "Forces link to front page"
+msgstr "Priverstinai nukreipti į pagrindinį puslapį"
+
+#: include/switcher.php:26
+msgid "Hides the current language"
+msgstr "Nerodyti dabartinės kalbos"
+
+#: include/switcher.php:22
+msgid "Displays as a dropdown"
+msgstr "Rodyti kaip išskleidžiamą pasirinkimą"
+
+#: admin/admin-base.php:375
+msgid "Show all languages"
+msgstr "Rodyti visas kalbas"
+
+#: include/translated-post.php:108 admin/admin-filters-columns.php:190
+#: admin/admin-filters-media.php:56 admin/admin-classic-editor.php:100
+#: admin/admin-filters-term.php:99 admin/admin-filters-term.php:171
+msgid "Language"
+msgstr "Kalba"
+
+#: admin/view-translations-term.php:13 admin/view-translations-term.php:20
+#: admin/view-translations-media.php:12 admin/view-translations-post.php:11
+#: settings/table-string.php:131
+msgid "Translations"
+msgstr "Vertimai"
+
+#: admin/admin-filters-term.php:101 admin/admin-filters-term.php:173
+msgid "Sets the language"
+msgstr "Nustatyti kalbą"
+
+#: admin/admin-filters.php:80
+msgid "The widget is displayed for:"
+msgstr "Valdiklį rodyti:"
+
+#: include/translated-post.php:109 admin/admin-filters.php:66
+msgid "All languages"
+msgstr "Visoms kalboms"
+
+#: admin/admin-base.php:89 admin/admin.php:81 settings/settings-module.php:46
+msgid "Settings"
+msgstr "Nustatymai"
+
+#: admin/admin-filters.php:165
+msgid "Upgrading language files&#8230;"
+msgstr "Atnaujinami kalbų failai&#8230;"
+
+#: settings/settings.php:109
+msgid "About Polylang"
+msgstr "Apie Polylang"
+
+#: include/mo.php:18 admin/admin-base.php:86 settings/settings.php:137
+msgid "Strings translations"
+msgstr "Eilučių vertimas"
+
+#: admin/admin-model.php:283
+msgid "The language code must be unique"
+msgstr "Kalbos kodas privalo būti unikalus"
+
+#: settings/settings.php:184
+msgid "The language was created, but the WordPress language file was not downloaded. Please install it manually."
+msgstr "Kalba buvo pridėta, tačiau jos WordPress kalbos failas nebuvo parsiųstas. Prašome tai padaryti rankiniu būdu."
+
+#: admin/admin-strings.php:59
+msgid "Widget title"
+msgstr "Valdiklio pavadinimas"
+
+#: modules/sync/settings-sync.php:92
+msgid "Taxonomies"
+msgstr "Taksonomijos"
+
+#: modules/sync/settings-sync.php:94
+msgid "Comment status"
+msgstr "Komentarų būsena"
+
+#: modules/sync/settings-sync.php:95
+msgid "Ping status"
+msgstr "Ryšio patikrinimo būsena"
+
+#: modules/sync/settings-sync.php:97
+msgid "Published date"
+msgstr "Paskelbimo data"
+
+#: modules/sync/settings-sync.php:98
+msgid "Post format"
+msgstr "Įrašo formatas"
+
+#: modules/sync/settings-sync.php:99
+msgid "Page parent"
+msgstr "Tėvinis puslapis"
+
+#: modules/sync/settings-sync.php:100
+msgid "Page template"
+msgstr "Puslapio šablonas"
+
+#: modules/sync/settings-sync.php:101
+msgid "Page order"
+msgstr "Puslapio tvarka"
+
+#: modules/sync/settings-sync.php:102
+msgid "Featured image"
+msgstr "Spec. paveikslėlis"
+
+#: settings/view-tab-lang.php:31
+msgid "Edit language"
+msgstr "Redaguoti kalbą"
+
+#: settings/view-tab-lang.php:31 settings/view-tab-lang.php:175
+msgid "Add new language"
+msgstr "Pridėti naują kalbą"
+
+#: include/widget-languages.php:48 settings/view-tab-lang.php:52
+msgid "Choose a language"
+msgstr "Pasirinkite kalbą"
+
+#: settings/view-tab-lang.php:68
+msgid "You can choose a language in the list or directly edit it below."
+msgstr "Galite pasirinkti kalbą iš sąrašo arba tiesiogiai redaguoti ją apačioje."
+
+#: settings/view-tab-lang.php:72 settings/table-languages.php:146
+msgid "Full name"
+msgstr "Pilnas vardas"
+
+#: settings/view-tab-lang.php:83 settings/table-languages.php:147
+msgid "Locale"
+msgstr "Lokalė"
+
+#: settings/view-tab-lang.php:90
+msgid "WordPress Locale for the language (for example: en_US). You will need to install the .mo file for this language."
+msgstr "Kalbos WordPress lokalė (pavyzdžiui: lt_LT). Jums reikės įsidiegti šios kalbos .mo failą."
+
+#: settings/view-tab-lang.php:94
+msgid "Language code"
+msgstr "Kalbos kodas"
+
+#: settings/view-tab-lang.php:105
+msgid "Text direction"
+msgstr "Teksto kryptis"
+
+#: settings/view-tab-lang.php:110
+msgid "left to right"
+msgstr "iš kairės į dešinę"
+
+#: settings/view-tab-lang.php:115
+msgid "right to left"
+msgstr "iš dešinės į kairę"
+
+#: settings/view-tab-lang.php:118
+msgid "Choose the text direction for the language"
+msgstr "Pasirinkite kalbos teksto kryptį"
+
+#: settings/view-tab-lang.php:147 settings/table-languages.php:150
+msgid "Order"
+msgstr "Tvarka"
+
+#: settings/view-tab-lang.php:154
+msgid "Position of the language in the language switcher"
+msgstr "Kalbos pozicija kalbos perjungiklyje"
+
+#: settings/view-tab-strings.php:18
+msgid "Clean strings translation database"
+msgstr "Išvalyti eilučių vertimų duomenų bazę"
+
+#. translators: accessibility text
+#: settings/table-languages.php:129 settings/table-languages.php:149
+msgid "Default language"
+msgstr "Numatytoji kalba"
+
+#: settings/settings-browser.php:22
+msgid "Detect browser language"
+msgstr "Nustatyti naršyklės kalbą"
+
+#: settings/settings-url.php:22
+msgid "URL modifications"
+msgstr "URL pakeitimai"
+
+#: settings/settings-url.php:109
+msgid "Hide URL language information for default language"
+msgstr "Numatytajai kalbai nerodyti kalbos informacijos URL"
+
+#: settings/settings-media.php:22
+msgid "Media"
+msgstr "Failai"
+
+#: modules/sync/settings-sync.php:22
+msgid "Synchronization"
+msgstr "Sinchronizavimas"
+
+#: settings/table-languages.php:204
+msgid "Edit"
+msgstr "Redaguoti"
+
+#: settings/table-languages.php:211 settings/table-string.php:281
+msgid "Delete"
+msgstr "Ištrinti"
+
+#: settings/table-languages.php:148
+msgid "Code"
+msgstr "Kodas"
+
+#: settings/view-tab-lang.php:122 settings/table-languages.php:151
+msgid "Flag"
+msgstr "Vėliava"
+
+#: settings/table-languages.php:152
+msgid "Posts"
+msgstr "Įrašai"
+
+#: include/widget-languages.php:20
+msgid "Displays a language switcher"
+msgstr "Leidžia pasirinkti puslapio kalbą"
+
+#: include/widget-languages.php:90
+msgid "Title:"
+msgstr "Pavadinimas:"
+
+#: settings/table-string.php:130
+msgid "Group"
+msgstr "Grupė"
+
+#: settings/table-string.php:318
+msgid "View all groups"
+msgstr "Peržiūrėti visas grupes"
+
+#: settings/table-languages.php:210
+msgid "You are about to permanently delete this language. Are you sure?"
+msgstr "Ketinate visam laikui ištrinti šią kalbą. Ar tikrai to norite?"
+
+#: settings/view-tab-strings.php:20
+msgid "Use this to remove unused strings from database, for example after a plugin has been uninstalled."
+msgstr "Naudokite nenaudojamų eilučių pašalinimui iš duomenų bazės, pavyzdžiui po įskiepio ištrynimo."
+
+#: modules/sync/settings-sync.php:23
+msgid "The synchronization options allow to maintain exact same values (or translations in the case of taxonomies and page parent) of meta content between the translations of a post or page."
+msgstr "Sinchronizacijos parinktys leidžia išlaikyti pastovias vienodas turinio reikšmes (ar vertimus taksonomijų ar tėvinių puslapių atveju) tarp puslapio ar įrašo vertimų."
+
+#: admin/admin-model.php:277
+msgid "The language code contains invalid characters"
+msgstr "Kalbos kode yra neleistinų simbolių"
+
+#: settings/settings-url.php:44
+msgid "The language is set from content"
+msgstr "Kalba nustatoma pagal turinį"
+
+#: settings/settings-url.php:54
+msgid "The language is set from the directory name in pretty permalinks"
+msgstr "Kalba nustatoma iš aplanko pavadinimo pastoviosiose nuorodose"
+
+#: settings/settings-url.php:58 settings/settings-url.php:69
+#: settings/settings-url.php:133 settings/settings-url.php:144
+msgid "Example:"
+msgstr "Pavyzdys:"
+
+#: settings/settings-url.php:65
+msgid "The language is set from the subdomain name in pretty permalinks"
+msgstr "Kalba nustatoma iš subdomeno vardo pastoviosiose nuorodose"
+
+#: settings/settings-url.php:76
+msgid "The language is set from different domains"
+msgstr "Kalba nustatoma iš skirtingų domenų"
+
+#: settings/settings-url.php:129
+msgid "Remove /language/ in pretty permalinks"
+msgstr "Pašalinti /language/ iš pastoviųjų nuorodų"
+
+#: settings/settings-url.php:140
+msgid "Keep /language/ in pretty permalinks"
+msgstr "Palikti /language/ pastoviosiose nuorodose"
+
+#: settings/settings-url.php:160
+msgid "The front page url contains the language code instead of the page name or page id"
+msgstr "Pradžios puslapio adrese yra kalbos kodas vietoje puslapio pavadinimo ar id"
+
+#: admin/admin-model.php:41
+msgid "Impossible to add the language."
+msgstr "Neįmanoma pridėti kalbos."
+
+#: settings/settings.php:177
+msgid "Language added."
+msgstr "Kalba pridėta."
+
+#: settings/settings.php:199
+msgid "Language deleted."
+msgstr "Kalba ištrinta."
+
+#: settings/settings.php:214
+msgid "Language updated."
+msgstr "Kalba atnaujinta."
+
+#: settings/table-string.php:380
+msgid "Translations updated."
+msgstr "Vertimai atnaujinti."
+
+#: settings/view-tab-lang.php:101
+msgid "Language code - preferably 2-letters ISO 639-1  (for example: en)"
+msgstr "Kalbos kodas - geriausia naudoti dviejų raidžių ISO 639-1 kodą (pvz.: lt)"
+
+#: admin/admin-static-pages.php:154 admin/admin-static-pages.php:171
+msgid "The chosen static front page must be translated in all languages."
+msgstr "Pasirinktas statinis puslapis privalo būti išverstas į visas pasirinktas kalbas."
+
+#: admin/admin-strings.php:60
+msgid "Widget text"
+msgstr "Valdiklio tekstas"
+
+#: settings/settings-url.php:54
+msgid "The language is set from the code in the URL"
+msgstr "Kalba nustatoma iš URL esančio kalbos kodo"
+
+#: include/switcher.php:27
+msgid "Hides languages with no translation"
+msgstr "Nerodyti kalbų, neturinčių vertimų"
+
+#: admin/admin-filters-term.php:462
+msgid "None"
+msgstr "Nėra"
+
+#: admin/admin-model.php:272
+msgid "Enter a valid WordPress locale"
+msgstr "Įveskite galiojančią WordPress lokalę"
+
+#: admin/admin-model.php:290
+msgid "The language must have a name"
+msgstr "Kalba privalo turėti pavadinimą"
+
+#: install/upgrade.php:331 include/nav-menu.php:45
+#: include/widget-languages.php:18 admin/admin-nav-menu.php:44
+msgid "Language switcher"
+msgstr "Kalbų perjungiklis"
+
+#: admin/admin-strings.php:56
+msgid "Date Format"
+msgstr "Datos formatas"
+
+#: admin/admin-strings.php:57
+msgid "Time Format"
+msgstr "Laiko formatas"
+
+#: settings/settings-module.php:176 settings/settings-licenses.php:200
+msgid "Settings saved."
+msgstr "Nustatymai išsaugoti"
+
+#: modules/sync/settings-sync.php:96
+msgid "Sticky posts"
+msgstr "Iškelti įrašai"
+
+#: settings/view-tab-lang.php:175
+msgid "Update"
+msgstr "Atnaujinti"
+
+#: settings/view-tab-strings.php:15
+msgid "Search translations"
+msgstr "Ieškoti vertimų"
+
+#: frontend/frontend-filters-search.php:83
+#: frontend/frontend-filters-search.php:84
+msgid "Search"
+msgstr "Paieška"
+
+#: install/upgrade.php:76
+msgid "Polylang has been deactivated because you upgraded from a too old version."
+msgstr "Polylang buvo išjungtas, nes atsinaujinote iš pernelyg senos versijos."
+
+#: settings/settings-licenses.php:28
+msgid "Close"
+msgstr "Uždaryti"
+
+#: lingotek/lingotek.php:35
+msgid "Learn more"
+msgstr "Sužinoti daugiau"
+
+#: lingotek/lingotek.php:44
+msgid "Activate Lingotek"
+msgstr "Įjunkite Lingotek"
+
+#: lingotek/lingotek.php:39
+msgid "Click on Activate Lingotek to start translating."
+msgstr "Spustelėkite ant Įjungti Lingotek, kad pradėtumėte versti."
+
+#: lingotek/lingotek.php:30
+msgid "You’ve just upgraded to the latest version of Polylang! Would you like to automatically translate your website for free?"
+msgstr "Įdiegėte naujausią Polylang versiiją! Ar norite automatiškai išversti savo tinklalapį nemokamai?"
+
+#. translators: Calendar caption: 1: month name, 2: 4-digit year
+#: include/widget-calendar.php:141
+msgctxt "calendar caption"
+msgid "%1$s %2$s"
+msgstr "%2$s m. %1$s mėn."
+
+#: modules/plugins/plugins-compat.php:165
+msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
+msgstr "Importuoja <strong>įrašus, puslapius, komentarus, papildomus laukus, kategorijas ir žymas</strong> iš WordPress eksporto failo."
+
+#: include/model.php:388
+msgid "Uncategorized"
+msgstr "Be kategorijos"
+
+#: settings/settings-cpt.php:106
+msgid "Activate languages and translations for custom taxonomies."
+msgstr "Įjungti kalbas ir vertimus sukurtoms taksonomijoms."
+
+#: settings/settings-cpt.php:88
+msgid "Custom taxonomies"
+msgstr "Sukurtos taksonomijos"
+
+#: settings/settings-cpt.php:82
+msgid "Activate languages and translations for custom post types."
+msgstr "Įjungti kalbas bei vertimus sukurtiems įrašų tipams."
+
+#: settings/settings-cpt.php:64
+msgid "Custom post types"
+msgstr "Sukurti įrašų tipai"
+
+#: settings/settings-media.php:23
+msgid "Activate languages and translations for media"
+msgstr "Įjungti kalbas ir vertimus failams"
+
+#: settings/settings-browser.php:23
+msgid "When the front page is visited, set the language according to the browser preference"
+msgstr "Kai aplankomas pagrindinis puslapis, parinkti kalbą pagal naršyklės nustatymus"
+
+#. translators: %1$s example url when the option is active. %2$s example url
+#. when the option is not active
+#: settings/settings-url.php:171
+msgid "Example: %1$s instead of %2$s"
+msgstr "Pavyzdys: %1$s vietoje %2$s"
+
+#: settings/view-tab-lang.php:79
+msgid "The name is how it is displayed on your site (for example: English)."
+msgstr "Pavadinimas, kuris bus rodomas Jūsų tinklalapyje (pavyzdžiui: English)."
+
+#. translators: %1$s is link start tag, %2$s is link end tag.
+#: settings/view-about.php:15
+msgid "Polylang is provided with an extensive %1$sdocumentation%2$s (in English). It includes information on how to set up your multilingual site and use it on a daily basis; FAQs, and documentation for developers to adapt their plugins and themes."
+msgstr "Polylang pateikiamas su išsamia %1$sdokumentacija%2$s (anglų kalba). Joje rasite informaciją kaip sukurti kelių kalbų tinklalapį bei jį valdyti, D.U.K. bei dokumentaciją programuotojams, aprašančią kaip pritaikyti savo įskiepius bei temas."
+
+#: settings/table-string.php:331
+msgid "Filter"
+msgstr "Filtruoti"
+
+#: settings/table-string.php:129
+msgid "Name"
+msgstr "Pavadinimas"
+
+#: settings/table-string.php:128
+msgid "String"
+msgstr "Frazė"
+
+#: modules/sync/settings-sync.php:93
+msgid "Custom fields"
+msgstr "Sukurti laukai"
+
+#: admin/admin-base.php:384 admin/admin-base.php:403
+msgid "Filters content by language"
+msgstr "Filtruoja turinį pagal kalbą"
+
+#: admin/admin-strings.php:55
+msgid "Tagline"
+msgstr "Tinklalapio apibūdinimas"
+
+#: admin/admin-strings.php:54
+msgid "Site Title"
+msgstr "Tinklalapio pavadinimas"
+
+#: admin/admin-classic-editor.php:204
+msgid "(no parent)"
+msgstr "(be tėvinio)"
+
+#: admin/admin-filters-columns.php:176
+msgid "&mdash; No Change &mdash;"
+msgstr "&mdash; Jokių pokyčių &mdash;"
+
+#: settings/settings-url.php:48
+msgid "Posts, pages, categories and tags URLs will not be modified."
+msgstr "Įrašų, puslapių, kategorijų ir žymų adresai nebus keičiami."

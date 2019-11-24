@@ -1,0 +1,391 @@
+# Translation of Themes - Twenty Nineteen in Polish
+# This file is distributed under the same license as the Themes - Twenty Nineteen package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-11-05 08:17:24+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: pl\n"
+"Project-Id-Version: Themes - Twenty Nineteen\n"
+
+#. Description of the theme
+msgid "Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Twenty Nineteen is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes."
+msgstr "Nasz domyślny motyw na rok 2019 stworzony został z myślą o pokazaniu możliwości jakie niesie edytor blokowy. Zawiera style dla wszystkich domyślnych rodzajów bloków i został zbudowany tak, że wszystko co widać w edytorze będzie wyglądało tak samo po publikacji. Twenty Nineteen został zaprojektowany tak, aby sprostać wymaganiom szerokiej gamie stron Internetowych. Nie ważne czy tworzysz blog, rozpoczynasz działalność czy działasz w ramach organizacje non-profit. Połączenie nowoczesnych, bezszeryfowych nagłówków z klasycznym krojem szeryfowym treści, w otoczeniu obszernych wolnych przestrzeni sprawia, że prezentuje się on wspaniale na każdym ekranie."
+
+#. Theme Name of the theme
+msgid "Twenty Nineteen"
+msgstr "Twenty Nineteen"
+
+#. translators: %s: parent post link
+#: single.php:31
+msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%s</span>"
+msgstr "<span class=\"meta-nav\">Opublikowano w</span><span class=\"post-title\">%s</span>"
+
+#: image.php:87
+msgctxt "Parent post link"
+msgid "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
+msgstr "<span class=\"meta-nav\">Opublikowano w</span><br><span class=\"post-title\">%title</span>"
+
+#: template-parts/content/content.php:18
+#: template-parts/content/content-excerpt.php:18
+msgctxt "post"
+msgid "Featured"
+msgstr "Wyróżniony"
+
+#: inc/back-compat.php:39 inc/back-compat.php:53 inc/back-compat.php:73
+msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
+msgstr "Twenty Nineteen wymaga co najmniej wersji 4.7 WordPress'a. Używana wersja to %s. Proszę zaktualizować do nowszej wersji i spróbować ponownie."
+
+#: inc/template-functions.php:216
+msgid "Back"
+msgstr "Powrót"
+
+#: inc/template-functions.php:209
+msgid "More"
+msgstr "Więcej"
+
+#: inc/customizer.php:98
+msgid "Apply a filter to featured images using the primary color"
+msgstr "Użyj jako filtr, koloru wiodącego do obrazu wyróżniającego."
+
+#: inc/customizer.php:78
+msgid "Apply a custom color for buttons, links, featured images, etc."
+msgstr "Zastosuj własny kolor do przycisków, odnośników, wyróżnienia obrazów, itp."
+
+#: inc/customizer.php:56
+msgctxt "primary color"
+msgid "Custom"
+msgstr "Własny"
+
+#: inc/customizer.php:55
+msgctxt "primary color"
+msgid "Default"
+msgstr "Domyślny"
+
+#: functions.php:166
+msgid "White"
+msgstr "Biały"
+
+#: functions.php:161
+msgid "Light Gray"
+msgstr "Jasnoszary"
+
+#: functions.php:156
+msgid "Dark Gray"
+msgstr "Ciemnoszary"
+
+#: functions.php:151
+msgid "Secondary"
+msgstr "Drugi"
+
+#: functions.php:134
+msgid "XL"
+msgstr "XL"
+
+#: functions.php:133
+msgid "Huge"
+msgstr "Duży"
+
+#: functions.php:128
+msgid "L"
+msgstr "L"
+
+#: functions.php:127
+msgid "Large"
+msgstr "Duży"
+
+#: functions.php:122
+msgid "M"
+msgstr "M"
+
+#: functions.php:121
+msgid "Normal"
+msgstr "Normalny"
+
+#: functions.php:115
+msgid "Small"
+msgstr "Mały"
+
+#: functions.php:116
+msgid "S"
+msgstr "S"
+
+#: functions.php:60 footer.php:37
+msgid "Footer Menu"
+msgstr "Menu stopki"
+
+#: image.php:70
+msgctxt "Used before full size attachment link."
+msgid "Full size"
+msgstr "Pełny rozmiar"
+
+#: image.php:56
+msgid "Page"
+msgstr "strona"
+
+#: functions.php:190
+msgid "Add widgets here to appear in your footer."
+msgstr "Tutaj dodaj widgety, które zostaną wyświetlone w stopce."
+
+#: functions.php:188 template-parts/footer/footer-widgets.php:12
+msgid "Footer"
+msgstr "Stopka"
+
+#: inc/customizer.php:53
+msgid "Primary Color"
+msgstr "Kolor wiodący"
+
+#: template-parts/post/discussion-meta.php:18
+msgid "No comments"
+msgstr "Brak komentarzy"
+
+#. translators: %1(X comments)$s
+#: template-parts/post/discussion-meta.php:16
+msgid "%d Comment"
+msgid_plural "%d Comments"
+msgstr[0] "%d komentarz"
+msgstr[1] "%d komentarze"
+msgstr[2] "%d komentarzy"
+
+#: template-parts/post/author-bio.php:26
+msgid "View more posts"
+msgstr "Zobacz więcej wpisów"
+
+#. translators: %s: post author
+#: template-parts/post/author-bio.php:17
+msgid "Published by %s"
+msgstr "Opublikowany przez %s"
+
+#: template-parts/header/site-branding.php:33
+msgid "Top Menu"
+msgstr "Górne menu"
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Czytaj dalej<span class=\"screen-reader-text\"> %s</span>"
+
+#: image.php:52 template-parts/content/content-page.php:27
+#: template-parts/content/content.php:49
+#: template-parts/content/content-single.php:40
+msgid "Pages:"
+msgstr "Strony:"
+
+#: template-parts/content/content-none.php:46
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "Nie udało się znaleźć tego, czego szukasz. Być może wyszukiwanie przyniesie lepsze rezultaty."
+
+#: template-parts/content/content-none.php:39
+msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
+msgstr "Brak wyników wyszukiwania. Proszę spróbować ponownie z innymi słowami."
+
+#. translators: 1: link to WP admin new post page.
+#: template-parts/content/content-none.php:26
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr "Gotów, by opublikować pierwszy post? <a href=\"%1$s\">Zacznij tutaj</a>. "
+
+#: template-parts/content/content-none.php:16
+msgid "Nothing Found"
+msgstr "Niczego nie znaleziono"
+
+#: single.php:42
+msgid "Previous post:"
+msgstr "Poprzedni wpis:"
+
+#: single.php:41
+msgid "Previous Post"
+msgstr "Poprzedni wpis"
+
+#: single.php:39
+msgid "Next post:"
+msgstr "Następny wpis:"
+
+#: single.php:38
+msgid "Next Post"
+msgstr "Następny wpis"
+
+#: search.php:22
+msgid "Search results for:"
+msgstr "Wyniki wyszukiwania dla:"
+
+#: inc/template-tags.php:234
+msgid "Older posts"
+msgstr "Starsze wpisy"
+
+#: inc/template-tags.php:230
+msgid "Newer posts"
+msgstr "Nowsze wpisy"
+
+#: inc/template-tags.php:104
+msgid "Tags:"
+msgstr "Tagi:"
+
+#: inc/template-tags.php:92
+msgid "Posted in"
+msgstr "Opublikowano w"
+
+#. translators: used between list items, there is a space after the comma.
+#: inc/template-tags.php:86 inc/template-tags.php:98
+msgid ", "
+msgstr ", "
+
+#. translators: %s: Name of current post. Only visible to screen readers.
+#: inc/template-tags.php:63
+msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr "Dodaj komentarz<span class=\"screen-reader-text\"> do %s</span>"
+
+#: inc/template-tags.php:46
+msgid "Posted by"
+msgstr "Opublikowany przez"
+
+#: inc/template-functions.php:82
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/template-functions.php:80
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/template-functions.php:92
+msgid "Archives:"
+msgstr "Archiwa:"
+
+#. translators: %s: Taxonomy singular name
+#: inc/template-functions.php:90
+msgid "%s Archives:"
+msgstr "%s archiwum:"
+
+#: inc/template-functions.php:86
+msgid "Post Type Archives: "
+msgstr "Archiwum typu:"
+
+#: inc/template-functions.php:84
+msgid "Daily Archives: "
+msgstr "Archiwum dnia:"
+
+#: inc/template-functions.php:82
+msgid "Monthly Archives: "
+msgstr "Archiwum miesiąca:"
+
+#: inc/template-functions.php:80
+msgid "Yearly Archives: "
+msgstr "Archiwum roku:"
+
+#: inc/template-functions.php:78
+msgid "Author Archives: "
+msgstr "Archiwum autora:"
+
+#: inc/template-functions.php:76
+msgid "Tag Archives: "
+msgstr "Archiwum tagu:"
+
+#: inc/template-functions.php:74
+msgid "Category Archives: "
+msgstr "Archiwum kategorii:"
+
+#. translators: %s: Name of current post. Only visible to screen readers
+#. translators: %s: Name of current post. Only visible to screen readers.
+#: template-parts/content/content-page.php:41
+#: template-parts/header/entry-header.php:32 inc/template-tags.php:120
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr "Edycja <span class=\"screen-reader-text\">%s</span>"
+
+#: header.php:25
+msgid "Skip to content"
+msgstr "Przeskocz do treści"
+
+#: functions.php:61 template-parts/header/site-branding.php:46
+msgid "Social Links Menu"
+msgstr "Menu odnośników serwisów społecznościowych"
+
+#: functions.php:59 functions.php:146
+msgid "Primary"
+msgstr "Głowny"
+
+#. translators: %s: WordPress.
+#: footer.php:28
+msgid "Proudly powered by %s."
+msgstr "Dumnie wspierane przez %s."
+
+#: comments.php:116
+msgid "Comments are closed."
+msgstr "Możliwość komentowania jest wyłączona."
+
+#: comments.php:96
+msgid "Next"
+msgstr "Następny"
+
+#: comments.php:95
+msgid "Previous"
+msgstr "Poprzedni"
+
+#: comments.php:92 comments.php:95 comments.php:96
+msgid "Comments"
+msgstr "Komentarze"
+
+#. translators: 1: number of comments, 2: post title
+#: comments.php:44
+msgctxt "comments title"
+msgid "%1$s reply on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s odpowiedź na &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s odpowiedzi na &ldquo;%2$s&rdquo;"
+msgstr[2] "%1$s odpowiedzi na &ldquo;%2$s&rdquo;"
+
+#. translators: %s: post title
+#: comments.php:40
+msgctxt "comments title"
+msgid "One reply on &ldquo;%s&rdquo;"
+msgstr "W odpowiedzi na &ldquo;%s&rdquo;"
+
+#: comments.php:35 comments.php:105 comments.php:107
+msgid "Leave a comment"
+msgstr "Dodaj komentarz"
+
+#: comments.php:33
+msgid "Join the Conversation"
+msgstr "Przyłącz się do konwersacji"
+
+#: classes/class-twentynineteen-walker-comment.php:99
+msgid "Your comment is awaiting moderation."
+msgstr "Twój komentarz oczekuje na moderację."
+
+#: classes/class-twentynineteen-walker-comment.php:94
+msgid "Edit"
+msgstr "Edytuj"
+
+#. translators: 1: comment date, 2: comment time
+#: classes/class-twentynineteen-walker-comment.php:86
+msgid "%1$s at %2$s"
+msgstr "%1$s o %2$s"
+
+#: classes/class-twentynineteen-walker-comment.php:66
+msgid "%s <span class=\"screen-reader-text says\">says:</span>"
+msgstr "%s <span class=\"screen-reader-text says\">komentarz:</span>"
+
+#: 404.php:24
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr "Wygląda na to, że w tym miejscu niczego nie ma. Może warto spróbować coś wyszukać?"
+
+#: 404.php:20
+msgid "Oops! That page can&rsquo;t be found."
+msgstr "Ups! Nie udało się znaleźć pożądanej strony."
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentynineteen/"
+msgstr "https://pl.wordpress.org/themes/twentynineteen/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "zespół WordPressa"
+
+#. Author URI of the theme
+#: footer.php:25
+msgid "https://wordpress.org/"
+msgstr "https://pl.wordpress.org/"
