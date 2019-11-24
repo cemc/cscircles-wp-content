@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Eleven package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2016-03-20 07:19:12+0000\n"
+"PO-Revision-Date: 2019-11-05 08:29:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,6 +18,35 @@ msgstr "Motyw &#8222;Twenty Eleven&#8221; jest wyrafinowany i lekki i udostępni
 #. Theme Name of the theme
 msgid "Twenty Eleven"
 msgstr "Twenty Eleven"
+
+#. translators: %s: The post title.
+#: comments.php:37
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr "Jedna myśli w temacie &ldquo;%1$s&rdquo;"
+
+#: functions.php:127
+msgid "White"
+msgstr "Biały"
+
+#: functions.php:122
+msgid "Light Gray"
+msgstr "Jasnoszary"
+
+#: functions.php:117
+msgid "Medium Gray"
+msgstr "Szary"
+
+#: functions.php:112
+msgid "Dark Gray"
+msgstr "Ciemnoszary"
+
+#: functions.php:107
+msgid "Black"
+msgstr "Czarny"
+
+#: functions.php:102
+msgid "Blue"
+msgstr "Niebieski"
 
 #. Template Name of the theme
 msgid "Sidebar Template"
@@ -71,27 +100,27 @@ msgstr "Przepraszamy, ale nic nie zostało dopasowane do Twoich kryteriów wyszu
 msgid "Search Results for: %s"
 msgstr "Wyniki wyszukiwania dla zapytania &#8222;%s&#8221;"
 
-#: inc/widgets.php:197
+#: inc/widgets.php:196
 msgid "Number of posts to show:"
 msgstr "Liczba wyświetlanych wpisów:"
 
-#: inc/widgets.php:194
+#: inc/widgets.php:193
 msgid "Title:"
 msgstr "Tytuł:"
 
-#: inc/widgets.php:118 inc/widgets.php:127
+#: inc/widgets.php:117 inc/widgets.php:126
 msgid "% <span class=\"reply\">comments &rarr;</span>"
 msgstr "% <span class=\"reply\">komentarzy &rarr;</span>"
 
-#: inc/widgets.php:118 inc/widgets.php:127
+#: inc/widgets.php:117 inc/widgets.php:126
 msgid "1 <span class=\"reply\">comment &rarr;</span>"
 msgstr "1 <span class=\"reply\">komentarz &rarr;</span>"
 
-#: inc/widgets.php:118 inc/widgets.php:127
+#: inc/widgets.php:117 inc/widgets.php:126
 msgid "0 <span class=\"reply\">comments &rarr;</span>"
 msgstr "0 <span class=\"reply\">komentarzy &rarr;</span>"
 
-#: inc/widgets.php:74
+#: inc/widgets.php:73
 msgid "Ephemera"
 msgstr "Efemeryda"
 
@@ -144,8 +173,8 @@ msgid "Overview"
 msgstr "Przegląd"
 
 #: inc/theme-options.php:122
-msgid "<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</a>"
-msgstr "<a href=\"http://pl.forums.wordpress.org/\" target=\"_blank\">Forum pomocy</a>"
+msgid "<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support</a>"
+msgstr "<a href=\"https://pl.forums.wordpress.org/\" target=\"_blank\">Forum pomocy</a>"
 
 #: inc/theme-options.php:121
 msgid "<a href=\"https://codex.wordpress.org/Appearance_Theme_Options_Screen\" target=\"_blank\">Documentation on Theme Options</a>"
@@ -207,15 +236,15 @@ msgstr "&larr; Poprzednie"
 msgid "Image navigation"
 msgstr "Nawigacja po obrazkach"
 
-#: header.php:146
+#: header.php:147
 msgid "Skip to secondary content"
 msgstr "Przeskocz do widgetów"
 
-#: header.php:144
+#: header.php:145
 msgid "Skip to primary content"
 msgstr "Przeskocz do tekstu"
 
-#: header.php:142
+#: header.php:143
 msgid "Main menu"
 msgstr "Główne menu"
 
@@ -223,112 +252,112 @@ msgstr "Główne menu"
 msgid "Page %s"
 msgstr "Strona %s"
 
-#: functions.php:785
+#: functions.php:787
 msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 msgstr "<span class=\"sep\">Opublikowany </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> przez </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 
-#: functions.php:759
+#: functions.php:761
 msgid "Reply <span>&darr;</span>"
 msgstr "Odpowiedz <span>&darr;</span>"
 
-#: functions.php:745
+#: functions.php:747
 msgid "Your comment is awaiting moderation."
 msgstr "Twój komentarz oczekuje na moderację."
 
 #. translators: 1: date, 2: time
-#: functions.php:736
+#: functions.php:738
 msgid "%1$s at %2$s"
 msgstr "%1$s o %2$s"
 
-#: functions.php:729
+#: functions.php:731
 msgid "%1$s on %2$s <span class=\"says\">said:</span>"
 msgstr "%1$s, %2$s <span class=\"says\">:</span>"
 
-#: functions.php:710
+#: functions.php:712
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: functions.php:605
+#: functions.php:607
 msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Nowsze wpisy <span class=\"meta-nav\">&rarr;</span>"
 
-#: functions.php:604
+#: functions.php:606
 msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
 msgstr "<span class=\"meta-nav\">&larr;</span> Starsze wpisy"
 
-#: single.php:21 functions.php:603
+#: single.php:21 functions.php:605
 msgid "Post navigation"
 msgstr "Zobacz wpisy"
 
-#: functions.php:577
+#: functions.php:579
 msgid "Footer Area Three"
 msgstr "Trzeci obszar w stopce"
 
-#: functions.php:565
+#: functions.php:567
 msgid "Footer Area Two"
 msgstr "Drugi obszar w stopce"
 
-#: functions.php:555 functions.php:567 functions.php:579
+#: functions.php:557 functions.php:569 functions.php:581
 msgid "An optional widget area for your site footer"
 msgstr "Opcjonalny obszar dla widgetów znajdujący się w stopce"
 
-#: functions.php:553
+#: functions.php:555
 msgid "Footer Area One"
 msgstr "Pierwszy obszar w stopce"
 
-#: functions.php:543
+#: functions.php:545
 msgid "The sidebar for the optional Showcase Template"
 msgstr "Panel boczny wyświetlany na stronach korzystających z szablonu &#8222;Galeria&#8221;"
 
-#: functions.php:541
+#: functions.php:543
 msgid "Showcase Sidebar"
 msgstr "Panel boczny galerii"
 
-#: functions.php:530
+#: functions.php:532
 msgid "Main Sidebar"
 msgstr "Główny panel boczny"
 
 #. translators: header image description
-#: functions.php:278
+#: functions.php:280
 msgid "Hanoi Plant"
 msgstr "Roślina z Hanoi"
 
 #. translators: header image description
-#: functions.php:272
+#: functions.php:274
 msgid "Willow"
 msgstr "Wierzba"
 
 #. translators: header image description
-#: functions.php:266
+#: functions.php:268
 msgid "Lanterns"
 msgstr "Latarnie"
 
 #. translators: header image description
-#: functions.php:260
+#: functions.php:262
 msgid "Chessboard"
 msgstr "Szachownica"
 
 #. translators: header image description
-#: functions.php:254
+#: functions.php:256
 msgid "Pine Cone"
 msgstr "Szyszka sosny"
 
 #. translators: header image description
-#: functions.php:248
+#: functions.php:250
 msgid "Trolley"
 msgstr "Tramwaj"
 
 #. translators: header image description
-#: functions.php:242
+#: functions.php:244
 msgid "Shore"
 msgstr "Wybrzeże"
 
 #. translators: header image description
-#: functions.php:236
+#: functions.php:238
 msgid "Wheel"
 msgstr "Koło"
 
-#: functions.php:142
+#: functions.php:144
 msgid "Primary Menu"
 msgstr "Menu główne"
 
@@ -342,7 +371,7 @@ msgstr "Semantyczną, osobistą platformę publikacyjną"
 
 #: content.php:16
 msgid "Featured"
-msgstr "Polecany"
+msgstr "Polecane"
 
 #: content-status.php:19
 msgid "Status"
@@ -372,7 +401,7 @@ msgstr "Cytat"
 msgid "Link"
 msgstr "Odnośnik"
 
-#: content-image.php:49 functions.php:791
+#: content-image.php:49 functions.php:793
 msgid "View all posts by %s"
 msgstr "Zobacz wszystkie wpisy, których autorem jest %s"
 
@@ -428,7 +457,7 @@ msgstr ", "
 #: content-gallery.php:106 content-aside.php:53 content-status.php:66
 #: content-image.php:79 content-single.php:59 content-link.php:53
 #: content-intro.php:26 content-page.php:28 content-quote.php:84 image.php:45
-#: functions.php:710 functions.php:741 content-featured.php:52 content.php:94
+#: functions.php:712 functions.php:743 content-featured.php:52 content.php:94
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -459,7 +488,7 @@ msgstr "Strony:"
 
 #: content-gallery.php:34 content-aside.php:35 content-status.php:48
 #: content-image.php:29 content-link.php:35 content-quote.php:35
-#: functions.php:457 content.php:41
+#: functions.php:459 content.php:41
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Czytaj dalej <span class=\"meta-nav\">&rarr;</span>"
 
@@ -484,28 +513,29 @@ msgstr "Odpowiedz"
 msgid "Aside"
 msgstr "Notatka na marginesie"
 
-#: comments.php:78
+#: comments.php:87
 msgid "Comments are closed."
 msgstr "Możliwość komentowania jest wyłączona."
 
-#: comments.php:46 comments.php:67
+#: comments.php:55 comments.php:76
 msgid "Newer Comments &rarr;"
 msgstr "Nowsze komentarze &rarr;"
 
-#: comments.php:45 comments.php:66
+#: comments.php:54 comments.php:75
 msgid "&larr; Older Comments"
 msgstr "&larr; Starsze komentarze"
 
-#: comments.php:44 comments.php:65
+#: comments.php:53 comments.php:74
 msgid "Comment navigation"
 msgstr "Nawigacja po komentarzach"
 
-#: comments.php:35
-msgid "One thought on &ldquo;%2$s&rdquo;"
+#. translators: %1$s: The number of comments. %2$s: The post title.
+#: comments.php:43
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "Jedna myśl nt. &bdquo;%2$s&rdquo;"
-msgstr[1] "%1$s myśli nt. &bdquo;%2$s&rdquo;"
-msgstr[2] "%1$s myśli nt. &bdquo;%2$s&rdquo;"
+msgstr[0] "%1$s myśl w temacie &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s myśli w temacie &ldquo;%2$s&rdquo;"
+msgstr[2] "%1$s myśli w temacie &ldquo;%2$s&rdquo;"
 
 #: comments.php:17
 msgid "This post is password protected. Enter the password to view any comments."
