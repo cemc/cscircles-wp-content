@@ -9,7 +9,7 @@ function visualizer_tr() {
   if (! preg_match("@^".preg_quote($homeurl)."visualize(/|$)@", $url, $matchdummy))
     return;
 
-  $wp_query->is_404 = false;
+  //$wp_query->is_404 = false;
   header("HTTP/1.1 200 OK");
   include("visualize.php-include");
   exit;
