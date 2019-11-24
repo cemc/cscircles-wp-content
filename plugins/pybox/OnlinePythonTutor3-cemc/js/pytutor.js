@@ -1343,7 +1343,7 @@ ExecutionVisualizer.prototype.updateOutput = function(smoothTransition) {
     assert(curEntry.exception_msg);
 
     if (curEntry.exception_msg == "Unknown error") {
-      myViz.domRoot.find("#errorOutput").html('Unknown error: Please email a bug report to philip@pgbovine.net');
+      myViz.domRoot.find("#errorOutput").html('Unknown error: Please email a bug report to daveagp@gmail.com');
     }
     else {
       myViz.domRoot.find("#errorOutput").html(htmlspecialchars(curEntry.exception_msg));

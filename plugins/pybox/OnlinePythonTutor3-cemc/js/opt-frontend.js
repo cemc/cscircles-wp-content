@@ -540,7 +540,7 @@ $(document).ready(function() {
   // log a generic AJAX error handler
   $(document).ajaxError(function() {
     alert("Server error (possibly due to memory/resource overload). " +
-          "Report a bug to philip@pgbovine.net\n\n" +
+          "Report a bug to daveagp@gmail.com\n\n" +
           "(Click the 'Generate URL' button to include a unique URL in your email bug report.)");
 
     $('#executeBtn').html("Visualize Execution");

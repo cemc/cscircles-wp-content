@@ -107,7 +107,7 @@ function executePythonCode(pythonSourceCode,
               }
               else {
                 alert("Unknown error. Reload to try again," +
-                      "or report a bug to philip@pgbovine.net\n\n" +
+                      "or report a bug to daveagp@gmail.com\n\n" +
                       "(Click the 'Generate URL' button to include a " + 
                       "unique URL in your email bug report.)");
               }
