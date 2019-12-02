@@ -150,6 +150,14 @@ function wpcf7_user_related_smt( $output, $name, $html ) {
 
 	$user_id = (int) $submission->get_meta( 'current_user_id' );
 
+        if ( '_user_info' == $name ) {
+          if ($user_id == 0) return 'User not logged in.';
+          $user = new WP_User( $user_id );
+	  return '#' . $user->ID . ' ' . $user->user_login
+	  . " <" . $user->user_firstname . ' ' . $user->user_lastname . ">"
+	  . " " . $user->user_email;
+        }
+
 	if ( ! $user_id ) {
 		return '';
 	}

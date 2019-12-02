@@ -175,7 +175,7 @@ class WPCF7_Submission {
 				isset( $_POST['_wpcf7_unit_tag'] ) ? $_POST['_wpcf7_unit_tag'] : '',
 			'container_post_id' => isset( $_POST['_wpcf7_container_post'] )
 				? (int) $_POST['_wpcf7_container_post'] : 0,
-			'current_user_id' => get_current_user_id(),
+			'current_user_id' => apply_filters( 'determine_current_user', false ), //get_current_user_id(),
 		) );
 
 		$contact_form = $this->contact_form;
