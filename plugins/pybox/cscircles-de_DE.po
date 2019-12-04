@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: CSCircles\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-03 19:46-0400\n"
-"PO-Revision-Date: 2014-10-03 19:43-0400\n"
+"PO-Revision-Date: 2019-12-04 10:17+0100\n"
 "Last-Translator: Wolfgang Pohl <pohl@bwinf.de>\n"
 "Language-Team: BWINF <bwinf@bwinf.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 2.2.4\n"
 "Language: de_DE\n"
 
 #: ../wp-plugin/action-optv3.php:26 ../wp-plugin/action-submit-code.php:733
@@ -65,7 +65,7 @@ msgstr "GESENDET:"
 #: ../wp-plugin/action-send-message.php:62
 #, php-format
 msgid "THIS IS A COPY of a message you sent to %s."
-msgstr "DIES IST EINE KOPIE der geschickten Nachricht an %s"
+msgstr "DIES IST eine KOPIE einer Nachricht an %s."
 
 #: ../wp-plugin/action-send-message.php:103
 msgid "The user sent this code with the message:"
@@ -247,13 +247,11 @@ msgstr ""
 msgid "CS Circles Bouncer"
 msgstr "BWINF:CSC (no-reply)"
 
-#: ../wp-plugin/db-entire-history.php:18
-#: ../wp-plugin/db-problem-history.php:21
+#: ../wp-plugin/db-entire-history.php:18 ../wp-plugin/db-problem-history.php:21
 msgid "Did not crash."
 msgstr "Hat keinen Fehler verursacht."
 
-#: ../wp-plugin/db-entire-history.php:19
-#: ../wp-plugin/db-problem-history.php:22
+#: ../wp-plugin/db-entire-history.php:19 ../wp-plugin/db-problem-history.php:22
 #: ../wp-plugin/shortcodes-exercises.php:181
 #: ../wp-plugin/shortcodes-exercises.php:229
 #: ../wp-plugin/shortcodes-exercises.php:280
@@ -263,13 +261,11 @@ msgstr "Hat keinen Fehler verursacht."
 msgid "Correct!"
 msgstr "Richtig!"
 
-#: ../wp-plugin/db-entire-history.php:20
-#: ../wp-plugin/db-problem-history.php:23
+#: ../wp-plugin/db-entire-history.php:20 ../wp-plugin/db-problem-history.php:23
 msgid "Incorrect."
 msgstr "Nicht richtig."
 
-#: ../wp-plugin/db-entire-history.php:21
-#: ../wp-plugin/db-problem-history.php:24
+#: ../wp-plugin/db-entire-history.php:21 ../wp-plugin/db-problem-history.php:24
 msgid "Internal error."
 msgstr "Interner Fehler."
 
@@ -279,8 +275,7 @@ msgstr "Interner Fehler."
 msgid "Saved."
 msgstr "Gespeichert."
 
-#: ../wp-plugin/db-entire-history.php:30
-#: ../wp-plugin/db-problem-history.php:29
+#: ../wp-plugin/db-entire-history.php:30 ../wp-plugin/db-problem-history.php:29
 #: ../wp-plugin/db-problem-summary.php:16
 msgid "You must log in to view past submissions."
 msgstr "Du musst angemeldet sein, um vorherige Einsendungen zu sehen."
@@ -299,41 +294,35 @@ msgstr "Der Benutzer %s hat Sie nicht als Guru eingetragen."
 msgid "Problem %s is unknown."
 msgstr "Übung %s ist unbekannt."
 
-#: ../wp-plugin/db-entire-history.php:69
-#: ../wp-plugin/db-entire-history.php:106
+#: ../wp-plugin/db-entire-history.php:69 ../wp-plugin/db-entire-history.php:106
 msgid "userid"
 msgstr "userid"
 
-#: ../wp-plugin/db-entire-history.php:69
-#: ../wp-plugin/db-entire-history.php:120
+#: ../wp-plugin/db-entire-history.php:69 ../wp-plugin/db-entire-history.php:120
 #: ../wp-plugin/db-problem-history.php:59
 #: ../wp-plugin/db-problem-history.php:78
 msgid "time &amp; ID"
 msgstr "Zeit &amp; ID"
 
-#: ../wp-plugin/db-entire-history.php:69
-#: ../wp-plugin/db-entire-history.php:110
+#: ../wp-plugin/db-entire-history.php:69 ../wp-plugin/db-entire-history.php:110
 #: ../wp-plugin/db-entire-history.php:113 ../wp-plugin/db-mail.php:87
 #: ../wp-plugin/db-mail.php:105
 msgid "problem"
 msgstr "Übung"
 
-#: ../wp-plugin/db-entire-history.php:70
-#: ../wp-plugin/db-entire-history.php:114
+#: ../wp-plugin/db-entire-history.php:70 ../wp-plugin/db-entire-history.php:114
 #: ../wp-plugin/db-problem-history.php:59
 #: ../wp-plugin/db-problem-history.php:73
 msgid "user code"
 msgstr "Benutzercode"
 
-#: ../wp-plugin/db-entire-history.php:70
-#: ../wp-plugin/db-entire-history.php:115
+#: ../wp-plugin/db-entire-history.php:70 ../wp-plugin/db-entire-history.php:115
 #: ../wp-plugin/db-problem-history.php:60
 #: ../wp-plugin/db-problem-history.php:75
 msgid "user input"
 msgstr "Eingabe"
 
-#: ../wp-plugin/db-entire-history.php:70
-#: ../wp-plugin/db-entire-history.php:117
+#: ../wp-plugin/db-entire-history.php:70 ../wp-plugin/db-entire-history.php:117
 #: ../wp-plugin/db-entire-history.php:119
 #: ../wp-plugin/db-problem-history.php:60
 #: ../wp-plugin/db-problem-history.php:77
@@ -476,8 +465,7 @@ msgstr "Chronik verstecken"
 msgid "Hide input box"
 msgstr "Eingabebox verstecken"
 
-#: ../wp-plugin/js-translation.php:14
-#: ../wp-plugin/shortcodes-exercises.php:664
+#: ../wp-plugin/js-translation.php:14 ../wp-plugin/shortcodes-exercises.php:664
 msgid "History"
 msgstr "Chronik"
 
@@ -490,8 +478,7 @@ msgid "Marking all messages from this student about this problem as answered."
 msgstr ""
 "Alle Nachrichten dieses Schülers zu dieser Übung als beantwortet markieren."
 
-#: ../wp-plugin/js-translation.php:17
-#: ../wp-plugin/shortcodes-exercises.php:696
+#: ../wp-plugin/js-translation.php:17 ../wp-plugin/shortcodes-exercises.php:696
 msgid "More actions..."
 msgstr "Mehr Optionen..."
 
@@ -514,13 +501,11 @@ msgstr ""
 "Profil aus (diese Option steht dir im Usermenü zur Verfügung, in der oberen "
 "rechten Ecke der Seite)"
 
-#: ../wp-plugin/js-translation.php:21
-#: ../wp-plugin/shortcodes-exercises.php:649
+#: ../wp-plugin/js-translation.php:21 ../wp-plugin/shortcodes-exercises.php:649
 msgid "Rich editor"
 msgstr "Erweiterter Editor"
 
-#: ../wp-plugin/js-translation.php:22
-#: ../wp-plugin/shortcodes-exercises.php:718
+#: ../wp-plugin/js-translation.php:22 ../wp-plugin/shortcodes-exercises.php:718
 msgid "Run program"
 msgstr "Programm ausführen"
 
@@ -998,11 +983,11 @@ msgstr "Sortierübung"
 
 #: ../wp-plugin/shortcodes-exercises.php:511
 msgid "Example"
-msgstr "Beispiel "
+msgstr "Beispiel"
 
 #: ../wp-plugin/shortcodes-exercises.php:515
 msgid "Coding Exercise"
-msgstr "Programmierübung "
+msgstr "Programmierübung"
 
 #: ../wp-plugin/shortcodes-exercises.php:529
 msgid "You need to create an account and log in to ask a question."
@@ -1066,8 +1051,8 @@ msgstr "Hilfe"
 #: ../wp-plugin/shortcodes-misc.php:21
 #, php-format
 msgid ""
-"New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
-"$s>click here to create an account or log in</a>."
+"New around here? Read <a %1$s>Using this Website</a>. You can also <a "
+"%2$s>click here to create an account or log in</a>."
 msgstr ""
 "Neu hier? Lies <a %1$s>Informationen zum Nutzen dieser Seite</a>. Du kannst "
 "<a %2$s>hier klicken, um einen Account zu erstellen</a>."
@@ -1266,7 +1251,7 @@ msgstr "Tupel"
 
 #: ../python3jail/static/_GRADER.py:32
 msgid "a function "
-msgstr "eine Funktion"
+msgstr "eine Funktion "
 
 #: ../python3jail/static/_GRADER.py:34
 msgid " equal to "
@@ -1322,7 +1307,7 @@ msgstr "Führe {} aus &hellip;"
 
 #: ../python3jail/static/_GRADER.py:136
 msgid "Error: function {} not defined"
-msgstr "Fehler: die Funktion {} ist unbekannt. "
+msgstr "Fehler: die Funktion {} ist unbekannt."
 
 #: ../python3jail/static/_GRADER.py:139
 msgid "Error: {0} should be defined as a function, but found type {1}"
@@ -1370,7 +1355,7 @@ msgstr "Fehler: Konnte {} nicht als Fließkommazahl interpretieren."
 
 #: ../wp-content/lesson_files/graders/15b.degrees.py:13
 msgid "Error: Numbers are different."
-msgstr "Fehler: Die Zahlen sind unterschiedlich"
+msgstr "Fehler: Die Zahlen sind unterschiedlich."
 
 #: ../wp-content/lesson_files/graders/anyorder.py:7
 msgid "Line {}: too many copies of '{}'"
@@ -1388,7 +1373,7 @@ msgstr "Mindestens eine Zeile der Ausgabe fehlt: '{}'"
 #: ../wp-content/lesson_files/graders/real-per-line.py:5
 #: ../wp-content/lesson_files/graders/trim-lines.py:4
 msgid "Not enough lines of output: {0} expected, {1} found"
-msgstr "Zu wenige Ausgabezeilen: {0} erwartet, {1} gefunden "
+msgstr "Zu wenige Ausgabezeilen: {0} erwartet, {1} gefunden"
 
 #: ../wp-content/lesson_files/graders/pendulum-grader.py:9
 #: ../wp-content/lesson_files/graders/real-per-line.py:8
@@ -1404,7 +1389,7 @@ msgstr "Ausgabezeile {0}, Wert {1}, entspricht nicht dem erwarteten Wert {2}"
 #: ../wp-content/lesson_files/graders/real-per-line.py:13
 #: ../wp-content/lesson_files/graders/trim-lines.py:12
 msgid "Too many lines of output: {0} expected, {1} found"
-msgstr "Zu viele Ausgabezeilen: {0} erwartet, {1} gefunden "
+msgstr "Zu viele Ausgabezeilen: {0} erwartet, {1} gefunden"
 
 #: ../wp-content/lesson_files/graders/pendulum-grader.py:16
 msgid "Here is the plot of the output:"
