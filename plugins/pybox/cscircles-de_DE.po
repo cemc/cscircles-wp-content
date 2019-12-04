@@ -608,7 +608,7 @@ msgid ""
 "Thanks from the Computer Science Circles team!\n"
 "%siteurl%"
 msgstr ""
-"Du hast nun einen Account für Computer Science Circles (by BWINF),mit einem "
+"Du hast nun einen Account für Computer Science Circles (by BWINF), mit einem "
 "zufällig erzeugten Passwort.\n"
 "\n"
 "Benutzername: %username%\n"
@@ -1069,7 +1069,7 @@ msgid ""
 "New around here? Read <a %1$s>Using this Website</a>. You can also <a %2"
 "$s>click here to create an account or log in</a>."
 msgstr ""
-"Neu hier? Lese <a %1$s>Informationen zum Nutzen dieser Seite</a>. Du kannst "
+"Neu hier? Lies <a %1$s>Informationen zum Nutzen dieser Seite</a>. Du kannst "
 "<a %2$s>hier klicken, um einen Account zu erstellen</a>."
 
 #: ../wp-plugin/shortcodes-misc.php:99
@@ -1113,7 +1113,7 @@ msgstr ""
 "Computer Science Circles ist ein kostenfreier Dienst des <a %1$s>Centre for "
 "Education in Mathematics and Computing</a> der <a %2$s>University of "
 "Waterloo</a>. <br> Die deutsche Version wird betrieben von den Bundesweiten "
-"Informatikwettbewerben<br>Gesamtzahl der Übungen, die von allen Benutzern "
+"Informatikwettbewerben. <br>Gesamtzahl der Übungen, die von allen Benutzern "
 "vollendet wurden: %3$s"
 
 #: ../wp-theme/footer.php:37
@@ -1126,11 +1126,11 @@ msgstr "BWINF"
 
 #: ../wp-theme/footer.php:39
 msgid "200 University Avenue West"
-msgstr "Wachsbleiche 7"
+msgstr "Reuterstr. 159"
 
 #: ../wp-theme/footer.php:40
 msgid "Waterloo, Ontario, Canada N2L 3G1"
-msgstr "53111 Bonn"
+msgstr "53113 Bonn"
 
 #: ../wp-theme/footer.php:41
 msgid "Phone: 519 888 4808"
@@ -1200,7 +1200,7 @@ msgstr "Filtere die aufgelisteten Seiten"
 #: ../wp-theme/functions.php:310
 msgid "<p>Create free account / login</p><p>to save your progress</p>"
 msgstr ""
-"<p>Kostenlos registrieren, anmelden</p><p>und deinen Fortschritt speichern</"
+"<p>Kostenlos registrieren, anmelden</p><p>und deinen Fortschritt speichern!</"
 "p>"
 
 #: ../wp-theme/functions.php:329
