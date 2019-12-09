@@ -103,7 +103,7 @@ if (isset($post)) {
   <a href="http://www.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-uw.gif');?>" style="margin: 0px;"/></a>
 <a href="http://cemc.uwaterloo.ca"><img src="<?php echo UFILES . __t('wordmark-cemc.png');?>" style="margin: 0px; position: absolute; right: 0px;"></a>
 	  </div>
-<div style='background-color: yellow'><center><b>This site was recently migrated. Email any questions to <tt><a href="mailto:daveagp@gmail.com">daveagp@gmail.com</a></tt>.</b></center></div>
+<!--<div style='background-color: yellow'><center><b>This site was recently migrated. Email any questions to <tt><a href="mailto:daveagp@gmail.com">daveagp@gmail.com</a></tt>.</b></center></div>-->
 <header id="branding" role="banner">
 <?php
 if (defined('WP_HOME') && WP_HOME != "http://cscircles.cemc.uwaterloo.ca/" && !get_option("cscircles_hide_ack", "0")=="1")
