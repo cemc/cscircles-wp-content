@@ -19,6 +19,8 @@ on the lesson slugs; contact us for help if needed.)</div>";
   $out = get_pages();
   $lessons = array();
 
+  $found_english = False;
+  $found_non_english = False;
   foreach ($out as $page) {
     if ($page->post_status != 'publish') continue;
     $s = $page->post_title;
@@ -32,6 +34,8 @@ on the lesson slugs; contact us for help if needed.)</div>";
       // use default language
       $lang = currLang2();
     }
+    if ($lang != 'en') $found_non_english = True;
+    if ($lang == 'en') $found_english = True;
     if ($m >= 1) 
       $lessons[] = array('number'=>$matches[1].$matches[2], 
 			 'title'=>$matches[3], 
@@ -44,6 +48,11 @@ on the lesson slugs; contact us for help if needed.)</div>";
       $lessons[] = array('id'=>$page->ID, 'number'=>NULL, 'lang'=>$lang);
     // go through the console page too, mainly to set up the right url in history grids,
     // it does not get added to pb_lessons but its contents do get added to pb_problems
+  }
+  if (!$found_non_english || !$found_english) {
+    echo '<b>Check "Filter Listed Pages" settings - needs to be "Show all languages". Halting.</b>';
+    echo '</div>';
+    return;
   }
 
   function cmp($l1, $l2) {
