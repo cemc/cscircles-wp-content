@@ -22,6 +22,10 @@ function set_my_locale( $lang ) {
   return $lang;
 }
 
+if (array_key_exists('lang', $_REQUEST)) {
+  load_textdomain( 'cscircles', 'cscircles-' . $_REQUEST['lang'] . '.mo' );
+}
+
 // we only need this for ajax calls:
 /*if (array_key_exists('polylang', $GLOBALS)
     // but not for the visualizer:
