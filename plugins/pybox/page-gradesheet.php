@@ -2,6 +2,10 @@
 
   require_once("include-to-load-wp.php");
 
+  function csvify($s) {
+    return '"'.str_replace('"', "'", strip_tags($s)).'"';
+  }
+
   $hidden = explode(",", get_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', true));
   $nicks = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', true), true);
   $groups = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentgroups', true), true);
@@ -30,7 +34,7 @@
       header("Content-Type: text/plain");
       echo "id,email,name,group";
       foreach ($problems as $prow) {
-        echo ','.$prow['publicname'];
+        echo ','.csvify($prow['publicname']);
       }
       echo "\n";
     }
@@ -38,7 +42,7 @@
     $user = get_userdata($id);
     $group = getSoft($groups, $id, '[no group]');
     $desc = "{$user->user_firstname} {$user->user_lastname} " . userString($id);
-    echo "$id,{$user->user_email},$desc,$group";
+    echo "$id,".csvify($user->user_email).",".csvify($desc).",".csvify($group);
     foreach ($problems as $prow) {
       echo ',';
       echo getSoft(getSoft($completed_map, $id, array()), $prow['slug'], 0);
