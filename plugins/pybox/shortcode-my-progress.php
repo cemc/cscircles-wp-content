@@ -63,7 +63,7 @@ function pyUser($options, $content) {
     $preamble .= '</td><td>';
     $preamble .= optionsHelper($options, 'problem');
     
-    $preamble .= "</td></tr><tr><td colspan='2' style='text-align:center'><input style='width: 25%' type='submit' value='".__t('Submit')."'/></tr></td></table></form></div>";
+    $preamble .= "</td></tr><tr><td colspan='2' style='text-align:center'><input style='width: 25%' type='submit' value='".__t('Submit')."'/></tr></td></table></form>A <a href='/wp-content/plugins/pybox/page-gradesheet.php'>csv gradesheet</a> for your students is also available.</div>";
     echo $preamble;
   }
   
