@@ -1,15 +1,15 @@
-# Translation of WordPress - 5.3.x - Development - Administration - Network Admin in Spanish (Spain)
-# This file is distributed under the same license as the WordPress - 5.3.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.4.x - Development - Administration - Network Admin in Spanish (Spain)
+# This file is distributed under the same license as the WordPress - 5.4.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-10-05 09:59:26+0000\n"
+"PO-Revision-Date: 2020-03-05 10:50:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: es\n"
-"Project-Id-Version: WordPress - 5.3.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.4.x - Development - Administration - Network Admin\n"
 
 #. translators: %s: Number of sites.
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:255
@@ -228,8 +228,8 @@ msgstr "La dirección de internet de tu red será %s."
 
 #. translators: 1: Site URL, 2: Host name, 3: www.
 #: wp-admin/includes/network.php:271
-msgid "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
-msgstr "Recomendamos que cambies la URL de tu sitio a %1$s antes de activar la característica de red. Todavía será posible visitar tu sitio usando el prefijo %3$s con una dirección como %2$s, pero los enlaces no tendrán el prefijo %3$s. "
+msgid "We recommend you change your site domain to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
+msgstr "Recomendamos que cambies el dominio de tu sitio a %1$s antes de activar la característica de red. Todavía será posible visitar tu sitio usando el prefijo %3$s con una dirección como %2$s, pero los enlaces no tendrán el prefijo %3$s. "
 
 #: wp-admin/includes/network.php:226
 msgid "You cannot change this later."
@@ -374,12 +374,12 @@ msgstr "Parece que no tienes ningún tema disponible en este momento."
 msgid "No themes found."
 msgstr "No se han encontrado temas."
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:704
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:705
 msgctxt "verb; site"
 msgid "Archive"
 msgstr "Archivar"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:702
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:703
 msgid "Unarchive"
 msgstr "Restaurar"
 
@@ -404,7 +404,7 @@ msgid "Last Updated"
 msgstr "Última actualización"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:294
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:708
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:709
 msgctxt "site"
 msgid "Not Spam"
 msgstr "No es spam"
@@ -429,7 +429,7 @@ msgid "Deleted"
 msgstr "Borrado"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:40
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:710
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:711
 #: wp-admin/network/site-info.php:186
 msgctxt "site"
 msgid "Spam"
@@ -751,11 +751,6 @@ msgstr "Borrar es una acción permanente tras las pantallas de confirmación."
 msgid "Clicking on bold headings can re-sort this table."
 msgstr "Haciendo clic en las cabeceras en negrita, puedes reordenar esta tabla."
 
-#: wp-admin/network/themes.php:272 wp-admin/network/menu.php:81
-msgctxt "theme"
-msgid "Add New"
-msgstr "Añadir nuevo"
-
 #: wp-admin/network/sites.php:30
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
 msgstr "Añadir nuevo te lleva a la pantalla de Añadir un nuevo sitiio. Puedes buscar un sitio por nombre, número de ID o dirección IP. Las Opciones de pantalla te permiten elegir cuantos sitios mostrar por página."
@@ -907,8 +902,8 @@ msgid "Once you add this code and refresh your browser, multisite should be enab
 msgstr "Una vez añadido este código y recargado tu navegador, el multisitio debería estar activo. Esta pantalla, una vez que se convierta en el menú de navegación del administrador de la red, mantendrá un archivo del código añadido. Puedes alternar entre Administrador de red y Administración del sitio haciendo clic en el administrador de red o en Mis sitios en el menú desplegable en la barra de herramientas."
 
 #: wp-admin/includes/network.php:157
-msgid "ERROR: The network could not be created."
-msgstr "ERROR: no se ha podido crear la red."
+msgid "Error: The network could not be created."
+msgstr "Error: no se ha podido crear la red."
 
 #: wp-admin/includes/network.php:243
 msgid "Sub-directories"

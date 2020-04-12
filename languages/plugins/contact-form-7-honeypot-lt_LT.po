@@ -1,0 +1,116 @@
+# Translation of Plugins - Honeypot for Contact Form 7 - Stable (latest release) in Lithuanian
+# This file is distributed under the same license as the Plugins - Honeypot for Contact Form 7 - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-02-24 16:33:34+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: lt\n"
+"Project-Id-Version: Plugins - Honeypot for Contact Form 7 - Stable (latest release)\n"
+
+#: honeypot.php:279
+msgid "If checked, the accessibility label will not be generated. This is not recommended, but may improve spam blocking. If you're unsure, leave this unchecked."
+msgstr "Čia pažymėjus, nebus generuojamas prieinamumą užtikrinantis lauko pavadinimas (label). Nerekomenduojame rinktis šio nustatymo, tačiau jis gali šiek tiek pagerinti spamo blokavimą. Jei nesate tikras, ar to reikia, palikite tuščią."
+
+#: honeypot.php:249
+msgid "By default the markup that wraps this form item has a random ID. You can customize it here. If you're unsure, leave blank."
+msgstr "Standartiškai, formos elemento žymos turi atsitiktinį ID. Čia galite pakeisti jį į norimą. Jei nesate tikras, ar to reikia, palikite tuščią."
+
+#: honeypot.php:245
+msgid "Wrapper ID (optional)"
+msgstr "Formos ID (nebūtinas)"
+
+#: honeypot.php:269
+msgid "Moves the CSS to hide the honeypot from the element to the footer of the page. May help confuse bots."
+msgstr "Perkelia CSS, kuris išjungia honeypot lauko rodymą, į puslapio poraštę. Tai gali padėti suklaidinti botus."
+
+#: honeypot.php:265
+msgid "Move inline CSS (optional)"
+msgstr "Perkelti CSS (nebūtinas)"
+
+#: honeypot.php:259
+msgid "See <a href=\"https://wordpress.org/support/topic/w3c-validation-in-1-11-explanation-and-work-arounds/\" target=\"_blank\" rel=\"noopener\">here</a> for more details. If you're unsure, leave this unchecked."
+msgstr "<a href=\"https://wordpress.org/support/topic/w3c-validation-in-1-11-explanation-and-work-arounds/\" target=\"_blank\" rel=\"noopener\">Daugiau informacijos</a>. Jei nesate tikras, ar to reikia, palikite tuščią."
+
+#: honeypot.php:255
+msgid "Use W3C Valid Autocomplete (optional)"
+msgstr "Naudoti W3C Valid Autocomplete (nebūtinas)"
+
+#: honeypot.php:275
+msgid "Disable Accessibility Label (optional)"
+msgstr "Išjungti laukų pavadinimus (label) skirtus prieinamumui (nebūtinas)"
+
+#: honeypot.php:221
+msgid "This can be anything, but should be changed from the default generated \"honeypot\". For better security, change \"honeypot\" to something more appealing to a bot, such as text including \"email\" or \"website\"."
+msgstr "Reikšmė gali būti kokia tik norite, tačiau būtinai pakeiskite ją ir nepalikite standartinės \"honeypot\". Geriau įrašykite reikšmę, kuri atrodytų svarbi botams, pavyzdžiui, kokia nors frazė su žodžiu \"email\" arba \"website\"."
+
+#. Author URI of the plugin
+msgid "http://www.nocean.ca"
+msgstr "http://www.nocean.ca"
+
+#. Author of the plugin
+msgid "Nocean"
+msgstr "Nocean"
+
+#. Description of the plugin
+msgid "Add honeypot anti-spam functionality to the popular Contact Form 7 plugin."
+msgstr "Prideda honeypot lauku pagrįstą anti-spam funkciją populiariam įskiepiui Contact Form 7."
+
+#. Plugin URI of the plugin
+msgid "http://www.nocean.ca/plugins/honeypot-module-for-contact-form-7-wordpress-plugin/"
+msgstr "http://www.nocean.ca/plugins/honeypot-module-for-contact-form-7-wordpress-plugin/"
+
+#: honeypot.php:335
+msgid "Copy this code and paste it into the form left."
+msgstr "Nukopijuokite šį kodą ir įkelkite jį į formą."
+
+#: honeypot.php:291
+msgid "Insert Tag"
+msgstr "Įterpti žymę"
+
+#: honeypot.php:326
+msgid "If checked, the accessibility message will not be generated. <strong>This is not recommended</strong>. If you're unsure, leave this unchecked."
+msgstr "Čia pažymėjus, nebus rodoma prieinamumo žinutė. <strong>Nerekomenduojame</strong>. Jei nesate tikras, ar to reikia, palikite tuščią."
+
+#: honeypot.php:325
+msgid "Don't Use Accessibility Message (optional)"
+msgstr "Nenaudoti prieinamumo žinutės (nebūtinas)"
+
+#: honeypot.php:236 honeypot.php:319
+msgid "Class (optional)"
+msgstr "Klasė (nebūtinas)"
+
+#: honeypot.php:227 honeypot.php:315
+msgid "ID (optional)"
+msgstr "ID (nebūtinas)"
+
+#: honeypot.php:304
+msgid "For better security, change \"honeypot\" to something less bot-recognizable."
+msgstr "Kad būtų efektyviau, pakeiskite žodį \"honeypot\" į kokį nors kitą, nes šį botai atpažįsta."
+
+#: honeypot.php:217 honeypot.php:302
+msgid "Name"
+msgstr "Vardas"
+
+#: honeypot.php:208
+msgid "CF7 Honeypot"
+msgstr "CF7 Honeypot"
+
+#: honeypot.php:207
+msgid "Generate a form-tag for a spam-stopping honeypot field. For more details, see %s."
+msgstr "Sugeneruokite formos žymę specialiam honeypot tipo laukui, kuris stabdo spamą. Daugiau informacijos: %s."
+
+#: honeypot.php:198 honeypot.php:200
+msgid "Honeypot"
+msgstr "Honeypot"
+
+#: honeypot.php:126
+msgid "Please leave this field empty."
+msgstr "Palikite šį lauką tuščią."
+
+#: honeypot.php:67
+msgid "%s must be installed and activated for the CF7 Honeypot plugin to work"
+msgstr "Norėdami naudoti įskiepį CF7 Honeypot, turite įdiegti ir įjungti %s"

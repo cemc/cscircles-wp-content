@@ -89,7 +89,7 @@ class PLL_Upgrade {
 	 * @since 1.2
 	 */
 	public function _upgrade() {
-		foreach ( array( '0.9', '1.0', '1.1', '1.2', '1.2.1', '1.2.3', '1.3', '1.4', '1.4.1', '1.4.4', '1.5', '1.6', '1.7.4', '1.8', '2.0.8', '2.1', '2.3' ) as $version ) {
+		foreach ( array( '0.9', '1.0', '1.1', '1.2', '1.2.1', '1.2.3', '1.3', '1.4', '1.4.1', '1.4.4', '1.5', '1.6', '1.7.4', '1.8', '2.0.8', '2.1', '2.3', '2.7' ) as $version ) {
 			if ( version_compare( $this->options['version'], $version, '<' ) ) {
 				call_user_func( array( $this, 'upgrade_' . str_replace( '.', '_', $version ) ) );
 			}
@@ -143,7 +143,7 @@ class PLL_Upgrade {
 		// Update strings register with icl_register_string
 		$strings = get_option( 'polylang_wpml_strings' );
 		if ( $strings ) {
-			foreach ( $strings as $key => $string ) {
+			foreach ( array_keys( $strings ) as $key ) {
 				$strings[ $key ]['icl'] = 1;
 			}
 			update_option( 'polylang_wpml_strings', $strings );
@@ -179,7 +179,8 @@ class PLL_Upgrade {
 		// Upgrade old model based on metas to new model based on taxonomies
 		global $wpdb;
 		$wpdb->termmeta = $wpdb->prefix . 'termmeta'; // Registers the termmeta table in wpdb
-		$languages = get_terms( 'language', array( 'hide_empty' => 0 ) ); // Don't use get_languages_list which can't work with the old model
+		$languages      = get_terms( 'language', array( 'hide_empty' => 0 ) ); // Don't use get_languages_list which can't work with the old model
+		$lang_tt_ids    = array();
 
 		foreach ( $languages as $lang ) {
 			// First update language with new storage for locale and text direction
@@ -208,8 +209,12 @@ class PLL_Upgrade {
 
 		// Translations
 		foreach ( array( 'post', 'term' ) as $type ) {
-			$table = $type . 'meta';
-			$terms = $slugs = $tts = $trs = array();
+			$table       = $type . 'meta';
+			$terms       = array();
+			$slugs       = array();
+			$tts         = array();
+			$trs         = array();
+			$description = array();
 
 			// Get all translated objects
 			// PHPCS:ignore WordPress.DB.PreparedSQL
@@ -307,6 +312,8 @@ class PLL_Upgrade {
 		// Multilingal locations and switcher item were stored in a dedicated option
 		if ( version_compare( $this->options['version'], '1.1', '<' ) ) {
 			if ( $menu_lang = get_option( 'polylang_nav_menus' ) ) {
+				$locations = array();
+
 				foreach ( $menu_lang as $location => $arr ) {
 					if ( ! in_array( $location, array_keys( get_registered_nav_menus() ) ) ) {
 						continue;
@@ -355,7 +362,7 @@ class PLL_Upgrade {
 				// Clean the WP option as it was a bad idea to pollute it
 				if ( version_compare( $this->options['version'], '1.2', '<' ) ) {
 					foreach ( $menus as $loc => $menu ) {
-						if ( $pos = strpos( $loc, '#' ) ) {
+						if ( strpos( $loc, '#' ) ) {
 							unset( $menus[ $loc ] );
 						}
 					}
@@ -518,6 +525,8 @@ class PLL_Upgrade {
 			return;
 		}
 
+		$translations_to_load = array();
+
 		foreach ( $translations as $translation ) {
 			if ( in_array( $translation['language'], $languages ) ) {
 				$translation['type'] = 'core';
@@ -607,5 +616,30 @@ class PLL_Upgrade {
 	 */
 	protected function upgrade_2_3() {
 		delete_transient( 'pll_languages_list' );
+	}
+
+	/**
+	 * Upgrades if the previous version is < 2.7
+	 * Replace numeric keys by hashes in WPML registered strings
+	 * Dismiss the wizard notice for existing sites
+	 *
+	 * @since 2.7
+	 */
+	protected function upgrade_2_7() {
+		$strings = get_option( 'polylang_wpml_strings' );
+		if ( is_array( $strings ) ) {
+			$new_strings = array();
+
+			foreach ( $strings as $string ) {
+				$context = $string['context'];
+				$name    = $string['name'];
+
+				$key = md5( "$context | $name" );
+				$new_strings[ $key ] = $string;
+			}
+			update_option( 'polylang_wpml_strings', $new_strings );
+		}
+
+		PLL_Admin_Notices::dismiss( 'wizard' );
 	}
 }

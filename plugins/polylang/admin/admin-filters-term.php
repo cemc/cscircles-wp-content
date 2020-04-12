@@ -133,8 +133,8 @@ class PLL_Admin_Filters_Term {
 			return;
 		}
 
-		$term_id = $tag->term_id;
-		$taxonomy = $tag->taxonomy;
+		$term_id  = $tag->term_id;
+		$taxonomy = $tag->taxonomy; // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
 
 		$lang = $this->model->term->get_language( $term_id );
 		$lang = empty( $lang ) ? $this->pref_lang : $lang;
@@ -271,8 +271,10 @@ class PLL_Admin_Filters_Term {
 
 				// If we have several terms with the same name, they are translations of each other
 				if ( count( $terms ) > 1 ) {
+					$translations = array();
+
 					foreach ( $terms as $term ) {
-							$translations[ $this->model->term->get_language( $term->term_id )->slug ] = $term->term_id;
+						$translations[ $this->model->term->get_language( $term->term_id )->slug ] = $term->term_id;
 					}
 
 					$this->model->term->save_translations( $term_id, $translations );
@@ -368,7 +370,7 @@ class PLL_Admin_Filters_Term {
 			$this->save_language( $term_id, $taxonomy );
 
 			if ( isset( $_POST['term_tr_lang'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-				$translations = $this->save_translations( $term_id );
+				$this->save_translations( $term_id );
 			}
 		}
 	}
@@ -433,9 +435,9 @@ class PLL_Admin_Filters_Term {
 			wp_die( 0 );
 		}
 
-		$lang = $this->model->get_language( sanitize_key( $_POST['lang'] ) );
-		$term_id = isset( $_POST['term_id'] ) ? (int) $_POST['term_id'] : null;
-		$taxonomy = sanitize_key( $_POST['taxonomy'] );
+		$lang      = $this->model->get_language( sanitize_key( $_POST['lang'] ) );
+		$term_id   = isset( $_POST['term_id'] ) ? (int) $_POST['term_id'] : null; // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
+		$taxonomy  = sanitize_key( $_POST['taxonomy'] ); // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
 		$post_type = sanitize_key( $_POST['post_type'] );
 
 		if ( ! post_type_exists( $post_type ) || ! taxonomy_exists( $taxonomy ) ) {
@@ -502,7 +504,7 @@ class PLL_Admin_Filters_Term {
 
 		$s = wp_unslash( $_GET['term'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		$post_type = sanitize_key( $_GET['post_type'] );
-		$taxonomy = sanitize_key( $_GET['taxonomy'] );
+		$taxonomy  = sanitize_key( $_GET['taxonomy'] );
 
 		if ( ! post_type_exists( $post_type ) || ! taxonomy_exists( $taxonomy ) ) {
 			wp_die( 0 );
@@ -511,32 +513,40 @@ class PLL_Admin_Filters_Term {
 		$term_language = $this->model->get_language( sanitize_key( $_GET['term_language'] ) );
 		$translation_language = $this->model->get_language( sanitize_key( $_GET['translation_language'] ) );
 
+		$terms  = array();
 		$return = array();
 
-		// It is more efficient to use one common query for all languages as soon as there are more than 2
+		// Add current translation in list.
+		// Not in add term as term_id is not set.
+		if ( isset( $_GET['term_id'] ) && 'undefined' !== $_GET['term_id'] && $term_id = $this->model->term->get_translation( (int) $_GET['term_id'], $translation_language ) ) {
+			$terms = array( get_term( $term_id, $taxonomy ) );
+		}
+
+		// It is more efficient to use one common query for all languages as soon as there are more than 2.
 		foreach ( get_terms( $taxonomy, 'hide_empty=0&lang=0&name__like=' . $s ) as $term ) {
 			$lang = $this->model->term->get_language( $term->term_id );
 
 			if ( $lang && $lang->slug == $translation_language->slug && ! $this->model->term->get_translation( $term->term_id, $term_language ) ) {
-				$return[] = array(
-					'id'    => $term->term_id,
-					'value' => $term->name,
-					'link'  => $this->links->edit_term_translation_link( $term->term_id, $taxonomy, $post_type ),
-				);
+				$terms[] = $term;
 			}
 		}
 
-		// Add current translation in list
-		// Not in add term as term_id is not set
-		if ( isset( $_GET['term_id'] ) && 'undefined' !== $_GET['term_id'] && $term_id = $this->model->term->get_translation( (int) $_GET['term_id'], $translation_language ) ) {
-			$term = get_term( $term_id, $taxonomy );
-			array_unshift(
-				$return,
-				array(
-					'id'    => $term_id,
-					'value' => $term->name,
-					'link'  => $this->links->edit_term_translation_link( $term->term_id, $taxonomy, $post_type ),
-				)
+		// Format the ajax response.
+		foreach ( $terms as $term ) {
+			$return[] = array(
+				'id'    => $term->term_id,
+				'value' => rtrim( // Trim the seperator added at the end by WP.
+					get_term_parents_list(
+						$term->term_id,
+						$term->taxonomy,
+						array(
+							'separator' => ' > ',
+							'link' => false,
+						)
+					),
+					' >'
+				),
+				'link'  => $this->links->edit_term_translation_link( $term->term_id, $term->taxonomy, $post_type ),
 			);
 		}
 
@@ -607,6 +617,7 @@ class PLL_Admin_Filters_Term {
 
 		$avoid_recursion = true;
 		$lang = $this->model->term->get_language( $term_id );
+		$translations = array();
 
 		foreach ( $this->model->term->get_translations( $term_id ) as $key => $tr_id ) {
 			if ( $lang->slug == $key ) {

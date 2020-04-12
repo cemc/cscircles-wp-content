@@ -1,15 +1,15 @@
-# Translation of WordPress - 5.3.x - Development - Administration - Network Admin in French (France)
-# This file is distributed under the same license as the WordPress - 5.3.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.4.x - Development - Administration - Network Admin in French (France)
+# This file is distributed under the same license as the WordPress - 5.4.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-10-08 04:35:32+0000\n"
+"PO-Revision-Date: 2020-03-05 13:07:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: fr\n"
-"Project-Id-Version: WordPress - 5.3.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.4.x - Development - Administration - Network Admin\n"
 
 #. translators: %s: Number of sites.
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:255
@@ -228,7 +228,7 @@ msgstr "L’adresse internet de votre réseau sera %s."
 
 #. translators: 1: Site URL, 2: Host name, 3: www.
 #: wp-admin/includes/network.php:271
-msgid "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
+msgid "We recommend you change your site domain to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
 msgstr "Nous vous recommandons de modifier votre adresse de site pour %1$s avant d’activer la fonctionnalité réseau. Il sera toujours possible de parcourir votre site en mettant le préfixe %3$s à une adresse telle que %2$s, mais tous les liens n’auront pas le préfixe %3$s."
 
 #: wp-admin/includes/network.php:226
@@ -374,12 +374,12 @@ msgstr "Vous ne semblez pas avoir de thème disponible en ce moment."
 msgid "No themes found."
 msgstr "Aucun thème trouvé."
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:704
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:705
 msgctxt "verb; site"
 msgid "Archive"
 msgstr "Archiver"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:702
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:703
 msgid "Unarchive"
 msgstr "Désarchiver"
 
@@ -404,7 +404,7 @@ msgid "Last Updated"
 msgstr "Dernière mise à jour"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:294
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:708
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:709
 msgctxt "site"
 msgid "Not Spam"
 msgstr "N’est pas un indésirable"
@@ -429,7 +429,7 @@ msgid "Deleted"
 msgstr "Supprimé"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:40
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:710
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:711
 #: wp-admin/network/site-info.php:186
 msgctxt "site"
 msgid "Spam"
@@ -711,8 +711,8 @@ msgid ""
 msgstr ""
 "Nouveau site créé par %1$s\n"
 "\n"
-"Adresse : %2$s\n"
-"Nom : %3$s"
+"Adresse : %2$s\n"
+"Nom : %3$s"
 
 #: wp-admin/includes/network.php:260 wp-admin/includes/network.php:611
 #: wp-admin/includes/network.php:653
@@ -737,7 +737,7 @@ msgstr "Cet écran permet aux super-admins d’ajouter de nouveaux sites au rés
 
 #: wp-admin/network/sites.php:33
 msgid "An Edit link to a separate Edit Site screen."
-msgstr "Un lien &laquo; Modifier &raquo; vers un nouvel écran de modification de site."
+msgstr "Un lien « Modifier » vers un nouvel écran de modification de site."
 
 #: wp-admin/network/themes.php:240
 msgid "Themes can be enabled on a site by site basis by the network admin on the Edit Site screen (which has a Themes tab); get there via the Edit action link on the All Sites screen. Only network admins are able to install or edit themes."
@@ -750,11 +750,6 @@ msgstr "&laquo; Supprimer &raquo; est une action irréversible une fois passé
 #: wp-admin/network/sites.php:39
 msgid "Clicking on bold headings can re-sort this table."
 msgstr "Cliquez sur les en-têtes en gras afin de retrier ce tableau."
-
-#: wp-admin/network/themes.php:272 wp-admin/network/menu.php:81
-msgctxt "theme"
-msgid "Add New"
-msgstr "Ajouter"
 
 #: wp-admin/network/sites.php:30
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
@@ -907,8 +902,8 @@ msgid "Once you add this code and refresh your browser, multisite should be enab
 msgstr "Une fois que vous aurez ajouté ce code et rafraîchi la page dans votre navigateur, le mode multisite devrait être activé. Cet écran, désormais placé dans le menu de navigation Admin du Réseau, conservera une archive du code ajouté. Vous pouvez basculer de l’administration du réseau à l’administration du site en cliquant sur &laquo; Admin du réseau &raquo;, ou en cliquant sur le nom d’un site individuel dans le menu déroulant &laquo; Mes Sites &raquo; de la barre d’outils."
 
 #: wp-admin/includes/network.php:157
-msgid "ERROR: The network could not be created."
-msgstr "ERREUR : Le réseau ne peut pas être créé."
+msgid "Error: The network could not be created."
+msgstr "Erreur : Le réseau ne peut pas être créé."
 
 #: wp-admin/includes/network.php:243
 msgid "Sub-directories"

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-11-13 08:11:02+0000\n"
+"PO-Revision-Date: 2020-01-08 14:37:32+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,6 +18,10 @@ msgstr "2020 için yeni varsayılan temamız blok düzenleyicinin esnekliğinin 
 #. Theme Name of the theme
 msgid "Twenty Twenty"
 msgstr "Yirmi Yirmi"
+
+#: classes/class-twentytwenty-customize.php:246
+msgid "Show author bio"
+msgstr "Yazar biyografisini göster"
 
 #: inc/starter-content.php:38
 msgctxt "Theme starter content"
@@ -61,7 +65,7 @@ msgstr "Varsayılan"
 msgid "Primary Color"
 msgstr "Birincil renk"
 
-#: inc/template-tags.php:387
+#: inc/template-tags.php:393
 msgctxt "A string that is output before one or more categories"
 msgid "In"
 msgstr "Kategori"
@@ -74,7 +78,7 @@ msgstr "Kulübe katılın"
 msgid "The New UMoMA Opens its Doors"
 msgstr "Yeni UMoMA kapılarını açıyor"
 
-#: classes/class-twentytwenty-customize.php:374
+#: classes/class-twentytwenty-customize.php:395
 msgid "Overlay Opacity"
 msgstr "Kaplama şeffaflığı"
 
@@ -94,23 +98,23 @@ msgstr "Üyeler özel sergilere ve satışlara ulaşabiliyor. Üyelik ücretimiz
 msgid "Become a Member and Get Exclusive Offers!"
 msgstr "Üye olun ve özel teklifler alın!"
 
-#: classes/class-twentytwenty-customize.php:354
+#: classes/class-twentytwenty-customize.php:375
 msgid "The color used for the text in the overlay."
 msgstr "Kaplamadaki metin için kullanılacak renk."
 
-#: classes/class-twentytwenty-customize.php:353
+#: classes/class-twentytwenty-customize.php:374
 msgid "Overlay Text Color"
 msgstr "Kaplama metin rengi"
 
-#: classes/class-twentytwenty-customize.php:332
+#: classes/class-twentytwenty-customize.php:353
 msgid "The color used for the overlay. Defaults to the accent color."
 msgstr "Kaplama için kullanılacak renk. Varsayılan olarak vurgu rengidir."
 
-#: classes/class-twentytwenty-customize.php:331
+#: classes/class-twentytwenty-customize.php:352
 msgid "Overlay Background Color"
 msgstr "Kaplama arka plan rengi"
 
-#: classes/class-twentytwenty-customize.php:262
+#: classes/class-twentytwenty-customize.php:283
 msgid "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
 msgstr "\"Kapak şablonu\" sayfa şablonu için ayarlar. Arka plan olarak kullanmak için öne çıkarılmış görsel ekleyin."
 
@@ -121,10 +125,6 @@ msgstr "Bağlantılar, düğmeler ve öne çıkan görseller için özel bir ren
 #: inc/starter-content.php:136
 msgid "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
 msgstr "Sergiler UMoMA tarafından yapılmaktadır ve dünyanın her yerinden sanatçılar ve müzeler tarafından desteklenmektedir, çoğunlukla da uluslararası bir ilgi görmektedir. UMoMA Avrupa Yılın müzesi özel ödülünü almıştır ve İsveç Yılın Müzesi, Avrupa Konseyi Müze ödülü gibi bir çok ödül için de üst sıralarda aday gösterilmektedir."
-
-#: inc/starter-content.php:129
-msgid "”Cyborgs, as the philosopher Donna Haraway established, are not reverent. They do not remember the cosmos.”"
-msgstr "\"Sayborglar, filozof Donna Haraway'in konumlandırdığı gibi, hürmetkar değiller. Evreni hatırlamıyorlar.\""
 
 #: inc/starter-content.php:55
 msgid "The premier destination for modern art in Northern Sweden. Open from 10 AM to 6 PM every day during the summer months."
@@ -138,25 +138,25 @@ msgstr "Yedi katlı çarpıcı mimarisi ile UMoMA uluslararası modern sanat ser
 msgid "Search for:"
 msgstr "Arama yap:"
 
-#. translators: Copyright date format, see https://secure.php.net/date
+#. translators: Copyright date format, see https://www.php.net/date
 #: footer.php:25
 msgctxt "copyright date format"
 msgid "Y"
 msgstr "Y"
 
-#. translators: %s: Number of search results
+#. translators: %s: Number of search results.
 #: index.php:39
 msgid "We found %s result for your search."
 msgid_plural "We found %s results for your search."
 msgstr[0] "Aramanız için %s sonuç bulduk."
 msgstr[1] "Aramanız için %s sonuç bulduk."
 
-#. translators: %s: HTML character for up arrow
+#. translators: %s: HTML character for up arrow.
 #: footer.php:49
 msgid "Up %s"
 msgstr "Yukarı %s"
 
-#. translators: %s: HTML character for up arrow
+#. translators: %s: HTML character for up arrow.
 #: footer.php:43
 msgid "To the top %s"
 msgstr "Tepeye %s"
@@ -169,7 +169,7 @@ msgstr "404 bulunamadı"
 msgid "search again"
 msgstr "tekrar arayın"
 
-#. Translators: 1 = comment date, 2 = comment time
+#. translators: 1: Comment date, 2: Comment time.
 #: classes/class-twentytwenty-walker-comment.php:69
 msgid "%1$s at %2$s"
 msgstr "%1$s, %2$s"
@@ -186,13 +186,13 @@ msgstr "Yorumunuz denetim için bekliyor."
 msgid "Leave a comment"
 msgstr "Yorum Gönderin"
 
-#. translators: %s: post title
+#. translators: %s: Post title.
 #: comments.php:37
 msgctxt "comments title"
 msgid "One reply on &ldquo;%s&rdquo;"
 msgstr "&ldquo;%s&rdquo; için bir yanıt"
 
-#. translators: 1: number of comments, 2: post title
+#. translators: 1: Number of comments, 2: Post title.
 #: comments.php:41
 msgctxt "comments title"
 msgid "%1$s reply on &ldquo;%2$s&rdquo;"
@@ -208,7 +208,7 @@ msgstr "Yorumlar"
 msgid "Comments are closed."
 msgstr "Yorumlar kapatıldı."
 
-#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:491
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:494
 msgid "Primary"
 msgstr "Birincil"
 
@@ -221,11 +221,11 @@ msgstr "Sosyal bağlantılar menüsü"
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Düzenle <span class=\"screen-reader-text\">%s</span>"
 
-#: functions.php:258
+#: functions.php:261
 msgid "Footer Menu"
 msgstr "Site altı menüsü"
 
-#: template-parts/content.php:48 template-parts/content-cover.php:138
+#: template-parts/content-cover.php:138 template-parts/content.php:48
 msgid "Pages:"
 msgstr "Sayfalar:"
 
@@ -233,11 +233,11 @@ msgstr "Sayfalar:"
 msgid "Footer"
 msgstr "Dip"
 
-#: template-parts/content.php:48 template-parts/content-cover.php:138
+#: template-parts/content-cover.php:138 template-parts/content.php:48
 msgid "Page"
 msgstr "Sayfa"
 
-#: functions.php:496
+#: functions.php:499
 msgid "Secondary"
 msgstr "İkincil"
 
@@ -259,12 +259,12 @@ msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Ara &hellip;"
 
-#: inc/template-tags.php:401
+#: inc/template-tags.php:407
 msgid "Tags"
 msgstr "Etiketler"
 
-#: template-parts/entry-header.php:36 template-parts/content-cover.php:70
-#: inc/template-tags.php:383
+#: inc/template-tags.php:389 template-parts/entry-header.php:36
+#: template-parts/content-cover.php:70
 msgid "Categories"
 msgstr "Kategoriler"
 
@@ -284,55 +284,55 @@ msgstr "Site araması"
 msgid "Continue reading"
 msgstr "Okumaya devam et"
 
-#: functions.php:548
+#: functions.php:551
 msgctxt "Short name of the larger font size in the block editor."
 msgid "XL"
 msgstr "XL"
 
-#: functions.php:547
+#: functions.php:550
 msgctxt "Name of the larger font size in the block editor"
 msgid "Larger"
 msgstr "Daha büyük"
 
-#: functions.php:542
+#: functions.php:545
 msgctxt "Short name of the large font size in the block editor."
 msgid "L"
 msgstr "L"
 
-#: functions.php:541
+#: functions.php:544
 msgctxt "Name of the large font size in the block editor"
 msgid "Large"
 msgstr "Büyük"
 
-#: functions.php:536
+#: functions.php:539
 msgctxt "Short name of the regular font size in the block editor."
 msgid "M"
 msgstr "P"
 
-#: functions.php:535
+#: functions.php:538
 msgctxt "Name of the regular font size in the block editor"
 msgid "Regular"
 msgstr "Normal"
 
-#: functions.php:530
+#: functions.php:533
 msgctxt "Short name of the small font size in the block editor."
 msgid "S"
 msgstr "P"
 
-#: functions.php:529
+#: functions.php:532
 msgctxt "Name of the small font size in the block editor"
 msgid "Small"
 msgstr "Küçük"
 
-#: functions.php:514
+#: functions.php:517
 msgid "Background Color"
 msgstr "Arka Plan Rengi"
 
-#: functions.php:259
+#: functions.php:262
 msgid "Social Menu"
 msgstr "Sosyal Menü"
 
-#: functions.php:257
+#: functions.php:260
 msgid "Mobile Menu"
 msgstr "Mobil menü"
 
@@ -348,8 +348,8 @@ msgstr "Eski yorumlar"
 msgid "Newer Comments"
 msgstr "Yeni yorumlar"
 
-#. translators: %d: ID of a post
-#: classes/class-twentytwenty-walker-page.php:82
+#. translators: %d: ID of a post.
+#: classes/class-twentytwenty-walker-page.php:70
 msgid "#%d (no title)"
 msgstr "#%d (başlık yok)"
 
@@ -357,11 +357,11 @@ msgstr "#%d (başlık yok)"
 msgid "says:"
 msgstr "diyorki:"
 
-#: classes/class-twentytwenty-customize.php:249
+#: classes/class-twentytwenty-customize.php:270
 msgid "Summary"
 msgstr "Özet"
 
-#: classes/class-twentytwenty-customize.php:248
+#: classes/class-twentytwenty-customize.php:269
 msgid "Full text"
 msgstr "Tüm metin"
 
@@ -405,8 +405,8 @@ msgstr "Daha eski <span class=\"nav-short\">yazılar</span>"
 msgid "Newer <span class=\"nav-short\">Posts</span>"
 msgstr "Daha yeni <span class=\"nav-short\">yazılar</span>"
 
-#. translators: %s: Author name
-#: template-parts/entry-author-bio.php:20 inc/template-tags.php:348
+#. translators: %s: Author name.
+#: inc/template-tags.php:354 template-parts/entry-author-bio.php:20
 msgid "By %s"
 msgstr "Yazar %s"
 
@@ -422,55 +422,51 @@ msgstr "Aramanızla örtüşen sonuç bulamadık. Aşağıdaki form ile tekrar a
 msgid "Search:"
 msgstr "Arama:"
 
-#: inc/template-tags.php:439
+#: inc/template-tags.php:445
 msgid "Sticky post"
 msgstr "Sabit yazı"
 
-#: inc/template-tags.php:365
+#: inc/template-tags.php:371
 msgid "Post date"
 msgstr "Yazı tarihi"
 
-#: inc/template-tags.php:341
+#: inc/template-tags.php:347
 msgid "Post author"
 msgstr "Yazının yazarı"
 
-#: functions.php:501
+#: functions.php:504
 msgid "Subtle Background"
 msgstr "Hafif arka plan"
 
-#: functions.php:486
+#: functions.php:489
 msgid "Accent Color"
 msgstr "Vurgu rengi"
 
-#: functions.php:377
+#: functions.php:380
 msgid "Widgets in this area will be displayed in the second column in the footer."
 msgstr "Bu alandaki bileşenler alt kısımda ikinci sütunda görüntülenirler."
 
-#: functions.php:375
+#: functions.php:378
 msgid "Footer #2"
 msgstr "Alt kısım #2"
 
-#: functions.php:365
+#: functions.php:368
 msgid "Widgets in this area will be displayed in the first column in the footer."
 msgstr "Bu alandaki bileşenler alt kısımda birinci sütunda görüntülenirler."
 
-#: functions.php:363
+#: functions.php:366
 msgid "Footer #1"
 msgstr "Alt kısım #1"
 
-#: functions.php:338
+#: functions.php:341
 msgid "Skip to the content"
 msgstr "İçeriğe atla"
 
-#: functions.php:256
-msgid "Desktop Expanded Menu"
-msgstr "Masa üstü genişletilmiş menü"
-
-#: functions.php:255
+#: functions.php:258
 msgid "Desktop Horizontal Menu"
 msgstr "Masaüstü yatay menü"
 
-#: classes/class-twentytwenty-walker-page.php:134 inc/template-tags.php:545
+#: classes/class-twentytwenty-walker-page.php:107 inc/template-tags.php:555
 msgid "Show sub menu"
 msgstr "Alt menüyü göster"
 
@@ -478,24 +474,24 @@ msgstr "Alt menüyü göster"
 msgid "By Post Author"
 msgstr "Yazı yazarına göre"
 
-#: classes/class-twentytwenty-customize.php:375
+#: classes/class-twentytwenty-customize.php:396
 msgid "Make sure that the contrast is high enough so that the text is readable."
 msgstr "Metnin okunabilmesi için kontrastın yeterince yüksek olduğundan emin olun."
 
-#: classes/class-twentytwenty-customize.php:285
+#: classes/class-twentytwenty-customize.php:306
 msgid "Creates a parallax effect when the visitor scrolls."
 msgstr "Ziyaretçi sayfayı kaydırdığında bir paralaks efekti oluşturur."
 
-#: classes/class-twentytwenty-customize.php:284
+#: classes/class-twentytwenty-customize.php:305
 msgid "Fixed Background Image"
 msgstr "Sabit arka plan görseli"
 
 #. Template Name of the theme
-#: classes/class-twentytwenty-customize.php:260
+#: classes/class-twentytwenty-customize.php:281
 msgid "Cover Template"
 msgstr "Kapak şablonu"
 
-#: classes/class-twentytwenty-customize.php:246
+#: classes/class-twentytwenty-customize.php:267
 msgid "On archive pages, posts show:"
 msgstr "Sayfa ve yazı arşivlerinde göster:"
 
@@ -518,6 +514,10 @@ msgstr "Retina logo"
 #: 404.php:19
 msgid "The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place."
 msgstr "Aradığınız sayfa bulunamadı. Kaldırılmış, adı değiştirilmiş ya da hiç var olmamış olabilir."
+
+#: functions.php:259
+msgid "Desktop Expanded Menu"
+msgstr "Masaüstü genişletilmiş menü"
 
 #. Author URI of the theme
 #: footer.php:32

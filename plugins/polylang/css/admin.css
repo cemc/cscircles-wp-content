@@ -21,6 +21,14 @@
 	font-family: 'dashicons';
 	content: "\f155";
 }
+.pll-icon:before{
+	display: inline-block;
+	text-align: left;
+	width: 15px;
+}
+.pll-circle:before{
+	content: "\25cf";
+}
 
 .form-field input[type="radio"] {
 	width: auto;
@@ -324,6 +332,10 @@ td[class*='column-language_'] {
 	text-decoration: none;
 }
 
+.pll-notice .button {
+	margin-right: 10px;
+}
+
 /* Bulk translate */
 .bulk-translate-save .button {
 	margin-right: 20px;
@@ -340,8 +352,8 @@ td[class*='column-language_'] {
 
 #pll-translate .title {
 	display: block;
-  margin: 0.2em 0;
-  line-height: 2.5;
+	margin: 0.2em 0;
+	line-height: 2.5;
 }
 
 @media screen and ( max-width: 782px ) {

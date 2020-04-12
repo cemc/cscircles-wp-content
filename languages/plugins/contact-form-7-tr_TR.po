@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-06-08 21:09:44+0000\n"
+"PO-Revision-Date: 2020-02-18 23:06:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,42 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: tr\n"
 "Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#: includes/config-validator.php:418
+msgid "Unavailable HTML elements are used in the form template."
+msgstr "Şablon formunda uygun olmayan HTML öğeleri kullanılıyor"
+
+#: includes/config-validator.php:587
+msgid "The total size of attachment files is too large."
+msgstr "Ek dosyalarının toplam boyutu çok büyük."
+
+#: modules/recaptcha.php:499
+msgid "reCAPTCHA is active on this site."
+msgstr "reCAPTCHA bu sitede aktif."
+
+#: modules/recaptcha.php:156
+msgid "reCAPTCHA response token is empty."
+msgstr "reCAPTCHA cevap anahtarı boş."
+
+#: includes/submission.php:326
+msgid "Blacklisted words are used."
+msgstr "Kara listedeki kelimeler kullanıldı."
+
+#: includes/submission.php:317
+msgid "Submitted nonce is invalid."
+msgstr "Geçici olarak gönderilen geçersiz."
+
+#: includes/submission.php:308
+msgid "User-Agent string is unnaturally short."
+msgstr "Kullanıcı aracısı metin öngörülenden daha kısa."
+
+#: modules/recaptcha.php:162
+msgid "reCAPTCHA score (%1$.2f) is lower than the threshold (%2$.2f)."
+msgstr "(%1$.2f) reCAPTCHA puanı (%2$.2f) eşikten daha düşük."
+
+#: modules/akismet.php:58
+msgid "Akismet returns a spam response."
+msgstr "Akismet tarafından istenmeyen olarak döndü."
 
 #: modules/constant-contact.php:588
 msgid "Select lists to which newly added contacts are to belong."
@@ -262,8 +298,8 @@ msgid "You are not allowed to access the requested contact form."
 msgstr "Talep edilen iletişim formuna erişmenize izin verilmiyor."
 
 #: includes/rest-api.php:171 includes/rest-api.php:198
-#: includes/rest-api.php:247 includes/rest-api.php:276
-#: includes/rest-api.php:316
+#: includes/rest-api.php:247 includes/rest-api.php:281
+#: includes/rest-api.php:321
 msgid "The requested contact form was not found."
 msgstr "Talep edilen iletişim formu bulunamadı."
 
@@ -335,7 +371,7 @@ msgstr "%d yapılandırma hatası tespit edildi"
 msgid "1 configuration error detected"
 msgstr "1 yapılandırma hatası tespit edildi"
 
-#: includes/rest-api.php:138 includes/rest-api.php:214 admin/admin.php:513
+#: admin/admin.php:513 includes/rest-api.php:138 includes/rest-api.php:214
 msgid "There was an error saving the contact form."
 msgstr "İletişim formu kaydedilirken hata oluştu."
 
@@ -523,8 +559,8 @@ msgstr[1] "%s iletişim formunu şimdi doğrulayın"
 msgid "You are not allowed to validate configuration."
 msgstr "Yapılandırmayı doğrulamaya izniniz yok."
 
-#: modules/recaptcha.php:233 modules/recaptcha.php:491
-#: admin/includes/welcome-panel.php:35
+#: admin/includes/welcome-panel.php:35 modules/recaptcha.php:233
+#: modules/recaptcha.php:491
 msgid "https://contactform7.com/recaptcha/"
 msgstr "https://contactform7.com/recaptcha/"
 
@@ -548,7 +584,7 @@ msgstr "Anahtar değeri geçersiz."
 msgid "ERROR"
 msgstr "HATA"
 
-#: modules/recaptcha.php:267 admin/includes/welcome-panel.php:36
+#: admin/includes/welcome-panel.php:36 modules/recaptcha.php:267
 msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
@@ -597,8 +633,8 @@ msgstr "Bu alan yazarın eposta adresini gerektirir"
 msgid "This field requires author's name"
 msgstr "Bu alan yazarın adını gerektirir"
 
-#: modules/text.php:266 modules/text.php:269
-#: admin/includes/welcome-panel.php:32
+#: admin/includes/welcome-panel.php:32 modules/text.php:266
+#: modules/text.php:269
 msgid "Akismet"
 msgstr "Akismet"
 
@@ -815,13 +851,13 @@ msgstr "En az"
 msgid "Range"
 msgstr "Aralık"
 
-#: modules/text.php:261 modules/textarea.php:168 modules/date.php:178
-#: modules/number.php:186
+#: modules/text.php:261 modules/date.php:178 modules/number.php:186
+#: modules/textarea.php:168
 msgid "Use this text as the placeholder of the field"
 msgstr "Bu metni alanın yer tutucusu olarak kullan"
 
-#: modules/text.php:259 modules/textarea.php:166 modules/date.php:176
-#: modules/number.php:184
+#: modules/text.php:259 modules/date.php:176 modules/number.php:184
+#: modules/textarea.php:166
 msgid "Default value"
 msgstr "Varsayılan değer"
 
@@ -853,8 +889,8 @@ msgstr "Tarih, en az sınırdan daha erken"
 msgid "Date format that the sender entered is invalid"
 msgstr "Gönderenin girdiği tarih biçimi geçersiz"
 
-#: modules/text.php:317 modules/select.php:224 modules/textarea.php:195
-#: modules/checkbox.php:346 modules/date.php:222 modules/number.php:230
+#: modules/text.php:317 modules/date.php:222 modules/number.php:230
+#: modules/checkbox.php:346 modules/textarea.php:195 modules/select.php:224
 msgid "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab."
 msgstr "Posta alanındaki bu alan aracılığıyla değer girdisini kullanmak için, Posta sekmesindeki alan içine karşılık gelen posta-etiketini (%s) eklemeniz gerekir."
 
@@ -870,29 +906,29 @@ msgstr "Her öğeyi etiket öğesiyle kaydır"
 msgid "Put a label first, a checkbox last"
 msgstr "Önce bir etiket koyun, sonra onay kutusunu"
 
-#: modules/select.php:193 modules/checkbox.php:312
+#: modules/checkbox.php:312 modules/select.php:193
 msgid "One option per line."
 msgstr "Satır başına bir seçenek."
 
-#: modules/text.php:248 modules/select.php:177 modules/textarea.php:155
-#: modules/file.php:209 modules/checkbox.php:295 modules/date.php:165
-#: modules/number.php:173
+#: modules/text.php:248 modules/file.php:209 modules/date.php:165
+#: modules/number.php:173 modules/checkbox.php:295 modules/textarea.php:155
+#: modules/select.php:177
 msgid "Required field"
 msgstr "Zorunlu alan"
 
-#: modules/text.php:244 modules/text.php:247 modules/select.php:173
-#: modules/select.php:176 modules/textarea.php:151 modules/textarea.php:154
-#: modules/file.php:205 modules/file.php:208 modules/checkbox.php:291
-#: modules/checkbox.php:294 modules/date.php:161 modules/date.php:164
-#: modules/number.php:164 modules/number.php:167
+#: modules/text.php:244 modules/text.php:247 modules/file.php:205
+#: modules/file.php:208 modules/date.php:161 modules/date.php:164
+#: modules/number.php:164 modules/number.php:167 modules/checkbox.php:291
+#: modules/checkbox.php:294 modules/textarea.php:151 modules/textarea.php:154
+#: modules/select.php:173 modules/select.php:176
 msgid "Field type"
 msgstr "Alan türü"
 
-#: modules/select.php:163 modules/checkbox.php:280
+#: modules/checkbox.php:280 modules/select.php:163
 msgid "Checkboxes, Radio Buttons and Menus"
 msgstr "Onay Kutuları, Radyo Düğmeleri ve Menüler"
 
-#: modules/select.php:163 modules/checkbox.php:280
+#: modules/checkbox.php:280 modules/select.php:163
 msgid "https://contactform7.com/checkboxes-radio-buttons-and-menus/"
 msgstr "https://contactform7.com/checkboxes-radio-buttons-and-menus/"
 
@@ -941,7 +977,7 @@ msgstr "Form-etiketlerini bir CAPTCHA resmi ve karşılık gelen yanıt girdi al
 msgid "To use CAPTCHA, you first need to install and activate %s plugin."
 msgstr "CAPTCHA kullanmak için, önce %s eklentisini yüklemeniz ve etkinleştirmeniz gerekir."
 
-#: modules/recaptcha.php:9 modules/really-simple-captcha.php:273
+#: modules/really-simple-captcha.php:273 modules/recaptcha.php:9
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
@@ -953,39 +989,40 @@ msgstr "Girdiğiniz kod doğru değil."
 msgid "The code that sender entered does not match the CAPTCHA"
 msgstr "Gönderenin girdiği kod CAPTCHA (Şahıs Denetim Kodu) ile eşleşmiyor"
 
-#: modules/text.php:312 modules/select.php:219 modules/textarea.php:190
-#: modules/file.php:248 modules/acceptance.php:291
-#: modules/really-simple-captcha.php:325 modules/checkbox.php:341
-#: modules/date.php:217 modules/quiz.php:234 modules/number.php:225
-#: modules/submit.php:88
+#: modules/quiz.php:234 modules/text.php:312 modules/submit.php:88
+#: modules/acceptance.php:291 modules/file.php:248 modules/date.php:217
+#: modules/number.php:225 modules/checkbox.php:341
+#: modules/really-simple-captcha.php:325 modules/textarea.php:190
+#: modules/select.php:219
 msgid "Insert Tag"
 msgstr "Etiket ekle"
 
-#: modules/text.php:299 modules/select.php:206 modules/textarea.php:177
-#: modules/file.php:235 modules/acceptance.php:278
+#: modules/quiz.php:221 modules/text.php:299 modules/submit.php:75
+#: modules/acceptance.php:278 modules/file.php:235 modules/date.php:205
+#: modules/number.php:213 modules/checkbox.php:328
 #: modules/really-simple-captcha.php:298 modules/really-simple-captcha.php:313
-#: modules/checkbox.php:328 modules/date.php:205 modules/quiz.php:221
-#: modules/number.php:213 modules/submit.php:75
+#: modules/textarea.php:177 modules/select.php:206
 msgid "Class attribute"
 msgstr "Sınıf özniteliği"
 
-#: modules/text.php:294 modules/select.php:201 modules/textarea.php:172
-#: modules/file.php:230 modules/acceptance.php:273
+#: modules/quiz.php:216 modules/text.php:294 modules/submit.php:70
+#: modules/acceptance.php:273 modules/file.php:230 modules/date.php:200
+#: modules/number.php:208 modules/checkbox.php:323
 #: modules/really-simple-captcha.php:293 modules/really-simple-captcha.php:308
-#: modules/checkbox.php:323 modules/date.php:200 modules/quiz.php:216
-#: modules/number.php:208 modules/submit.php:70
+#: modules/textarea.php:172 modules/select.php:201
 msgid "Id attribute"
 msgstr "Kimlik özniteliği"
 
-#: modules/select.php:188 modules/select.php:191 modules/acceptance.php:263
-#: modules/acceptance.php:266 modules/checkbox.php:307 modules/checkbox.php:310
+#: modules/acceptance.php:263 modules/acceptance.php:266
+#: modules/checkbox.php:307 modules/checkbox.php:310 modules/select.php:188
+#: modules/select.php:191
 msgid "Options"
 msgstr "Seçenekler"
 
-#: modules/text.php:254 modules/select.php:183 modules/textarea.php:161
-#: modules/file.php:215 modules/acceptance.php:253
-#: modules/really-simple-captcha.php:283 modules/checkbox.php:302
-#: modules/date.php:171 modules/quiz.php:200 modules/number.php:179
+#: modules/quiz.php:200 modules/text.php:254 modules/acceptance.php:253
+#: modules/file.php:215 modules/date.php:171 modules/number.php:179
+#: modules/checkbox.php:302 modules/really-simple-captcha.php:283
+#: modules/textarea.php:161 modules/select.php:183
 msgid "Name"
 msgstr "Adı"
 
@@ -1068,7 +1105,7 @@ msgstr "Konu: %s"
 msgid "From: %s"
 msgstr "Kimden: %s"
 
-#: includes/contact-form-template.php:42 modules/submit.php:26
+#: modules/submit.php:26 includes/contact-form-template.php:42
 msgid "Send"
 msgstr "Gönder"
 
@@ -1214,7 +1251,7 @@ msgstr "İleti gövdesi"
 msgid "Additional Headers"
 msgstr "Ek başlıklar"
 
-#: includes/contact-form-template.php:40 admin/includes/editor.php:163
+#: admin/includes/editor.php:163 includes/contact-form-template.php:40
 msgid "Subject"
 msgstr "Konu"
 
@@ -1280,8 +1317,8 @@ msgstr "Kısa kod"
 msgid "Title"
 msgstr "Başlık"
 
-#: admin/includes/editor.php:247 admin/includes/editor.php:252
-#: admin/edit-contact-form.php:261
+#: admin/edit-contact-form.php:261 admin/includes/editor.php:247
+#: admin/includes/editor.php:252
 msgid "Additional Settings"
 msgstr "Ek ayarlar"
 
@@ -1290,15 +1327,15 @@ msgstr "Ek ayarlar"
 msgid "Additional Settings (%d)"
 msgstr "Ek ayarlar (%d)"
 
-#: admin/includes/editor.php:222 admin/edit-contact-form.php:245
+#: admin/edit-contact-form.php:245 admin/includes/editor.php:222
 msgid "Messages"
 msgstr "İletiler"
 
-#: admin/includes/editor.php:93 admin/edit-contact-form.php:241
+#: admin/edit-contact-form.php:241 admin/includes/editor.php:93
 msgid "Mail"
 msgstr "Posta"
 
-#: admin/includes/editor.php:61 admin/edit-contact-form.php:237
+#: admin/edit-contact-form.php:237 admin/includes/editor.php:61
 msgid "Form"
 msgstr "Form"
 
@@ -1310,19 +1347,19 @@ msgstr "Destek"
 msgid "https://contactform7.com/support/"
 msgstr "https://contactform7.com/support/"
 
-#: admin/includes/help-tabs.php:93 admin/edit-contact-form.php:193
+#: admin/edit-contact-form.php:193 admin/includes/help-tabs.php:93
 msgid "FAQ"
 msgstr "SSS"
 
-#: admin/includes/help-tabs.php:93 admin/edit-contact-form.php:192
+#: admin/edit-contact-form.php:192 admin/includes/help-tabs.php:93
 msgid "https://contactform7.com/faq/"
 msgstr "https://contactform7.com/faq/"
 
-#: admin/includes/help-tabs.php:92 admin/edit-contact-form.php:197
+#: admin/edit-contact-form.php:197 admin/includes/help-tabs.php:92
 msgid "Docs"
 msgstr "Belgeler"
 
-#: admin/includes/help-tabs.php:92 admin/edit-contact-form.php:196
+#: admin/edit-contact-form.php:196 admin/includes/help-tabs.php:92
 msgid "https://contactform7.com/docs/"
 msgstr "https://contactform7.com/docs/"
 
@@ -1334,13 +1371,13 @@ msgstr ""
 "Bu iletişim formunu silmek üzeresiniz.\n"
 "  Durdurmak için 'İptal',  silmek için 'TAMAM'."
 
-#: admin/includes/class-contact-forms-list-table.php:90
 #: admin/edit-contact-form.php:168
+#: admin/includes/class-contact-forms-list-table.php:90
 msgid "Delete"
 msgstr "Sil"
 
-#: admin/includes/class-contact-forms-list-table.php:187
 #: admin/edit-contact-form.php:153
+#: admin/includes/class-contact-forms-list-table.php:187
 msgid "Duplicate"
 msgstr "Çoğalt"
 
@@ -1458,7 +1495,7 @@ msgstr "Yeni ekle"
 msgid "Add New Contact Form"
 msgstr "Yeni iletişim formu ekle"
 
-#: includes/contact-form.php:31 admin/admin.php:33 admin/admin.php:380
+#: admin/admin.php:33 admin/admin.php:380 includes/contact-form.php:31
 msgid "Contact Forms"
 msgstr "İletişim formları"
 
@@ -1471,6 +1508,6 @@ msgid "Contact"
 msgstr "İletişim"
 
 #. Plugin Name of the plugin
-#: modules/flamingo.php:181 admin/admin.php:24
+#: admin/admin.php:24 modules/flamingo.php:181
 msgid "Contact Form 7"
 msgstr "Contact Form 7"

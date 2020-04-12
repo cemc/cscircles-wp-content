@@ -1,15 +1,15 @@
-# Translation of WordPress - 5.3.x - Development - Continents & Cities in French (Canada)
-# This file is distributed under the same license as the WordPress - 5.3.x - Development - Continents & Cities package.
+# Translation of WordPress - 5.4.x - Development - Continents & Cities in French (Canada)
+# This file is distributed under the same license as the WordPress - 5.4.x - Development - Continents & Cities package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-08-06 02:49:44+0000\n"
+"PO-Revision-Date: 2020-03-12 14:56:05+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: fr_CA\n"
-"Project-Id-Version: WordPress - 5.3.x - Development - Continents & Cities\n"
+"Project-Id-Version: WordPress - 5.4.x - Development - Continents & Cities\n"
 
 #: wp-admin/includes/continents-cities.php:478
 msgid "Saratov"
@@ -213,7 +213,7 @@ msgstr "Îles Pitcairn"
 
 #: wp-admin/includes/continents-cities.php:540
 msgid "Palau"
-msgstr "Palaos"
+msgstr "Palau"
 
 #: wp-admin/includes/continents-cities.php:539
 msgid "Pago Pago"
@@ -229,7 +229,7 @@ msgstr "Norfolk"
 
 #: wp-admin/includes/continents-cities.php:536
 msgid "Niue"
-msgstr "Niue"
+msgstr "Niué"
 
 #: wp-admin/includes/continents-cities.php:535
 msgid "Nauru"
@@ -1459,7 +1459,7 @@ msgstr "New Salem"
 
 #: wp-admin/includes/continents-cities.php:192
 msgid "Center"
-msgstr "Center"
+msgstr "Centre"
 
 #: wp-admin/includes/continents-cities.php:190
 msgid "North Dakota"
@@ -1689,7 +1689,7 @@ msgstr "Ensenada"
 
 #: wp-admin/includes/continents-cities.php:125
 msgid "El Salvador"
-msgstr "El Salvador"
+msgstr "Salvador"
 
 #: wp-admin/includes/continents-cities.php:124
 msgid "Eirunepe"
@@ -1797,7 +1797,7 @@ msgstr "Belém"
 
 #: wp-admin/includes/continents-cities.php:94
 msgid "Barbados"
-msgstr "Barbade"
+msgstr "La Barbade"
 
 #: wp-admin/includes/continents-cities.php:92
 msgid "Bahia"

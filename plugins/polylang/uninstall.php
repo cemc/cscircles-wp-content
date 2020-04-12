@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) { // If uninstall not called from WordPress exit
-	exit();
+	exit;
 }
 
 /**
@@ -19,6 +19,11 @@ class PLL_Uninstall {
 	 */
 	public function __construct() {
 		global $wpdb;
+
+		// Don't do anything except if the constant PLL_REMOVE_ALL_DATA is explicitely defined and true.
+		if ( ! defined( 'PLL_REMOVE_ALL_DATA' ) || ! PLL_REMOVE_ALL_DATA ) {
+			return;
+		}
 
 		// Check if it is a multisite uninstall - if so, run the uninstall function for each blog id
 		if ( is_multisite() ) {
@@ -40,12 +45,6 @@ class PLL_Uninstall {
 	 * @since 0.5
 	 */
 	public function uninstall() {
-		$options = get_option( 'polylang' );
-
-		if ( empty( $options['uninstall'] ) ) {
-			return;
-		}
-
 		global $wpdb;
 
 		// Executes each module's uninstall script, if it exists
@@ -55,7 +54,7 @@ class PLL_Uninstall {
 			if ( substr( $module, 0, 1 ) !== '.' ) {
 				$uninstall_script = $pll_modules_dir . '/' . $module . '/uninstall.php';
 				if ( file_exists( $uninstall_script ) ) {
-					require $uninstall_script;
+					require $uninstall_script; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 				}
 			}
 		}
@@ -84,6 +83,7 @@ class PLL_Uninstall {
 		// Delete users options
 		foreach ( get_users( array( 'fields' => 'ID' ) ) as $user_id ) {
 			delete_user_meta( $user_id, 'pll_filter_content' );
+			delete_user_meta( $user_id, 'pll_dismissed_notices' ); // Legacy meta.
 			foreach ( $languages as $lang ) {
 				delete_user_meta( $user_id, 'description_' . $lang->slug );
 			}
@@ -126,6 +126,9 @@ class PLL_Uninstall {
 		}
 
 		// Delete all what is related to languages and translations
+		$term_ids = array();
+		$tt_ids   = array();
+
 		foreach ( get_terms( $pll_taxonomies, array( 'hide_empty' => false ) ) as $term ) {
 			$term_ids[] = (int) $term->term_id;
 			$tt_ids[] = (int) $term->term_taxonomy_id;
@@ -147,6 +150,7 @@ class PLL_Uninstall {
 		delete_option( 'widget_polylang' ); // Automatically created by WP
 		delete_option( 'polylang_wpml_strings' ); // Strings registered with icl_register_string
 		delete_option( 'polylang_licenses' );
+		delete_option( 'pll_dismissed_notices' );
 
 		// Delete transients
 		delete_transient( 'pll_languages_list' );

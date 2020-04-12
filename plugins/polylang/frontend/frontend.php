@@ -92,10 +92,12 @@ class PLL_Frontend extends PLL_Base {
 
 			// Share term slugs
 			if ( $this->options['force_lang'] && class_exists( 'PLL_Share_Term_Slug' ) ) {
-				$this->share_term_slug = version_compare( $GLOBALS['wp_version'], '4.8', '<' ) ?
-					new PLL_Frontend_Share_Term_Slug( $this ) :
-					new PLL_Share_Term_Slug( $this );
+				$this->share_term_slug = new PLL_Share_Term_Slug( $this );
 			}
+		}
+
+		if ( class_exists( 'PLL_Sync_Post_Model' ) ) {
+			$this->sync_post_model = new PLL_Sync_Post_Model( $this );
 		}
 
 		if ( class_exists( 'PLL_Sync_Post' ) ) {

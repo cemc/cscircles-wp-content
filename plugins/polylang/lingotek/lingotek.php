@@ -14,8 +14,6 @@ class PLL_Lingotek {
 	 * @since 1.7.7
 	 */
 	public function init() {
-		$options = get_option( 'polylang' );
-
 		// The Lingotek tab
 		add_filter( 'pll_settings_tabs', array( $this, 'add_tab' ) );
 		add_action( 'pll_settings_active_tab_lingotek', array( $this, 'display_tab' ) );
@@ -30,7 +28,7 @@ class PLL_Lingotek {
 			$content = __( 'You’ve just upgraded to the latest version of Polylang! Would you like to automatically translate your website for free?', 'polylang' );
 
 			$buttons = sprintf(
-				'<a href="%s" class="button button-primary" style="margin-right: 10px">%s</a>',
+				'<a href="%s" class="button button-primary">%s</a>',
 				admin_url( 'admin.php?page=mlang_lingotek' ),
 				__( 'Learn more', 'polylang' )
 			);
@@ -39,7 +37,7 @@ class PLL_Lingotek {
 				$content .= ' ' . __( 'Click on Activate Lingotek to start translating.', 'polylang' );
 
 				$buttons = sprintf(
-					'<a href="%s" class="button button-primary" style="margin-right: 10px">%s</a>',
+					'<a href="%s" class="button button-primary">%s</a>',
 					$link,
 					__( 'Activate Lingotek', 'polylang' )
 				) . $buttons;

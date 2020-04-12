@@ -1,12 +1,13 @@
 === Polylang ===
-Contributors: Chouby, manooweb
+Contributors: Chouby, manooweb, raaaahman, marianne38
 Donate link: https://polylang.pro
 Tags: multilingual, bilingual, translate, translation, language, multilanguage, international, localization
-Requires at least: 4.7
-Tested up to: 5.3
+Requires at least: 4.9
+Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 2.6.7
+Stable tag: 2.7.1
 License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Making WordPress multilingual
 
@@ -42,7 +43,7 @@ Don't hesitate to [give your feedback](http://wordpress.org/support/view/plugin-
 
 == Installation ==
 
-1. Make sure you are using WordPress 4.7 or later and that your server is running PHP 5.6 or later (same requirement as WordPress itself)
+1. Make sure you are using WordPress 4.9 or later and that your server is running PHP 5.6 or later (same requirement as WordPress itself)
 1. If you tried other multilingual plugins, deactivate them before activating Polylang, otherwise, you may get unexpected results!
 1. Install and activate the plugin as usual from the 'Plugins' menu in WordPress.
 1. Go to the languages settings page and create the languages you need
@@ -76,6 +77,65 @@ Don't hesitate to [give your feedback](http://wordpress.org/support/view/plugin-
 4. The Edit Post screen with the Languages metabox
 
 == Changelog ==
+
+= 2.7.1 (2020-04-09) =
+
+* Pro: Fix untranslated post types filtered by the parameter in the REST API #493
+* Fix fatal error when the function idn_to_ascii is not available
+* Fix PHP warning warning when a 3rd party plugin declares options not stored in DB in wpml-config.xml #492
+* Fix fatal error when a 3rd party plugin declares options stored as objects in wpml-config.xml #494
+
+= 2.7 (2020-04-06) =
+
+* Minimum WordPress version is now 4.9
+* Pro: Strings translations can now be exported and imported (in PO format)
+* Pro: Allow to decide individually which ACF fields to copy or synchronize
+* Pro: Add action pll_inactive_language_requested
+* Pro; Fix fatal error in The Events Calendar compatibility when no language is defined yet
+* Pro: Fix bulk translate when a post has no language
+* Pro: Fix reusable block saved without language
+* Pro: Fix post requested by slug not filtered in REST API, when the slug is shared
+* Add a setup wizard
+* Add Swahili, Upper Sorbian, Sindhi and Spanish from Uruguay to the list of predefined languages
+* Add flags in the predefined list of languages
+* Allow to hide the metaboxes from the screen options
+* The deletion of the plugin's data at uninstall is now controlled by a PHP constant instead of an option #456
+* Add parent in ajax response when selecting a term in autocomplete field #328
+* Add Vary: Accept-Language http header in home page redirect. Props @chesio #452
+* Improve performance to register/unregister WPML strings
+* Add support for the action wpml_switch_language
+* Add post_status to the list of accepted args of pll_count_posts()
+* Apply the filter pll_preferred_language in wp-login.php
+* Use filtered wrappers to create meta when creating media translations #231
+* Allow to translate the Twenty Seventeen header video Youtube url #460
+* Notices are now dismissed per site instead of per user #478
+* Fix terms not visible in the quick edit when only one language is defined and teh admin language filter is active
+* Fix post state not displayed for translations of the privacy policy page #395
+* Fix wildcards not correctly interpreted in wpml-config.xml
+* Fix product categories with special characters duplicated when importing WooCommerce products #474
+
+= 2.6.10 (2020-02-19) =
+
+* Pro: Fix sticky posts not filtered in REST API (introduced in 2.6.9)
+* Fix wrong language detected if a child page uses the slug of another language
+* Fix a PHP notice with PHP 7.4. #438
+* Fix lang-item-first class in language switcher when the current language is hidden. #445
+* Fix partially a conflict with Fusion Builder (the other part of the conflict being in Fusion Builder).
+
+= 2.6.9 (2020-01-15) =
+
+* Pro: Use 'parse_query' rather than 'rest_{$type}_query' to filter REST requests.
+* Pro: Filter the comments REST endpoint.
+* Pro: Fix duplication of terms without language.
+* Pro: Fix fatal error when Admin Columns is activated and no language is defined yet.
+* Fix shortlink when using one subdomain or domain per language
+
+= 2.6.8 (2019-12-11) =
+
+* Pro: Fix conflict with JetThemesCore from Crocoblock
+* Fix: better detection of REST requests when using plain permalinks
+* Fix usage of deprecated action wpmu_new_blog in WP 5.1+
+* Fix PHP notices with PHP 7.4
 
 = 2.6.7 (2019-11-14) =
 

@@ -17,7 +17,27 @@
  * @since 1.2
  */
 class PLL_Settings extends PLL_Admin_Base {
-	protected $active_tab, $modules;
+
+	/**
+	 * Name of the active module
+	 *
+	 * @var string $active_tab
+	 */
+	protected $active_tab;
+
+	/**
+	 * Array of modules classes
+	 *
+	 * @var array $modules
+	 */
+	protected $modules;
+
+	/**
+	 * Reference to PLL_Import_Export
+	 *
+	 * @var PLL_Import_Export $import_export
+	 */
+	protected $import_export;
 
 	/**
 	 * Constructor
@@ -34,6 +54,10 @@ class PLL_Settings extends PLL_Admin_Base {
 		}
 
 		PLL_Admin_Strings::init();
+
+		if ( class_exists( 'PLL_Import_Export' ) ) {
+			$this->import_export = new PLL_Import_Export( $this );
+		}
 
 		// FIXME put this as late as possible
 		add_action( 'admin_init', array( $this, 'register_settings_modules' ) );
@@ -53,7 +77,6 @@ class PLL_Settings extends PLL_Admin_Base {
 	 */
 	public function register_settings_modules() {
 		$modules = array(
-			'PLL_Settings_Tools',
 			'PLL_Settings_Licenses',
 		);
 
@@ -108,7 +131,7 @@ class PLL_Settings extends PLL_Admin_Base {
 				'pll-about-box',
 				__( 'About Polylang', 'polylang' ),
 				array( $this, 'metabox_about' ),
-				'settings_page_mlang', // FIXME not shown in screen options
+				'toplevel_page_mlang',
 				'normal'
 			);
 		}
@@ -298,7 +321,8 @@ class PLL_Settings extends PLL_Admin_Base {
 		// Handle user input
 		$action = isset( $_REQUEST['pll_action'] ) ? sanitize_key( $_REQUEST['pll_action'] ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 		if ( 'edit' === $action && ! empty( $_GET['lang'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-			$edit_lang = $this->model->get_language( (int) $_GET['lang'] ); // phpcs:ignore WordPress.Security.NonceVerification
+			// phpcs:ignore WordPress.Security.NonceVerification, WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
+			$edit_lang = $this->model->get_language( (int) $_GET['lang'] );
 		} else {
 			$this->handle_actions( $action );
 		}
@@ -360,7 +384,7 @@ class PLL_Settings extends PLL_Admin_Base {
 	 *
 	 * @since 2.3
 	 */
-	public function get_predefined_languages() {
+	public static function get_predefined_languages() {
 		require_once ABSPATH . 'wp-admin/includes/translation-install.php';
 
 		$languages    = include PLL_SETTINGS_INC . '/languages.php';

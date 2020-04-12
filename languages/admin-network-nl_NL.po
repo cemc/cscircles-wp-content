@@ -1,15 +1,15 @@
-# Translation of WordPress - 5.3.x - Development - Administration - Network Admin in Dutch
-# This file is distributed under the same license as the WordPress - 5.3.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.4.x - Development - Administration - Network Admin in Dutch
+# This file is distributed under the same license as the WordPress - 5.4.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-10-24 12:18:03+0000\n"
+"PO-Revision-Date: 2020-03-05 10:44:40+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: nl\n"
-"Project-Id-Version: WordPress - 5.3.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.4.x - Development - Administration - Network Admin\n"
 
 #. translators: %s: Number of sites.
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:255
@@ -228,8 +228,8 @@ msgstr "Het internetadres van je netwerk wordt: %s."
 
 #. translators: 1: Site URL, 2: Host name, 3: www.
 #: wp-admin/includes/network.php:271
-msgid "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
-msgstr "Het is aan te bevelen om je siteurl te wijzigen in %1$s voordat het netwerk wordt geactiveerd. Het is nog steeds mogelijk om je site te bezoeken met de %3$s prefix in het adres als %2$s, maar elke link zal de %3$s prefix niet bevatten."
+msgid "We recommend you change your site domain to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
+msgstr "We raden je aan je site domein te wijzigen naar %1$s voordat de netwerk functionaliteit wordt geactiveerd. Het is nog steeds mogelijk om je site te bezoeken met het %3$s voorvoegsel in het adres als %2$s, maar elke link zal het %3$s voorvoegsel niet bevatten."
 
 #: wp-admin/includes/network.php:226
 msgid "You cannot change this later."
@@ -374,12 +374,12 @@ msgstr "Het lijkt erop dat er geen thema's beschikbaar zijn op dit moment."
 msgid "No themes found."
 msgstr "Geen thema's gevonden."
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:704
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:705
 msgctxt "verb; site"
 msgid "Archive"
 msgstr "Archiveren"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:702
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:703
 msgid "Unarchive"
 msgstr "Dearchiveren"
 
@@ -404,7 +404,7 @@ msgid "Last Updated"
 msgstr "Laatst bijgewerkt"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:294
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:708
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:709
 msgctxt "site"
 msgid "Not Spam"
 msgstr "Geen spam"
@@ -429,7 +429,7 @@ msgid "Deleted"
 msgstr "Verwijderd"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:40
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:710
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:711
 #: wp-admin/network/site-info.php:186
 msgctxt "site"
 msgid "Spam"
@@ -751,11 +751,6 @@ msgstr "Verwijderen, wat een permanente actie is na de bevestiging vensters."
 msgid "Clicking on bold headings can re-sort this table."
 msgstr "Klikken op de koppen kan deze tabel hersorteren."
 
-#: wp-admin/network/themes.php:272 wp-admin/network/menu.php:81
-msgctxt "theme"
-msgid "Add New"
-msgstr "Nieuwe toevoegen"
-
 #: wp-admin/network/sites.php:30
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
 msgstr "Nieuwe Toevoegen brengt je naar de Nieuwe Site toevoegen scherm. Je kunt zoeken naar een site op naam, ID-nummer, of IP-adres. Via Schermopties kun je kiezen hoeveel sites je wilt tonen op een pagina."
@@ -907,8 +902,8 @@ msgid "Once you add this code and refresh your browser, multisite should be enab
 msgstr "Als je deze code eenmaal toegevoegd hebt en je browser vernieuwt, zal de multisite ingeschakeld zijn. Dit scherm, nu in het Netwerk navigatiemenu, zal een archief bewaren van de toegevoegde code. Je kunt wisselen tussen Netwerkbeheerder en sitebeheerder door te klikken op het Hallo (gebruikersnaam) dropdown-menu in de rechter bovenkant van het dashboard."
 
 #: wp-admin/includes/network.php:157
-msgid "ERROR: The network could not be created."
-msgstr "FOUT: Aanmaken van het netwerk niet mogelijk."
+msgid "Error: The network could not be created."
+msgstr "Fout: Het netwerk kon niet gemaakt worden."
 
 #: wp-admin/includes/network.php:243
 msgid "Sub-directories"

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Sixteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-12-24 17:05:46+0000\n"
+"PO-Revision-Date: 2020-01-23 19:45:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,59 +19,59 @@ msgstr "Twenty Sixteen"
 msgid "Twenty Sixteen is a modernized take on an ever-popular WordPress layout — the horizontal masthead with an optional right sidebar that works perfectly for blogs and websites. It has custom color options with beautiful default color schemes, a harmonious fluid grid using a mobile-first approach, and impeccable polish in every detail. Twenty Sixteen will make your WordPress look beautiful everywhere."
 msgstr "Twenty Sixteen revisite en la modernisant une mise en page WordPress toujours aussi populaire&nbsp;: l&rsquo;entête horizontal avec une barre latérale facultative, qui fonctionne tout aussi bien pour les blogs que pour les sites. Il dispose d'options de couleurs avec de superbes jeux de couleurs par défaut, une composition en grille fluide et harmonieuse utilisant l'approche \"mobile-first\", et un soin apporté jusque dans les moindres détails. Twenty Sixteen vous donnera un site WordPress magnifique dans toutes les situations."
 
-#: functions.php:202
+#: functions.php:204
 msgid "Bright Red"
 msgstr "Rouge brillant"
 
-#: functions.php:197
+#: functions.php:199
 msgid "Dark Red"
 msgstr "Rouge foncé"
 
-#: functions.php:192
+#: functions.php:194
 msgid "Medium Brown"
 msgstr "Marron moyen"
 
-#: functions.php:187
+#: functions.php:189
 msgid "Dark Brown"
 msgstr "Marron foncé"
 
-#: functions.php:182
+#: functions.php:184
 msgid "Light Blue"
 msgstr "Bleu clair"
 
-#: functions.php:177
+#: functions.php:179
 msgid "Bright Blue"
 msgstr "Bleu brillant"
 
-#: functions.php:172
+#: functions.php:174
 msgid "Blue Gray"
 msgstr "Bleu gris"
 
-#: functions.php:167
+#: functions.php:169
 msgid "White"
 msgstr "Blanc"
 
-#: functions.php:162
+#: functions.php:164
 msgid "Light Gray"
 msgstr "Gris clair"
 
-#: functions.php:157
+#: functions.php:159
 msgid "Medium Gray"
 msgstr "Gris moyen"
 
-#: functions.php:152
+#: functions.php:154
 msgid "Dark Gray"
 msgstr "Gris foncé"
 
-#. translators: %s: Name of current post
-#: template-parts/content.php:29 inc/template-tags.php:194
+#. translators: %s: Post title.
+#: template-parts/content.php:29 inc/template-tags.php:195
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Continuer la lecture<span class=\"screen-reader-text\"> de &laquo;&nbsp;%s&nbsp;&raquo;</span>"
 
-#. translators: %s: Name of current post
-#: template-parts/content.php:53 template-parts/content-page.php:39
-#: template-parts/content-search.php:28 template-parts/content-search.php:43
-#: template-parts/content-single.php:47 image.php:88
+#. translators: %s: Post title.
+#: image.php:88 template-parts/content-page.php:39
+#: template-parts/content.php:53 template-parts/content-search.php:28
+#: template-parts/content-search.php:43 template-parts/content-single.php:47
 msgid "Edit<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Modifier<span class=\"screen-reader-text\"> \"%s\"</span>"
 
@@ -79,7 +79,7 @@ msgstr "Modifier<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgid "Red"
 msgstr "Rouge"
 
-#. translators: %s: post title
+#. translators: %s: Post title.
 #: comments.php:31
 msgctxt "comments title"
 msgid "One thought on &ldquo;%s&rdquo;"
@@ -108,7 +108,7 @@ msgstr "Menu de liens sociaux de pied"
 msgid "Footer Primary Menu"
 msgstr "Menu principal de pied"
 
-#: functions.php:267
+#: functions.php:269
 msgid "Add widgets here to appear in your sidebar."
 msgstr "Ajoutez des widgets ici pour les faire apparaître dans votre barre latérale."
 
@@ -116,15 +116,16 @@ msgstr "Ajoutez des widgets ici pour les faire apparaître dans votre barre lat�
 msgid "Featured"
 msgstr "Mise en avant"
 
-#: template-parts/content-none.php:28
+#: template-parts/content-none.php:33
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr "Il semble que ce que vous cherchez est introuvable. Essayez avec une recherche."
 
-#: template-parts/content-none.php:23
+#: template-parts/content-none.php:28
 msgid "Sorry, but nothing matched your search terms. Please try again with some different keywords."
 msgstr "Désolé, mais rien ne correspond à votre recherche. Veuillez réessayer avec des mots différents."
 
-#: template-parts/content-none.php:19
+#. translators: %s: Post editor URL.
+#: template-parts/content-none.php:22
 msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
 msgstr "Prêt(e) à publier votre premier article&nbsp;? <a href=\"%1$s\">Lancez-vous ici</a>."
 
@@ -132,7 +133,8 @@ msgstr "Prêt(e) à publier votre premier article&nbsp;? <a href=\"%1$s\">Lancez
 msgid "Nothing Found"
 msgstr "Aucun résultat"
 
-#: template-parts/biography.php:33
+#. translators: %s: The post author display name.
+#: template-parts/biography.php:35
 msgid "View all posts by %s"
 msgstr "Afficher tous les articles par %s"
 
@@ -156,26 +158,27 @@ msgstr "Article suivant&nbsp;:"
 msgid "Next"
 msgstr "Suivant"
 
-#: search.php:18
+#. translators: %s: The search query.
+#: search.php:21
 msgid "Search Results for: %s"
 msgstr "Résultats de recherche pour&nbsp;: %s"
 
-#: inc/template-tags.php:112
+#: inc/template-tags.php:113
 msgctxt "Used before tag names."
 msgid "Tags"
 msgstr "Étiquettes"
 
-#: inc/template-tags.php:103
+#: inc/template-tags.php:104
 msgctxt "Used before category names."
 msgid "Categories"
 msgstr "Catégories"
 
-#: inc/template-tags.php:99 inc/template-tags.php:108
+#: inc/template-tags.php:100 inc/template-tags.php:109
 msgctxt "Used between list items, there is a space after the comma."
 msgid ", "
 msgstr ", "
 
-#: inc/template-tags.php:83
+#: inc/template-tags.php:84
 msgctxt "Used before publish date."
 msgid "Posted on"
 msgstr "Publié le"
@@ -185,7 +188,8 @@ msgctxt "Used before post format."
 msgid "Format"
 msgstr "Format"
 
-#: inc/template-tags.php:52
+#. translators: %s: Post title.
+#: inc/template-tags.php:53
 msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Laisser un commentaire<span class=\"screen-reader-text\"> sur %s</span>"
 
@@ -194,7 +198,7 @@ msgctxt "Used before post author name."
 msgid "Author"
 msgstr "Auteur"
 
-#: functions.php:207 inc/customizer.php:355
+#: functions.php:209 inc/customizer.php:355
 msgid "Yellow"
 msgstr "Jaune"
 
@@ -231,7 +235,8 @@ msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Publié dans</span><span class=\"post-title\">%title</span>"
 
-#: inc/back-compat.php:41 inc/back-compat.php:54 inc/back-compat.php:72
+#. translators: %s: The current WordPress version.
+#: inc/back-compat.php:42 inc/back-compat.php:56 inc/back-compat.php:75
 msgid "Twenty Sixteen requires at least WordPress version 4.4. You are running version %s. Please upgrade and try again."
 msgstr "Twenty Sixteen ne fonctionne qu'à partir de WordPress 4.4. Vous utilisez la version %s. Veuillez mettre à jour et réessayer. "
 
@@ -244,8 +249,8 @@ msgctxt "Used before full size attachment link."
 msgid "Full size"
 msgstr "Taille réelle"
 
-#: template-parts/content.php:36 template-parts/content-page.php:24
-#: template-parts/content-single.php:26 image.php:58
+#: image.php:58 template-parts/content-page.php:24
+#: template-parts/content.php:36 template-parts/content-single.php:26
 msgid "Pages:"
 msgstr "Pages&nbsp;:"
 
@@ -263,53 +268,44 @@ msgstr "Menu"
 
 #: header.php:28
 msgid "Skip to content"
-msgstr "Aller au contenu principal"
+msgstr "Aller au contenu"
 
-#: functions.php:407
+#: functions.php:419
 msgid "expand child menu"
 msgstr "ouvrir le sous-menu"
 
-#: functions.php:408
+#: functions.php:420
 msgid "collapse child menu"
 msgstr "fermer le sous-menu"
 
-#. translators: If there are characters in your language that are not supported
-#. by Inconsolata, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:327
+#: functions.php:338
 msgctxt "Inconsolata font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:277
+#: functions.php:279
 msgid "Content Bottom 1"
-msgstr "Contenu du bas 1"
+msgstr "Contenu inférieur 1"
 
-#: functions.php:279 functions.php:291
+#: functions.php:281 functions.php:293
 msgid "Appears at the bottom of the content on posts and pages."
-msgstr "S&nbsp;affiche en bas du contenu des articles et des pages."
+msgstr "S’affiche en bas du contenu des articles et des pages."
 
-#: functions.php:289
+#: functions.php:291
 msgid "Content Bottom 2"
-msgstr "Contenu du bas 2"
+msgstr "Contenu inférieur 2"
 
-#. translators: If there are characters in your language that are not supported
-#. by Merriweather, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:317
+#: functions.php:322
 msgctxt "Merriweather font: on or off"
 msgid "on"
 msgstr "on"
 
-#. translators: If there are characters in your language that are not supported
-#. by Montserrat, translate this to 'off'. Do not translate into your own
-#. language.
-#: functions.php:322
+#: functions.php:330
 msgctxt "Montserrat font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:265
+#: functions.php:267
 msgid "Sidebar"
 msgstr "Barre latérale"
 
@@ -321,7 +317,8 @@ msgstr "Menu des liens de réseaux sociaux"
 msgid "Primary Menu"
 msgstr "Menu principal"
 
-#: footer.php:61
+#. translators: %s: WordPress
+#: footer.php:63
 msgid "Proudly powered by %s"
 msgstr "Fièrement propulsé par %s"
 
@@ -329,7 +326,7 @@ msgstr "Fièrement propulsé par %s"
 msgid "Comments are closed."
 msgstr "Les commentaires sont fermés."
 
-#. translators: 1: number of comments, 2: post title
+#. translators: 1: Number of comments, 2: Post title.
 #: comments.php:35
 msgctxt "comments title"
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
@@ -337,17 +334,17 @@ msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "%1$s réflexion sur « %2$s »"
 msgstr[1] "%1$s réflexions sur « %2$s »"
 
-#: archive.php:53 template-parts/content.php:40
-#: template-parts/content-page.php:28 template-parts/content-single.php:30
-#: search.php:41 index.php:50 image.php:62
+#: image.php:62 template-parts/content-page.php:28
+#: template-parts/content.php:40 template-parts/content-single.php:30
+#: search.php:46 archive.php:54 index.php:51
 msgid "Page"
 msgstr "Page"
 
-#: archive.php:52 search.php:40 index.php:49
+#: search.php:45 archive.php:53 index.php:50
 msgid "Next page"
 msgstr "Page suivante"
 
-#: archive.php:51 search.php:39 index.php:48
+#: search.php:44 archive.php:52 index.php:49
 msgid "Previous page"
 msgstr "Page précédente"
 

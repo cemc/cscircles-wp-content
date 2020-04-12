@@ -1,15 +1,15 @@
-# Translation of WordPress - 5.3.x - Development - Administration - Network Admin in Polish
-# This file is distributed under the same license as the WordPress - 5.3.x - Development - Administration - Network Admin package.
+# Translation of WordPress - 5.4.x - Development - Administration - Network Admin in Polish
+# This file is distributed under the same license as the WordPress - 5.4.x - Development - Administration - Network Admin package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-11-18 07:22:44+0000\n"
+"PO-Revision-Date: 2020-03-09 07:42:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: pl\n"
-"Project-Id-Version: WordPress - 5.3.x - Development - Administration - Network Admin\n"
+"Project-Id-Version: WordPress - 5.4.x - Development - Administration - Network Admin\n"
 
 #. translators: %s: Number of sites.
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:255
@@ -235,8 +235,8 @@ msgstr "Adresem internetowym twojej sieci witryn będzie %s."
 
 #. translators: 1: Site URL, 2: Host name, 3: www.
 #: wp-admin/includes/network.php:271
-msgid "We recommend you change your siteurl to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
-msgstr "Zalecamy zmienienie adresu witryny na %1$s przed włączeniem funkcjonalności sieci witryn. Wciąż możliwe będzie odwiedzenie twojej witryny przy użyciu prefiksu %3$s w połączeniu z adresem takim jak %2$s, ale jakiekolwiek odnośniki nie będą miały prefiksu %3$s."
+msgid "We recommend you change your site domain to %1$s before enabling the network feature. It will still be possible to visit your site using the %3$s prefix with an address like %2$s but any links will not have the %3$s prefix."
+msgstr "Przed włączeniem funkcjonalności sieci witryn zalecamy zmienienie adresu witryny na %1$s. Wciąż możliwe będzie odwiedzenie twojej witryny przy użyciu prefiksu %3$s w połączeniu z adresem takim jak %2$s, ale jakiekolwiek odnośniki nie będą miały prefiksu %3$s."
 
 #: wp-admin/includes/network.php:226
 msgid "You cannot change this later."
@@ -386,12 +386,12 @@ msgstr "Wygląda na to, ze w tej chwili nie są dostępne żadne motywy."
 msgid "No themes found."
 msgstr "Nie znaleziono żadnych motywów."
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:704
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:705
 msgctxt "verb; site"
 msgid "Archive"
 msgstr "Archiwizuj"
 
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:702
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:703
 msgid "Unarchive"
 msgstr "Przywróć z archiwum"
 
@@ -416,7 +416,7 @@ msgid "Last Updated"
 msgstr "Ostatnia aktualizacja"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:294
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:708
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:709
 msgctxt "site"
 msgid "Not Spam"
 msgstr "To nie jest spam"
@@ -441,7 +441,7 @@ msgid "Deleted"
 msgstr "Usunięte"
 
 #: wp-admin/includes/class-wp-ms-sites-list-table.php:40
-#: wp-admin/includes/class-wp-ms-sites-list-table.php:710
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:711
 #: wp-admin/network/site-info.php:186
 msgctxt "site"
 msgid "Spam"
@@ -766,11 +766,6 @@ msgstr "Odnośnik &#8222;Usuń&#8221; usuwający witrynę na zawsze po potwierdz
 msgid "Clicking on bold headings can re-sort this table."
 msgstr "Kliknięcie nagłówka kolumny spowoduje posortowanie tabeli."
 
-#: wp-admin/network/themes.php:272 wp-admin/network/menu.php:81
-msgctxt "theme"
-msgid "Add New"
-msgstr "Dodaj nowy"
-
 #: wp-admin/network/sites.php:30
 msgid "Add New takes you to the Add New Site screen. You can search for a site by Name, ID number, or IP address. Screen Options allows you to choose how many sites to display on one page."
 msgstr "Kliknięcie przycisku &#8222;Dodaj nową&#8221; przeniesie Cię do ekranu dodawania nowej witryny. Możesz przeszukać witryny pod kątem nazwy, identyfikatora lub adresu IP. Karta &#8222;Opcje ekranu&#8221; pozwala na wybór ilości witryn wyświetlanych na jednej stronie."
@@ -922,8 +917,8 @@ msgid "Once you add this code and refresh your browser, multisite should be enab
 msgstr "Funkcja sieci witryn powinna zostać włączona po dodaniu tego kodu do pliku i odświeżeniu tej strony. Ten ekran, od teraz widoczny jako element podmenu pozycji „Administracja siecią witryn”, będzie przechowywał dodany kod na wypadek konieczności wglądu do niego w przyszłości. Możesz przełączać się między administracją siecią a witryną przy pomocy pozycji „Administracja siecią witryn” lub nazwy danej witryny dostępnej w menu „Moje witryny” paska narzędzi."
 
 #: wp-admin/includes/network.php:157
-msgid "ERROR: The network could not be created."
-msgstr "BŁĄD: Sieć witryn nie mogła zostać stworzona."
+msgid "Error: The network could not be created."
+msgstr "Błąd: Sieć witryn nie mogła zostać stworzona."
 
 #: wp-admin/includes/network.php:243
 msgid "Sub-directories"
