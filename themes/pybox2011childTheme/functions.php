@@ -331,6 +331,7 @@ function tweak_admin_bar() {
     $wp_admin_bar->remove_node('comments');
     $wp_admin_bar->remove_node('new-content');
     $wp_admin_bar->remove_node('edit');
+    $wp_admin_bar->remove_node('monsterinsights_frontend_button');
 
     // note! add_node can be used to update information
     $wp_admin_bar->add_node(array('id'=>'logout', 'href' => wp_logout_url( $_SERVER['REQUEST_URI'] )));
