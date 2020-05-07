@@ -28,7 +28,7 @@ function dbProblemHistory($limit, $sortname, $sortorder, $req = NULL) {
    if ( !is_user_logged_in() )
      return __t("You must log in to view past submissions.");
    
-   if ( (userIsAdmin() || userIsAssistant()) && $user != "") {
+   if ($user != "" && (userIsAdmin() || userIsAssistant() || getUserID() == guruIDID($user))) {
      $u = get_userdata($user);
      if ($u === false) 
        return sprintf(__t("User number %s not found."), $u);
