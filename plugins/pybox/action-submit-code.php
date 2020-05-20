@@ -817,8 +817,9 @@ SELECT graderArgs from ".$wpdb->prefix."pb_problems WHERE hash = %s", $hash));
     unset($postmisc['usercode' . $id]);
     unset($postmisc['userinput']);
     unset($postmisc['hash']);
+    $datetime = new DateTime("now", new DateTimeZone('America/Toronto'));
     $logRow = array(
-		    'beginstamp' => date( 'Y-m-d H:i:s', $beginstamp ),
+		    'beginstamp' => $datetime->format('Y-m-d H:i:s'),
 		    'usercode' => $usercode,
 		    'hash' => $hash,
 		    'postmisc' => print_r($postmisc, TRUE),
