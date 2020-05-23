@@ -84,7 +84,12 @@ function user_pb_options_fields_save( $user_id ) {
   update_user_meta( $user_id, 'pbplain', ($_POST['pbplain']=='on')?'true':'false' );
   echo $_POST['pbplain'];
   /* update_user_meta( $user_id, 'pboldhistory', ($_POST['pboldhistory']=='on')?'true':'false' );*/
-  update_user_meta( $user_id, 'pbguru', ($_POST['pbguru']));
+  $guruname = $_POST['pbguru'];
+  global $wpdb;
+  $guru_fixedname = $wpdb->get_var($wpdb->prepare('SELECT user_login from '.$wpdb->prefix.'users WHERE lower(trim(user_login)) = lower(trim(%s))', $guruname));
+  if ($guru_fixedname !== NULL) $guruname = $guru_fixedname;
+
+  update_user_meta( $user_id, 'pbguru', ($guruname));
   update_user_meta( $user_id, 'pbnocc', ($_POST['pbnocc']=='on')?'true':'false' );
   update_user_meta( $user_id, 'pboptout', ($_POST['pboptout']=='on')?'true':'false' );
 
