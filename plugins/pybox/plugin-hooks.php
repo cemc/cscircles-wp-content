@@ -51,6 +51,7 @@ function pyBoxHead() {
   echo "<link rel='stylesheet' type='text/css' href='".UPYBOX."customizations-codemirror/textmate.css'>\n"; // theme
   echo "<script type='text/javascript' src='".UCODEMIRROR3."lib/codemirror.js'></script>\n";
   echo "<script type='text/javascript' src='".UCODEMIRROR3."mode/python/python.js'></script>\n";
+  echo "<script type='text/javascript' src='".UCODEMIRROR3."addon/display/autorefresh.js'></script>\n";
 
   echo "<script type='text/javascript' src='".UFLEXIGRID."js/flexigrid.js'></script>\n";
   echo '<link type="text/css" rel="stylesheet" href="'.UFLEXIGRID.'css/flexigrid.css" />' . "\n";
