@@ -258,7 +258,8 @@ function pbCodeMirror(id) {
        {name: "python", 
 	version: 3, 
 	singleLineStringErrors: false
-       }, 
+       },
+       autoRefresh: true,
        lineNumbers: true, 
        indentUnit: 3,
        tabSize: 3,
