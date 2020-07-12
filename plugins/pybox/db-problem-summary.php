@@ -78,7 +78,7 @@ FROM
   (select `ID` from wp_users where `ID` in $student_list) AS users
 LEFT JOIN
   (select min(ID) minID, max(ID) maxID, userid
-   FROM wp_pb_submissions where problem=%s group by userid) AS minmax
+   FROM wp_pb_submissions where userid in $student_list and problem=%s group by userid) AS minmax
 ON (minmax.userid=users.ID)
 LEFT JOIN
   (select beginstamp, usercode, ID from wp_pb_submissions) as firstCorrect
