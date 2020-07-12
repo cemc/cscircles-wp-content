@@ -1,5 +1,14 @@
 <?php
 
+function formatCode($code_or_null) {
+  if ($code_or_null) return prebox($code_or_null);
+  return '<i>n/a</i>';
+}
+
+function formatTime($code_or_null) {
+  return $code_or_null ?: '<i>n/a</i>';
+}
+
 /* 
 inner function returns either a string in case of error,
 or an array-pair (total, array of (id, cell) array-pairs),
@@ -42,48 +51,62 @@ function dbProblemSummary($limit, $sortname, $sortorder, $req = NULL) {
    $user_table = $wpdb->prefix . "users";
    $complete_table = $wpdb->prefix . "pb_completed";
 
-   $count = $wpdb->get_var
-     (userIsAdmin() ?
-      ("SELECT count(1) FROM $user_table")
-      : $wpdb->prepare
-      ("SELECT count(1) FROM $usermeta_table WHERE meta_key=%s AND meta_value=%s", 'pbguru', $ulogin));
+   $count = count(getStudents());
+   $student_list = getStudentList();
 
-   $students = $wpdb->get_results
-     (userIsAdmin() ?
-      ("SELECT ID FROM $user_table $limit")
-      : $wpdb->prepare
-      ("SELECT user_id AS ID FROM $usermeta_table WHERE meta_key=%s AND meta_value=%s $limit", 'pbguru', $ulogin));
+   // for testing
+   // $count = 10;
+   // $student_list = '(1000,1001,1002,1003,1004,1005,1006,1007,1008,1009)';
    
-   // no sorting allowed due to weird nature of query
+   $knownFields = array(
+     "ID"=>"ID",
+     "info"=>"ID",
+     __t("last correct")=>"lastCode",
+     __t("last time")=>"lastTime",
+     __t("first correct")=>"firstCode",
+     __t("first time")=>"firstTime");
+
+   if (array_key_exists($sortname, $knownFields)) {
+     $sortString = $knownFields[$sortname] . " " . $sortorder . ", ";
+   } else $sortString = "";
+
+   $prep = $wpdb->prepare("
+SELECT users.ID,
+       firstCorrect.beginstamp firstTime, firstCorrect.usercode firstCode,
+       lastCorrect.beginstamp lastTime, lastCorrect.usercode lastCode
+FROM
+  (select `ID` from wp_users where `ID` in $student_list) AS users
+LEFT JOIN
+  (select min(ID) minID, max(ID) maxID, userid
+   FROM wp_pb_submissions where problem=%s group by userid) AS minmax
+ON (minmax.userid=users.ID)
+LEFT JOIN
+  (select beginstamp, usercode, ID from wp_pb_submissions) as firstCorrect
+ON (firstCorrect.ID = minmax.minID)
+LEFT JOIN
+  (select beginstamp, usercode, ID from wp_pb_submissions) as lastCorrect
+ON (lastCorrect.ID = minmax.maxID)
+ORDER BY $sortString ID ASC
+", $problemslug);
+   $results = $wpdb->get_results($prep, ARRAY_A);
 
    $flexirows = array();
-   foreach ($students as $r) {
-     $sid = $r->ID;
-     $sdata = $wpdb->get_row
-       ($wpdb->prepare("SELECT usercode, beginstamp FROM $submit_table 
-                        WHERE userid=$sid and problem='%s' and result='Y'
-                        ORDER BY beginstamp DESC limit 1", $problemslug));
-     $s = get_userdata($sid);
+   foreach ($results as $r) {
      $cell = array();
+     $sid = $r['ID'];
      $cell['ID'] = $sid;
      $cell['info'] = userString($sid);
-     if ($sdata != null) {
-       $cell[__t('latest correct')] = prebox($sdata->usercode);
-       $cell[__t('last time')] = $sdata->beginstamp;
-       $cell[__t('first time')] = $wpdb->get_var
-	 ($wpdb->prepare("SELECT time FROM $complete_table WHERE userid=$sid and problem='%s'", $problemslug));
-     }
-     else {
-       $cell[__t('latest correct')] = '<i>n/a</i>';
-       $cell[__t('last time')] = '<i>n/a</i>';
-       $cell[__t('first time')] = '<i>n/a</i>';
-     }
+     $na = '<i>n/a</i>';
+     $cell[__t('last correct')] = formatCode($r['lastCode']);
+     $cell[__t('last time')] = formatTime($r['lastTime']);
+     $cell[__t('first correct')] = formatCode($r['firstCode']);
+     $cell[__t('first time')] = formatTime($r['firstTime']);
      $flexirows[] = array('id'=>$sid, 'cell'=>$cell);
    }
    return array('total' => $count, 'rows' => $flexirows);
 }
 
-// only do this if calld directly
+// only do this if called directly
 if(strpos($_SERVER["SCRIPT_FILENAME"], '/db-problem-summary.php')!=FALSE) {
   require_once("db-include.php");
   echo dbFlexigrid('dbProblemSummary');
