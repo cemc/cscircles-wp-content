@@ -55,8 +55,8 @@ function dbProblemSummary($limit, $sortname, $sortorder, $req = NULL) {
    $student_list = getStudentList();
 
    // for testing
-    $count = 10;
-    $student_list = '(1000,1001,1002,1003,1004,1005,1006,1007,1008,1009)';
+   // $count = 10;
+   // $student_list = '(1000,1001,1002,1003,1004,1005,1006,1007,1008,1009)';
    
    $knownFields = array(
      "ID"=>"ID",
