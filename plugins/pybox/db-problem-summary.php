@@ -55,8 +55,8 @@ function dbProblemSummary($limit, $sortname, $sortorder, $req = NULL) {
    $student_list = getStudentList();
 
    // for testing
-   // $count = 10;
-   // $student_list = '(1000,1001,1002,1003,1004,1005,1006,1007,1008,1009)';
+    $count = 10;
+    $student_list = '(1000,1001,1002,1003,1004,1005,1006,1007,1008,1009)';
    
    $knownFields = array(
      "ID"=>"ID",
@@ -78,7 +78,10 @@ FROM
   (select `ID` from wp_users where `ID` in $student_list) AS users
 LEFT JOIN
   (select min(ID) minID, max(ID) maxID, userid
-   FROM wp_pb_submissions where userid in $student_list and problem=%s group by userid) AS minmax
+   FROM wp_pb_submissions where userid in $student_list
+   AND problem=%s
+   AND result='Y'
+   GROUP BY userid) AS minmax
 ON (minmax.userid=users.ID)
 LEFT JOIN
   (select beginstamp, usercode, ID from wp_pb_submissions) as firstCorrect
@@ -87,6 +90,7 @@ LEFT JOIN
   (select beginstamp, usercode, ID from wp_pb_submissions) as lastCorrect
 ON (lastCorrect.ID = minmax.maxID)
 ORDER BY $sortString ID ASC
+$limit
 ", $problemslug);
    $results = $wpdb->get_results($prep, ARRAY_A);
 
