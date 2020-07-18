@@ -170,7 +170,7 @@ function nicefiedUsername($uid, $short = TRUE) {
   elseif ($uid == 0 || in_array($uid, unserialize(CSCIRCLES_ASST_ID_MAP)))
     return $short ? __t('Asst.') : __t('CS Circles Assistant');
   else
-    return get_userdata($uid)->user_login;
+    return userString($uid);
 }
 
 function guruIDID($id) {
