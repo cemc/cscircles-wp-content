@@ -11,6 +11,7 @@ The present file accepts POST queries with the following arguments:
 - what : a problem slug/name, and we seek all messages about this problem.
 - xwhat : we seek all messages not about this problem. cannot be used with what
 - unans : find only unanswered messages (1) or answered messages (0)
+- visall : if 1, find messages between me and all my visible students
 
 Additionally, we filter by security: the presently logged-in user can
 only view messages that are to/from themselves and their students
@@ -27,6 +28,7 @@ function dbMail($limit, $sortname, $sortorder, $req = NULL) {
   $what = getSoft(($req===NULL?$_REQUEST:$req), "what", "");
   $xwhat = getSoft(($req===NULL?$_REQUEST:$req), "xwhat", "");
   $unans = getSoft(($req===NULL?$_REQUEST:$req), "unans", "");
+  $visall = getSoft(($req===NULL?$_REQUEST:$req), "visall", "");
 
    $db_query_info['type'] = 'mail-history';
    $db_query_info['who'] = $who;
@@ -34,19 +36,23 @@ function dbMail($limit, $sortname, $sortorder, $req = NULL) {
    $db_query_info['what'] = $what;
    $db_query_info['xwhat'] = $xwhat;
    $db_query_info['unans'] = $unans;
+   $db_query_info['visall'] = $visall;
 
    if ( !is_user_logged_in() )
      return __t("You must log in to view past mail.");
 
    $where = 'WHERE 1';
 
-   if (userIsAdmin()) {
+   $student_list = getStudentList();
+
+   if ($visall != '') {
+     $where .= ' AND (uto = '. getUserID() . ' OR uto in '. $student_list. ') ';
+     $where .= ' AND (ufrom = '. getUserID() . ' OR ufrom in '. $student_list. ') ';
+   } else if (userIsAdmin()) {
      $where .= ' AND (uto = '. getUserID() . ' OR uto = 0 OR ufrom = '. getUserID() . ' OR ufrom = 0)';
-   }
-   else {
-     $students = getStudents();
-     $students[] = getUserID();
-     $where .= ' AND (ustudent IN ('.implode(',', $students).') OR uto = '. getUserID() . ' OR ufrom = '. getUserID() .' )';
+   } else {
+     // Generally, all queries have this visibility restriction.
+     $where .= " AND (ustudent IN $student_list OR " . getUserID() . " in (ufrom, uto, ustudent))";
    }
 
    if ($who != '') {

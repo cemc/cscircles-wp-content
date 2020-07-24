@@ -179,6 +179,10 @@ $r .= "
   if ($cstudents > 0 || userIsAssistant())
     $r .= niceFlex('allstu', sprintf(__t("All messages ever about %s's work"), $name),
 		   'mail', 'dbMail', array('who'=>$sid));
+
+  if ($cstudents > 0)
+    $r .= niceFlex('visstu', sprintf(__t("All messages between me and my visible students"), $name),
+		   'mail', 'dbMail', array('visall'=>'1'));
   
   $r .= niceFlex('allme', __t("All messages ever to or from me"),
 		 'mail', 'dbMail', array());
