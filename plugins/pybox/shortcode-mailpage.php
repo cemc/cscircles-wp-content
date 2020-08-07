@@ -28,8 +28,8 @@ function validate() {
     $problem = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix."pb_problems WHERE slug = %s AND lang = %s",
 					     $p, pll_current_language()), ARRAY_A);
     
-    if ($problem === null)
-      return array("error", __t("No such problem exists."));
+    //if ($problem === null)
+      //return array("error", __t("No such problem exists."));
   }
   
   // You are allowed to see this page only in some circumstances.
