@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WordPress Importer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-03-26 12:15:46+0000\n"
+"PO-Revision-Date: 2020-02-28 09:24:39+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,200 +11,194 @@ msgstr ""
 "Language: tr\n"
 "Project-Id-Version: Plugins - WordPress Importer - Stable (latest release)\n"
 
-#: parsers.php:43
+#: class-wp-import.php:239
+msgid "To make it simpler for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site, such as your primary administrator account."
+msgstr "İçe aktarılan içeriği düzenlemenizi ve kaydetmenizi kolaylaştırmak için içe aktarılan öğenin yazarını, birincil yönetici hesabınız gibi, bu sitenin mevcut bir kullanıcısına yeniden atamak isteyebilirsiniz."
+
+#: parsers/class-wxr-parser.php:43
 msgid "Details are shown above. The importer will now try again with a different parser..."
 msgstr "Detaylar aşağıda gösterilmişlerdir. Aktarıcı başka bir yöntem ile tekrar deneyecek..."
 
-#: parsers.php:42 parsers.php:72 parsers.php:80
+#: parsers/class-wxr-parser-simplexml.php:29
+#: parsers/class-wxr-parser-simplexml.php:37 parsers/class-wxr-parser.php:42
 msgid "There was an error when reading this WXR file"
 msgstr "WXR dosyası okunurken bir hata oluştu"
 
-#: parsers.php:84 parsers.php:89 parsers.php:306 parsers.php:502
+#: parsers/class-wxr-parser-regex.php:96 parsers/class-wxr-parser-xml.php:48
+#: parsers/class-wxr-parser-simplexml.php:41
+#: parsers/class-wxr-parser-simplexml.php:46
 msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
 msgstr "Bu dosya WXR dosyası değil, WXR numarası eksik/geçersiz"
 
-#: wordpress-importer.php:132 wordpress-importer.php:141
-#: wordpress-importer.php:192 wordpress-importer.php:196
-#: wordpress-importer.php:205
+#: class-wp-import.php:106 class-wp-import.php:115 class-wp-import.php:166
+#: class-wp-import.php:170 class-wp-import.php:179
 msgid "Sorry, there has been an error."
 msgstr "Üzgünüz, bir hata oluştu."
 
-#: wordpress-importer.php:133
+#: class-wp-import.php:107
 msgid "The file does not exist, please try again."
 msgstr "Dosya bulunamadı, tekrar deneyin."
 
-#: wordpress-importer.php:176
+#: class-wp-import.php:150
 msgid "All done."
 msgstr "Hepsi tamamlandı."
 
-#: wordpress-importer.php:177
+#: class-wp-import.php:151
 msgid "Remember to update the passwords and roles of imported users."
 msgstr "İçeri aktarılan kullanıcıların rollerini ve parolalarını güncellemeyi unutmayın."
 
-#: wordpress-importer.php:176
+#: class-wp-import.php:150
 msgid "Have fun!"
 msgstr "İyi eğlenceler!"
 
-#: wordpress-importer.php:197
+#: class-wp-import.php:171
 msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
 msgstr "Dışa aktarma dosyası <code>%s</code> konumunda bulunamadı. Bunun bir izin probleminden kaynaklanmış olması muhtemeldir."
 
-#: wordpress-importer.php:213
+#: class-wp-import.php:187
 msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
 msgstr "WXR dosyası (sürüm %s) içeri aktarıcının bu sürümü ile uyumlu değil. Lütfen güncelleme yapın."
 
-#: wordpress-importer.php:238
+#: class-wp-import.php:212
 msgid "Failed to import author %s. Their posts will be attributed to the current user."
 msgstr "%s yazarını içeri aktarma başarısız. Yazıları şu anki kullanıcıya aktarılacak."
 
-#: wordpress-importer.php:265
-msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
-msgstr "İçeri aktarılan içeriğin düzenlenmesi ve kaydedilmesinin kolaylaşması için, içeri aktarılan yazıların yazarlarını var olan bir kullanıcı olarak belirleyebilirsiniz. Örneğin, içeri aktarılan tüm metinlerin yazarı <code>admin</code> olarak belirleyebilirsiniz."
-
-#: wordpress-importer.php:264
+#: class-wp-import.php:238
 msgid "Assign Authors"
 msgstr "Yazar Atayın"
 
-#: wordpress-importer.php:267
+#: class-wp-import.php:241
 msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
 msgstr "Eğer WordPress tarafından yeni bir kullanıcı oluşturulursa, rastgele bir parola oluşturulacak ve yeni kullanıcıya %s rolü atanacak. Gerekliyse yeni kullanıcının bilgilerini kendiniz değiştirebilirsiniz."
 
-#: wordpress-importer.php:277
+#: class-wp-import.php:251
 msgid "Import Attachments"
 msgstr "Ekli dosyaları içe aktar"
 
-#: wordpress-importer.php:280
+#: class-wp-import.php:254
 msgid "Download and import file attachments"
 msgstr "Dosya eklerini indir ve içe aktar"
 
-#: wordpress-importer.php:284
+#: class-wp-import.php:258
 msgid "Submit"
 msgstr "Onayla"
 
-#: wordpress-importer.php:297
+#: class-wp-import.php:271
 msgid "Import author:"
 msgstr "Yazarı içe aktar:"
 
-#: wordpress-importer.php:311
+#: class-wp-import.php:286
 msgid "as a new user:"
 msgstr "yeni bir kullanıcı olarak:"
 
-#: wordpress-importer.php:308
+#: class-wp-import.php:283
 msgid "or create new user with login name:"
 msgstr "ya da yeni bir kullanıcı oluşturun:"
 
-#: wordpress-importer.php:319
+#: class-wp-import.php:296
 msgid "assign posts to an existing user:"
 msgstr "yazıları var olan bir kullanıcıya ata:"
 
-#: wordpress-importer.php:322
+#: class-wp-import.php:306
 msgid "- Select -"
 msgstr "- Seç -"
 
-#: wordpress-importer.php:321
+#: class-wp-import.php:298
 msgid "or assign posts to an existing user:"
 msgstr "ya da var olan bir kullanıcı seçin:"
 
-#: wordpress-importer.php:372
+#: class-wp-import.php:360
 msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
 msgstr "%s için yeni kullanıcı oluşturma başarısız. Yazıları mevcut kullanıcıya aktarılacak."
 
-#: wordpress-importer.php:467
+#: class-wp-import.php:457
 msgid "Failed to import post tag %s"
 msgstr "%s yazı etiketinin aktarımı başarısız"
 
-#: wordpress-importer.php:424
+#: class-wp-import.php:412
 msgid "Failed to import category %s"
 msgstr "%s kategorisinin aktarımı başarısız"
 
-#: wordpress-importer.php:516 wordpress-importer.php:738
+#: class-wp-import.php:512 class-wp-import.php:738
 msgid "Failed to import %s %s"
 msgstr "%s %s aktarımı başarısız"
 
-#: wordpress-importer.php:605
+#: class-wp-import.php:605
 msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
 msgstr "Aktarım başarısız &#8220;%s&#8221;: Geçersiz yazı tipi %s"
 
-#: wordpress-importer.php:870
+#: class-wp-import.php:878
 msgid "Menu item skipped due to missing menu slug"
 msgstr "Menü kısa ismi olmadığı için menü elemanı pas geçildi"
 
-#: wordpress-importer.php:704
+#: class-wp-import.php:704
 msgid "Failed to import %s &#8220;%s&#8221;"
 msgstr "İçeri aktarma başarısız %s &#8220;%s&#8221;"
 
-#: wordpress-importer.php:642
+#: class-wp-import.php:642
 msgid "%s &#8220;%s&#8221; already exists."
 msgstr "%s &#8220;%s&#8221; zaten var."
 
-#: wordpress-importer.php:877
+#: class-wp-import.php:885
 msgid "Menu item skipped due to invalid menu slug: %s"
 msgstr "Geçersiz kısa isim nedeniyle menü elemanı pas geçildi: %s"
 
-#: wordpress-importer.php:940
+#: class-wp-import.php:948
 msgid "Fetching attachments is not enabled"
 msgstr "Eklentileri aktarma etkin değil"
 
-#: wordpress-importer.php:953
+#: class-wp-import.php:961
 msgid "Invalid file type"
 msgstr "Geçersiz dosya türü"
 
-#: wordpress-importer.php:1003
+#: class-wp-import.php:1047
 msgid "Remote server did not respond"
 msgstr "Uzak sunucu cevap vermedi"
 
-#: wordpress-importer.php:1018
-msgid "Remote file is incorrect size"
-msgstr "Uzak dosyanın boyutu hatalı"
-
-#: wordpress-importer.php:1011
-msgid "Remote server returned error response %1$d %2$s"
-msgstr "Uzak sunucu hata mesajı döndürdü %1$d %2$s"
-
-#: wordpress-importer.php:1029
+#: class-wp-import.php:1065
 msgid "Remote file is too large, limit is %s"
 msgstr "Uzak dosya fazla büyük, limit %s"
 
-#: wordpress-importer.php:1023
+#: class-wp-import.php:1054
 msgid "Zero size file downloaded"
 msgstr "Sıfır boyutlu dosya indirildi"
 
-#: wordpress-importer.php:1136
+#: class-wp-import.php:1231
 msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files."
 msgstr "Bu aktarıcının yeni bir sürümü mevcut. Lütfen yeni aktarım dosyaları ile uyum sağlanabilmesi için %s sürümüne yükseltin."
 
-#: wordpress-importer.php:1129
+#: class-wp-import.php:1224
 msgid "Import WordPress"
 msgstr "Wordpress&#8217;ten İçe Aktar"
 
-#: wordpress-importer.php:1151
+#: class-wp-import.php:1246
 msgid "Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site."
 msgstr "Merhaba! WordPress eXtended RSS (WXR) dosyanızı yükleyin, sonra yazıları, sayfaları, yorumları, özel alanları, kategorileri ve etiketleri bu siteye aktaracağız."
 
-#: wordpress-importer.php:1152
+#: class-wp-import.php:1247
 msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
 msgstr "Bir WXR (.xml) dosyası seçin, yükle butonuna basın ve içeri aktarılsın."
 
-#: wordpress-importer.php:1226
+#: wordpress-importer.php:58
 msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
 msgstr "Bir WordPress aktarım dosyasından <strong>yazıları, sayfaları, yorumları, özel alanları, kategorileri ve etiketleri</strong> içe aktarın."
 
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
 msgid "https://wordpress.org/plugins/wordpress-importer/"
 msgstr "https://wordpress.org/plugins/wordpress-importer/"
 
-#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
 msgid "WordPress Importer"
 msgstr "WordPress içe aktarıcı"
 
-#. Description of the plugin/theme
+#. Description of the plugin
 msgid "Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file."
 msgstr "Bir WordPress aktarım dosyasından yazıları, sayfaları, yorumları, özel alanları, kategorileri, etiketleri ve daha fazlasını içeri aktarın."
 
-#. Author of the plugin/theme
+#. Author of the plugin
 msgid "wordpressdotorg"
 msgstr "wordpressdotorg"
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
 msgid "https://wordpress.org/"
 msgstr "https://wordpress.org/"

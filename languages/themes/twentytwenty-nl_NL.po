@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-14 14:55:12+0000\n"
+"PO-Revision-Date: 2020-06-06 21:09:44+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
 "Language: nl\n"
 "Project-Id-Version: Themes - Twenty Twenty\n"
 
@@ -118,6 +118,10 @@ msgstr "Leden krijgen toegang tot exclusieve tentoonstellingen en uitverkopen. O
 msgid "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
 msgstr "De tentoonstelling is geproduceerd door UMoMA in samenwerking met kunstenaars en museums over de hele wereld en ontving internationale aandacht. UMoMA heeft een Speciale Aanbeveling ontvangen van het Europese Museum van het Jaar, en was één van de top kandidaten voor het Zweedse Museum van het Jaar prijs en de Raad van Europa Museum prijs."
 
+#: inc/starter-content.php:129
+msgid "&#8220;Cyborgs, as the philosopher Donna Haraway established, are not reverent. They do not remember the cosmos.&#8221;"
+msgstr "”Cyborgs, zoals de filosoof Donna Haraway heeft vastgesteld, zijn niet eerbiedig. Ze herinneren zich de kosmos niet.”"
+
 #: inc/starter-content.php:81
 msgid "Theatre of Operations"
 msgstr "Theater van Activiteiten"
@@ -208,7 +212,7 @@ msgstr "Reacties"
 msgid "Comments are closed."
 msgstr "Reacties zijn gesloten."
 
-#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:494
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:492
 msgid "Primary"
 msgstr "Primair"
 
@@ -237,7 +241,7 @@ msgstr "Footer"
 msgid "Page"
 msgstr "Pagina"
 
-#: functions.php:499
+#: functions.php:497
 msgid "Secondary"
 msgstr "Secundair"
 
@@ -311,55 +315,55 @@ msgstr "Zoeken"
 msgid "Continue reading"
 msgstr "Lees verder"
 
-#: functions.php:551
+#: functions.php:549
 msgctxt "Short name of the larger font size in the block editor."
 msgid "XL"
 msgstr "XL"
 
-#: functions.php:550
+#: functions.php:548
 msgctxt "Name of the larger font size in the block editor"
 msgid "Larger"
 msgstr "Groter"
 
-#: functions.php:545
+#: functions.php:543
 msgctxt "Short name of the large font size in the block editor."
 msgid "L"
 msgstr "L"
 
-#: functions.php:544
+#: functions.php:542
 msgctxt "Name of the large font size in the block editor"
 msgid "Large"
 msgstr "Groot"
 
-#: functions.php:539
+#: functions.php:537
 msgctxt "Short name of the regular font size in the block editor."
 msgid "M"
 msgstr "M"
 
-#: functions.php:538
+#: functions.php:536
 msgctxt "Name of the regular font size in the block editor"
 msgid "Regular"
 msgstr "Normaal"
 
-#: functions.php:533
+#: functions.php:531
 msgctxt "Short name of the small font size in the block editor."
 msgid "S"
 msgstr "S"
 
-#: functions.php:532
+#: functions.php:530
 msgctxt "Name of the small font size in the block editor"
 msgid "Small"
 msgstr "Klein"
 
-#: functions.php:517
+#: functions.php:515
 msgid "Background Color"
 msgstr "Achtergrondkleur"
 
-#: functions.php:504
+#: functions.php:502
 msgid "Subtle Background"
 msgstr "Subtiele achtergrond"
 
-#: functions.php:489
+#: functions.php:487
 msgid "Accent Color"
 msgstr "Accentkleur"
 

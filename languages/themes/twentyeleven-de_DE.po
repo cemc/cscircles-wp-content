@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Themes - Twenty Eleven package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-31 21:21:43+0000\n"
+"PO-Revision-Date: 2020-07-22 22:40:35+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: de\n"
 "Project-Id-Version: Themes - Twenty Eleven\n"
 
@@ -21,7 +21,7 @@ msgstr "Twenty Eleven"
 
 #: functions.php:751
 msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
-msgstr "Dein Kommentar wartet auf Moderation. Dies ist eine Vorschau, dein Kommentar wird sichtbar, nachdem er freigegeben wurde."
+msgstr "Dein Kommentar wartet auf die Moderation. Dies ist eine Vorschau, dein Kommentar wird sichtbar, nachdem er genehmigt wurde."
 
 #: inc/theme-options.php:121
 msgid "<a href=\"https://wordpress.org/support/article/appearance-customize-screen/\" target=\"_blank\">Documentation on Theme Options</a>"
@@ -30,7 +30,7 @@ msgstr "<a href=\"https://wordpress.org/support/article/appearance-customize-scr
 #. translators: %s: The post title.
 #: comments.php:37
 msgid "One thought on &ldquo;%1$s&rdquo;"
-msgstr "Ein Gedanke zu &bdquo;%1$s&ldquo;"
+msgstr "Ein Gedanke zu &#8222;%1$s&#8220;"
 
 #: functions.php:127
 msgid "White"
@@ -87,7 +87,7 @@ msgstr "Archive"
 
 #: showcase.php:176
 msgid "Recent Posts"
-msgstr "Letzte Beiträge"
+msgstr "Neueste Beiträge"
 
 #. translators: %s: Post title.
 #: showcase.php:164
@@ -104,7 +104,7 @@ msgstr "Suchen"
 
 #: search.php:56
 msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
-msgstr "Leider gibt es keine Ergebnisse für deine Suchkriterien. Bitte versuche es noch einmal mit anderen Suchbegriffen."
+msgstr "Es gibt keine Ergebnisse für deine Suchkriterien. Bitte versuche es noch einmal mit anderen Suchbegriffen."
 
 #. translators: %s: Search query.
 #: search.php:21
@@ -141,7 +141,7 @@ msgstr "Twenty Eleven Ephemera"
 
 #: inc/widgets.php:26
 msgid "Use this widget to list your recent Aside, Status, Quote, and Link posts"
-msgstr "Nutze dieses Widget um deine letzten Kurzmitteilungen, Links, Zitate oder Statusmitteilungen anzuzeigen."
+msgstr "Nutze dieses Widget, um deine letzten Kurzmitteilungen, Links, Zitate oder Statusmitteilungen anzuzeigen."
 
 #: inc/theme-options.php:612
 msgid "Layout"
@@ -402,13 +402,13 @@ msgstr "Zeige alle Beiträge von %s <span class=\"meta-nav\">&rarr;</span>"
 #. 5: Author name, 6: Author URL.
 #: content-single.php:49
 msgid "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
-msgstr "Dieser Eintrag wurde von <a href=\"%6$s\">%5$s</a> veröffentlicht. Lesezeichen zum <a href=\"%3$s\" title=\"Permalink zu %4$s\" rel=\"bookmark\">Artikel setzen</a>."
+msgstr "Dieser Eintrag wurde von <a href=\"%6$s\">%5$s</a> veröffentlicht. Setze ein Lesezeichen zum <a href=\"%3$s\" title=\"Permalink zu %4$s\" rel=\"bookmark\">Permalink</a>."
 
 #. translators: 1: Categories list, 2: Tag list, 3: Permalink, 4: Post title,
 #. 5: Author name, 6: Author URL.
 #: content-single.php:46
 msgid "This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
-msgstr "Dieser Eintrag wurde veröffentlicht in %1$s von <a href=\"%6$s\">%5$s</a>. <a href=\"%3$s\" title=\"Permalink zu %4$s\" rel=\"bookmark\">Permanenter Link des Eintrags</a>."
+msgstr "Dieser Eintrag wurde veröffentlicht in %1$s von <a href=\"%6$s\">%5$s</a>. Setze ein Lesezeichen zum <a href=\"%3$s\" title=\"Permalink zu %4$s\" rel=\"bookmark\">Permalink</a>."
 
 #. translators: 1: Categories list, 2: Tag list, 3: Permalink, 4: Post title,
 #. 5: Author name, 6: Author URL.
@@ -427,7 +427,7 @@ msgstr "Link"
 #. translators: %s: Author display name.
 #: content-image.php:51 functions.php:804
 msgid "View all posts by %s"
-msgstr "Zeige alle Artikel von %s"
+msgstr "Zeige alle Beiträge von %s"
 
 #. translators: 1: The permalink, 2: Date and time, 3: Date and time, 4: Author
 #. link, 5: Author link title, 6: Author display name.
@@ -567,8 +567,8 @@ msgstr "Kommentar-Navigation"
 #: comments.php:43
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-msgstr[0] "Ein Gedanke zu &bdquo;%2$s&ldquo;"
-msgstr[1] "%1$s Gedanken zu &bdquo;%2$s&ldquo;"
+msgstr[0] "Ein Gedanke zu &#8222;%2$s&#8220;"
+msgstr[1] "%1$s Gedanken zu &#8222;%2$s&#8220;"
 
 #: comments.php:17
 msgid "This post is password protected. Enter the password to view any comments."

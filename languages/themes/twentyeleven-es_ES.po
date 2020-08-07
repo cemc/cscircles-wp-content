@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Themes - Twenty Eleven package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-31 21:33:51+0000\n"
+"PO-Revision-Date: 2020-04-14 17:25:15+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -379,7 +379,7 @@ msgstr "Menú principal"
 #. translators: %s: WordPress
 #: footer.php:37
 msgid "Proudly powered by %s"
-msgstr "Creado con %s"
+msgstr "Funciona gracias a %s"
 
 #: footer.php:34
 msgid "Semantic Personal Publishing Platform"

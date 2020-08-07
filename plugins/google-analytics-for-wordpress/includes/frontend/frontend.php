@@ -108,7 +108,7 @@ add_filter( 'the_permalink_rss', 'monsterinsights_rss_link_tagger', 99 );
  * Checks used for loading the frontend scripts/admin bar button.
  */
 function monsterinsights_prevent_loading_frontend_reports() {
-	return ! current_user_can( 'monsterinsights_view_dashboard' ) || monsterinsights_get_option( 'hide_admin_bar_reports' ) || function_exists( 'monsterinsights_is_reports_page' ) && monsterinsights_is_reports_page();
+	return ! current_user_can( 'monsterinsights_view_dashboard' ) || monsterinsights_get_option( 'hide_admin_bar_reports' ) || function_exists( 'monsterinsights_is_reports_page' ) && monsterinsights_is_reports_page() || function_exists( 'monsterinsights_is_settings_page' ) && monsterinsights_is_settings_page();
 }
 
 /**
@@ -173,6 +173,7 @@ function monsterinsights_frontend_admin_bar_scripts() {
 
 	// Check if any of the other admin scripts are enqueued, if so, use their object.
 	if ( ! wp_script_is( 'monsterinsights-vue-script' ) && ! wp_script_is( 'monsterinsights-vue-reports' ) && ! wp_script_is( 'monsterinsights-vue-widget' ) ) {
+		$reports_url = is_network_admin() ? add_query_arg( 'page', 'monsterinsights_reports', network_admin_url( 'admin.php' ) ) : add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) );
 		wp_localize_script(
 			'monsterinsights-vue-frontend',
 			'monsterinsights',
@@ -189,10 +190,10 @@ function monsterinsights_frontend_admin_bar_scripts() {
 				'shareasale_id'       => monsterinsights_get_shareasale_id(),
 				'shareasale_url'      => monsterinsights_get_shareasale_url( monsterinsights_get_shareasale_id(), '' ),
 				'is_admin'            => is_admin(),
-				'reports_url'         => add_query_arg( 'page', 'monsterinsights_reports', admin_url( 'admin.php' ) ),
+				'reports_url'         => $reports_url,
 				'authed'              => $site_auth || $ms_auth,
 				'getting_started_url' => is_multisite() ? network_admin_url( 'admin.php?page=monsterinsights_network#/about/getting-started' ) : admin_url( 'admin.php?page=monsterinsights_settings#/about/getting-started' ),
-				'wizard_url'          => admin_url( 'index.php?page=monsterinsights-onboarding' ),
+				'wizard_url'          => is_network_admin() ? network_admin_url( 'index.php?page=monsterinsights-onboarding' ) : admin_url( 'index.php?page=monsterinsights-onboarding' ),
 			)
 		);
 	}
@@ -227,13 +228,16 @@ function monsterinsights_administrator_tracking_notice() {
 		return;
 	}
 
+	// Automatically dismiss when loaded.
+	update_option( 'monsterinsights_frontend_tracking_notice_viewed', 1 );
+
 	?>
 	<div class="monsterinsights-tracking-notice monsterinsights-tracking-notice-hide">
 		<div class="monsterinsights-tracking-notice-icon">
 			<img src="<?php echo esc_url( plugins_url( 'assets/images/mascot.png', MONSTERINSIGHTS_PLUGIN_FILE ) ); ?>" width="40" alt="MonsterInsights Mascot" />
 		</div>
 		<div class="monsterinsights-tracking-notice-text">
-			<h3><?php esc_html_e( 'Tracking is Disabled for Administrators', 'ga-premium' ); ?></h3>
+			<h3><?php esc_html_e( 'Tracking is Disabled for Administrators', 'google-analytics-for-wordpress' ); ?></h3>
 			<p>
 				<?php
 				$doc_url = 'https://monsterinsights.com/docs/tracking-disabled-administrators-editors';
@@ -243,7 +247,7 @@ function monsterinsights_administrator_tracking_notice() {
 					'utm_campaign' => 'admin-tracking-doc',
 				), $doc_url );
 				// Translators: %s is the link to the article where more details about tracking are listed.
-				printf( esc_html__( 'To keep stats accurate, we do not load Google Analytics scripts for admin users. %1$sLearn More &raquo;%2$s', 'ga-premium' ), '<a href="' . esc_url( $doc_url ) . '" target="_blank">', '</a>' );
+				printf( esc_html__( 'To keep stats accurate, we do not load Google Analytics scripts for admin users. %1$sLearn More &raquo;%2$s', 'google-analytics-for-wordpress' ), '<a href="' . esc_url( $doc_url ) . '" target="_blank">', '</a>' );
 				?>
 			</p>
 		</div>
@@ -381,3 +385,16 @@ function monsterinsights_dismiss_tracking_notice() {
 }
 
 add_action( 'wp_ajax_monsterinsights_dismiss_tracking_notice', 'monsterinsights_dismiss_tracking_notice' );
+
+/**
+ * If the legacy shortcodes are not registered, make sure they don't output.
+ */
+function monsterinsights_maybe_handle_legacy_shortcodes() {
+
+	if ( ! shortcode_exists( 'gadwp_useroptout' ) ) {
+		add_shortcode( 'gadwp_useroptout', '__return_empty_string' );
+	}
+
+}
+
+add_action( 'init', 'monsterinsights_maybe_handle_legacy_shortcodes', 1000 );

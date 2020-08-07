@@ -2,24 +2,236 @@
 # This file is distributed under the same license as the Plugins - Polylang - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-20 01:44:43+0000\n"
+"PO-Revision-Date: 2020-06-30 16:58:55+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: zh_CN\n"
 "Project-Id-Version: Plugins - Polylang - Stable (latest release)\n"
+
+#: modules/wizard/view-wizard-step-last.php:74
+#: modules/wizard/view-wizard-step-last.php:98
+msgid "Buy now"
+msgstr "立即购买"
+
+#: modules/wizard/view-wizard-step-last.php:35
+msgid "Create menus"
+msgstr "创建菜单"
+
+#: modules/wizard/view-wizard-page.php:90
+msgid "Continue"
+msgstr "继续"
+
+#: modules/wizard/view-wizard-step-languages.php:79
+msgid "Languages already defined"
+msgstr "已经定义的语言"
+
+#: modules/wizard/view-wizard-step-last.php:65
+msgid "Polylang Pro"
+msgstr "Polylang Pro"
+
+#: modules/wizard/view-wizard-step-last.php:83
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: modules/wizard/wizard.php:427
+msgid "You already added this language."
+msgstr "您已经添加了该语言。"
+
+#. translators: %s is the post title of the front page
+#: modules/wizard/view-wizard-step-home-page.php:37
+msgid "You defined this page as your static homepage: %s."
+msgstr "您将此页面定义为静态主页：%s。"
+
+#: modules/wizard/wizard.php:428
+msgid "You need to add at least one language."
+msgstr "您需要添加至少一种语言。"
+
+#: modules/wizard/wizard.php:426
+msgid "You need to select a language to be added."
+msgstr "您需要选择一种要添加的语言。"
+
+#: modules/wizard/wizard.php:429
+msgid "You selected a language, however, to be able to continue, you need to add it."
+msgstr "您选择了一种语言，但是要继续，您需要添加它。"
+
+#. translators: %1$s: is a language flag image, %2$s: is a language native name
+#: modules/wizard/view-wizard-step-languages.php:102
+msgid "You selected %1$s %2$s but you didn't add it to the list before continuing to the next step."
+msgstr "您选择了 %1$s %2$s，但在继续下一步之前没有将其添加到列表中。"
+
+#: modules/wizard/view-wizard-step-last.php:66
+msgid "Upgrade to Polylang Pro"
+msgstr "升级到Polylang Pro"
+
+#: modules/wizard/view-wizard-step-last.php:51
+msgid "Translate some pages"
+msgstr "翻译一些页面"
+
+#: modules/wizard/wizard.php:115
+msgid "Setup"
+msgstr "设置"
+
+#: modules/wizard/html-wizard-notice.php:46
+msgid "Skip setup"
+msgstr "跳过设置"
+
+#: modules/wizard/view-wizard-step-languages.php:32
+msgid "Select a language to be added"
+msgstr "选择要添加的语言"
+
+#: modules/wizard/html-wizard-notice.php:40
+msgid "Run the Setup Wizard"
+msgstr "运行安装向导"
+
+#: modules/wizard/view-wizard-step-last.php:108
+msgid "Return to the Dashboard"
+msgstr "返回仪表盘"
+
+#: modules/wizard/wizard.php:440
+msgid "Remove this language"
+msgstr "删除此语言"
+
+#: modules/wizard/view-wizard-step-languages.php:67
+msgid "Remove"
+msgstr "删除"
+
+#: modules/wizard/view-wizard-step-home-page.php:106
+msgid "If you add a new language, don't forget to translate your homepage."
+msgstr "如果您添加新的语言，请不要忘记翻译您的主页。"
+
+#: modules/wizard/wizard.php:439
+#: modules/wizard/view-wizard-step-languages.php:135
+msgid "Ignore"
+msgstr "忽略"
+
+#: modules/wizard/view-wizard-step-languages.php:23
+msgid "This wizard will help you configure your Polylang settings, and get you started quickly with your multilingual website."
+msgstr "该向导将帮助您配置Polylang设置，并快速开始使用多语言网站。"
+
+#: modules/wizard/view-wizard-step-languages.php:109
+msgid "Do you want to add this language before continuing to the next step?"
+msgstr "您是否要在继续下一步之前添加此语言？"
+
+#: modules/wizard/view-wizard-step-untranslated-contents.php:23
+msgid "Choose the language to be assigned"
+msgstr "选择要分配的语言"
+
+#: modules/wizard/view-wizard-step-media.php:44
+msgid "Allow Polylang translate media"
+msgstr "允许Polylang翻译媒体"
+
+#. translators: %s is the plugin name
+#: modules/wizard/view-wizard-page.php:26
+msgid "%s &rsaquo; Setup"
+msgstr "%s &rsaquo; 设置"
+
+#. translators: %s: is the translated label of the 'Yes' button
+#: modules/wizard/view-wizard-step-languages.php:116
+msgid "%s: add this language and continue to the next step"
+msgstr "%s: 添加此语言，然后继续下一步"
+
+#. translators: %s: is the translated label of the 'No' button
+#: modules/wizard/view-wizard-step-languages.php:125
+msgid "%s: don't add this language and continue to the next step"
+msgstr "%s: 不要添加此语言，继续下一步"
+
+#: modules/wizard/view-wizard-step-home-page.php:53
+msgid "After the pages is created, it is up to you to put the translated content in each page linked to each language."
+msgstr "创建页面后，由您决定将翻译后的内容放在与每种语言链接的每个页面中。"
+
+#: modules/wizard/view-wizard-step-untranslated-contents.php:19
+msgid "For your site to work correctly, you need to assign a language to all your contents."
+msgstr "为了使站点正常工作，您需要为所有内容分配一种语言。"
+
+#: modules/wizard/view-wizard-step-home-page.php:50
+msgid "For your site to work correctly, this page must be translated in all available languages."
+msgstr "为了使您的站点正确工作，此页面必须翻译成所有可用的语言。"
+
+#: modules/wizard/view-wizard-step-languages.php:26
+msgid "First we are going to define the languages that you will use on your website."
+msgstr "首先，我们将定义您将在网站上使用的语言。"
+
+#: modules/wizard/view-wizard-step-licenses.php:18
+msgid "Please enter your license key:"
+msgid_plural "Please enter your license keys:"
+msgstr[0] "请输入您的许可证密钥："
+
+#: modules/wizard/view-wizard-step-home-page.php:59
+msgid "Your static homepage is already translated in"
+msgstr "您的静态首页已翻译成"
+
+#: modules/wizard/view-wizard-step-last.php:17
+msgid "You're now able to translate your contents such as posts, pages, categories and tags. You can learn how to use Polylang by reading the documentation."
+msgstr "现在，您可以翻译您的内容，例如文章，页面，分类和标签。 您可以通过阅读文档来学习如何使用Polylang。"
+
+#: modules/wizard/view-wizard-step-licenses.php:17
+msgid "You are using plugins which require a license key."
+msgstr "您正在使用需要许可证密钥的插件。"
+
+#: modules/wizard/view-wizard-step-media.php:23
+msgid "When you translate a media, the file is not duplicated on your disk, however you will see one entry per language in the media library."
+msgstr "当您翻译媒体时，该文件不会在磁盘上复制，但是您将在媒体库中看到每个语言对应一个条目。"
+
+#. translators: %s is the name of Polylang Business Pack product
+#: modules/wizard/view-wizard-step-last.php:89
+msgid "We have noticed that you are using Polylang with WooCommerce. To ensure a better compatibility, we recommend you use %s which includes both Polylang Pro and Polylang For WooCommerce."
+msgstr "我们注意到您在WooCommerce中使用Polylang。 为了确保更好的兼容性，我们建议您使用%s，其中包括Polylang Pro和Polylang For WooCommerce。"
+
+#: modules/wizard/view-wizard-step-licenses.php:23
+msgid "There is an error with a license key."
+msgstr "许可证密钥错误。"
+
+#: modules/wizard/view-wizard-step-last.php:68
+msgid "Thank you for activating Polylang. If you want more advanced features - duplication, synchronization, REST API support, integration with other plugins, etc. - or further help provided by our Premium support, we recommend you upgrade to Polylang Pro."
+msgstr "感谢您激活Polylang。 如果您需要更多高级功能-复制，同步，REST API支持，与其他插件集成等-或需要我们的高级支持提供的进一步帮助，建议您升级到Polylang Pro。"
+
+#: modules/wizard/wizard.php:169
+msgid "Sorry, you are not allowed to manage options for this site."
+msgstr "抱歉，您不能管理该网站的选项。"
+
+#: modules/wizard/view-wizard-step-last.php:25
+#: modules/wizard/view-wizard-step-last.php:43
+msgid "Read documentation"
+msgstr "阅读文档"
+
+#: modules/wizard/view-wizard-step-last.php:84
+msgid "Purchase Polylang Business Pack"
+msgstr "购买Polylang商务包"
+
+#: modules/wizard/wizard.php:664 modules/wizard/wizard.php:695
+#: modules/wizard/view-wizard-step-home-page.php:32
+msgid "Homepage"
+msgstr "主页"
+
+#: modules/wizard/view-wizard-step-last.php:90
+msgid "Polylang Business Pack"
+msgstr "Polylang商务包"
+
+#: modules/wizard/view-wizard-step-media.php:24
+msgid "When you want to insert media in a post, only the media in the language of the current post will be displayed."
+msgstr "当您想在文章中插入媒体时，将仅显示当前文章语言的媒体。"
+
+#. translators: %s is the plugin name
+#: modules/wizard/html-wizard-notice.php:25
+msgid "Welcome to %s"
+msgstr "欢迎使用 %s"
+
+#: include/license.php:227
+msgid "Your license key has been disabled."
+msgstr "您的许可证密钥已被禁用。"
 
 #. translators: 1: Plugin name 2: Current WordPress version 3: Required
 #. WordPress version
 #: install/install.php:65
-msgid "%1$s has deactivated itself because you are using an old WordPress version. You are using using WordPress %2$s. %1$s requires at least WordPress %3$s."
+msgid "%1$s has deactivated itself because you are using an old version of WordPress. You are using using WordPress %2$s. %1$s requires at least WordPress %3$s."
 msgstr "%1$s已自行停用，因为您使用的是旧的WordPress版本。您正在使用WordPress%2$s.。 %1$s至少需要WordPress %3$s。"
 
 #. translators: 1: Plugin name 2: Current PHP version 3: Required PHP version
 #: install/install.php:43
-msgid "%1$s has deactivated itself because you are using an old PHP version. You are using using PHP %2$s. %1$s requires PHP %3$s."
+msgid "%1$s has deactivated itself because you are using an old version of PHP. You are using using PHP %2$s. %1$s requires PHP %3$s."
 msgstr "由于您使用的是旧版PHP，%1$s已自行停用。 您正在使用PHP %2$s。%1$s 至少需要PHP %3$s。 "
 
 #: settings/flags.php:156
@@ -31,15 +243,15 @@ msgid "If you attempt to modify them anyway, your changes will not be saved."
 msgstr "如果仍然尝试修改它们，则所做的更改将不会保存。"
 
 #. translators: %1$s is a date, %2$s is link start tag, %3$s is link end tag.
-#: settings/settings-licenses.php:156
+#: include/license.php:275
 msgid "Your license key will expire soon! Precisely, it will expire on %1$s. %2$sRenew your license key today!%3$s."
 msgstr "您的许可证密钥即将过期！确切地说，它将在%1$s到期。 %2$s立即续订您的许可证密钥！%3$s。"
 
-#: admin/admin-base.php:183 admin/admin-base.php:191
+#: admin/admin-base.php:202 admin/admin-base.php:210
 msgid "You are about to overwrite an existing translation. Are you sure you want to proceed?"
 msgstr "您将要覆盖现有的翻译。您确定要继续吗？"
 
-#: settings/settings-module.php:233
+#: settings/settings-module.php:235
 msgid "To enable this feature, you need Polylang Pro."
 msgstr "要启用此功能，您需要Polylang Pro。"
 
@@ -49,20 +261,21 @@ msgid "Before upgrading to %2$s, please upgrade to %1$s."
 msgstr "升级到 %2$s 之前，请升级到 %1$s。"
 
 #. translators: %1$s is link start tag, %2$s is link end tag.
-#: admin/admin-notices.php:177
+#: admin/admin-notices.php:207
 msgid "We have noticed that you are using Polylang with WooCommerce. To ensure compatibility, we recommend you use %1$sPolylang for WooCommerce%2$s."
 msgstr "我们注意到您在WooCommerce中使用Polylang。 为了确保兼容性，我们建议您对WooCommerce%2$s使用%1$s Polylan。"
 
 #. translators: %1$s is link start tag, %2$s is link end tag.
-#: admin/admin-notices.php:202
+#: admin/admin-notices.php:230
 msgid "We have noticed that you have been using Polylang for some time. We hope you love it, and we would really appreciate it if you would %1$sgive us a 5 stars rating%2$s."
 msgstr "我们注意到您已经使用Polylang一段时间了。 我们希望您喜欢它，如果您愿意 %1$s给我们5星评级%2$s，我们将不胜感激。"
 
-#: settings/settings-tools.php:37
-msgid "Remove all Polylang data upon using the \"Delete\" action in the \"Plugins\" admin page."
-msgstr "使用“插件”管理页面中的“删除”操作，删除所有Polylang数据。"
+#. translators: %s is a comma separated list of native language names
+#: admin/admin-static-pages.php:221
+msgid "You must translate your static front page in %s."
+msgstr "您必须在%s中翻译您的静态首页。"
 
-#: lingotek/lingotek.php:106
+#: lingotek/lingotek.php:104
 msgid "If you're on a tight budget, looking for near-instant results, and are okay with less-than-perfect quality, machine translation is an excellent option."
 msgstr "如果您的预算紧张，希望获得近乎即时的结果，并且质量也不要求高，那么机器翻译是一个不错的选择。"
 
@@ -70,19 +283,28 @@ msgstr "如果您的预算紧张，希望获得近乎即时的结果，并且质
 msgid "WP SYNTEX"
 msgstr "WP SYNTEX"
 
-#: lingotek/lingotek.php:130
+#: lingotek/lingotek.php:128
 msgid "When you activate your account, Lingotek will be able to get an accurate count of the number of words in your site. Then tell them which languages you wish to have them translated into."
 msgstr "激活帐户后，Lingotek将能够准确计数您站点中的单词数。 然后告诉他们您希望将其翻译成哪种语言。"
 
-#: lingotek/lingotek.php:127
+#: lingotek/lingotek.php:125
 msgid "Do you need professional translations for your site?"
 msgstr "您需要对网站专业翻译吗？"
+
+#. translators: accessibility text
+#: admin/admin-notices.php:190
+msgid "Dismiss this notice."
+msgstr "忽略此通知。"
+
+#: include/filters.php:323
+msgid "Translated user descriptions"
+msgstr "翻译用户描述"
 
 #: settings/flags.php:231
 msgid "Tibet"
 msgstr "西藏"
 
-#: install/plugin-updater.php:479
+#: install/plugin-updater.php:519
 msgid "Error"
 msgstr "错误"
 
@@ -91,32 +313,32 @@ msgstr "错误"
 msgid "https://polylang.pro"
 msgstr "https://polylang.pro"
 
-#: settings/settings-module.php:235
+#: settings/settings-module.php:237
 msgid "Upgrade now."
 msgstr "现在升级。"
 
 #. translators: %s is a date
-#: settings/settings-licenses.php:164
+#: include/license.php:283
 msgid "Your license key expires on %s."
 msgstr "您的许可证过期于 %s。"
 
-#: settings/settings-licenses.php:151
+#: include/license.php:270
 msgid "The license key never expires."
 msgstr "当前许可密钥永不过期。"
 
 #. translators: %s is a product name
-#: settings/settings-licenses.php:133
+#: include/license.php:252
 msgid "This is not a %s license key."
 msgstr "这不是一个 %s 许可密钥。"
 
 #. translators: %1$s is a product name, %2$s is link start tag, %3$s is link
 #. end tag.
-#: settings/settings-licenses.php:124
+#: include/license.php:243
 msgid "Your %1$s license key is not active for this URL. Please %2$svisit your account page%3$s to manage your license key URLs."
 msgstr "您的 %1$s 许可密钥未在当前网站激活。请 %2$s 访问您的贴页面 %3$s 以便管理您的许可密钥链接。"
 
 #. translators: %1$s is a date, %2$s is link start tag, %3$s is link end tag.
-#: settings/settings-licenses.php:104
+#: include/license.php:218
 msgid "Your license key expired on %1$s. Please %2$srenew your license key%3$s."
 msgstr "您的许可密钥过期于 %1$s。请 %2$s 续订您的许可密钥 %3$s。"
 
@@ -140,19 +362,19 @@ msgstr "允许通过语言为文章和分类项共享相同的链接别名"
 msgid "Share slugs"
 msgstr "共享另名"
 
-#: install/plugin-updater.php:479
+#: install/plugin-updater.php:519
 msgid "You do not have permission to install plugin updates"
 msgstr "您没有安装插件更新的权限"
 
 #. translators: %1$s plugin name, %3$s plugin version, %2$s and %5$s are link
 #. start tags, %4$s and %6$s are link end tags.
-#: install/plugin-updater.php:241
+#: install/plugin-updater.php:275
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s."
 msgstr "新版本 %1$s 可用。 %2$s 查看版本 %3$s 详细信息 %4$s 或者 %5$s 现在更新 %6$s。"
 
 #. translators: %1$s plugin name, %3$s plugin version, %2$s is link start tag,
 #. %4$s is link end tag.
-#: install/plugin-updater.php:232
+#: install/plugin-updater.php:266
 msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
 msgstr "新版本 %1$s 已经准备好了， %2$s 查看版本 %3$s 详细信息 %4$s。"
 
@@ -166,12 +388,12 @@ msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr "Y年n月j日"
 
-#: settings/view-tab-lang.php:143
+#: settings/view-tab-lang.php:142
 msgid "Choose a flag for the language."
 msgstr "为语言选择一个旗帜标志。"
 
 #. translators: accessibility text
-#: settings/table-string.php:312
+#: settings/table-string.php:313
 msgid "Filter by group"
 msgstr "分组筛选"
 
@@ -180,11 +402,11 @@ msgstr "分组筛选"
 msgid "Select %s"
 msgstr "选择 %s"
 
-#: settings/table-settings.php:147
+#: settings/table-settings.php:144
 msgid "Description"
 msgstr "Description"
 
-#: settings/table-settings.php:146
+#: settings/table-settings.php:143
 msgid "Module"
 msgstr "模块"
 
@@ -196,11 +418,7 @@ msgstr "保存变化"
 msgid "Cancel"
 msgstr "退出"
 
-#: settings/settings-tools.php:23
-msgid "Decide whether to remove all data when deleting Polylang."
-msgstr "当卸载 Polylang 插件时是否删除所有数据。"
-
-#: settings/table-languages.php:208
+#: settings/table-languages.php:207
 msgid "Delete this language and all its associated data"
 msgstr "删除此语言及其所有相关数据"
 
@@ -213,30 +431,32 @@ msgstr "选定 %s 作为默认语言"
 msgid "Select as default language"
 msgstr "选择作为默认语言"
 
-#: settings/table-languages.php:87 settings/table-languages.php:202
+#: settings/table-languages.php:87 settings/table-languages.php:201
 msgid "Edit this language"
 msgstr "编辑此语言"
 
-#: settings/settings.php:335
+#: settings/settings.php:359
 msgid "You can set them all to the default language."
 msgstr "您可以将它们设置为默认语言。"
 
-#: settings/settings.php:333
+#: settings/settings.php:357
+#: modules/wizard/view-wizard-step-untranslated-contents.php:18
 msgid "There are posts, pages, categories or tags without language."
 msgstr "这些文章，页面，分类或标签没有语言。"
 
+#. translators: %s is an url
+#: settings/settings-url.php:297
+msgid "Polylang was unable to access the %s URL. Please check that the URL is valid."
+msgstr "Polylang 无法访问链接 %s。请检查网址是否有效。"
+
 #. translators: %s is a native language name
-#: settings/settings-url.php:240
+#: settings/settings-url.php:242
 msgid "Please enter a valid URL for %s."
 msgstr "请为 %s 输入一个合法的链接地址。"
 
 #: settings/settings-url.php:23
 msgid "Decide how your URLs will look like."
 msgstr "决定您的链接地址看起来什么样。"
-
-#: settings/settings-tools.php:22
-msgid "Tools"
-msgstr "工具"
 
 #: settings/settings-module.php:61
 msgid "Deactivated"
@@ -266,7 +486,7 @@ msgstr "配置此模块"
 msgid "Custom post types and Taxonomies"
 msgstr "自定义文章类型和分类法"
 
-#: settings/settings-licenses.php:148 settings/settings-module.php:52
+#: include/license.php:267 settings/settings-module.php:52
 msgid "Deactivate"
 msgstr "禁用"
 
@@ -1250,6 +1470,10 @@ msgstr "United Arab Emirates"
 msgid "Andorra"
 msgstr "安道尔共和国"
 
+#: modules/wpml/settings-wpml.php:22
+msgid "WPML compatibility"
+msgstr "WPML 兼容性"
+
 #: admin/admin-static-pages.php:99
 msgid "Posts Page"
 msgstr "文章页"
@@ -1268,18 +1492,18 @@ msgid "Add to Menu"
 msgstr "添加至菜单"
 
 #. translators: accessibility text, %s is a native language name
-#: admin/admin-filters-columns.php:135 admin/admin-filters-columns.php:262
+#: admin/admin-filters-columns.php:148 admin/admin-filters-columns.php:275
 msgid "Edit this item in %s"
 msgstr "以%s编辑这个条目"
 
 #. translators: accessibility text, %s is a native language name
-#: admin/admin-filters-columns.php:139 admin/admin-filters-columns.php:266
+#: admin/admin-filters-columns.php:152 admin/admin-filters-columns.php:279
 #: admin/admin-links.php:51
 msgid "Edit the translation in %s"
 msgstr "以%s编辑这个翻译"
 
 #. translators: accessibility text, %s is a native language name
-#: admin/admin-filters-columns.php:152 admin/admin-filters-columns.php:279
+#: admin/admin-filters-columns.php:165 admin/admin-filters-columns.php:292
 msgid "This item is in %s"
 msgstr "这一条用%s"
 
@@ -1288,7 +1512,7 @@ msgstr "这一条用%s"
 msgid "Add a translation in %s"
 msgstr "在 %s 添加一个翻译"
 
-#: admin/admin-model.php:302
+#: modules/wizard/wizard.php:435 admin/admin-model.php:302
 msgid "The flag does not exist"
 msgstr "标志不存在"
 
@@ -1296,31 +1520,31 @@ msgstr "标志不存在"
 msgid "Adds multilingual capability to WordPress"
 msgstr "增加多语言功能到 WordPress"
 
-#: settings/settings-module.php:60 lingotek/lingotek.php:81
+#: settings/settings-module.php:60 lingotek/lingotek.php:79
 msgid "Activated"
 msgstr "已激活"
 
-#: settings/settings-module.php:58 lingotek/lingotek.php:81
+#: settings/settings-module.php:58 lingotek/lingotek.php:79
 msgid "Activate"
 msgstr "激活"
 
-#: lingotek/lingotek.php:86
+#: lingotek/lingotek.php:84
 msgid "Request Translation"
 msgstr "请求翻译"
 
-#: lingotek/lingotek.php:92
+#: lingotek/lingotek.php:90
 msgid "Request Services"
 msgstr "请求服务"
 
-#: lingotek/lingotek.php:99
+#: lingotek/lingotek.php:97
 msgid "Polylang is now fully integrated with Lingotek, a professional translation management system!"
 msgstr "Polylang现在已经完全集成了Lingotek：一个专业的翻译管理系统"
 
-#: lingotek/lingotek.php:102
+#: lingotek/lingotek.php:100
 msgid "Automatically translate my site"
 msgstr "自动翻译我的网站"
 
-#: lingotek/lingotek.php:113
+#: lingotek/lingotek.php:111
 msgid "Translation Management System"
 msgstr "翻译管理系统"
 
@@ -1328,67 +1552,72 @@ msgstr "翻译管理系统"
 msgid "Polylang"
 msgstr "Polylang"
 
-#: lingotek/lingotek.php:265
+#: lingotek/lingotek.php:263
 msgid "Learn more..."
 msgstr "了解更多..."
 
-#: lingotek/lingotek.php:103
+#: lingotek/lingotek.php:101
 msgid "Polylang is now fully integrated with Lingotek!"
 msgstr "Polylang现在已经完全集成了Lingotek！"
 
-#: lingotek/lingotek.php:105 lingotek/lingotek.php:116
+#: lingotek/lingotek.php:103 lingotek/lingotek.php:114
 msgid "Access free machine translation for your site for up to 100,000 characters."
 msgstr "为你的网站获得上限为100 000字的免费机器翻译。"
 
-#: lingotek/lingotek.php:145
+#: lingotek/lingotek.php:143
 msgid "Do you need help creating glossaries and terminologies?"
 msgstr "您需要创建术语集方面的帮助么？"
 
-#: lingotek/lingotek.php:114
+#: lingotek/lingotek.php:112
 msgid "Do you need to connect to a professional translation management system?"
 msgstr "您需要连接到一个专业的翻译管理系统么？"
 
-#: lingotek/lingotek.php:117
+#: lingotek/lingotek.php:115
 msgid "Access an online translator workbench."
 msgstr "接入一个在线翻译平台。"
 
-#: lingotek/lingotek.php:118
+#: lingotek/lingotek.php:116
 msgid "Have linguists compare side-by-side versions of original and translated text."
 msgstr "拥有语言学家来逐字对比原始以及翻译后文本。"
 
-#: lingotek/lingotek.php:119
+#: lingotek/lingotek.php:117
 msgid "Save and re-use previously translated material (leverage translation memory (TM))."
 msgstr "保存并复用之前翻译的材料（影响翻译记忆库（tm））。"
 
-#: lingotek/lingotek.php:129
+#: lingotek/lingotek.php:124
+msgid "Professionally translate my site"
+msgstr "专业的翻译我的站点"
+
+#: lingotek/lingotek.php:127
 msgid "Start the process of getting a professional translation bid."
 msgstr "开始专业翻译竞标程序。"
 
-#: lingotek/lingotek.php:139
+#: lingotek/lingotek.php:137
 msgid "Do you need help translating your site?"
 msgstr "您需要翻译站点方面的帮助么？"
 
-#: lingotek/lingotek.php:141
+#: lingotek/lingotek.php:139
 msgid "Start the process of getting extra services."
 msgstr "开始额外服务的进程。"
 
-#: lingotek/lingotek.php:142
+#: lingotek/lingotek.php:140
 msgid "Do you need someone to run your localization project?"
 msgstr "您需要某人来运行您的本地化项目？"
 
-#: lingotek/lingotek.php:143
+#: lingotek/lingotek.php:141
 msgid "Do you need customized workflows?"
 msgstr "您需要定制工作流么？"
 
-#: lingotek/lingotek.php:144
+#: lingotek/lingotek.php:142
 msgid "Do you have existing Translation Memories you would like to use?"
 msgstr "您有已经存在的翻译记忆以供使用么？"
 
-#: settings/settings.php:119 admin/admin-base.php:82 admin/admin-base.php:104
-#: admin/admin-nav-menu.php:65 admin/admin-nav-menu.php:68
-#: admin/admin-nav-menu.php:98 admin/admin-classic-editor.php:50
-#: admin/admin-notices.php:73 include/nav-menu.php:44
-#: include/translated-post.php:107
+#: include/nav-menu.php:44 include/translated-post.php:107
+#: settings/settings.php:142 modules/wizard/wizard.php:446
+#: modules/wizard/view-wizard-step-languages.php:28 admin/admin-base.php:93
+#: admin/admin-base.php:117 admin/admin-notices.php:89
+#: admin/admin-classic-editor.php:50 admin/admin-nav-menu.php:65
+#: admin/admin-nav-menu.php:68 admin/admin-nav-menu.php:99
 msgid "Languages"
 msgstr "语言"
 
@@ -1408,22 +1637,28 @@ msgstr "强制链接到主页"
 msgid "Hides the current language"
 msgstr "隐藏当前语言"
 
-#: admin/admin-base.php:384 admin/admin-base.php:403
+#: include/switcher.php:22
+msgid "Displays as a dropdown"
+msgstr "显示下拉菜单"
+
+#: admin/admin-base.php:403 admin/admin-base.php:422
 msgid "Filters content by language"
 msgstr "按语言过滤内容"
 
-#: admin/admin-base.php:375
+#: admin/admin-base.php:394
 msgid "Show all languages"
 msgstr "显示所有语言"
 
-#: admin/admin-filters-media.php:56 admin/admin-filters-columns.php:190
+#: include/translated-post.php:108
+#: modules/wizard/view-wizard-step-languages.php:66
 #: admin/admin-filters-term.php:99 admin/admin-filters-term.php:171
-#: admin/admin-classic-editor.php:100 include/translated-post.php:108
+#: admin/admin-filters-columns.php:203 admin/admin-classic-editor.php:100
+#: admin/admin-filters-media.php:56
 msgid "Language"
 msgstr "语言"
 
-#: settings/table-string.php:131 admin/view-translations-term.php:13
-#: admin/view-translations-term.php:20 admin/view-translations-media.php:12
+#: settings/table-string.php:131 admin/view-translations-media.php:12
+#: admin/view-translations-term.php:13 admin/view-translations-term.php:20
 #: admin/view-translations-post.php:11
 msgid "Translations"
 msgstr "翻译"
@@ -1432,43 +1667,43 @@ msgstr "翻译"
 msgid "Sets the language"
 msgstr "设置语言"
 
-#: admin/admin-filters.php:80
+#: admin/admin-filters.php:83
 msgid "The widget is displayed for:"
 msgstr "该小工具显示为："
 
-#: admin/admin-filters.php:66 include/translated-post.php:109
+#: include/translated-post.php:109 admin/admin-filters.php:69
 msgid "All languages"
 msgstr "所有语言"
 
-#: settings/settings-module.php:46 admin/admin-base.php:89 admin/admin.php:81
+#: settings/settings-module.php:46 admin/admin-base.php:100 admin/admin.php:80
 msgid "Settings"
 msgstr "设置"
 
-#: admin/admin-filters.php:165
+#: admin/admin-filters.php:168
 msgid "Upgrading language files&#8230;"
 msgstr "升级语言文件..."
 
-#: settings/settings.php:109
+#: settings/settings.php:132
 msgid "About Polylang"
 msgstr "关于 Polylang"
 
-#: settings/settings.php:137 admin/admin-base.php:86 include/mo.php:18
+#: include/mo.php:18 settings/settings.php:160 admin/admin-base.php:97
 msgid "Strings translations"
 msgstr "字符串翻译"
 
-#: admin/admin-model.php:272
+#: modules/wizard/wizard.php:431 admin/admin-model.php:272
 msgid "Enter a valid WordPress locale"
 msgstr "输入一个有效的 WordPress 区域"
 
-#: admin/admin-model.php:283
+#: modules/wizard/wizard.php:433 admin/admin-model.php:283
 msgid "The language code must be unique"
 msgstr "语言代码必须是唯一的"
 
-#: admin/admin-model.php:290
+#: modules/wizard/wizard.php:434 admin/admin-model.php:290
 msgid "The language must have a name"
 msgstr "语言必须有一个名字"
 
-#: settings/settings.php:184
+#: settings/settings.php:207
 msgid "The language was created, but the WordPress language file was not downloaded. Please install it manually."
 msgstr "语言已被创建，但是没有下载到WordPress语言包，请手动安装它。"
 
@@ -1524,64 +1759,66 @@ msgstr "特色图像"
 msgid "Edit language"
 msgstr "编辑语言"
 
-#: settings/view-tab-lang.php:31 settings/view-tab-lang.php:175
+#: settings/view-tab-lang.php:31 settings/view-tab-lang.php:174
+#: modules/wizard/view-wizard-step-languages.php:54
+#: modules/wizard/view-wizard-step-languages.php:58
 msgid "Add new language"
 msgstr "添加新语言"
 
-#: settings/view-tab-lang.php:52 include/widget-languages.php:48
+#: include/widget-languages.php:48 settings/view-tab-lang.php:52
 msgid "Choose a language"
 msgstr "选择语言"
 
-#: settings/view-tab-lang.php:68
+#: settings/view-tab-lang.php:72
 msgid "You can choose a language in the list or directly edit it below."
 msgstr "你可以在列表中选择一个语言或者直接在下面编辑它。"
 
-#: settings/view-tab-lang.php:72 settings/table-languages.php:146
+#: settings/table-languages.php:145 settings/view-tab-lang.php:76
 msgid "Full name"
 msgstr "全名"
 
-#: settings/view-tab-lang.php:79
+#: settings/view-tab-lang.php:83
 msgid "The name is how it is displayed on your site (for example: English)."
 msgstr "这个名字是用来在网站上显示的（例如： English）"
 
-#: settings/view-tab-lang.php:83 settings/table-languages.php:147
+#: settings/table-languages.php:146 settings/view-tab-lang.php:87
 msgid "Locale"
 msgstr "区域"
 
-#: settings/view-tab-lang.php:90
+#: settings/view-tab-lang.php:94
 msgid "WordPress Locale for the language (for example: en_US). You will need to install the .mo file for this language."
 msgstr "WordPress 语言区域（例如：en_US）。你需要为该语言安装 .mo 文件。"
 
-#: settings/view-tab-lang.php:94
+#: settings/view-tab-lang.php:98
 msgid "Language code"
 msgstr "语言代码"
 
-#: settings/view-tab-lang.php:105
+#: settings/view-tab-lang.php:109
 msgid "Text direction"
 msgstr "文字方向"
 
-#: settings/view-tab-lang.php:110
+#: settings/view-tab-lang.php:114
 msgid "left to right"
 msgstr "从左到右"
 
-#: settings/view-tab-lang.php:115
+#: settings/view-tab-lang.php:119
 msgid "right to left"
 msgstr "从右到左"
 
-#: settings/view-tab-lang.php:118
+#: settings/view-tab-lang.php:122
 msgid "Choose the text direction for the language"
 msgstr "选择语言的文字方向"
 
-#: settings/view-tab-lang.php:147 settings/table-languages.php:150
+#: settings/table-languages.php:149 settings/view-tab-lang.php:146
 msgid "Order"
 msgstr "顺序"
 
-#: settings/view-tab-lang.php:154
+#: settings/view-tab-lang.php:153
 msgid "Position of the language in the language switcher"
 msgstr "该语言在语言切换中的排列顺序"
 
-#: install/upgrade.php:331 admin/admin-nav-menu.php:44 include/nav-menu.php:45
-#: include/widget-languages.php:18
+#: install/upgrade.php:338 include/widget-languages.php:18
+#: include/nav-menu.php:45 admin/admin-nav-menu.php:44
 msgid "Language switcher"
 msgstr "语言切换"
 
@@ -1594,7 +1831,12 @@ msgid "Clean strings translation database"
 msgstr "清除未使用的字符串翻译"
 
 #. translators: accessibility text
-#: settings/table-languages.php:129 settings/table-languages.php:149
+#: settings/table-languages.php:129 settings/table-languages.php:148
+#: modules/wizard/view-wizard-step-languages.php:75
+#: modules/wizard/view-wizard-step-languages.php:90
+#: modules/wizard/view-wizard-step-home-page.php:76
+#: modules/wizard/view-wizard-step-home-page.php:91
+#: modules/wizard/view-wizard-step-home-page.php:123
 msgid "Default language"
 msgstr "默认语言"
 
@@ -1614,7 +1856,8 @@ msgstr "URL修改"
 msgid "Hide URL language information for default language"
 msgstr "为默认语言隐藏 URL 语言信息"
 
-#: settings/settings-media.php:22
+#: settings/settings-media.php:22 modules/wizard/view-wizard-step-media.php:20
+#: modules/wizard/wizard.php:552
 msgid "Media"
 msgstr "多媒体"
 
@@ -1642,23 +1885,23 @@ msgstr "自定义分类法"
 msgid "Activate languages and translations for custom taxonomies."
 msgstr "为自定义分类法启用语言和翻译"
 
-#: settings/table-languages.php:204
+#: settings/table-languages.php:203
 msgid "Edit"
 msgstr "编辑"
 
-#: settings/table-languages.php:211 settings/table-string.php:281
+#: settings/table-languages.php:210 settings/table-string.php:282
 msgid "Delete"
 msgstr "删除"
 
-#: settings/table-languages.php:148
+#: settings/table-languages.php:147
 msgid "Code"
 msgstr "代码"
 
-#: settings/view-tab-lang.php:122 settings/table-languages.php:151
+#: settings/table-languages.php:150 settings/view-tab-lang.php:126
 msgid "Flag"
 msgstr "国旗"
 
-#: settings/table-languages.php:152
+#: settings/table-languages.php:151
 msgid "Posts"
 msgstr "文章"
 
@@ -1686,11 +1929,11 @@ msgstr "Polylang 已经停用，因为你是从太旧的版本升级的。"
 msgid "Group"
 msgstr "分组"
 
-#: settings/table-string.php:318
+#: settings/table-string.php:319
 msgid "View all groups"
 msgstr "查看所有分组"
 
-#: settings/table-languages.php:210
+#: settings/table-languages.php:209
 msgid "You are about to permanently delete this language. Are you sure?"
 msgstr "您将要永久删除此语言。您确定吗？"
 
@@ -1702,13 +1945,17 @@ msgstr "使用它从数据库中删除未使用的字符串，例如一个插件
 msgid "The synchronization options allow to maintain exact same values (or translations in the case of taxonomies and page parent) of meta content between the translations of a post or page."
 msgstr "同步选项允许在一篇文章或页面的翻译之间保持相同的元数据内容的值（或分类法和页面的父级）。[ The synchronization options allow to maintain exact same values (or translations in the case of taxonomies and page parent) of meta content between the translations of a post or page. ]"
 
-#: admin/admin-model.php:277
+#: modules/wizard/wizard.php:432 admin/admin-model.php:277
 msgid "The language code contains invalid characters"
 msgstr "语言代码包含无效字符"
 
 #: settings/settings-url.php:44
 msgid "The language is set from content"
 msgstr "语言根据内容来设置"
+
+#: settings/settings-url.php:48
+msgid "Posts, pages, categories and tags URLs will not be modified."
+msgstr "文章、页面、分类和标签的URL不会被修改。"
 
 #: settings/settings-url.php:54
 msgid "The language is set from the directory name in pretty permalinks"
@@ -1739,27 +1986,27 @@ msgstr "在链接中保留 /language/"
 msgid "The front page url contains the language code instead of the page name or page id"
 msgstr "首页的URL中包含语言代码，而不是页面名称或页面ID"
 
-#: admin/admin-model.php:41
+#: modules/wizard/wizard.php:430 admin/admin-model.php:41
 msgid "Impossible to add the language."
 msgstr "无法添加语言"
 
-#: settings/settings.php:177
+#: settings/settings.php:200
 msgid "Language added."
 msgstr "语言已添加"
 
-#: settings/settings.php:199
+#: settings/settings.php:222
 msgid "Language deleted."
 msgstr "语言已删除"
 
-#: settings/settings.php:214
+#: settings/settings.php:237
 msgid "Language updated."
 msgstr "语言已更新"
 
-#: settings/table-string.php:380
+#: settings/table-string.php:383
 msgid "Translations updated."
 msgstr "翻译已更新"
 
-#: settings/view-tab-lang.php:101
+#: settings/view-tab-lang.php:105
 msgid "Language code - preferably 2-letters ISO 639-1  (for example: en)"
 msgstr "语言代码 - 最好是2个字母的ISO 639-1（例如 en）"
 
@@ -1779,7 +2026,7 @@ msgstr "语言是从URL中的代码来设置的"
 msgid "Hides languages with no translation"
 msgstr "隐藏没有翻译的语言"
 
-#: settings/table-string.php:331
+#: settings/table-string.php:332
 msgid "Filter"
 msgstr "过滤"
 
@@ -1795,7 +2042,7 @@ msgstr "日期格式"
 msgid "Time Format"
 msgstr "时间格式"
 
-#: settings/view-tab-lang.php:175
+#: settings/view-tab-lang.php:174
 msgid "Update"
 msgstr "更新"
 
@@ -1804,7 +2051,7 @@ msgstr "更新"
 msgid "Search"
 msgstr "搜索"
 
-#: include/model.php:388
+#: include/model.php:389
 msgid "Uncategorized"
 msgstr "未分类"
 
@@ -1818,19 +2065,19 @@ msgstr "%1$s %2$s"
 msgid "Close"
 msgstr "关闭"
 
-#: lingotek/lingotek.php:35
+#: lingotek/lingotek.php:33
 msgid "Learn more"
 msgstr "了解更多"
 
-#: lingotek/lingotek.php:44
+#: lingotek/lingotek.php:42
 msgid "Activate Lingotek"
 msgstr "激活Lingotek"
 
-#: settings/settings-licenses.php:200 settings/settings-module.php:176
+#: settings/settings-module.php:176 settings/settings-licenses.php:98
 msgid "Settings saved."
 msgstr "设置已保存。"
 
-#: admin/admin-filters-term.php:462
+#: admin/admin-filters-term.php:464
 msgid "None"
 msgstr "无"
 
@@ -1846,14 +2093,20 @@ msgstr "(无父分类)"
 msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
 msgstr "从 WordPress 导出文件导入 <strong>文章，页面，评论，自定义字段，分类和标签</strong>。"
 
-#: admin/admin-filters-columns.php:176
+#: admin/admin-filters-columns.php:189
 msgid "&mdash; No Change &mdash;"
 msgstr "&mdash; 没有变化 &mdash;"
 
-#: lingotek/lingotek.php:30
+#: lingotek/lingotek.php:28
 msgid "You’ve just upgraded to the latest version of Polylang! Would you like to automatically translate your website for free?"
 msgstr "您刚刚更新了最新的Ploylang！需要自动免费翻译您的站点么？"
 
-#: lingotek/lingotek.php:39
+#: lingotek/lingotek.php:37
 msgid "Click on Activate Lingotek to start translating."
 msgstr "点击“激活Lingotek”以开始翻译。"
+
+#. translators: %1$s example url when the option is active. %2$s example url
+#. when the option is not active
+#: settings/settings-url.php:171
+msgid "Example: %1$s instead of %2$s"
+msgstr "例如：%1$s代替%2$s"

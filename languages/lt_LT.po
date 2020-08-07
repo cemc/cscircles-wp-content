@@ -2,14 +2,25 @@
 # This file is distributed under the same license as the WordPress - 5.2.x package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-08-27 09:34:34+0000\n"
+"PO-Revision-Date: 2020-07-14 08:45:08+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: lt\n"
 "Project-Id-Version: WordPress - 5.2.x\n"
+
+#. translators: Maximum number of words used in a comment excerpt.
+#: wp-includes/comment-template.php:603
+msgctxt "comment_excerpt_length"
+msgid "20"
+msgstr "20"
+
+#: wp-includes/comment-template.php:599 wp-admin/includes/meta-boxes.php:158
+#: wp-admin/includes/meta-boxes.php:183 wp-admin/includes/template.php:2029
+msgid "Password protected"
+msgstr "Apsaugota slaptažodžiu"
 
 #: wp-includes/js/dist/nux.js:889
 msgid "Disable tips"
@@ -238,7 +249,7 @@ msgstr "Kategorijų nustatymai"
 msgid "archive"
 msgstr "archyvas"
 
-#: wp-includes/js/dist/block-library.js:18479
+#: wp-includes/js/dist/block-library.js:18479 wp-admin/options-reading.php:132
 msgid "posts"
 msgstr "įrašai"
 
@@ -589,6 +600,7 @@ msgid "Thumbnails are cropped to align."
 msgstr "Paveikslėlių miniatiūros apkarpytos taip kad lygiuotųsi."
 
 #: wp-includes/js/dist/block-library.js:12950
+#: wp-admin/custom-background.php:292 wp-admin/custom-header.php:665
 msgid "Remove Image"
 msgstr "Pašalinti paveikslėlį"
 
@@ -718,7 +730,7 @@ msgstr "Šis paveikslėlis neturi alt atributo; jo failo pavadinimas yra %s"
 msgid "Open in New Tab"
 msgstr "Atidaryti naujame skirtuke"
 
-#: wp-includes/js/dist/block-library.js:10378
+#: wp-includes/js/dist/block-library.js:10378 wp-admin/includes/media.php:1309
 msgid "Link URL"
 msgstr "Nuoroda"
 
@@ -997,7 +1009,7 @@ msgstr "Paragrafo blokas"
 
 #: wp-includes/js/dist/block-library.js:5697
 #: wp-includes/js/dist/block-library.js:17504
-#: wp-includes/js/dist/block-library.js:19349
+#: wp-includes/js/dist/block-library.js:19349 wp-admin/custom-header.php:704
 msgid "Text Color"
 msgstr "Teksto spalva"
 
@@ -1118,7 +1130,7 @@ msgstr "Įterpiama..."
 msgid "Resize for smaller devices"
 msgstr "Keisti dydį mažesniuose įrenginiuose"
 
-#: wp-includes/js/dist/block-library.js:3703
+#: wp-includes/js/dist/block-library.js:3703 wp-admin/options-media.php:16
 msgid "Media Settings"
 msgstr "Failų nustatymai"
 
@@ -1296,23 +1308,25 @@ msgstr "muzika"
 msgid "Embed a tweet."
 msgstr "Įterpkite žinutę iš Twitter."
 
-#: wp-includes/js/dist/blocks.js:5810
+#: wp-includes/js/dist/blocks.js:5810 wp-admin/includes/post.php:2160
 msgid "Reusable Blocks"
 msgstr "Daugkartinio naudojimo blokai"
 
-#: wp-includes/js/dist/blocks.js:5807
+#: wp-includes/js/dist/blocks.js:5807 wp-admin/includes/post.php:2155
+#: wp-admin/options-media.php:100
 msgid "Embeds"
 msgstr "Įterpiniai (embeds)"
 
-#: wp-includes/js/dist/blocks.js:5801
+#: wp-includes/js/dist/blocks.js:5801 wp-admin/includes/post.php:2145
 msgid "Layout Elements"
 msgstr "Išdėstymo elementai"
 
-#: wp-includes/js/dist/blocks.js:5798
+#: wp-includes/js/dist/blocks.js:5798 wp-admin/options-writing.php:68
+#: wp-admin/options-writing.php:69 wp-admin/includes/post.php:2140
 msgid "Formatting"
 msgstr "Formatavimas"
 
-#: wp-includes/js/dist/blocks.js:5795
+#: wp-includes/js/dist/blocks.js:5795 wp-admin/includes/post.php:2135
 msgid "Common Blocks"
 msgstr "Dažnai naudojami blokai"
 
@@ -1434,6 +1448,7 @@ msgid "Advanced Panels"
 msgstr "Papildomų nustatymų skydeliai"
 
 #: wp-includes/js/dist/edit-post.js:4637 wp-includes/js/dist/edit-post.js:5766
+#: wp-admin/includes/meta-boxes.php:1493 wp-admin/menu.php:278
 msgid "Discussion"
 msgstr "Diskusija"
 
@@ -1453,7 +1468,7 @@ msgstr "Įjungti patarimus"
 msgid "Enable Pre-publish Checks"
 msgstr "Įjungti patikrinimą prieš paskelbiant"
 
-#: wp-includes/js/dist/edit-post.js:4547
+#: wp-includes/js/dist/edit-post.js:4547 wp-admin/includes/meta-boxes.php:1468
 msgid "Custom Fields"
 msgstr "Sukurti laukai"
 
@@ -1716,7 +1731,7 @@ msgstr "Redaktorius"
 msgid "Code Editor"
 msgstr "Kodo redaktorius"
 
-#: wp-includes/js/dist/edit-post.js:2866
+#: wp-includes/js/dist/edit-post.js:2866 wp-admin/user-edit.php:261
 msgid "Visual Editor"
 msgstr "Vizualus redaktorius"
 
@@ -1728,7 +1743,8 @@ msgstr "Pasirinktas kodo redaktorius"
 msgid "Visual editor selected"
 msgstr "Pasirinktas vizualus redaktorius"
 
-#: wp-includes/js/dist/edit-post.js:1498
+#: wp-includes/js/dist/edit-post.js:1498 wp-admin/tools.php:22
+#: wp-admin/menu.php:262
 msgid "Tools"
 msgstr "Įrankiai"
 
@@ -1869,6 +1885,8 @@ msgid "Skip to the selected block"
 msgstr "Praleisti ir eiti į pasirinktą bloką"
 
 #: wp-includes/js/dist/block-editor.js:16636
+#: wp-admin/includes/dashboard.php:212 wp-admin/includes/dashboard.php:1219
+#: wp-admin/setup-config.php:247
 msgid "Submit"
 msgstr "Pateikti"
 
@@ -1876,11 +1894,14 @@ msgstr "Pateikti"
 msgid "Insert Link"
 msgstr "Įdėti nuorodą"
 
-#: wp-includes/js/dist/block-editor.js:16611
+#: wp-includes/js/dist/block-editor.js:16611 wp-admin/link.php:111
 msgid "Edit Link"
 msgstr "Redaguoti nuorodą"
 
-#: wp-includes/js/dist/block-editor.js:16156
+#: wp-includes/js/dist/block-editor.js:16156 wp-admin/includes/media.php:2100
+#: wp-admin/includes/media.php:2102
+#: wp-admin/includes/class-wp-theme-install-list-table.php:63
+#: wp-admin/custom-background.php:326 wp-admin/custom-header.php:601
 msgid "Upload"
 msgstr "Įkelti"
 
@@ -1968,7 +1989,7 @@ msgid "(current %s: %s)"
 msgstr "(dabartinis %s: %s)"
 
 #: wp-includes/js/dist/block-editor.js:12852
-#: wp-includes/js/dist/block-library.js:5734
+#: wp-includes/js/dist/block-library.js:5734 wp-admin/edit-form-blocks.php:266
 msgid "Start writing or type / to choose a block"
 msgstr "Pradėkite rašyti arba spauskite “/” blokui pasirinkti"
 
@@ -2294,14 +2315,16 @@ msgid "Move to trash"
 msgstr "Perkelti į šiukšlinę"
 
 #: wp-includes/js/dist/editor.js:12638 wp-includes/js/dist/editor.js:12643
+#: wp-admin/edit-form-advanced.php:487 wp-admin/edit-form-blocks.php:276
 msgid "Add title"
 msgstr "Pridėti pavadinimą"
 
-#: wp-includes/js/dist/editor.js:12444
+#: wp-includes/js/dist/editor.js:12444 wp-admin/includes/post.php:1437
 msgid "Change Permalinks"
 msgstr "Pakeisti nuolatines nuorodas"
 
-#: wp-includes/js/dist/editor.js:12416
+#: wp-includes/js/dist/editor.js:12416 wp-admin/includes/post.php:1426
+#: wp-admin/includes/post.php:1449
 msgid "Permalink:"
 msgstr "Nuolatinė nuoroda:"
 
@@ -2385,12 +2408,16 @@ msgstr "Visuomet rodyti patikrą prieš paskelbiant."
 msgid "Close panel"
 msgstr "Uždaryti"
 
-#: wp-includes/js/dist/editor.js:10983
+#: wp-includes/js/dist/editor.js:10983 wp-admin/includes/meta-boxes.php:102
+#: wp-admin/includes/meta-boxes.php:132 wp-admin/includes/template.php:2051
+#: wp-admin/includes/ajax-actions.php:2075
+#: wp-admin/includes/class-wp-posts-list-table.php:1079
+#: wp-admin/includes/class-wp-posts-list-table.php:1784
 msgid "Scheduled"
 msgstr "Suplanuota"
 
 #: wp-includes/js/dist/editor.js:10866 wp-includes/js/dist/edit-post.js:1398
-#: wp-includes/js/dist/block-library.js:12010
+#: wp-includes/js/dist/block-library.js:12010 wp-admin/site-health-info.php:96
 msgid "Copied!"
 msgstr "Nukopijuota"
 
@@ -2415,7 +2442,7 @@ msgstr "yra suplanuotas. Bus paskelbtas"
 msgid "Publish:"
 msgstr "Paskelbti:"
 
-#: wp-includes/js/dist/editor.js:10725
+#: wp-includes/js/dist/editor.js:10725 wp-admin/includes/meta-boxes.php:149
 msgid "Visibility:"
 msgstr "Matomumas:"
 
@@ -2538,7 +2565,8 @@ msgstr "Suplanuoti..."
 msgid "Schedule"
 msgstr "Skelbti vėliau"
 
-#: wp-includes/js/dist/editor.js:9657
+#: wp-includes/js/dist/editor.js:9657 wp-admin/includes/meta-boxes.php:325
+#: wp-admin/includes/meta-boxes.php:326
 msgid "Submit for Review"
 msgstr "Pateikti patikrai"
 
@@ -2631,7 +2659,10 @@ msgstr "Įrašo formatas"
 msgid "Chat"
 msgstr "Pokalbis"
 
-#: wp-includes/js/dist/editor.js:8830
+#: wp-includes/js/dist/editor.js:8830 wp-admin/includes/user.php:1097
+#: wp-admin/includes/ajax-actions.php:2063
+#: wp-admin/includes/class-wp-posts-list-table.php:1777
+#: wp-admin/edit-form-comment.php:90
 msgid "Status"
 msgstr "Statusas"
 
@@ -2673,7 +2704,7 @@ msgstr "Specialusis paveikslėlis"
 msgid "Learn more about manual excerpts"
 msgstr "Sužinokite daugiau apie nustatomas ištraukas"
 
-#: wp-includes/js/dist/editor.js:8522
+#: wp-includes/js/dist/editor.js:8522 wp-admin/includes/meta-boxes.php:668
 msgid "https://codex.wordpress.org/Excerpt"
 msgstr "https://codex.wordpress.org/Excerpt"
 
@@ -2682,6 +2713,7 @@ msgid "Write an excerpt (optional)"
 msgstr "Įrašykite ištrauką (nebūtina)"
 
 #: wp-includes/js/dist/editor.js:8482
+#: wp-admin/includes/class-wp-posts-list-table.php:1760
 msgid "Allow Comments"
 msgstr "Leisti komentarus"
 
@@ -2697,7 +2729,9 @@ msgstr "be tėvinio"
 msgid "no title"
 msgstr "be pavadinimo"
 
-#: wp-includes/js/dist/editor.js:8110
+#: wp-includes/js/dist/editor.js:8110 wp-admin/includes/meta-boxes.php:965
+#: wp-admin/includes/media.php:1315 wp-admin/includes/media.php:2400
+#: wp-admin/includes/class-wp-posts-list-table.php:1683
 msgid "Order"
 msgstr "Rkiavimas"
 
@@ -2787,7 +2821,9 @@ msgstr "Klaida užkraunant bloką: %s"
 msgid "Number of items"
 msgstr "Elementų kiekis"
 
-#: wp-includes/js/dist/components.js:35119
+#: wp-includes/js/dist/components.js:35119 wp-admin/export.php:187
+#: wp-admin/export.php:199 wp-admin/export.php:224 wp-admin/export.php:246
+#: wp-admin/export.php:271
 msgid "All"
 msgstr "Visi"
 
@@ -2830,6 +2866,7 @@ msgid "Item removed."
 msgstr "Elementas pašalintas."
 
 #: wp-includes/js/dist/components.js:33789
+#: wp-admin/includes/edit-tag-messages.php:14
 msgid "Item added."
 msgstr "Elementas pridėtas."
 
@@ -3227,11 +3264,21 @@ msgstr "El.&nbsp;paštas:"
 msgid "(Must be at least 4 characters, letters and numbers only.)"
 msgstr "(Mažiausiai 4 simboliai. Tik raidės ir skaičiai.)"
 
-#: wp-signup.php:206
+#: wp-signup.php:206 wp-admin/includes/class-wp-links-list-table.php:256
+#: wp-admin/includes/class-wp-debug-data.php:91
+#: wp-admin/includes/class-wp-debug-data.php:96
+#: wp-admin/includes/class-wp-debug-data.php:106
+#: wp-admin/includes/class-wp-debug-data.php:658
+#: wp-admin/includes/class-wp-debug-data.php:667
 msgid "No"
 msgstr "Ne"
 
-#: wp-signup.php:202
+#: wp-signup.php:202 wp-admin/includes/class-wp-links-list-table.php:254
+#: wp-admin/includes/class-wp-debug-data.php:91
+#: wp-admin/includes/class-wp-debug-data.php:96
+#: wp-admin/includes/class-wp-debug-data.php:106
+#: wp-admin/includes/class-wp-debug-data.php:658
+#: wp-admin/includes/class-wp-debug-data.php:667
 msgid "Yes"
 msgstr "Taip"
 
@@ -3289,32 +3336,35 @@ msgstr "The given object ID is not that of a menu item."
 msgid "The menu name %s conflicts with another menu name. Please try another."
 msgstr "Meniu pavadinimas %s sutampa su kitu meniu pavadinimu. Pasirinkite kitokį."
 
-#: wp-includes/class-walker-comment.php:304
+#: wp-includes/class-walker-comment.php:343
 msgid "(Edit)"
 msgstr "(Redaguoti)"
 
 #. translators: 1: comment date, 2: comment time
-#: wp-includes/class-walker-comment.php:300
-#: wp-includes/class-walker-comment.php:387
+#: wp-includes/class-walker-comment.php:339
+#: wp-includes/class-walker-comment.php:434
+#: wp-admin/includes/class-wp-comments-list-table.php:790
+#: wp-admin/comment.php:207
 msgid "%1$s at %2$s"
 msgstr "%1$s %2$s"
 
-#: wp-includes/class-walker-comment.php:287
-#: wp-includes/class-walker-comment.php:376
+#. translators: %s: Comment author link.
+#: wp-includes/class-walker-comment.php:326
+#: wp-includes/class-walker-comment.php:423
 msgid "%s <span class=\"says\">says:</span>"
 msgstr "%s <span class=\"says\">parašė:</span>"
 
-#: wp-includes/class-walker-comment.php:271
-#: wp-includes/class-walker-comment.php:361
+#: wp-includes/class-walker-comment.php:304
+#: wp-includes/class-walker-comment.php:402
 msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
 msgstr "Jūsų komentaras laukia patvirtinimo. Tai yra komentaro peržiūra Jums, o kitiems jis bus matomas po patvirtinimo."
 
-#: wp-includes/class-walker-comment.php:269
-#: wp-includes/class-walker-comment.php:359
+#: wp-includes/class-walker-comment.php:302
+#: wp-includes/class-walker-comment.php:400
 msgid "Your comment is awaiting moderation."
 msgstr "Komentaras laukia administratoriaus patvirtinimo."
 
-#: wp-includes/class-walker-comment.php:242
+#: wp-includes/class-walker-comment.php:250
 msgid "Pingback:"
 msgstr "Atgalinis pranešimas:"
 
@@ -3453,7 +3503,7 @@ msgstr "Bloko tipo pavadinime negali būti didžiųjų raidžių."
 msgid "Block type names must be strings."
 msgstr "Block type names must be strings."
 
-#: wp-includes/class-wp-query.php:1450
+#: wp-includes/class-wp-query.php:1446
 msgctxt "Comma-separated list of search stopwords in your language"
 msgid "about,an,are,as,at,be,by,com,for,from,how,in,is,it,of,on,or,that,the,this,to,was,what,when,where,who,will,with,www"
 msgstr "apie,bei,bet,ir,irgi,iš,it,į,kad,kada,kaip,kam,kas,ką,ko,kodėl,kuo,kur,kurgi,nei,nuo,o,su,šis,štai,tačiau,tai,tas,už,va,vai,vėl,www"
@@ -3526,6 +3576,8 @@ msgid "Could not insert site into the database."
 msgstr "Nepavyko įkelti tinklalapio į duomenų bazę."
 
 #: wp-includes/class-wp-customize-nav-menus.php:1198
+#: wp-admin/includes/nav-menu.php:305 wp-admin/includes/nav-menu.php:627
+#: wp-admin/includes/nav-menu.php:864
 msgid "Add to Menu"
 msgstr "Pridėti į meniu"
 
@@ -3534,6 +3586,7 @@ msgid "Toggle section: Custom Links"
 msgstr "Atidaryti skyrių: Nuorodos"
 
 #: wp-includes/class-wp-customize-nav-menus.php:1180
+#: wp-admin/includes/nav-menu.php:143
 msgid "Custom Links"
 msgstr "Interneto nuorodos"
 
@@ -3574,7 +3627,7 @@ msgstr "Panašu, kad jūsų tinklalapyje dar nėra sukurta meniu. Norite tokį s
 msgid "Click &#8220;Next&#8221; to start adding links to your new menu."
 msgstr "Spauskite &#8220;Toliau&#8221; ir pridėkite nuorodas į naująjį meniu."
 
-#: wp-includes/class-wp-customize-nav-menus.php:1035
+#: wp-includes/class-wp-customize-nav-menus.php:1035 wp-admin/nav-menus.php:999
 msgid "Delete Menu"
 msgstr "Ištrinti meniu"
 
@@ -3653,44 +3706,44 @@ msgid "This panel is used for managing navigation menus for content you have alr
 msgstr "Šis skydelis naudojamas meniu valdymui. Jūs galite sukurti kelis skirtingus meniu ir pridėti į juos savo turinį, pavyzdžiui, įrašus, puslapius, kategorijas, žymas, įrašų formatus arba bet kokias nuorodas."
 
 #. translators: 1: item name, 2: item position, 3: parent item name
-#: wp-includes/class-wp-customize-nav-menus.php:506
+#: wp-includes/class-wp-customize-nav-menus.php:506 wp-admin/nav-menus.php:442
 msgid "%1$s. Sub item number %2$d under %3$s."
 msgstr "%1$s. Elementas numeris %2$d po %3$s."
 
 #. translators: 1: item name, 2: item position, 3: total number of items
-#: wp-includes/class-wp-customize-nav-menus.php:504
+#: wp-includes/class-wp-customize-nav-menus.php:504 wp-admin/nav-menus.php:440
 msgid "%1$s. Menu item %2$d of %3$d."
 msgstr "%1$s. Meniu punktas %2$d iš %3$d."
 
 #. translators: %s: previous item name
-#: wp-includes/class-wp-customize-nav-menus.php:502
+#: wp-includes/class-wp-customize-nav-menus.php:502 wp-admin/nav-menus.php:438
 msgid "Out from under %s"
 msgstr "Iš po %s"
 
 #. translators: %s: previous item name
-#: wp-includes/class-wp-customize-nav-menus.php:500
+#: wp-includes/class-wp-customize-nav-menus.php:500 wp-admin/nav-menus.php:436
 msgid "Under %s"
 msgstr "Žemiau nei %s"
 
 #. translators: %s: previous item name
-#: wp-includes/class-wp-customize-nav-menus.php:498
+#: wp-includes/class-wp-customize-nav-menus.php:498 wp-admin/nav-menus.php:434
 msgid "Move out from under %s"
 msgstr "Iškelti iš po %s"
 
 #. translators: %s: previous item name
-#: wp-includes/class-wp-customize-nav-menus.php:496
+#: wp-includes/class-wp-customize-nav-menus.php:496 wp-admin/nav-menus.php:432
 msgid "Move under %s"
 msgstr "Perkelti po %s"
 
-#: wp-includes/class-wp-customize-nav-menus.php:494
+#: wp-includes/class-wp-customize-nav-menus.php:494 wp-admin/nav-menus.php:430
 msgid "Move to the top"
 msgstr "Perkelti į patį viršų"
 
-#: wp-includes/class-wp-customize-nav-menus.php:493
+#: wp-includes/class-wp-customize-nav-menus.php:493 wp-admin/nav-menus.php:429
 msgid "Move down one"
 msgstr "Paslinkti per vieną žemyn"
 
-#: wp-includes/class-wp-customize-nav-menus.php:492
+#: wp-includes/class-wp-customize-nav-menus.php:492 wp-admin/nav-menus.php:428
 msgid "Move up one"
 msgstr "Paslinkti per vieną aukštyn"
 
@@ -3712,11 +3765,13 @@ msgstr "Rasta: %d"
 
 #. translators: %s: title of menu item in draft status
 #: wp-includes/class-wp-customize-nav-menus.php:468
+#: wp-admin/includes/class-walker-nav-menu-edit.php:104
 msgid "%s (Pending)"
 msgstr "%s (Laukia)"
 
 #. translators: %s: title of menu item which is invalid
 #: wp-includes/class-wp-customize-nav-menus.php:466
+#: wp-admin/includes/class-walker-nav-menu-edit.php:100
 msgid "%s (Invalid)"
 msgstr "%s (Netinkamas)"
 
@@ -3756,7 +3811,7 @@ msgstr "Meniu punktas pridėtas"
 msgid "If your theme has multiple menus, giving them clear names will help you manage them."
 msgstr "Jeigu Jūsų tema turi keletą meniu, aiškūs pavaidinimai padės lengviau juos valdyti."
 
-#: wp-includes/class-wp-customize-nav-menus.php:453
+#: wp-includes/class-wp-customize-nav-menus.php:453 wp-admin/nav-menus.php:889
 msgid "Menu Name"
 msgstr "Meniu pavadinimas"
 
@@ -3788,6 +3843,8 @@ msgstr "Jūsų tema gali rodyti meniu vienoje vietoje."
 
 #: wp-includes/class-wp-customize-nav-menus.php:153
 #: wp-includes/class-wp-customize-nav-menus.php:393
+#: wp-admin/includes/class-walker-nav-menu-checklist.php:97
+#: wp-admin/includes/nav-menu.php:544
 msgctxt "nav menu home label"
 msgid "Home"
 msgstr "Pradžia"
@@ -4043,7 +4100,7 @@ msgstr "Naujas %1$s tinklalapis: %2$s"
 
 #. translators: Do not translate USERNAME, SITE_NAME, BLOG_URL, PASSWORD: those
 #. are placeholders.
-#: wp-includes/ms-functions.php:1547
+#: wp-includes/ms-functions.php:1547 wp-admin/includes/schema.php:1180
 msgid ""
 "Howdy USERNAME,\n"
 "\n"
@@ -4248,7 +4305,7 @@ msgstr "Vartotojo vardas turi būti bent 4 ženklų ilgio."
 msgid "You cannot use that email address to signup. We are having problems with them blocking some of our email. Please use another email provider."
 msgstr "Negalite naudoti šio el. pašto adreso registracijai. Jie blokuoja kai kuriuos mūsų laiškus. Naudokite kitą el. pašto paslaugų tiekėją."
 
-#: wp-includes/ms-functions.php:481
+#: wp-includes/ms-functions.php:481 wp-admin/user-new.php:316
 msgid "Please enter a valid email address."
 msgstr "Įveskite tinkamą el. pašto adresą."
 
@@ -4268,7 +4325,7 @@ msgstr "Vartotojas neegzistuoja."
 msgid "User cannot be added to this site."
 msgstr "Vartotojas negali būti pridėtas prie šio tinklalapio."
 
-#: wp-includes/ms-functions.php:165
+#: wp-includes/ms-functions.php:165 wp-admin/user-new.php:313
 msgid "The requested user does not exist."
 msgstr "Nurodytas vartotojas neegzistuoja."
 
@@ -4370,7 +4427,17 @@ msgstr "Arba įdėkite nuorodą į tinklalapyje esantį turinį"
 msgid "Enter the destination URL"
 msgstr "Įveskite URL adresą"
 
+#. translators: comment date format. See https://secure.php.net/date
+#. translators: date format in table columns, see https://secure.php.net/date
 #: wp-includes/class-wp-editor.php:1667
+#: wp-admin/includes/class-wp-media-list-table.php:462
+#: wp-admin/includes/class-wp-comments-list-table.php:792
+#: wp-admin/includes/ajax-actions.php:2089
+#: wp-admin/includes/class-wp-posts-list-table.php:1069
+#: wp-admin/comment.php:209
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:367
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:388
+#: wp-admin/includes/class-wp-ms-users-list-table.php:300
 msgid "Y/m/d"
 msgstr "Y-m-d"
 
@@ -4448,7 +4515,7 @@ msgid "Classic Block Keyboard Shortcuts"
 msgstr "Klasikinio redaktoriaus klaviatūros trumpiniai"
 
 #: wp-includes/class-wp-editor.php:1291 wp-includes/js/dist/edit-post.js:1463
-#: wp-includes/js/dist/edit-post.js:3941
+#: wp-includes/js/dist/edit-post.js:3941 wp-admin/user-edit.php:310
 msgid "Keyboard Shortcuts"
 msgstr "Klaviatūros šaukiniai"
 
@@ -4462,11 +4529,28 @@ msgid "Paste URL or type to search"
 msgstr "Įterpkite URL arba įveskite tekstą, jei norite ieškoti"
 
 #: wp-includes/class-wp-editor.php:1282
-#: wp-includes/class-walker-comment.php:242
-#: wp-includes/class-walker-comment.php:391 wp-includes/js/dist/editor.js:12438
+#: wp-includes/class-walker-comment.php:250
+#: wp-includes/class-walker-comment.php:438 wp-includes/js/dist/editor.js:12438
 #: wp-includes/js/dist/block-library.js:11514
 #: wp-includes/js/dist/block-library.js:12403
 #: wp-includes/js/dist/format-library.js:1056
+#: wp-admin/includes/class-wp-links-list-table.php:322
+#: wp-admin/includes/class-walker-nav-menu-edit.php:156
+#: wp-admin/includes/meta-boxes.php:121 wp-admin/includes/meta-boxes.php:171
+#: wp-admin/includes/meta-boxes.php:238
+#: wp-admin/includes/class-wp-terms-list-table.php:463
+#: wp-admin/includes/post.php:1452
+#: wp-admin/includes/class-wp-users-list-table.php:426
+#: wp-admin/includes/class-wp-media-list-table.php:670
+#: wp-admin/includes/class-wp-media-list-table.php:718
+#: wp-admin/includes/class-wp-comments-list-table.php:647
+#: wp-admin/includes/class-wp-posts-list-table.php:407
+#: wp-admin/includes/class-wp-posts-list-table.php:1333
+#: wp-admin/includes/dashboard.php:651 wp-admin/comment.php:224
+#: wp-admin/edit-form-comment.php:118
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:536
+#: wp-admin/includes/class-wp-ms-users-list-table.php:362
+#: wp-admin/includes/class-wp-ms-users-list-table.php:470
 msgid "Edit"
 msgstr "Redaguoti"
 
@@ -4854,7 +4938,8 @@ msgstr "Rodomas tekstas"
 msgid "New window"
 msgstr "Naujas langas"
 
-#: wp-includes/class-wp-editor.php:1156
+#: wp-includes/class-wp-editor.php:1156 wp-admin/includes/meta-boxes.php:1113
+#: wp-admin/edit-link-form.php:30
 msgid "Target"
 msgstr "Target"
 
@@ -4940,7 +5025,8 @@ msgstr "Afiša"
 msgid "Insert/edit media"
 msgstr "Įkelti/redaguoti failą"
 
-#: wp-includes/class-wp-editor.php:1126
+#. translators: The user language selection field label
+#: wp-includes/class-wp-editor.php:1126 wp-admin/user-edit.php:330
 msgid "Language"
 msgstr "Kalba"
 
@@ -4948,7 +5034,7 @@ msgstr "Kalba"
 msgid "Insert/edit code sample"
 msgstr "Įkelti/redaguoti kodą"
 
-#: wp-includes/class-wp-editor.php:1124
+#: wp-includes/class-wp-editor.php:1124 wp-admin/includes/misc.php:1770
 msgid "Table of Contents"
 msgstr "Turinys"
 
@@ -4989,7 +5075,7 @@ msgid "Source"
 msgstr "Šaltinis"
 
 #: wp-includes/class-wp-editor.php:1113
-#: wp-includes/js/dist/block-editor.js:17288
+#: wp-includes/js/dist/block-editor.js:17288 wp-admin/edit-link-form.php:32
 msgid "Advanced"
 msgstr "Papildoma"
 
@@ -5003,6 +5089,16 @@ msgstr "Įterpti/redaguoti paveikslėlį"
 
 #: wp-includes/class-wp-editor.php:1107 wp-includes/theme-compat/sidebar.php:29
 #: wp-includes/js/dist/editor.js:8426
+#: wp-admin/includes/class-wp-debug-data.php:884
+#: wp-admin/includes/meta-boxes.php:865 wp-admin/includes/meta-boxes.php:1515
+#: wp-admin/includes/class-wp-media-list-table.php:287
+#: wp-admin/includes/class-wp-comments-list-table.php:454
+#: wp-admin/includes/theme-install.php:103
+#: wp-admin/includes/plugin-install.php:318
+#: wp-admin/includes/class-wp-post-comments-list-table.php:26
+#: wp-admin/includes/class-wp-posts-list-table.php:609
+#: wp-admin/includes/class-wp-posts-list-table.php:1579
+#: wp-admin/comment.php:160 wp-admin/edit-form-comment.php:43
 msgid "Author"
 msgstr "Autorius"
 
@@ -5096,10 +5192,17 @@ msgid "Visual aids"
 msgstr "Vaizdinė pagalba"
 
 #: wp-includes/class-wp-editor.php:1073 wp-includes/js/dist/editor.js:7717
+#: wp-admin/includes/image-edit.php:221
 msgid "Redo"
 msgstr "Perdaryti"
 
+#. translators: %s: number of comments marked as spam
+#. translators: %s: number of comments moved to the Trash
 #: wp-includes/class-wp-editor.php:1072 wp-includes/js/dist/editor.js:7755
+#: wp-admin/includes/image-edit.php:220 wp-admin/includes/media.php:1614
+#: wp-admin/includes/template.php:527 wp-admin/includes/template.php:530
+#: wp-admin/edit-comments.php:286 wp-admin/edit-comments.php:297
+#: wp-admin/upload.php:330 wp-admin/upload.php:348 wp-admin/edit.php:387
 msgid "Undo"
 msgstr "Atšaukti"
 
@@ -5391,7 +5494,7 @@ msgid "&larr; Back to Tags"
 msgstr "&larr; Grįžti į žymas"
 
 #. translators: Tab heading when selecting from the most used terms
-#: wp-includes/taxonomy.php:567
+#: wp-includes/taxonomy.php:567 wp-admin/includes/meta-boxes.php:1068
 msgctxt "categories"
 msgid "Most Used"
 msgstr "Dažniausai naudotos"
@@ -5490,7 +5593,7 @@ msgstr "Tėvinė kategorija:"
 msgid "Parent Category"
 msgstr "Tėvinė kategorija"
 
-#: wp-includes/taxonomy.php:551
+#: wp-includes/taxonomy.php:551 wp-admin/includes/meta-boxes.php:1067
 msgid "All Categories"
 msgstr "Visos"
 
@@ -5538,7 +5641,8 @@ msgstr "Išregistruoti standartinės taksonomijos negalima"
 msgid "Taxonomy names must be between 1 and 32 characters in length."
 msgstr "Taksonomijų pavadinimai turi būti tarp 1 ir 32 simbolių ilgio."
 
-#: wp-includes/taxonomy.php:166
+#: wp-includes/taxonomy.php:166 wp-admin/includes/meta-boxes.php:1417
+#: wp-admin/includes/class-wp-posts-list-table.php:1827
 msgctxt "post format"
 msgid "Format"
 msgstr "Formatas"
@@ -5580,7 +5684,7 @@ msgstr "Nuorodų kategorijų paieška"
 msgid "Link Category"
 msgstr "Nuorodų kategorija"
 
-#: wp-includes/taxonomy.php:130
+#: wp-includes/taxonomy.php:130 wp-admin/menu.php:72
 msgid "Link Categories"
 msgstr "Kategorijos"
 
@@ -5589,48 +5693,48 @@ msgid "Navigation Menus"
 msgstr "Navigacijos meniu"
 
 #. translators: used to join items in a list with only 2 items
-#: wp-includes/formatting.php:4926
+#: wp-includes/formatting.php:4981
 msgid "%1$s and %2$s"
 msgstr "%1$s ir %2$s"
 
 #. translators: used to join last two items in a list with more than 2 times
-#: wp-includes/formatting.php:4924
+#: wp-includes/formatting.php:4979
 msgid "%1$s, and %2$s"
 msgstr "%1$s ir %2$s"
 
 #. translators: used to join items in a list with more than 2 items
-#: wp-includes/formatting.php:4922
+#: wp-includes/formatting.php:4977
 msgid "%1$s, %2$s"
 msgstr "%1$s, %2$s"
 
-#: wp-includes/formatting.php:4682
+#: wp-includes/formatting.php:4712
 msgid "https://codex.wordpress.org/Using_Permalinks#Choosing_your_permalink_structure"
 msgstr "https://codex.wordpress.org/Using_Permalinks#Choosing_your_permalink_structure"
 
 #. translators: %s: Codex URL
-#: wp-includes/formatting.php:4681
+#: wp-includes/formatting.php:4711
 msgid "A structure tag is required when using custom permalinks. <a href=\"%s\">Learn more</a>"
 msgstr "Naudojant savus permalink'us, struktūros žyma yra būtina. <a href=\"%s\">Daugiau informacijos</a>"
 
-#: wp-includes/formatting.php:4663
+#: wp-includes/formatting.php:4693
 msgid "The timezone you have entered is not valid. Please select a valid timezone."
 msgstr "Jūsų pasirinkta laiko juosta yra netinkama. Pasirinkite tinkamą laiko juostą."
 
-#: wp-includes/formatting.php:4604
+#: wp-includes/formatting.php:4634
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Jūsų įvestas tinklalapio adresas yra netinkamas. Įveskite jį iš naujo."
 
-#: wp-includes/formatting.php:4591
+#: wp-includes/formatting.php:4621
 msgid "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Jūsų įvestas WordPress adresas yra netinkamas. Įveskite jį iš naujo."
 
-#: wp-includes/formatting.php:4481
+#: wp-includes/formatting.php:4511
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "Jūsų įvestas el. pašto adresas yra netinkamas. Įveskite el. pašto adresą iš naujo."
 
 #. translators: Time difference between two dates, in years. %s: Number of
 #. years
-#: wp-includes/formatting.php:3666
+#: wp-includes/formatting.php:3696
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] "%s m."
@@ -5639,7 +5743,7 @@ msgstr[2] "%s m."
 
 #. translators: Time difference between two dates, in months. %s: Number of
 #. months
-#: wp-includes/formatting.php:3659
+#: wp-includes/formatting.php:3689
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] "%s mėn."
@@ -5648,7 +5752,7 @@ msgstr[2] "%s mėn."
 
 #. translators: Time difference between two dates, in weeks. %s: Number of
 #. weeks
-#: wp-includes/formatting.php:3652
+#: wp-includes/formatting.php:3682
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s sav."
@@ -5656,7 +5760,7 @@ msgstr[1] "%s sav."
 msgstr[2] "%s sav."
 
 #. translators: Time difference between two dates, in days. %s: Number of days
-#: wp-includes/formatting.php:3645
+#: wp-includes/formatting.php:3675
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s d."
@@ -5665,7 +5769,7 @@ msgstr[2] "%s d."
 
 #. translators: Time difference between two dates, in minutes (min=minute). %s:
 #. Number of minutes
-#: wp-includes/formatting.php:3631
+#: wp-includes/formatting.php:3661
 msgid "%s min"
 msgid_plural "%s mins"
 msgstr[0] "%s min"
@@ -5731,12 +5835,13 @@ msgid "&#8221;"
 msgstr "“"
 
 #. translators: opening curly double quote
-#: wp-includes/formatting.php:98 wp-includes/formatting.php:5245
+#: wp-includes/formatting.php:98 wp-includes/formatting.php:5300
 msgctxt "opening curly double quote"
 msgid "&#8220;"
 msgstr "„"
 
 #: wp-includes/deprecated.php:3935 wp-includes/deprecated.php:3952
+#: wp-admin/press-this.php:74
 msgid "The Press This plugin is required."
 msgstr "Press This įskiepis yra būtinas."
 
@@ -5762,7 +5867,7 @@ msgstr "Ar tikrai norite tai padaryti?"
 msgid "Last Post"
 msgstr "Paskutinis įrašas"
 
-#: wp-includes/deprecated.php:2683
+#: wp-includes/deprecated.php:2683 wp-admin/network/settings.php:303
 msgid "First Post"
 msgstr "Pirmas įrašas"
 
@@ -5782,384 +5887,401 @@ msgstr "Žymelės"
 msgid "Last updated: %s"
 msgstr "Redaguota: %s"
 
-#: wp-includes/class-wp-customize-manager.php:5975
+#: wp-includes/class-wp-customize-manager.php:6002
 msgid "Please enter a valid YouTube URL."
 msgstr "Įveskite teisingą YouTube nuorodą."
 
 #. translators: 1: .mp4, 2: .mov
-#: wp-includes/class-wp-customize-manager.php:5950
+#: wp-includes/class-wp-customize-manager.php:5977
 msgid "Only %1$s or %2$s files may be used for header video. Please convert your video file and try again, or, upload your video to YouTube and link it with the option below."
 msgstr "Tik %1$s arba %2$s failai gali būti naudojami antraštės video. Prašome konvertuoti video ir pabandyti vėl, arba įkelti savo video į YouTube ir prijungti naudojant nustatymus apačioje."
 
-#: wp-includes/class-wp-customize-manager.php:5942
+#: wp-includes/class-wp-customize-manager.php:5969
 msgid "This video file is too large to use as a header video. Try a shorter video or optimize the compression settings and re-upload a file that is less than 8MB. Or, upload your video to YouTube and link it with the option below."
 msgstr "Šis video failas yra per didelis naudoti kaip antraštės video. Pabandykite trumpesnį video, arba optimizuokite suspaudimo nustatymus ir per naują įkelkite failą, mažesnį nei 8MB. Arba įkelkite savo video į YouTube ir prijunkite naudojant nustatymus apačioje."
 
-#: wp-includes/class-wp-customize-manager.php:5901
+#: wp-includes/class-wp-customize-manager.php:5928
 msgid "Unrecognized background setting."
 msgstr "Neatpažįstamas fono nustatymas."
 
-#: wp-includes/class-wp-customize-manager.php:5892
-#: wp-includes/class-wp-customize-manager.php:5896
+#: wp-includes/class-wp-customize-manager.php:5919
+#: wp-includes/class-wp-customize-manager.php:5923
 msgid "Invalid value for background size."
 msgstr "Netinkama fono dydžio reikšmė."
 
-#: wp-includes/class-wp-customize-manager.php:5888
+#: wp-includes/class-wp-customize-manager.php:5915
 msgid "Invalid value for background position Y."
 msgstr "Netinkama fono pozicijos Y reikšmė."
 
-#: wp-includes/class-wp-customize-manager.php:5884
+#: wp-includes/class-wp-customize-manager.php:5911
 msgid "Invalid value for background position X."
 msgstr "Netinkama fono pozicijos X reikšmė."
 
-#: wp-includes/class-wp-customize-manager.php:5880
+#: wp-includes/class-wp-customize-manager.php:5907
 msgid "Invalid value for background attachment."
 msgstr "Netinkama fono fiksavimo reikšmė."
 
-#: wp-includes/class-wp-customize-manager.php:5876
+#: wp-includes/class-wp-customize-manager.php:5903
 msgid "Invalid value for background repeat."
 msgstr "Netinkama fono kartojimo reikšmė."
 
-#: wp-includes/class-wp-customize-manager.php:5628
+#: wp-includes/class-wp-customize-manager.php:5655
 msgid "CSS code"
 msgstr "CSS"
 
-#: wp-includes/class-wp-customize-manager.php:5606
+#: wp-includes/class-wp-customize-manager.php:5633
 msgid "Additional CSS"
 msgstr "Papildomas CSS"
 
-#: wp-includes/class-wp-customize-manager.php:5580
+#: wp-includes/class-wp-customize-manager.php:5607
 msgid "Screen reader users: when in forms mode, you may need to press the escape key twice."
 msgstr "Ekrano skaityklių naudotojams: jei esate formu režime, gali tekti Esc mygtuką paspausti du kartus."
 
-#: wp-includes/class-wp-customize-manager.php:5570
+#: wp-includes/class-wp-customize-manager.php:5597
 msgid "Learn more about CSS"
 msgstr "Sužinokite daugiau apie CSS"
 
-#: wp-includes/class-wp-customize-manager.php:5569
+#: wp-includes/class-wp-customize-manager.php:5596
 msgid "https://codex.wordpress.org/CSS"
 msgstr "http://codex.wordpress.org/CSS"
 
-#: wp-includes/class-wp-customize-manager.php:5566
+#: wp-includes/class-wp-customize-manager.php:5593
 msgid "Add your own CSS code here to customize the appearance and layout of your site."
 msgstr "Pridėkite čia savo CSS kodą, jei norite specifiškai pakeisti savo tinklalapio išvaizdą ir išdėstymą."
 
-#: wp-includes/class-wp-customize-manager.php:5557
+#: wp-includes/class-wp-customize-manager.php:5584
 msgid "Posts page"
 msgstr "Įrašų puslapis"
 
-#: wp-includes/class-wp-customize-manager.php:5539
+#: wp-includes/class-wp-customize-manager.php:5566
+#: wp-admin/includes/file.php:38
 msgid "Homepage"
 msgstr "Pradinis puslapis"
 
-#: wp-includes/class-wp-customize-manager.php:5523
+#: wp-includes/class-wp-customize-manager.php:5550
 msgid "A static page"
 msgstr "Statinį puslapį"
 
-#: wp-includes/class-wp-customize-manager.php:5522
+#: wp-includes/class-wp-customize-manager.php:5549
+#: wp-admin/options-reading.php:81
 msgid "Your latest posts"
 msgstr "Naujausius įrašus"
 
-#: wp-includes/class-wp-customize-manager.php:5518
+#: wp-includes/class-wp-customize-manager.php:5545
+#: wp-admin/options-reading.php:77 wp-admin/options-reading.php:78
 msgid "Your homepage displays"
 msgstr "Pradiniame puslapyje rodoma"
 
-#: wp-includes/class-wp-customize-manager.php:5501
+#: wp-includes/class-wp-customize-manager.php:5528
 msgid "You can choose what&#8217;s displayed on the homepage of your site. It can be posts in reverse chronological order (classic blog), or a fixed/static page. To set a static homepage, you first need to create two Pages. One will become the homepage, and the other will be where your posts are displayed."
 msgstr "Galite pasirinkti, kas rodoma jūsų tinklalapio pradiniame puslapyje. Tai gali būti įrašai atvirkštine chronologine tvarka (klasikinis tinklaraštis) arba fiksuotas statinis puslapis. Norėdami nustatyti statinį puslapį, pirmiausiai turite sukurti du puslapius. Vienas taps jūsų pradiniu puslapiu, tuo tarpu antrajame bus rodomi jūsų įrašai."
 
-#: wp-includes/class-wp-customize-manager.php:5499
+#: wp-includes/class-wp-customize-manager.php:5526
 msgid "Homepage Settings"
 msgstr "Pradinio puslapio nustatymai"
 
-#: wp-includes/class-wp-customize-manager.php:5476
+#: wp-includes/class-wp-customize-manager.php:5503
+#: wp-admin/custom-background.php:442
 msgid "Scroll with Page"
 msgstr "Nefiksuota"
 
-#: wp-includes/class-wp-customize-manager.php:5458
+#: wp-includes/class-wp-customize-manager.php:5485
+#: wp-admin/custom-background.php:434
 msgid "Repeat Background Image"
 msgstr "Kartoti fono paveikslėlį"
 
-#: wp-includes/class-wp-customize-manager.php:5439
+#: wp-includes/class-wp-customize-manager.php:5466
 msgid "Original"
 msgstr "Originalas"
 
-#: wp-includes/class-wp-customize-manager.php:5435
+#: wp-includes/class-wp-customize-manager.php:5462
 #: wp-includes/js/dist/block-library.js:10328
 #: wp-includes/js/dist/block-library.js:10355
+#: wp-admin/custom-background.php:420 wp-admin/custom-background.php:421
 msgid "Image Size"
 msgstr "Paveiksliuko dydis"
 
-#: wp-includes/class-wp-customize-manager.php:5385
+#: wp-includes/class-wp-customize-manager.php:5412
 msgctxt "Custom Preset"
 msgid "Custom"
 msgstr "Nustatyta"
 
-#: wp-includes/class-wp-customize-manager.php:5384
+#: wp-includes/class-wp-customize-manager.php:5411
 msgctxt "Repeat Image"
 msgid "Repeat"
 msgstr "Kartoti"
 
-#: wp-includes/class-wp-customize-manager.php:5383
-#: wp-includes/class-wp-customize-manager.php:5440
+#: wp-includes/class-wp-customize-manager.php:5410
+#: wp-includes/class-wp-customize-manager.php:5467
+#: wp-admin/custom-background.php:424
 msgid "Fit to Screen"
 msgstr "Talpinti į ekraną"
 
-#: wp-includes/class-wp-customize-manager.php:5382
-#: wp-includes/class-wp-customize-manager.php:5441
+#: wp-includes/class-wp-customize-manager.php:5409
+#: wp-includes/class-wp-customize-manager.php:5468
+#: wp-admin/custom-background.php:425
 msgid "Fill Screen"
 msgstr "Rašymas visame naršyklės lange"
 
-#: wp-includes/class-wp-customize-manager.php:5381
+#: wp-includes/class-wp-customize-manager.php:5408
 msgctxt "Default Preset"
 msgid "Default"
 msgstr "Numatyta"
 
-#: wp-includes/class-wp-customize-manager.php:5377
+#: wp-includes/class-wp-customize-manager.php:5404
 msgctxt "Background Preset"
 msgid "Preset"
 msgstr "Dabartinis"
 
-#: wp-includes/class-wp-customize-manager.php:5314
+#: wp-includes/class-wp-customize-manager.php:5341
 msgid "Or, enter a YouTube URL:"
 msgstr "Arba, įveskite YouTube nuorodą:"
 
-#: wp-includes/class-wp-customize-manager.php:5300
+#: wp-includes/class-wp-customize-manager.php:5327
 msgid "Header Video"
 msgstr "Antraštės video"
 
 #. translators: 1: .mp4, 2: header height in pixels
-#: wp-includes/class-wp-customize-manager.php:5222
+#: wp-includes/class-wp-customize-manager.php:5249
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends a height of %2$s pixels."
 msgstr "Įkelkite savo video %1$s formatu ir minimizuokite failo dydį, jei norite pasiekti geriausių rezultatų. Jūsų tema rekomenduoja %2$s pikselių aukštį."
 
 #. translators: 1: .mp4, 2: header width in pixels
-#: wp-includes/class-wp-customize-manager.php:5215
+#: wp-includes/class-wp-customize-manager.php:5242
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends a width of %2$s pixels."
 msgstr "Įkelkite savo video %1$s formatu ir minimizuokite failo dydį, jei norite pasiekti geriausių rezultatų. Jūsų tema rekomenduoja %2$s pikselių plotį."
 
 #. translators: 1: .mp4, 2: header size in pixels
-#: wp-includes/class-wp-customize-manager.php:5208
+#: wp-includes/class-wp-customize-manager.php:5235
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends dimensions of %2$s pixels."
 msgstr "Įkelkite savo video %1$s formatu ir minimizuokite failo dydį, jei norite pasiekti geriausių rezultatų. Jūsų tema rekomenduoja %2$s pikselių aukštį ir plotį."
 
-#: wp-includes/class-wp-customize-manager.php:5201
+#: wp-includes/class-wp-customize-manager.php:5228
 msgid "If you add a video, the image will be used as a fallback while the video loads."
 msgstr "Jeigu pridėsite video, paveikslėlis bus rodomas kol video užsikraus."
 
-#: wp-includes/class-wp-customize-manager.php:5200
+#: wp-includes/class-wp-customize-manager.php:5227
 msgid "Header Media"
 msgstr "Antraštės failai"
 
-#: wp-includes/class-wp-customize-manager.php:5191
+#: wp-includes/class-wp-customize-manager.php:5218
 #: wp-includes/js/dist/block-library.js:5693
 #: wp-includes/js/dist/block-library.js:9240
 #: wp-includes/js/dist/block-library.js:16650
 #: wp-includes/js/dist/block-library.js:17500
+#: wp-admin/custom-background.php:447 wp-admin/custom-background.php:448
 msgid "Background Color"
 msgstr "Fono spalva"
 
-#: wp-includes/class-wp-customize-manager.php:5167
+#: wp-includes/class-wp-customize-manager.php:5194
 msgid "Header Text Color"
 msgstr "Antraštės teksto spalva"
 
-#: wp-includes/class-wp-customize-manager.php:5133
+#: wp-includes/class-wp-customize-manager.php:5160
 msgid "Colors"
 msgstr "Spalvos"
 
-#: wp-includes/class-wp-customize-manager.php:5112
+#: wp-includes/class-wp-customize-manager.php:5139
 msgid "Choose logo"
 msgstr "Parinkti logotipą"
 
-#: wp-includes/class-wp-customize-manager.php:5110
+#: wp-includes/class-wp-customize-manager.php:5137
 msgid "No logo selected"
 msgstr "Logotipas neparinktas"
 
-#: wp-includes/class-wp-customize-manager.php:5107
+#: wp-includes/class-wp-customize-manager.php:5134
 msgid "Change logo"
 msgstr "Pakeisti logotipą"
 
-#: wp-includes/class-wp-customize-manager.php:5106
-#: wp-includes/class-wp-customize-manager.php:5111
+#: wp-includes/class-wp-customize-manager.php:5133
+#: wp-includes/class-wp-customize-manager.php:5138
 msgid "Select logo"
 msgstr "Pažymėti logotipą"
 
-#: wp-includes/class-wp-customize-manager.php:5098
+#: wp-includes/class-wp-customize-manager.php:5125
+#: wp-admin/includes/template.php:2141
 msgid "Logo"
 msgstr "Logotipas"
 
 #. translators: %s: site icon size in pixels
-#: wp-includes/class-wp-customize-manager.php:5073
+#: wp-includes/class-wp-customize-manager.php:5100
 msgid "Site Icons should be square and at least %s pixels."
 msgstr "Tinklalapio piktograma turi būti kvadratinė ir bent jau %s pikselių."
 
-#: wp-includes/class-wp-customize-manager.php:5071
+#: wp-includes/class-wp-customize-manager.php:5098
 msgid "Site Icons are what you see in browser tabs, bookmark bars, and within the WordPress mobile apps. Upload one here!"
 msgstr "Tinklalapio piktograma yra tai, ką matote naršyklės skirtukuose, žymekliuose ir WordPress mobiliosiose aplikacijose. Įkelkite čia!"
 
-#: wp-includes/class-wp-customize-manager.php:5069
+#: wp-includes/class-wp-customize-manager.php:5096
+#: wp-admin/includes/template.php:2137
 msgid "Site Icon"
 msgstr "Tinklalapio piktograma"
 
-#: wp-includes/class-wp-customize-manager.php:5047
-#: wp-includes/class-wp-customize-manager.php:5155
+#: wp-includes/class-wp-customize-manager.php:5074
+#: wp-includes/class-wp-customize-manager.php:5182
 msgid "Display Site Title and Tagline"
 msgstr "Rodyti tinklalapio pavadinimą ir aprašymą"
 
-#: wp-includes/class-wp-customize-manager.php:5028
+#: wp-includes/class-wp-customize-manager.php:5055
+#: wp-admin/options-general.php:69
 msgid "Tagline"
 msgstr "Tinklalapio apibūdinimas"
 
-#: wp-includes/class-wp-customize-manager.php:4994
+#: wp-includes/class-wp-customize-manager.php:5021
 msgid "Site Identity"
 msgstr "Tinklalapio identitetas"
 
-#: wp-includes/class-wp-customize-manager.php:4967
+#: wp-includes/class-wp-customize-manager.php:4994
 msgid "WordPress.org themes"
 msgstr "WordPress.org temos"
 
-#: wp-includes/class-wp-customize-manager.php:4952
+#: wp-includes/class-wp-customize-manager.php:4979
 msgid "Installed themes"
 msgstr "Įdiegtos temos"
 
-#: wp-includes/class-wp-customize-manager.php:4939
+#: wp-includes/class-wp-customize-manager.php:4966
 msgid "While previewing a new theme, you can continue to tailor things like widgets and menus, and explore theme-specific options."
 msgstr "Peržiūrint naują išvaizdos temą, galite toliau tobulinti ir keisti valdiklius, meniu, temos nustatymus."
 
-#: wp-includes/class-wp-customize-manager.php:4938
+#: wp-includes/class-wp-customize-manager.php:4965
 msgid "Looking for a theme? You can search or browse the WordPress.org theme directory, install and preview themes, then activate them right here."
 msgstr "Ieškote išvaizdos temos? Galite ieškoti ir naršyti WordPress.org išvaizdos temų direktorijoje, įdiegti ir peržiūrėti temas ir aktyvuoti jas tiesiog čia."
 
-#: wp-includes/class-wp-customize-manager.php:4904
+#: wp-includes/class-wp-customize-manager.php:4931
 msgid "Enter mobile preview mode"
 msgstr "Pereiti į mobilų peržiūros režimą"
 
-#: wp-includes/class-wp-customize-manager.php:4901
+#: wp-includes/class-wp-customize-manager.php:4928
 msgid "Enter tablet preview mode"
 msgstr "Pereiti į planšetės peržiūros režimą"
 
-#: wp-includes/class-wp-customize-manager.php:4897
+#: wp-includes/class-wp-customize-manager.php:4924
 msgid "Enter desktop preview mode"
 msgstr "Pereiti į standartinį peržiūros režimą"
 
 #. translators: %s: theme name
-#: wp-includes/class-wp-customize-manager.php:4817
+#: wp-includes/class-wp-customize-manager.php:4844
 msgid "Showing details for theme: %s"
 msgstr "Rodyti temos informaciją: %s"
 
 #. translators: %d: number of themes being displayed, which cannot currently
 #. consider singular vs. plural forms
-#: wp-includes/class-wp-customize-manager.php:4815
+#: wp-includes/class-wp-customize-manager.php:4842
 msgid "Displaying %d themes"
 msgstr "Rodoma %d temų"
 
 #. translators: %d: number of theme search results, which cannot currently
 #. consider singular vs. plural forms
-#: wp-includes/class-wp-customize-manager.php:4813
+#: wp-includes/class-wp-customize-manager.php:4840
 msgid "%d themes found"
 msgstr "Rasta %d temų"
 
-#: wp-includes/class-wp-customize-manager.php:4811
+#: wp-includes/class-wp-customize-manager.php:4838
 msgid "Are you sure you want to delete this theme?"
 msgstr "Ar tikrai norite ištrinti šią išvaizdos temą?"
 
 #. translators: %s: document title from the preview
-#: wp-includes/class-wp-customize-manager.php:4474
+#: wp-includes/class-wp-customize-manager.php:4501
 msgid "Live Preview: %s"
 msgstr "Gyva peržiūra: %s"
 
 #. translators: %s: document title from the preview
-#: wp-includes/class-wp-customize-manager.php:4471
+#: wp-includes/class-wp-customize-manager.php:4498
 msgid "Customize: %s"
 msgstr "Pritaikyti: %s"
 
-#: wp-includes/class-wp-customize-manager.php:4273
+#: wp-includes/class-wp-customize-manager.php:4300
 msgid "Copied"
 msgstr "Nukopijuota"
 
-#: wp-includes/class-wp-customize-manager.php:4273
+#: wp-includes/class-wp-customize-manager.php:4300
 #: wp-includes/class-wp-editor.php:1069
 msgid "Copy"
 msgstr "Kopijuoti"
 
-#: wp-includes/class-wp-customize-manager.php:4267
+#: wp-includes/class-wp-customize-manager.php:4294
 msgid "Preview Link"
 msgstr "Peržiūros nuoroda"
 
-#: wp-includes/class-wp-customize-manager.php:4264
+#: wp-includes/class-wp-customize-manager.php:4291
 msgid "See how changes would look live on your website, and share the preview with people who can't access the Customizer."
 msgstr "Peržiūrėkite, kaip pakeitimai atrodytų gyvai Jūsų svetainėje ir pasidalinkite šiuo vaizdu su žmonėmis, kurie neturi teisės naduoti vaizdųjį režimą."
 
-#: wp-includes/class-wp-customize-manager.php:4262
+#: wp-includes/class-wp-customize-manager.php:4289
 msgid "Share Preview Link"
 msgstr "Dalintis peržiūros nuoroda"
 
-#: wp-includes/class-wp-customize-manager.php:4243
+#: wp-includes/class-wp-customize-manager.php:4270
+#: wp-admin/includes/file.php:320
 msgid "Update anyway, even though it might break your site?"
 msgstr "Atnaujinti, net jei tai gali sugadinti Jūsų tinklalapį?"
 
-#: wp-includes/class-wp-customize-manager.php:4229
+#: wp-includes/class-wp-customize-manager.php:4256
+#: wp-admin/includes/post.php:1733
 msgid "Take over"
 msgstr "Perimti"
 
-#: wp-includes/class-wp-customize-manager.php:4225
+#: wp-includes/class-wp-customize-manager.php:4252
+#: wp-admin/includes/post.php:1652 wp-admin/comment.php:66
+#: wp-admin/comment.php:264 wp-admin/theme-editor.php:356
+#: wp-admin/plugin-editor.php:312
 msgid "Go back"
 msgstr "Atgal"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4044
+#: wp-includes/class-wp-customize-manager.php:4071
 msgid "%s is already customizing this site. Do you want to take over?"
 msgstr "%s dabar tvarko šį tinklapį. Ar norite perimti?"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4042
+#: wp-includes/class-wp-customize-manager.php:4069
 msgid "%s is already customizing this site. Please wait until they are done to try customizing. Your latest changes have been autosaved."
 msgstr "%s dabar tvarko šį tinklalapį. Prašome palaukti kol baigs tvarkyti. Jūsų naujausi pakeitimai buvo automatiškai išsaugoti."
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4037
+#: wp-includes/class-wp-customize-manager.php:4064
 msgid "%s is already customizing this changeset. Do you want to take over?"
 msgstr "%s jau redaguoja šį pakeitimų rinkinį. Norite perimti redagavimą?"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4035
+#: wp-includes/class-wp-customize-manager.php:4062
 msgid "%s is already customizing this changeset. Please wait until they are done to try customizing. Your latest changes have been autosaved."
 msgstr "%s jau redaguoja šį pakeitimų rinkinį. Palaukite kol užbaigs darbą. Jūsų pakeitimai buvo automatiškai išsaugoti."
 
-#: wp-includes/class-wp-customize-manager.php:3825
+#: wp-includes/class-wp-customize-manager.php:3852
 msgid "Removing %1$s manually will cause PHP warnings. Use the %2$s filter instead."
 msgstr "Pašalinus %1$s rankiniu būdu PHP rodys perspėjimo pranešimus. Geriau naudokite %2$s filtrą."
 
-#: wp-includes/class-wp-customize-manager.php:3290
+#: wp-includes/class-wp-customize-manager.php:3317
 msgid "Sorry, you are not allowed to take over."
 msgstr "Deja, Jūs negalite perimti."
 
-#: wp-includes/class-wp-customize-manager.php:3281
+#: wp-includes/class-wp-customize-manager.php:3308
 msgid "No changeset found to take over"
 msgstr "Nėra rasta pakeitimų rinkinių perėmimui"
 
-#: wp-includes/class-wp-customize-manager.php:3270
+#: wp-includes/class-wp-customize-manager.php:3297
 msgid "Security check failed."
 msgstr "Saugumo patikra nepavyko."
 
-#: wp-includes/class-wp-customize-manager.php:3098
+#: wp-includes/class-wp-customize-manager.php:3125
 msgid "Changes trashed successfully."
 msgstr "Pakeitimai sėkmingai išmesti."
 
-#: wp-includes/class-wp-customize-manager.php:3079
+#: wp-includes/class-wp-customize-manager.php:3106
 msgid "Changes have already been trashed."
 msgstr "Pakeitimai jau išmesti."
 
-#: wp-includes/class-wp-customize-manager.php:3071
-#: wp-includes/class-wp-customize-manager.php:3091
+#: wp-includes/class-wp-customize-manager.php:3098
+#: wp-includes/class-wp-customize-manager.php:3118
 msgid "Unable to trash changes."
 msgstr "Nepavyko išmesti pakeitimų."
 
-#: wp-includes/class-wp-customize-manager.php:3060
+#: wp-includes/class-wp-customize-manager.php:3087
 msgid "No changes saved yet, so there is nothing to trash."
 msgstr "Jokie pakeitimai neišsaugoti, taigi nėra ką išmesti."
 
-#: wp-includes/class-wp-customize-manager.php:3050
+#: wp-includes/class-wp-customize-manager.php:3077
 msgid "There was an authentication problem. Please reload and try again."
 msgstr "Įvyko autentikacijos klaida. Pabandykite perkrauti puslapį."
 
@@ -6192,10 +6314,14 @@ msgid "Unauthorized. You may remove the customize_messenger_channel param to pre
 msgstr "Neleitina. Galite pašalinti customize_messenger_channel parametrą, jei norite gyvai peržiūrėti  išvaizdą."
 
 #: wp-includes/class-wp-customize-manager.php:581
+#: wp-admin/includes/ajax-actions.php:3994 wp-admin/includes/file.php:415
+#: wp-admin/includes/file.php:425 wp-admin/theme-editor.php:69
+#: wp-admin/theme-editor.php:73 wp-admin/themes.php:28 wp-admin/themes.php:71
 msgid "The requested theme does not exist."
 msgstr "Pageidaujama tema neegzistuoja."
 
-#: wp-includes/class-wp-customize-manager.php:571
+#: wp-includes/class-wp-customize-manager.php:571 wp-admin/nav-menus.php:26
+#: wp-admin/themes.php:15 wp-admin/widgets.php:18
 msgid "Sorry, you are not allowed to edit theme options on this site."
 msgstr "Deja, Jūs negalite redaguoti temos nustatymų šiam tinklalapiui."
 
@@ -6283,6 +6409,7 @@ msgid "Manual Offsets"
 msgstr "Rankiniai nustatymai"
 
 #: wp-includes/functions.php:5394 wp-includes/functions.php:5399
+#: wp-admin/options-general.php:233
 msgid "UTC"
 msgstr "UTC"
 
@@ -6413,7 +6540,7 @@ msgstr[2] "%s minučių"
 #. translators: Time duration in hour or hours.
 #. translators: Time difference between two dates, in hours. %s: Number of
 #. hours
-#: wp-includes/functions.php:377 wp-includes/formatting.php:3638
+#: wp-includes/functions.php:377 wp-includes/formatting.php:3668
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] "%s val"
@@ -6465,7 +6592,10 @@ msgstr "<a href=\"%1$s\" aria-label=\"%2$s\">Prisijungęs kaip %3$s</a>. <a href
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "Tik <a href=\"%s\">prisijungę</a> vartotojai gali komentuoti."
 
-#: wp-includes/comment-template.php:2298
+#. translators: %s: asterisk to mark required form fields.
+#: wp-includes/comment-template.php:2298 wp-admin/includes/media.php:1587
+#: wp-admin/includes/media.php:1892 wp-admin/includes/media.php:2760
+#: wp-admin/network/site-new.php:220
 msgid "Required fields are marked %s"
 msgstr "Būtini laukeliai pažymėti %s"
 
@@ -6473,11 +6603,17 @@ msgstr "Būtini laukeliai pažymėti %s"
 msgid "Save my name, email, and website in this browser for the next time I comment."
 msgstr "Išsaugokite mano vardą, el.paštą ir tinklalapį šioje naršyklėje, lengvesniam komentavimui ateityje."
 
-#: wp-includes/comment-template.php:2283
+#: wp-includes/comment-template.php:2283 wp-admin/user-new.php:484
+#: wp-admin/user-edit.php:522
 msgid "Website"
 msgstr "Interneto puslapis"
 
 #: wp-includes/comment-template.php:2279
+#: wp-admin/includes/class-wp-debug-data.php:874
+#: wp-admin/includes/class-wp-users-list-table.php:334
+#: wp-admin/includes/template.php:466 wp-admin/user-edit.php:386
+#: wp-admin/edit-form-comment.php:49
+#: wp-admin/includes/class-wp-ms-users-list-table.php:169
 msgid "Name"
 msgstr "Vardas"
 
@@ -6541,15 +6677,17 @@ msgstr "<span class=\"screen-reader-text\">%s </span>komentarų: 0"
 msgid "Use %s instead if you do not want the value echoed."
 msgstr "Naudokite %s, jei nenorite, kad reikšmė būtų išvesta."
 
-#: wp-includes/comment-template.php:1100
+#: wp-includes/comment-template.php:1100 wp-admin/includes/dashboard.php:727
 msgid "Pingback"
 msgstr "Atgalinis pranešimas"
 
-#: wp-includes/comment-template.php:1097
+#: wp-includes/comment-template.php:1097 wp-admin/includes/dashboard.php:730
 msgid "Trackback"
 msgstr "Citata"
 
+#. translators: field name in comment form
 #: wp-includes/comment-template.php:1094 wp-includes/comment-template.php:2310
+#: wp-admin/comment.php:221
 msgctxt "noun"
 msgid "Comment"
 msgstr "Komentaras"
@@ -6570,7 +6708,10 @@ msgid "off"
 msgstr "on"
 
 #. translators: %s: number of comments
+#. translators: %s: number of comments approved
 #: wp-includes/comment-template.php:903 wp-includes/comment-template.php:917
+#: wp-admin/includes/ajax-actions.php:458
+#: wp-admin/includes/ajax-actions.php:1298 wp-admin/includes/dashboard.php:288
 msgid "%s Comment"
 msgid_plural "%s Comments"
 msgstr[0] "%s komentaras"
@@ -6617,7 +6758,8 @@ msgctxt "admin color scheme"
 msgid "Default"
 msgstr "Numatytoji"
 
-#: wp-includes/general-template.php:4046 wp-includes/formatting.php:3757
+#: wp-includes/general-template.php:4046 wp-includes/formatting.php:3787
+#: wp-admin/themes.php:185
 msgid "&hellip;"
 msgstr "&hellip;"
 
@@ -6960,11 +7102,11 @@ msgstr "Paveikslėlio apkarpymas nepavyko."
 msgid "Image resize failed."
 msgstr "Paveikslėlio dydžio keitimas nepavyko."
 
-#: wp-includes/ms-deprecated.php:617
+#: wp-includes/ms-deprecated.php:617 wp-admin/install.php:219
 msgid "You appear to have already installed WordPress. To reinstall please clear your old database tables first."
 msgstr "Panašu, kad jau esate įdiegę WordPress. Prieš perdiegdami, išvalykite duomenų bazės lenteles."
 
-#: wp-includes/ms-deprecated.php:617
+#: wp-includes/ms-deprecated.php:617 wp-admin/install.php:218
 msgid "Already Installed"
 msgstr "Jau yra įdiegta"
 
@@ -6980,7 +7122,11 @@ msgstr "<strong>KLAIDA</strong>: Tinklalapio URL nuoroda jau naudojama."
 msgid "Tags: "
 msgstr "Žymos:"
 
+#. translators: %s: number of comments
 #: wp-includes/category-template.php:839 wp-includes/category-template.php:849
+#: wp-admin/includes/class-wp-list-table.php:793
+#: wp-admin/includes/class-wp-list-table.php:1374
+#: wp-admin/includes/ajax-actions.php:522
 msgid "%s item"
 msgid_plural "%s items"
 msgstr[0] "%s"
@@ -6991,7 +7137,7 @@ msgstr[2] "%s"
 msgid "No categories"
 msgstr "Nėra kategorijų"
 
-#: wp-includes/category-template.php:152
+#: wp-includes/category-template.php:152 wp-admin/includes/upgrade.php:142
 msgid "Uncategorized"
 msgstr "Be kategorijos"
 
@@ -7001,7 +7147,8 @@ msgid "Comments on %s"
 msgstr "„%s“ komentarai"
 
 #: wp-includes/customize/class-wp-customize-background-image-control.php:33
-#: wp-includes/class-wp-customize-manager.php:5337
+#: wp-includes/class-wp-customize-manager.php:5364
+#: wp-admin/includes/template.php:2127 wp-admin/custom-background.php:247
 msgid "Background Image"
 msgstr "Fono paveikslėlis"
 
@@ -7074,33 +7221,38 @@ msgid "When in reorder mode, additional controls to reorder widgets will be avai
 msgstr "Įjungus perrikiavimo režimą, valdiklių sąraše atsiras papildomi mygtukai valdiklių perrikiavimui."
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:93
-#: wp-includes/class-wp-customize-manager.php:5413
+#: wp-includes/class-wp-customize-manager.php:5440
+#: wp-admin/custom-background.php:401 wp-admin/custom-background.php:402
 msgid "Image Position"
 msgstr "Paveikslėlio pozicija"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:79
+#: wp-admin/custom-background.php:394
 msgid "Bottom Right"
 msgstr "Dešinė apačioje"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:75
-#: wp-includes/class-wp-editor.php:1234
+#: wp-includes/class-wp-editor.php:1234 wp-admin/custom-background.php:390
 msgid "Bottom"
 msgstr "Apačia"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:71
+#: wp-admin/custom-background.php:386
 msgid "Bottom Left"
 msgstr "Kairė apačioje"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:51
+#: wp-admin/custom-background.php:366
 msgid "Top Right"
 msgstr "Dešinė viršuje"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:47
-#: wp-includes/class-wp-editor.php:1232
+#: wp-includes/class-wp-editor.php:1232 wp-admin/custom-background.php:362
 msgid "Top"
 msgstr "Į viršų"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:43
+#: wp-admin/custom-background.php:358
 msgid "Top Left"
 msgstr "Kairė viršuje"
 
@@ -7134,6 +7286,7 @@ msgid "(unnamed)"
 msgstr "(be pavadinimo)"
 
 #: wp-includes/customize/class-wp-customize-new-menu-control.php:50
+#: wp-admin/nav-menus.php:892 wp-admin/nav-menus.php:1003
 msgid "Create Menu"
 msgstr "Sukurti meniu"
 
@@ -7203,6 +7356,8 @@ msgid "No themes found. Try a different search, or %s."
 msgstr "Temų nerasta. Bandykite kitokią paiešką arba %s."
 
 #: wp-includes/customize/class-wp-customize-themes-section.php:87
+#: wp-admin/themes.php:171 wp-admin/themes.php:367
+#: wp-admin/theme-install.php:67 wp-admin/theme-install.php:240
 msgid "No themes found. Try a different search."
 msgstr "Nerasta temų. Bandykite kitą paieškos frazę."
 
@@ -7211,11 +7366,15 @@ msgid "An unexpected error occurred. Something may be wrong with WordPress.org o
 msgstr "Įvyko klaida. Kažkas gali būti blogai su WordPress.org arba šio serverio konfigūracija. Jei problemos tęsis, pasinaudokite <a href=\"https://wordpress.org/support/\">pagalbos forumais</a>."
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:135
+#: wp-admin/includes/theme.php:771
 msgid "Install &amp; Preview"
 msgstr "Įdiegti ir peržiūrėti"
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:122
 #: wp-includes/customize/class-wp-customize-theme-control.php:130
+#: wp-admin/includes/class-wp-theme-install-list-table.php:312
+#: wp-admin/includes/class-wp-theme-install-list-table.php:470
+#: wp-admin/theme-install.php:306
 msgctxt "theme"
 msgid "Installed"
 msgstr "Įdiegta"
@@ -7235,6 +7394,7 @@ msgid "New version available. %s"
 msgstr "Išleista nauja versija. %s"
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:97
+#: wp-admin/themes.php:323 wp-admin/themes.php:485
 msgid "New version available."
 msgstr "Yra nauja versija."
 
@@ -7246,6 +7406,7 @@ msgstr "Sukūrė %s"
 
 #: wp-includes/customize/class-wp-customize-theme-control.php:83
 #: wp-includes/customize/class-wp-customize-themes-section.php:78
+#: wp-admin/themes.php:328 wp-admin/themes.php:365 wp-admin/themes.php:489
 msgid "Theme Details"
 msgstr "Temos informacija"
 
@@ -7270,27 +7431,36 @@ msgid "Details for theme: %s"
 msgstr "Temos informacija: %s"
 
 #. translators: Nav menu item original title. %s: Original title
+#. translators: %s: original title
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:140
+#: wp-admin/includes/class-walker-nav-menu-edit.php:222
 msgid "Original: %s"
 msgstr "Originalas: %s"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:131
+#: wp-admin/includes/class-walker-nav-menu-edit.php:204
 msgid "The description will be displayed in the menu if the current theme supports it."
 msgstr "Jei naudojama tema suteikia tokią galimybę, aprašymas bus rodomas vartotojo meniu."
 
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:123
+#: wp-admin/includes/class-walker-nav-menu-edit.php:196
+#: wp-admin/includes/nav-menu.php:1072 wp-admin/edit-link-form.php:31
 msgid "Link Relationship (XFN)"
 msgstr "Nuorodos ryšys (XFN)"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:117
+#: wp-admin/includes/nav-menu.php:1071
 msgid "CSS Classes"
 msgstr "CSS klasės"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:111
+#: wp-admin/includes/class-walker-nav-menu-edit.php:178
+#: wp-admin/includes/nav-menu.php:1070
 msgid "Title Attribute"
 msgstr "„Title“ atributas"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:99
+#: wp-admin/includes/class-walker-nav-menu-edit.php:172
 msgid "Navigation Label"
 msgstr "Pavadinimas"
 
@@ -7327,6 +7497,7 @@ msgid "Active theme"
 msgstr "Aktyvi tema"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-auto-add-control.php:46
+#: wp-admin/nav-menus.php:948
 msgid "Automatically add new top-level pages to this menu"
 msgstr "Automatiškai pridėti naujus tėvinius puslapius į šį meniu"
 
@@ -7363,6 +7534,7 @@ msgid "Add Items"
 msgstr "Pridėti punktų"
 
 #: wp-includes/customize/class-wp-customize-nav-menu-location-control.php:85
+#: wp-admin/nav-menus.php:706
 msgid "Edit selected menu"
 msgstr "Redaguoti pasirinktą meniu"
 
@@ -7386,10 +7558,12 @@ msgstr "Laiko zona: %1$s (%2$s), šiuo metu %3$s"
 
 #. translators: 1: month number (01, 02, etc.), 2: month abbreviation
 #: wp-includes/customize/class-wp-customize-date-time-control.php:203
+#: wp-admin/includes/template.php:797
 msgid "%1$s-%2$s"
 msgstr "%1$s-%2$s"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:176
+#: wp-admin/options-general.php:218
 msgid "Timezone"
 msgstr "Laiko zona"
 
@@ -7398,10 +7572,12 @@ msgid "Meridian"
 msgstr "Dienovidinis"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:167
+#: wp-admin/includes/template.php:804
 msgid "Minute"
 msgstr "Minutė"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:162
+#: wp-admin/includes/template.php:803
 msgid "Hour"
 msgstr "Valanda"
 
@@ -7411,17 +7587,20 @@ msgid "Time"
 msgstr "Laikas"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:146
-#: wp-includes/js/dist/components.js:30600
+#: wp-includes/js/dist/components.js:30600 wp-admin/includes/template.php:801
 msgid "Day"
 msgstr "Diena"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:130
-#: wp-includes/js/dist/components.js:30562
+#: wp-includes/js/dist/components.js:30562 wp-admin/includes/template.php:791
 msgid "Month"
 msgstr "Mėnuo"
 
 #: wp-includes/customize/class-wp-customize-date-time-control.php:127
 #: wp-includes/js/dist/components.js:30632
+#: wp-admin/includes/ajax-actions.php:2063
+#: wp-admin/includes/class-wp-posts-list-table.php:646
+#: wp-admin/includes/class-wp-posts-list-table.php:1553
 msgid "Date"
 msgstr "Data"
 
@@ -7530,18 +7709,21 @@ msgid "Randomize uploaded headers"
 msgstr "Kaitalioti įkeltas antraštes"
 
 #: wp-includes/customize/class-wp-customize-header-image-control.php:54
-#: wp-includes/class-wp-customize-manager.php:5228
+#: wp-includes/class-wp-customize-manager.php:5255
+#: wp-admin/includes/template.php:2106 wp-admin/includes/template.php:2113
+#: wp-admin/custom-header.php:107 wp-admin/custom-header.php:491
 msgid "Header Image"
 msgstr "Antraštės paveikslėlis"
 
 #: wp-includes/category.php:49 wp-includes/category-template.php:360
-#: wp-includes/class-wp-query.php:1790
+#: wp-includes/class-wp-query.php:1786
 msgid "%1$s is deprecated. Use %2$s instead."
 msgstr "%1$s yra nebenaudotinas. Naudokite %2$s."
 
 #. translators: %s: the site/panel title in the Customizer
 #: wp-includes/class-wp-customize-panel.php:362
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:78
+#: wp-admin/customize.php:210
 msgid "You are customizing %s"
 msgstr "Jūs tinkinate %s"
 
@@ -7566,6 +7748,7 @@ msgstr "Netinkamas redaktoriaus žymos pavadinimas: pavadinimas tuščias."
 
 #: wp-includes/class-wp-customize-control.php:632
 #: wp-includes/class-wp-customize-nav-menus.php:1159
+#: wp-admin/includes/meta-boxes.php:515 wp-admin/includes/meta-boxes.php:1094
 msgid "Add"
 msgstr "Pridėti"
 
@@ -7578,7 +7761,9 @@ msgid "New page title"
 msgstr "Nauja puslapio antraštė"
 
 #. translators: %s: add new page label
+#. translators: %s: add new taxonomy label
 #: wp-includes/class-wp-customize-control.php:626
+#: wp-admin/includes/meta-boxes.php:596
 msgid "+ %s"
 msgstr "+ %s"
 
@@ -7620,7 +7805,8 @@ msgstr "Valdikliai turi būti užregistruoti naudojan %s prieš juos atvaizduoja
 msgid "No %1$s was set in the arguments array for the \"%2$s\" sidebar. Defaulting to \"%3$s\". Manually set the %1$s to \"%3$s\" to silence this notice and keep existing sidebar content."
 msgstr "Šoninės srities \"%2$s\" argumentų masyvui nenustatytas %1$s. Naudojamas numatytoji reikšmė \"%3$s\". Prašome pakeisti %1$s to \"%3$s\", kad išliktų esamas šoninės srities turinys ir šis pranešimas nebūtų rodomas."
 
-#: wp-includes/widgets.php:180
+#: wp-includes/widgets.php:180 wp-admin/includes/file.php:19
+#: wp-admin/widgets.php:309
 msgid "Sidebar"
 msgstr "Valdiklių sritis"
 
@@ -7638,6 +7824,8 @@ msgstr "%1$s yra pasenęs, nerekomenduojame naudoti. Vietoje jo naudokite %2$s"
 
 #: wp-includes/option.php:2136 wp-includes/option.php:2149
 #: wp-includes/option.php:2189 wp-includes/option.php:2202
+#: wp-admin/includes/template.php:1483 wp-admin/includes/template.php:1496
+#: wp-admin/includes/template.php:1554 wp-admin/includes/template.php:1567
 msgid "The \"%s\" options group has been removed. Use another settings group."
 msgstr "The \"%s\" nustatymų grupė buvo panaikinta. Naudokite kitą nustatymų grupę."
 
@@ -8128,11 +8316,13 @@ msgid "Cannot create a revision of a revision"
 msgstr "Negalima sukurti versijos versijos"
 
 #: wp-includes/revision.php:36 wp-includes/js/dist/edit-post.js:4632
-#: wp-includes/js/dist/edit-post.js:5551
+#: wp-includes/js/dist/edit-post.js:5551 wp-admin/includes/meta-boxes.php:662
+#: wp-admin/includes/meta-boxes.php:1458
 msgid "Excerpt"
 msgstr "Ištrauka"
 
-#: wp-includes/revision.php:35
+#: wp-includes/revision.php:35 wp-admin/includes/dashboard.php:530
+#: wp-admin/index.php:98
 msgid "Content"
 msgstr "Turinys"
 
@@ -8166,7 +8356,8 @@ msgstr "Failas neegzistuoja?"
 msgid "The confirmation email has expired."
 msgstr "Patvirtinimo laiškas nustojo galioti."
 
-#: wp-includes/user.php:3607
+#: wp-includes/user.php:3607 wp-admin/includes/user.php:683
+#: wp-admin/includes/user.php:695
 msgid "Invalid action."
 msgstr "Netinkamas veiksmas."
 
@@ -8174,7 +8365,8 @@ msgstr "Netinkamas veiksmas."
 msgid "This link has expired."
 msgstr "Ši nuoroda nustojo galioti."
 
-#: wp-includes/user.php:3583
+#: wp-includes/user.php:3583 wp-admin/includes/user.php:600
+#: wp-admin/includes/user.php:628
 msgid "Invalid request."
 msgstr "Netaisyklinga užklausa."
 
@@ -8232,11 +8424,13 @@ msgstr "Netinkama vartotojoužklausa."
 msgid "Confirm the \"%s\" action"
 msgstr "Patvirtinkite „%s“ veiksmą"
 
-#: wp-includes/user.php:3387
+#: wp-includes/user.php:3387 wp-admin/includes/user.php:912
+#: wp-admin/includes/user.php:1037 wp-admin/includes/user.php:1695
 msgid "Erase Personal Data"
 msgstr "Ištrinti asmeninius duomenis"
 
-#: wp-includes/user.php:3384
+#: wp-includes/user.php:3384 wp-admin/includes/user.php:828
+#: wp-admin/includes/user.php:1036
 msgid "Export Personal Data"
 msgstr "Eksportuoti asmeninius duomenis"
 
@@ -8474,11 +8668,12 @@ msgstr "<strong>KLAIDA</strong>: El. pašto adresas jau panaudotas."
 msgid "<strong>ERROR</strong>: Couldn&#8217;t register you&hellip; please contact the <a href=\"mailto:%s\">webmaster</a> !"
 msgstr "<strong>KLAIDA</strong>: Nepavyko jūsų užregistruoti&hellip; susisiekite su <a href=\"mailto:%s\">administratoriumi</a> !"
 
-#: wp-includes/user.php:2460
+#: wp-includes/user.php:2460 wp-admin/includes/user.php:205
 msgid "<strong>ERROR</strong>: This email is already registered, please choose another one."
 msgstr "<strong>KLAIDA</strong>: Šis el. pašto adresas jau užregistruotas, pasirinkite kitą."
 
 #: wp-includes/user.php:2457 wp-includes/user.php:2733
+#: wp-admin/includes/user.php:203
 msgid "<strong>ERROR</strong>: The email address isn&#8217;t correct."
 msgstr "<strong>KLAIDA</strong>: Neteisingas el. pašto adresas."
 
@@ -8486,19 +8681,19 @@ msgstr "<strong>KLAIDA</strong>: Neteisingas el. pašto adresas."
 msgid "<strong>ERROR</strong>: Please type your email address."
 msgstr "<strong>KLAIDA</strong>: Įveskite el. pašto adresą."
 
-#: wp-includes/user.php:2449
+#: wp-includes/user.php:2449 wp-admin/includes/user.php:196
 msgid "<strong>ERROR</strong>: Sorry, that username is not allowed."
 msgstr "<strong>KLAIDA</strong>: Deja, toks vartotojo vardas negalimas."
 
-#: wp-includes/user.php:2443
+#: wp-includes/user.php:2443 wp-admin/includes/user.php:189
 msgid "<strong>ERROR</strong>: This username is already registered. Please choose another one."
 msgstr "<strong>KLAIDA</strong>: Toks vartotojo vardas jau yra, išsirinkite kitą."
 
-#: wp-includes/user.php:2440
+#: wp-includes/user.php:2440 wp-admin/includes/user.php:185
 msgid "<strong>ERROR</strong>: This username is invalid because it uses illegal characters. Please enter a valid username."
 msgstr "<strong>KLAIDA</strong>: Vartotojo vardas netinkamas, nes savyje turi neleidžiamų simbolių. Pasirinkite kitokį vartotojo vardą."
 
-#: wp-includes/user.php:2438
+#: wp-includes/user.php:2438 wp-admin/includes/user.php:146
 msgid "<strong>ERROR</strong>: Please enter a username."
 msgstr "<strong>KLAIDA</strong>: Įveskite vartotojo vardą."
 
@@ -8669,8 +8864,11 @@ msgstr "<strong>KLAIDA</strong>: Tuščias slaptažodžio laukelis."
 msgid "<strong>ERROR</strong>: The username field is empty."
 msgstr "<strong>KLAIDA</strong>: Tuščias vartotojo vardo laukelis."
 
+#. translators: default privacy policy heading.
 #: wp-includes/media.php:4171 wp-includes/class-wp-editor.php:1127
-#: wp-includes/js/dist/block-editor.js:16129
+#: wp-includes/js/dist/block-editor.js:16129 wp-admin/includes/misc.php:1860
+#: wp-admin/includes/media.php:2399 wp-admin/export.php:291
+#: wp-admin/menu.php:54 wp-admin/menu.php:279
 msgid "Media"
 msgstr "Failai"
 
@@ -8803,7 +9001,8 @@ msgstr "Praleisti apkarpymą"
 msgid "Select and Crop"
 msgstr "Pasirinkti ir apkarpyti"
 
-#: wp-includes/media.php:3712
+#: wp-includes/media.php:3712 wp-admin/custom-background.php:332
+#: wp-admin/custom-header.php:620
 msgid "Choose Image"
 msgstr "Pasirinkti paveikslėlį"
 
@@ -8836,7 +9035,7 @@ msgstr "Pridėti į galeriją"
 msgid "Update gallery"
 msgstr "Atnaujinti galeriją"
 
-#: wp-includes/media.php:3699
+#: wp-includes/media.php:3699 wp-admin/includes/media.php:2499
 msgid "Insert gallery"
 msgstr "Įterpti galeriją"
 
@@ -8857,22 +9056,27 @@ msgid "Insert from URL"
 msgstr "Įterpti iš URL"
 
 #: wp-includes/media.php:3683
+#: wp-admin/includes/class-wp-media-list-table.php:225
 msgid "No media files found."
 msgstr "Media failų nerasta."
 
 #: wp-includes/media.php:3682
+#: wp-admin/includes/class-wp-media-list-table.php:274
 msgid "Search media items..."
 msgstr "Ieškoti tarp failų..."
 
-#: wp-includes/media.php:3681
+#: wp-includes/media.php:3681 wp-admin/includes/media.php:2560
+#: wp-admin/includes/media.php:2562
+#: wp-admin/includes/class-wp-media-list-table.php:273
 msgid "Search Media"
 msgstr "Ieškoti failų"
 
 #: wp-includes/media.php:3680
+#: wp-admin/includes/class-wp-media-list-table.php:244
 msgid "Filter by type"
 msgstr "Filtruoti pagal tipą"
 
-#: wp-includes/media.php:3679
+#: wp-includes/media.php:3679 wp-admin/includes/class-wp-list-table.php:596
 msgid "Filter by date"
 msgstr "Filtruoti pagal datą"
 
@@ -8904,19 +9108,23 @@ msgid "Trash"
 msgstr "Šiukšlinė"
 
 #: wp-includes/media.php:3668
+#: wp-admin/includes/class-wp-media-list-table.php:130
 msgctxt "media items"
 msgid "Mine"
 msgstr "Mano"
 
 #: wp-includes/media.php:3667
+#: wp-admin/includes/class-wp-media-list-table.php:125
 msgid "Unattached"
 msgstr "Nepriskirtas"
 
-#: wp-includes/media.php:3664
+#: wp-includes/media.php:3664 wp-admin/includes/media.php:2664
+#: wp-admin/includes/class-wp-list-table.php:598
 msgid "All dates"
 msgstr "Visi laikotarpiai"
 
 #: wp-includes/media.php:3663
+#: wp-admin/includes/class-wp-media-list-table.php:102
 msgid "All media items"
 msgstr "Visi failai"
 
@@ -8937,6 +9145,8 @@ msgid "Create a new gallery"
 msgstr "Sukurti naują galeriją"
 
 #: wp-includes/media.php:3657 wp-includes/js/dist/block-editor.js:16168
+#: wp-admin/includes/media.php:21 wp-admin/upload.php:79
+#: wp-admin/upload.php:213
 msgid "Media Library"
 msgstr "Failų saugykla"
 
@@ -8957,16 +9167,20 @@ msgid "%d selected"
 msgstr "Pasirinkta: %d"
 
 #: wp-includes/media.php:3638 wp-includes/js/dist/edit-post.js:1018
+#: wp-admin/includes/template.php:1838 wp-admin/theme-editor.php:237
+#: wp-admin/plugin-editor.php:234 wp-admin/nav-menus.php:815
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:382
 msgid "Select"
 msgstr "Pasirinkti"
 
 #: wp-includes/media.php:3636 wp-includes/media.php:3658
-#: wp-includes/class-wp-editor.php:1288
+#: wp-includes/class-wp-editor.php:1288 wp-admin/includes/media.php:613
 msgid "Add Media"
 msgstr "Įterpti failą"
 
 #. translators: 1: month name, 2: 4-digit year
 #: wp-includes/media.php:3576 wp-includes/general-template.php:1892
+#: wp-admin/includes/class-wp-list-table.php:613
 msgid "%1$s %2$d"
 msgstr "%2$s m. %1$s mėn."
 
@@ -8993,7 +9207,7 @@ msgstr "Ilgis"
 
 #: wp-includes/media.php:2278
 #: wp-includes/customize/class-wp-customize-date-time-control.php:151
-#: wp-includes/js/dist/components.js:30637
+#: wp-includes/js/dist/components.js:30637 wp-admin/includes/template.php:802
 msgid "Year"
 msgstr "Metai"
 
@@ -9014,7 +9228,9 @@ msgstr "Shift-paspaudimas - valdiklio redagavimas."
 #: wp-includes/class-wp-customize-widgets.php:840
 #: wp-includes/customize/class-wp-customize-themes-section.php:120
 #: wp-includes/customize/class-wp-customize-themes-section.php:135
-#: wp-includes/class-wp-customize-nav-menus.php:1092
+#: wp-includes/class-wp-customize-nav-menus.php:1092 wp-admin/plugins.php:440
+#: wp-admin/themes.php:98 wp-admin/theme-install.php:99
+#: wp-admin/plugin-install.php:87
 msgid "The search results will be updated as you type."
 msgstr "Paieškos rezultatai atnaujinami Jums berašant."
 
@@ -9087,6 +9303,8 @@ msgstr "Išsaugokite ir peržiūrėkite pakeitimus prieš juos paskelbdami."
 #: wp-includes/js/dist/block-library.js:17530
 #: wp-includes/js/dist/format-library.js:712
 #: wp-includes/js/dist/format-library.js:974
+#: wp-admin/includes/class-wp-screen.php:1053
+#: wp-admin/includes/class-wp-list-table.php:476
 msgid "Apply"
 msgstr "Taikyti"
 
@@ -9127,12 +9345,14 @@ msgstr "Pasirinkite sritį, į kurią norite perkelti valdiklį:"
 #: wp-includes/class-wp-customize-widgets.php:699
 #: wp-includes/class-wp-customize-nav-menus.php:1023
 #: wp-includes/js/dist/block-editor.js:9384
+#: wp-admin/includes/class-walker-nav-menu-edit.php:135
 msgid "Move up"
 msgstr "Pakelti"
 
 #: wp-includes/class-wp-customize-widgets.php:698
 #: wp-includes/class-wp-customize-nav-menus.php:1024
 #: wp-includes/js/dist/block-editor.js:9401
+#: wp-admin/includes/class-walker-nav-menu-edit.php:150
 msgid "Move down"
 msgstr "Nuleisti"
 
@@ -9185,7 +9405,8 @@ msgstr "Šis turinys yra apsaugotas slaptažodžiu. Norėdami jį peržiūrėti,
 msgid "Missing Attachment"
 msgstr "Nerastas failas"
 
-#: wp-includes/post-template.php:1417
+#: wp-includes/post-template.php:1417 wp-admin/menu.php:25
+#: wp-admin/network/menu.php:13
 msgid "Home"
 msgstr "Pradžia"
 
@@ -9196,10 +9417,14 @@ msgid "%s:"
 msgstr "%s:"
 
 #: wp-includes/post-template.php:927
+#: wp-admin/includes/class-wp-list-table.php:841
+#: wp-admin/includes/nav-menu.php:378 wp-admin/includes/nav-menu.php:707
 msgid "Previous page"
 msgstr "Ankstesnis puslapis"
 
 #: wp-includes/post-template.php:926
+#: wp-admin/includes/class-wp-list-table.php:866
+#: wp-admin/includes/nav-menu.php:379 wp-admin/includes/nav-menu.php:708
 msgid "Next page"
 msgstr "Kitas puslapis"
 
@@ -9223,24 +9448,24 @@ msgstr "Privatu: %s"
 msgid "Protected: %s"
 msgstr "Apsaugota: %s"
 
-#: wp-includes/post.php:3843
+#: wp-includes/post.php:3852
 msgid "Invalid page template."
 msgstr "Netinkamas puslapio šablonas."
 
 #. translators: %s: taxonomy name
-#: wp-includes/post.php:3776
+#: wp-includes/post.php:3785
 msgid "Invalid taxonomy: %s."
 msgstr "Netinkama taksonomija: %s."
 
-#: wp-includes/post.php:3745
+#: wp-includes/post.php:3754
 msgid "Could not insert post into the database"
 msgstr "Įrašo į duomenų bazę įrašyti nepavyko"
 
-#: wp-includes/post.php:3730
+#: wp-includes/post.php:3739
 msgid "Could not update post in the database"
 msgstr "Įrašo duomenų bazėje atnaujinti nepavyko"
 
-#: wp-includes/post.php:3476
+#: wp-includes/post.php:3479
 msgid "Content, title, and excerpt are empty."
 msgstr "Turinys, pavadinimas ir ištrauka nerasti."
 
@@ -9285,11 +9510,13 @@ msgstr "Tvarkyti paveikslėlius"
 msgid "Images"
 msgstr "Paveikslėliai"
 
-#: wp-includes/post.php:1649
+#: wp-includes/post.php:1649 wp-admin/edit-form-advanced.php:181
+#: wp-admin/edit-form-advanced.php:184
 msgid "Page updated."
 msgstr "Puslapis atnaujintas."
 
-#: wp-includes/post.php:1649
+#: wp-includes/post.php:1649 wp-admin/edit-form-advanced.php:167
+#: wp-admin/edit-form-advanced.php:170
 msgid "Post updated."
 msgstr "Įrašas atnaujintas."
 
@@ -9317,11 +9544,11 @@ msgstr "Puslapis paskelbtas privačiai."
 msgid "Post published privately."
 msgstr "Įrašas paskelbtas privačiai."
 
-#: wp-includes/post.php:1645
+#: wp-includes/post.php:1645 wp-admin/edit-form-advanced.php:187
 msgid "Page published."
 msgstr "Puslapis paskelbtas."
 
-#: wp-includes/post.php:1645
+#: wp-includes/post.php:1645 wp-admin/edit-form-advanced.php:173
 msgid "Post published."
 msgstr "Įrašas paskelbtas."
 
@@ -9406,7 +9633,7 @@ msgid "Insert into post"
 msgstr "Įterpti į įrašą"
 
 #: wp-includes/post.php:1635 wp-includes/js/dist/edit-post.js:4640
-#: wp-includes/js/dist/edit-post.js:5821
+#: wp-includes/js/dist/edit-post.js:5821 wp-admin/edit-form-advanced.php:387
 msgid "Page Attributes"
 msgstr "Puslapio atributai"
 
@@ -9553,10 +9780,17 @@ msgid "Pending"
 msgstr "Laukia"
 
 #: wp-includes/post.php:890 wp-includes/js/dist/editor.js:9569
+#: wp-admin/includes/meta-boxes.php:105 wp-admin/includes/meta-boxes.php:134
+#: wp-admin/includes/ajax-actions.php:2078
+#: wp-admin/includes/class-wp-posts-list-table.php:1789
 msgid "Pending Review"
 msgstr "Laukia peržiūros"
 
 #: wp-includes/post.php:889 wp-includes/post.php:910
+#: wp-admin/includes/meta-boxes.php:109 wp-admin/includes/meta-boxes.php:136
+#: wp-admin/includes/meta-boxes.php:138 wp-admin/includes/template.php:2038
+#: wp-admin/includes/ajax-actions.php:2081
+#: wp-admin/includes/class-wp-posts-list-table.php:1790
 msgid "Draft"
 msgstr "Juodraštis"
 
@@ -9632,7 +9866,7 @@ msgstr[0] "Nepatvirtinti <span class=\"count\">(%s)</span>"
 msgstr[1] "Nepatvirtinti <span class=\"count\">(%s)</span>"
 msgstr[2] "Nepatvirtinti <span class=\"count\">(%s)</span>"
 
-#: wp-includes/post.php:342
+#: wp-includes/post.php:342 wp-admin/includes/template.php:2044
 msgctxt "post status"
 msgid "Pending"
 msgstr "Laukia patvirtinimo"
@@ -9852,7 +10086,8 @@ msgstr "Navigacijos meniu elementai"
 msgid "Revision"
 msgstr "Versija"
 
-#: wp-includes/post.php:106
+#: wp-includes/post.php:106 wp-admin/includes/meta-boxes.php:1399
+#: wp-admin/revision.php:95
 msgid "Revisions"
 msgstr "Įrašo versijos"
 
@@ -9864,7 +10099,7 @@ msgstr "Priedų atributai"
 msgid "View Attachment Page"
 msgstr "Peržiūrėti failo puslapį"
 
-#: wp-includes/post.php:75
+#: wp-includes/post.php:75 wp-admin/media.php:47
 msgid "Edit Media"
 msgstr "Redaguoti failą"
 
@@ -9958,7 +10193,7 @@ msgstr "Techninė priežiūra"
 msgid "Briefly unavailable for scheduled maintenance. Check back in a minute."
 msgstr "Dėl atnaujinimo darbų trumpam nepasiekiama. Užeikite po minutės."
 
-#: wp-includes/load.php:152
+#: wp-includes/load.php:152 wp-admin/install.php:264
 msgid "Insufficient Requirements"
 msgstr "Nepakankami reikalavimai"
 
@@ -9991,12 +10226,18 @@ msgid "As a browser icon"
 msgstr "Naršyklės piktograma"
 
 #: wp-includes/media-template.php:1326
-#: wp-includes/class-wp-customize-manager.php:4227
+#: wp-includes/class-wp-customize-manager.php:4254
 #: wp-includes/class-wp-editor.php:1143
 #: wp-includes/js/dist/block-editor.js:10633
 #: wp-includes/js/dist/edit-post.js:5667
 #: wp-includes/js/dist/block-library.js:11517
 #: wp-includes/js/dist/block-library.js:17120
+#: wp-admin/includes/meta-boxes.php:61 wp-admin/includes/post.php:1726
+#: wp-admin/includes/class-wp-theme-install-list-table.php:332
+#: wp-admin/includes/class-wp-posts-list-table.php:1384
+#: wp-admin/customize.php:188 wp-admin/custom-background.php:252
+#: wp-admin/theme-install.php:292 wp-admin/theme-install.php:300
+#: wp-admin/theme-install.php:366 wp-admin/custom-header.php:498
 msgid "Preview"
 msgstr "Peržiūrėti"
 
@@ -10005,6 +10246,10 @@ msgid "Image crop area preview. Requires mouse interaction."
 msgstr "Paveikslėlio apkirpimo zonos peržiūra. Veiksmui atlikti reikalinga pelė."
 
 #: wp-includes/media-template.php:1315 wp-includes/media.php:3665
+#: wp-admin/includes/class-wp-themes-list-table.php:93
+#: wp-admin/includes/class-wp-list-table.php:335
+#: wp-admin/includes/ajax-actions.php:2060
+#: wp-admin/includes/ajax-actions.php:3528
 msgid "No items found."
 msgstr "Nieko nerasta."
 
@@ -10039,6 +10284,7 @@ msgstr "Automatinis paleidimas"
 #: wp-includes/media-template.php:1163 wp-includes/media-template.php:1254
 #: wp-includes/js/dist/block-library.js:14471
 #: wp-includes/js/dist/block-library.js:15723
+#: wp-admin/includes/meta-boxes.php:1410
 msgid "Metadata"
 msgstr "Metaduomenys"
 
@@ -10085,6 +10331,7 @@ msgstr "Lygiuotė"
 
 #: wp-includes/media-template.php:889 wp-includes/class-wp-editor.php:1736
 #: wp-includes/class-wp-customize-nav-menus.php:1193
+#: wp-admin/includes/nav-menu.php:299
 msgid "Link Text"
 msgstr "Nuorodos tekstas"
 
@@ -10118,35 +10365,41 @@ msgstr "Atsitiktinė tvarka"
 #: wp-includes/js/dist/block-library.js:13277
 #: wp-includes/js/dist/block-library.js:18147
 #: wp-includes/js/dist/block-library.js:19853
+#: wp-admin/includes/class-wp-screen.php:1111
 msgid "Columns"
 msgstr "Stulpeliai"
 
 #: wp-includes/media-template.php:780
-#: wp-includes/js/dist/block-library.js:13275
+#: wp-includes/js/dist/block-library.js:13275 wp-admin/includes/media.php:2428
 msgid "Gallery Settings"
 msgstr "Galerijos nustatymai"
 
 #: wp-includes/media-template.php:760 wp-includes/media-template.php:839
 #: wp-includes/media-template.php:1021 wp-includes/media.php:3307
-#: wp-includes/js/dist/block-editor.js:4078
+#: wp-includes/js/dist/block-editor.js:4078 wp-admin/includes/media.php:1079
+#: wp-admin/edit-form-blocks.php:214 wp-admin/custom-background.php:589
 msgid "Full Size"
 msgstr "Pilnas"
 
 #: wp-includes/media-template.php:759 wp-includes/media-template.php:838
 #: wp-includes/media-template.php:1020 wp-includes/media.php:3306
-#: wp-includes/js/dist/block-editor.js:4075
+#: wp-includes/js/dist/block-editor.js:4075 wp-admin/includes/media.php:1078
+#: wp-admin/edit-form-blocks.php:213 wp-admin/custom-background.php:588
 msgid "Large"
 msgstr "Didelis"
 
 #: wp-includes/media-template.php:758 wp-includes/media-template.php:837
 #: wp-includes/media-template.php:1019 wp-includes/media.php:3305
-#: wp-includes/js/dist/block-editor.js:4072
+#: wp-includes/js/dist/block-editor.js:4072 wp-admin/includes/media.php:1077
+#: wp-admin/edit-form-blocks.php:212 wp-admin/custom-background.php:587
 msgid "Medium"
 msgstr "Vidutinis"
 
 #: wp-includes/media-template.php:757 wp-includes/media-template.php:836
 #: wp-includes/media-template.php:1018 wp-includes/media.php:3304
 #: wp-includes/js/dist/block-editor.js:4069
+#: wp-admin/includes/image-edit.php:179 wp-admin/includes/media.php:1076
+#: wp-admin/edit-form-blocks.php:211 wp-admin/custom-background.php:586
 msgid "Thumbnail"
 msgstr "Miniatiūra"
 
@@ -10160,7 +10413,7 @@ msgstr "Pasirinkta URL"
 #: wp-includes/media-template.php:1054
 #: wp-includes/js/dist/block-library.js:10194
 #: wp-includes/js/dist/block-library.js:11729
-#: wp-includes/js/dist/block-library.js:13034
+#: wp-includes/js/dist/block-library.js:13034 wp-admin/includes/media.php:2441
 msgid "Attachment Page"
 msgstr "Failo puslapis"
 
@@ -10191,25 +10444,29 @@ msgstr "Embed kodas arba nuoroda"
 #: wp-includes/media-template.php:687 wp-includes/media-template.php:928
 #: wp-includes/media-template.php:996
 #: wp-includes/customize/class-wp-customize-background-position-control.php:65
-#: wp-includes/class-wp-editor.php:1229
+#: wp-includes/class-wp-editor.php:1229 wp-admin/includes/media.php:1039
+#: wp-admin/includes/media.php:2797 wp-admin/custom-background.php:380
 msgid "Right"
 msgstr "Dešinėje"
 
 #: wp-includes/media-template.php:684 wp-includes/media-template.php:925
 #: wp-includes/media-template.php:993
 #: wp-includes/customize/class-wp-customize-background-position-control.php:61
-#: wp-includes/class-wp-editor.php:1228
+#: wp-includes/class-wp-editor.php:1228 wp-admin/includes/media.php:1038
+#: wp-admin/includes/media.php:2795 wp-admin/custom-background.php:376
 msgid "Center"
 msgstr "Per vidurį"
 
 #: wp-includes/media-template.php:681 wp-includes/media-template.php:922
 #: wp-includes/media-template.php:990
 #: wp-includes/customize/class-wp-customize-background-position-control.php:57
-#: wp-includes/class-wp-editor.php:1227
+#: wp-includes/class-wp-editor.php:1227 wp-admin/includes/media.php:1037
+#: wp-admin/includes/media.php:2793 wp-admin/custom-background.php:372
 msgid "Left"
 msgstr "Kairėje"
 
 #: wp-includes/media-template.php:673 wp-includes/class-wp-editor.php:1225
+#: wp-admin/includes/media.php:1374 wp-admin/includes/media.php:2788
 msgid "Alignment"
 msgstr "Lygiuotė"
 
@@ -10226,6 +10483,7 @@ msgid "Alt Text"
 msgstr "„Alt“ tekstas"
 
 #: wp-includes/media-template.php:551 wp-includes/media.php:3686
+#: wp-admin/upload.php:65
 msgid "Attachment Details"
 msgstr "Failo informacija"
 
@@ -10256,18 +10514,37 @@ msgstr "Panaikinti pasirinkimą"
 #: wp-includes/customize/class-wp-customize-media-control.php:232
 #: wp-includes/customize/class-wp-customize-media-control.php:243
 #: wp-includes/customize/class-wp-customize-media-control.php:253
-#: wp-includes/class-wp-customize-manager.php:5108
+#: wp-includes/class-wp-customize-manager.php:5135
 #: wp-includes/class-wp-editor.php:1281 wp-includes/js/dist/edit-post.js:1320
+#: wp-admin/includes/class-walker-nav-menu-edit.php:239
+#: wp-admin/includes/class-wp-users-list-table.php:245
+#: wp-admin/includes/class-wp-users-list-table.php:435
+#: wp-admin/includes/user.php:1239
 msgid "Remove"
 msgstr "Pašalinti"
 
 #: wp-includes/media-template.php:491 wp-includes/media-template.php:602
-#: wp-includes/media.php:3677
+#: wp-includes/media.php:3677 wp-admin/includes/meta-boxes.php:298
+#: wp-admin/includes/meta-boxes.php:405 wp-admin/includes/media.php:1603
+#: wp-admin/includes/class-wp-media-list-table.php:152
+#: wp-admin/includes/class-wp-media-list-table.php:157
+#: wp-admin/includes/class-wp-media-list-table.php:690
+#: wp-admin/includes/class-wp-media-list-table.php:747
+#: wp-admin/includes/class-wp-comments-list-table.php:353
+#: wp-admin/includes/class-wp-comments-list-table.php:641
+#: wp-admin/includes/class-wp-posts-list-table.php:413
+#: wp-admin/includes/class-wp-posts-list-table.php:1370
+#: wp-admin/includes/dashboard.php:656 wp-admin/edit-form-comment.php:184
 msgid "Delete Permanently"
 msgstr "Ištrinti negrįžtamai"
 
 #: wp-includes/media-template.php:488 wp-includes/media-template.php:599
-#: wp-includes/media.php:3675
+#: wp-includes/media.php:3675 wp-admin/includes/meta-boxes.php:300
+#: wp-admin/includes/meta-boxes.php:402 wp-admin/includes/media.php:1613
+#: wp-admin/includes/class-wp-media-list-table.php:154
+#: wp-admin/includes/class-wp-comments-list-table.php:355
+#: wp-admin/includes/class-wp-posts-list-table.php:415 wp-admin/comment.php:126
+#: wp-admin/edit-form-comment.php:184
 msgid "Move to Trash"
 msgstr "Perkelti į šiukšlinę"
 
@@ -10299,7 +10576,14 @@ msgstr "Įkėlė"
 
 #: wp-includes/media-template.php:454 wp-includes/media-template.php:646
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:129
-#: wp-includes/class-wp-editor.php:1106
+#: wp-includes/class-wp-editor.php:1106 wp-admin/edit-tags.php:491
+#: wp-admin/includes/class-wp-plugins-list-table.php:405
+#: wp-admin/includes/class-walker-nav-menu-edit.php:202
+#: wp-admin/includes/class-wp-terms-list-table.php:183
+#: wp-admin/includes/media.php:1304 wp-admin/includes/media.php:3053
+#: wp-admin/includes/nav-menu.php:1073 wp-admin/themes.php:386
+#: wp-admin/edit-link-form.php:128 wp-admin/edit-tag-form.php:189
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:262
 msgid "Description"
 msgstr "Aprašymas"
 
@@ -10315,15 +10599,20 @@ msgstr "Atlikėjas"
 
 #: wp-includes/media-template.php:432 wp-includes/media-template.php:624
 #: wp-includes/revision.php:34 wp-includes/class-wp-editor.php:1103
-#: wp-includes/js/dist/editor.js:7465
+#: wp-includes/js/dist/editor.js:7465 wp-admin/includes/media.php:1294
+#: wp-admin/includes/media.php:2454 wp-admin/includes/media.php:2772
+#: wp-admin/includes/ajax-actions.php:2063
+#: wp-admin/includes/class-wp-posts-list-table.php:1534
+#: wp-admin/includes/dashboard.php:523
 msgid "Title"
 msgstr "Pavadinimas"
 
-#: wp-includes/media-template.php:407
+#: wp-includes/media-template.php:407 wp-admin/includes/media.php:3135
 msgid "Bitrate:"
 msgstr "„Bitrate“:"
 
 #: wp-includes/media-template.php:399 wp-includes/media-template.php:588
+#: wp-admin/includes/media.php:3134
 msgid "Length:"
 msgstr "Ilgis:"
 
@@ -10332,11 +10621,12 @@ msgstr "Ilgis:"
 msgid "%1$s by %2$s pixels"
 msgstr "%1$s x %2$s pikseliai"
 
-#: wp-includes/media-template.php:389
+#: wp-includes/media-template.php:389 wp-admin/includes/media.php:1577
+#: wp-admin/includes/media.php:3211
 msgid "Dimensions:"
 msgstr "Dimensijos:"
 
-#: wp-includes/media-template.php:386
+#: wp-includes/media-template.php:386 wp-admin/includes/media.php:3127
 msgid "File size:"
 msgstr "Failo dydis:"
 
@@ -10344,15 +10634,19 @@ msgstr "Failo dydis:"
 msgid "Uploaded on:"
 msgstr "Įkelta:"
 
-#: wp-includes/media-template.php:383
+#: wp-includes/media-template.php:383 wp-admin/includes/media.php:1574
+#: wp-admin/includes/media.php:3098
 msgid "File type:"
 msgstr "Failo tipas:"
 
-#: wp-includes/media-template.php:382
+#: wp-includes/media-template.php:382 wp-admin/includes/media.php:1573
+#: wp-admin/includes/media.php:3095
+#: wp-admin/includes/class-wp-media-list-table.php:407
 msgid "File name:"
 msgstr "Failo pavadinimas:"
 
 #: wp-includes/media-template.php:379 wp-includes/media-template.php:554
+#: wp-admin/includes/media.php:884
 msgid "Saved."
 msgstr "Išsaugota."
 
@@ -10361,7 +10655,8 @@ msgid "Document Preview"
 msgstr "Dokumento peržiūra"
 
 #: wp-includes/media-template.php:369 wp-includes/media-template.php:583
-#: wp-includes/media.php:3709
+#: wp-includes/media.php:3709 wp-admin/includes/media.php:1555
+#: wp-admin/includes/media.php:2936
 msgid "Edit Image"
 msgstr "Redaguoti paveikslėlį"
 
@@ -10384,12 +10679,16 @@ msgstr "Įkeliama"
 #: wp-includes/media-template.php:296
 #: wp-includes/js/dist/block-library.js:18180
 #: wp-includes/js/dist/block-library.js:19806
+#: wp-admin/includes/class-wp-media-list-table.php:45
 msgid "Grid View"
 msgstr "Tinklelio peržiūra"
 
 #: wp-includes/media-template.php:293
 #: wp-includes/js/dist/block-library.js:18171
 #: wp-includes/js/dist/block-library.js:19797
+#: wp-admin/includes/class-wp-screen.php:1285
+#: wp-admin/includes/class-wp-media-list-table.php:44
+#: wp-admin/includes/class-wp-list-table.php:169
 msgid "List View"
 msgstr "Sąrašo peržiūra"
 
@@ -10398,15 +10697,15 @@ msgstr "Sąrašo peržiūra"
 msgid "Suggested image dimensions: %1$s by %2$s pixels."
 msgstr "Siūlomas dydis: %1$s x %2$s pikselių."
 
-#: wp-includes/media-template.php:269
+#: wp-includes/media-template.php:269 wp-admin/includes/media.php:2116
 msgid "Maximum upload file size: %s."
 msgstr "Maksimalus įkeliamo failo dydis: %s."
 
-#: wp-includes/media-template.php:240
+#: wp-includes/media-template.php:240 wp-admin/includes/media.php:2076
 msgid "Select Files"
 msgstr "Pasirinkti failus"
 
-#: wp-includes/media-template.php:239
+#: wp-includes/media-template.php:239 wp-admin/includes/media.php:2075
 msgctxt "Uploader: Drop files here - or - Select Files"
 msgid "or"
 msgstr "arba"
@@ -10419,7 +10718,7 @@ msgstr "Atitempkite norimus įkelti failus"
 msgid "Upload Limit Exceeded"
 msgstr "Viršytas įkeliamų failų limitas"
 
-#: wp-includes/media-template.php:228
+#: wp-includes/media-template.php:228 wp-admin/includes/media.php:1942
 msgid "The web browser on your device cannot be used to upload files. You may be able to use the <a href=\"%s\">native app for your device</a> instead."
 msgstr "Jūsų naudojama naršyklė netinkama failams įkelti. Bet galite pasinaudoti <a href=\"%s\">jūsų įrenginiui skirta programa</a>."
 
@@ -10434,39 +10733,39 @@ msgstr "Atitempkite norimus įkelti failus"
 
 #. translators: 1: link to tutorial, 2: additional link attributes, 3:
 #. accessibility text
-#: wp-includes/media-template.php:167
+#: wp-includes/media-template.php:167 wp-admin/includes/media.php:3024
 msgid "<a href=\"%1$s\" %2$s>Describe the purpose of the image%3$s</a>. Leave empty if the image is purely decorative."
 msgstr "<a href=\"%1$s\" %2$s>Apibūdinkite paveikslėlio paskirtį%3$s</a>. Nepildykite jei paveikslėlio paskirtis yra tik dekoratyvinė."
 
-#: wp-includes/embed.php:1156
+#: wp-includes/embed.php:1169
 msgid "Close sharing dialog"
 msgstr "Uždaryti dalinimosi dialogą"
 
-#: wp-includes/embed.php:1151
+#: wp-includes/embed.php:1164
 msgid "Copy and paste this code into your site to embed"
 msgstr "Įterpkite šį kodą savo svetainėje"
 
-#: wp-includes/embed.php:1144
+#: wp-includes/embed.php:1157
 msgid "Copy and paste this URL into your WordPress site to embed"
 msgstr "Įterpkite šią nuorodą į savo WordPress tinklalapį"
 
-#: wp-includes/embed.php:1137
+#: wp-includes/embed.php:1150
 msgid "HTML Embed"
 msgstr "HTML įterpinys"
 
-#: wp-includes/embed.php:1134
+#: wp-includes/embed.php:1147
 msgid "WordPress Embed"
 msgstr "WordPress įterpinys"
 
-#: wp-includes/embed.php:1129
+#: wp-includes/embed.php:1142
 msgid "Sharing options"
 msgstr "Dalinimosi nustatymai"
 
-#: wp-includes/embed.php:1112
+#: wp-includes/embed.php:1125
 msgid "Open sharing dialog"
 msgstr "Atidaryti dalinimosi dialogą"
 
-#: wp-includes/embed.php:1088
+#: wp-includes/embed.php:1101
 msgid "%s <span class=\"screen-reader-text\">Comment</span>"
 msgid_plural "%s <span class=\"screen-reader-text\">Comments</span>"
 msgstr[0] "%s <span class=\"screen-reader-text\">komentaras</span>"
@@ -10474,7 +10773,7 @@ msgstr[1] "%s <span class=\"screen-reader-text\">komentarai</span>"
 msgstr[2] ""
 
 #. translators: %s: Name of current post
-#: wp-includes/embed.php:933 wp-includes/post-template.php:290
+#: wp-includes/embed.php:946 wp-includes/post-template.php:290
 msgid "Continue reading %s"
 msgstr "Tęskite %s skaitymą"
 
@@ -10483,7 +10782,8 @@ msgstr "Tęskite %s skaitymą"
 msgid "&#8220;%1$s&#8221; &#8212; %2$s"
 msgstr "„%1$s“ &#8212; %2$s"
 
-#: wp-includes/class-wp-widget.php:143
+#: wp-includes/class-wp-widget.php:143 wp-admin/includes/widgets.php:267
+#: wp-admin/widgets.php:302
 msgid "There are no options for this widget."
 msgstr "Valdiklis neturi nustatymų."
 
@@ -10509,6 +10809,7 @@ msgstr "Slapukas neegzistuoja."
 #: wp-includes/class-wp-customize-panel.php:366
 #: wp-includes/customize/class-wp-customize-themes-panel.php:80
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:82
+#: wp-admin/includes/class-wp-screen.php:939 wp-admin/customize.php:213
 msgid "Help"
 msgstr "Pagalba"
 
@@ -10518,11 +10819,13 @@ msgstr "Pagalba"
 #: wp-includes/customize/class-wp-customize-themes-panel.php:70
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:72
 #: wp-includes/class-wp-customize-nav-menus.php:1076
-#: wp-includes/js/dist/edit-post.js:3163
+#: wp-includes/js/dist/edit-post.js:3163 wp-admin/includes/ms.php:49
+#: wp-admin/theme-install.php:59
 msgid "Back"
 msgstr "Atgal"
 
 #: wp-includes/class-wp-customize-section.php:342
+#: wp-admin/includes/template.php:1432
 msgid "Press return or enter to open this section"
 msgstr "Atidarykite šią skiltį spausdami „Enter“"
 
@@ -10692,13 +10995,22 @@ msgid "%d WordPress Update"
 msgstr "%d WordPress atnaujinimas"
 
 #: wp-includes/update.php:159 wp-includes/update.php:383
-#: wp-includes/update.php:568
+#: wp-includes/update.php:568 wp-admin/includes/theme.php:511
+#: wp-admin/includes/translation-install.php:64
+#: wp-admin/includes/update.php:136 wp-admin/includes/plugin-install.php:179
 msgid "(WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.)"
 msgstr "(WordPress nepavyko sukurti saugaus ryšio su WordPress.org. Susisiekite su serverio administratoriumi.)"
 
 #. translators: %s: support forums URL
 #: wp-includes/update.php:157 wp-includes/update.php:381
-#: wp-includes/update.php:566
+#: wp-includes/update.php:566 wp-admin/includes/theme.php:509
+#: wp-admin/includes/theme.php:523 wp-admin/includes/theme.php:538
+#: wp-admin/includes/translation-install.php:62
+#: wp-admin/includes/translation-install.php:76
+#: wp-admin/includes/translation-install.php:88
+#: wp-admin/includes/update.php:134 wp-admin/includes/plugin-install.php:177
+#: wp-admin/includes/plugin-install.php:190
+#: wp-admin/includes/plugin-install.php:205 wp-admin/theme-install.php:62
 msgid "An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href=\"%s\">support forums</a>."
 msgstr "Įvyko nenumatyta klaida. Kažkas gali būti blogai su WordPress.org serveriu ar Jūsų serverio nustatymais. Jei problema nepranyksta, kreipkitės į <a href=\"%s\">pagalbos forumus</a>."
 
@@ -10794,6 +11106,8 @@ msgstr "Juoda"
 
 #. translators: used between list items, there is a space after the comma
 #: wp-includes/class-wp-theme.php:846
+#: wp-admin/includes/class-wp-media-list-table.php:592
+#: wp-admin/includes/class-wp-posts-list-table.php:1210
 msgid ", "
 msgstr ", "
 
@@ -10810,6 +11124,9 @@ msgid "The parent theme is missing. Please install the \"%s\" parent theme."
 msgstr "Tėvinė tema nerasta. Įdiekite „%s“ tėvinę temą."
 
 #: wp-includes/class-wp-theme.php:295
+#: wp-admin/includes/class-wp-themes-list-table.php:246
+#: wp-admin/theme-editor.php:43 wp-admin/theme-editor.php:349
+#: wp-admin/update-core.php:409
 msgid "https://developer.wordpress.org/themes/advanced-topics/child-themes/"
 msgstr "https://developer.wordpress.org/themes/advanced-topics/child-themes/"
 
@@ -10839,7 +11156,8 @@ msgstr "Stiliaus failas nerastas (sylesheet is missing)"
 msgid "The theme directory \"%s\" does not exist."
 msgstr "Temos direktorija „%s“ neegzistuoja."
 
-#: wp-includes/feed.php:554
+#: wp-includes/feed.php:554 wp-admin/link-parse-opml.php:77
+#: wp-admin/link-parse-opml.php:78
 msgid "PHP's XML extension is not available. Please contact your hosting provider to enable PHP's XML extension."
 msgstr "Neįjungtas PHP XML plėtinys. Susisiekite su talpinimo tiekėju dėl PHP XML plėtinio įjungimo."
 
@@ -10869,73 +11187,73 @@ msgid "Installed"
 msgstr "Įdiegta"
 
 #. translators: %d: Comment ID
-#: wp-includes/comment.php:3526
+#: wp-includes/comment.php:3531
 msgid "Comment %d contains personal data but could not be anonymized."
 msgstr "Komentare %d yra asmeninių duomenų, kurių neįmanoma anonimizuoti."
 
 #. translators: Name of a comment's author after being anonymized.
-#: wp-includes/comment.php:3495 wp-includes/class-wp-theme.php:839
+#: wp-includes/comment.php:3500 wp-includes/class-wp-theme.php:839
 #: wp-includes/comment-template.php:31
 msgid "Anonymous"
 msgstr "Anonimas"
 
-#: wp-includes/comment.php:3382
+#: wp-includes/comment.php:3387
 msgid "Comment URL"
 msgstr "Komentaro nuoroda"
 
-#: wp-includes/comment.php:3381
+#: wp-includes/comment.php:3386
 msgid "Comment Content"
 msgstr "Komentaro tekstas"
 
-#: wp-includes/comment.php:3380
+#: wp-includes/comment.php:3385
 msgid "Comment Date"
 msgstr "Komentaro data"
 
-#: wp-includes/comment.php:3379
+#: wp-includes/comment.php:3384
 msgid "Comment Author User Agent"
 msgstr "Komentaro autoriaus naršyklė"
 
-#: wp-includes/comment.php:3378
+#: wp-includes/comment.php:3383
 msgid "Comment Author IP"
 msgstr "Komentaro autoriaus IP adresas"
 
-#: wp-includes/comment.php:3377
+#: wp-includes/comment.php:3382
 msgid "Comment Author URL"
 msgstr "Komentaro autoriaus nuoroda"
 
-#: wp-includes/comment.php:3376
+#: wp-includes/comment.php:3381
 msgid "Comment Author Email"
 msgstr "Komentaro autoriaus el. paštas"
 
-#: wp-includes/comment.php:3375
+#: wp-includes/comment.php:3380 wp-admin/edit-form-comment.php:45
 msgid "Comment Author"
 msgstr "Komentaro autorius"
 
-#: wp-includes/comment.php:3340 wp-includes/comment.php:3449
+#: wp-includes/comment.php:3345 wp-includes/comment.php:3454
 msgid "WordPress Comments"
 msgstr "WordPress komentarai"
 
-#: wp-includes/comment.php:3324
+#: wp-includes/comment.php:3329
 msgid "<strong>ERROR</strong>: The comment could not be saved. Please try again later."
 msgstr "<strong>KLAIDA</strong>: Nepavyko išsaugoti komentaro, pabandykite dar kartą."
 
-#: wp-includes/comment.php:3310
+#: wp-includes/comment.php:3315
 msgid "<strong>ERROR</strong>: please type a comment."
 msgstr "<strong>KLAIDA</strong>: parašykite komentarą."
 
-#: wp-includes/comment.php:3285
+#: wp-includes/comment.php:3290
 msgid "<strong>ERROR</strong>: please enter a valid email address."
 msgstr "<strong>KLAIDA</strong>: įveskite tinkamą el. pašto adresą."
 
-#: wp-includes/comment.php:3283
+#: wp-includes/comment.php:3288
 msgid "<strong>ERROR</strong>: please fill the required fields (name, email)."
 msgstr "<strong>KLAIDA</strong>: užpildykite būtinus laukelius (vardas, el. paštas)."
 
-#: wp-includes/comment.php:3223
+#: wp-includes/comment.php:3228
 msgid "Sorry, comments are not allowed for this item."
 msgstr "Deja, komentarai neleidžiami."
 
-#: wp-includes/comment.php:2248
+#: wp-includes/comment.php:2253
 msgid "Could not update comment status"
 msgstr "Nepavyko atnaujinti komentaro statuso"
 
@@ -10968,12 +11286,12 @@ msgctxt "comment status"
 msgid "Trash"
 msgstr "Šiukšlės"
 
-#: wp-includes/comment.php:259
+#: wp-includes/comment.php:259 wp-admin/edit-form-comment.php:101
 msgctxt "comment status"
 msgid "Spam"
 msgstr "Brukalas"
 
-#: wp-includes/comment.php:258
+#: wp-includes/comment.php:258 wp-admin/edit-form-comment.php:99
 msgctxt "comment status"
 msgid "Approved"
 msgstr "Patvirtintas"
@@ -11028,11 +11346,11 @@ msgstr "Destination directory for file streaming does not exist or is not writab
 msgid "User has blocked requests through HTTP."
 msgstr "Vartotojas užblokavo HTTP užklausas."
 
-#: wp-includes/class-wp-admin-bar.php:441
+#: wp-includes/class-wp-admin-bar.php:441 wp-admin/user-edit.php:315
 msgid "Toolbar"
 msgstr "Įrankių juosta"
 
-#: wp-includes/class-wp-admin-bar.php:439
+#: wp-includes/class-wp-admin-bar.php:439 wp-admin/menu-header.php:265
 msgid "Skip to toolbar"
 msgstr "Eiti prie įrankių juostos"
 
@@ -11403,6 +11721,7 @@ msgid "Term does not exist."
 msgstr "Terminas neegzistuoja."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-terms-controller.php:151
+#: wp-admin/edit-tags.php:23
 msgid "Sorry, you are not allowed to edit terms in this taxonomy."
 msgstr "Deja, Jūs negalite redaguoti šios taksonomijos elementų."
 
@@ -11432,6 +11751,7 @@ msgid "Invalid parent post ID."
 msgstr "Netinkamas tėvinio įrašo ID."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php:182
+#: wp-admin/media-upload.php:39
 msgid "Invalid item ID."
 msgstr "Netinkamas elemento ID"
 
@@ -11448,17 +11768,19 @@ msgid "The %s property has an invalid stored value, and cannot be updated to nul
 msgstr "Sąvybė %s turi netinkamą išsaugotą reikšmę ir negali būti pakeista į tuščia."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:815
+#: wp-admin/includes/ms.php:45
 msgid "You have used your space quota. Please delete files before uploading."
 msgstr "Jūs išnaudojote savo vietos limitą. Prašome ištrinti failus prieš įkeliant naujus."
 
 #. translators: %s: maximum allowed file size in kilobytes
 #: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:808
-#: wp-includes/ms-functions.php:1984
+#: wp-includes/ms-functions.php:1984 wp-admin/includes/ms.php:41
 msgid "This file is too big. Files must be less than %s KB in size."
 msgstr "Failas per didelis. Failai turi būti mažesni negu %s KB dydžio."
 
 #. translators: %s: required disk space in kilobytes
 #: wp-includes/rest-api/endpoints/class-wp-rest-attachments-controller.php:803
+#: wp-admin/includes/ms.php:36
 msgid "Not enough space to upload. %s KB needed."
 msgstr "Nepakanka laisvos vietos įkėlimui. Reikalingi %s KB."
 
@@ -11657,6 +11979,8 @@ msgstr "Neteisingai užpildytas vartotojo laukelis"
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1100
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:1110
+#: wp-admin/includes/user.php:61 wp-admin/users.php:123
+#: wp-admin/network/site-users.php:150
 msgid "Sorry, you are not allowed to give users that role."
 msgstr "Deja, Jūs negalite suteikti tos rolės vartotojams."
 
@@ -11693,6 +12017,7 @@ msgstr "Vartotojo vardas nėra redaguojamas."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:647
 #: wp-includes/rest-api.php:1217 wp-includes/user.php:3328
+#: wp-admin/network/site-new.php:94
 msgid "Invalid email address."
 msgstr "Neteisingas el. pašto adresas."
 
@@ -12314,6 +12639,7 @@ msgstr "Taksonomijos naudojamos teisės."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-taxonomies-controller.php:95
 #: wp-includes/rest-api/endpoints/class-wp-rest-taxonomies-controller.php:153
+#: wp-admin/edit-tags.php:29
 msgid "Sorry, you are not allowed to manage terms in this taxonomy."
 msgstr "Deja, Jūs negalite tvarkyti terminų šioje taksonomijoje."
 
@@ -12525,6 +12851,7 @@ msgid "Sorry, you are not allowed to change the comment type."
 msgstr "Deja, Jūs negalite pakeisti komentaro tipo."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:674
+#: wp-admin/comment.php:70
 msgid "Sorry, you are not allowed to edit this comment."
 msgstr "Deja, Jūs negalite redaguoti šio komentaro."
 
@@ -12573,7 +12900,7 @@ msgstr "Deja, Jūs negalite redaguoti komentarų '%s'."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:403
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:420
-#: wp-includes/comment.php:3275
+#: wp-includes/comment.php:3280
 msgid "Sorry, you must be logged in to comment."
 msgstr "Deja, norėdami komentuoti turite prisijungti."
 
@@ -12587,6 +12914,7 @@ msgstr "Užklausos parametras neleidžiamas: %s"
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:138
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:356
+#: wp-admin/edit-comments.php:14
 msgid "Sorry, you are not allowed to edit comments."
 msgstr "Deja, Jūs negalite redaguoti komentarų."
 
@@ -12718,21 +13046,25 @@ msgid "Custom HTML Widget"
 msgstr "HTML valdiklis"
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:322
+#: wp-admin/theme-editor.php:36 wp-admin/plugin-editor.php:132
 msgid "Screen reader users: when in forms mode, you may need to press the Esc key twice."
 msgstr "Ekrano skaityklių naudotojai: formų režime gali tekti Esc klavišą spausti du kartus."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:321
-#: wp-includes/class-wp-customize-manager.php:5579
+#: wp-includes/class-wp-customize-manager.php:5606 wp-admin/theme-editor.php:35
+#: wp-admin/plugin-editor.php:131
 msgid "To move away from this area, press the Esc key followed by the Tab key."
 msgstr "Jei norite pereiti į kitą lauką, spustelėkite Esc, o tuomet Tab klavišą."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:320
-#: wp-includes/class-wp-customize-manager.php:5578
+#: wp-includes/class-wp-customize-manager.php:5605 wp-admin/theme-editor.php:34
+#: wp-admin/plugin-editor.php:130
 msgid "In the editing area, the Tab key enters a tab character."
 msgstr "Redagavimo dalyje, Tab klavišas įveda tabuliacijos simbolį."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:318
-#: wp-includes/class-wp-customize-manager.php:5576
+#: wp-includes/class-wp-customize-manager.php:5603 wp-admin/theme-editor.php:32
+#: wp-admin/plugin-editor.php:128
 msgid "When using a keyboard to navigate:"
 msgstr "Naudojant navigaciją klaviatūra:"
 
@@ -12741,17 +13073,27 @@ msgstr "Naudojant navigaciją klaviatūra:"
 #: wp-includes/media-template.php:173
 #: wp-includes/customize/class-wp-customize-nav-menu-locations-control.php:59
 #: wp-includes/functions.php:7035
-#: wp-includes/class-wp-customize-manager.php:4270
-#: wp-includes/class-wp-customize-manager.php:5572
-#: wp-includes/class-wp-customize-manager.php:5593
+#: wp-includes/class-wp-customize-manager.php:4297
+#: wp-includes/class-wp-customize-manager.php:5599
+#: wp-includes/class-wp-customize-manager.php:5620
 #: wp-includes/js/dist/components.js:31986 wp-includes/js/dist/editor.js:9198
+#: wp-admin/includes/theme.php:733 wp-admin/includes/misc.php:1698
+#: wp-admin/includes/meta-boxes.php:68 wp-admin/includes/media.php:3030
+#: wp-admin/includes/class-wp-site-health.php:659
+#: wp-admin/includes/class-wp-site-health.php:751
+#: wp-admin/includes/class-wp-site-health.php:951
+#: wp-admin/includes/class-wp-site-health.php:1184
+#: wp-admin/includes/class-wp-site-health.php:1222
+#: wp-admin/includes/class-wp-site-health.php:1291
+#: wp-admin/includes/dashboard.php:1130 wp-admin/includes/dashboard.php:1142
+#: wp-admin/includes/dashboard.php:1155 wp-admin/includes/dashboard.php:1640
 msgid "(opens in a new tab)"
 msgstr "(atsidaro naujame naršyklės skirtuke)"
 
 #. translators: 1: link to user profile, 2: additional link attributes, 3:
 #. accessibility text
 #: wp-includes/widgets/class-wp-widget-custom-html.php:307
-#: wp-includes/class-wp-customize-manager.php:5587
+#: wp-includes/class-wp-customize-manager.php:5614
 msgid "The edit field automatically highlights code syntax. You can disable this in your <a href=\"%1$s\" %2$s>user profile%3$s</a> to work in plain text mode."
 msgstr "Redagavimo laukas automatiškai pažymi kodo sintaksę. Galite tai išjungti savo <a href=\"%1$s\" %2$s>vartotojo profilyje%3$s</a>, kad veiktų tekstiniu rėžimu."
 
@@ -12993,6 +13335,8 @@ msgid "Select Link Category:"
 msgstr "Pasirinkite nuorodų kategoriją:"
 
 #: wp-includes/widgets/class-wp-widget-links.php:29
+#: wp-admin/link-manager.php:47
+#: wp-admin/includes/class-wp-terms-list-table.php:188 wp-admin/menu.php:68
 msgid "Links"
 msgstr "Nuorodos"
 
@@ -13149,16 +13493,17 @@ msgstr "Rodo paveikslėlių galeriją"
 #: wp-includes/widgets/class-wp-widget-media-gallery.php:27
 #: wp-includes/js/dist/editor.js:8815
 #: wp-includes/js/dist/block-library.js:13262
-#: wp-includes/js/dist/block-library.js:13421
+#: wp-includes/js/dist/block-library.js:13421 wp-admin/includes/media.php:20
 msgid "Gallery"
 msgstr "Galerija"
 
 #: wp-includes/widgets/class-wp-widget-rss.php:81
+#: wp-admin/includes/dashboard.php:1092
 msgid "Unknown Feed"
 msgstr "Nežinomas srautas"
 
 #: wp-includes/widgets/class-wp-widget-rss.php:33
-#: wp-includes/js/dist/block-library.js:19889
+#: wp-includes/js/dist/block-library.js:19889 wp-admin/includes/import.php:213
 msgid "RSS"
 msgstr "RSS"
 
@@ -13191,6 +13536,7 @@ msgstr "Paveikslėlio pavadinimo atributas"
 #: wp-includes/media-template.php:1085
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:106
 #: wp-includes/class-wp-editor.php:1741
+#: wp-admin/includes/class-walker-nav-menu-edit.php:185
 msgid "Open link in a new tab"
 msgstr "Atidaryti nuorodą naujame skirtuke"
 
@@ -13220,6 +13566,12 @@ msgstr "Paveikslėlio CSS klasė"
 #: wp-includes/js/dist/block-editor.js:15943
 #: wp-includes/js/dist/block-editor.js:16499
 #: wp-includes/js/dist/block-library.js:11720
+#: wp-admin/includes/class-wp-links-list-table.php:132
+#: wp-admin/includes/class-walker-nav-menu-edit.php:165
+#: wp-admin/includes/media.php:2764 wp-admin/includes/template.php:476
+#: wp-admin/includes/nav-menu.php:294 wp-admin/comment.php:171
+#: wp-admin/edit-form-comment.php:59
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:237
 msgid "URL"
 msgstr "URL"
 
@@ -13234,33 +13586,35 @@ msgstr "Nuoroda"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:96
 #: wp-includes/media-template.php:425 wp-includes/media-template.php:903
-#: wp-includes/media-template.php:970
+#: wp-includes/media-template.php:970 wp-admin/includes/media.php:1369
+#: wp-admin/includes/media.php:2781 wp-admin/includes/media.php:3017
 msgid "Alternative Text"
 msgstr "„Alt“ atributas"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:89
 #: wp-includes/media-template.php:450 wp-includes/media-template.php:642
 #: wp-includes/media-template.php:913 wp-includes/media-template.php:980
-#: wp-includes/class-wp-editor.php:1224
+#: wp-includes/class-wp-editor.php:1224 wp-admin/includes/media.php:1299
+#: wp-admin/includes/media.php:3038
 msgid "Caption"
 msgstr "Antraštė"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:82
 #: wp-includes/media-template.php:1042 wp-includes/class-wp-editor.php:1222
-#: wp-includes/js/dist/block-library.js:10348
+#: wp-includes/js/dist/block-library.js:10348 wp-admin/options-media.php:61
 msgid "Height"
 msgstr "Aukštis"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:76
 #: wp-includes/media-template.php:1042 wp-includes/class-wp-editor.php:1223
 #: wp-includes/js/dist/block-library.js:10341
-#: wp-includes/js/dist/format-library.js:706
+#: wp-includes/js/dist/format-library.js:706 wp-admin/options-media.php:58
 msgid "Width"
 msgstr "Plotis"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:70
 #: wp-includes/media-template.php:746 wp-includes/media-template.php:824
-#: wp-includes/media-template.php:1007
+#: wp-includes/media-template.php:1007 wp-admin/includes/media.php:1126
 msgid "Size"
 msgstr "Dydis"
 
@@ -13342,6 +13696,7 @@ msgstr "%1$s apie %2$s"
 
 #: wp-includes/widgets/class-wp-widget-recent-comments.php:30
 #: wp-includes/widgets/class-wp-widget-recent-comments.php:77
+#: wp-admin/includes/dashboard.php:944
 msgid "Recent Comments"
 msgstr "Naujausi komentarai"
 
@@ -13366,6 +13721,11 @@ msgstr "Redaguoti meniu"
 #: wp-includes/widgets/class-wp-nav-menu-widget.php:155
 #: wp-includes/class-wp-customize-control.php:584
 #: wp-includes/class-wp-customize-nav-menus.php:641
+#: wp-admin/options-reading.php:98 wp-admin/options-reading.php:114
+#: wp-admin/includes/template.php:702 wp-admin/privacy.php:226
+#: wp-admin/nav-menus.php:778 wp-admin/widgets.php:327 wp-admin/export.php:211
+#: wp-admin/export.php:216 wp-admin/export.php:258 wp-admin/export.php:263
+#: wp-admin/export.php:298 wp-admin/export.php:303
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; Pasirinkite &mdash;"
 
@@ -13415,7 +13775,7 @@ msgstr "Pasirinkite metus"
 #: wp-includes/widgets/class-wp-widget-archives.php:43
 #: wp-includes/blocks/archives.php:35 wp-includes/general-template.php:1602
 #: wp-includes/theme-compat/sidebar.php:119
-#: wp-includes/js/dist/block-library.js:17307
+#: wp-includes/js/dist/block-library.js:17307 wp-admin/includes/file.php:26
 msgid "Archives"
 msgstr "Archyvai"
 
@@ -13450,6 +13810,8 @@ msgstr "Pasirinkite kategoriją"
 #: wp-includes/js/dist/block-library.js:18692
 #: wp-includes/js/dist/block-library.js:18744
 #: wp-includes/js/dist/block-library.js:18791
+#: wp-admin/includes/class-wp-links-list-table.php:133
+#: wp-admin/edit-link-form.php:29
 msgid "Categories"
 msgstr "Kategorijos"
 
@@ -13502,6 +13864,7 @@ msgstr "Pavadinimas:"
 #: wp-includes/widgets/class-wp-widget-pages.php:30
 #: wp-includes/widgets/class-wp-widget-pages.php:43
 #: wp-includes/post-template.php:1257 wp-includes/theme-compat/sidebar.php:117
+#: wp-admin/export.php:235
 msgid "Pages"
 msgstr "Puslapiai"
 
@@ -13574,7 +13937,8 @@ msgid "Could not write file %1$s (%2$s)."
 msgstr "Nepavyko rašyti į failą %1$s (%2$s)"
 
 #. translators: %s: allowed space allocation
-#: wp-includes/class-wp-xmlrpc-server.php:6241
+#: wp-includes/class-wp-xmlrpc-server.php:6241 wp-admin/includes/media.php:2903
+#: wp-admin/includes/ms.php:231 wp-admin/includes/ms-deprecated.php:35
 msgid "Sorry, you have used your space allocation of %s. Please delete some files to upload more files."
 msgstr "Deja, Jūs išnaudojote Jums skirtą vietą (%s). Prašome ištrinti nereikalingus failus, kad galėtumėte įkelti naujų."
 
@@ -13594,7 +13958,8 @@ msgstr "Deja, Jūs negalite pakeisti puslapio autoriaus šio vartotojo vardu."
 msgid "Sorry, you are not allowed to change the post author as this user."
 msgstr "Deja, Jūs negalite pakeisti įrašo autoriaus šio vartotojo vardu."
 
-#: wp-includes/class-wp-xmlrpc-server.php:5295
+#: wp-includes/class-wp-xmlrpc-server.php:5295 wp-admin/includes/post.php:40
+#: wp-admin/includes/post.php:85
 msgid "Sorry, you are not allowed to create pages as this user."
 msgstr "Deja, Jūs negalite kurti puslapių šio vartotojo vardu."
 
@@ -13631,7 +13996,9 @@ msgid "Sorry, no such post."
 msgstr "Nėra tokio įrašo."
 
 #: wp-includes/class-wp-xmlrpc-server.php:4916
-#: wp-includes/class-wp-xmlrpc-server.php:4929
+#: wp-includes/class-wp-xmlrpc-server.php:4929 wp-admin/includes/file.php:390
+#: wp-admin/includes/file.php:450 wp-admin/includes/file.php:679
+#: wp-admin/includes/file.php:685
 msgid "Sorry, that file cannot be edited."
 msgstr "Deja, šio failo redaguoti negalima."
 
@@ -13652,6 +14019,9 @@ msgstr "Deja, versijavimas išjungtas."
 #: wp-includes/class-wp-xmlrpc-server.php:4230
 #: wp-includes/class-wp-xmlrpc-server.php:4281
 #: wp-includes/class-wp-xmlrpc-server.php:6232
+#: wp-admin/includes/ajax-actions.php:2314 wp-admin/async-upload.php:38
+#: wp-admin/upload.php:13 wp-admin/media-new.php:16
+#: wp-admin/media-upload.php:20
 msgid "Sorry, you are not allowed to upload files."
 msgstr "Deja, Jūs negalite įkelti failų."
 
@@ -13685,7 +14055,7 @@ msgstr "Komentaras būtinas."
 
 #: wp-includes/class-wp-xmlrpc-server.php:3825
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:476
-#: wp-includes/comment.php:3196
+#: wp-includes/comment.php:3201
 msgid "Sorry, comments are closed for this item."
 msgstr "Deja, šio įrašo komentuoti negalima."
 
@@ -13716,6 +14086,8 @@ msgstr "Deja, Jūs negalite moderuoti/redaguoti šio komentaro."
 #: wp-includes/class-wp-xmlrpc-server.php:3626
 #: wp-includes/class-wp-xmlrpc-server.php:3693
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:320
+#: wp-admin/comment.php:66 wp-admin/comment.php:264
+#: wp-admin/edit-comments.php:257
 msgid "Invalid comment ID."
 msgstr "Netinkamas komentaro ID."
 
@@ -13745,7 +14117,7 @@ msgstr "Jei norite pamatyti žymas, privalote turėti galimybę redaguoti tinkla
 #: wp-includes/class-wp-xmlrpc-server.php:3211
 #: wp-includes/class-wp-xmlrpc-server.php:4551
 #: wp-includes/class-wp-xmlrpc-server.php:4869
-#: wp-includes/class-wp-xmlrpc-server.php:6046
+#: wp-includes/class-wp-xmlrpc-server.php:6046 wp-admin/includes/post.php:465
 msgid "Sorry, you are not allowed to edit posts."
 msgstr "Deja, Jūs negalite redaguoti įrašų."
 
@@ -13758,7 +14130,7 @@ msgid "Sorry, you are not allowed to delete this page."
 msgstr "Deja, Jūs negalite ištrinti šio puslapio."
 
 #: wp-includes/class-wp-xmlrpc-server.php:2933
-#: wp-includes/class-wp-xmlrpc-server.php:3151
+#: wp-includes/class-wp-xmlrpc-server.php:3151 wp-admin/includes/post.php:463
 msgid "Sorry, you are not allowed to edit pages."
 msgstr "Deja, Jums neleidžiama redaguoti puslapių."
 
@@ -13769,7 +14141,8 @@ msgid "Sorry, no such page."
 msgstr "Deja, tokio puslapio nėra."
 
 #: wp-includes/class-wp-xmlrpc-server.php:2891
-#: wp-includes/class-wp-xmlrpc-server.php:3103
+#: wp-includes/class-wp-xmlrpc-server.php:3103 wp-admin/includes/post.php:255
+#: wp-admin/includes/ajax-actions.php:1885
 msgid "Sorry, you are not allowed to edit this page."
 msgstr "Deja, Jūs negalite redaguoti šio puslapio."
 
@@ -13790,6 +14163,7 @@ msgstr "Neteisinga rolė."
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:194
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:400
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:402
+#: wp-admin/users.php:16
 msgid "Sorry, you are not allowed to list users."
 msgstr "Deja, Jūs negalite peržiūrėti vartotojų."
 
@@ -13797,12 +14171,15 @@ msgstr "Deja, Jūs negalite peržiūrėti vartotojų."
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:362
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:641
 #: wp-includes/user.php:1532 wp-includes/user.php:1885
-#: wp-includes/user.php:1891
+#: wp-includes/user.php:1891 wp-admin/user-edit.php:23
+#: wp-admin/user-edit.php:25
 msgid "Invalid user ID."
 msgstr "Netinkamas vartotojo ID"
 
 #: wp-includes/class-wp-xmlrpc-server.php:2620
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:618
+#: wp-admin/user-edit.php:93 wp-admin/user-edit.php:125
+#: wp-admin/user-edit.php:181 wp-admin/users.php:106 wp-admin/users.php:132
 msgid "Sorry, you are not allowed to edit this user."
 msgstr "Deja, Jums neleidžiama redaguoti šio vartotojo."
 
@@ -13861,7 +14238,7 @@ msgstr "Ši taksonomija neturi hierarchijos."
 msgid "The term name cannot be empty."
 msgstr "Elemento pavadinimas negali būti tuščias."
 
-#: wp-includes/class-wp-xmlrpc-server.php:2018
+#: wp-includes/class-wp-xmlrpc-server.php:2018 wp-admin/edit-tags.php:86
 msgid "Sorry, you are not allowed to create terms in this taxonomy."
 msgstr "Deja, Jūs negalite kurti šios taksonomijos elementų."
 
@@ -13870,6 +14247,7 @@ msgstr "Deja, Jūs negalite kurti šios taksonomijos elementų."
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:142
 #: wp-includes/rest-api/endpoints/class-wp-rest-post-types-controller.php:90
 #: wp-includes/rest-api/endpoints/class-wp-rest-post-types-controller.php:139
+#: wp-admin/post.php:126 wp-admin/edit.php:17 wp-admin/edit.php:42
 msgid "Sorry, you are not allowed to edit posts in this post type."
 msgstr "Deja, Jūs negalite redaguoti šio tipo įrašų."
 
@@ -13939,6 +14317,8 @@ msgstr "Netinkamas autoriaus ID."
 #: wp-includes/class-wp-xmlrpc-server.php:5290
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:499
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:507
+#: wp-admin/includes/post.php:42 wp-admin/includes/post.php:87
+#: wp-admin/press-this.php:20 wp-admin/post-new.php:61
 msgid "Sorry, you are not allowed to create posts as this user."
 msgstr "Deja, Jūs negalite kurti įrašų šio vartotojo vardu."
 
@@ -13978,6 +14358,9 @@ msgstr "Įrašo tipas negali būti pakeistas."
 #: wp-includes/class-wp-xmlrpc-server.php:6515
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:405
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:650
+#: wp-admin/includes/post.php:257 wp-admin/includes/post.php:1848
+#: wp-admin/includes/post.php:1852 wp-admin/includes/media.php:3485
+#: wp-admin/includes/ajax-actions.php:1889
 msgid "Sorry, you are not allowed to edit this post."
 msgstr "Deja, Jūs negalite redaguoti šio įrašo."
 
@@ -14002,7 +14385,7 @@ msgstr "Deja, Jūs negalite redaguoti šio įrašo."
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:334
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:709
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:377
-#: wp-includes/post.php:3429 wp-includes/post.php:3992
+#: wp-includes/post.php:3432 wp-includes/post.php:4001
 #: wp-includes/revision.php:302
 msgid "Invalid post ID."
 msgstr "Netinkamas įrašo ID."
@@ -14017,6 +14400,9 @@ msgstr "Netinkamas įrašo ID."
 #: wp-includes/class-wp-xmlrpc-server.php:5664
 #: wp-includes/rest-api/endpoints/class-wp-rest-post-types-controller.php:131
 #: wp-includes/post.php:1398 wp-includes/class-wp-customize-nav-menus.php:878
+#: wp-admin/async-upload.php:45 wp-admin/post.php:122 wp-admin/post.php:237
+#: wp-admin/post.php:272 wp-admin/post.php:294 wp-admin/post-new.php:24
+#: wp-admin/edit.php:13 wp-admin/edit.php:36
 msgid "Invalid post type."
 msgstr "Neteisingas įrašo tipas."
 
@@ -14035,10 +14421,12 @@ msgid "Insufficient arguments passed to this XML-RPC method."
 msgstr "Insufficient arguments passed to this XML-RPC method."
 
 #: wp-includes/class-wp-xmlrpc-server.php:620
+#: wp-admin/options-discussion.php:54
 msgid "Allow link notifications from other blogs (pingbacks and trackbacks) on new articles"
 msgstr "Leisti pranešimus apie nuorodas iš kitų tinklalapių (atgalinius pranešimu ir atgalines nuorodas) naujuose įrašuose"
 
 #: wp-includes/class-wp-xmlrpc-server.php:615
+#: wp-admin/options-discussion.php:58
 msgid "Allow people to post comments on new articles"
 msgstr "Leisti skaitytojams komentuoti"
 
@@ -14082,11 +14470,13 @@ msgstr "Miniatiūros plotis"
 msgid "Allow new users to sign up"
 msgstr "Leisti naujiems vartotojams prisiregistruoti"
 
-#: wp-includes/class-wp-xmlrpc-server.php:560
+#: wp-includes/class-wp-xmlrpc-server.php:560 wp-admin/options-general.php:347
+#: wp-admin/options-general.php:349
 msgid "Time Format"
 msgstr "Laiko formatas"
 
-#: wp-includes/class-wp-xmlrpc-server.php:555
+#: wp-includes/class-wp-xmlrpc-server.php:555 wp-admin/options-general.php:309
+#: wp-admin/options-general.php:311
 msgid "Date Format"
 msgstr "Datos formatas"
 
@@ -14095,7 +14485,9 @@ msgid "Site Tagline"
 msgstr "Tinklalapio apibūdinimas"
 
 #: wp-includes/class-wp-xmlrpc-server.php:545
-#: wp-includes/class-wp-customize-manager.php:5011
+#: wp-includes/class-wp-customize-manager.php:5038
+#: wp-admin/options-general.php:64 wp-admin/install.php:115
+#: wp-admin/network/site-new.php:245
 msgid "Site Title"
 msgstr "Tinklalapio pavadinimas"
 
@@ -14107,11 +14499,14 @@ msgstr "Laiko juosta"
 msgid "Post Thumbnail"
 msgstr "Įrašo miniatiūra"
 
-#: wp-includes/class-wp-xmlrpc-server.php:528
+#: wp-includes/class-wp-xmlrpc-server.php:528 wp-admin/includes/file.php:53
+#: wp-admin/includes/file.php:61
 msgid "Stylesheet"
 msgstr "Stiliaus failas"
 
 #: wp-includes/class-wp-xmlrpc-server.php:523
+#: wp-admin/includes/meta-boxes.php:933
+#: wp-admin/includes/class-wp-posts-list-table.php:1694
 msgid "Template"
 msgstr "Šablono failas"
 
@@ -14135,11 +14530,13 @@ msgstr "Nuoroda į administravimo sąsają"
 msgid "Login Address (URL)"
 msgstr "Prisijungimo nuoroda (URL)"
 
-#: wp-includes/class-wp-xmlrpc-server.php:493
+#: wp-includes/class-wp-xmlrpc-server.php:493 wp-admin/options-general.php:91
+#: wp-admin/network/site-info.php:161 wp-admin/network/site-info.php:169
+#: wp-admin/network/site-new.php:229
 msgid "Site Address (URL)"
 msgstr "Tinklalapio adresas (URL)"
 
-#: wp-includes/class-wp-xmlrpc-server.php:488
+#: wp-includes/class-wp-xmlrpc-server.php:488 wp-admin/options-general.php:86
 msgid "WordPress Address (URL)"
 msgstr "WordPress adresas (URL)"
 
@@ -14371,7 +14768,11 @@ msgstr "Miesto pasirinkimas atnaujintas. Rodomi renginiai netoli %s."
 #. locale that would be recognizable * to most users. Use only the city name
 #. itself, without any region * or country. Use the endonym (native locale
 #. name) instead of the * English name if possible.
-#: wp-includes/script-loader.php:2294
+#. translators: %s is the name of the city we couldn't locate. * Replace the
+#. examples with cities in your locale, but test * that they match the expected
+#. location before including them. * Use endonyms (native locale names)
+#. whenever possible.
+#: wp-includes/script-loader.php:2294 wp-admin/includes/dashboard.php:1261
 msgid "We couldn&#8217;t locate %s. Please try another nearby city. For example: Kansas City; Springfield; Portland."
 msgstr "Toks miestas nerastas: %s. Pabandykite kitą miestą. Pavyzdžiui, Vilnius, Kaunas, Klaipėda."
 
@@ -14379,7 +14780,7 @@ msgstr "Toks miestas nerastas: %s. Pabandykite kitą miestą. Pavyzdžiui, Vilni
 msgid "Attend an upcoming event near you."
 msgstr "Dalyvaukite renginiuose netoli Jūsų."
 
-#: wp-includes/script-loader.php:2276
+#: wp-includes/script-loader.php:2276 wp-admin/includes/dashboard.php:1177
 msgid "An error occurred. Please try again."
 msgstr "Įvyko klaida. Pabandykite dar kartą."
 
@@ -14396,7 +14797,7 @@ msgstr "Ankstesnis"
 msgid "Next"
 msgstr "Toliau"
 
-#: wp-includes/script-loader.php:2219
+#: wp-includes/script-loader.php:2219 wp-admin/includes/dashboard.php:867
 msgid "Today"
 msgstr "Šiandien"
 
@@ -14404,7 +14805,7 @@ msgstr "Šiandien"
 #. Asian characters), enter 'characters_excluding_spaces' or
 #. 'characters_including_spaces'. Otherwise, enter 'words'. Do not translate
 #. into your own language.
-#: wp-includes/script-loader.php:2165 wp-includes/formatting.php:3768
+#: wp-includes/script-loader.php:2165 wp-includes/formatting.php:3798
 #: wp-includes/js/dist/editor.js:12850
 msgctxt "Word count type. Do not translate!"
 msgid "words"
@@ -14448,6 +14849,7 @@ msgstr ""
 #: wp-includes/script-loader.php:1834
 #: wp-includes/customize/class-wp-customize-nav-menu-control.php:57
 #: wp-includes/customize/class-wp-widget-area-customize-control.php:61
+#: wp-admin/includes/widgets.php:289
 msgid "Done"
 msgstr "Atlikta"
 
@@ -14485,7 +14887,7 @@ msgstr "Pasirinkite numatytą spalvą"
 #: wp-includes/customize/class-wp-customize-media-control.php:231
 #: wp-includes/customize/class-wp-customize-media-control.php:242
 #: wp-includes/customize/class-wp-customize-media-control.php:252
-#: wp-includes/class-wp-customize-manager.php:5109
+#: wp-includes/class-wp-customize-manager.php:5136
 #: wp-includes/js/dist/block-library.js:8094
 msgid "Default"
 msgstr "Numatytieji"
@@ -14495,11 +14897,13 @@ msgid "Clear color"
 msgstr "Išvalyti spalvą"
 
 #: wp-includes/script-loader.php:1794 wp-includes/media-template.php:662
-#: wp-includes/js/dist/components.js:30145
+#: wp-includes/js/dist/components.js:30145 wp-admin/theme-install.php:207
+#: wp-admin/theme-install.php:227
 msgid "Clear"
 msgstr "Išvalyti"
 
 #: wp-includes/script-loader.php:1781
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:281
 msgid "No plugins found. Try a different search."
 msgstr "Įskiepių nerasta. Pabandykite kitokią paiešką."
 
@@ -14509,6 +14913,8 @@ msgstr "Rastų įskiepių kiekis: %d"
 
 #: wp-includes/script-loader.php:1779 wp-includes/script-loader.php:1813
 #: wp-includes/class-wp-customize-widgets.php:781
+#: wp-admin/includes/ajax-actions.php:1014
+#: wp-admin/includes/ajax-actions.php:2181
 msgid "An error has occurred. Please reload the page and try again."
 msgstr "Įvyko klaida. Įkraukite puslapį iš naujo ir bandykite vėl."
 
@@ -14517,16 +14923,20 @@ msgid "Connection lost or the server is busy. Please try again later."
 msgstr "Nėra ryšio arba serveris nepasiekiamas. Prašome pabandyti vėliau."
 
 #. translators: %s: Importer name
-#: wp-includes/script-loader.php:1776
+#: wp-includes/script-loader.php:1776 wp-admin/import.php:131
+#: wp-admin/import.php:180
 msgid "Run %s"
 msgstr "Paleisti %s"
 
-#: wp-includes/script-loader.php:1774
+#: wp-includes/script-loader.php:1774 wp-admin/import.php:132
+#: wp-admin/import.php:181
 msgid "Run Importer"
 msgstr "Paleisti importavimo įrankį"
 
 #. translators: %s: Theme name
-#: wp-includes/script-loader.php:1773
+#: wp-includes/script-loader.php:1773 wp-admin/themes.php:351
+#: wp-admin/themes.php:517 wp-admin/themes.php:576
+#: wp-admin/theme-install.php:284
 msgctxt "theme"
 msgid "Activate %s"
 msgstr "Aktyvuoti %s"
@@ -14538,27 +14948,47 @@ msgid "Network Activate %s"
 msgstr "Aktyvuoti tinkle %s"
 
 #. translators: %s: Plugin name
+#. translators: %s: plugin name
 #: wp-includes/script-loader.php:1771
+#: wp-admin/includes/class-wp-plugins-list-table.php:678
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:571
 msgctxt "plugin"
 msgid "Activate %s"
 msgstr "Aktyvuoti %s"
 
 #. translators: %s: Plugin name
+#. translators: %s: plugin name
 #: wp-includes/script-loader.php:1771
+#: wp-admin/includes/class-wp-plugins-list-table.php:650
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:584
 msgctxt "plugin"
 msgid "Network Activate %s"
 msgstr "Aktyvuoti tinkle %s"
 
 #: wp-includes/script-loader.php:1769
+#: wp-admin/includes/class-theme-installer-skin.php:96
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:347
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:444
 msgid "Network Enable"
 msgstr "Įjungti tinkle"
 
+#. translators: %s: plugin name
 #: wp-includes/script-loader.php:1768
+#: wp-admin/includes/class-wp-plugins-list-table.php:488
+#: wp-admin/includes/class-wp-plugins-list-table.php:650
+#: wp-admin/includes/class-plugin-installer-skin.php:68
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:582
 msgid "Network Activate"
 msgstr "Aktyvuoti tinkle"
 
 #: wp-includes/script-loader.php:1767
 #: wp-includes/customize/class-wp-customize-theme-control.php:127
+#: wp-admin/includes/class-wp-themes-list-table.php:194
+#: wp-admin/includes/theme.php:768
+#: wp-admin/includes/class-theme-installer-skin.php:86
+#: wp-admin/includes/class-theme-upgrader-skin.php:76 wp-admin/themes.php:355
+#: wp-admin/themes.php:520 wp-admin/themes.php:581
+#: wp-admin/theme-install.php:290
 msgid "Live Preview"
 msgstr "Tiesioginė peržiūra"
 
@@ -14678,6 +15108,12 @@ msgid "Install %s now"
 msgstr "Įdiekite dabar: %s"
 
 #: wp-includes/script-loader.php:1731
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:528
+#: wp-admin/includes/theme-install.php:186
+#: wp-admin/includes/class-wp-theme-install-list-table.php:322
+#: wp-admin/includes/plugin-install.php:342
+#: wp-admin/includes/plugin-install.php:820 wp-admin/press-this.php:63
+#: wp-admin/import.php:159
 msgid "Install Now"
 msgstr "Įdiegti dabar"
 
@@ -14734,6 +15170,8 @@ msgid "Update %s now"
 msgstr "Atnaujinkite dabar: %s"
 
 #: wp-includes/script-loader.php:1712
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:550
+#: wp-admin/update-core.php:53
 msgid "Update Now"
 msgstr "Atnaujinti dabar"
 
@@ -14756,15 +15194,25 @@ msgid "Please select at least one item to perform this action on."
 msgstr "Prašome pasirinkite bent vieną elementą, kuriam norite atlikti šį veiksmą."
 
 #: wp-includes/script-loader.php:1706
+#: wp-admin/includes/class-wp-plugins-list-table.php:361
+#: wp-admin/plugin-editor.php:31
 msgid "You do not appear to have any plugins available at this time."
 msgstr "Kol kas neturite nei vieno įskiepio."
 
 #: wp-includes/script-loader.php:1705
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:102
+#: wp-admin/includes/class-wp-theme-install-list-table.php:61
+#: wp-admin/includes/file.php:32
 msgid "Search Results"
 msgstr "Paieškos rezultatai"
 
 #. translators: %s: Search string
-#: wp-includes/script-loader.php:1704
+#. translators: %s: search keywords
+#: wp-includes/script-loader.php:1704 wp-admin/edit-tags.php:335
+#: wp-admin/link-manager.php:101 wp-admin/plugins.php:586
+#: wp-admin/edit-comments.php:242 wp-admin/upload.php:276
+#: wp-admin/users.php:562 wp-admin/edit.php:369 wp-admin/network/themes.php:278
+#: wp-admin/network/users.php:263 wp-admin/network/sites.php:352
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Paieškos rezultatai pagal &#8220;%s&#8221;"
 
@@ -14781,6 +15229,7 @@ msgid "Plugin:"
 msgstr "Įskiepis:"
 
 #: wp-includes/script-loader.php:1668 wp-includes/script-loader.php:1678
+#: wp-admin/widgets.php:368
 msgid "Changes saved."
 msgstr "Pakeitimai išsaugoti"
 
@@ -14795,6 +15244,10 @@ msgstr "Išsaugant pakeitimus, įvyko klaida."
 #: wp-includes/script-loader.php:1639 wp-includes/class-wp-editor.php:1145
 #: wp-includes/js/dist/editor.js:12266
 #: wp-includes/js/dist/block-library.js:12424
+#: wp-admin/includes/image-edit.php:238 wp-admin/includes/meta-boxes.php:35
+#: wp-admin/includes/meta-boxes.php:359 wp-admin/includes/meta-boxes.php:1001
+#: wp-admin/includes/meta-boxes.php:1406 wp-admin/includes/widgets.php:293
+#: wp-admin/edit-link-form.php:28
 msgid "Save"
 msgstr "Išsaugoti"
 
@@ -14810,7 +15263,8 @@ msgstr "Nuoroda išsaugota"
 msgid "Saving Draft&#8230;"
 msgstr "Saugomas juodraštis&#8230;"
 
-#: wp-includes/script-loader.php:1606
+#: wp-includes/script-loader.php:1606 wp-admin/includes/meta-boxes.php:96
+#: wp-admin/includes/meta-boxes.php:130
 msgid "Privately Published"
 msgstr "Privačiai paskelbtas"
 
@@ -14818,24 +15272,32 @@ msgstr "Privačiai paskelbtas"
 msgid "Password Protected"
 msgstr "Apsaugota slaptažodžiu"
 
-#: wp-includes/script-loader.php:1604
+#: wp-includes/script-loader.php:1604 wp-admin/includes/meta-boxes.php:161
 msgid "Public, Sticky"
 msgstr "Viešas, Prilipintas"
 
 #: wp-includes/script-loader.php:1603 wp-includes/js/dist/editor.js:9869
+#: wp-admin/includes/meta-boxes.php:164 wp-admin/includes/meta-boxes.php:179
+#: wp-admin/network/site-info.php:183
 msgid "Public"
 msgstr "Viešas"
 
 #: wp-includes/script-loader.php:1602 wp-includes/post.php:891
 #: wp-includes/post.php:911 wp-includes/js/dist/editor.js:9873
+#: wp-admin/includes/meta-boxes.php:155 wp-admin/includes/meta-boxes.php:185
+#: wp-admin/includes/template.php:2032
+#: wp-admin/includes/class-wp-posts-list-table.php:1608
+#: wp-admin/includes/class-wp-posts-list-table.php:1786
 msgid "Private"
 msgstr "Privatus"
 
 #: wp-includes/script-loader.php:1600 wp-includes/js/dist/editor.js:11251
+#: wp-admin/includes/meta-boxes.php:50
 msgid "Save as Pending"
 msgstr "Išsaugoti"
 
-#: wp-includes/script-loader.php:1598
+#: wp-includes/script-loader.php:1598 wp-admin/includes/meta-boxes.php:316
+#: wp-admin/includes/meta-boxes.php:317
 msgctxt "post action/button label"
 msgid "Schedule"
 msgstr "Suplanuoti"
@@ -14850,6 +15312,7 @@ msgstr "Rodyti daugiau komentarų"
 
 #. translators: 1: month, 2: day, 3: year, 4: hour, 5: minute
 #: wp-includes/script-loader.php:1594 wp-includes/script-loader.php:1626
+#: wp-admin/includes/template.php:808
 msgid "%1$s %2$s, %3$s @ %4$s:%5$s"
 msgstr "%3$s %1$s %2$s @ %4$s : %5$s"
 
@@ -14866,6 +15329,8 @@ msgid "Publish on:"
 msgstr "Paskelbti:"
 
 #: wp-includes/script-loader.php:1588 wp-includes/class-wp-editor.php:1075
+#: wp-admin/includes/meta-boxes.php:141 wp-admin/includes/meta-boxes.php:188
+#: wp-admin/includes/template.php:834
 msgid "OK"
 msgstr "Gerai"
 
@@ -14886,7 +15351,9 @@ msgid "Remove term:"
 msgstr "Ištrinti terminą:"
 
 #: wp-includes/script-loader.php:1575 wp-includes/script-loader.php:1667
-#: wp-includes/post.php:4361
+#: wp-includes/post.php:4370 wp-admin/includes/meta-boxes.php:499
+#: wp-admin/includes/post.php:525 wp-admin/includes/post.php:2014
+#: wp-admin/includes/ajax-actions.php:124
 msgctxt "tag delimiter"
 msgid ","
 msgstr ","
@@ -14924,11 +15391,19 @@ msgid "No personal data was found for this user."
 msgstr "Nebuvo rasta šio vartotojo asmeninių duomenų."
 
 #. translators: %s: comments count
-#: wp-includes/script-loader.php:1540
+#: wp-includes/script-loader.php:1540 wp-admin/edit-comments.php:167
 msgid "Comments (%s)"
 msgstr "Komentarai (%s)"
 
-#: wp-includes/script-loader.php:1538 wp-includes/comment.php:3425
+#. translators: default privacy policy heading.
+#: wp-includes/script-loader.php:1538 wp-includes/comment.php:3430
+#: wp-admin/includes/misc.php:1847 wp-admin/includes/meta-boxes.php:1506
+#: wp-admin/includes/class-wp-media-list-table.php:318
+#: wp-admin/includes/class-wp-comments-list-table.php:393
+#: wp-admin/includes/file.php:20
+#: wp-admin/includes/class-wp-posts-list-table.php:643
+#: wp-admin/includes/class-wp-posts-list-table.php:1735
+#: wp-admin/edit-comments.php:171 wp-admin/edit-comments.php:232
 msgid "Comments"
 msgstr "Komentarai"
 
@@ -14949,6 +15424,8 @@ msgstr ""
 "Visi pakeitimai bus prarasti."
 
 #: wp-includes/script-loader.php:1535 wp-includes/comment-template.php:1633
+#: wp-admin/includes/class-wp-comments-list-table.php:653
+#: wp-admin/includes/dashboard.php:652
 msgid "Reply"
 msgstr "Atsakyti"
 
@@ -14963,11 +15440,12 @@ msgid "Invalid value."
 msgstr "Netinkama reikšmė."
 
 #: wp-includes/script-loader.php:1476 wp-includes/rest-api.php:1211
-#: wp-includes/post.php:3556
+#: wp-includes/post.php:3559 wp-admin/includes/post.php:183
 msgid "Invalid date."
 msgstr "Neteisinga data."
 
-#: wp-includes/script-loader.php:1475
+#: wp-includes/script-loader.php:1475 wp-admin/customize.php:183
+#: wp-admin/edit-form-advanced.php:364
 msgid "Publish Settings"
 msgstr "Išsaugoti"
 
@@ -15058,7 +15536,7 @@ msgctxt "label for hide controls button without length constraints"
 msgid "Show Controls"
 msgstr "Rodyti valdymą"
 
-#: wp-includes/script-loader.php:1440
+#: wp-includes/script-loader.php:1440 wp-admin/customize.php:229
 msgctxt "label for hide controls button without length constraints"
 msgid "Hide Controls"
 msgstr "Slėpti valdymą"
@@ -15072,12 +15550,22 @@ msgid "Site Preview"
 msgstr "Tinklalapio peržiūra"
 
 #: wp-includes/script-loader.php:1437
-#: wp-includes/class-wp-customize-manager.php:516
+#: wp-includes/class-wp-customize-manager.php:516 wp-admin/customize.php:18
 msgid "Sorry, you are not allowed to customize this site."
 msgstr "Deja, Jūs negalite keisti šio tinklalapio nustatymų."
 
 #: wp-includes/script-loader.php:1436
-#: wp-includes/class-wp-customize-manager.php:515
+#: wp-includes/class-wp-customize-manager.php:515 wp-admin/edit-tags.php:28
+#: wp-admin/edit-tags.php:85 wp-admin/edit-tags.php:116
+#: wp-admin/edit-tags.php:136 wp-admin/edit-tags.php:172
+#: wp-admin/includes/bookmark.php:31 wp-admin/press-this.php:21
+#: wp-admin/nav-menus.php:25 wp-admin/customize.php:17
+#: wp-admin/customize.php:34 wp-admin/user-new.php:15 wp-admin/user-new.php:22
+#: wp-admin/user-new.php:55 wp-admin/user-new.php:143 wp-admin/themes.php:14
+#: wp-admin/themes.php:42 wp-admin/themes.php:62 wp-admin/edit-comments.php:13
+#: wp-admin/term.php:37 wp-admin/options.php:49 wp-admin/options.php:77
+#: wp-admin/widgets.php:17 wp-admin/users.php:15 wp-admin/post-new.php:60
+#: wp-admin/edit.php:41 wp-admin/media-upload.php:46
 msgid "You need a higher level of permission."
 msgstr "Jums reikia aukštesnių teisių,"
 
@@ -15114,7 +15602,7 @@ msgid "Scheduled"
 msgstr "Suplanuota"
 
 #: wp-includes/script-loader.php:1424
-#: wp-includes/class-wp-customize-manager.php:4734
+#: wp-includes/class-wp-customize-manager.php:4761
 msgctxt "customizer changeset action/button label"
 msgid "Schedule"
 msgstr "Suplanuoti"
@@ -15128,20 +15616,26 @@ msgid "Draft Saved"
 msgstr "Juodraštis išsaugotas"
 
 #: wp-includes/script-loader.php:1421 wp-includes/script-loader.php:1601
-#: wp-includes/class-wp-customize-manager.php:4729
-#: wp-includes/js/dist/editor.js:11251
+#: wp-includes/class-wp-customize-manager.php:4756
+#: wp-includes/js/dist/editor.js:11251 wp-admin/includes/meta-boxes.php:47
+#: wp-admin/includes/dashboard.php:539
 msgid "Save Draft"
 msgstr "Išsaugoti juodraštį"
 
 #: wp-includes/script-loader.php:1420 wp-includes/script-loader.php:1607
 #: wp-includes/post.php:892 wp-includes/post.php:912
-#: wp-includes/js/dist/editor.js:10983
+#: wp-includes/js/dist/editor.js:10983 wp-admin/includes/meta-boxes.php:99
+#: wp-admin/includes/meta-boxes.php:128 wp-admin/includes/ajax-actions.php:2072
+#: wp-admin/includes/class-wp-posts-list-table.php:1074
+#: wp-admin/includes/class-wp-posts-list-table.php:1783
 msgid "Published"
 msgstr "Paskelbtas"
 
 #: wp-includes/script-loader.php:1419 wp-includes/script-loader.php:1597
-#: wp-includes/class-wp-customize-manager.php:4724
+#: wp-includes/class-wp-customize-manager.php:4751
 #: wp-includes/js/dist/editor.js:9664 wp-includes/js/dist/edit-post.js:5157
+#: wp-admin/includes/meta-boxes.php:319 wp-admin/includes/meta-boxes.php:320
+#: wp-admin/includes/meta-boxes.php:1413 wp-admin/customize.php:180
 msgid "Publish"
 msgstr "Paskelbti"
 
@@ -15149,7 +15643,7 @@ msgstr "Paskelbti"
 msgid "Save &amp; Publish"
 msgstr "Išsaugoti ir paskelbti"
 
-#: wp-includes/script-loader.php:1417
+#: wp-includes/script-loader.php:1417 wp-admin/customize.php:180
 msgid "Activate &amp; Publish"
 msgstr "Įjungti ir paskelbti"
 
@@ -15167,17 +15661,30 @@ msgstr "Nuoroda parinkta."
 #: wp-includes/blocks/latest-comments.php:31 wp-includes/media.php:3265
 #: wp-includes/js/dist/editor.js:10847
 #: wp-includes/js/dist/block-editor.js:16535
-#: wp-includes/js/dist/edit-post.js:4995
+#: wp-includes/js/dist/edit-post.js:4995 wp-admin/includes/revision.php:57
+#: wp-admin/includes/revision.php:60 wp-admin/includes/template.php:1873
+#: wp-admin/includes/ajax-actions.php:2066
 msgid "(no title)"
 msgstr "(be pavadinimo)"
 
 #: wp-includes/script-loader.php:1391 wp-includes/class-wp-editor.php:1776
+#: wp-admin/includes/meta-boxes.php:1038 wp-admin/edit-link-form.php:21
 msgid "Add Link"
 msgstr "Pridėti nuorodą"
 
 #: wp-includes/script-loader.php:1390 wp-includes/script-loader.php:1599
 #: wp-includes/script-loader.php:1711 wp-includes/media.php:3640
 #: wp-includes/js/dist/editor.js:9659
+#: wp-admin/includes/class-wp-plugins-list-table.php:497
+#: wp-admin/includes/meta-boxes.php:331 wp-admin/includes/meta-boxes.php:332
+#: wp-admin/includes/meta-boxes.php:413 wp-admin/includes/meta-boxes.php:414
+#: wp-admin/includes/class-wp-theme-install-list-table.php:304
+#: wp-admin/includes/class-wp-theme-install-list-table.php:462
+#: wp-admin/includes/template.php:627
+#: wp-admin/includes/class-wp-posts-list-table.php:1889
+#: wp-admin/includes/class-wp-posts-list-table.php:1893
+#: wp-admin/edit-tag-form.php:274 wp-admin/edit-form-comment.php:187
+#: wp-admin/includes/class-wp-ms-themes-list-table.php:354
 msgid "Update"
 msgstr "Atnaujinti"
 
@@ -15186,25 +15693,42 @@ msgstr "Atnaujinti"
 msgid "Insert/edit link"
 msgstr "Įterpti/redaguoti nuorodą"
 
-#: wp-includes/script-loader.php:1374
+#: wp-includes/script-loader.php:1374 wp-admin/install.php:145
+#: wp-admin/user-new.php:502 wp-admin/user-edit.php:620
 msgid "Hide password"
 msgstr "Slėpti slaptažodį"
 
-#: wp-includes/script-loader.php:1373
+#: wp-includes/script-loader.php:1373 wp-admin/user-new.php:496
 msgid "Show password"
 msgstr "Rodyti slaptažodį"
 
 #: wp-includes/script-loader.php:1372 wp-includes/script-loader.php:1431
 #: wp-includes/script-loader.php:1589 wp-includes/media.php:3639
 #: wp-includes/class-wp-editor.php:1076 wp-includes/class-wp-editor.php:1773
+#: wp-admin/includes/image-edit.php:237
+#: wp-admin/includes/class-walker-nav-menu-edit.php:251
+#: wp-admin/includes/meta-boxes.php:142 wp-admin/includes/meta-boxes.php:189
+#: wp-admin/includes/class-wp-terms-list-table.php:661
+#: wp-admin/includes/media.php:1610 wp-admin/includes/media.php:2103
+#: wp-admin/includes/template.php:488 wp-admin/includes/template.php:716
+#: wp-admin/includes/template.php:835 wp-admin/includes/file.php:2163
+#: wp-admin/includes/class-wp-posts-list-table.php:1884
+#: wp-admin/includes/dashboard.php:173 wp-admin/includes/dashboard.php:1222
+#: wp-admin/options-general.php:128 wp-admin/comment.php:233
+#: wp-admin/user-new.php:508 wp-admin/widgets.php:346 wp-admin/widgets.php:555
+#: wp-admin/user-edit.php:512 wp-admin/user-edit.php:626
+#: wp-admin/network/settings.php:181
 msgid "Cancel"
 msgstr "Atšaukti"
 
-#: wp-includes/script-loader.php:1371
+#: wp-includes/script-loader.php:1371 wp-admin/includes/media.php:1494
+#: wp-admin/includes/media.php:2387 wp-admin/install.php:147
+#: wp-admin/user-new.php:504 wp-admin/user-edit.php:622
 msgid "Hide"
 msgstr "Paslėpti"
 
-#: wp-includes/script-loader.php:1370
+#: wp-includes/script-loader.php:1370 wp-admin/includes/media.php:1493
+#: wp-admin/includes/media.php:2386
 msgid "Show"
 msgstr "Rodyti"
 
@@ -15425,7 +15949,7 @@ msgstr "Filipiniečių"
 msgid "Estonian"
 msgstr "Estų"
 
-#: wp-includes/script-loader.php:1241
+#: wp-includes/script-loader.php:1241 wp-admin/includes/ms.php:711
 msgid "English"
 msgstr "Anglų"
 
@@ -15545,7 +16069,11 @@ msgstr "Garso išjungimas"
 #: wp-includes/deprecated.php:688 wp-includes/js/dist/block-library.js:10188
 #: wp-includes/js/dist/block-library.js:13040
 #: wp-includes/js/dist/block-library.js:14474
-#: wp-includes/js/dist/block-library.js:15726
+#: wp-includes/js/dist/block-library.js:15726 wp-admin/edit-tags.php:455
+#: wp-admin/includes/class-wp-debug-data.php:895
+#: wp-admin/includes/media.php:1036 wp-admin/includes/media.php:1159
+#: wp-admin/includes/media.php:2791 wp-admin/includes/media.php:2807
+#: wp-admin/edit-tag-form.php:173
 msgid "None"
 msgstr "Nieko"
 
@@ -15613,7 +16141,7 @@ msgstr "Išjungti visą ekraną"
 msgid "You are using a browser that does not have Flash player enabled or installed. Please turn on your Flash player plugin or download the latest version from https://get.adobe.com/flashplayer/"
 msgstr "Jūs naudojate naršyklę, kuri nepalaiko ar neturi Flash. Prašome įjungti Flash savo naršyklėje arba parsisiųsti naujausią versiją iš https://get.adobe.com/flashplayer/"
 
-#: wp-includes/script-loader.php:1140
+#: wp-includes/script-loader.php:1140 wp-admin/async-upload.php:95
 msgid "&#8220;%s&#8221; has failed to upload."
 msgstr "Nepavyko įkelti „%s“."
 
@@ -15683,7 +16211,7 @@ msgid "This file is not an image. Please try another."
 msgstr "Šis failas nėra paveikslėlis. Pabandykite kitą."
 
 #: wp-includes/script-loader.php:1121 wp-includes/functions.php:2358
-#: wp-includes/js/dist/editor.js:14643
+#: wp-includes/js/dist/editor.js:14643 wp-admin/includes/file.php:811
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr "Deja, toks failo formatas neleidžiamas dėl saugumo priežasčių."
 
@@ -15705,12 +16233,14 @@ msgstr "This feature requires inline frames. You have iframes disabled or your b
 
 #: wp-includes/script-loader.php:1106 wp-includes/script-loader.php:1208
 #: wp-includes/script-loader.php:1432 wp-includes/script-loader.php:2218
-#: wp-includes/class-wp-customize-manager.php:5600
+#: wp-includes/class-wp-customize-manager.php:5627
 #: wp-includes/class-wp-editor.php:1077 wp-includes/class-wp-editor.php:1727
 #: wp-includes/js/dist/components.js:30790
 #: wp-includes/js/dist/block-editor.js:16629
 #: wp-includes/js/dist/edit-post.js:3942 wp-includes/js/dist/edit-post.js:4216
 #: wp-includes/js/dist/edit-post.js:4608
+#: wp-admin/includes/class-wp-theme-install-list-table.php:380
+#: wp-admin/theme-install.php:313
 msgid "Close"
 msgstr "Uždaryti"
 
@@ -15723,7 +16253,7 @@ msgstr "iš"
 #: wp-includes/class-wp-editor.php:1110 wp-includes/js/dist/editor.js:8821
 #: wp-includes/js/dist/block-editor.js:16134
 #: wp-includes/js/dist/block-library.js:10702
-#: wp-includes/js/dist/format-library.js:570
+#: wp-includes/js/dist/format-library.js:570 wp-admin/includes/media.php:2759
 msgid "Image"
 msgstr "Paveikslėlis"
 
@@ -15752,7 +16282,8 @@ msgstr "Rastas 1 rezultatas. Naudokite aukštyn ir žemyn rodykles navigacijai."
 #: wp-includes/script-loader.php:1067 wp-includes/script-loader.php:1393
 #: wp-includes/script-loader.php:1847
 #: wp-includes/class-wp-customize-nav-menus.php:289
-#: wp-includes/js/dist/components.js:36437
+#: wp-includes/js/dist/components.js:36437 wp-admin/includes/nav-menu.php:508
+#: wp-admin/includes/nav-menu.php:841
 msgid "No results found."
 msgstr "Nepavyko rasti."
 
@@ -15763,7 +16294,9 @@ msgstr "Jūsų prisijungimo sesija baigėsi. Prisijunkite iš naujo šiame pusla
 #: wp-includes/script-loader.php:961 wp-includes/script-loader.php:1137
 #: wp-includes/widgets/class-wp-widget-text.php:534
 #: wp-includes/widgets/class-wp-widget-text.php:549
-#: wp-includes/class-wp-customize-manager.php:4200
+#: wp-includes/class-wp-customize-manager.php:4227
+#: wp-admin/includes/file.php:325 wp-admin/includes/dashboard.php:1520
+#: wp-admin/async-upload.php:94 wp-admin/index.php:131
 msgid "Dismiss"
 msgstr "Paslėpti"
 
@@ -15771,6 +16304,11 @@ msgstr "Paslėpti"
 #: wp-includes/script-loader.php:1523 wp-includes/script-loader.php:1777
 #: wp-includes/class-wp-xmlrpc-server.php:3884 wp-includes/functions.php:2933
 #: wp-includes/class-wp-customize-manager.php:450
+#: wp-admin/includes/file.php:595 wp-admin/customize.php:79
+#: wp-admin/themes.php:27 wp-admin/themes.php:70 wp-admin/users.php:144
+#: wp-admin/media-upload.php:38 wp-admin/custom-header.php:762
+#: wp-admin/custom-header.php:926 wp-admin/custom-header.php:934
+#: wp-admin/network/site-users.php:162
 msgid "Something went wrong."
 msgstr "Kažkas nutiko."
 
@@ -15907,7 +16445,7 @@ msgstr "Užverti visas atviras žymas"
 msgid "Expand Main menu"
 msgstr "Išskleisti pagrindinį meniu"
 
-#: wp-includes/script-loader.php:877
+#: wp-includes/script-loader.php:877 wp-admin/menu-header.php:255
 msgid "Collapse Main menu"
 msgstr "Suskleisti pagrindinį meniu"
 
@@ -15931,33 +16469,69 @@ msgid "M j, Y g:i a"
 msgstr "M j, Y g:i a"
 
 #. translators: %s: duration
+#. translators: human readable timestamp
+#. translators: %s: Time since the last update
 #: wp-includes/script-loader.php:604
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:726
+#: wp-admin/includes/user.php:1416 wp-admin/includes/revision.php:241
+#: wp-admin/includes/revision.php:283
+#: wp-admin/includes/class-wp-media-list-table.php:459
+#: wp-admin/includes/plugin-install.php:641
+#: wp-admin/includes/class-wp-posts-list-table.php:1067
 msgid "%s ago"
 msgstr "prieš %s"
 
 #. translators: %s: duration
 #: wp-includes/script-loader.php:602
+#: wp-admin/includes/class-wp-media-list-table.php:457
 msgid "%s from now"
 msgstr "%s nuo dabar"
 
 #. translators: Date/Time format, see https://secure.php.net/date
 #. translators: localized date and time format, see https://secure.php.net/date
+#. translators: links last updated date format, see https://secure.php.net/date
 #: wp-includes/script-loader.php:152 wp-includes/script-loader.php:613
-#: wp-includes/class-wp-locale.php:387
+#: wp-includes/class-wp-locale.php:387 wp-admin/includes/schema.php:443
 msgid "F j, Y g:i a"
 msgstr "Y F j - G:i"
 
 #. translators: Date format, see https://secure.php.net/date
 #. translators: localized date format, see https://secure.php.net/date
+#. translators: default date format, see https://secure.php.net/date
+#. translators: 1: Post creation date, 2: Post creation time
+#. translators: 1: date, 2: time
+#. translators: 1: Name of most recent post author, 2: Post edited date, 3:
+#. Post edited time
+#. translators: 1: Post edited date, 2: Post edited time
 #: wp-includes/script-loader.php:151 wp-includes/script-loader.php:611
 #: wp-includes/media.php:3234 wp-includes/class-wp-locale.php:383
+#: wp-admin/includes/schema.php:439 wp-admin/includes/misc.php:1718
+#: wp-admin/includes/media.php:1575 wp-admin/includes/ajax-actions.php:1480
+#: wp-admin/includes/ajax-actions.php:2595
+#: wp-admin/includes/ajax-actions.php:2598 wp-admin/includes/dashboard.php:594
+#: wp-admin/options-general.php:291 wp-admin/options-general.php:321
+#: wp-admin/update-core.php:690 wp-admin/admin.php:107
+#: wp-admin/edit-form-advanced.php:581 wp-admin/edit-form-advanced.php:584
 msgid "F j, Y"
 msgstr "Y F j"
 
 #. translators: Time format, see https://secure.php.net/date
 #. translators: localized time format, see https://secure.php.net/date
+#. translators: default time format, see https://secure.php.net/date
+#. translators: 1: Post creation date, 2: Post creation time
+#. translators: 1: date, 2: time
+#. translators: 1: Name of most recent post author, 2: Post edited date, 3:
+#. Post edited time
+#. translators: 1: Post edited date, 2: Post edited time
 #: wp-includes/script-loader.php:148 wp-includes/script-loader.php:609
-#: wp-includes/class-wp-locale.php:385
+#: wp-includes/class-wp-locale.php:385 wp-admin/includes/schema.php:441
+#: wp-admin/includes/class-wp-comments-list-table.php:793
+#: wp-admin/includes/ajax-actions.php:1480
+#: wp-admin/includes/ajax-actions.php:2596
+#: wp-admin/includes/ajax-actions.php:2599 wp-admin/options-general.php:291
+#: wp-admin/options-general.php:358 wp-admin/comment.php:210
+#: wp-admin/update-core.php:690 wp-admin/admin.php:108
+#: wp-admin/edit-form-advanced.php:581 wp-admin/edit-form-advanced.php:584
 msgid "g:i a"
 msgstr "G:i"
 
@@ -15979,30 +16553,43 @@ msgstr "Išjungti atstatymo režimą"
 #: wp-includes/blocks/search.php:65 wp-includes/blocks/search.php:73
 #: wp-includes/media.php:3637 wp-includes/class-wp-editor.php:1748
 #: wp-includes/js/dist/block-library.js:19636
+#: wp-admin/includes/theme-install.php:125
+#: wp-admin/includes/class-wp-theme-install-list-table.php:59
+#: wp-admin/includes/template.php:1829 wp-admin/includes/template.php:1832
+#: wp-admin/includes/nav-menu.php:435 wp-admin/includes/nav-menu.php:493
+#: wp-admin/includes/nav-menu.php:496 wp-admin/includes/nav-menu.php:764
+#: wp-admin/includes/nav-menu.php:826 wp-admin/includes/nav-menu.php:829
 msgid "Search"
 msgstr "Paieška"
 
-#: wp-includes/admin-bar.php:978
+#: wp-includes/admin-bar.php:978 wp-admin/menu.php:188
+#: wp-admin/custom-header.php:73
 msgid "Header"
 msgstr "Antraštės išvaizda"
 
-#: wp-includes/admin-bar.php:964
+#: wp-includes/admin-bar.php:964 wp-admin/custom-background.php:65
+#: wp-admin/menu.php:193
 msgid "Background"
 msgstr "Fono nustatymai"
 
 #: wp-includes/admin-bar.php:953
 #: wp-includes/customize/class-wp-customize-nav-menus-panel.php:98
-#: wp-includes/class-wp-customize-nav-menus.php:608
+#: wp-includes/class-wp-customize-nav-menus.php:608 wp-admin/nav-menus.php:603
+#: wp-admin/menu.php:183
 msgid "Menus"
 msgstr "Meniu"
 
 #: wp-includes/admin-bar.php:942 wp-includes/class-wp-customize-widgets.php:417
 #: wp-includes/functions.php:4330 wp-includes/js/dist/blocks.js:5804
+#: wp-admin/includes/post.php:2150 wp-admin/widgets.php:49
 msgid "Widgets"
 msgstr "Valdikliai"
 
 #. translators: %s: number of comments in moderation
-#: wp-includes/admin-bar.php:890
+#: wp-includes/admin-bar.php:890 wp-admin/includes/ajax-actions.php:463
+#: wp-admin/includes/ajax-actions.php:530
+#: wp-admin/includes/ajax-actions.php:1303 wp-admin/includes/dashboard.php:294
+#: wp-admin/menu.php:82
 msgid "%s Comment in moderation"
 msgid_plural "%s Comments in moderation"
 msgstr[0] "Moderuojamų komentarų: %s"
@@ -16041,24 +16628,41 @@ msgid "Manage Comments"
 msgstr "Tvarkyti komentarus"
 
 #: wp-includes/admin-bar.php:551 wp-includes/js/dist/edit-post.js:3414
+#: wp-admin/includes/ms.php:1090 wp-admin/options.php:21 wp-admin/menu.php:274
+#: wp-admin/network/menu.php:65
 msgid "Settings"
 msgstr "Nuostatos"
 
 #: wp-includes/admin-bar.php:540 wp-includes/js/dist/edit-post.js:2934
+#: wp-admin/update-core.php:251 wp-admin/update-core.php:264
+#: wp-admin/plugins.php:476 wp-admin/network/settings.php:455
+#: wp-admin/network/menu.php:59
 msgid "Plugins"
 msgstr "Įskiepiai"
 
 #. translators: %s: themes panel title in the Customizer
 #: wp-includes/admin-bar.php:529 wp-includes/admin-bar.php:927
 #: wp-includes/customize/class-wp-customize-themes-panel.php:75
+#: wp-admin/includes/ms.php:1085 wp-admin/update-core.php:395
+#: wp-admin/update-core.php:402 wp-admin/themes.php:184 wp-admin/menu.php:177
+#: wp-admin/network/themes.php:258 wp-admin/network/menu.php:50
 msgid "Themes"
 msgstr "Temos"
 
-#: wp-includes/admin-bar.php:518
+#: wp-includes/admin-bar.php:518 wp-admin/includes/ms.php:902
+#: wp-admin/includes/ms.php:1080 wp-admin/users.php:23 wp-admin/menu.php:237
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:240
+#: wp-admin/network/users.php:32 wp-admin/network/users.php:62
+#: wp-admin/network/users.php:190 wp-admin/network/users.php:252
+#: wp-admin/network/menu.php:43
 msgid "Users"
 msgstr "Vartotojai"
 
+#. translators: Sites menu item
 #: wp-includes/admin-bar.php:507
+#: wp-admin/includes/class-wp-ms-users-list-table.php:172
+#: wp-admin/network/menu.php:39 wp-admin/network/sites.php:20
+#: wp-admin/network/sites.php:343
 msgid "Sites"
 msgstr "Tinklalapiai"
 
@@ -16066,18 +16670,28 @@ msgstr "Tinklalapiai"
 msgid "Network Admin"
 msgstr "Tinklo administravimas"
 
-#: wp-includes/admin-bar.php:471
+#: wp-includes/admin-bar.php:471 wp-admin/my-sites.php:37 wp-admin/menu.php:28
 msgid "My Sites"
 msgstr "Mano tinklalapiai"
 
 #: wp-includes/admin-bar.php:434
 #: wp-includes/customize/class-wp-customize-theme-control.php:119
+#: wp-admin/includes/theme.php:761
+#: wp-admin/includes/class-theme-upgrader-skin.php:69
+#: wp-admin/customize.php:187 wp-admin/themes.php:346 wp-admin/themes.php:512
+#: wp-admin/themes.php:570 wp-admin/menu.php:180
 msgid "Customize"
 msgstr "Konfigūruoti"
 
+#. translators: Network menu item
 #: wp-includes/admin-bar.php:390 wp-includes/admin-bar.php:497
 #: wp-includes/admin-bar.php:596 wp-includes/deprecated.php:2804
-#: wp-includes/deprecated.php:2806
+#: wp-includes/deprecated.php:2806 wp-admin/my-sites.php:125
+#: wp-admin/index.php:32 wp-admin/user/menu.php:10 wp-admin/menu.php:23
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:537
+#: wp-admin/network/site-info.php:136 wp-admin/network/index.php:20
+#: wp-admin/network/site-users.php:226 wp-admin/network/site-themes.php:179
+#: wp-admin/network/site-settings.php:94 wp-admin/network/menu.php:11
 msgid "Dashboard"
 msgstr "Skydelis"
 
@@ -16091,12 +16705,14 @@ msgid "Visit Site"
 msgstr "Peržiūrėti tinklalapį"
 
 #. translators: %s: site name
-#: wp-includes/admin-bar.php:348
+#. translators: User dashboard screen title. %s: Network name
+#: wp-includes/admin-bar.php:348 wp-admin/admin-header.php:42
 msgid "User Dashboard: %s"
 msgstr "Vartotojo skydelis: %s"
 
 #. translators: %s: site name
-#: wp-includes/admin-bar.php:345
+#. translators: Network admin screen title. %s: Network name
+#: wp-includes/admin-bar.php:345 wp-admin/admin-header.php:39
 msgid "Network Admin: %s"
 msgstr "Tinklas: %s"
 
@@ -16159,7 +16775,8 @@ msgstr "Apie WordPress"
 #: wp-includes/taxonomy.php:1003 wp-includes/taxonomy.php:1169
 #: wp-includes/taxonomy.php:1968 wp-includes/taxonomy.php:2106
 #: wp-includes/taxonomy.php:2417 wp-includes/taxonomy.php:2592
-#: wp-includes/taxonomy.php:2796
+#: wp-includes/taxonomy.php:2796 wp-admin/edit-tags.php:13
+#: wp-admin/edit-tags.php:19 wp-admin/includes/class-wp-terms-list-table.php:58
 msgid "Invalid taxonomy."
 msgstr "netinkama taksonomija."
 
@@ -16181,7 +16798,7 @@ msgstr "O ne: %s"
 msgid "Posted title:"
 msgstr "Paskelbta antraštė:"
 
-#: wp-mail.php:243
+#: wp-mail.php:243 wp-admin/includes/plugin-install.php:636
 msgid "Author:"
 msgstr "Autorius:"
 
@@ -16202,7 +16819,7 @@ msgstr "Prilėtinkite, nebūtina taip dažnai ieškoti naujų laiškų!"
 msgid "This action has been disabled by the administrator."
 msgstr "Administratoriaus sprendimu šis veiksmas negalimas."
 
-#: wp-content/plugins/hello.php:62
+#: wp-content/plugins/hello.php:62 hello.php:62
 msgid "Quote from Hello Dolly song, by Jerry Herman:"
 msgstr "Citata iš dainos Hello Dolly, autorius Jerry Herman:"
 
@@ -16217,6 +16834,7 @@ msgid "Your account is now activated. <a href=\"%1$s\">View your site</a> or <a 
 msgstr "Jūsų paskyra aktyvuota. <a href=\"%1$s\">Peržiūrėkite tinklalapį</a> arba <a href=\"%2$s\">prisijunkite</a>"
 
 #: wp-activate.php:180 wp-includes/post-template.php:1696
+#: wp-admin/includes/meta-boxes.php:184
 msgid "Password:"
 msgstr "Slaptažodis:"
 
@@ -16238,8 +16856,18 @@ msgstr "Jūsų paskyra aktyvuota. Dabar galite <a href=\"%1$s\">prisijungti</a> 
 msgid "Your account is now active!"
 msgstr "Jūsų paskyra aktyvuota!"
 
+#. translators: %s: plugin name
 #: wp-activate.php:133 wp-includes/script-loader.php:1768
 #: wp-includes/script-loader.php:1769
+#: wp-admin/includes/class-wp-themes-list-table.php:190
+#: wp-admin/includes/class-theme-installer-skin.php:91
+#: wp-admin/includes/class-wp-plugins-list-table.php:488
+#: wp-admin/includes/class-wp-plugins-list-table.php:678
+#: wp-admin/includes/class-wp-plugin-install-list-table.php:569
+#: wp-admin/includes/class-theme-upgrader-skin.php:81 wp-admin/themes.php:353
+#: wp-admin/themes.php:519 wp-admin/themes.php:579
+#: wp-admin/theme-install.php:287 wp-admin/theme-install.php:317
+#: wp-admin/includes/class-wp-ms-sites-list-table.php:540
 msgid "Activate"
 msgstr "Įjungti"
 
@@ -16288,7 +16916,7 @@ msgstr "Sukurti konfigūracijos failą"
 msgid "You can create a %s file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file."
 msgstr "Galite sukurti %s failą per interneto naršyklės sąsają, bet tai veikia ne visuose serveriuose. Saugiausia yra ši failą sukurti rankiniu būdu."
 
-#: wp-load.php:83
+#: wp-load.php:83 wp-admin/setup-config.php:189
 msgid "https://codex.wordpress.org/Editing_wp-config.php"
 msgstr "https://codex.wordpress.org/Editing_wp-config.php"
 
@@ -16307,10 +16935,16 @@ msgid "Remember Me"
 msgstr "Prisiminti duomenis"
 
 #: wp-login.php:1076 wp-includes/general-template.php:464
+#: wp-admin/options-writing.php:166 wp-admin/includes/file.php:2069
+#: wp-admin/includes/class-wp-posts-list-table.php:1596
+#: wp-admin/install.php:138 wp-admin/install.php:401 wp-admin/user-new.php:490
+#: wp-admin/setup-config.php:222
 msgid "Password"
 msgstr "Slaptažodis"
 
 #: wp-login.php:1056 wp-login.php:1089 wp-includes/general-template.php:466
+#: wp-admin/install.php:220 wp-admin/install.php:413
+#: wp-admin/includes/network.php:662
 msgid "Log In"
 msgstr "Prisijungti"
 
@@ -16361,6 +16995,15 @@ msgstr "<strong>KLAIDA</strong>: Jūsų naršyklė nepalaiko arba blokuoja sausa
 
 #: wp-login.php:944 wp-includes/admin-bar.php:174 wp-includes/update.php:158
 #: wp-includes/update.php:382 wp-includes/update.php:567
+#: wp-admin/includes/theme.php:510 wp-admin/includes/theme.php:524
+#: wp-admin/includes/theme.php:539 wp-admin/includes/translation-install.php:63
+#: wp-admin/includes/translation-install.php:77
+#: wp-admin/includes/translation-install.php:89
+#: wp-admin/includes/update.php:135 wp-admin/includes/plugin-install.php:178
+#: wp-admin/includes/plugin-install.php:191
+#: wp-admin/includes/plugin-install.php:206
+#: wp-admin/includes/class-wp-automatic-updater.php:741
+#: wp-admin/theme-install.php:63
 msgid "https://wordpress.org/support/"
 msgstr "https://wordpress.org/support/"
 
@@ -16381,7 +17024,8 @@ msgstr "Vartotojo veiksmas patvirtintas."
 msgid "Missing confirm key."
 msgstr "Nėra patvirtinimo rakto."
 
-#: wp-login.php:861
+#: wp-login.php:861 wp-admin/includes/ajax-actions.php:4462
+#: wp-admin/includes/ajax-actions.php:4644
 msgid "Missing request ID."
 msgstr "Nėra užklausos ID."
 
@@ -16395,10 +17039,22 @@ msgid "Registration confirmation will be emailed to you."
 msgstr "Registracijos patvirtinimas Jums bus išsiųstas el.paštu."
 
 #: wp-login.php:831 wp-includes/comment-template.php:2281
+#: wp-admin/includes/class-wp-users-list-table.php:335
+#: wp-admin/includes/template.php:471 wp-admin/comment.php:165
+#: wp-admin/user-new.php:375 wp-admin/user-new.php:471
+#: wp-admin/user-edit.php:487 wp-admin/edit-form-comment.php:53
+#: wp-admin/includes/class-wp-ms-users-list-table.php:170
+#: wp-admin/network/user-new.php:129 wp-admin/network/site-users.php:343
 msgid "Email"
 msgstr "El. pašto adresas"
 
-#: wp-login.php:827
+#: wp-login.php:827 wp-admin/includes/class-wp-users-list-table.php:333
+#: wp-admin/includes/file.php:2068 wp-admin/install.php:119
+#: wp-admin/install.php:397 wp-admin/user-new.php:467
+#: wp-admin/user-edit.php:390 wp-admin/setup-config.php:217
+#: wp-admin/includes/class-wp-ms-users-list-table.php:168
+#: wp-admin/network/user-new.php:125 wp-admin/network/site-users.php:305
+#: wp-admin/network/site-users.php:339
 msgid "Username"
 msgstr "Vartotojo vardas"
 
@@ -16414,7 +17070,8 @@ msgstr "Registracijos forma"
 msgid "Confirm new password"
 msgstr "Patvirtinkite naują slaptažodį"
 
-#: wp-login.php:730 wp-includes/script-loader.php:1369
+#: wp-login.php:730 wp-includes/script-loader.php:1369 wp-admin/install.php:172
+#: wp-admin/user-new.php:525
 msgid "Confirm use of weak password"
 msgstr "Patvirtinkite, kad norite naudoti silpną slaptažodį."
 
@@ -16535,17 +17192,22 @@ msgid "Usage of the title attribute on the login logo is not recommended for acc
 msgstr "Atributo title naudojimas and prisijungimo puslapio logotipo yra nerekomenduojamas dėl prieinamumo priežasčių. Geriau naudokite tekstinę nuorodą."
 
 #: wp-login.php:121 wp-includes/admin-bar.php:154
-#: wp-includes/widgets/class-wp-widget-meta.php:75
+#: wp-includes/widgets/class-wp-widget-meta.php:75 wp-admin/install.php:77
+#: wp-admin/upgrade.php:72 wp-admin/admin-footer.php:35
+#: wp-admin/setup-config.php:116 wp-admin/maint/repair.php:24
 msgid "https://wordpress.org/"
 msgstr "https://wordpress.org/"
 
 #. translators: %s: Login screen title.
-#: wp-login.php:69
+#. translators: %s: Admin screen title.
+#: wp-login.php:69 wp-admin/admin-header.php:57
 msgid "Recovery Mode &#8212; %s"
 msgstr "Atstatymo režimas &#8212; %s"
 
 #. translators: Login screen title. 1: Login screen name, 2: Network or site
 #. name
-#: wp-login.php:65
+#. translators: Admin screen title. 1: Admin screen name, 2: Network or site
+#. name
+#: wp-login.php:65 wp-admin/admin-header.php:52
 msgid "%1$s &lsaquo; %2$s &#8212; WordPress"
 msgstr "%1$s &lsaquo; %2$s &#8212; WordPress"

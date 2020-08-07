@@ -2,18 +2,18 @@
 # This file is distributed under the same license as the Themes - Twenty Nineteen package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-31 21:17:02+0000\n"
+"PO-Revision-Date: 2020-07-23 00:26:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: de\n"
 "Project-Id-Version: Themes - Twenty Nineteen\n"
 
 #. Description of the theme
 msgid "Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Twenty Nineteen is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes."
-msgstr "Unser Standard-Theme für 2019 wurde entwickelt, um die Leistungsfähigkeit des Block-Editors zu präsentieren. Es bietet individuelle Stile für alle Standardblöcke und ist so aufgebaut, dass das, was du im Editor siehst, auch genauso auf deiner Website sehen wirst. Twenty Nineteen wurde so konzipiert, dass es sich für eine Vielzahl von Websites anpassen lässt; egal ob du einen Fotoblog betreibst, ein neues Unternehmen startest oder eine gemeinnützige Organisation unterstützt. Mit reichlich Whitespace und modernen serifenlosen Überschriften, gepaart mit klassischem serifenbetontem Fließtext wird es auf allen Bildschirmgrößen schön aussehen."
+msgstr "Unser Standard-Theme für 2019 wurde entwickelt, um die Leistungsfähigkeit des Block-Editors zu präsentieren. Es bietet individuelle Styles für alle Standardblöcke und ist so aufgebaut, dass du das, was du im Editor siehst, auch genauso auf deiner Website sehen wirst. Twenty Nineteen wurde so konzipiert, dass es sich für eine Vielzahl von Websites anpassen lässt; egal ob du einen Fotoblog betreibst, ein neues Unternehmen startest oder eine gemeinnützige Organisation unterstützt. Mit viel Freiraum und modernen serifenlosen Überschriften, gepaart mit klassischem serifenbetontem Fließtext, ist es so gestaltet, dass es auf allen Bildschirmgrößen schön aussieht."
 
 #. Theme Name of the theme
 msgid "Twenty Nineteen"
@@ -21,7 +21,7 @@ msgstr "Twenty Nineteen"
 
 #: classes/class-twentynineteen-walker-comment.php:96
 msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
-msgstr "Dein Kommentar wartet auf Moderation. Dies ist eine Vorschau, dein Kommentar wird sichtbar, nachdem er freigegeben wurde."
+msgstr "Dein Kommentar wartet auf Freigabe. Dies ist eine Vorschau, dein Kommentar wird nach der Moderation sichtbar sein."
 
 #: functions.php:153
 msgid "Dark Blue"
@@ -41,8 +41,8 @@ msgctxt "Parent post link"
 msgid "<span class=\"meta-nav\">Published in</span><br><span class=\"post-title\">%title</span>"
 msgstr "<span class=\"meta-nav\">Veröffentlicht in</span><br><span class=\"post-title\">%title</span>"
 
-#: template-parts/content/content-excerpt.php:18
 #: template-parts/content/content.php:18
+#: template-parts/content/content-excerpt.php:18
 msgctxt "post"
 msgid "Featured"
 msgstr "Hervorgehoben"
@@ -50,7 +50,7 @@ msgstr "Hervorgehoben"
 #. translators: %s: WordPress version.
 #: inc/back-compat.php:40 inc/back-compat.php:55 inc/back-compat.php:76
 msgid "Twenty Nineteen requires at least WordPress version 4.7. You are running version %s. Please upgrade and try again."
-msgstr "Twenty Nineteen erfordert mindestens WordPress Version 4.7. Deine Version ist %s. Bitte führe ein Upgrade durch und versuche es erneut."
+msgstr "Twenty Nineteen erfordert mindestens WordPress Version 4.7. Deine Version ist %s. Bitte aktualisiere WordPress und versuche es erneut."
 
 #: inc/template-functions.php:143
 msgid "Back"
@@ -122,7 +122,7 @@ msgstr "Klein"
 msgid "S"
 msgstr "S"
 
-#: footer.php:37 functions.php:60
+#: functions.php:60 footer.php:37
 msgid "Footer Menu"
 msgstr "Footer-Menü"
 
@@ -139,7 +139,7 @@ msgstr "Seite"
 msgid "Add widgets here to appear in your footer."
 msgstr "Füge hier Widgets hinzu, die in deinem Footer erscheinen sollen."
 
-#: template-parts/footer/footer-widgets.php:12 functions.php:190
+#: functions.php:190 template-parts/footer/footer-widgets.php:12
 msgid "Footer"
 msgstr "Footer"
 
@@ -172,14 +172,14 @@ msgid "Top Menu"
 msgstr "Oberes Menü"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: template-parts/content/content-single.php:27
 #: template-parts/content/content.php:36
+#: template-parts/content/content-single.php:27
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "<span class=\"screen-reader-text\">\"%s\"</span> weiterlesen"
 
-#: template-parts/content/content-single.php:40
+#: image.php:52 template-parts/content/content-page.php:27
 #: template-parts/content/content.php:49
-#: template-parts/content/content-page.php:27 image.php:52
+#: template-parts/content/content-single.php:40
 msgid "Pages:"
 msgstr "Seiten:"
 
@@ -218,7 +218,7 @@ msgstr "Nächster Beitrag"
 
 #: search.php:22
 msgid "Search results for: "
-msgstr "Suchergebnisse für: "
+msgstr "Suchergebnisse für:"
 
 #: inc/template-tags.php:234
 msgid "Older posts"
@@ -244,7 +244,7 @@ msgstr ", "
 #. translators: %s: Post title. Only visible to screen readers.
 #: inc/template-tags.php:63
 msgid "Leave a comment<span class=\"screen-reader-text\"> on %s</span>"
-msgstr "Veröffentliche einen Kommentar <span class=\"screen-reader-text\">zu %s</span>"
+msgstr "Schreibe einen Kommentar <span class=\"screen-reader-text\">zu %s</span>"
 
 #: inc/template-tags.php:46
 msgid "Posted by"
@@ -298,8 +298,8 @@ msgid "Category Archives: "
 msgstr "Kategorie-Archive:"
 
 #. translators: %s: Post title. Only visible to screen readers.
-#: template-parts/header/entry-header.php:32
-#: template-parts/content/content-page.php:41 inc/template-tags.php:120
+#: template-parts/content/content-page.php:41
+#: template-parts/header/entry-header.php:32 inc/template-tags.php:120
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "<span class=\"screen-reader-text\">%s</span> bearbeiten"
 
@@ -307,7 +307,7 @@ msgstr "<span class=\"screen-reader-text\">%s</span> bearbeiten"
 msgid "Skip to content"
 msgstr "Zum Inhalt springen"
 
-#: template-parts/header/site-branding.php:46 functions.php:61
+#: functions.php:61 template-parts/header/site-branding.php:46
 msgid "Social Links Menu"
 msgstr "Social-Links-Menü"
 
@@ -352,7 +352,7 @@ msgstr "Eine Antwort auf &‌#8222;%s&‌#8220;"
 
 #: comments.php:35 comments.php:105 comments.php:107
 msgid "Leave a comment"
-msgstr "Schreib einen Kommentar"
+msgstr "Schreibe einen Kommentar"
 
 #: comments.php:33
 msgid "Join the Conversation"

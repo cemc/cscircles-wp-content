@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - WordPress Importer - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-10-27 15:37:36+0000\n"
+"PO-Revision-Date: 2020-02-28 09:24:15+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,200 +11,194 @@ msgstr ""
 "Language: lt\n"
 "Project-Id-Version: Plugins - WordPress Importer - Stable (latest release)\n"
 
-#: parsers.php:43
+#: class-wp-import.php:239
+msgid "To make it simpler for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site, such as your primary administrator account."
+msgstr "Kad būtų lengviau redaguoti ir išsaugoti importuotą turinį, galite jo autoriumi priskirti jau egzistuojantį šio tinklalapio vartotoją, pavyzdžiui, pagrindinį administratorių."
+
+#: parsers/class-wxr-parser.php:43
 msgid "Details are shown above. The importer will now try again with a different parser..."
 msgstr "Daugiau informacijos viršuje. Importeris dabar pabandys dar kartą, naudodamas kitą analizatorių (parser)..."
 
-#: parsers.php:42 parsers.php:72 parsers.php:80
+#: parsers/class-wxr-parser-simplexml.php:29
+#: parsers/class-wxr-parser-simplexml.php:37 parsers/class-wxr-parser.php:42
 msgid "There was an error when reading this WXR file"
 msgstr "Įvyko klaida skaitant šį WXR failą"
 
-#: parsers.php:84 parsers.php:89 parsers.php:306 parsers.php:502
+#: parsers/class-wxr-parser-regex.php:96 parsers/class-wxr-parser-xml.php:48
+#: parsers/class-wxr-parser-simplexml.php:41
+#: parsers/class-wxr-parser-simplexml.php:46
 msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
 msgstr "Atrodo, kad tai nėra WXR failas, trūkstamas/netinkamas WXR versijos numeris"
 
-#: wordpress-importer.php:132 wordpress-importer.php:141
-#: wordpress-importer.php:192 wordpress-importer.php:196
-#: wordpress-importer.php:205
+#: class-wp-import.php:106 class-wp-import.php:115 class-wp-import.php:166
+#: class-wp-import.php:170 class-wp-import.php:179
 msgid "Sorry, there has been an error."
 msgstr "Atsiprašome, įvyko klaida."
 
-#: wordpress-importer.php:133
+#: class-wp-import.php:107
 msgid "The file does not exist, please try again."
 msgstr "Tokio failo nėra, pabandykite dar kartą."
 
-#: wordpress-importer.php:176
+#: class-wp-import.php:150
 msgid "All done."
 msgstr "Baigta."
 
-#: wordpress-importer.php:177
+#: class-wp-import.php:151
 msgid "Remember to update the passwords and roles of imported users."
 msgstr "Nepamirškite atnaujinti importuotų vartotojų slaptažodžių ir rolių."
 
-#: wordpress-importer.php:176
+#: class-wp-import.php:150
 msgid "Have fun!"
 msgstr "Sėkmės!"
 
-#: wordpress-importer.php:197
+#: class-wp-import.php:171
 msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
 msgstr "Eksporto failas nerastas <code>%s</code>. Dažniausiai tai atsitinka dėl prieigos leidimų problemų."
 
-#: wordpress-importer.php:213
+#: class-wp-import.php:187
 msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
 msgstr "Šis WXR failas (versija %s) gali būti netinkamas Jūsų naudojamai importerio versijai. Prašome atsinaujinti."
 
-#: wordpress-importer.php:238
+#: class-wp-import.php:212
 msgid "Failed to import author %s. Their posts will be attributed to the current user."
 msgstr "Klaida importuojant autorių (-ius) %s. Jų įrašai bus priskirti esamam vartotojui."
 
-#: wordpress-importer.php:265
-msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
-msgstr "Kad Jums būtų lengviau redaguoti ir išsaugoti importuotą turinį, galite priskirti jam autorių iš egzistuojančių šiame tinklalapyje vartotojų. Pavyzdžiui, Jūs galite importuoti visus įrašus kaip <code>administratoriaus</code>."
-
-#: wordpress-importer.php:264
+#: class-wp-import.php:238
 msgid "Assign Authors"
 msgstr "Priskirti autorius"
 
-#: wordpress-importer.php:267
+#: class-wp-import.php:241
 msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
 msgstr "Jei WordPress sukurs naują vartotoją, tai jo slaptažodis bus sugeneruotas automatiškai, o naujo vartotojo rolė bus %s, Jums reikės rankiniu būdu pakeisti šio naujo vartotojo informaciją."
 
-#: wordpress-importer.php:277
+#: class-wp-import.php:251
 msgid "Import Attachments"
 msgstr "Importuoti priskirtus failus"
 
-#: wordpress-importer.php:280
+#: class-wp-import.php:254
 msgid "Download and import file attachments"
 msgstr "Atsisiųsti ir importuoti prisegtus failus"
 
-#: wordpress-importer.php:284
+#: class-wp-import.php:258
 msgid "Submit"
 msgstr "Pradėti"
 
-#: wordpress-importer.php:297
+#: class-wp-import.php:271
 msgid "Import author:"
 msgstr "Importuoti autorių:"
 
-#: wordpress-importer.php:311
+#: class-wp-import.php:286
 msgid "as a new user:"
 msgstr "kaip naujas vartotojas:"
 
-#: wordpress-importer.php:308
+#: class-wp-import.php:283
 msgid "or create new user with login name:"
 msgstr "arba sukurti naują vartotoją su prisijungimo vardu:"
 
-#: wordpress-importer.php:319
+#: class-wp-import.php:296
 msgid "assign posts to an existing user:"
 msgstr "priskirti įrašus esamam vartotojui:"
 
-#: wordpress-importer.php:322
+#: class-wp-import.php:306
 msgid "- Select -"
 msgstr "- Pasirinkti -"
 
-#: wordpress-importer.php:321
+#: class-wp-import.php:298
 msgid "or assign posts to an existing user:"
 msgstr "arba priskirti įrašus egzistuojančiam vartotojui:"
 
-#: wordpress-importer.php:372
+#: class-wp-import.php:360
 msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
 msgstr "Nepavyko sukurti naujo vartotojo (%s). Įrašai bus priskirti esamam vartotojui."
 
-#: wordpress-importer.php:467
+#: class-wp-import.php:457
 msgid "Failed to import post tag %s"
 msgstr "Klaida importuojant žymą %s"
 
-#: wordpress-importer.php:424
+#: class-wp-import.php:412
 msgid "Failed to import category %s"
 msgstr "Klaida importuojant kategoriją %s"
 
-#: wordpress-importer.php:516 wordpress-importer.php:738
+#: class-wp-import.php:512 class-wp-import.php:738
 msgid "Failed to import %s %s"
 msgstr "Klaida importuojant %s %s"
 
-#: wordpress-importer.php:605
+#: class-wp-import.php:605
 msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
 msgstr "Klaida importuojant &#8220;%s&#8221;: Neteisingas įrašo tipas %s"
 
-#: wordpress-importer.php:870
+#: class-wp-import.php:878
 msgid "Menu item skipped due to missing menu slug"
 msgstr "Meniu elementas praleistas dėl trūkstamos meniu nuorodos dalies"
 
-#: wordpress-importer.php:704
+#: class-wp-import.php:704
 msgid "Failed to import %s &#8220;%s&#8221;"
 msgstr "Klaida importuojant %s &#8220;%s&#8221;"
 
-#: wordpress-importer.php:642
+#: class-wp-import.php:642
 msgid "%s &#8220;%s&#8221; already exists."
 msgstr "%s &#8220;%s&#8221; jau yra."
 
-#: wordpress-importer.php:877
+#: class-wp-import.php:885
 msgid "Menu item skipped due to invalid menu slug: %s"
 msgstr "Meniu elementas praleistas dėl netinkamos meniu nuorodos dalies: %s"
 
-#: wordpress-importer.php:940
+#: class-wp-import.php:948
 msgid "Fetching attachments is not enabled"
 msgstr "Prisegtų failų įtraukimas neįjungtas"
 
-#: wordpress-importer.php:953
+#: class-wp-import.php:961
 msgid "Invalid file type"
 msgstr "Netinkamas failo tipas"
 
-#: wordpress-importer.php:1003
+#: class-wp-import.php:1047
 msgid "Remote server did not respond"
 msgstr "Nuotolinis serveris neatsako"
 
-#: wordpress-importer.php:1018
-msgid "Remote file is incorrect size"
-msgstr "Failas yra netinkamo dydžio"
-
-#: wordpress-importer.php:1011
-msgid "Remote server returned error response %1$d %2$s"
-msgstr "Nuotolinis serveris grąžino klaidą %1$d %2$s"
-
-#: wordpress-importer.php:1029
+#: class-wp-import.php:1065
 msgid "Remote file is too large, limit is %s"
 msgstr "Nuotolinis failas yra per didelis, riba: %s"
 
-#: wordpress-importer.php:1023
+#: class-wp-import.php:1054
 msgid "Zero size file downloaded"
 msgstr "Atsisiųstas tuščias failas"
 
-#: wordpress-importer.php:1136
+#: class-wp-import.php:1231
 msgid "A new version of this importer is available. Please update to version %s to ensure compatibility with newer export files."
 msgstr "Yra nauja importo įskiepio versija. Prašome atsinaujinti į versiją %s, kad užtikrintumėte suderinamumą su naujais eksporto failais."
 
-#: wordpress-importer.php:1129
+#: class-wp-import.php:1224
 msgid "Import WordPress"
 msgstr "Importuoti WordPress duomenis"
 
-#: wordpress-importer.php:1151
+#: class-wp-import.php:1246
 msgid "Howdy! Upload your WordPress eXtended RSS (WXR) file and we&#8217;ll import the posts, pages, comments, custom fields, categories, and tags into this site."
 msgstr "Sveiki! Įkelkite savo WordPress eXtended RSS (WXR) failą ir iš jo  į šį tinklalapį bus importuoti įrašai, puslapiai, komentarai, papildomi laukai, kategorijos ir žymos,"
 
-#: wordpress-importer.php:1152
+#: class-wp-import.php:1247
 msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
 msgstr "Pasirinkite WXR (.xml) failą kurį norite įkelti, tuomet spauskite Įkelti failą ir importuokite."
 
-#: wordpress-importer.php:1226
+#: wordpress-importer.php:58
 msgid "Import <strong>posts, pages, comments, custom fields, categories, and tags</strong> from a WordPress export file."
 msgstr "Importuoja <strong>įrašus, puslapius, komentarus, papildomus laukus, kategorijas ir žymas</strong> iš WordPress eksporto failo."
 
-#. Plugin URI of the plugin/theme
+#. Plugin URI of the plugin
 msgid "https://wordpress.org/plugins/wordpress-importer/"
 msgstr "https://wordpress.org/plugins/wordpress-importer/"
 
-#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
 msgid "WordPress Importer"
 msgstr "WordPress Importuotojas"
 
-#. Description of the plugin/theme
+#. Description of the plugin
 msgid "Import posts, pages, comments, custom fields, categories, tags and more from a WordPress export file."
 msgstr "Importuoja įrašus, puslapius, komentarus, papildomus laukus, kategorijas, žymas ir visa kita ką randa WordPress eksporto faile."
 
-#. Author of the plugin/theme
+#. Author of the plugin
 msgid "wordpressdotorg"
 msgstr "wordpressdotorg"
 
-#. Author URI of the plugin/theme
+#. Author URI of the plugin
 msgid "https://wordpress.org/"
 msgstr "https://wordpress.org/"

@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Themes - Twenty Twenty package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2019-12-18 09:27:14+0000\n"
+"PO-Revision-Date: 2020-05-25 18:24:43+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha\n"
 "Language: pl\n"
 "Project-Id-Version: Themes - Twenty Twenty\n"
 
@@ -134,6 +134,10 @@ msgstr "Nowe Muzeum Sztuki Nowoczesnej otwarło swoje powoje"
 msgid "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
 msgstr "Na siedmiu piętrach efektownej architektury Muzeum Sztuki Nowoczesnej można zobaczyć wystawy międzynarodowej sztuki współczesnej, czasami wraz z historyczną retrospektywą. Zagadnienia egzystencjalne, polityczne i filozoficzne są głównym wątkiem programu. Dla odwiedzających przygotowane zostały różne formy zwiedzania jak np. oprowadzanie z przewodnikiem, spotkania z artystami, wykłady, pokazy filmowe i wiele innych. Wstęp jest wolny."
 
+#: inc/starter-content.php:129
+msgid "&#8220;Cyborgs, as the philosopher Donna Haraway established, are not reverent. They do not remember the cosmos.&#8221;"
+msgstr "&#8220;Cyborgi, jak ustaliła filozof Donna Haraway, nie okazują czci. Nie pamiętają kosmosu.&#8221;"
+
 #. translators: %s: Number of search results.
 #: index.php:39
 msgid "We found %s result for your search."
@@ -255,7 +259,7 @@ msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Szukaj &hellip;"
 
-#: functions.php:517
+#: functions.php:515
 msgid "Background Color"
 msgstr "Kolor tła"
 
@@ -284,7 +288,7 @@ msgstr "Nowsze komentarze"
 msgid "Older Comments"
 msgstr "Starsze komentarze"
 
-#: functions.php:499
+#: functions.php:497
 msgid "Secondary"
 msgstr "Drugi"
 
@@ -297,7 +301,7 @@ msgstr "Menu stopki"
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Edycja <span class=\"screen-reader-text\">%s</span>"
 
-#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:494
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:492
 msgid "Primary"
 msgstr "Głowny"
 
@@ -320,7 +324,7 @@ msgstr "W odpowiedzi na &ldquo;%s&rdquo;"
 msgid "Post author"
 msgstr "Autor wpisu"
 
-#: functions.php:489
+#: functions.php:487
 msgid "Accent Color"
 msgstr "Akcent kolorystyczny"
 
@@ -393,42 +397,42 @@ msgstr "Szukaj:"
 msgid "Mobile"
 msgstr "Mobilne"
 
-#: functions.php:551
+#: functions.php:549
 msgctxt "Short name of the larger font size in the block editor."
 msgid "XL"
 msgstr "XL"
 
-#: functions.php:550
+#: functions.php:548
 msgctxt "Name of the larger font size in the block editor"
 msgid "Larger"
 msgstr "Większy"
 
-#: functions.php:545
+#: functions.php:543
 msgctxt "Short name of the large font size in the block editor."
 msgid "L"
 msgstr "L"
 
-#: functions.php:544
+#: functions.php:542
 msgctxt "Name of the large font size in the block editor"
 msgid "Large"
 msgstr "Duży"
 
-#: functions.php:539
+#: functions.php:537
 msgctxt "Short name of the regular font size in the block editor."
 msgid "M"
 msgstr "M"
 
-#: functions.php:538
+#: functions.php:536
 msgctxt "Name of the regular font size in the block editor"
 msgid "Regular"
 msgstr "Normalny"
 
-#: functions.php:533
+#: functions.php:531
 msgctxt "Short name of the small font size in the block editor."
 msgid "S"
 msgstr "S"
 
-#: functions.php:532
+#: functions.php:530
 msgctxt "Name of the small font size in the block editor"
 msgid "Small"
 msgstr "Mały"
@@ -489,7 +493,7 @@ msgstr "Proszę się upewnić, że kontrast jest wystarczająco wysoki, aby teks
 msgid "Expanded"
 msgstr "Rozwinięte"
 
-#: functions.php:504
+#: functions.php:502
 msgid "Subtle Background"
 msgstr "Tło podtytułu"
 

@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Modified version with 'polylang' text domain and comments for translators
  *
  * @author Easy Digital Downloads
- * @version 1.6.18
+ * @version 1.7.1
  */
 class PLL_Plugin_Updater {
 
@@ -120,6 +120,7 @@ class PLL_Plugin_Updater {
 
 		if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
 
+			$no_update = false;
 			if ( version_compare( $this->version, $version_info->new_version, '<' ) ) {
 
 				$_transient_data->response[ $this->name ] = $version_info;
@@ -127,11 +128,25 @@ class PLL_Plugin_Updater {
 				// Make sure the plugin property is set to the plugin's name/location. See issue 1463 on Software Licensing's GitHub repo.
 				$_transient_data->response[ $this->name ]->plugin = $this->name;
 
+			} else {
+				$no_update              = new stdClass();
+				$no_update->id          = '';
+				$no_update->slug        = $this->slug;
+				$no_update->plugin      = $this->name;
+				$no_update->new_version = $version_info->new_version;
+				$no_update->url         = $version_info->homepage;
+				$no_update->package     = isset( $version_info->package ) ? $version_info->package : ''; #modified#
+				$no_update->icons       = $version_info->icons;
+				$no_update->banners     = $version_info->banners;
+				$no_update->banners_rtl = array();
 			}
 
 			$_transient_data->last_checked           = time();
 			$_transient_data->checked[ $this->name ] = $this->version;
 
+			if ( $no_update ) {
+				$_transient_data->no_update[ $this->name ] = $no_update;
+			}
 		}
 
 		return $_transient_data;
@@ -188,6 +203,10 @@ class PLL_Plugin_Updater {
 					$version_info->icons = $this->convert_object_to_array( $version_info->icons );
 				}
 
+				if ( isset( $version_info->contributors ) && ! is_array( $version_info->contributors ) ) {
+					$version_info->contributors = $this->convert_object_to_array( $version_info->contributors );
+				}
+
 				$this->set_version_info_cache( $version_info );
 			}
 
@@ -195,14 +214,29 @@ class PLL_Plugin_Updater {
 				return;
 			}
 
+			$no_update = false;
 			if ( version_compare( $this->version, $version_info->new_version, '<' ) ) {
 
 				$update_cache->response[ $this->name ] = $version_info;
 
+			} else {
+				$no_update              = new stdClass();
+				$no_update->id          = '';
+				$no_update->slug        = $this->slug;
+				$no_update->plugin      = $this->name;
+				$no_update->new_version = $version_info->new_version;
+				$no_update->url         = $version_info->homepage;
+				$no_update->package     = isset( $version_info->package ) ? $version_info->package : ''; #modified#
+				$no_update->icons       = $version_info->icons;
+				$no_update->banners     = $version_info->banners;
+				$no_update->banners_rtl = array();
 			}
 
-			$update_cache->last_checked = time();
+			$update_cache->last_checked           = time();
 			$update_cache->checked[ $this->name ] = $this->version;
+			if ( $no_update ) {
+				$update_cache->no_update[ $this->name ] = $no_update;
+			}
 
 			set_site_transient( 'update_plugins', $update_cache );
 
@@ -288,10 +322,8 @@ class PLL_Plugin_Updater {
 			)
 		);
 
-		$cache_key = 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) );
-
 		// Get the transient where we store the api request for this plugin for 24 hours
-		$edd_api_request_transient = $this->get_cached_version_info( $cache_key );
+		$edd_api_request_transient = $this->get_cached_version_info();
 
 		//If we have no transient-saved value, run the API, set a fresh transient with the API value, and return that value too right now.
 		if ( empty( $edd_api_request_transient ) ) {
@@ -299,7 +331,7 @@ class PLL_Plugin_Updater {
 			$api_response = $this->api_request( 'plugin_information', $to_send );
 
 			// Expires in 3 hours
-			$this->set_version_info_cache( $api_response, $cache_key );
+			$this->set_version_info_cache( $api_response );
 
 			if ( false !== $api_response ) {
 				$_data = $api_response;
@@ -324,6 +356,11 @@ class PLL_Plugin_Updater {
 			$_data->icons = $this->convert_object_to_array( $_data->icons );
 		}
 
+		// Convert contributors into an associative array, since we're getting an object, but Core expects an array.
+		if ( isset( $_data->contributors ) && ! is_array( $_data->contributors ) ) {
+			$_data->contributors = $this->convert_object_to_array( $_data->contributors );
+		}
+
 		if( ! isset( $_data->plugin ) ) {
 			$_data->plugin = $this->name;
 		}
@@ -346,7 +383,7 @@ class PLL_Plugin_Updater {
 	private function convert_object_to_array( $data ) {
 		$new_data = array();
 		foreach ( $data as $key => $value ) {
-			$new_data[ $key ] = $value;
+			$new_data[ $key ] = is_object( $value ) ? $this->convert_object_to_array( $value ) : $value;
 		}
 
 		return $new_data;
@@ -459,6 +496,9 @@ class PLL_Plugin_Updater {
 		return $request;
 	}
 
+	/**
+	 * If available, show the changelog for sites in a multisite install.
+	 */
 	public function show_changelog() {
 
 		global $edd_plugin_data;
@@ -480,9 +520,7 @@ class PLL_Plugin_Updater {
 		}
 
 		$data         = $edd_plugin_data[ $_REQUEST['slug'] ];
-		$beta         = ! empty( $data['beta'] ) ? true : false;
-		$cache_key    = md5( 'edd_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_' . $beta . '_version_info' );
-		$version_info = $this->get_cached_version_info( $cache_key );
+		$version_info = $this->get_cached_version_info();
 
 		if( false === $version_info ) {
 
@@ -503,7 +541,6 @@ class PLL_Plugin_Updater {
 				$version_info = json_decode( wp_remote_retrieve_body( $request ) );
 			}
 
-
 			if ( ! empty( $version_info ) && isset( $version_info->sections ) ) {
 				$version_info->sections = maybe_unserialize( $version_info->sections );
 			} else {
@@ -516,17 +553,28 @@ class PLL_Plugin_Updater {
 				}
 			}
 
-			$this->set_version_info_cache( $version_info, $cache_key );
+			$this->set_version_info_cache( $version_info );
 
+			// Delete the unneeded option
+			delete_option( md5( 'edd_plugin_' . sanitize_key( $_REQUEST['plugin'] ) . '_' . $this->beta . '_version_info' ) );
 		}
 
-		if( ! empty( $version_info ) && isset( $version_info->sections['changelog'] ) ) {
-			echo '<div style="background:#fff;padding:10px;">' . $version_info->sections['changelog'] . '</div>';
+		if ( isset( $version_info->sections ) ) {
+			$sections = $this->convert_object_to_array( $version_info->sections );
+			if ( ! empty( $sections['changelog'] ) ) {
+				echo '<div style="background:#fff;padding:10px;">' . wp_kses_post( $sections['changelog'] ) . '</div>';
+			}
 		}
 
 		exit;
 	}
 
+	/**
+	 * Gets the plugin's cached version information from the database.
+	 *
+	 * @param string $cache_key
+	 * @return boolean|string
+	 */
 	public function get_cached_version_info( $cache_key = '' ) {
 
 		if( empty( $cache_key ) ) {
@@ -549,6 +597,12 @@ class PLL_Plugin_Updater {
 
 	}
 
+	/**
+	 * Adds the plugin version information to the database.
+	 *
+	 * @param string $value
+	 * @param string $cache_key
+	 */
 	public function set_version_info_cache( $value = '', $cache_key = '' ) {
 
 		if( empty( $cache_key ) ) {
@@ -562,6 +616,8 @@ class PLL_Plugin_Updater {
 
 		update_option( $cache_key, $data, 'no' );
 
+		// Delete the duplicate option
+		delete_option( 'edd_api_request_' . md5( serialize( $this->slug . $this->api_data['license'] . $this->beta ) ) );
 	}
 
 	/**
@@ -575,3 +631,4 @@ class PLL_Plugin_Updater {
 	}
 
 }
+

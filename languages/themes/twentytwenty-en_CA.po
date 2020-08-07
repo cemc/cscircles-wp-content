@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: en_CA\n"
 "Project-Id-Version: Themes - Twenty Twenty\n"
 
@@ -49,14 +49,6 @@ msgstr "Members get access to exclusive exhibits and sales. Our memberships cost
 msgid "Become a Member and Get Exclusive Offers!"
 msgstr "Become a Member and Get Exclusive Offers!"
 
-#: inc/starter-content.php:136
-msgid "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
-msgstr "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
-
-#: inc/starter-content.php:133
-msgid "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
-msgstr "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
-
 #: inc/starter-content.php:113
 msgid "From Signac to Matisse"
 msgstr "From Signac to Matisse"
@@ -90,6 +82,14 @@ msgstr "Works and Days"
 msgid "The premier destination for modern art in Northern Sweden. Open from 10 AM to 6 PM every day during the summer months."
 msgstr "The premier destination for modern art in Northern Sweden. Open from 10 AM to 6 PM every day during the summer months."
 
+#: inc/starter-content.php:136
+msgid "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
+msgstr "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
+
+#: inc/starter-content.php:133
+msgid "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
+msgstr "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
+
 #: inc/starter-content.php:47
 msgid "The New UMoMA Opens its Doors"
 msgstr "The New UMoMA Opens its Doors"
@@ -97,6 +97,18 @@ msgstr "The New UMoMA Opens its Doors"
 #: classes/class-twentytwenty-customize.php:395
 msgid "Overlay Opacity"
 msgstr "Overlay Opacity"
+
+#: classes/class-twentytwenty-customize.php:283
+msgid "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
+msgstr "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
+
+#: classes/class-twentytwenty-customize.php:126
+msgid "Custom"
+msgstr "Custom"
+
+#: classes/class-twentytwenty-customize.php:125
+msgid "Default"
+msgstr "Default"
 
 #: classes/class-twentytwenty-customize.php:375
 msgid "The color used for the text in the overlay."
@@ -114,21 +126,9 @@ msgstr "The colour used for the overlay. Defaults to the accent colour."
 msgid "Overlay Background Color"
 msgstr "Overlay Background Colour"
 
-#: classes/class-twentytwenty-customize.php:283
-msgid "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
-msgstr "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
-
 #: classes/class-twentytwenty-customize.php:183
 msgid "Apply a custom color for links, buttons, featured images."
 msgstr "Apply a custom colour for links, buttons, featured images."
-
-#: classes/class-twentytwenty-customize.php:126
-msgid "Custom"
-msgstr "Custom"
-
-#: classes/class-twentytwenty-customize.php:125
-msgid "Default"
-msgstr "Default"
 
 #: classes/class-twentytwenty-customize.php:123
 msgid "Primary Color"
@@ -168,6 +168,70 @@ msgstr "Y"
 #: 404.php:24
 msgid "404 not found"
 msgstr "404 not found"
+
+#. translators: 1: Comment date, 2: Comment time.
+#: classes/class-twentytwenty-walker-comment.php:69
+msgid "%1$s at %2$s"
+msgstr "%1$s at %2$s"
+
+#: classes/class-twentytwenty-walker-comment.php:77
+msgid "Edit"
+msgstr "Edit"
+
+#: classes/class-twentytwenty-walker-comment.php:92
+msgid "Your comment is awaiting moderation."
+msgstr "Your comment is awaiting moderation."
+
+#: comments.php:34
+msgid "Leave a comment"
+msgstr "Leave a comment"
+
+#. translators: %s: Post title.
+#: comments.php:37
+msgctxt "comments title"
+msgid "One reply on &ldquo;%s&rdquo;"
+msgstr "One reply on &ldquo;%s&rdquo;"
+
+#. translators: 1: Number of comments, 2: Post title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s reply on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s reply on &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s replies on &ldquo;%2$s&rdquo;"
+
+#: comments.php:88
+msgid "Comments"
+msgstr "Comments"
+
+#: comments.php:127
+msgid "Comments are closed."
+msgstr "Comments are closed."
+
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:492
+msgid "Primary"
+msgstr "Primary"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: inc/template-tags.php:206
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr "Edit <span class=\"screen-reader-text\">%s</span>"
+
+#: template-parts/content-cover.php:138 template-parts/content.php:48
+msgid "Pages:"
+msgstr "Pages:"
+
+#: template-parts/footer-menus-widgets.php:37
+msgid "Footer"
+msgstr "Footer"
+
+#: template-parts/content-cover.php:138 template-parts/content.php:48
+msgid "Page"
+msgstr "Page"
+
+#: functions.php:497
+msgid "Secondary"
+msgstr "Secondary"
 
 #. Template Name of the theme
 msgid "Full Width Template"
@@ -209,22 +273,10 @@ msgstr "Close Menu"
 msgid "Social links"
 msgstr "Social links"
 
-#: template-parts/footer-menus-widgets.php:37
-msgid "Footer"
-msgstr "Footer"
-
 #. translators: %s: Author name.
 #: inc/template-tags.php:354 template-parts/entry-author-bio.php:20
 msgid "By %s"
 msgstr "By %s"
-
-#: template-parts/content-cover.php:138 template-parts/content.php:48
-msgid "Pages:"
-msgstr "Pages:"
-
-#: template-parts/content-cover.php:138 template-parts/content.php:48
-msgid "Page"
-msgstr "Page"
 
 #: template-parts/content-cover.php:88
 msgid "Scroll Down"
@@ -247,11 +299,6 @@ msgstr "We could not find any results for your search. You can give it another t
 #: index.php:32
 msgid "Search:"
 msgstr "Search:"
-
-#. translators: %s: Post title. Only visible to screen readers.
-#: inc/template-tags.php:206
-msgid "Edit <span class=\"screen-reader-text\">%s</span>"
-msgstr "Edit <span class=\"screen-reader-text\">%s</span>"
 
 #: inc/template-tags.php:445
 msgid "Sticky post"
@@ -278,10 +325,6 @@ msgstr "Post author"
 msgid "Social Links Menu"
 msgstr "Social Links Menu"
 
-#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:494
-msgid "Primary"
-msgstr "Primary"
-
 #: header.php:88
 msgid "Horizontal"
 msgstr "Horizontal"
@@ -298,59 +341,55 @@ msgstr "Search"
 msgid "Continue reading"
 msgstr "Continue reading"
 
-#: functions.php:551
+#: functions.php:549
 msgctxt "Short name of the larger font size in the block editor."
 msgid "XL"
 msgstr "XL"
 
-#: functions.php:550
+#: functions.php:548
 msgctxt "Name of the larger font size in the block editor"
 msgid "Larger"
 msgstr "Larger"
 
-#: functions.php:545
+#: functions.php:543
 msgctxt "Short name of the large font size in the block editor."
 msgid "L"
 msgstr "L"
 
-#: functions.php:544
+#: functions.php:542
 msgctxt "Name of the large font size in the block editor"
 msgid "Large"
 msgstr "Large"
 
-#: functions.php:539
+#: functions.php:537
 msgctxt "Short name of the regular font size in the block editor."
 msgid "M"
 msgstr "M"
 
-#: functions.php:538
+#: functions.php:536
 msgctxt "Name of the regular font size in the block editor"
 msgid "Regular"
 msgstr "Regular"
 
-#: functions.php:533
+#: functions.php:531
 msgctxt "Short name of the small font size in the block editor."
 msgid "S"
 msgstr "S"
 
-#: functions.php:532
+#: functions.php:530
 msgctxt "Name of the small font size in the block editor"
 msgid "Small"
 msgstr "Small"
 
-#: functions.php:517
+#: functions.php:515
 msgid "Background Color"
 msgstr "Background Colour"
 
-#: functions.php:504
+#: functions.php:502
 msgid "Subtle Background"
 msgstr "Subtle Background"
 
-#: functions.php:499
-msgid "Secondary"
-msgstr "Secondary"
-
-#: functions.php:489
+#: functions.php:487
 msgid "Accent Color"
 msgstr "Accent Colour"
 
@@ -398,14 +437,6 @@ msgstr "Desktop Horizontal Menu"
 msgid "Powered by WordPress"
 msgstr "Powered by WordPress"
 
-#: comments.php:127
-msgid "Comments are closed."
-msgstr "Comments are closed."
-
-#: comments.php:88
-msgid "Comments"
-msgstr "Comments"
-
 #: comments.php:75
 msgid "Older Comments"
 msgstr "Older Comments"
@@ -413,24 +444,6 @@ msgstr "Older Comments"
 #: comments.php:74
 msgid "Newer Comments"
 msgstr "Newer Comments"
-
-#. translators: 1: Number of comments, 2: Post title.
-#: comments.php:41
-msgctxt "comments title"
-msgid "%1$s reply on &ldquo;%2$s&rdquo;"
-msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
-msgstr[0] "%1$s reply on &ldquo;%2$s&rdquo;"
-msgstr[1] "%1$s replies on &ldquo;%2$s&rdquo;"
-
-#. translators: %s: Post title.
-#: comments.php:37
-msgctxt "comments title"
-msgid "One reply on &ldquo;%s&rdquo;"
-msgstr "One reply on &ldquo;%s&rdquo;"
-
-#: comments.php:34
-msgid "Leave a comment"
-msgstr "Leave a comment"
 
 #: classes/class-twentytwenty-walker-page.php:107 inc/template-tags.php:555
 msgid "Show sub menu"
@@ -444,19 +457,6 @@ msgstr "#%d (no title)"
 #: classes/class-twentytwenty-walker-comment.php:127
 msgid "By Post Author"
 msgstr "By Post Author"
-
-#: classes/class-twentytwenty-walker-comment.php:92
-msgid "Your comment is awaiting moderation."
-msgstr "Your comment is awaiting moderation."
-
-#: classes/class-twentytwenty-walker-comment.php:77
-msgid "Edit"
-msgstr "Edit"
-
-#. translators: 1: Comment date, 2: Comment time.
-#: classes/class-twentytwenty-walker-comment.php:69
-msgid "%1$s at %2$s"
-msgstr "%1$s at %2$s"
 
 #: classes/class-twentytwenty-walker-comment.php:56
 msgid "says:"
@@ -499,10 +499,6 @@ msgstr "Show search in header"
 msgid "Theme Options"
 msgstr "Theme Options"
 
-#: classes/class-twentytwenty-customize.php:101
-msgid "Header &amp; Footer Background Color"
-msgstr "Header &amp; Footer Background Colour"
-
 #: classes/class-twentytwenty-customize.php:82
 msgid "Scales the logo to half its uploaded size, making it sharp on high-res screens."
 msgstr "Scales the logo to half its uploaded size, making it sharp on high-res screens."
@@ -518,6 +514,10 @@ msgstr "The page you were looking for could not be found. It might have been rem
 #: 404.php:17
 msgid "Page Not Found"
 msgstr "Page Not Found"
+
+#: classes/class-twentytwenty-customize.php:101
+msgid "Header &amp; Footer Background Color"
+msgstr "Header &amp; Footer Background Colour"
 
 #. Author URI of the theme
 #: footer.php:32

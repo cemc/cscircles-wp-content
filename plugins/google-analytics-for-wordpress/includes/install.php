@@ -128,6 +128,14 @@ class MonsterInsights_Install {
 				$this->v7100_upgrades();
 			}
 
+			if ( version_compare( $version, '7.11.0', '<' ) ) {
+				$this->v7110_upgrades();
+			}
+
+			if ( version_compare( $version, '7.12.0', '<' ) ) {
+				$this->v7120_upgrades();
+			}
+
 			// Do not use. See monsterinsights_after_install_routine comment below.
 			do_action( 'monsterinsights_after_existing_upgrade_routine', $version );
 			$version = get_option( 'monsterinsights_current_version', $version );
@@ -212,8 +220,6 @@ class MonsterInsights_Install {
 	 * @return void
 	 */
 	public function new_install() {
-
-		// Add default settings values
 		$this->new_settings = $this->get_monsterinsights_default_values();
 
 		$this->maybe_import_thirstyaffiliates_options();
@@ -231,6 +237,14 @@ class MonsterInsights_Install {
 	}
 
 	public function get_monsterinsights_default_values() {
+
+		$admin_email                                     = get_option( 'admin_email' );
+		$admin_email_array                               = array(
+			array(
+				'email' => $admin_email,
+			),
+		);
+
 		return array(
 			'enable_affiliate_links'    => true,
 			'affiliate_links'           => array(
@@ -258,6 +272,10 @@ class MonsterInsights_Install {
 			'view_reports'              => array( 'administrator', 'editor' ),
 			'events_mode'               => 'js',
 			'tracking_mode'             => 'analytics',
+			'email_summaries'           => 'on',
+			'summaries_html_template'   => 'yes',
+			'summaries_email_addresses' => $admin_email_array,
+			'automatic_updates'         => 'none',
 		);
 	}
 
@@ -668,6 +686,37 @@ class MonsterInsights_Install {
 		$updated_extensions = implode( ',', $updated_extensions );
 
 		$this->new_settings['extensions_of_files'] = $updated_extensions;
+
+	}
+
+	/**
+	 * Upgrade routine for version 7.11.0
+	 */
+	public function v7110_upgrades() {
+
+		if ( empty( $this->new_settings['email_summaries'] ) ) {
+			$admin_email                                     = get_option( 'admin_email' );
+			$admin_email_array                               = array(
+				array(
+					'email' => $admin_email,
+				),
+			);
+			$this->new_settings['email_summaries']           = 'on';
+			$this->new_settings['summaries_html_template']   = 'yes';
+			$this->new_settings['summaries_email_addresses'] = $admin_email_array; // Not using wp_json_encode for backwards compatibility.
+		}
+
+	}
+
+	/**
+	 * Upgrade routine for version 7.12.0
+	 */
+	public function v7120_upgrades() {
+
+		// Make sure the default for automatic updates is reflected correctly in the settings.
+		if ( empty( $this->new_settings['automatic_updates'] ) ) {
+			$this->new_settings['automatic_updates'] = 'none';
+		}
 
 	}
 }

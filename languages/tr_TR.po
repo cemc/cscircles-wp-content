@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the WordPress - 5.4.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-03-24 11:52:40+0000\n"
+"PO-Revision-Date: 2020-07-09 14:00:02+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: GlotPress/2.4.0-alpha\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: tr\n"
 "Project-Id-Version: WordPress - 5.4.x - Development\n"
 
@@ -16,7 +16,7 @@ msgctxt "Google Font Name and Variants"
 msgid "Noto Serif:400,400i,700,700i"
 msgstr "Noto Serif:400,400i,700,700i"
 
-#: wp-includes/comment-template.php:909
+#: wp-includes/comment-template.php:914
 msgctxt "Comment number declension: on or off"
 msgid "off"
 msgstr "off"
@@ -30,6 +30,16 @@ msgctxt "decline months names: on or off"
 msgid "off"
 msgstr "off"
 
+#. translators: If your word count is based on single characters (e.g. East
+#. Asian characters), enter 'characters_excluding_spaces' or
+#. 'characters_including_spaces'. Otherwise, enter 'words'. Do not translate
+#. into your own language.
+#: wp-includes/script-loader.php:1915 wp-includes/formatting.php:3888
+#: wp-includes/js/dist/editor.js:12766
+msgctxt "Word count type. Do not translate!"
+msgid "words"
+msgstr "words"
+
 #: wp-includes/script-loader.php:1645
 msgctxt "Open Sans font: on or off"
 msgid "on"
@@ -42,7 +52,7 @@ msgid "ltr"
 msgstr "ltr"
 
 #. translators: Opening curly double quote.
-#: wp-includes/formatting.php:101 wp-includes/formatting.php:5379
+#: wp-includes/formatting.php:101 wp-includes/formatting.php:5396
 msgctxt "opening curly double quote"
 msgid "&#8220;"
 msgstr "&#8220;"
@@ -77,23 +87,31 @@ msgstr "."
 msgid "number_format_decimal_point"
 msgstr ","
 
+#: wp-includes/comment-template.php:602
+msgid "Password protected"
+msgstr "Parola korumalı"
+
+#: wp-includes/rest-api.php:50
+msgid "Namespace must not start or end with a slash."
+msgstr "İsim uzayı bölü işareti ile başlamamalı veya bitmemelidir."
+
 #. translators: 1: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23769
+#: wp-includes/js/dist/block-editor.js:23760
 msgid "Block %1$s is at the beginning of the content and can’t be moved left"
 msgstr "%1$s bloğu içeriğin başında ve sola taşınamaz"
 
 #. translators: 1: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23764
+#: wp-includes/js/dist/block-editor.js:23755
 msgid "Block %1$s is at the beginning of the content and can’t be moved up"
 msgstr "%1$s bloğu içeriğin başında ve yukarı taşınamaz"
 
 #. translators: 1: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23729
+#: wp-includes/js/dist/block-editor.js:23720
 msgid "Block %1$s is at the end of the content and can’t be moved left"
 msgstr "%1$s bloğu içeriğin sonunda ve sola taşınamaz"
 
 #. translators: 1: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23724
+#: wp-includes/js/dist/block-editor.js:23715
 msgid "Block %1$s is at the end of the content and can’t be moved down"
 msgstr "%1$s bloğu içeriğin sonunda ve aşağı taşınamaz"
 
@@ -439,121 +457,121 @@ msgstr "Hoş geldiniz rehberi"
 msgid "Keyboard shortcuts"
 msgstr "Tuş takımı kısayolları"
 
-#: wp-includes/js/dist/block-editor.js:25291
+#: wp-includes/js/dist/block-editor.js:25282
 msgid "Remove multiple selected blocks."
 msgstr "Seçili birden çok bloğu kaldırın."
 
-#: wp-includes/js/dist/block-editor.js:22539
+#: wp-includes/js/dist/block-editor.js:22530
 msgid "Tools offer different interactions for block selection & editing. To select, press Escape, to go back to editing, press Enter."
 msgstr "Araçlar, blok seçimi ve düzenlemesi için farklı etkileşimler sunar. Seçmek için Escape tuşuna basın, düzenlemeye geri dönmek için Enter tuşuna basın."
 
 #. translators: 1: Type of block (i.e. Text, Image etc), 2: Position of
 #. selected block, 3: New position
-#: wp-includes/js/dist/block-editor.js:23714
-#: wp-includes/js/dist/block-editor.js:23754
+#: wp-includes/js/dist/block-editor.js:23705
+#: wp-includes/js/dist/block-editor.js:23745
 msgid "Move %1$s block from position %2$d right to position %3$d"
 msgstr "%1$s bloğunu %2$d konumundan %3$d konumunun sağına taşı"
 
 #. translators: 1: Type of block (i.e. Text, Image etc), 2: Position of
 #. selected block, 3: New position
-#: wp-includes/js/dist/block-editor.js:23709
-#: wp-includes/js/dist/block-editor.js:23749
+#: wp-includes/js/dist/block-editor.js:23700
+#: wp-includes/js/dist/block-editor.js:23740
 msgid "Move %1$s block from position %2$d left to position %3$d"
 msgstr "%1$s bloğunu %2$d konumundan %3$d konumunun soluna taşı"
 
-#: wp-includes/js/dist/block-editor.js:21574
+#: wp-includes/js/dist/block-editor.js:21565
 msgid "Large screens"
 msgstr "Büyük ekranlar"
 
-#: wp-includes/js/dist/block-editor.js:21571
+#: wp-includes/js/dist/block-editor.js:21562
 msgid "Medium screens"
 msgstr "Orta boy ekranlar"
 
-#: wp-includes/js/dist/block-editor.js:21568
+#: wp-includes/js/dist/block-editor.js:21559
 msgid "Small screens"
 msgstr "Küçük ekranlar"
 
-#: wp-includes/js/dist/block-editor.js:21583
+#: wp-includes/js/dist/block-editor.js:21574
 msgid "Use the same %s on all screensizes."
 msgstr "Tüm ekran boyutlarında aynı %s değerini kullanın."
 
-#: wp-includes/js/dist/block-editor.js:21586
+#: wp-includes/js/dist/block-editor.js:21577
 msgid "Toggle between using the same value for all screen sizes or using a unique value per screen size."
 msgstr "Tüm ekran boyutları için aynı değeri kullanma veya ekran boyutu başına benzersiz bir değer kullanma arasında geçiş yapın."
 
-#: wp-includes/js/dist/block-editor.js:21520
+#: wp-includes/js/dist/block-editor.js:21511
 msgctxt "Text labelling a interface as controlling a given layout property (eg: margin) for a given screen size."
 msgid "Controls the %1$s property for %2$s viewports."
 msgstr "%2$s görünümü için %1$s özelliğini denetler."
 
-#: wp-includes/js/dist/block-editor.js:20825
+#: wp-includes/js/dist/block-editor.js:20816
 msgid "The media file has been replaced"
 msgstr "Ortam dosyası değiştirildi"
 
-#: wp-includes/js/dist/block-editor.js:19716
+#: wp-includes/js/dist/block-editor.js:19707
 msgid "Press ENTER to add this link"
 msgstr "Bu bağlantıyı eklemek için ENTER tuşuna basın"
 
-#: wp-includes/js/dist/block-editor.js:20918
+#: wp-includes/js/dist/block-editor.js:20909
 msgid "Open Media Library"
 msgstr "Ortam kütüphanesini aç"
 
-#: wp-includes/js/dist/block-editor.js:20113
+#: wp-includes/js/dist/block-editor.js:20104
 msgid "Currently selected"
 msgstr "Şu an seçilmiş olan"
 
-#: wp-includes/js/dist/block-editor.js:20065
+#: wp-includes/js/dist/block-editor.js:20056
 msgid "Recently updated"
 msgstr "Yakında güncellenmiş olanlar"
 
-#: wp-includes/js/dist/block-editor.js:19797
+#: wp-includes/js/dist/block-editor.js:19788
 msgid "Search or type url"
 msgstr "Arayın veya web adresi yazın"
 
-#: wp-includes/js/dist/block-editor.js:19666
+#: wp-includes/js/dist/block-editor.js:19657
 msgid "Currently selected link settings"
 msgstr "Şu an seçili bağlantı ayarları"
 
-#: wp-includes/js/dist/block-editor.js:18195
-#: wp-includes/js/dist/block-editor.js:18449
+#: wp-includes/js/dist/block-editor.js:18186
+#: wp-includes/js/dist/block-editor.js:18440
 msgctxt "Generic label for block inserter button"
 msgid "Add block"
 msgstr "Blok ekle"
 
 #. translators: %s: the name of the block when there is only one
-#: wp-includes/js/dist/block-editor.js:18193
-#: wp-includes/js/dist/block-editor.js:18447
+#: wp-includes/js/dist/block-editor.js:18184
+#: wp-includes/js/dist/block-editor.js:18438
 msgctxt "directly add the only allowed block"
 msgid "Add %s"
 msgstr "%s ekle"
 
-#: wp-includes/js/dist/block-editor.js:19200
+#: wp-includes/js/dist/block-editor.js:19191
 msgid "Image size"
 msgstr "Resim boyutu"
 
-#: wp-includes/js/dist/block-editor.js:18718
+#: wp-includes/js/dist/block-editor.js:18709
 msgid "Choose variation"
 msgstr "Varyasyon seçin"
 
 #. translators: %s: the name of the block that has been added
-#: wp-includes/js/dist/block-editor.js:18141
-#: wp-includes/js/dist/block-editor.js:18400
+#: wp-includes/js/dist/block-editor.js:18132
+#: wp-includes/js/dist/block-editor.js:18391
 msgid "%s block added"
 msgstr "%s bloğu eklendi"
 
-#: wp-includes/js/dist/block-editor.js:19068
+#: wp-includes/js/dist/block-editor.js:19059
 msgid "Gradient Presets"
 msgstr "Ön tanımlı gradyanlar"
 
-#: wp-includes/js/dist/block-editor.js:19001
+#: wp-includes/js/dist/block-editor.js:18992
 msgid "Editor footer"
 msgstr "Düzenleyici alt kısmı"
 
-#: wp-includes/js/dist/block-editor.js:18720
+#: wp-includes/js/dist/block-editor.js:18711
 msgid "Select a variation to start with."
 msgstr "Başlamak için bir varyasyon seçin."
 
-#: wp-includes/js/dist/block-editor.js:15314
+#: wp-includes/js/dist/block-editor.js:15305
 msgid "Multiple selected blocks"
 msgstr "Çoklu seçilen bloklar"
 
@@ -618,7 +636,7 @@ msgid "Vivid cyan blue to vivid purple"
 msgstr "Canlı mavimsi yeşilden canlı mora"
 
 #: wp-includes/js/dist/block-editor.js:7226
-#: wp-includes/js/dist/block-editor.js:19122
+#: wp-includes/js/dist/block-editor.js:19113
 msgid "Gradient"
 msgstr "Gradyan"
 
@@ -739,7 +757,7 @@ msgid "The post status %1$s is not registered, so it may not be reliable to chec
 msgstr "%1$s yazı durumu kayıtlı değil, yani bu durum için \"%2$s\" yeteneğinin sorgulanması pek güvenilir değil."
 
 #. translators: %s: Comment link.
-#: wp-includes/comment-template.php:975
+#: wp-includes/comment-template.php:980
 msgid "In reply to %s."
 msgstr "%s yorumuna yanıt olarak."
 
@@ -937,7 +955,7 @@ msgstr "Lütfen kullanıcı adınızı ya da e-posta adresinizi girin. Parolanı
 msgid "Media upload failed. If this is a photo or a large image, please scale it down and try again."
 msgstr "Ortam karşıya yüklenirken başarısız oldu. Eğer yüklediğiniz bir fotoğraf veya büyük bir görsel ise lütfen küçültüp tekrar deneyin."
 
-#: wp-includes/js/dist/block-editor.js:18014
+#: wp-includes/js/dist/block-editor.js:18005
 msgid "No Preview Available."
 msgstr "Ön izleme mevcut değil."
 
@@ -996,8 +1014,8 @@ msgstr "Ortam listesi"
 msgid "Filter Media"
 msgstr "Ortam filtrele"
 
-#: wp-includes/js/dist/block-editor.js:18592
-#: wp-includes/js/dist/block-editor.js:18669
+#: wp-includes/js/dist/block-editor.js:18583
+#: wp-includes/js/dist/block-editor.js:18660
 msgid "Block navigation"
 msgstr "Blok dolaşımı"
 
@@ -1071,13 +1089,13 @@ msgstr "Yüzde genişlik"
 msgid "Note: Autoplaying videos may cause usability issues for some visitors."
 msgstr "Not: Videoyu otomatik olarak çalma, bazı ziyaretçiler için kullanılabilirlik sorunlarına neden olabilir."
 
-#: wp-includes/js/dist/block-editor.js:24047
-#: wp-includes/js/dist/block-editor.js:24053
+#: wp-includes/js/dist/block-editor.js:24038
+#: wp-includes/js/dist/block-editor.js:24044
 msgid "Move left"
 msgstr "Sola taşı"
 
-#: wp-includes/js/dist/block-editor.js:24047
-#: wp-includes/js/dist/block-editor.js:24053
+#: wp-includes/js/dist/block-editor.js:24038
+#: wp-includes/js/dist/block-editor.js:24044
 msgid "Move right"
 msgstr "Sağa taşı"
 
@@ -1161,8 +1179,8 @@ msgstr "atıf"
 msgid "Upload a file or pick one from your media library."
 msgstr "Bir dosya yükleyin veya ortam kitaplığınızdan bir tane seçin."
 
-#: wp-includes/js/dist/block-editor.js:19633
-#: wp-includes/js/dist/block-editor.js:22899
+#: wp-includes/js/dist/block-editor.js:19624
+#: wp-includes/js/dist/block-editor.js:22890
 #: wp-includes/js/dist/block-library.js:9741
 #: wp-includes/js/dist/block-library.js:13578
 msgid "Open in new tab"
@@ -1356,7 +1374,7 @@ msgstr "Beş."
 msgid "Six."
 msgstr "Altı."
 
-#: wp-includes/js/dist/block-editor.js:26355
+#: wp-includes/js/dist/block-editor.js:26351
 msgid "Separate multiple classes with spaces."
 msgstr "Birden çok classı boşlukla ayır."
 
@@ -1364,7 +1382,7 @@ msgstr "Birden çok classı boşlukla ayır."
 msgid "More tools & options"
 msgstr "Daha fazla araç ve seçenek"
 
-#: wp-includes/js/dist/block-editor.js:26253
+#: wp-includes/js/dist/block-editor.js:26249
 msgid "Learn more about anchors"
 msgstr "Çapalar hakkında daha fazlasını öğrenin"
 
@@ -1394,24 +1412,24 @@ msgstr "Yayın öncesi kontroller"
 msgid "Inserter help panel"
 msgstr "Ekleyici yardım paneli"
 
-#: wp-includes/js/dist/block-editor.js:26251
+#: wp-includes/js/dist/block-editor.js:26247
 msgid "Enter a word or two — without spaces — to make a unique web address just for this heading, called an “anchor.” Then, you’ll be able to link directly to this section of your page."
 msgstr "\"Çapa\" olarak adlandırılan, yalnızca bu başlık için benzersiz bir web adresi oluşturmak için boşluksuz bir veya iki kelime girin. Ardından, doğrudan sayfanızın bu bölümüne bağlayabilirsiniz."
 
-#: wp-includes/js/dist/block-editor.js:23541
+#: wp-includes/js/dist/block-editor.js:23532
 msgid "Default Style"
 msgstr "Varsayılan biçem"
 
-#: wp-includes/js/dist/block-editor.js:21278
+#: wp-includes/js/dist/block-editor.js:21269
 #: wp-includes/js/dist/block-library.js:5201
 msgid "Upload an image file, pick one from your media library, or add one with a URL."
 msgstr "Bir görsel dosyası yükleyin, ortam kitaplığınızdan bir tane seçin veya bir URL ile ekleyin."
 
-#: wp-includes/js/dist/block-editor.js:21280
+#: wp-includes/js/dist/block-editor.js:21271
 msgid "Upload a video file, pick one from your media library, or add one with a URL."
 msgstr "Bir video dosyası yükleyin, ortam kitaplığınızdan bir tane seçin veya bir URL ile ekleyin."
 
-#: wp-includes/js/dist/block-editor.js:18315
+#: wp-includes/js/dist/block-editor.js:18306
 msgid "Add a block"
 msgstr "Bir blok ekle"
 
@@ -1419,46 +1437,46 @@ msgstr "Bir blok ekle"
 msgid "This color combination may be hard for people to read."
 msgstr "Bu renk kombinasyonunu insanların okuması zor olabilir."
 
-#: wp-includes/js/dist/block-editor.js:18755
+#: wp-includes/js/dist/block-editor.js:18746
 msgid "Skip"
 msgstr "Geç"
 
-#: wp-includes/js/dist/block-editor.js:21273
+#: wp-includes/js/dist/block-editor.js:21264
 msgid "Upload a media file or pick one from your media library."
 msgstr "Bir ortam dosyası yükleyin veya ortam kitaplığınızdan bir tane seçin."
 
-#: wp-includes/js/dist/block-editor.js:21276
+#: wp-includes/js/dist/block-editor.js:21267
 msgid "Upload an audio file, pick one from your media library, or add one with a URL."
 msgstr "Bir ses dosyası yükleyin, ortam kitaplığınızdan bir tane seçin veya bir URL ile ekleyin."
 
-#: wp-includes/js/dist/block-editor.js:18020
+#: wp-includes/js/dist/block-editor.js:18011
 msgid "There are blocks available for all kinds of content: insert text, headings, images, lists, videos, tables, and lots more."
 msgstr "Her türlü içerik için blok mevcut: metin, başlık, resim, liste, video, tablo ve daha fazlasını ekleyin."
 
-#: wp-includes/js/dist/block-editor.js:18020
+#: wp-includes/js/dist/block-editor.js:18011
 msgid "Browse through the library to learn more about what each block does."
 msgstr "Her bloğun ne yaptığı hakkında daha fazla bilgi edinmek için kütüphaneye göz atın."
 
-#: wp-includes/js/dist/block-editor.js:18020
+#: wp-includes/js/dist/block-editor.js:18011
 msgid "While writing, you can press <kbd>/</kbd> to quickly insert new blocks."
 msgstr "Yazarken, hızlı bir şekilde yeni bloklar eklemek için <kbd>/</kbd> tuşuna basabilirsiniz."
 
-#: wp-includes/js/dist/block-editor.js:18822
+#: wp-includes/js/dist/block-editor.js:18813
 msgctxt "Block vertical alignment setting"
 msgid "Vertically Align Top"
 msgstr "Dikeyde üste hizala"
 
-#: wp-includes/js/dist/block-editor.js:18826
+#: wp-includes/js/dist/block-editor.js:18817
 msgctxt "Block vertical alignment setting"
 msgid "Vertically Align Middle"
 msgstr "Dikeyde ortaya hizala"
 
-#: wp-includes/js/dist/block-editor.js:18830
+#: wp-includes/js/dist/block-editor.js:18821
 msgctxt "Block vertical alignment setting"
 msgid "Vertically Align Bottom"
 msgstr "Dikeyde alta hizala"
 
-#: wp-includes/js/dist/block-editor.js:18854
+#: wp-includes/js/dist/block-editor.js:18845
 msgctxt "Block vertical alignment setting label"
 msgid "Change vertical alignment"
 msgstr "Dikey hizalamayı değiştir"
@@ -1467,11 +1485,11 @@ msgstr "Dikey hizalamayı değiştir"
 msgid "Vivid purple"
 msgstr "Canlı mor"
 
-#: wp-includes/js/dist/block-editor.js:18020
+#: wp-includes/js/dist/block-editor.js:18011
 msgid "Welcome to the wonderful world of blocks! Blocks are the basis of all content within the editor."
 msgstr "Blokların harika dünyasına hoş geldiniz! Bloklar, editör içindeki tüm içeriğin temelidir."
 
-#: wp-includes/js/dist/block-editor.js:18020
+#: wp-includes/js/dist/block-editor.js:18011
 msgid "Content blocks"
 msgstr "İçerik blokları"
 
@@ -1587,7 +1605,7 @@ msgstr "Kullanılan eklenti: %1$s (sürüm %2$s)"
 msgid "Nav menu locations must be strings."
 msgstr "Dolaşım menü konumları metin olmalıdır."
 
-#: wp-includes/formatting.php:4786
+#: wp-includes/formatting.php:4803
 msgid "https://wordpress.org/support/article/using-permalinks/#choosing-your-permalink-structure"
 msgstr "https://wordpress.org/support/article/using-permalinks/#choosing-your-permalink-structure"
 
@@ -1730,7 +1748,7 @@ msgstr "Çizelgeleri yönet"
 msgid "Added:"
 msgstr "Eklendi:"
 
-#: wp-includes/comment.php:3498
+#: wp-includes/comment.php:3503
 msgid "User&#8217;s comment data."
 msgstr "Kullanıcının yorum verisi."
 
@@ -1738,7 +1756,7 @@ msgstr "Kullanıcının yorum verisi."
 msgid "Unchanged:"
 msgstr "Değişmemiş:"
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:392
+#: wp-includes/rest-api/endpoints/class-wp-rest-revisions-controller.php:415
 msgid "Sorry, you are not allowed to delete revisions of this post."
 msgstr "Üzgünüz. Bu yazının sürümlerini silmenize izin verilmiyor."
 
@@ -1817,18 +1835,18 @@ msgid "Unexpected response from the server. The file may have been uploaded succ
 msgstr "Sunucudan beklenmeyen yanıt. Dosya başarıyla yüklenmiş olabilir. Ortam kütüphanesini kontrol edin veya sayfayı yeniden yükleyin."
 
 #. translators: Maximum number of words used in a post excerpt.
-#: wp-includes/formatting.php:3810
+#: wp-includes/formatting.php:3827
 msgctxt "excerpt_length"
 msgid "55"
 msgstr "55"
 
-#: wp-includes/class-wp-customize-manager.php:5466
+#: wp-includes/class-wp-customize-manager.php:5493
 msgctxt "Original Size"
 msgid "Original"
 msgstr "Orijinal"
 
 #. translators: Maximum number of words used in a comment excerpt.
-#: wp-includes/comment-template.php:601
+#: wp-includes/comment-template.php:606
 msgctxt "comment_excerpt_length"
 msgid "20"
 msgstr "20"
@@ -2192,7 +2210,7 @@ msgstr "Kalıcı bağlantılar hakkında okuyun"
 msgid "Embedded content from %s can't be previewed in the editor."
 msgstr "%s tarafından sağlanan gömülü içerik düzenleyicide ön izlemez."
 
-#: wp-includes/js/dist/block-editor.js:23348
+#: wp-includes/js/dist/block-editor.js:23339
 #: wp-includes/js/dist/block-library.js:5790
 #: wp-includes/js/dist/block-library.js:6922
 #: wp-includes/js/dist/block-library.js:17706
@@ -2215,7 +2233,7 @@ msgctxt "keyboard key"
 msgid "Backspace"
 msgstr "Geri tuşu"
 
-#: wp-includes/js/dist/block-editor.js:24772
+#: wp-includes/js/dist/block-editor.js:24763
 msgid "Change block type or style"
 msgstr "Blok türünü veya biçimini değiştirin"
 
@@ -2255,7 +2273,7 @@ msgstr "Dikey konum"
 msgid "Search Terms"
 msgstr "Arama terimleri"
 
-#: wp-includes/js/dist/block-editor.js:21720
+#: wp-includes/js/dist/block-editor.js:21711
 msgid "More rich text controls"
 msgstr "Daha zengin metin kontrolleri"
 
@@ -2469,12 +2487,12 @@ msgid "Embed Crowdsignal (formerly Polldaddy) content."
 msgstr "Crowdsignal (eski adı Polldaddy) içeriğini gömün."
 
 #. translators: %s: rest_api_init
-#: wp-includes/rest-api.php:52
+#: wp-includes/rest-api.php:58
 msgid "REST API routes must be registered on the %s action."
 msgstr "REST API yönlendirmeleri %s eylemine kaydedilmelidir."
 
 #. translators: Used to join last two items in a list with more than 2 times.
-#: wp-includes/formatting.php:5053
+#: wp-includes/formatting.php:5070
 msgid "%1$s, and %2$s"
 msgstr "%1$s ve %2$s"
 
@@ -2485,15 +2503,15 @@ msgid_plural "Failed <span class=\"count\">(%s)</span>"
 msgstr[0] "Başarısız oldu <span class=\"count\">(%s)</span>"
 msgstr[1] "Başarısız oldu <span class=\"count\">(%s)</span>"
 
-#: wp-includes/class-walker-comment.php:271
-#: wp-includes/class-walker-comment.php:361
-msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
-msgstr "Yorumunuz denetim bekliyor. Bu bir önizlemedir, yorumunuz onaylandıktan sonra görünür olacaktır."
-
 #. translators: %s: Database table name.
 #: wp-includes/ms-site.php:1322
 msgid "The %s table is not installed. Please run the network database upgrade."
 msgstr "%s tablosu kurulu değil. Ağ veritabını yükseltmesini çalıştırın."
+
+#: wp-includes/class-walker-comment.php:304
+#: wp-includes/class-walker-comment.php:402
+msgid "Your comment is awaiting moderation. This is a preview, your comment will be visible after it has been approved."
+msgstr "Yorumunuz denetim bekliyor. Bu bir ön izlemedir, yorumunuz onaylandıktan sonra görünür olacaktır."
 
 #. translators: %d: Site ID.
 #: wp-includes/ms-site.php:692
@@ -2565,14 +2583,14 @@ msgstr "Site, veritabanına eklenemedi."
 #. translators: %s: Time duration in second or seconds.
 #. translators: Time difference between two dates, in seconds. %s: Number of
 #. seconds.
-#: wp-includes/functions.php:537 wp-includes/formatting.php:3723
+#: wp-includes/functions.php:537 wp-includes/formatting.php:3740
 msgid "%s second"
 msgid_plural "%s seconds"
 msgstr[0] "%s saniye"
 msgstr[1] "%s saniye"
 
 #. translators: Used to join items in a list with more than 2 items.
-#: wp-includes/formatting.php:5051
+#: wp-includes/formatting.php:5068
 msgid "%1$s, %2$s"
 msgstr "%1$s, %2$s"
 
@@ -2677,7 +2695,7 @@ msgid "Top toolbar"
 msgstr "Üst araç çubuğu"
 
 #. translators: %d: number of words
-#: wp-includes/js/dist/block-editor.js:23478
+#: wp-includes/js/dist/block-editor.js:23469
 msgid "%d word"
 msgid_plural "%d words"
 msgstr[0] "%d kelime"
@@ -2691,11 +2709,11 @@ msgstr "Klasik blok tuş takımı kısayolları"
 msgid "Permalink"
 msgstr "Kalıcı bağlantı"
 
-#: wp-includes/js/dist/block-editor.js:15693
+#: wp-includes/js/dist/block-editor.js:15684
 msgid "Block tools"
 msgstr "Blok araçları"
 
-#: wp-includes/js/dist/block-editor.js:18536
+#: wp-includes/js/dist/block-editor.js:18527
 msgid "(selected block)"
 msgstr "(seçilen blok)"
 
@@ -2711,7 +2729,7 @@ msgstr "Bu görsel boş bir alt niteliğe sahip; dosya adı %s"
 msgid "To edit the featured image, you need permission to upload media."
 msgstr "Öne çıkan görseli düzenlemek için karşıya ortam yükleme iznine ihtiyacınız var."
 
-#: wp-includes/js/dist/block-editor.js:21263
+#: wp-includes/js/dist/block-editor.js:21254
 msgid "To edit this block, you need permission to upload media."
 msgstr "Bu bloğu düzenlemek için karşıya ortam yükleme iznine ihtiyacınız var."
 
@@ -2731,7 +2749,7 @@ msgstr "Metin veya HTML ile yazmaya başlayın"
 msgid "Type text or HTML"
 msgstr "Metin veya HTML yazın"
 
-#: wp-includes/js/dist/block-editor.js:24748
+#: wp-includes/js/dist/block-editor.js:24739
 msgid "Block icon"
 msgstr "Blok simgesi"
 
@@ -2755,7 +2773,7 @@ msgstr "Bilgi notu"
 msgid "Empty block; start writing or type forward slash to choose a block"
 msgstr "Boş blok; yazmaya başlayın ya da bölü işareti yazarak bir blok seçin"
 
-#: wp-includes/js/dist/block-editor.js:16588
+#: wp-includes/js/dist/block-editor.js:16579
 #: wp-includes/js/dist/block-library.js:3382
 msgid "Start writing or type / to choose a block"
 msgstr "Yazmaya başlayın ya da bir blok seçmek için / yazın."
@@ -3076,7 +3094,7 @@ msgstr "Avatarı göster"
 msgid "Display a list of your most recent posts."
 msgstr "Son yazılarınızın listesini görüntüleyin."
 
-#: wp-includes/js/dist/block-editor.js:19208
+#: wp-includes/js/dist/block-editor.js:19199
 msgid "Image dimensions"
 msgstr "Görsel boyutları"
 
@@ -3663,7 +3681,7 @@ msgstr "Görsel düzenleyici seçildi"
 msgid "Close settings"
 msgstr "Ayarları kapat"
 
-#: wp-includes/js/dist/block-editor.js:18980
+#: wp-includes/js/dist/block-editor.js:18971
 msgid "Editor content"
 msgstr "Düzenleyici içeriği"
 
@@ -3694,7 +3712,7 @@ msgstr "Belge"
 msgid "Copy all content"
 msgstr "Bütün içeriği kopyala"
 
-#: wp-includes/js/dist/block-editor.js:18987
+#: wp-includes/js/dist/block-editor.js:18978
 msgid "Editor settings"
 msgstr "Düzenleyici ayarları"
 
@@ -3726,15 +3744,15 @@ msgstr "Yayımlama panelini aç"
 msgid "Unpin from toolbar"
 msgstr "Araç çubuğundan kaldır"
 
-#: wp-includes/js/dist/block-editor.js:25255
+#: wp-includes/js/dist/block-editor.js:25246
 msgid "Duplicate the selected block(s)."
 msgstr "Seçilen blokları kopyalayın."
 
-#: wp-includes/js/dist/block-editor.js:25264
+#: wp-includes/js/dist/block-editor.js:25255
 msgid "Remove the selected block(s)."
 msgstr "Seçilen blokları kaldırın."
 
-#: wp-includes/js/dist/block-editor.js:25273
+#: wp-includes/js/dist/block-editor.js:25264
 msgid "Insert a new block before the selected block(s)."
 msgstr "Seçilen bloklardan önce yeni bir blok ekleyin."
 
@@ -3742,7 +3760,7 @@ msgstr "Seçilen bloklardan önce yeni bir blok ekleyin."
 msgid "Audio settings"
 msgstr "Ses ayarları"
 
-#: wp-includes/js/dist/block-editor.js:25302
+#: wp-includes/js/dist/block-editor.js:25293
 msgid "Select all text when typing. Press again to select all blocks."
 msgstr "Yazarken tüm metni seçin. Tüm blokları seçmek için tekrar basın."
 
@@ -3838,7 +3856,7 @@ msgstr "Ortam seç veya karşıya yükle"
 msgid "Code editor selected"
 msgstr "Kod düzenleyici seçildi"
 
-#: wp-includes/js/dist/block-editor.js:25282
+#: wp-includes/js/dist/block-editor.js:25273
 msgid "Insert a new block after the selected block(s)."
 msgstr "Seçili blok(lar)dan sonra yeni bir blok ekle."
 
@@ -3893,7 +3911,7 @@ msgstr "Artık düzenleyici blok ayarları kenar çubuğunda ek ayarlar kullanı
 msgid "This block can only be used once."
 msgstr "Bu blok sadece bir kez kullanılabilir."
 
-#: wp-includes/js/dist/block-editor.js:25319
+#: wp-includes/js/dist/block-editor.js:25310
 msgid "Navigate to the nearest toolbar."
 msgstr "En yakın araç çubuğuna gidin."
 
@@ -3925,12 +3943,12 @@ msgstr "Gelişmiş panel"
 msgid "Document panels"
 msgstr "Belge panelleri"
 
-#: wp-includes/js/dist/block-editor.js:18994
+#: wp-includes/js/dist/block-editor.js:18985
 msgid "Editor publish"
 msgstr "Düzenleyici yayınla"
 
 #. translators: %d: number of blocks
-#: wp-includes/js/dist/block-editor.js:23474
+#: wp-includes/js/dist/block-editor.js:23465
 msgid "%d block"
 msgid_plural "%d blocks"
 msgstr[0] "%d blok"
@@ -3981,7 +3999,7 @@ msgstr "Dikkatiniz dağılmadan çalışın"
 msgid "Focus on one block at a time"
 msgstr "Her seferinde bir bloğa odaklanın"
 
-#: wp-includes/js/dist/block-editor.js:18971
+#: wp-includes/js/dist/block-editor.js:18962
 msgid "Editor top bar"
 msgstr "Düzenleyici üst çubuğu"
 
@@ -4005,7 +4023,7 @@ msgstr "Kaydedilmemiş değişikliklerin var. Eğer devam edersen kaybedilecek"
 msgid "Reset the template"
 msgstr "Şablonu sıfırla"
 
-#: wp-includes/js/dist/block-editor.js:21032
+#: wp-includes/js/dist/block-editor.js:21023
 #: wp-includes/js/dist/block-library.js:9739
 msgid "Link settings"
 msgstr "Bağlantı ayarları"
@@ -4030,7 +4048,7 @@ msgstr "Çok açık gri"
 msgid "The content of your post doesn’t match the template assigned to your post type."
 msgstr "Yazınızın içeriği, yazı tipine atanan şablon ile eşleşmiyor."
 
-#: wp-includes/js/dist/block-editor.js:26250
+#: wp-includes/js/dist/block-editor.js:26246
 msgid "HTML anchor"
 msgstr "HTML çapası"
 
@@ -4123,7 +4141,7 @@ msgstr "Zamanlama başarısız oldu."
 msgid "Updating failed."
 msgstr "Güncelleme başarısız oldu."
 
-#: wp-includes/js/dist/block-editor.js:26348
+#: wp-includes/js/dist/block-editor.js:26344
 msgid "Additional CSS class(es)"
 msgstr "Ek CSS Sınıfları"
 
@@ -4221,7 +4239,7 @@ msgstr "Otomatik kayıtları görüntüle"
 msgid "Would you like to privately publish this post now?"
 msgstr "Bu yazıyı şimdi özel olarak yayımlamak ister misiniz?"
 
-#: wp-includes/js/dist/block-editor.js:23219
+#: wp-includes/js/dist/block-editor.js:23210
 msgid "Skip to the selected block"
 msgstr "Seçilen bloğa geç"
 
@@ -4387,19 +4405,19 @@ msgid "Permalink:"
 msgstr "Kalıcı bağlantı:"
 
 #: wp-includes/js/dist/block-editor.js:13760
-#: wp-includes/js/dist/block-editor.js:24599
+#: wp-includes/js/dist/block-editor.js:24590
 msgid "More options"
 msgstr "Daha fazla seçenek"
 
-#: wp-includes/js/dist/block-editor.js:24424
+#: wp-includes/js/dist/block-editor.js:24415
 msgid "Edit visually"
 msgstr "Görsel olarak düzenle"
 
-#: wp-includes/js/dist/block-editor.js:24616
+#: wp-includes/js/dist/block-editor.js:24607
 msgid "Duplicate"
 msgstr "Çoğalt"
 
-#: wp-includes/js/dist/block-editor.js:24424
+#: wp-includes/js/dist/block-editor.js:24415
 msgid "Edit as HTML"
 msgstr "HTML olarak düzenle"
 
@@ -4415,8 +4433,8 @@ msgstr "Standart"
 msgid "Aside"
 msgstr "Ayrı"
 
-#: wp-includes/js/dist/block-editor.js:17897
-#: wp-includes/js/dist/block-editor.js:17900
+#: wp-includes/js/dist/block-editor.js:17888
+#: wp-includes/js/dist/block-editor.js:17891
 #: wp-includes/js/dist/edit-post.js:3419
 msgid "Search for a block"
 msgstr "Blok ara"
@@ -4475,7 +4493,7 @@ msgid_plural "%d Revisions"
 msgstr[0] "%d sürüm"
 msgstr[1] "%d sürüm"
 
-#: wp-includes/js/dist/block-editor.js:17909
+#: wp-includes/js/dist/block-editor.js:17900
 #: wp-includes/js/dist/edit-post.js:3432
 msgid "Available block types"
 msgstr "Kullanılabilir blok türleri"
@@ -4488,33 +4506,33 @@ msgstr "Görseli değiştir"
 msgid "(Your theme may already use a H1 for the post title)"
 msgstr "(Temanız zaten yazı başlığı için H1 etiketi kullanıyor)"
 
-#: wp-includes/js/dist/block-editor.js:23795
+#: wp-includes/js/dist/block-editor.js:23786
 msgid "Blocks cannot be moved up as they are already at the top"
 msgstr "Bloklar zaten üstte oldukları için yukarı taşınamazlar"
 
-#: wp-includes/js/dist/block-editor.js:23799
+#: wp-includes/js/dist/block-editor.js:23790
 msgid "Blocks cannot be moved down as they are already at the bottom"
 msgstr "Bloklar zaten altta oldukları için aşağı taşınamazlar"
 
 #. translators: 1: Number of selected blocks, 2: Position of selected blocks
-#: wp-includes/js/dist/block-editor.js:23804
+#: wp-includes/js/dist/block-editor.js:23795
 msgid "Move %1$d block from position %2$d up by one place"
 msgid_plural "Move %1$d blocks from position %2$d up by one place"
 msgstr[0] "%1$d bloğunu %2$d konumundan bir yukarı taşı"
 msgstr[1] "%1$d bloğunu %2$d konumundan bir yukarı taşı"
 
 #. translators: 1: Number of selected blocks, 2: Position of selected blocks
-#: wp-includes/js/dist/block-editor.js:23809
+#: wp-includes/js/dist/block-editor.js:23800
 msgid "Move %1$d block from position %2$d down by one place"
 msgid_plural "Move %1$d blocks from position %2$d down by one place"
 msgstr[0] "%1$d bloğunu %2$d konumundan bir aşağı taşı"
 msgstr[1] "%1$d bloğunu %2$d konumundan bir aşağı taşı"
 
-#: wp-includes/js/dist/block-editor.js:24620
+#: wp-includes/js/dist/block-editor.js:24611
 msgid "Insert Before"
 msgstr "Öncesine ekle"
 
-#: wp-includes/js/dist/block-editor.js:24624
+#: wp-includes/js/dist/block-editor.js:24615
 msgid "Insert After"
 msgstr "Sonrasına ekle"
 
@@ -4522,11 +4540,11 @@ msgstr "Sonrasına ekle"
 msgid "Convert to Regular Block"
 msgstr "Normal bloğa dönüştür"
 
-#: wp-includes/js/dist/block-editor.js:24798
+#: wp-includes/js/dist/block-editor.js:24789
 msgid "Block Styles"
 msgstr "Blok biçimleri"
 
-#: wp-includes/js/dist/block-editor.js:24805
+#: wp-includes/js/dist/block-editor.js:24796
 msgid "Transform To:"
 msgstr "Şuna dönüştür:"
 
@@ -4546,18 +4564,18 @@ msgstr "(Yanlış başlık seviyesi)"
 msgid "Write an excerpt (optional)"
 msgstr "Özet yazın (isteğe bağlı)"
 
-#: wp-includes/js/dist/block-editor.js:24772
+#: wp-includes/js/dist/block-editor.js:24763
 msgid "Change type of %d block"
 msgid_plural "Change type of %d blocks"
 msgstr[0] "%d bloğun türünü değiştir"
 msgstr[1] "%d bloğun türünü değiştir"
 
-#: wp-includes/js/dist/block-editor.js:17978
+#: wp-includes/js/dist/block-editor.js:17969
 #: wp-includes/js/dist/edit-post.js:1385
 msgid "Manage all reusable blocks"
 msgstr "Tüm tekrar kullanılabilir blokları yönet"
 
-#: wp-includes/js/dist/block-editor.js:17964
+#: wp-includes/js/dist/block-editor.js:17955
 msgid "Reusable"
 msgstr "Tekrar kullanılabilir"
 
@@ -4577,7 +4595,7 @@ msgstr "Ön izleme oluşturuluyor..."
 msgid "Avatar"
 msgstr "Avatar"
 
-#: wp-includes/js/dist/block-editor.js:17916
+#: wp-includes/js/dist/block-editor.js:17907
 msgctxt "blocks"
 msgid "Most used"
 msgstr "En çok kullanılan"
@@ -4616,12 +4634,12 @@ msgstr "Başka birisi bu yazıyı üzerine aldı."
 msgid "Edit or update the image"
 msgstr "Görseli düzenle ya da güncelle"
 
-#: wp-includes/js/dist/block-editor.js:21102
+#: wp-includes/js/dist/block-editor.js:21093
 msgid "Paste or type URL"
 msgstr "Bir adres yazın ya da yapıştırın"
 
 #: wp-includes/js/dist/editor.js:11722
-#: wp-includes/js/dist/block-editor.js:17839
+#: wp-includes/js/dist/block-editor.js:17830
 msgid "%d result found."
 msgid_plural "%d results found."
 msgstr[0] "%d sonuç bulundu."
@@ -4638,11 +4656,11 @@ msgid "%s now has editing control of this post. Don’t worry, your changes up t
 msgstr "%s kullanıcısı bu yazının düzenleme kontrolünü üzerine aldı. Merak etmeyin, şu ana kadar yaptığınız değişiklikler kaydedildi."
 
 #. translators: 1: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23774
+#: wp-includes/js/dist/block-editor.js:23765
 msgid "Block %1$s is at the beginning of the content and can’t be moved right"
 msgstr "%1$s bloğu içeriğin başında ve sağa taşınamaz"
 
-#: wp-includes/js/dist/block-editor.js:24636
+#: wp-includes/js/dist/block-editor.js:24627
 msgid "Remove Block"
 msgid_plural "Remove Blocks"
 msgstr[0] "Bloğu kaldır"
@@ -4650,12 +4668,12 @@ msgstr[1] ""
 
 #. translators: 1: Type of block (i.e. Text, Image etc), 2: Position of
 #. selected block, 3: New position
-#: wp-includes/js/dist/block-editor.js:23744
+#: wp-includes/js/dist/block-editor.js:23735
 msgid "Move %1$s block from position %2$d up to position %3$d"
 msgstr "%1$s bloğunu %2$d konumundan %3$d konumuna yukarı taşı"
 
 #. translators: 1: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23734
+#: wp-includes/js/dist/block-editor.js:23725
 msgid "Block %1$s is at the end of the content and can’t be moved right"
 msgstr "%1$s bloğu içeriğin sonunda ve sağa taşınamaz"
 
@@ -4671,11 +4689,11 @@ msgstr "Eskiden yeniye"
 msgid "Newest to oldest"
 msgstr "Yeniden eskiye"
 
-#: wp-includes/js/dist/block-editor.js:16209
+#: wp-includes/js/dist/block-editor.js:16200
 msgid "Block: %s"
 msgstr "Blok: %s"
 
-#: wp-includes/js/dist/block-editor.js:23593
+#: wp-includes/js/dist/block-editor.js:23584
 msgid "No block selected."
 msgstr "Blok seçilmedi."
 
@@ -4684,13 +4702,13 @@ msgid "This block has encountered an error and cannot be previewed."
 msgstr "Bu blok bir hatayla karşılaştı ve önizlenemiyor."
 
 #. translators: %s: Type of block (i.e. Text, Image etc)
-#: wp-includes/js/dist/block-editor.js:23695
+#: wp-includes/js/dist/block-editor.js:23686
 msgid "Block %s is the only block, and cannot be moved"
 msgstr "%s tek bloktur bu yüzden taşınamaz."
 
 #: wp-includes/js/dist/components.js:35173
 #: wp-includes/js/dist/components.js:35322
-#: wp-includes/js/dist/block-editor.js:19250
+#: wp-includes/js/dist/block-editor.js:19241
 msgid "Reset"
 msgstr "Sıfırla"
 
@@ -4717,7 +4735,7 @@ msgid "Order by"
 msgstr "Sırala"
 
 #: wp-includes/js/dist/block-editor.js:14030
-#: wp-includes/js/dist/block-editor.js:24474
+#: wp-includes/js/dist/block-editor.js:24465
 msgid "Convert to Blocks"
 msgstr "Bloklara dönüştür"
 
@@ -4730,7 +4748,7 @@ msgstr "A \t Z"
 msgid "Full width"
 msgstr "Tam genişlik"
 
-#: wp-includes/js/dist/block-editor.js:16608
+#: wp-includes/js/dist/block-editor.js:16599
 #: wp-includes/js/dist/block-directory.js:1262
 msgid "Add block"
 msgstr "Blok ekle"
@@ -4765,7 +4783,7 @@ msgstr "Klasik bloğa dönüştür"
 
 #. translators: 1: Type of block (i.e. Text, Image etc), 2: Position of
 #. selected block, 3: New position
-#: wp-includes/js/dist/block-editor.js:23704
+#: wp-includes/js/dist/block-editor.js:23695
 msgid "Move %1$s block from position %2$d down to position %3$d"
 msgstr "%1$s bloğunu %2$d konumundan %3$d konumuna aşağı taşı"
 
@@ -4818,14 +4836,14 @@ msgstr "Blok beklenmedik ya da geçersiz içerik içeriyor."
 msgid "Block updated."
 msgstr "Blok güncellendi."
 
-#: wp-includes/post.php:273 wp-includes/js/dist/block-editor.js:17993
+#: wp-includes/post.php:273 wp-includes/js/dist/block-editor.js:17984
 #: wp-includes/js/dist/edit-post.js:3436
 msgid "No blocks found."
 msgstr "Blok bulunamadı."
 
 #: wp-includes/js/dist/components.js:24023
 #: wp-includes/js/dist/components.js:36349
-#: wp-includes/js/dist/block-editor.js:20371
+#: wp-includes/js/dist/block-editor.js:20362
 msgid "No results."
 msgstr "Sonuç yok."
 
@@ -4846,7 +4864,7 @@ msgstr "Özel renk seçici"
 
 #: wp-includes/js/dist/components.js:24021
 #: wp-includes/js/dist/components.js:36349
-#: wp-includes/js/dist/block-editor.js:20369
+#: wp-includes/js/dist/block-editor.js:20360
 msgid "%d result found, use up and down arrow keys to navigate."
 msgid_plural "%d results found, use up and down arrow keys to navigate."
 msgstr[0] "%d sonuç bulun bulundu, dolaşım için aşağı ve yukarı yön tuşlarını kullanın."
@@ -4904,9 +4922,9 @@ msgstr "Yukarı ve aşağı oklar"
 #: wp-includes/media-template.php:173
 #: wp-includes/customize/class-wp-customize-nav-menu-locations-control.php:59
 #: wp-includes/functions.php:7441
-#: wp-includes/class-wp-customize-manager.php:4277
-#: wp-includes/class-wp-customize-manager.php:5599
-#: wp-includes/class-wp-customize-manager.php:5620
+#: wp-includes/class-wp-customize-manager.php:4304
+#: wp-includes/class-wp-customize-manager.php:5626
+#: wp-includes/class-wp-customize-manager.php:5647
 #: wp-includes/js/dist/components.js:34651 wp-includes/js/dist/editor.js:8930
 msgid "(opens in a new tab)"
 msgstr "(yeni sekmede açılır)"
@@ -5126,10 +5144,6 @@ msgstr "Nesne türü."
 msgid "Object subtype."
 msgstr "Nesne alt türü"
 
-#: wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php:326
-msgid "Preview link for the post."
-msgstr "Yazı için önizleme bağlantısı."
-
 #: wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php:271
 msgid "There is no autosave revision for this post."
 msgstr "Bu yazı için otomatik kaydedilmiş sürüm yok."
@@ -5187,6 +5201,10 @@ msgstr "Nesne için kalıcı bağlantı şablonu."
 #: wp-includes/rest-api/endpoints/class-wp-rest-themes-controller.php:480
 msgid "Limit result set to themes assigned one or more statuses."
 msgstr "Bir ya da daha fazla durum atanmış temala sonuç kümesini sınırlandır."
+
+#: wp-includes/rest-api/endpoints/class-wp-rest-autosaves-controller.php:326
+msgid "Preview link for the post."
+msgstr "Yazı için ön izleme bağlantısı."
 
 #. translators: %s: Block name.
 #: wp-includes/class-wp-block-type-registry.php:107
@@ -5434,7 +5452,7 @@ msgstr "[%1$s] Eylemi onayla: %2$s"
 msgid "Erase Personal Data"
 msgstr "Kişisel verileri sil"
 
-#: wp-includes/comment-template.php:2356
+#: wp-includes/comment-template.php:2361
 msgid "Save my name, email, and website in this browser for the next time I comment."
 msgstr "Bir dahaki sefere yorum yaptığımda kullanılmak üzere adımı, e-posta adresimi ve web site adresimi bu tarayıcıya kaydet."
 
@@ -5530,7 +5548,7 @@ msgid "[deleted]"
 msgstr "[silinmiş]"
 
 #. translators: %d: Comment ID.
-#: wp-includes/comment.php:3599
+#: wp-includes/comment.php:3604
 msgid "Comment %d contains personal data but could not be anonymized."
 msgstr "Yorum %d kişisel veri içeriyor, bu nedenle anonim hale getirilemez."
 
@@ -5638,31 +5656,31 @@ msgctxt "request status"
 msgid "Pending"
 msgstr "Bekleyen"
 
-#: wp-includes/comment.php:3453
+#: wp-includes/comment.php:3458
 msgid "Comment Content"
 msgstr "Yorum içeriği"
 
-#: wp-includes/comment.php:3452
+#: wp-includes/comment.php:3457
 msgid "Comment Date"
 msgstr "Yorum tarihi"
 
-#: wp-includes/comment.php:3447
+#: wp-includes/comment.php:3452
 msgid "Comment Author"
 msgstr "Yorum yazarı"
 
-#: wp-includes/comment.php:3448
+#: wp-includes/comment.php:3453
 msgid "Comment Author Email"
 msgstr "Yorum yazarı e-postası"
 
-#: wp-includes/comment.php:3449
+#: wp-includes/comment.php:3454
 msgid "Comment Author URL"
 msgstr "Yorum yazarı adresi"
 
-#: wp-includes/comment.php:3450
+#: wp-includes/comment.php:3455
 msgid "Comment Author IP"
 msgstr "Yorum yazarı IPsi"
 
-#: wp-includes/comment.php:3454
+#: wp-includes/comment.php:3459
 msgid "Comment URL"
 msgstr "Yorum adresi"
 
@@ -5679,11 +5697,11 @@ msgstr "Bu kullanıcı için hiç bir kişisel veri bulunmadı."
 msgid "Personal data was found for this user but some of the personal data found was not erased."
 msgstr "Bu kullanıcı için kişisel veriler bulundu, ancak bulunan kişisel verilerden bazıları silinmedi."
 
-#: wp-includes/comment.php:3451
+#: wp-includes/comment.php:3456
 msgid "Comment Author User Agent"
 msgstr "Yorum yazarı tarayıcı kimliği"
 
-#: wp-includes/comment.php:3412 wp-includes/comment.php:3522
+#: wp-includes/comment.php:3417 wp-includes/comment.php:3527
 msgid "WordPress Comments"
 msgstr "WordPress yorumları"
 
@@ -5721,16 +5739,16 @@ msgid "The link you followed has expired."
 msgstr "Takip ettiğiniz bağlantının süresi doldu."
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4042
+#: wp-includes/class-wp-customize-manager.php:4069
 msgid "%s is already customizing this changeset. Please wait until they are done to try customizing. Your latest changes have been autosaved."
 msgstr "%s şu anda bu değişiklik kümesini özelleştiriyor. Özelleştirmeyi denemek için lütfen işleri bitene kadar bekleyin. Yaptığınız son değişiklikler otomatik olarak kaydedildi."
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4044
+#: wp-includes/class-wp-customize-manager.php:4071
 msgid "%s is already customizing this changeset. Do you want to take over?"
 msgstr "%s şu anda bu değişiklik kümesini özelleştiriyor. Siz devralmak ister misiniz?"
 
-#: wp-includes/class-wp-customize-manager.php:4250
+#: wp-includes/class-wp-customize-manager.php:4277
 msgid "Update anyway, even though it might break your site?"
 msgstr "Sitenizi kırma ihtimali olmasına rağmen yine de güncellensin mi?"
 
@@ -5750,7 +5768,7 @@ msgid "Installed"
 msgstr "Yüklü"
 
 #. translators: %s: Property of an object.
-#: wp-includes/rest-api.php:1279
+#: wp-includes/rest-api.php:1285
 msgid "%1$s is not a valid property of Object."
 msgstr "%1$s nesnenin geçerli bir özelliği değil."
 
@@ -5786,7 +5804,7 @@ msgid "Schedule"
 msgstr "Zamanla"
 
 #: wp-includes/script-loader.php:1157
-#: wp-includes/class-wp-customize-manager.php:4761
+#: wp-includes/class-wp-customize-manager.php:4788
 msgctxt "customizer changeset action/button label"
 msgid "Schedule"
 msgstr "Zamanla"
@@ -5815,15 +5833,15 @@ msgstr "Yan sütuna yeni bir dolaşım menüsü ekle."
 msgid "%s has taken over and is currently customizing."
 msgstr "%s üzerine almış ve şu anda özelleştiriyor."
 
-#: wp-includes/class-wp-customize-manager.php:4232
+#: wp-includes/class-wp-customize-manager.php:4259
 msgid "Go back"
 msgstr "Geri dön"
 
-#: wp-includes/class-wp-customize-manager.php:3331
+#: wp-includes/class-wp-customize-manager.php:3358
 msgid "Sorry, you are not allowed to take over."
 msgstr "Üzgünüm, devralmanıza izin verilmiyor."
 
-#: wp-includes/class-wp-customize-manager.php:3311
+#: wp-includes/class-wp-customize-manager.php:3338
 msgid "Security check failed."
 msgstr "Güvenlik kontrolü başarısız oldu."
 
@@ -5831,17 +5849,17 @@ msgstr "Güvenlik kontrolü başarısız oldu."
 msgid "Looks like something&#8217;s gone wrong. Wait a couple seconds, and then try again."
 msgstr "Bir şeyler ters gitti gibi görünüyor. Birkaç saniye bekleyin ve sonra tekrar deneyin."
 
-#: wp-includes/class-wp-customize-manager.php:4236
+#: wp-includes/class-wp-customize-manager.php:4263
 msgid "Take over"
 msgstr "Üzerine al"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4051
+#: wp-includes/class-wp-customize-manager.php:4078
 msgid "%s is already customizing this site. Do you want to take over?"
 msgstr "%s zaten bu siteyi özelleştiriyor. Devralmak istiyor musunuz?"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:4049
+#: wp-includes/class-wp-customize-manager.php:4076
 msgid "%s is already customizing this site. Please wait until they are done to try customizing. Your latest changes have been autosaved."
 msgstr "%s zaten bu siteyi özelleştiriyor. Özelleştirmeyi denemek için lütfen onlar bitirinceye kadar bekleyin. En son yaptığınız değişiklikler otomatik olarak kaydedildi."
 
@@ -5849,7 +5867,7 @@ msgstr "%s zaten bu siteyi özelleştiriyor. Özelleştirmeyi denemek için lüt
 msgid "Changeset is being edited by other user."
 msgstr "Değişiklik kümesi diğer kullanıcı tarafından düzenleniyor."
 
-#: wp-includes/class-wp-customize-manager.php:3322
+#: wp-includes/class-wp-customize-manager.php:3349
 msgid "No changeset found to take over"
 msgstr "Devralacak bir değişiklik kümesi yok"
 
@@ -5883,11 +5901,11 @@ msgctxt "menu locations"
 msgid "View All Locations"
 msgstr "Tüm konumları görüntüle"
 
-#: wp-includes/class-wp-customize-manager.php:4965
+#: wp-includes/class-wp-customize-manager.php:4992
 msgid "Looking for a theme? You can search or browse the WordPress.org theme directory, install and preview themes, then activate them right here."
 msgstr "Bir tema mı arıyorsunuz? WordPress.org tema dizinine göz atabilir veya arama yapabilirsiniz, temaları kurabilir ve ön izleyebilirsiniz, ardından bunları hemen buradan etkinleştirebilirsiniz."
 
-#: wp-includes/class-wp-customize-manager.php:4966
+#: wp-includes/class-wp-customize-manager.php:4993
 msgid "While previewing a new theme, you can continue to tailor things like widgets and menus, and explore theme-specific options."
 msgstr "Yeni bir temayı ön izlerken bileşenler ve menüler gibi konuları uyarlamaya devam edebilir ve temaya özgü seçenekleri keşfedebilirsiniz."
 
@@ -6601,11 +6619,11 @@ msgstr "Eğer temanızın bileşen alanları varsa, oralara da menüler ekleyebi
 msgid "Your theme can display menus in one location."
 msgstr "Temanız bir konumda menü gösterebilir."
 
-#: wp-includes/class-wp-customize-manager.php:5655
+#: wp-includes/class-wp-customize-manager.php:5682
 msgid "CSS code"
 msgstr "CSS kodu"
 
-#: wp-includes/class-wp-customize-manager.php:5545
+#: wp-includes/class-wp-customize-manager.php:5572
 msgid "Your homepage displays"
 msgstr "Ana sayfa görüntülenmesi"
 
@@ -6617,16 +6635,16 @@ msgstr[0] "Temanız %s konumda menü gösterebilir."
 msgstr[1] "Temanız %s konumda menü gösterebilir."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:322
-#: wp-includes/class-wp-customize-manager.php:5603
+#: wp-includes/class-wp-customize-manager.php:5630
 msgid "When using a keyboard to navigate:"
 msgstr "Gezinmek için bir klavye kullanırken:"
 
-#: wp-includes/class-wp-customize-manager.php:5593
+#: wp-includes/class-wp-customize-manager.php:5620
 msgid "Add your own CSS code here to customize the appearance and layout of your site."
 msgstr "Sitenizin görünümünü ve düzenini değiştirmek için kendi CSS kodunuzu buraya ekleyin."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:324
-#: wp-includes/class-wp-customize-manager.php:5605
+#: wp-includes/class-wp-customize-manager.php:5632
 msgid "In the editing area, the Tab key enters a tab character."
 msgstr "Düzenleme alanında, sekme tuşu bir sekme karakteri girer."
 
@@ -6635,35 +6653,35 @@ msgid "If your theme has multiple menus, giving them clear names will help you m
 msgstr "Temanız birden fazla menüye sahipse onlara açık isimler vermek onları yönetmenize yardımcı olur."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:325
-#: wp-includes/class-wp-customize-manager.php:5606
+#: wp-includes/class-wp-customize-manager.php:5633
 msgid "To move away from this area, press the Esc key followed by the Tab key."
 msgstr "Bu alandan uzaklaşmak için Esc tuşuna ve ardından Tab tuşuna basın."
 
 #: wp-includes/widgets/class-wp-widget-custom-html.php:326
-#: wp-includes/class-wp-customize-manager.php:5607
+#: wp-includes/class-wp-customize-manager.php:5634
 msgid "Screen reader users: when in forms mode, you may need to press the Esc key twice."
 msgstr "Ekran okuyucu kullanıcıları: form modundayken Esc tuşuna iki kez basmanız gerekebilir."
 
-#: wp-includes/class-wp-customize-manager.php:5528
+#: wp-includes/class-wp-customize-manager.php:5555
 msgid "You can choose what&#8217;s displayed on the homepage of your site. It can be posts in reverse chronological order (classic blog), or a fixed/static page. To set a static homepage, you first need to create two Pages. One will become the homepage, and the other will be where your posts are displayed."
 msgstr "Ana sayfada ne görüntüleneceğini seçebilirsiniz. Yazıların kronolojik olarak ters sıralı hali (klasik blog) veya sabit bir sayfa olabilir. Sabit bir ana sayfa için ilk olarak iki sayfa oluşturmanız gerekiyor. Bunlardan birisi ana sayfa, diğeri yazıları görüntülemek için kullanılacaktır."
 
 #. translators: 1: Link to user profile, 2: Additional link attributes, 3:
 #. Accessibility text.
 #: wp-includes/widgets/class-wp-widget-custom-html.php:311
-#: wp-includes/class-wp-customize-manager.php:5614
+#: wp-includes/class-wp-customize-manager.php:5641
 msgid "The edit field automatically highlights code syntax. You can disable this in your <a href=\"%1$s\" %2$s>user profile%3$s</a> to work in plain text mode."
 msgstr "Düzenleme alanı otomatik olarak sentaks vurgulama yapmaktadır. Bu özelliği <a href=\"%1$s\" %2$s>kullanıcı profili%3$s</a> sayfasından kapatarak salt metin modunda çalışabilirsiniz."
 
-#: wp-includes/class-wp-customize-manager.php:5526
+#: wp-includes/class-wp-customize-manager.php:5553
 msgid "Homepage Settings"
 msgstr "Ana sayfa ayarları"
 
-#: wp-includes/class-wp-customize-manager.php:4280
+#: wp-includes/class-wp-customize-manager.php:4307
 msgid "Copied"
 msgstr "Kopyalandı"
 
-#: wp-includes/class-wp-customize-manager.php:4994
+#: wp-includes/class-wp-customize-manager.php:5021
 msgid "WordPress.org themes"
 msgstr "WordPress.org temaları"
 
@@ -6678,44 +6696,44 @@ msgid "Publish Settings"
 msgstr "Yayınlama ayarları"
 
 #. translators: %s: Site icon size in pixels.
-#: wp-includes/class-wp-customize-manager.php:5100
+#: wp-includes/class-wp-customize-manager.php:5127
 msgid "Site Icons should be square and at least %s pixels."
 msgstr "Site simgeleri kare olmalı ve en az %s piksel olmalı."
 
-#: wp-includes/class-wp-customize-manager.php:4979
+#: wp-includes/class-wp-customize-manager.php:5006
 msgid "Installed themes"
 msgstr "Kurulu temalar"
 
-#: wp-includes/class-wp-customize-manager.php:4274
+#: wp-includes/class-wp-customize-manager.php:4301
 msgid "Preview Link"
 msgstr "Ön izleme bağlantısı"
 
-#: wp-includes/class-wp-customize-manager.php:4271
+#: wp-includes/class-wp-customize-manager.php:4298
 msgid "See how changes would look live on your website, and share the preview with people who can't access the Customizer."
 msgstr "Web sitenizde değişikliklerin nasıl olacağını canlı olarak görün ve özelleştiriciye erişme izni olmayan kişilerle ön izleme paylaşın."
 
-#: wp-includes/class-wp-customize-manager.php:4269
+#: wp-includes/class-wp-customize-manager.php:4296
 msgid "Share Preview Link"
 msgstr "Ön izleme bağlantısını paylaş"
 
-#: wp-includes/class-wp-customize-manager.php:3139
+#: wp-includes/class-wp-customize-manager.php:3166
 msgid "Changes trashed successfully."
 msgstr "Değişiklikler başarıyla çöpe taşındı."
 
-#: wp-includes/class-wp-customize-manager.php:3120
+#: wp-includes/class-wp-customize-manager.php:3147
 msgid "Changes have already been trashed."
 msgstr "Değişiklikler zaten çöpe taşınmış durumda."
 
-#: wp-includes/class-wp-customize-manager.php:3112
-#: wp-includes/class-wp-customize-manager.php:3132
+#: wp-includes/class-wp-customize-manager.php:3139
+#: wp-includes/class-wp-customize-manager.php:3159
 msgid "Unable to trash changes."
 msgstr "Değişiklikler çöpe taşınamıyor."
 
-#: wp-includes/class-wp-customize-manager.php:3101
+#: wp-includes/class-wp-customize-manager.php:3128
 msgid "No changes saved yet, so there is nothing to trash."
 msgstr "Henüz hiç bir değişiklik kaydedilmemiş, yani çöpe taşınacak bir şey de yok."
 
-#: wp-includes/class-wp-customize-manager.php:3091
+#: wp-includes/class-wp-customize-manager.php:3118
 msgid "There was an authentication problem. Please reload and try again."
 msgstr "Bir doğrulama problemi söz konusu. Lütfen yenileyip tekrar deneyin."
 
@@ -6727,7 +6745,7 @@ msgid_plural "Unable to save due to %s invalid settings."
 msgstr[0] "Geçersiz %s ayar nedeniyle kaydedilemedi."
 msgstr[1] "Geçersiz %s ayar nedeniyle kaydedilemedi."
 
-#: wp-includes/class-wp-customize-manager.php:5098
+#: wp-includes/class-wp-customize-manager.php:5125
 msgid "Site Icons are what you see in browser tabs, bookmark bars, and within the WordPress mobile apps. Upload one here!"
 msgstr "Site simgeleri, tarayıcı sekmelerindeki, yer imi çubuklarındaki ve WordPress mobil uygulamalarındaki gördüğünüz simgelerdir. Buraya bir tane yükle!"
 
@@ -7110,22 +7128,22 @@ msgid "Updated!"
 msgstr "Güncellendi!"
 
 #. translators: 1: Parameter, 2: Maximum number.
-#: wp-includes/rest-api.php:1365
+#: wp-includes/rest-api.php:1371
 msgid "%1$s must be less than or equal to %2$d"
 msgstr "%1$s %2$d değerinden küçük ya da eşit olmalıdır"
 
 #. translators: 1: Parameter, 2: Maximum number.
-#: wp-includes/rest-api.php:1362
+#: wp-includes/rest-api.php:1368
 msgid "%1$s must be less than %2$d"
 msgstr "%1$s %2$d değerinden küçük olmalıdır"
 
 #. translators: 1: Parameter, 2: Minimum number.
-#: wp-includes/rest-api.php:1357
+#: wp-includes/rest-api.php:1363
 msgid "%1$s must be greater than or equal to %2$d"
 msgstr "%1$s %2$d değerinden büyük ya da eşit olmalıdır"
 
 #. translators: 1: Parameter, 2: Minimum number.
-#: wp-includes/rest-api.php:1354
+#: wp-includes/rest-api.php:1360
 msgid "%1$s must be greater than %2$d"
 msgstr "%1$s %2$d değerinden büyük olmalıdır"
 
@@ -7240,7 +7258,7 @@ msgstr "Beyaz listeye alınmamış sağlayıcılar için oEmbed keşif isteği y
 msgid "Sorry, you are not allowed to make proxied oEmbed requests."
 msgstr "Üzgünüm, proksilenmiş oEmbed istekleri yapmanıza izin verilmiyor."
 
-#: wp-includes/comment.php:3295
+#: wp-includes/comment.php:3300
 msgid "Sorry, comments are not allowed for this item."
 msgstr "Üzgünüm, bu öge için yorumlara izin verilmiyor."
 
@@ -7556,17 +7574,17 @@ msgstr "RSS hatası:"
 msgid "Cannot create a comment with that type."
 msgstr "O tipte yorum oluşturulamıyor."
 
-#: wp-includes/script-loader.php:1211 wp-includes/rest-api.php:1332
-#: wp-includes/post.php:3736
+#: wp-includes/script-loader.php:1211 wp-includes/rest-api.php:1338
+#: wp-includes/post.php:3739
 msgid "Invalid date."
 msgstr "Geçersiz tarih."
 
-#: wp-includes/post.php:4036
+#: wp-includes/post.php:4045
 msgid "Invalid page template."
 msgstr "Geçersiz sayfa şablonu."
 
 #: wp-includes/rest-api/endpoints/class-wp-rest-users-controller.php:717
-#: wp-includes/rest-api.php:1338 wp-includes/user.php:3568
+#: wp-includes/rest-api.php:1344 wp-includes/user.php:3568
 msgid "Invalid email address."
 msgstr "Geçersiz e-posta adresi."
 
@@ -7904,7 +7922,7 @@ msgstr "Kontrolleri gizle"
 msgid "Document Preview"
 msgstr "Belge"
 
-#: wp-includes/class-wp-customize-manager.php:5227
+#: wp-includes/class-wp-customize-manager.php:5254
 msgid "Header Media"
 msgstr "Üst kısım ortam dosyası"
 
@@ -7938,7 +7956,7 @@ msgstr "Varitabanındaki gibi ek dosya için HTML alt yazısı."
 msgid "HTML caption for the attachment, transformed for display."
 msgstr "Ek dosya için görüntülenmek üzere değiştirilmiş HTML alt yazısı."
 
-#: wp-includes/class-wp-customize-manager.php:6002
+#: wp-includes/class-wp-customize-manager.php:6029
 msgid "Please enter a valid YouTube URL."
 msgstr "Lütfen geçerli bir YouTube adresi girin."
 
@@ -7950,7 +7968,7 @@ msgstr "Ana menüyü genişlet"
 msgid "Collapse Main menu"
 msgstr "Ana menüyü toparla"
 
-#: wp-includes/class-wp-customize-manager.php:5341
+#: wp-includes/class-wp-customize-manager.php:5368
 msgid "Or, enter a YouTube URL:"
 msgstr "Ya da YouTube adresini girin:"
 
@@ -8017,7 +8035,7 @@ msgstr "Boş başlık."
 msgid "We already have a ping from that URL for this post."
 msgstr "Bu yazı için ilgili adresten zaten bir işaret aldık."
 
-#: wp-includes/class-wp-customize-manager.php:5566
+#: wp-includes/class-wp-customize-manager.php:5593
 msgid "Homepage"
 msgstr "Ana Sayfa"
 
@@ -8050,12 +8068,12 @@ msgid "Remove term:"
 msgstr "Terimi kaldır:"
 
 #. translators: %s: IP address.
-#: wp-includes/rest-api.php:1344
+#: wp-includes/rest-api.php:1350
 msgid "%s is not a valid IP address."
 msgstr "%s geçerli bir IP adresi değil."
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1371
+#: wp-includes/rest-api.php:1377
 msgid "%1$s must be between %2$d (exclusive) and %3$d (exclusive)"
 msgstr "%1$s, %2$d (hariç) ve %3$d (hariç) arasında olmalı."
 
@@ -8064,17 +8082,17 @@ msgid "Item selected."
 msgstr "Öge seçildi."
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1386
+#: wp-includes/rest-api.php:1392
 msgid "%1$s must be between %2$d (inclusive) and %3$d (inclusive)"
 msgstr "%1$s %2$d (dahil) ile %3$d (dahil) arasında olmalıdır"
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1376
+#: wp-includes/rest-api.php:1382
 msgid "%1$s must be between %2$d (inclusive) and %3$d (exclusive)"
 msgstr "%1$s %2$d (dahil) ile %3$d (hariç) arasında olmalıdır"
 
 #. translators: 1: Parameter, 2: Minimum number, 3: Maximum number.
-#: wp-includes/rest-api.php:1381
+#: wp-includes/rest-api.php:1387
 msgid "%1$s must be between %2$d (exclusive) and %3$d (inclusive)"
 msgstr "%1$s %2$d (hariç) ile %3$d (dahil) arasında olmalıdır"
 
@@ -8088,16 +8106,16 @@ msgstr "Meta değeri veritabanından silinemedi."
 
 #. translators: 1: Parameter, 2: List of types.
 #. translators: 1: Parameter, 2: Type name.
-#: wp-includes/rest-api.php:1231 wp-includes/rest-api.php:1241
-#: wp-includes/rest-api.php:1267 wp-includes/rest-api.php:1295
-#: wp-includes/rest-api.php:1310 wp-includes/rest-api.php:1315
-#: wp-includes/rest-api.php:1320 wp-includes/rest-api.php:1325
+#: wp-includes/rest-api.php:1237 wp-includes/rest-api.php:1247
+#: wp-includes/rest-api.php:1273 wp-includes/rest-api.php:1301
+#: wp-includes/rest-api.php:1316 wp-includes/rest-api.php:1321
+#: wp-includes/rest-api.php:1326 wp-includes/rest-api.php:1331
 msgid "%1$s is not of type %2$s."
 msgstr "%1$s %2$s tipinde değil."
 
 #. translators: 1: Parameter, 2: List of valid values.
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:1363
-#: wp-includes/rest-api.php:1304
+#: wp-includes/rest-api.php:1310
 msgid "%1$s is not one of %2$s."
 msgstr "%1$s bir %2$s değil."
 
@@ -8709,7 +8727,7 @@ msgstr "Var olan yorum oluşturulamıyor."
 #: wp-includes/class-wp-xmlrpc-server.php:3852
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:446
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:468
-#: wp-includes/comment.php:3347
+#: wp-includes/comment.php:3352
 msgid "Sorry, you must be logged in to comment."
 msgstr "Üzgünüm, yorum yapmak için giriş yapmalısınız."
 
@@ -9053,110 +9071,110 @@ msgid "%1$s could not be created: %2$s"
 msgstr "%1$s oluşturulamıyor: %2$s"
 
 #. translators: 1: .mp4, 2: .mov
-#: wp-includes/class-wp-customize-manager.php:5977
+#: wp-includes/class-wp-customize-manager.php:6004
 msgid "Only %1$s or %2$s files may be used for header video. Please convert your video file and try again, or, upload your video to YouTube and link it with the option below."
 msgstr "Sadece %1$s veya %2$s dosyaları başlık videosu için kullanılabilir. Lütfen video dosyanızın formatını değiştirerek tekrar deneyin ya da videoyu YouTube'a yükleyerek aşağıdaki seçenekten bağlayın."
 
-#: wp-includes/class-wp-customize-manager.php:5969
+#: wp-includes/class-wp-customize-manager.php:5996
 msgid "This video file is too large to use as a header video. Try a shorter video or optimize the compression settings and re-upload a file that is less than 8MB. Or, upload your video to YouTube and link it with the option below."
 msgstr "Bu video dosyası üst kısım kullanımı için çok büyük. 8MB'dan küçük olacak şekilde daha kısa bir video veya video sıkıştırma ayarını optimize ederek tekrar yüklemeyi deneyebilirsiniz. Ya da videoyu YoutuTube'a yükleyerek aşağıdaki seçenekten bağlayın."
 
-#: wp-includes/class-wp-customize-manager.php:5928
+#: wp-includes/class-wp-customize-manager.php:5955
 msgid "Unrecognized background setting."
 msgstr "Bilinmeyen arka plan ayarı."
 
-#: wp-includes/class-wp-customize-manager.php:5597
+#: wp-includes/class-wp-customize-manager.php:5624
 msgid "Learn more about CSS"
 msgstr "CSS hakkında daha fazlasını öğrenin"
 
-#: wp-includes/class-wp-customize-manager.php:5633
+#: wp-includes/class-wp-customize-manager.php:5660
 msgid "Additional CSS"
 msgstr "Ek CSS"
 
-#: wp-includes/class-wp-customize-manager.php:5903
+#: wp-includes/class-wp-customize-manager.php:5930
 msgid "Invalid value for background repeat."
 msgstr "Arka plan tekrarı için geçersiz değer."
 
-#: wp-includes/class-wp-customize-manager.php:5907
+#: wp-includes/class-wp-customize-manager.php:5934
 msgid "Invalid value for background attachment."
 msgstr "Arka plan eki için geçersiz değer."
 
-#: wp-includes/class-wp-customize-manager.php:5911
+#: wp-includes/class-wp-customize-manager.php:5938
 msgid "Invalid value for background position X."
 msgstr "Arka plan X pozisyonu için geçersiz değer."
 
-#: wp-includes/class-wp-customize-manager.php:5915
+#: wp-includes/class-wp-customize-manager.php:5942
 msgid "Invalid value for background position Y."
 msgstr "Arka plan Y pozisyonu için geçersiz değer."
 
-#: wp-includes/class-wp-customize-manager.php:5919
-#: wp-includes/class-wp-customize-manager.php:5923
+#: wp-includes/class-wp-customize-manager.php:5946
+#: wp-includes/class-wp-customize-manager.php:5950
 msgid "Invalid value for background size."
 msgstr "Arka plan boyutu için geçersiz değer."
 
-#: wp-includes/class-wp-customize-manager.php:5412
+#: wp-includes/class-wp-customize-manager.php:5439
 msgctxt "Custom Preset"
 msgid "Custom"
 msgstr "Özel"
 
-#: wp-includes/class-wp-customize-manager.php:5411
+#: wp-includes/class-wp-customize-manager.php:5438
 msgctxt "Repeat Image"
 msgid "Repeat"
 msgstr "Tekrarla"
 
-#: wp-includes/class-wp-customize-manager.php:5503
+#: wp-includes/class-wp-customize-manager.php:5530
 msgid "Scroll with Page"
 msgstr "Sayfa ile beraber kaydır"
 
-#: wp-includes/class-wp-customize-manager.php:5485
+#: wp-includes/class-wp-customize-manager.php:5512
 msgid "Repeat Background Image"
 msgstr "Arka plan görselini tekrarla"
 
-#: wp-includes/class-wp-customize-manager.php:5462
-#: wp-includes/js/dist/block-editor.js:19235
+#: wp-includes/class-wp-customize-manager.php:5489
+#: wp-includes/js/dist/block-editor.js:19226
 msgid "Image Size"
 msgstr "Görsel boyutu"
 
 #: wp-includes/customize/class-wp-customize-background-position-control.php:93
-#: wp-includes/class-wp-customize-manager.php:5440
+#: wp-includes/class-wp-customize-manager.php:5467
 msgid "Image Position"
 msgstr "Görsel konumu"
 
-#: wp-includes/class-wp-customize-manager.php:5410
-#: wp-includes/class-wp-customize-manager.php:5467
+#: wp-includes/class-wp-customize-manager.php:5437
+#: wp-includes/class-wp-customize-manager.php:5494
 msgid "Fit to Screen"
 msgstr "Ekrana sığdır"
 
-#: wp-includes/class-wp-customize-manager.php:5408
+#: wp-includes/class-wp-customize-manager.php:5435
 msgctxt "Default Preset"
 msgid "Default"
 msgstr "Varsayılan"
 
-#: wp-includes/class-wp-customize-manager.php:5404
+#: wp-includes/class-wp-customize-manager.php:5431
 msgctxt "Background Preset"
 msgid "Preset"
 msgstr "Ön tanım"
 
-#: wp-includes/class-wp-customize-manager.php:5327
+#: wp-includes/class-wp-customize-manager.php:5354
 msgid "Header Video"
 msgstr "Üst kısım videosu"
 
 #. translators: 1: .mp4, 2: Header width in pixels.
-#: wp-includes/class-wp-customize-manager.php:5242
+#: wp-includes/class-wp-customize-manager.php:5269
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends a width of %2$s pixels."
 msgstr "En iyi sonuç için videonuzu %1$s biçiminde ve boyutunu küçülterek yükleyiniz. Temanız %2$s piksel genişliğini önermektedir."
 
 #. translators: 1: .mp4, 2: Header height in pixels.
-#: wp-includes/class-wp-customize-manager.php:5249
+#: wp-includes/class-wp-customize-manager.php:5276
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends a height of %2$s pixels."
 msgstr "En iyi sonuç için videonuzu %1$s biçiminde ve boyutunu küçülterek yükleyiniz. Temanız %2$s piksel yüksekliğini önermektedir."
 
-#: wp-includes/class-wp-customize-manager.php:5228
+#: wp-includes/class-wp-customize-manager.php:5255
 msgid "If you add a video, the image will be used as a fallback while the video loads."
 msgstr "Eğer bir video eklerseniz, görsel video yüklenirken kullanılacaktır."
 
 #. translators: 1: .mp4, 2: Header size in pixels.
-#: wp-includes/class-wp-customize-manager.php:5235
+#: wp-includes/class-wp-customize-manager.php:5262
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends dimensions of %2$s pixels."
 msgstr "En iyi sonuç için videonuzu %1$s  biçiminde ve boyutunu küçülterek yükleyiniz. Temanız %2$s piksel boyutunu önermektedir."
 
@@ -9175,24 +9193,24 @@ msgstr "Ayarlar mevcut değil veya bilinmiyor."
 msgid "Unauthorized to modify setting due to capability."
 msgstr "Becerilere istinaden ayar değişimi için yetkisiz."
 
-#: wp-includes/class-wp-customize-manager.php:4838
+#: wp-includes/class-wp-customize-manager.php:4865
 msgid "Are you sure you want to delete this theme?"
 msgstr "Bu temayı silmek istediğinize emin misiniz?"
 
 #. translators: %d: Number of theme search results, which cannot currently
 #. consider singular vs. plural forms.
-#: wp-includes/class-wp-customize-manager.php:4840
+#: wp-includes/class-wp-customize-manager.php:4867
 msgid "%d themes found"
 msgstr "%d tema bulundu"
 
 #. translators: %s: Theme name.
-#: wp-includes/class-wp-customize-manager.php:4844
+#: wp-includes/class-wp-customize-manager.php:4871
 msgid "Showing details for theme: %s"
 msgstr "Tema için detaylar gösteriliyor: %s"
 
 #. translators: %d: Number of themes being displayed, which cannot currently
 #. consider singular vs. plural forms.
-#: wp-includes/class-wp-customize-manager.php:4842
+#: wp-includes/class-wp-customize-manager.php:4869
 msgid "Displaying %d themes"
 msgstr "%d tema gösteriliyor"
 
@@ -9549,7 +9567,7 @@ msgid "Sorry, you are not allowed to preview drafts."
 msgstr "Üzgünüm, taslakları ön izlemenize izin verilmiyor."
 
 #. translators: %s: Documentation URL.
-#: wp-includes/formatting.php:4785
+#: wp-includes/formatting.php:4802
 msgid "A structure tag is required when using custom permalinks. <a href=\"%s\">Learn more</a>"
 msgstr "Özel kalıcı bağlantılar kullanırken bir yapı etiketi gereklidir. <a href=\"%s\">Daha fazlasını öğrenin</a>"
 
@@ -9596,7 +9614,7 @@ msgstr "%2$s içine %1$s etiketlerini göndermeyin."
 msgid "Link options"
 msgstr "Bağlantı seçenekleri"
 
-#: wp-includes/script-loader.php:1122 wp-includes/js/dist/block-editor.js:20477
+#: wp-includes/script-loader.php:1122 wp-includes/js/dist/block-editor.js:20468
 msgid "Link selected."
 msgstr "Bağlantı seçildi."
 
@@ -9635,13 +9653,13 @@ msgid "1 result found. Use up and down arrow keys to navigate."
 msgstr "1 sonuç bulundu. Dolaşmak için yukarı ve aşağı okları kullanın."
 
 #. translators: %s: User name.
-#: wp-includes/comment-template.php:2407
+#: wp-includes/comment-template.php:2412
 msgid "Logged in as %s. Edit your profile."
 msgstr "%s olarak giriş yapıldı. Profilinizi düzenleyin."
 
 #. translators: 1: Edit user link, 2: Accessibility text, 3: User name, 4:
 #. Logout URL.
-#: wp-includes/comment-template.php:2404
+#: wp-includes/comment-template.php:2409
 msgid "<a href=\"%1$s\" aria-label=\"%2$s\">Logged in as %3$s</a>. <a href=\"%4$s\">Log out?</a>"
 msgstr "<a href=\"%1$s\" aria-label=\"%2$s\">%3$s olarak giriş yapıldı</a>. <a href=\"%4$s\">Çıkış yap?</a>"
 
@@ -9653,7 +9671,7 @@ msgstr "Sabit %1$s <strong>kullanımdan kaldırılmıştır</strong>. Alt alan a
 
 #. translators: 1: Panel ID, 2: Link to 'customize_loaded_components' filter
 #. reference.
-#: wp-includes/class-wp-customize-manager.php:3851
+#: wp-includes/class-wp-customize-manager.php:3878
 msgid "Removing %1$s manually will cause PHP warnings. Use the %2$s filter instead."
 msgstr "Manuel olarak %1$s özelliğini kaldırmak PHP uyarılarına neden olabilir. Bunun yerine %2$s filtresini kullanın."
 
@@ -9750,11 +9768,11 @@ msgstr "%1$s %2$s %3$s %4$s beslemesi"
 msgid "<strong>Error</strong>: Invalid username, email address or incorrect password."
 msgstr "<strong>Hata</strong>: Geçersiz kullanıcı adı, e-posta adresi ya da hatalı parola."
 
-#: wp-includes/class-wp-customize-manager.php:5139
+#: wp-includes/class-wp-customize-manager.php:5166
 msgid "Choose logo"
 msgstr "Logo seç"
 
-#: wp-includes/class-wp-customize-manager.php:5137
+#: wp-includes/class-wp-customize-manager.php:5164
 msgid "No logo selected"
 msgstr "Logo seçilmedi"
 
@@ -9769,12 +9787,12 @@ msgstr "Pencereyi kapat"
 msgid "The called constructor method for %1$s in %2$s is <strong>deprecated</strong> since version %3$s! Use %4$s instead."
 msgstr "%2$s içindeki %1$s oluşturucu yordam %3$s sürümünden bu yana <strong>desteklenmiyor</strong>! Yerine %4$s kullanın."
 
-#: wp-includes/class-wp-customize-manager.php:5134
+#: wp-includes/class-wp-customize-manager.php:5161
 msgid "Change logo"
 msgstr "Logo değiştir"
 
-#: wp-includes/class-wp-customize-manager.php:5133
-#: wp-includes/class-wp-customize-manager.php:5138
+#: wp-includes/class-wp-customize-manager.php:5160
+#: wp-includes/class-wp-customize-manager.php:5165
 msgid "Select logo"
 msgstr "Logo seç"
 
@@ -9818,12 +9836,12 @@ msgstr "<strong>Hata</strong>: E-posta adresiniz çok uzun."
 msgid "<strong>Error</strong>: Your name is too long."
 msgstr "<strong>Hata</strong>: Adınız çok uzun."
 
-#: wp-includes/class-wp-customize-manager.php:5125
+#: wp-includes/class-wp-customize-manager.php:5152
 msgid "Logo"
 msgstr "Logo"
 
 #: wp-includes/class-wp-editor.php:1389
-#: wp-includes/js/dist/block-editor.js:20523
+#: wp-includes/js/dist/block-editor.js:20514
 msgid "Paste URL or type to search"
 msgstr "İnternet adresini yapıştırın ya da arama yapın"
 
@@ -9837,8 +9855,8 @@ msgstr "Şablon eksik. Tekil temalar %1$s şablon dosyasına ihtiyaç duyarlar. 
 msgid "Invalid object type."
 msgstr "Geçersiz nesne tipi"
 
-#: wp-includes/class-wp-customize-manager.php:5074
-#: wp-includes/class-wp-customize-manager.php:5182
+#: wp-includes/class-wp-customize-manager.php:5101
+#: wp-includes/class-wp-customize-manager.php:5209
 msgid "Display Site Title and Tagline"
 msgstr "Site başlığı ve sloganını göster"
 
@@ -9851,15 +9869,15 @@ msgstr "Yorum gönderme hatası"
 msgid "Shift-click to edit this element."
 msgstr "Bu elemanı düzenlemek için Shift ile tıklayın."
 
-#: wp-includes/class-wp-customize-manager.php:4928
+#: wp-includes/class-wp-customize-manager.php:4955
 msgid "Enter tablet preview mode"
 msgstr "Tablet ön izleme moduna geçin"
 
-#: wp-includes/class-wp-customize-manager.php:4931
+#: wp-includes/class-wp-customize-manager.php:4958
 msgid "Enter mobile preview mode"
 msgstr "Mobil ön izleme moduna geçin"
 
-#: wp-includes/class-wp-customize-manager.php:4924
+#: wp-includes/class-wp-customize-manager.php:4951
 msgid "Enter desktop preview mode"
 msgstr "Masaüstü ön izleme moduna geçin"
 
@@ -9909,7 +9927,7 @@ msgstr "Daha fazla yardım mı lazım? <a href='%s'>Bizde mevcut</a>."
 
 #. translators: %s: get_trackback_url()
 #. translators: %s: get_the_author()
-#: wp-includes/comment-template.php:1176 wp-includes/author-template.php:70
+#: wp-includes/comment-template.php:1181 wp-includes/author-template.php:70
 msgid "Use %s instead if you do not want the value echoed."
 msgstr "Eğer değerin ekrana basılmasını istemiyorsanız %s kullanın."
 
@@ -10004,7 +10022,7 @@ msgctxt "genitive"
 msgid "May"
 msgstr "Mayıs"
 
-#: wp-includes/embed.php:1143
+#: wp-includes/embed.php:1156
 msgid "Sharing options"
 msgstr "Paylaşma seçenekleri"
 
@@ -10062,7 +10080,7 @@ msgid "It looks like nothing was found at this location. Maybe try visiting %s d
 msgstr "Burada bir şey bulunamadı. Belki de %s adresini direkt ziyaret etmelisiniz?"
 
 #. translators: %s: Post title.
-#: wp-includes/embed.php:943 wp-includes/post-template.php:296
+#: wp-includes/embed.php:956 wp-includes/post-template.php:296
 msgid "Continue reading %s"
 msgstr "Okumaya devam et %s"
 
@@ -10187,18 +10205,18 @@ msgstr "Geçersiz kısa kod ismi: Boş isim verilmiş."
 msgid "Permalink saved"
 msgstr "Kalıcı bağlantı kaydedildi"
 
-#: wp-includes/rest-api.php:917
+#: wp-includes/rest-api.php:923
 msgid "Cookie nonce is invalid"
 msgstr "Çerez nonce verisi geçersiz"
 
 #. translators: 1: Function name, 2: WordPress version number.
-#: wp-includes/rest-api.php:544 wp-includes/rest-api.php:568
+#: wp-includes/rest-api.php:550 wp-includes/rest-api.php:574
 msgid "%1$s (since %2$s; no alternative available)"
 msgstr "%1$s (%2$s sürümünden beri; uygun alternatif yok)"
 
 #. translators: 1: Function name, 2: WordPress version number, 3: Error
 #. message.
-#: wp-includes/rest-api.php:565
+#: wp-includes/rest-api.php:571
 msgid "%1$s (since %2$s; %3$s)"
 msgstr "%1$s (%2$s sürümünden beri; %3$s)"
 
@@ -10210,7 +10228,7 @@ msgstr "Geçersiz kısa kod ismi: %1$s. Boşluk karakteri ya da yasaklı karakte
 
 #. translators: 1: Function name, 2: WordPress version number, 3: New function
 #. name.
-#: wp-includes/rest-api.php:541
+#: wp-includes/rest-api.php:547
 msgid "%1$s (since %2$s; use %3$s instead)"
 msgstr "%1$s (%2$s sürümünden beri; yerine %3$s kullanın)"
 
@@ -10432,11 +10450,11 @@ msgstr "Daha eski yorumlar"
 msgid "Posts published on %s"
 msgstr "Yazılar %s tarihinde yayımlandı"
 
-#: wp-includes/embed.php:1165
+#: wp-includes/embed.php:1178
 msgid "Copy and paste this code into your site to embed"
 msgstr "Sitenize gömmek için kodu kopyalayıp yapıştırın"
 
-#: wp-includes/embed.php:1170
+#: wp-includes/embed.php:1183
 msgid "Close sharing dialog"
 msgstr "Paylaşma penceresini kapat"
 
@@ -10446,25 +10464,25 @@ msgid "Use the %s filter instead."
 msgstr "Yerine %s filtresini kullanın."
 
 #. translators: %s: Number of comments.
-#: wp-includes/embed.php:1102
+#: wp-includes/embed.php:1115
 msgid "%s <span class=\"screen-reader-text\">Comment</span>"
 msgid_plural "%s <span class=\"screen-reader-text\">Comments</span>"
 msgstr[0] "%s <span class=\"screen-reader-text\">Yorum</span>"
 msgstr[1] "%s <span class=\"screen-reader-text\">Yorum</span>"
 
-#: wp-includes/embed.php:1126
+#: wp-includes/embed.php:1139
 msgid "Open sharing dialog"
 msgstr "Paylaşma penceresini aç"
 
-#: wp-includes/embed.php:1148
+#: wp-includes/embed.php:1161
 msgid "WordPress Embed"
 msgstr "WordPress gömme"
 
-#: wp-includes/embed.php:1158
+#: wp-includes/embed.php:1171
 msgid "Copy and paste this URL into your WordPress site to embed"
 msgstr "WordPress sitenizde gömmek için bu adresi kopyalayıp yapıştırın"
 
-#: wp-includes/embed.php:1151
+#: wp-includes/embed.php:1164
 msgid "HTML Embed"
 msgstr "HTML gömme"
 
@@ -10497,7 +10515,7 @@ msgid "Press return or enter to open this section"
 msgstr "Bu bölümü açmak için enter tuşuna basın"
 
 #. translators: %s: Document title from the preview.
-#: wp-includes/class-wp-customize-manager.php:4481
+#: wp-includes/class-wp-customize-manager.php:4508
 msgid "Live Preview: %s"
 msgstr "Canlı ön izleme: %s"
 
@@ -10508,7 +10526,7 @@ msgstr "İstenen tema mevcut değil."
 #. translators: 1: "type => link", 2: "taxonomy => link_category"
 #. translators: 1: caller_get_posts, 2: ignore_sticky_posts
 #: wp-includes/category.php:46 wp-includes/category-template.php:360
-#: wp-includes/class-wp-query.php:1810
+#: wp-includes/class-wp-query.php:1806
 msgid "%1$s is deprecated. Use %2$s instead."
 msgstr "%1$s artık kullanılmıyor, yerine %2$s kullanın."
 
@@ -10535,16 +10553,6 @@ msgstr "Enter tuşuna basılırken aşağıdaki biçimlendirme kısayolları de�
 #: wp-includes/class-wp-customize-nav-menus.php:1151
 msgid "Toggle section: %s"
 msgstr "Bölümü dönüştür: %s"
-
-#. translators: If your word count is based on single characters (e.g. East
-#. Asian characters), enter 'characters_excluding_spaces' or
-#. 'characters_including_spaces'. Otherwise, enter 'words'. Do not translate
-#. into your own language.
-#: wp-includes/script-loader.php:1915 wp-includes/formatting.php:3871
-#: wp-includes/js/dist/editor.js:12766
-msgctxt "Word count type. Do not translate!"
-msgid "words"
-msgstr "words"
 
 #. translators: 1: Title of a menu item, 2: Type of a menu item.
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:83
@@ -10646,11 +10654,11 @@ msgstr "Görseli gizle"
 msgid "Add new image"
 msgstr "Yeni görsel ekle"
 
-#: wp-includes/class-wp-customize-manager.php:5096
+#: wp-includes/class-wp-customize-manager.php:5123
 msgid "Site Icon"
 msgstr "Site ikonu"
 
-#: wp-includes/class-wp-customize-manager.php:5021
+#: wp-includes/class-wp-customize-manager.php:5048
 msgid "Site Identity"
 msgstr "Site kimliği"
 
@@ -11364,7 +11372,7 @@ msgid "F j, Y @ H:i:s"
 msgstr "j F Y @ H:i:s"
 
 #. translators: %s: Post title.
-#: wp-includes/comment-template.php:1558
+#: wp-includes/comment-template.php:1563
 msgid "1 Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "<span class=\"screen-reader-text\">%s için</span> bir yorum"
 
@@ -11374,7 +11382,7 @@ msgid "Link Text"
 msgstr "Bağlantı metni"
 
 #. translators: 1: Number of comments, 2: Post title.
-#: wp-includes/comment-template.php:1563
+#: wp-includes/comment-template.php:1568
 msgid "%1$s Comment<span class=\"screen-reader-text\"> on %2$s</span>"
 msgid_plural "%1$s Comments<span class=\"screen-reader-text\"> on %2$s</span>"
 msgstr[0] "<span class=\"screen-reader-text\">%2$s için</span> %1$s yorum"
@@ -11391,12 +11399,12 @@ msgid "Select Year"
 msgstr "Yıl seçin"
 
 #. translators: %s: Post title.
-#: wp-includes/comment-template.php:1569
+#: wp-includes/comment-template.php:1574
 msgid "Comments Off<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "<span class=\"screen-reader-text\">%s için</span> yorumlar kapalı"
 
 #. translators: %s: Post title.
-#: wp-includes/comment-template.php:1553
+#: wp-includes/comment-template.php:1558
 msgid "No Comments<span class=\"screen-reader-text\"> on %s</span>"
 msgstr "Yorum yok<span class=\"screen-reader-text\"> %s</span>"
 
@@ -11683,7 +11691,7 @@ msgid "Add to Dictionary"
 msgstr "Sözlüğe ekle"
 
 #. translators: Comment reply button text. %s: Comment author name.
-#: wp-includes/comment-template.php:1652
+#: wp-includes/comment-template.php:1657
 msgid "Reply to %s"
 msgstr "Cevap %s"
 
@@ -11796,7 +11804,7 @@ msgstr "(etiket yok)"
 
 #. translators: %s: Taxonomy label, %l: List of terms formatted as per
 #. $term_template.
-#: wp-includes/taxonomy.php:4341
+#: wp-includes/taxonomy.php:4343
 msgid "%s: %l."
 msgstr "%s: %l."
 
@@ -11923,7 +11931,7 @@ msgstr "%s sitesini özelleştiriyorsunuz"
 msgid "Widgets are independent sections of content that can be placed into widgetized areas provided by your theme (commonly called sidebars)."
 msgstr "Bileşenler temanız tarafından sağlanan (genellikle yan sütunlarda) bileşen alanlarında yer alan bağımsız içerik alanlarıdır."
 
-#: wp-includes/comment.php:3396
+#: wp-includes/comment.php:3401
 msgid "<strong>Error</strong>: The comment could not be saved. Please try again later."
 msgstr "<strong>Hata</strong>: Yorum kaydedilemiyor. Lütfen daha sonra tekrar deneyiniz."
 
@@ -11961,7 +11969,7 @@ msgstr "<strong>Hata</strong>: Çerezler engelleniyor ya da tarayıcınız taraf
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:130
 #: wp-includes/media-template.php:1166
-#: wp-includes/js/dist/block-editor.js:22909
+#: wp-includes/js/dist/block-editor.js:22900
 msgid "Link CSS Class"
 msgstr "CSS sınıfına bağlantı ver"
 
@@ -12599,13 +12607,13 @@ msgstr "Yeniden sırala"
 
 #: wp-includes/class-wp-customize-widgets.php:698
 #: wp-includes/class-wp-customize-nav-menus.php:1029
-#: wp-includes/js/dist/block-editor.js:24056
+#: wp-includes/js/dist/block-editor.js:24047
 msgid "Move down"
 msgstr "Aşağı indir"
 
 #: wp-includes/class-wp-customize-widgets.php:699
 #: wp-includes/class-wp-customize-nav-menus.php:1028
-#: wp-includes/js/dist/block-editor.js:24050
+#: wp-includes/js/dist/block-editor.js:24041
 msgid "Move up"
 msgstr "Yukarı çıkar"
 
@@ -12711,7 +12719,7 @@ msgid "Paste as text"
 msgstr "Metin olarak yapıştır"
 
 #: wp-includes/media-template.php:1179 wp-includes/media.php:3884
-#: wp-includes/js/dist/block-editor.js:20789
+#: wp-includes/js/dist/block-editor.js:20780
 msgid "Replace"
 msgstr "Değiştir"
 
@@ -12819,8 +12827,8 @@ msgstr "Fince"
 msgid "Template:"
 msgstr "Şablon:"
 
-#: wp-includes/js/dist/block-editor.js:22520
-#: wp-includes/js/dist/block-editor.js:22526
+#: wp-includes/js/dist/block-editor.js:22511
+#: wp-includes/js/dist/block-editor.js:22517
 #: wp-includes/js/dist/edit-post.js:1328
 msgid "Tools"
 msgstr "Araçlar"
@@ -12955,7 +12963,7 @@ msgstr "Çeviri güncellemeleri"
 msgid "The theme directory \"%s\" does not exist."
 msgstr "\"%s\" tema klasörü mevcut değil."
 
-#: wp-includes/class-wp-query.php:1470
+#: wp-includes/class-wp-query.php:1466
 msgctxt "Comma-separated list of search stopwords in your language"
 msgid "about,an,are,as,at,be,by,com,for,from,how,in,is,it,of,on,or,that,the,this,to,was,what,when,where,who,will,with,www"
 msgstr "ve,veya,yada,ya da,ki,ne,www,com"
@@ -13025,7 +13033,7 @@ msgstr "Başarısız"
 
 #. translators: Time difference between two dates, in weeks. %s: Number of
 #. weeks.
-#: wp-includes/formatting.php:3751
+#: wp-includes/formatting.php:3768
 msgid "%s week"
 msgid_plural "%s weeks"
 msgstr[0] "%s hafta"
@@ -13033,7 +13041,7 @@ msgstr[1] "%s hafta"
 
 #. translators: Time difference between two dates, in months. %s: Number of
 #. months.
-#: wp-includes/formatting.php:3758
+#: wp-includes/formatting.php:3775
 msgid "%s month"
 msgid_plural "%s months"
 msgstr[0] "%s ay"
@@ -13041,7 +13049,7 @@ msgstr[1] "%s ay"
 
 #. translators: Time difference between two dates, in years. %s: Number of
 #. years.
-#: wp-includes/formatting.php:3765
+#: wp-includes/formatting.php:3782
 msgid "%s year"
 msgid_plural "%s years"
 msgstr[0] "%s sene"
@@ -13084,7 +13092,7 @@ msgstr "H:i"
 msgid "F j, Y g:i a"
 msgstr "j F Y H:i"
 
-#: wp-includes/js/dist/block-editor.js:23524
+#: wp-includes/js/dist/block-editor.js:23515
 msgid "Not set"
 msgstr "Belirlenmemiş"
 
@@ -13134,8 +13142,8 @@ msgid "The login page will open in a new tab. After logging in you can close it 
 msgstr "Giriş sayfası yeni bir pencerede açılacaktır. Giriş yaptıktan sonra pencereyi kapatıp bu sayfaya dönebilirsiniz."
 
 #. translators: %s: Comment author link.
-#: wp-includes/class-walker-comment.php:287
-#: wp-includes/class-walker-comment.php:377
+#: wp-includes/class-walker-comment.php:326
+#: wp-includes/class-walker-comment.php:423
 msgid "%s <span class=\"says\">says:</span>"
 msgstr "%s <span class=\"says\">dedi ki:</span>"
 
@@ -13191,8 +13199,8 @@ msgstr "Karışık sıra"
 msgid "%d selected"
 msgstr "%d seçildi"
 
-#: wp-includes/media.php:3936 wp-includes/js/dist/block-editor.js:20940
-#: wp-includes/js/dist/block-editor.js:21358
+#: wp-includes/media.php:3936 wp-includes/js/dist/block-editor.js:20931
+#: wp-includes/js/dist/block-editor.js:21349
 msgid "Insert from URL"
 msgstr "Adresten ekle"
 
@@ -13244,7 +13252,7 @@ msgstr "Hiç bir düzenleyici seçilemedi"
 
 #: wp-includes/widgets/class-wp-widget-media-video.php:28
 #: wp-includes/post.php:2740 wp-includes/js/dist/editor.js:8565
-#: wp-includes/js/dist/block-editor.js:21292
+#: wp-includes/js/dist/block-editor.js:21283
 #: wp-includes/js/dist/block-library.js:21833
 msgid "Video"
 msgstr "Video"
@@ -13296,7 +13304,7 @@ msgstr "Bu yazıya yüklenmiş"
 
 #: wp-includes/widgets/class-wp-widget-media-audio.php:28
 #: wp-includes/post.php:2731 wp-includes/js/dist/editor.js:8568
-#: wp-includes/js/dist/block-editor.js:21288
+#: wp-includes/js/dist/block-editor.js:21279
 #: wp-includes/js/dist/block-library.js:9205
 msgid "Audio"
 msgstr "Ses dosyası"
@@ -13371,7 +13379,7 @@ msgstr "Galeri ekle"
 msgid "Drop files to upload"
 msgstr "Yüklemek için dosyaları sürükleyip bırakın"
 
-#: wp-includes/media.php:3900 wp-includes/js/dist/block-editor.js:21400
+#: wp-includes/media.php:3900 wp-includes/js/dist/block-editor.js:21391
 msgid "Media Library"
 msgstr "Ortam kütüphanesi"
 
@@ -13440,14 +13448,14 @@ msgstr "Bağlantı"
 
 #: wp-includes/media-template.php:779 wp-includes/media-template.php:844
 #: wp-includes/media-template.php:1123
-#: wp-includes/js/dist/block-editor.js:22847
+#: wp-includes/js/dist/block-editor.js:22838
 #: wp-includes/js/dist/block-library.js:7848
 msgid "Attachment Page"
 msgstr "Ek sayfası"
 
 #: wp-includes/media-template.php:772 wp-includes/media-template.php:847
 #: wp-includes/media-template.php:1120
-#: wp-includes/js/dist/block-editor.js:22842
+#: wp-includes/js/dist/block-editor.js:22833
 #: wp-includes/js/dist/block-library.js:7851
 msgid "Media File"
 msgstr "Ortam dosyası"
@@ -13599,7 +13607,7 @@ msgstr "%1$s %2$s %3$s beslemesi"
 msgid "Sorry, you are not allowed to create pages as this user."
 msgstr "Üzgünüm, bu kullanıcı ile sayfa oluşturmanıza izin verilmiyor."
 
-#: wp-includes/js/dist/block-editor.js:25311
+#: wp-includes/js/dist/block-editor.js:25302
 msgid "Clear selection."
 msgstr "Seçimi temizle."
 
@@ -13616,11 +13624,11 @@ msgctxt "Name for the Text editor tab (formerly HTML)"
 msgid "Text"
 msgstr "Metin"
 
-#: wp-includes/class-wp-customize-manager.php:5194
+#: wp-includes/class-wp-customize-manager.php:5221
 msgid "Header Text Color"
 msgstr "Başlık metin rengi"
 
-#: wp-includes/class-wp-customize-manager.php:5160
+#: wp-includes/class-wp-customize-manager.php:5187
 msgid "Colors"
 msgstr "Renkler"
 
@@ -13656,7 +13664,7 @@ msgid "Sorry, you are not allowed to publish this page."
 msgstr "Üzgünüm, bu sayfayı yayımlamanıza izin verilmiyor."
 
 #: wp-includes/customize/class-wp-customize-header-image-control.php:54
-#: wp-includes/class-wp-customize-manager.php:5255
+#: wp-includes/class-wp-customize-manager.php:5282
 msgid "Header Image"
 msgstr "Üst kısım görseli"
 
@@ -13699,7 +13707,7 @@ msgstr[1] "Site adı en az %s karakter olmalıdır."
 msgid "That name is not allowed."
 msgstr "Bu isim kullanılamaz."
 
-#: wp-includes/class-wp-customize-manager.php:5550
+#: wp-includes/class-wp-customize-manager.php:5577
 msgid "A static page"
 msgstr "Sabit bir sayfa"
 
@@ -13708,13 +13716,13 @@ msgstr "Sabit bir sayfa"
 msgid "Text Color"
 msgstr "Metin rengi"
 
-#: wp-includes/class-wp-customize-manager.php:5218
+#: wp-includes/class-wp-customize-manager.php:5245
 #: wp-includes/js/dist/block-editor.js:7575
 msgid "Background Color"
 msgstr "Arka plan rengi"
 
 #: wp-includes/customize/class-wp-customize-background-image-control.php:33
-#: wp-includes/class-wp-customize-manager.php:5364
+#: wp-includes/class-wp-customize-manager.php:5391
 msgid "Background Image"
 msgstr "Arka plan görseli"
 
@@ -13731,13 +13739,13 @@ msgstr "Görseli kaldır"
 msgid "Sorry, you are not allowed to edit this comment."
 msgstr "Üzgünüm, bu yorumu düzenlemenize izin verilmiyor."
 
-#: wp-includes/class-wp-customize-manager.php:5584
+#: wp-includes/class-wp-customize-manager.php:5611
 msgid "Posts page"
 msgstr "Yazı sayfası"
 
-#: wp-includes/js/dist/block-editor.js:20932
-#: wp-includes/js/dist/block-editor.js:21414
-#: wp-includes/js/dist/block-editor.js:21427
+#: wp-includes/js/dist/block-editor.js:20923
+#: wp-includes/js/dist/block-editor.js:21405
+#: wp-includes/js/dist/block-editor.js:21418
 msgid "Upload"
 msgstr "Yükle"
 
@@ -13748,7 +13756,7 @@ msgstr "Yükle"
 #: wp-includes/customize/class-wp-customize-media-control.php:236
 #: wp-includes/customize/class-wp-customize-media-control.php:247
 #: wp-includes/customize/class-wp-customize-media-control.php:257
-#: wp-includes/class-wp-customize-manager.php:5135
+#: wp-includes/class-wp-customize-manager.php:5162
 #: wp-includes/class-wp-editor.php:1387 wp-includes/js/dist/edit-post.js:1145
 #: wp-includes/js/dist/block-directory.js:1501
 msgid "Remove"
@@ -13873,11 +13881,11 @@ msgstr "\"%s\" teması geçerli bir ebeveyn tema değil."
 msgid "Error: The themes directory is either empty or doesn&#8217;t exist. Please check your installation."
 msgstr "Hata: themes klasörü boş ya da mevcut değil. Lütfen kurulumunuzu kontrol edin."
 
-#: wp-includes/class-wp-customize-manager.php:5549
+#: wp-includes/class-wp-customize-manager.php:5576
 msgid "Your latest posts"
 msgstr "En son yazılarınız"
 
-#: wp-includes/class-wp-customize-manager.php:5055
+#: wp-includes/class-wp-customize-manager.php:5082
 msgid "Tagline"
 msgstr "Slogan"
 
@@ -13888,11 +13896,11 @@ msgid "&mdash; Select &mdash;"
 msgstr "&mdash; Seç &mdash;"
 
 #. translators: %s: Document title from the preview.
-#: wp-includes/class-wp-customize-manager.php:4478
+#: wp-includes/class-wp-customize-manager.php:4505
 msgid "Customize: %s"
 msgstr "Özelleştir: %s"
 
-#: wp-includes/js/dist/block-editor.js:23604
+#: wp-includes/js/dist/block-editor.js:23595
 msgid "Styles"
 msgstr "Stiller"
 
@@ -13929,7 +13937,7 @@ msgid "Sorry, you are not allowed to edit this post."
 msgstr "Üzgünüm, bu yazıyı düzenleme yetkiniz yok."
 
 #: wp-includes/script-loader.php:1298 wp-includes/script-loader.php:1391
-#: wp-includes/post.php:4573
+#: wp-includes/post.php:4582
 msgctxt "tag delimiter"
 msgid ","
 msgstr ","
@@ -14043,7 +14051,7 @@ msgstr "Bir ayar dosyası oluştur"
 msgid "You can create a %s file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file."
 msgstr "%s dosyasını web arayüzü ile oluşturabilirsiniz ama bu her sunucu düzeninde çalışmayabilir. En garanti yol dosyayı kendinizin oluşturmasıdır."
 
-#: wp-includes/class-wp-customize-manager.php:5596
+#: wp-includes/class-wp-customize-manager.php:5623
 msgid "https://codex.wordpress.org/CSS"
 msgstr "https://codex.wordpress.org/CSS"
 
@@ -14127,15 +14135,15 @@ msgstr "%s bu site için tanımlı en fazla dosya boyutunu geçiyor."
 msgid "Feedback"
 msgstr "Geri besleme"
 
-#: wp-includes/comment.php:3382
+#: wp-includes/comment.php:3387
 msgid "<strong>Error</strong>: Please type a comment."
 msgstr "<strong>Hata</strong>: Lütfen bir yorum yazın."
 
-#: wp-includes/comment.php:3355
+#: wp-includes/comment.php:3360
 msgid "<strong>Error</strong>: Please fill the required fields (name, email)."
 msgstr "<strong>Hata</strong>: Lütfen gerekli alanları girin (ad, e-posta)."
 
-#: wp-includes/comment.php:3357
+#: wp-includes/comment.php:3362
 msgid "<strong>Error</strong>: Please enter a valid email address."
 msgstr "<strong>Hata</strong>: Lütfen geçerli bir e-posta adresi girin."
 
@@ -14155,7 +14163,7 @@ msgstr "<strong>Hata</strong>: site girdisi oluşturulurken hata oluştu."
 msgid "Documentation"
 msgstr "Belgeler"
 
-#: wp-includes/general-template.php:4197 wp-includes/formatting.php:3859
+#: wp-includes/general-template.php:4197 wp-includes/formatting.php:3876
 msgid "&hellip;"
 msgstr "&hellip;"
 
@@ -14169,7 +14177,7 @@ msgid "Error establishing a database connection"
 msgstr "Veritabanı bağlantısı kurulurken hata oluştu"
 
 #. translators: %s: Number of comments.
-#: wp-includes/comment-template.php:902 wp-includes/comment-template.php:917
+#: wp-includes/comment-template.php:907 wp-includes/comment-template.php:922
 msgid "%s Comment"
 msgid_plural "%s Comments"
 msgstr[0] "%s yorum"
@@ -14223,7 +14231,7 @@ msgctxt "admin color scheme"
 msgid "Blue"
 msgstr "Mavi"
 
-#: wp-includes/formatting.php:4767
+#: wp-includes/formatting.php:4784
 msgid "The timezone you have entered is not valid. Please select a valid timezone."
 msgstr "Girmiş olduğunuz zaman dilimi geçerli değil. Lütfen geçerli bir zaman dilimi seçin."
 
@@ -14277,7 +14285,7 @@ msgstr "Tüm sayfalar"
 msgid "Link"
 msgstr "Bağlantı"
 
-#: wp-includes/class-walker-comment.php:242
+#: wp-includes/class-walker-comment.php:250
 msgid "Pingback:"
 msgstr "Geri bildirim: "
 
@@ -14575,7 +14583,7 @@ msgid "Blavatar"
 msgstr "Blavatar"
 
 #. translators: %s: Taxonomy name.
-#: wp-includes/post.php:3969
+#: wp-includes/post.php:3978
 msgid "Invalid taxonomy: %s."
 msgstr "Geçersiz sınıflandırma: %s."
 
@@ -14639,7 +14647,7 @@ msgid "You have searched the %1$s blog archives for <strong>&#8216;%2$s&#8217;</
 msgstr "%1$s blog arşivlerinde <strong>&#8216;%2$s&#8217;</strong> araması yaptınız. Eğer hiç bir şey bulamadıysanız aşağıdaki bağlantıları deneyebilirsiniz."
 
 #. translators: Used to join items in a list with only 2 items.
-#: wp-includes/formatting.php:5055
+#: wp-includes/formatting.php:5072
 msgid "%1$s and %2$s"
 msgstr "%1$s ve %2$s"
 
@@ -14774,7 +14782,7 @@ msgid "<strong>Error</strong>: This username is invalid because it uses illegal 
 msgstr "<strong>Hata</strong>: Bu kullanıcı adı kabul edilmeyen karakterler içerdiği için geçerli değil.  Lütfen geçerli bir kullanıcı adı girin."
 
 #. translators: %s: Asterisk symbol (*).
-#: wp-includes/comment-template.php:2368
+#: wp-includes/comment-template.php:2373
 msgid "Required fields are marked %s"
 msgstr "Gerekli alanlar %s ile işaretlenmişlerdir"
 
@@ -14912,15 +14920,15 @@ msgstr "Bu site arşivlenmiş ya da askıya alınmış."
 msgid "The given object ID is not that of a menu item."
 msgstr "Verilen nesne no bir menü elemanı değil."
 
-#: wp-includes/formatting.php:4585
+#: wp-includes/formatting.php:4602
 msgid "The email address entered did not appear to be a valid email address. Please enter a valid email address."
 msgstr "Girilen e-posta adresi geçerli bir e-posta adresi değil. Lütfen geçerli bir e-posta adresi girin"
 
-#: wp-includes/formatting.php:4695
+#: wp-includes/formatting.php:4712
 msgid "The WordPress address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Girmiş olduğunuz WordPress adresi geçerli bir web adresi değil. Lütfen geçerli bir web adresi girin."
 
-#: wp-includes/formatting.php:4708
+#: wp-includes/formatting.php:4725
 msgid "The Site address you entered did not appear to be a valid URL. Please enter a valid URL."
 msgstr "Girmiş olduğunuz site adresi geçerli bir web adresi değil. Lütfen geçerli bir web adresi girin."
 
@@ -14933,7 +14941,7 @@ msgstr "Belirtilen terim için isim kökte zaten var."
 msgid "An error occurred adding you to this site. Back to the <a href=\"%s\">homepage</a>."
 msgstr "Sizi bu siteye eklerken bir hata oluştu. <a href=\"%s\">Ana sayfaya</a> geri dönüş."
 
-#: wp-includes/comment-template.php:2417
+#: wp-includes/comment-template.php:2422
 msgid "Your email address will not be published."
 msgstr "E-posta hesabınız yayımlanmayacak."
 
@@ -15227,6 +15235,10 @@ msgstr "Geçersiz yazı türü."
 msgid "Is there no link to us?"
 msgstr "Bize hiç bağlantı veren yok mu?"
 
+#: wp-includes/class-wp-xmlrpc-server.php:6843
+msgid "The source URL and the target URL cannot both point to the same resource."
+msgstr "Kaynak URL ve hedef URL aynı kaynağı gösteremiyor."
+
 #: wp-includes/class-wp-xmlrpc-server.php:1399
 #: wp-includes/class-wp-xmlrpc-server.php:1694
 #: wp-includes/class-wp-xmlrpc-server.php:1776
@@ -15248,14 +15260,10 @@ msgstr "Bize hiç bağlantı veren yok mu?"
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:361
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:828
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:398
-#: wp-includes/post.php:3609 wp-includes/post.php:4185
+#: wp-includes/post.php:3612 wp-includes/post.php:4194
 #: wp-includes/revision.php:308
 msgid "Invalid post ID."
 msgstr "Geçersiz yazı numarası."
-
-#: wp-includes/class-wp-xmlrpc-server.php:6843
-msgid "The source URL and the target URL cannot both point to the same resource."
-msgstr "Kaynak URL ve hedef URL aynı kaynağı gösteremiyor."
 
 #: wp-includes/class-wp-xmlrpc-server.php:6880
 msgid "The source URL does not exist."
@@ -15398,7 +15406,7 @@ msgstr "Onaylanmamış"
 msgid "Duplicate comment detected; it looks as though you&#8217;ve already said that!"
 msgstr "Tekrar edilen yorum bulundu; görünen o ki bu yorumu daha önceden zaten yapmışsınız!"
 
-#: wp-includes/comment.php:2279
+#: wp-includes/comment.php:2284
 msgid "Could not update comment status"
 msgstr "Yorum durumu güncellenemiyor"
 
@@ -15917,7 +15925,7 @@ msgstr "Bağlantıyı kaldır"
 msgid "Cut"
 msgstr "Kes"
 
-#: wp-includes/class-wp-customize-manager.php:4280
+#: wp-includes/class-wp-customize-manager.php:4307
 #: wp-includes/class-wp-editor.php:1175
 msgid "Copy"
 msgstr "Kopyala"
@@ -15995,7 +16003,7 @@ msgstr "Kaynak"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:137
 #: wp-includes/media-template.php:1162
-#: wp-includes/js/dist/block-editor.js:22903
+#: wp-includes/js/dist/block-editor.js:22894
 msgid "Link Rel"
 msgstr "Bağlantı için Rel"
 
@@ -16012,13 +16020,13 @@ msgid "Select all"
 msgstr "Tümünü seç"
 
 #: wp-includes/script-loader.php:643 wp-includes/class-wp-editor.php:1261
-#: wp-includes/js/dist/block-editor.js:22622
-#: wp-includes/js/dist/block-editor.js:22920
+#: wp-includes/js/dist/block-editor.js:22613
+#: wp-includes/js/dist/block-editor.js:22911
 msgid "Insert link"
 msgstr "Bağlantı ekle"
 
 #: wp-includes/class-wp-editor.php:1257
-#: wp-includes/js/dist/block-editor.js:22956
+#: wp-includes/js/dist/block-editor.js:22947
 msgid "Remove link"
 msgstr "Bağlantıyı kaldır"
 
@@ -16105,15 +16113,15 @@ msgstr "Önceki sayfa"
 msgid "Home"
 msgstr "Başlangıç"
 
-#: wp-includes/post.php:3656
+#: wp-includes/post.php:3659
 msgid "Content, title, and excerpt are empty."
 msgstr "İçerik, başlık ve özet boş."
 
-#: wp-includes/post.php:3923
+#: wp-includes/post.php:3932
 msgid "Could not update post in the database"
 msgstr "Veritabanında yazı güncellenemiyor"
 
-#: wp-includes/post.php:3938
+#: wp-includes/post.php:3947
 msgid "Could not insert post into the database"
 msgstr "Yazı veritabanına eklenemiyor"
 
@@ -16276,7 +16284,7 @@ msgstr "Yeni e-posta gözükmüyor."
 msgid "Oops: %s"
 msgstr "Eyvah: %s"
 
-#: wp-includes/comment-template.php:2435
+#: wp-includes/comment-template.php:2440
 msgid "Cancel reply"
 msgstr "Cevabı iptal et"
 
@@ -16284,7 +16292,7 @@ msgstr "Cevabı iptal et"
 msgid "Automatically add paragraphs"
 msgstr "Otomatik paragraf ekle"
 
-#: wp-includes/comment-template.php:2436
+#: wp-includes/comment-template.php:2441
 msgid "Post Comment"
 msgstr "Yorum gönder"
 
@@ -16420,7 +16428,7 @@ msgstr "Sürümün bir sürümü oluşturulamaz"
 #: wp-includes/script-loader.php:839
 #: wp-includes/widgets/class-wp-widget-media-image.php:28
 #: wp-includes/class-wp-editor.php:1216 wp-includes/js/dist/editor.js:8553
-#: wp-includes/js/dist/block-editor.js:21290
+#: wp-includes/js/dist/block-editor.js:21281
 #: wp-includes/js/dist/block-library.js:5200
 #: wp-includes/js/dist/block-library.js:5775
 msgid "Image"
@@ -16568,7 +16576,7 @@ msgstr[1] "Çöp <span class=\"count\">(%s)</span>"
 
 #. translators: Time difference between two dates, in minutes (min=minute). %s:
 #. Number of minutes.
-#: wp-includes/formatting.php:3730
+#: wp-includes/formatting.php:3747
 msgid "%s min"
 msgid_plural "%s mins"
 msgstr[0] "%s dakika"
@@ -16577,14 +16585,14 @@ msgstr[1] "%s dakika"
 #. translators: %s: Time duration in hour or hours.
 #. translators: Time difference between two dates, in hours. %s: Number of
 #. hours.
-#: wp-includes/functions.php:525 wp-includes/formatting.php:3737
+#: wp-includes/functions.php:525 wp-includes/formatting.php:3754
 msgid "%s hour"
 msgid_plural "%s hours"
 msgstr[0] "%s saat"
 msgstr[1] "%s saat"
 
 #. translators: Time difference between two dates, in days. %s: Number of days.
-#: wp-includes/formatting.php:3744
+#: wp-includes/formatting.php:3761
 msgid "%s day"
 msgid_plural "%s days"
 msgstr[0] "%s gün"
@@ -16650,8 +16658,8 @@ msgstr "Alt sağ"
 msgid "%s [Autosave]"
 msgstr "%s [Otomatik kayıt]"
 
-#: wp-includes/class-wp-customize-manager.php:5409
-#: wp-includes/class-wp-customize-manager.php:5468
+#: wp-includes/class-wp-customize-manager.php:5436
+#: wp-includes/class-wp-customize-manager.php:5495
 msgid "Fill Screen"
 msgstr "Ekranı doldur"
 
@@ -16834,7 +16842,7 @@ msgstr "Veritabanına terim eklenemedi."
 msgid "The slug &#8220;%s&#8221; is already in use by another term."
 msgstr "Kısa isim &#8220;%s&#8221; şu an başka bir terim tarafından kullanılıyor."
 
-#: wp-includes/taxonomy.php:4414
+#: wp-includes/taxonomy.php:4416
 msgid "Invalid object ID."
 msgstr "Geçersiz nesne numarası."
 
@@ -17072,7 +17080,7 @@ msgstr "Açık"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:78
 #: wp-includes/media-template.php:1103 wp-includes/class-wp-editor.php:1329
-#: wp-includes/js/dist/block-editor.js:19213
+#: wp-includes/js/dist/block-editor.js:19204
 #: wp-includes/js/dist/format-library.js:927
 msgid "Width"
 msgstr "Genişlik"
@@ -17102,7 +17110,7 @@ msgstr "Ayarlar"
 
 #: wp-includes/widgets/class-wp-widget-media-image.php:84
 #: wp-includes/media-template.php:1108 wp-includes/class-wp-editor.php:1328
-#: wp-includes/js/dist/block-editor.js:19224
+#: wp-includes/js/dist/block-editor.js:19215
 msgid "Height"
 msgstr "Yükseklik"
 
@@ -17112,7 +17120,7 @@ msgstr "Yükseklik"
 #: wp-includes/customize/class-wp-customize-media-control.php:235
 #: wp-includes/customize/class-wp-customize-media-control.php:246
 #: wp-includes/customize/class-wp-customize-media-control.php:256
-#: wp-includes/class-wp-customize-manager.php:5136
+#: wp-includes/class-wp-customize-manager.php:5163
 #: wp-includes/js/dist/components.js:33463
 #: wp-includes/js/dist/components.js:35215
 #: wp-includes/js/dist/block-library.js:18937
@@ -17128,13 +17136,18 @@ msgstr "HTML"
 msgid "Separate tags with commas"
 msgstr "Etiketleri virgül ile ayırın"
 
-#: wp-includes/comment-template.php:2335
+#: wp-includes/comment-template.php:2340
 msgid "Website"
 msgstr "İnternet sitesi"
 
 #: wp-login.php:975
 msgid "Strength indicator"
 msgstr "Güç göstergesi"
+
+#: wp-includes/admin-bar.php:965 wp-includes/class-wp-customize-widgets.php:417
+#: wp-includes/functions.php:4595 wp-includes/js/dist/blocks.js:5957
+msgid "Widgets"
+msgstr "Bileşenler"
 
 #: wp-includes/widgets/class-wp-widget-pages.php:144
 #: wp-includes/widgets/class-wp-widget-categories.php:171
@@ -17153,21 +17166,16 @@ msgstr "Güç göstergesi"
 msgid "Title:"
 msgstr "Başlık:"
 
-#: wp-includes/admin-bar.php:965 wp-includes/class-wp-customize-widgets.php:417
-#: wp-includes/functions.php:4595 wp-includes/js/dist/blocks.js:5957
-msgid "Widgets"
-msgstr "Bileşenler"
-
 #. translators: Comments feed title. %s: Post title.
 #: wp-includes/feed-atom-comments.php:34
 msgid "Comments on %s"
 msgstr "%s üzerine yapılmış yorumlar"
 
-#: wp-includes/comment-template.php:1578
+#: wp-includes/comment-template.php:1583
 msgid "Enter your password to view comments."
 msgstr "Yorumları görmek için parolanızı girin."
 
-#: wp-includes/comment-template.php:932
+#: wp-includes/comment-template.php:937
 msgid "1 Comment"
 msgstr "1 Yorum"
 
@@ -17177,7 +17185,7 @@ msgid "Edit This"
 msgstr "Düzenle"
 
 #. translators: %s: Login URL.
-#: wp-includes/comment-template.php:2395
+#: wp-includes/comment-template.php:2400
 msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
 msgstr "Yorum yapabilmek için <a href=\"%s\">giriş yapmalısınız</a>."
 
@@ -17213,35 +17221,35 @@ msgstr "Kategori yok"
 msgid "Feed for all posts filed under %s"
 msgstr "%s kategorisi altındaki tüm yazılar için besleme"
 
-#: wp-includes/comment-template.php:1653
+#: wp-includes/comment-template.php:1658
 msgid "Log in to Reply"
 msgstr "Cevaplamak için giriş yapın"
 
-#: wp-includes/comment-template.php:1791
+#: wp-includes/comment-template.php:1796
 msgid "Log in to leave a Comment"
 msgstr "Yorum yapmak için giriş yapın"
 
-#: wp-includes/comment-template.php:1863
+#: wp-includes/comment-template.php:1868
 msgid "Click here to cancel reply."
 msgstr "Cevabı iptal etmek için tıklayın."
 
 #. translators: %s: Author of the comment being replied to.
-#: wp-includes/comment-template.php:1962 wp-includes/comment-template.php:2430
+#: wp-includes/comment-template.php:1967 wp-includes/comment-template.php:2435
 msgid "Leave a Reply to %s"
 msgstr "%s için bir cevap yazın"
 
-#: wp-includes/class-walker-comment.php:269
-#: wp-includes/class-walker-comment.php:359
+#: wp-includes/class-walker-comment.php:302
+#: wp-includes/class-walker-comment.php:400
 msgid "Your comment is awaiting moderation."
 msgstr "Yorumunuz denetim için bekliyor."
 
 #. translators: 1: Comment date, 2: Comment time.
-#: wp-includes/class-walker-comment.php:300
-#: wp-includes/class-walker-comment.php:388
+#: wp-includes/class-walker-comment.php:339
+#: wp-includes/class-walker-comment.php:434
 msgid "%1$s at %2$s"
 msgstr "%1$s, %2$s"
 
-#: wp-includes/class-walker-comment.php:304
+#: wp-includes/class-walker-comment.php:343
 msgid "(Edit)"
 msgstr "(Düzenle)"
 
@@ -17260,7 +17268,7 @@ msgid "Sites"
 msgstr "Siteler"
 
 #: wp-includes/class-wp-xmlrpc-server.php:545
-#: wp-includes/class-wp-customize-manager.php:5038
+#: wp-includes/class-wp-customize-manager.php:5065
 msgid "Site Title"
 msgstr "Site başlığı"
 
@@ -17268,12 +17276,12 @@ msgstr "Site başlığı"
 msgid "My Sites"
 msgstr "Sitelerim"
 
-#: wp-login.php:1088 wp-includes/comment-template.php:2321
+#: wp-login.php:1088 wp-includes/comment-template.php:2326
 msgid "Email"
 msgstr "E-posta"
 
 #: wp-includes/js/dist/components.js:39290
-#: wp-includes/js/dist/block-editor.js:21561
+#: wp-includes/js/dist/block-editor.js:21552
 msgid "All"
 msgstr "Tümü"
 
@@ -17307,7 +17315,7 @@ msgstr "Eklenti:"
 msgid "Edit Category"
 msgstr "Kategoriyi düzenle"
 
-#: wp-includes/comment-template.php:930
+#: wp-includes/comment-template.php:935
 msgid "No Comments"
 msgstr "Yorum yapılmamış"
 
@@ -17331,17 +17339,17 @@ msgstr "Tarih biçimi"
 msgid "Time Format"
 msgstr "Zaman biçimi"
 
-#: wp-includes/comment-template.php:1790
+#: wp-includes/comment-template.php:1795
 msgid "Leave a Comment"
 msgstr "Yorum yapın"
 
-#: wp-includes/comment-template.php:1958 wp-includes/comment-template.php:2428
+#: wp-includes/comment-template.php:1963 wp-includes/comment-template.php:2433
 msgid "Leave a Reply"
 msgstr "Bir cevap yazın"
 
 #: wp-includes/class-wp-xmlrpc-server.php:3875
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:549
-#: wp-includes/comment.php:3268
+#: wp-includes/comment.php:3273
 msgid "Sorry, comments are closed for this item."
 msgstr "Üzgünüm, bu öge için yorum yapma kapatılmış."
 
@@ -17356,12 +17364,12 @@ msgid_plural "Confirmed <span class=\"count\">(%s)</span>"
 msgstr[0] "Onaylanan <span class=\"count\">(%s)</span>"
 msgstr[1] "Onaylanan <span class=\"count\">(%s)</span>"
 
-#: wp-includes/js/dist/block-editor.js:22622
-#: wp-includes/js/dist/block-editor.js:22920
+#: wp-includes/js/dist/block-editor.js:22613
+#: wp-includes/js/dist/block-editor.js:22911
 msgid "Edit link"
 msgstr "Bağlantıyı düzenle"
 
-#: wp-includes/js/dist/block-editor.js:20065
+#: wp-includes/js/dist/block-editor.js:20056
 msgid "Search results for %s"
 msgstr " %s için arama sonuçları"
 
@@ -17400,12 +17408,6 @@ msgstr "&#8220;%s&#8221; için arama sonuçları"
 msgid "None"
 msgstr "Hiçbiri"
 
-#: wp-includes/media-template.php:491 wp-includes/media-template.php:692
-#: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:131
-#: wp-includes/class-wp-editor.php:1212
-msgid "Description"
-msgstr "Tanım"
-
 #: wp-includes/class-wp-editor.php:1213 wp-includes/theme-compat/sidebar.php:29
 #: wp-includes/js/dist/editor.js:8116
 msgid "Author"
@@ -17419,13 +17421,13 @@ msgstr "Yazar"
 #: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:94
 #: wp-includes/class-wp-editor.php:1265 wp-includes/class-wp-editor.php:1845
 #: wp-includes/class-wp-customize-nav-menus.php:1194
-#: wp-includes/js/dist/block-editor.js:20567
-#: wp-includes/js/dist/block-editor.js:21101
+#: wp-includes/js/dist/block-editor.js:20558
+#: wp-includes/js/dist/block-editor.js:21092
 #: wp-includes/js/dist/block-library.js:13557
 msgid "URL"
 msgstr "URL"
 
-#: wp-includes/comment-template.php:1111 wp-includes/comment-template.php:2387
+#: wp-includes/comment-template.php:1116 wp-includes/comment-template.php:2392
 msgctxt "noun"
 msgid "Comment"
 msgstr "Yorum"
@@ -17435,11 +17437,11 @@ msgid "No"
 msgstr "Hayır"
 
 #: wp-includes/class-wp-editor.php:1388
-#: wp-includes/class-walker-comment.php:242
-#: wp-includes/class-walker-comment.php:392 wp-includes/js/dist/editor.js:12394
-#: wp-includes/js/dist/block-editor.js:20132
-#: wp-includes/js/dist/block-editor.js:20751
-#: wp-includes/js/dist/block-editor.js:22532
+#: wp-includes/class-walker-comment.php:250
+#: wp-includes/class-walker-comment.php:438 wp-includes/js/dist/editor.js:12394
+#: wp-includes/js/dist/block-editor.js:20123
+#: wp-includes/js/dist/block-editor.js:20742
+#: wp-includes/js/dist/block-editor.js:22523
 #: wp-includes/js/dist/block-library.js:17817
 msgid "Edit"
 msgstr "Düzenle"
@@ -17453,7 +17455,7 @@ msgstr "%s önce"
 msgid "Undo"
 msgstr "Geri al"
 
-#: wp-includes/script-loader.php:1274 wp-includes/comment.php:3497
+#: wp-includes/script-loader.php:1274 wp-includes/comment.php:3502
 #: wp-includes/link-template.php:3047 wp-includes/link-template.php:3107
 msgid "Comments"
 msgstr "Yorumlar"
@@ -17475,11 +17477,11 @@ msgid "Target"
 msgstr "Hedef"
 
 #: wp-includes/class-wp-editor.php:1219
-#: wp-includes/js/dist/block-editor.js:23614
+#: wp-includes/js/dist/block-editor.js:23605
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: wp-includes/comment-template.php:2308
+#: wp-includes/comment-template.php:2313
 msgid "Name"
 msgstr "İsim"
 
@@ -17504,7 +17506,7 @@ msgid "Done"
 msgstr "Bitti"
 
 #. translators: Name of a comment's author after being anonymized.
-#: wp-includes/comment.php:3568 wp-includes/class-wp-theme.php:897
+#: wp-includes/comment.php:3573 wp-includes/class-wp-theme.php:897
 #: wp-includes/comment-template.php:32
 msgid "Anonymous"
 msgstr "Anonim"
@@ -17515,9 +17517,9 @@ msgid "RSS"
 msgstr "RSS"
 
 #: wp-includes/media-template.php:1441
-#: wp-includes/class-wp-customize-manager.php:4234
+#: wp-includes/class-wp-customize-manager.php:4261
 #: wp-includes/class-wp-editor.php:1249
-#: wp-includes/js/dist/block-editor.js:24823
+#: wp-includes/js/dist/block-editor.js:24814
 #: wp-includes/js/dist/block-library.js:14219
 msgid "Preview"
 msgstr "Önizleme"
@@ -17529,8 +17531,8 @@ msgstr "Eklentiler"
 #: wp-includes/script-loader.php:1100 wp-includes/script-loader.php:1164
 #: wp-includes/script-loader.php:1312 wp-includes/media.php:3882
 #: wp-includes/class-wp-editor.php:1182 wp-includes/class-wp-editor.php:1886
-#: wp-includes/js/dist/block-editor.js:21334
-#: wp-includes/js/dist/block-editor.js:21337
+#: wp-includes/js/dist/block-editor.js:21325
+#: wp-includes/js/dist/block-editor.js:21328
 msgid "Cancel"
 msgstr "Vazgeç"
 
@@ -17538,7 +17540,7 @@ msgstr "Vazgeç"
 msgid "Content"
 msgstr "İçerik"
 
-#: wp-includes/script-loader.php:1271 wp-includes/comment-template.php:1650
+#: wp-includes/script-loader.php:1271 wp-includes/comment-template.php:1655
 msgid "Reply"
 msgstr "Cevapla"
 
@@ -17669,16 +17671,16 @@ msgstr "Genel"
 
 #: wp-includes/script-loader.php:841 wp-includes/script-loader.php:1165
 #: wp-includes/script-loader.php:1968
-#: wp-includes/class-wp-customize-manager.php:5627
+#: wp-includes/class-wp-customize-manager.php:5654
 #: wp-includes/class-wp-editor.php:1183 wp-includes/class-wp-editor.php:1840
 #: wp-includes/js/dist/components.js:33272
-#: wp-includes/js/dist/block-editor.js:22639
+#: wp-includes/js/dist/block-editor.js:22630
 #: wp-includes/js/dist/edit-post.js:3179 wp-includes/js/dist/edit-post.js:3503
 #: wp-includes/js/dist/edit-post.js:3848
 msgid "Close"
 msgstr "Kapat"
 
-#: wp-includes/media.php:3881 wp-includes/js/dist/block-editor.js:22535
+#: wp-includes/media.php:3881 wp-includes/js/dist/block-editor.js:22526
 msgid "Select"
 msgstr "Seç"
 
@@ -17713,15 +17715,15 @@ msgstr "Sürümler"
 
 #: wp-includes/class-wp-customize-widgets.php:777 wp-includes/media.php:3921
 #: wp-includes/class-wp-editor.php:1390
-#: wp-includes/js/dist/block-editor.js:20691
-#: wp-includes/js/dist/block-editor.js:21108
+#: wp-includes/js/dist/block-editor.js:20682
+#: wp-includes/js/dist/block-editor.js:21099
 #: wp-includes/js/dist/block-library.js:23595
 #: wp-includes/js/dist/format-library.js:933
 msgid "Apply"
 msgstr "Uygula"
 
-#: wp-includes/js/dist/block-editor.js:19806
-#: wp-includes/js/dist/block-editor.js:22646
+#: wp-includes/js/dist/block-editor.js:19797
+#: wp-includes/js/dist/block-editor.js:22637
 msgid "Submit"
 msgstr "Gönder"
 
@@ -17744,7 +17746,7 @@ msgstr "Altyazı"
 
 #: wp-includes/media.php:3877 wp-includes/media.php:4442
 #: wp-includes/class-wp-editor.php:1233
-#: wp-includes/js/dist/block-editor.js:21285
+#: wp-includes/js/dist/block-editor.js:21276
 msgid "Media"
 msgstr "Ortam"
 
@@ -17767,7 +17769,7 @@ msgstr "Yeni Yazı"
 #: wp-includes/script-loader.php:696 wp-includes/script-loader.php:875
 #: wp-includes/widgets/class-wp-widget-text.php:538
 #: wp-includes/widgets/class-wp-widget-text.php:553
-#: wp-includes/class-wp-customize-manager.php:4207
+#: wp-includes/class-wp-customize-manager.php:4234
 msgid "Dismiss"
 msgstr "Gizle"
 
@@ -17776,7 +17778,7 @@ msgid "Privately Published"
 msgstr "Özel olarak yayımlandı"
 
 #: wp-includes/script-loader.php:1152 wp-includes/script-loader.php:1320
-#: wp-includes/class-wp-customize-manager.php:4751
+#: wp-includes/class-wp-customize-manager.php:4778
 #: wp-includes/js/dist/editor.js:9397 wp-includes/js/dist/edit-post.js:4970
 msgid "Publish"
 msgstr "Yayımla"
@@ -17809,7 +17811,7 @@ msgstr "Kategoriyi güncelle"
 msgid "Add Link"
 msgstr "Bağlantı ekle"
 
-#: wp-includes/comment-template.php:1114
+#: wp-includes/comment-template.php:1119
 msgid "Trackback"
 msgstr "Geri izleme"
 
@@ -17834,7 +17836,7 @@ msgid "Edit Media"
 msgstr "Ortamı düzenle"
 
 #: wp-includes/script-loader.php:1154 wp-includes/script-loader.php:1324
-#: wp-includes/class-wp-customize-manager.php:4756
+#: wp-includes/class-wp-customize-manager.php:4783
 #: wp-includes/js/dist/editor.js:11076
 msgid "Save Draft"
 msgstr "Taslak olarak kaydet"
@@ -17859,7 +17861,7 @@ msgstr "Bilinmeyen besleme"
 msgid "Header"
 msgstr "Üst kısım"
 
-#: wp-includes/comment-template.php:1117
+#: wp-includes/comment-template.php:1122
 msgid "Pingback"
 msgstr "Geri bildirim"
 
@@ -17887,6 +17889,12 @@ msgstr "Herkese açık, sabit"
 #: wp-includes/widgets/class-wp-widget-recent-comments.php:87
 msgid "Recent Comments"
 msgstr "Son Yorumlar"
+
+#: wp-includes/media-template.php:491 wp-includes/media-template.php:692
+#: wp-includes/customize/class-wp-customize-nav-menu-item-control.php:131
+#: wp-includes/class-wp-editor.php:1212
+msgid "Description"
+msgstr "Açıklama"
 
 #: wp-includes/media-template.php:469 wp-includes/media-template.php:670
 #: wp-includes/revision.php:34 wp-includes/class-wp-editor.php:1209
