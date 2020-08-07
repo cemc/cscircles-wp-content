@@ -1,0 +1,511 @@
+# Translation of Themes - Twenty Twenty in Lithuanian
+# This file is distributed under the same license as the Themes - Twenty Twenty package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-07-14 09:55:58+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: lt\n"
+"Project-Id-Version: Themes - Twenty Twenty\n"
+
+#. Theme Name of the theme
+msgid "Twenty Twenty"
+msgstr "Twenty Twenty"
+
+#: classes/class-twentytwenty-customize.php:246
+msgid "Show author bio"
+msgstr "Rodyti autoriaus biografiją"
+
+#: template-parts/entry-author-bio.php:29
+msgid "View Archive <span aria-hidden=\"true\">&rarr;</span>"
+msgstr "Peržiūrėti archyvą <span aria-hidden=\"true\">&rarr;</span>"
+
+#: inc/starter-content.php:38
+msgctxt "Theme starter content"
+msgid "The New UMoMA Opens its Doors"
+msgstr "Naujasis UMoMA muziejus atveria savo duris"
+
+#: classes/class-twentytwenty-customize.php:123
+msgid "Primary Color"
+msgstr "Pagrindinė spalva"
+
+#: classes/class-twentytwenty-customize.php:126
+msgid "Custom"
+msgstr "Pasirinktinė"
+
+#: classes/class-twentytwenty-customize.php:125
+msgid "Default"
+msgstr "Numatytoji"
+
+#: classes/class-twentytwenty-customize.php:183
+msgid "Apply a custom color for links, buttons, featured images."
+msgstr "Pasirinkite nuorodų, mygtukų ir specialiųjų paveikslėlių spalvą."
+
+#: classes/class-twentytwenty-customize.php:352
+msgid "Overlay Background Color"
+msgstr "Perdangos fono spalva"
+
+#: classes/class-twentytwenty-customize.php:374
+msgid "Overlay Text Color"
+msgstr "Perdangos teksto spalva"
+
+#: classes/class-twentytwenty-customize.php:375
+msgid "The color used for the text in the overlay."
+msgstr "Perdangoje atvaizduojamo teksto spalva."
+
+#: classes/class-twentytwenty-customize.php:395
+msgid "Overlay Opacity"
+msgstr "Perdangos permatomumo lygis"
+
+#: inc/template-tags.php:393
+msgctxt "A string that is output before one or more categories"
+msgid "In"
+msgstr "–"
+
+#: classes/class-twentytwenty-customize.php:353
+msgid "The color used for the overlay. Defaults to the accent color."
+msgstr "Perdangos spalva. Numatytoji spalva - pabrėžiančioji."
+
+#: inc/starter-content.php:72 inc/starter-content.php:87
+#: inc/starter-content.php:104 inc/starter-content.php:119
+msgid "Read More"
+msgstr "Daugiau"
+
+#: inc/starter-content.php:150
+msgid "Join the Club"
+msgstr "Prisijunkite"
+
+#: inc/starter-content.php:147
+msgid "Members get access to exclusive exhibits and sales. Our memberships cost $99.99 and are billed annually."
+msgstr "Nariai gauna pakvietimus į uždaras parodas ir aukcionus. Narystės kaina 99,99 €, ji mokama kas metus. "
+
+#: inc/starter-content.php:144
+msgid "Become a Member and Get Exclusive Offers!"
+msgstr "Tapkite nariu ir gaukite išskirtinius pasiūlymus!"
+
+#: inc/starter-content.php:113
+msgid "From Signac to Matisse"
+msgstr "Nuo Signac iki Matisse"
+
+#: inc/starter-content.php:98
+msgid "The Life I Deserve"
+msgstr "Gyvenimas, kokio nusipelniau"
+
+#: inc/starter-content.php:84 inc/starter-content.php:116
+msgid "October 1 -- December 1"
+msgstr "Spalio 1 -- Gruodžio 1"
+
+#: inc/starter-content.php:66
+msgid "Works and Days"
+msgstr "Darbai ir dienos"
+
+#: inc/starter-content.php:47
+msgid "The New UMoMA Opens its Doors"
+msgstr "Naujasis UMoMA muziejus atveria savo duris"
+
+#: classes/class-twentytwenty-customize.php:283
+msgid "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
+msgstr "Šablono su viršeliu nustatymai. Nustatykite fono paveikslėlį."
+
+#. translators: %s: HTML character for up arrow.
+#: footer.php:43
+msgid "To the top %s"
+msgstr "Į viršų %s"
+
+#: searchform.php:24 template-parts/modal-search.php:20
+msgid "Search for:"
+msgstr "Ieškoti:"
+
+#: index.php:99
+msgid "search again"
+msgstr "ieškoti iš naujo"
+
+#. translators: Copyright date format, see https://www.php.net/date
+#: footer.php:25
+msgctxt "copyright date format"
+msgid "Y"
+msgstr "Y"
+
+#: 404.php:24
+msgid "404 not found"
+msgstr "Nerasta: Klaida 404"
+
+#. translators: %s: Number of search results.
+#: index.php:39
+msgid "We found %s result for your search."
+msgid_plural "We found %s results for your search."
+msgstr[0] "Rastas %s paieškos rezultatas."
+msgstr[1] "Rasti %s paieškos rezultatai."
+msgstr[2] "Rasta %s paieškos rezultatų."
+
+#. translators: %s: HTML character for up arrow.
+#: footer.php:49
+msgid "Up %s"
+msgstr "Į viršų %s"
+
+#. translators: 1: Comment date, 2: Comment time.
+#: classes/class-twentytwenty-walker-comment.php:69
+msgid "%1$s at %2$s"
+msgstr "%1$s - %2$s"
+
+#: classes/class-twentytwenty-walker-comment.php:77
+msgid "Edit"
+msgstr "Redaguoti"
+
+#: comments.php:88
+msgid "Comments"
+msgstr "Komentarai"
+
+#: inc/starter-content.php:196
+msgid "Social Links Menu"
+msgstr "Socialinių nuorodų meniu"
+
+#. translators: %s: Post title. Only visible to screen readers.
+#: inc/template-tags.php:206
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr "Redaguoti <span class=\"screen-reader-text\">%s</span>"
+
+#: functions.php:261
+msgid "Footer Menu"
+msgstr "Poraštės meniu"
+
+#: template-parts/content-cover.php:138 template-parts/content.php:48
+msgid "Pages:"
+msgstr "Puslapiai:"
+
+#: template-parts/footer-menus-widgets.php:37
+msgid "Footer"
+msgstr "Poraštė"
+
+#: template-parts/content-cover.php:138 template-parts/content.php:48
+msgid "Page"
+msgstr "Puslapis"
+
+#: searchform.php:27
+msgctxt "submit button"
+msgid "Search"
+msgstr "Ieškoti"
+
+#: searchform.php:25
+msgctxt "placeholder"
+msgid "Search &hellip;"
+msgstr "Ieškoti &hellip;"
+
+#: index.php:32
+msgid "Search:"
+msgstr "Paieška:"
+
+#: header.php:53 header.php:157
+msgid "Search"
+msgstr "Paieška"
+
+#: classes/class-twentytwenty-customize.php:225
+msgid "Show search in header"
+msgstr "Rodyti paieškos laukelį antraštėje"
+
+#: template-parts/modal-search.php:26
+msgid "Close search"
+msgstr "Uždaryti paiešką"
+
+#: classes/class-twentytwenty-customize.php:267
+msgid "On archive pages, posts show:"
+msgstr "Archyvų puslapiuose rodyti:"
+
+#: classes/class-twentytwenty-customize.php:269
+msgid "Full text"
+msgstr "Pilnus įrašus"
+
+#: classes/class-twentytwenty-customize.php:270
+msgid "Summary"
+msgstr "Įrašų santraukas"
+
+#: classes/class-twentytwenty-customize.php:202
+msgid "Theme Options"
+msgstr "Temos nustatymai"
+
+#. Template Name of the theme
+msgid "Full Width Template"
+msgstr "Pilno pločio šablonas"
+
+#: header.php:76 header.php:137
+msgid "Menu"
+msgstr "Meniu"
+
+#: comments.php:75
+msgid "Older Comments"
+msgstr "Senesni komentarai"
+
+#: comments.php:74
+msgid "Newer Comments"
+msgstr "Naujesni komentarai"
+
+#: classes/class-twentytwenty-walker-comment.php:127
+msgid "By Post Author"
+msgstr "Įrašo autorius"
+
+#: classes/class-twentytwenty-walker-comment.php:56
+msgid "says:"
+msgstr "sako:"
+
+#: 404.php:17
+msgid "Page Not Found"
+msgstr "Puslapis nerastas"
+
+#: inc/template-tags.php:445
+msgid "Sticky post"
+msgstr "Iškeltas įrašas"
+
+#: template-parts/modal-menu.php:21
+msgid "Close Menu"
+msgstr "Uždaryti meniu"
+
+#: template-parts/pagination.php:25
+msgid "Older <span class=\"nav-short\">Posts</span>"
+msgstr "Senesni <span class=\"nav-short\">įrašai</span>"
+
+#: template-parts/pagination.php:21
+msgid "Newer <span class=\"nav-short\">Posts</span>"
+msgstr "Naujesni <span class=\"nav-short\">įrašai</span>"
+
+#: template-parts/navigation.php:25
+msgid "Post"
+msgstr "Įrašas"
+
+#: classes/class-twentytwenty-walker-comment.php:92
+msgid "Your comment is awaiting moderation."
+msgstr "Jūsų komentaras laukia patvirtinimo."
+
+#: functions.php:497
+msgid "Secondary"
+msgstr "Antrinė"
+
+#: inc/starter-content.php:176 inc/starter-content.php:186 functions.php:492
+msgid "Primary"
+msgstr "Pagrindinė"
+
+#: template-parts/content-cover.php:88
+msgid "Scroll Down"
+msgstr "Slinkti žemyn"
+
+#: inc/template-tags.php:407
+msgid "Tags"
+msgstr "Žymos"
+
+#: inc/template-tags.php:389 template-parts/entry-header.php:36
+#: template-parts/content-cover.php:70
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: inc/template-tags.php:371
+msgid "Post date"
+msgstr "Įrašo data"
+
+#: inc/template-tags.php:347
+msgid "Post author"
+msgstr "Įrašo autorius"
+
+#: template-parts/content.php:36
+msgid "Continue reading"
+msgstr "Skaityti toliau"
+
+#: header.php:88
+msgid "Horizontal"
+msgstr "Horizontalus"
+
+#: functions.php:549
+msgctxt "Short name of the larger font size in the block editor."
+msgid "XL"
+msgstr "XL"
+
+#: functions.php:548
+msgctxt "Name of the larger font size in the block editor"
+msgid "Larger"
+msgstr "Didesnis"
+
+#: functions.php:543
+msgctxt "Short name of the large font size in the block editor."
+msgid "L"
+msgstr "L"
+
+#: functions.php:542
+msgctxt "Name of the large font size in the block editor"
+msgid "Large"
+msgstr "Didelis"
+
+#: functions.php:537
+msgctxt "Short name of the regular font size in the block editor."
+msgid "M"
+msgstr "M"
+
+#: functions.php:536
+msgctxt "Name of the regular font size in the block editor"
+msgid "Regular"
+msgstr "Įprastas"
+
+#: functions.php:531
+msgctxt "Short name of the small font size in the block editor."
+msgid "S"
+msgstr "S"
+
+#: functions.php:530
+msgctxt "Name of the small font size in the block editor"
+msgid "Small"
+msgstr "Mažas"
+
+#: functions.php:515
+msgid "Background Color"
+msgstr "Fono spalva"
+
+#: functions.php:502
+msgid "Subtle Background"
+msgstr "Subtili"
+
+#: functions.php:487
+msgid "Accent Color"
+msgstr "Pabrėžianti"
+
+#: functions.php:380
+msgid "Widgets in this area will be displayed in the second column in the footer."
+msgstr "Šie valdikliai bus rodomi antrajame poraštės stulpelyje."
+
+#: functions.php:378
+msgid "Footer #2"
+msgstr "Poraštė #2"
+
+#: functions.php:368
+msgid "Widgets in this area will be displayed in the first column in the footer."
+msgstr "Šie valdikliai bus rodomi pirmajame poraštės stulpelyje."
+
+#: functions.php:366
+msgid "Footer #1"
+msgstr "Poraštė #1"
+
+#: functions.php:341
+msgid "Skip to the content"
+msgstr "Eiti prie turinio"
+
+#: functions.php:262
+msgid "Social Menu"
+msgstr "Socialinių tinklų meniu"
+
+#: functions.php:260
+msgid "Mobile Menu"
+msgstr "Mobilusis meniu"
+
+#: functions.php:259
+msgid "Desktop Expanded Menu"
+msgstr "Kompiuterio išskleidžiamasis meniu"
+
+#: functions.php:258
+msgid "Desktop Horizontal Menu"
+msgstr "Kompiuterio horizontalusis meniu"
+
+#: classes/class-twentytwenty-walker-page.php:107 inc/template-tags.php:555
+msgid "Show sub menu"
+msgstr "Rodyti submeniu"
+
+#. translators: %d: ID of a post.
+#: classes/class-twentytwenty-walker-page.php:70
+msgid "#%d (no title)"
+msgstr "#%d (be pavadinimo)"
+
+#: classes/class-twentytwenty-customize.php:396
+msgid "Make sure that the contrast is high enough so that the text is readable."
+msgstr "Įsitikinkite, kad tekstui skaityti pakanka kontrasto."
+
+#: classes/class-twentytwenty-customize.php:306
+msgid "Creates a parallax effect when the visitor scrolls."
+msgstr "Slenkant puslapiu, sukuriamas paralakso efektas."
+
+#: classes/class-twentytwenty-customize.php:305
+msgid "Fixed Background Image"
+msgstr "Fiksuotas fono paveikslėlis"
+
+#: classes/class-twentytwenty-customize.php:101
+msgid "Header &amp; Footer Background Color"
+msgstr "Antraštės ir poraštės fono spalva"
+
+#: classes/class-twentytwenty-customize.php:82
+msgid "Scales the logo to half its uploaded size, making it sharp on high-res screens."
+msgstr "Sumažina logotipą iki pusės jo originalaus dydžio. Aukštos rezoliucijos ekranuose jis išlieka ryškus."
+
+#: classes/class-twentytwenty-customize.php:81
+msgid "Retina logo"
+msgstr "Logotipas retina ekranams"
+
+#: 404.php:19
+msgid "The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place."
+msgstr "Jūsų ieškomas puslapis nerastas. Jis galėjo būti pašalintas, pervadintas arba iš viso neegzistavo."
+
+#: template-parts/footer-menus-widgets.php:57
+msgid "Social links"
+msgstr "Socialinės nuorodos"
+
+#: template-parts/modal-menu.php:117
+msgid "Expanded Social links"
+msgstr "Išskleistos socialinės nuorodos"
+
+#: template-parts/modal-menu.php:48
+msgid "Expanded"
+msgstr "Išskleista"
+
+#: template-parts/modal-menu.php:73
+msgid "Mobile"
+msgstr "Mobilusis"
+
+#. translators: 1: Number of comments, 2: Post title.
+#: comments.php:41
+msgctxt "comments title"
+msgid "%1$s reply on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
+msgstr[0] "%1$s komentaras – &ldquo;%2$s&rdquo;"
+msgstr[1] "%1$s komentarai – &ldquo;%2$s&rdquo;"
+msgstr[2] "%1$s komentarų – &ldquo;%2$s&rdquo;"
+
+#. translators: %s: Post title.
+#: comments.php:37
+msgctxt "comments title"
+msgid "One reply on &ldquo;%s&rdquo;"
+msgstr "1 komentaras – &ldquo;%s&rdquo;"
+
+#: comments.php:34
+msgid "Leave a comment"
+msgstr "Parašykite komentarą"
+
+#: index.php:48
+msgid "We could not find any results for your search. You can give it another try through the search form below."
+msgstr "Pagal Jūsų paiešką nieko nerasta. Pabandykite ieškoti dar kartą, naudojant kitokią užklausą."
+
+#: footer.php:33
+msgid "Powered by WordPress"
+msgstr "Sistema: WordPress"
+
+#. translators: %s: Author name.
+#: inc/template-tags.php:354 template-parts/entry-author-bio.php:20
+msgid "By %s"
+msgstr "Autorius %s"
+
+#: comments.php:127
+msgid "Comments are closed."
+msgstr "Komentarai išjungti"
+
+#. Template Name of the theme
+#: classes/class-twentytwenty-customize.php:281
+msgid "Cover Template"
+msgstr "Šablonas su viršeliu"
+
+#. Author URI of the theme
+#: footer.php:32
+msgid "https://wordpress.org/"
+msgstr "https://wordpress.org/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress komanda"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentytwenty/"
+msgstr "https://wordpress.org/themes/twentytwenty/"
