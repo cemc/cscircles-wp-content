@@ -5,8 +5,6 @@ add_shortcode('adminuserlist', 'adminuserlist');
 function adminuserlist($options, $content) {
   if (!userIsAdmin()) return;
 
-  //resendEmails();
-
   // 10000 per page
   $page = intval($_GET['chunk']);
   $lo = $page*10000;

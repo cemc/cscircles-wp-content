@@ -81,17 +81,10 @@ function cscurl($desc) {
   }
 
   if (class_exists('PLL_Base')) {
-    if (!is_admin()) {
-      $old = $res;
-      $res = pll_get_post($res);
-      if ($res=="") $res = $old; // there was no translation
-    }
-    else {
-      $lang = pll_current_language();
-      if ($lang=='') $lang=substr(get_bloginfo("language"), 0, 2);
-      if ($lang=='0') $lang=substr(get_bloginfo("language"), 0, 2);
-      $res = pll_get_post($res, $lang);
-    }
+    $lang = pll_current_language();
+    if ($lang=='' || $lang=='0') $lang=substr(get_bloginfo("language"), 0, 2);
+    if (getSoft($_POST, 'lang', '')) $lang=substr($_POST['lang'], 0, 2);
+    $res = pll_get_post($res, $lang);
   }
 
   return get_permalink($res);
@@ -569,45 +562,6 @@ function allSolvedCount() {
   global $wpdb;
   return $wpdb->get_var("select count(1) from ".$wpdb->prefix."pb_completed;");
 }
-
-function resendEmails() {
-  global $wpdb;
-  $return;
-  foreach ($wpdb->get_results("SELECT * FROM ".$wpdb->prefix."pb_mail WHERE ID >= 3818 and ID <= 3835 and uto != 0", ARRAY_A) as $r) {
-    $problem = $r['problem'];
-    $pname = $wpdb->get_var("SELECT publicname FROM ".$wpdb->prefix."pb_problems WHERE slug like '$problem'");
-    $purl = $wpdb->get_var("SELECT url FROM ".$wpdb->prefix."pb_problems WHERE slug like '$problem'");
-    
-    $subject = "CS Circles - Message about $pname";
-    $to = get_user_by('id', $r['uto'])->user_email;
-
-    if ($r['ufrom'] == 0)
-      $mFrom = '"'. __t("CS Circles Assistant") . '" <'.CSCIRCLES_BOUNCE_EMAIL.'>';
-    else {
-      $user = get_user_by('id', $r['ufrom']);
-      $mFrom = '"' . $user->user_login . '" <' . $user->user_email . '>';
-    }
-
-
-    $student = $r['ustudent'];
-    $slug = $problem;
-    $mailref = $r['ID'];
-
-    $contents = "[Please accept our apologies for the delay in this message, which was caused by a mail daemon problem.]\n\n";
-    
-    $contents .= $r['body']."\n===\n";
-    $contents .= __t("To send a reply message, please visit")."\n";
-    $contents .= cscurl('mail') . "?who=$student&what=$slug&which=$mailref#m";
-    $contents .= __t("Problem URL:")." " . $purl . "\n";
-    $contents .= "[".__t("Sent by CS Circles")." ".cscurl("homepage")."]";
-
-    //    $contents .= "\n\n" . $to;
-
-    pyboxlog("Trying to resend message $mailref:$mFrom|$to|$subject|$contents", TRUE);
-    pb_mail($mFrom, $to, $subject, $contents);
-    pyboxlog("Resent message $mailref", TRUE);
-  }
-}  
 
 function embed_atfile_link($name) {
   return '<a href="page-atfile-source.php?'.http_build_query(array('file'=>$name[1])).'">'.$name[0].'</a>';
