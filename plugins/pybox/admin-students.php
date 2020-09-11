@@ -26,8 +26,8 @@ function cscircles_students_page() {
           $h++;
         }
         else if ($val == 'remove') {
-          if (trim(strtolower(get_user_meta($id, 'pbguru', true)))==
-              strtolower(wp_get_current_user()->user_login))
+          if (trim(normalizer_normalize(strtolower(get_user_meta($id, 'pbguru', true))))==
+              normalizer_normalize(strtolower(wp_get_current_user()->user_login)))
             update_user_meta($id, 'pbguru', '');
           $d++;
         }
