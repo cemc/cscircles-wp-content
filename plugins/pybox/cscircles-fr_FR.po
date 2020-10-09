@@ -1282,7 +1282,7 @@ msgstr "Erreur: {0} a un mal type {1}, attendu {2}"
 
 #: ../python3jail/static/_GRADER.py:73 ../python3jail/static/_GRADER.py:112
 msgid "Error: {0} has wrong value {1}, expected {2}"
-msgstr "Erreur: {0} a une mal valeur {1}, attendu {2}"
+msgstr "Erreur: {0} a une valeur incorrecte {1}, attendu {2}"
 
 #: ../python3jail/static/_GRADER.py:77
 msgid "its value is correct!"
