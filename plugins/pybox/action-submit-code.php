@@ -92,7 +92,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    $env = array(); // array('some_option' => 'aeiou');
 
    // you need plenty of memory for Python. 50000k is not enough!
-   $command = PSAFEEXEC . " --fsize 100 --env_vars PY --gid 2000" .
+   $command = PSAFEEXEC . " --share_newnet --fsize 100 --env_vars PY --gid 2000" .
      " --uidplus 50000 --cpu $cpulimit --mem 100000 --clock $clocklimit" .
      " --report_file $safeexecOutFile --chroot_dir " . PJAIL .
      " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S $mainfile";
