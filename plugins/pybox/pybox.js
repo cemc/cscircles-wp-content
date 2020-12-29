@@ -1,8 +1,8 @@
 $ = jQuery;
 
 var registerclick = function(selector, callback) {
-  $(selector).live('touchstart', callback);
-  $(selector).live('click', callback);
+    $(document).on('touchstart', selector, callback);
+    $(document).on('click', selector, callback);
 };
 
 function __t(s) {
@@ -412,13 +412,13 @@ registerclick(".hintboxlink", function(e) {
   $("#hintbox"+n).css("display","none");
 });   
 
-$(".pbform").live("submit", pbFormSubmit);
-$(".selectmore").live("change", pbSelectChange);
+$(document).on("submit", ".pbform", pbFormSubmit);
+$(document).on("change", ".selectmore", pbSelectChange);
 registerclick('.entry-content a', stayHere);
 registerclick('.hintbox', stayHere);
 registerclick('.hintbox a', stayHere);
 registerclick('.pyflexClose', function (e) {historyClick($(e.target).closest('.pybox').find('input[name="pyId"]').val(),"");});
-$('.flexigrid pre').live('dblclick', function (e) {
+$(document).on('dblclick', '.flexigrid pre', function (e) {
     jq = $(e.target);
     id = jq.closest('.pybox').find('input[name="pyId"]').val();
     code = jq.html();
