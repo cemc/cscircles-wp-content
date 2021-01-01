@@ -382,7 +382,7 @@ function JQpopUp($linkText, $popup) {
 
 function getCompleted($problem) {
   global $current_user;
-  get_currentuserinfo();
+  wp_get_current_user();
   global $wpdb;
 
   if ( ! is_user_logged_in() )
@@ -401,7 +401,7 @@ function getCompleted($problem) {
 
 function getStudents($with_hidden = false) {
   global $current_user;
-  get_currentuserinfo();
+  wp_get_current_user();
 
   if ( ! is_user_logged_in() )
     return array();

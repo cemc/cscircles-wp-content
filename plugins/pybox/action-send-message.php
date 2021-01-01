@@ -80,7 +80,7 @@ if ($user < 0) {
  }
 
 global $current_user;
-get_currentuserinfo();
+wp_get_current_user();
 $user_email = $current_user->user_email;
 
 global $wpdb;
