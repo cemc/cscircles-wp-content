@@ -6,7 +6,7 @@ $problem = $_POST["problem"];
 
   
 global $current_user;
-get_currentuserinfo();
+wp_get_current_user();
 global $wpdb;
 
 if ( is_user_logged_in() ) {
