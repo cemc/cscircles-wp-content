@@ -23,7 +23,7 @@ function dbEntireHistory($limit, $sortname, $sortorder, $req=NULL) {
 		       's'=> __t('Saved.'));
    
    global $current_user;
-   get_currentuserinfo();
+   wp_get_current_user();
    global $wpdb;
    
    if ( !is_user_logged_in() ) 

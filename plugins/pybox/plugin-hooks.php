@@ -11,6 +11,7 @@ function pyBoxInit() {
  wp_enqueue_script("jquery-ui-draggable");
  wp_enqueue_script("jquery-ui-sortable"); 
  wp_enqueue_script("jquery-ui-resizable");
+ wp_enqueue_script("jquery-touch-punch");
  wp_enqueue_style( 'wp-jquery-ui-dialog' );
 }
 
