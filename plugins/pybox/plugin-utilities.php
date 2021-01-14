@@ -425,9 +425,10 @@ function getStudentList($with_hidden = false) {
   if ( ! is_user_logged_in() )
     return FALSE;
 
-  $students = getStudents();
-
-  return '('.implode(',', $students).')';
+  $students = getStudents($with_hidden);
+  if (count($students)>0) return '('.implode(',', $students).')';
+  // "x in ()" is not valid SQL. "x in (-123456789)" has the right effect
+  return '(-123456789)';
 }
 
 function bounded_stream_get_contents($strm, $maxlen) {
