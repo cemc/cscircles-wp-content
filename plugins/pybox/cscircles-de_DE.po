@@ -1111,11 +1111,11 @@ msgstr "BWINF"
 
 #: ../wp-theme/footer.php:39
 msgid "200 University Avenue West"
-msgstr "Reuterstr. 159"
+msgstr "In der Raste 12"
 
 #: ../wp-theme/footer.php:40
 msgid "Waterloo, Ontario, Canada N2L 3G1"
-msgstr "53113 Bonn"
+msgstr "53129 Bonn"
 
 #: ../wp-theme/footer.php:41
 msgid "Phone: 519 888 4808"
