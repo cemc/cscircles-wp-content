@@ -40,7 +40,14 @@ function wpcf7_select_form_tag_handler( $tag ) {
 		$atts['aria-required'] = 'true';
 	}
 
-	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
+	if ( $validation_error ) {
+		$atts['aria-invalid'] = 'true';
+		$atts['aria-describedby'] = wpcf7_get_validation_error_reference(
+			$tag->name
+		);
+	} else {
+		$atts['aria-invalid'] = 'false';
+	}
 
 	$multiple = $tag->has_option( 'multiple' );
 	$include_blank = $tag->has_option( 'include_blank' );
@@ -68,7 +75,6 @@ function wpcf7_select_form_tag_handler( $tag ) {
 
 	$default_choice = $tag->get_default_option( null, array(
 		'multiple' => $multiple,
-		'shifted' => $include_blank,
 	) );
 
 	if ( $include_blank
@@ -98,8 +104,11 @@ function wpcf7_select_form_tag_handler( $tag ) {
 
 		$label = isset( $labels[$key] ) ? $labels[$key] : $value;
 
-		$html .= sprintf( '<option %1$s>%2$s</option>',
-			$item_atts, esc_html( $label ) );
+		$html .= sprintf(
+			'<option %1$s>%2$s</option>',
+			$item_atts,
+			esc_html( $label )
+		);
 	}
 
 	if ( $multiple ) {

@@ -10,12 +10,15 @@ class WPCF7_Submission {
 	private $posted_data_hash = null;
 	private $skip_spam_check = false;
 	private $uploaded_files = array();
+	private $extra_attachments = array();
 	private $skip_mail = false;
 	private $response = '';
 	private $invalid_fields = array();
 	private $meta = array();
 	private $consent = array();
 	private $spam_log = array();
+	private $result_props = array();
+
 
 	public static function get_instance( $contact_form = null, $args = '' ) {
 		if ( $contact_form instanceof WPCF7_ContactForm ) {
@@ -35,9 +38,11 @@ class WPCF7_Submission {
 		}
 	}
 
+
 	public static function is_restful() {
 		return defined( 'REST_REQUEST' ) && REST_REQUEST;
 	}
+
 
 	private function __construct( WPCF7_ContactForm $contact_form, $args = '' ) {
 		$args = wp_parse_args( $args, array(
@@ -48,11 +53,14 @@ class WPCF7_Submission {
 		$this->skip_mail = (bool) $args['skip_mail'];
 	}
 
+
 	private function proceed() {
+		$contact_form = $this->contact_form;
+
+		switch_to_locale( $contact_form->locale() );
+
 		$this->setup_meta_data();
 		$this->setup_posted_data();
-
-		$contact_form = $this->contact_form;
 
 		if ( $this->is( 'init' ) and ! $this->validate() ) {
 			$this->set_status( 'validation_failed' );
@@ -67,6 +75,11 @@ class WPCF7_Submission {
 		if ( $this->is( 'init' ) and $this->spam() ) {
 			$this->set_status( 'spam' );
 			$this->set_response( $contact_form->message( 'spam' ) );
+		}
+
+		if ( $this->is( 'init' ) and ! $this->unship_uploaded_files() ) {
+			$this->set_status( 'validation_failed' );
+			$this->set_response( $contact_form->message( 'validation_error' ) );
 		}
 
 		if ( $this->is( 'init' ) ) {
@@ -95,12 +108,16 @@ class WPCF7_Submission {
 			}
 		}
 
+		restore_previous_locale();
+
 		$this->remove_uploaded_files();
 	}
+
 
 	public function get_status() {
 		return $this->status;
 	}
+
 
 	public function set_status( $status ) {
 		if ( preg_match( '/^[a-z][0-9a-z_]+$/', $status ) ) {
@@ -111,22 +128,75 @@ class WPCF7_Submission {
 		return false;
 	}
 
+
 	public function is( $status ) {
 		return $this->status == $status;
 	}
 
+
+	/**
+	 * Returns an associative array of submission result properties.
+	 *
+	 * @return array Submission result properties.
+	 */
+	public function get_result() {
+		$result = array_merge( $this->result_props, array(
+			'status' => $this->get_status(),
+			'message' => $this->get_response(),
+		) );
+
+		if ( $this->is( 'validation_failed' ) ) {
+			$result['invalid_fields'] = $this->get_invalid_fields();
+		}
+
+		switch ( $this->get_status() ) {
+			case 'init':
+			case 'validation_failed':
+			case 'acceptance_missing':
+			case 'spam':
+				$result['posted_data_hash'] = '';
+				break;
+			default:
+				$result['posted_data_hash'] = $this->get_posted_data_hash();
+				break;
+		}
+
+		$result = apply_filters( 'wpcf7_submission_result', $result, $this );
+
+		return $result;
+	}
+
+
+	/**
+	 * Adds items to the array of submission result properties.
+	 *
+	 * @param string|array|object $args Value to add to result properties.
+	 * @return array Added result properties.
+	 */
+	public function add_result_props( $args = '' ) {
+		$args = wp_parse_args( $args, array() );
+
+		$this->result_props = array_merge( $this->result_props, $args );
+
+		return $args;
+	}
+
+
 	public function get_response() {
 		return $this->response;
 	}
+
 
 	public function set_response( $response ) {
 		$this->response = $response;
 		return true;
 	}
 
+
 	public function get_contact_form() {
 		return $this->contact_form;
 	}
+
 
 	public function get_invalid_field( $name ) {
 		if ( isset( $this->invalid_fields[$name] ) ) {
@@ -136,15 +206,18 @@ class WPCF7_Submission {
 		}
 	}
 
+
 	public function get_invalid_fields() {
 		return $this->invalid_fields;
 	}
+
 
 	public function get_meta( $name ) {
 		if ( isset( $this->meta[$name] ) ) {
 			return $this->meta[$name];
 		}
 	}
+
 
 	private function setup_meta_data() {
 		$timestamp = time();
@@ -160,7 +233,7 @@ class WPCF7_Submission {
 		$url = $this->get_request_url();
 
 		$unit_tag = isset( $_POST['_wpcf7_unit_tag'] )
-			? $_POST['_wpcf7_unit_tag'] : '';
+			? wpcf7_sanitize_unit_tag( $_POST['_wpcf7_unit_tag'] ) : '';
 
 		$container_post_id = isset( $_POST['_wpcf7_container_post'] )
 			? (int) $_POST['_wpcf7_container_post'] : 0;
@@ -184,6 +257,7 @@ class WPCF7_Submission {
 		return $this->meta;
 	}
 
+
 	public function get_posted_data( $name = '' ) {
 		if ( ! empty( $name ) ) {
 			if ( isset( $this->posted_data[$name] ) ) {
@@ -195,6 +269,7 @@ class WPCF7_Submission {
 
 		return $this->posted_data;
 	}
+
 
 	private function setup_posted_data() {
 		$posted_data = array_filter( (array) $_POST, function( $key ) {
@@ -252,7 +327,14 @@ class WPCF7_Submission {
 						-1, 1
 					);
 
-					$tied_item = html_entity_decode( $tied_item, ENT_QUOTES, 'UTF-8' );
+					list( $last_val, $tied_item ) = array_map(
+						function ( $item ) {
+							return wpcf7_canonicalize( $item, array(
+								'strto' => 'as-is',
+							) );
+						},
+						array( $last_val, $tied_item )
+					);
 
 					if ( $last_val === $tied_item ) {
 						$value[] = sprintf( '%s %s',
@@ -280,20 +362,11 @@ class WPCF7_Submission {
 
 		$this->posted_data = apply_filters( 'wpcf7_posted_data', $posted_data );
 
-		$this->posted_data_hash = wp_hash(
-			wpcf7_flat_join( array_merge(
-				array(
-					$this->get_meta( 'remote_ip' ),
-					$this->get_meta( 'remote_port' ),
-					$this->get_meta( 'unit_tag' ),
-				),
-				$this->posted_data
-			) ),
-			'wpcf7_submission'
-		);
+		$this->posted_data_hash = $this->create_posted_data_hash();
 
 		return $this->posted_data;
 	}
+
 
 	private function sanitize_posted_data( $value ) {
 		if ( is_array( $value ) ) {
@@ -306,9 +379,95 @@ class WPCF7_Submission {
 		return $value;
 	}
 
+
+	/**
+	 * Returns the time-dependent variable for hash creation.
+	 *
+	 * @return float Float value rounded up to the next highest integer.
+	 */
+	private function posted_data_hash_tick() {
+		return ceil( time() / ( HOUR_IN_SECONDS / 2 ) );
+	}
+
+
+	/**
+	 * Creates a hash string based on posted data, the remote IP address,
+	 * contact form location, and window of time.
+	 *
+	 * @param string $tick Optional. If not specified, result of
+	 *               posted_data_hash_tick() will be used.
+	 * @return string The hash.
+	 */
+	private function create_posted_data_hash( $tick = '' ) {
+		if ( '' === $tick ) {
+			$tick = $this->posted_data_hash_tick();
+		}
+
+		$hash = wp_hash(
+			wpcf7_flat_join( array_merge(
+				array(
+					$tick,
+					$this->get_meta( 'remote_ip' ),
+					$this->get_meta( 'unit_tag' ),
+				),
+				$this->posted_data
+			) ),
+			'wpcf7_submission'
+		);
+
+		return $hash;
+	}
+
+
+	/**
+	 * Returns the hash string created for this submission.
+	 *
+	 * @return string The current hash for the submission.
+	 */
 	public function get_posted_data_hash() {
 		return $this->posted_data_hash;
 	}
+
+
+	/**
+	 * Verifies that the given string is equivalent to the posted data hash.
+	 *
+	 * @param string $hash Optional. This value will be compared to the
+	 *               current posted data hash for the submission. If not
+	 *               specified, the value of $_POST['_wpcf7_posted_data_hash']
+	 *               will be used.
+	 * @return int|bool 1 if $hash is created 0-30 minutes ago,
+	 *                  2 if $hash is created 30-60 minutes ago,
+	 *                  false if $hash is invalid.
+	 */
+	public function verify_posted_data_hash( $hash = '' ) {
+		if ( '' === $hash and ! empty( $_POST['_wpcf7_posted_data_hash'] ) ) {
+			$hash = trim( $_POST['_wpcf7_posted_data_hash'] );
+		}
+
+		if ( '' === $hash ) {
+			return false;
+		}
+
+		$tick = $this->posted_data_hash_tick();
+
+		// Hash created 0-30 minutes ago.
+		$expected_1 = $this->create_posted_data_hash( $tick );
+
+		if ( hash_equals( $expected_1, $hash ) ) {
+			return 1;
+		}
+
+		// Hash created 30-60 minutes ago.
+		$expected_2 = $this->create_posted_data_hash( $tick - 1 );
+
+		if ( hash_equals( $expected_2, $hash ) ) {
+			return 2;
+		}
+
+		return false;
+	}
+
 
 	private function get_remote_ip_addr() {
 		$ip_addr = '';
@@ -320,6 +479,7 @@ class WPCF7_Submission {
 
 		return apply_filters( 'wpcf7_remote_ip_addr', $ip_addr );
 	}
+
 
 	private function get_request_url() {
 		$home_url = untrailingslashit( home_url() );
@@ -340,15 +500,17 @@ class WPCF7_Submission {
 		return $url;
 	}
 
+
 	private function validate() {
 		if ( $this->invalid_fields ) {
 			return false;
 		}
 
-		require_once WPCF7_PLUGIN_DIR . '/includes/validation.php';
 		$result = new WPCF7_Validation();
 
-		$tags = $this->contact_form->scan_form_tags();
+		$tags = $this->contact_form->scan_form_tags( array(
+		  'feature' => '! file-uploading',
+		) );
 
 		foreach ( $tags as $tag ) {
 			$type = $tag->type;
@@ -362,18 +524,22 @@ class WPCF7_Submission {
 		return $result->is_valid();
 	}
 
+
 	private function accepted() {
 		return apply_filters( 'wpcf7_acceptance', true, $this );
 	}
+
 
 	public function add_consent( $name, $conditions ) {
 		$this->consent[$name] = $conditions;
 		return true;
 	}
 
+
 	public function collect_consent() {
 		return (array) $this->consent;
 	}
+
 
 	private function spam() {
 		$spam = false;
@@ -412,17 +578,9 @@ class WPCF7_Submission {
 			) );
 		}
 
-		if ( $this->is_blacklisted() ) {
-			$spam = true;
-
-			$this->add_spam_log( array(
-				'agent' => 'wpcf7',
-				'reason' => __( "Blacklisted words are used.", 'contact-form-7' ),
-			) );
-		}
-
-		return apply_filters( 'wpcf7_spam', $spam );
+		return apply_filters( 'wpcf7_spam', $spam, $this );
 	}
+
 
 	public function add_spam_log( $args = '' ) {
 		$args = wp_parse_args( $args, array(
@@ -433,27 +591,22 @@ class WPCF7_Submission {
 		$this->spam_log[] = $args;
 	}
 
+
 	public function get_spam_log() {
 		return $this->spam_log;
 	}
 
+
 	private function verify_nonce() {
-		if ( ! $this->contact_form->nonce_is_active() ) {
+		if ( ! $this->contact_form->nonce_is_active() or ! is_user_logged_in() ) {
 			return true;
 		}
 
-		return wpcf7_verify_nonce( $_POST['_wpnonce'] );
+		$nonce = isset( $_POST['_wpnonce'] ) ? $_POST['_wpnonce'] : '';
+
+		return wpcf7_verify_nonce( $nonce );
 	}
 
-	private function is_blacklisted() {
-		$target = wpcf7_array_flatten( $this->posted_data );
-		$target[] = $this->get_meta( 'remote_ip' );
-		$target[] = $this->get_meta( 'user_agent' );
-		$target = implode( "\n", $target );
-
-		return (bool) apply_filters( 'wpcf7_submission_is_blacklisted',
-			wpcf7_blacklist_check( $target ), $this );
-	}
 
 	/* Mail */
 
@@ -468,6 +621,7 @@ class WPCF7_Submission {
 
 		return ! $abort;
 	}
+
 
 	private function mail() {
 		$contact_form = $this->contact_form;
@@ -504,36 +658,150 @@ class WPCF7_Submission {
 		return false;
 	}
 
+
 	public function uploaded_files() {
 		return $this->uploaded_files;
 	}
 
-	public function add_uploaded_file( $name, $file_path ) {
+
+	private function add_uploaded_file( $name, $file_path ) {
 		if ( ! wpcf7_is_name( $name ) ) {
 			return false;
 		}
 
-		if ( ! @is_file( $file_path ) or ! @is_readable( $file_path ) ) {
-			return false;
+		$paths = (array) $file_path;
+		$uploaded_files = array();
+		$hash_strings = array();
+
+		foreach ( $paths as $path ) {
+			if ( @is_file( $path ) and @is_readable( $path ) ) {
+				$uploaded_files[] = $path;
+				$hash_strings[] = md5_file( $path );
+			}
 		}
 
-		$this->uploaded_files[$name] = $file_path;
+		$this->uploaded_files[$name] = $uploaded_files;
 
 		if ( empty( $this->posted_data[$name] ) ) {
-			$this->posted_data[$name] = md5_file( $file_path );
+			$this->posted_data[$name] = implode( ' ', $hash_strings );
 		}
 	}
 
-	public function remove_uploaded_files() {
-		foreach ( (array) $this->uploaded_files as $name => $path ) {
-			wpcf7_rmdir_p( $path );
 
-			if ( $dir = dirname( $path )
-			and false !== ( $files = scandir( $dir ) )
-			and ! array_diff( $files, array( '.', '..' ) ) ) {
-				// remove parent dir if it's empty.
-				rmdir( $dir );
+	private function remove_uploaded_files() {
+		foreach ( (array) $this->uploaded_files as $file_path ) {
+			$paths = (array) $file_path;
+
+			foreach ( $paths as $path ) {
+				wpcf7_rmdir_p( $path );
+
+				if ( $dir = dirname( $path )
+				and false !== ( $files = scandir( $dir ) )
+				and ! array_diff( $files, array( '.', '..' ) ) ) {
+					// remove parent dir if it's empty.
+					rmdir( $dir );
+				}
 			}
 		}
 	}
+
+
+	private function unship_uploaded_files() {
+		$result = new WPCF7_Validation();
+
+		$tags = $this->contact_form->scan_form_tags( array(
+			'feature' => 'file-uploading',
+		) );
+
+		foreach ( $tags as $tag ) {
+			if ( empty( $_FILES[$tag->name] ) ) {
+				continue;
+			}
+
+			$file = $_FILES[$tag->name];
+
+			$args = array(
+				'tag' => $tag,
+				'name' => $tag->name,
+				'required' => $tag->is_required(),
+				'filetypes' => $tag->get_option( 'filetypes' ),
+				'limit' => $tag->get_limit_option(),
+			);
+
+			$new_files = wpcf7_unship_uploaded_file( $file, $args );
+
+			if ( ! is_wp_error( $new_files ) ) {
+				$this->add_uploaded_file( $tag->name, $new_files );
+			}
+
+			$result = apply_filters(
+				"wpcf7_validate_{$tag->type}",
+				$result, $tag,
+				array(
+					'uploaded_files' => $new_files,
+				)
+			);
+		}
+
+		$this->invalid_fields = $result->get_invalid_fields();
+
+		return $result->is_valid();
+	}
+
+
+	/**
+	 * Adds extra email attachment files that are independent from form fields.
+	 *
+	 * @param string|array $file_path A file path or an array of file paths.
+	 * @param string $template Optional. The name of the template to which
+	 *                         the files are attached.
+	 * @return bool True if it succeeds to attach a file at least,
+	 *              or false otherwise.
+	 */
+	public function add_extra_attachments( $file_path, $template = 'mail' ) {
+		if ( ! did_action( 'wpcf7_before_send_mail' ) ) {
+			return false;
+		}
+
+		$extra_attachments = array();
+
+		foreach ( (array) $file_path as $path ) {
+			$path = path_join( WP_CONTENT_DIR, $path );
+
+			if ( file_exists( $path ) ) {
+				$extra_attachments[] = $path;
+			}
+		}
+
+		if ( empty( $extra_attachments ) ) {
+			return false;
+		}
+
+		if ( ! isset( $this->extra_attachments[$template] ) ) {
+			$this->extra_attachments[$template] = array();
+		}
+
+		$this->extra_attachments[$template] = array_merge(
+			$this->extra_attachments[$template],
+			$extra_attachments
+		);
+
+		return true;
+	}
+
+
+	/**
+	 * Returns extra email attachment files.
+	 *
+	 * @param string $template An email template name.
+	 * @return array Array of file paths.
+	 */
+	public function extra_attachments( $template ) {
+		if ( isset( $this->extra_attachments[$template] ) ) {
+			return (array) $this->extra_attachments[$template];
+		}
+
+		return array();
+	}
+
 }

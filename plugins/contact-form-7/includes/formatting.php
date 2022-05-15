@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Replaces double line breaks with paragraph elements.
+ *
+ * This is a variant of wpautop() that is specifically tuned for
+ * form content uses.
+ *
+ * @param string $pee The text which has to be formatted.
+ * @param bool $br Optional. If set, this will convert all remaining
+ *                 line breaks after paragraphing. Default true.
+ * @return string Text which has been converted into correct paragraph tags.
+ */
 function wpcf7_autop( $pee, $br = 1 ) {
 	if ( trim( $pee ) === '' ) {
 		return '';
@@ -39,8 +50,10 @@ function wpcf7_autop( $pee, $br = 1 ) {
 		$pee .= '<p>' . trim( $tinkle, "\n" ) . "</p>\n";
 	}
 
-	$pee = preg_replace( '|<p>\s*</p>|', '', $pee ); // under certain strange conditions it could create a P of entirely whitespace
 	$pee = preg_replace( '!<p>([^<]+)</(div|address|form|fieldset)>!', "<p>$1</p></$2>", $pee );
+
+	$pee = preg_replace( '|<p>\s*</p>|', '', $pee ); // under certain strange conditions it could create a P of entirely whitespace
+
 	$pee = preg_replace( '!<p>\s*(</?' . $allblocks . '[^>]*>)\s*</p>!', "$1", $pee ); // don't pee all over a tag
 	$pee = preg_replace( "|<p>(<li.+?)</p>|", "$1", $pee ); // problem with nested lists
 	$pee = preg_replace( '|<p><blockquote([^>]*)>|i', "<blockquote$1><p>", $pee );
@@ -75,15 +88,30 @@ function wpcf7_autop( $pee, $br = 1 ) {
 			'clean_pre', $pee );
 	}
 
+	$pee = preg_replace( "|<br />$|", '', $pee );
 	$pee = preg_replace( "|\n</p>$|", '</p>', $pee );
 
 	return $pee;
 }
 
+
+/**
+ * Newline preservation help function for wpcf7_autop().
+ *
+ * @param array $matches preg_replace_callback() matches array.
+ * @return string Text including newline placeholders.
+ */
 function wpcf7_autop_preserve_newline_callback( $matches ) {
 	return str_replace( "\n", '<WPPreserveNewline />', $matches[0] );
 }
 
+
+/**
+ * Sanitizes the query variables.
+ *
+ * @param string $text Query variable.
+ * @return string Text sanitized.
+ */
 function wpcf7_sanitize_query_var( $text ) {
 	$text = wp_unslash( $text );
 	$text = wp_check_invalid_utf8( $text );
@@ -100,6 +128,13 @@ function wpcf7_sanitize_query_var( $text ) {
 	return $text;
 }
 
+
+/**
+ * Strips quote characters surrounding the input.
+ *
+ * @param string $text Input text.
+ * @return string Processed output.
+ */
 function wpcf7_strip_quote( $text ) {
 	$text = trim( $text );
 
@@ -112,6 +147,14 @@ function wpcf7_strip_quote( $text ) {
 	return $text;
 }
 
+
+/**
+ * Navigates through an array, object, or scalar, and
+ * strips quote characters surrounding the each value.
+ *
+ * @param mixed $arr The array or string to be processed.
+ * @return mixed Processed value.
+ */
 function wpcf7_strip_quote_deep( $arr ) {
 	if ( is_string( $arr ) ) {
 		return wpcf7_strip_quote( $arr );
@@ -128,6 +171,14 @@ function wpcf7_strip_quote_deep( $arr ) {
 	}
 }
 
+
+/**
+ * Normalizes newline characters.
+ *
+ * @param string $text Input text.
+ * @param string $to Optional. The newline character that is used in the output.
+ * @return string Normalized text.
+ */
 function wpcf7_normalize_newline( $text, $to = "\n" ) {
 	if ( ! is_string( $text ) ) {
 		return $text;
@@ -142,6 +193,15 @@ function wpcf7_normalize_newline( $text, $to = "\n" ) {
 	return str_replace( $nls, $to, $text );
 }
 
+
+/**
+ * Navigates through an array, object, or scalar, and
+ * normalizes newline characters in the each value.
+ *
+ * @param mixed $arr The array or string to be processed.
+ * @param string $to Optional. The newline character that is used in the output.
+ * @return mixed Processed value.
+ */
 function wpcf7_normalize_newline_deep( $arr, $to = "\n" ) {
 	if ( is_array( $arr ) ) {
 		$result = array();
@@ -156,189 +216,111 @@ function wpcf7_normalize_newline_deep( $arr, $to = "\n" ) {
 	return wpcf7_normalize_newline( $arr, $to );
 }
 
+
+/**
+ * Strips newline characters.
+ *
+ * @param string $str Input text.
+ * @return string Processed one-line text.
+ */
 function wpcf7_strip_newline( $str ) {
 	$str = (string) $str;
 	$str = str_replace( array( "\r", "\n" ), '', $str );
 	return trim( $str );
 }
 
-function wpcf7_canonicalize( $text, $strto = 'lower' ) {
-	if ( function_exists( 'mb_convert_kana' )
-	and 'UTF-8' == get_option( 'blog_charset' ) ) {
-		$text = mb_convert_kana( $text, 'asKV', 'UTF-8' );
+
+/**
+ * Canonicalizes text.
+ *
+ * @param string $text Input text.
+ * @param string|array|object $args Options.
+ * @return string Canonicalized text.
+ */
+function wpcf7_canonicalize( $text, $args = '' ) {
+	// for back-compat
+	if ( is_string( $args ) and '' !== $args
+	and false === strpos( $args, '=' ) ) {
+		$args = array(
+			'strto' => $args,
+		);
 	}
 
-	if ( 'lower' == $strto ) {
-		$text = strtolower( $text );
-	} elseif ( 'upper' == $strto ) {
-		$text = strtoupper( $text );
+	$args = wp_parse_args( $args, array(
+		'strto' => 'lower',
+		'strip_separators' => false,
+	) );
+
+	static $charset = null;
+
+	if ( ! isset( $charset ) ) {
+		$charset = get_option( 'blog_charset' );
+
+		$is_utf8 = in_array(
+			$charset,
+			array( 'utf8', 'utf-8', 'UTF8', 'UTF-8' )
+		);
+
+		if ( $is_utf8 ) {
+			$charset = 'UTF-8';
+		}
+	}
+
+	$text = html_entity_decode( $text, ENT_QUOTES | ENT_HTML5, $charset );
+
+	if ( function_exists( 'mb_convert_kana' ) ) {
+		$text = mb_convert_kana( $text, 'asKV', $charset );
+	}
+
+	if ( $args['strip_separators'] ) {
+		$text = preg_replace( '/[\r\n\t ]+/', '', $text );
+	} else {
+		$text = preg_replace( '/[\r\n\t ]+/', ' ', $text );
+	}
+
+	if ( 'lower' == $args['strto'] ) {
+		if ( function_exists( 'mb_strtolower' ) ) {
+			$text = mb_strtolower( $text, $charset );
+		} else {
+			$text = strtolower( $text );
+		}
+	} elseif ( 'upper' == $args['strto'] ) {
+		if ( function_exists( 'mb_strtoupper' ) ) {
+			$text = mb_strtoupper( $text, $charset );
+		} else {
+			$text = strtoupper( $text );
+		}
 	}
 
 	$text = trim( $text );
 	return $text;
 }
 
-/**
- * Check whether a string is a valid NAME token.
- *
- * ID and NAME tokens must begin with a letter ([A-Za-z])
- * and may be followed by any number of letters, digits ([0-9]),
- * hyphens ("-"), underscores ("_"), colons (":"), and periods (".").
- *
- * @see http://www.w3.org/TR/html401/types.html#h-6.2
- *
- * @return bool True if it is a valid name, false if not.
- */
-function wpcf7_is_name( $string ) {
-	return preg_match( '/^[A-Za-z][-A-Za-z0-9_:.]*$/', $string );
-}
 
+/**
+ * Sanitizes Contact Form 7's form unit-tag.
+ *
+ * @param string $tag Unit-tag.
+ * @return string Sanitized unit-tag.
+ */
 function wpcf7_sanitize_unit_tag( $tag ) {
 	$tag = preg_replace( '/[^A-Za-z0-9_-]/', '', $tag );
 	return $tag;
 }
 
-function wpcf7_is_email( $email ) {
-	$result = is_email( $email );
-	return apply_filters( 'wpcf7_is_email', $result, $email );
-}
 
-function wpcf7_is_url( $url ) {
-	$result = ( false !== filter_var( $url, FILTER_VALIDATE_URL ) );
-	return apply_filters( 'wpcf7_is_url', $result, $url );
-}
-
-function wpcf7_is_tel( $tel ) {
-	$pattern = '%^[+]?' // + sign
-		. '(?:\([0-9]+\)|[0-9]+)' // (1234) or 1234
-		. '(?:[/ -]*' // delimiter
-		. '(?:\([0-9]+\)|[0-9]+)' // (1234) or 1234
-		. ')*$%';
-
-	$result = preg_match( $pattern, trim( $tel ) );
-	return apply_filters( 'wpcf7_is_tel', $result, $tel );
-}
-
-function wpcf7_is_number( $number ) {
-	$result = is_numeric( $number );
-	return apply_filters( 'wpcf7_is_number', $result, $number );
-}
-
-function wpcf7_is_date( $date ) {
-	$result = preg_match( '/^([0-9]{4,})-([0-9]{2})-([0-9]{2})$/', $date, $matches );
-
-	if ( $result ) {
-		$result = checkdate( $matches[2], $matches[3], $matches[1] );
-	}
-
-	return apply_filters( 'wpcf7_is_date', $result, $date );
-}
-
-function wpcf7_is_mailbox_list( $mailbox_list ) {
-	if ( ! is_array( $mailbox_list ) ) {
-		$mailbox_text = (string) $mailbox_list;
-		$mailbox_text = wp_unslash( $mailbox_text );
-
-		$mailbox_text = preg_replace( '/\\\\(?:\"|\')/', 'esc-quote',
-			$mailbox_text );
-
-		$mailbox_text = preg_replace( '/(?:\".*?\"|\'.*?\')/', 'quoted-string',
-			$mailbox_text );
-
-		$mailbox_list = explode( ',', $mailbox_text );
-	}
-
-	$addresses = array();
-
-	foreach ( $mailbox_list as $mailbox ) {
-		if ( ! is_string( $mailbox ) ) {
-			return false;
-		}
-
-		$mailbox = trim( $mailbox );
-
-		if ( preg_match( '/<(.+)>$/', $mailbox, $matches ) ) {
-			$addr_spec = $matches[1];
-		} else {
-			$addr_spec = $mailbox;
-		}
-
-		if ( ! wpcf7_is_email( $addr_spec ) ) {
-			return false;
-		}
-
-		$addresses[] = $addr_spec;
-	}
-
-	return $addresses;
-}
-
-function wpcf7_is_email_in_domain( $email, $domain ) {
-	$email_list = wpcf7_is_mailbox_list( $email );
-	$domain = strtolower( $domain );
-
-	foreach ( $email_list as $email ) {
-		$email_domain = substr( $email, strrpos( $email, '@' ) + 1 );
-		$email_domain = strtolower( $email_domain );
-		$domain_parts = explode( '.', $domain );
-
-		do {
-			$site_domain = implode( '.', $domain_parts );
-
-			if ( $site_domain == $email_domain ) {
-				continue 2;
-			}
-
-			array_shift( $domain_parts );
-		} while ( $domain_parts );
-
-		return false;
-	}
-
-	return true;
-}
-
-function wpcf7_is_email_in_site_domain( $email ) {
-	if ( wpcf7_is_localhost() ) {
-		return true;
-	}
-
-	$site_domain = strtolower( $_SERVER['SERVER_NAME'] );
-
-	if ( preg_match( '/^[0-9.]+$/', $site_domain ) ) { // 123.456.789.012
-		return true;
-	}
-
-	if ( wpcf7_is_email_in_domain( $email, $site_domain ) ) {
-		return true;
-	}
-
-	$home_url = home_url();
-
-	// for interoperability with WordPress MU Domain Mapping plugin
-	if ( is_multisite()
-	and function_exists( 'domain_mapping_siteurl' ) ) {
-		$domain_mapping_siteurl = domain_mapping_siteurl( false );
-
-		if ( $domain_mapping_siteurl ) {
-			$home_url = $domain_mapping_siteurl;
-		}
-	}
-
-	if ( preg_match( '%^https?://([^/]+)%', $home_url, $matches ) ) {
-		$site_domain = strtolower( $matches[1] );
-
-		if ( $site_domain != strtolower( $_SERVER['SERVER_NAME'] )
-		and wpcf7_is_email_in_domain( $email, $site_domain ) ) {
-			return true;
-		}
-	}
-
-	return false;
-}
-
+/**
+ * Converts a file name to one that is not executable as a script.
+ *
+ * @param string $filename File name.
+ * @return string Converted file name.
+ */
 function wpcf7_antiscript_file_name( $filename ) {
 	$filename = wp_basename( $filename );
+
+	$filename = preg_replace( '/[\r\n\t -]+/', '-', $filename );
+	$filename = preg_replace( '/[\pC\pZ]+/iu', '', $filename );
+
 	$parts = explode( '.', $filename );
 
 	if ( count( $parts ) < 2 ) {
@@ -367,21 +349,200 @@ function wpcf7_antiscript_file_name( $filename ) {
 	return $filename;
 }
 
-function wpcf7_mask_password( $text, $length_unmasked = 0 ) {
-	$length = strlen( $text );
-	$length_unmasked = absint( $length_unmasked );
 
-	if ( 0 == $length_unmasked ) {
-		if ( 9 < $length ) {
-			$length_unmasked = 4;
-		} elseif ( 3 < $length ) {
-			$length_unmasked = 2;
-		} else {
-			$length_unmasked = $length;
-		}
+/**
+ * Masks a password with asterisks (*).
+ *
+ * @param int $right Length of right-hand unmasked text. Default 0.
+ * @param int $left Length of left-hand unmasked text. Default 0.
+ * @return string Text of masked password.
+ */
+function wpcf7_mask_password( $text, $right = 0, $left = 0 ) {
+	$length = strlen( $text );
+
+	$right = absint( $right );
+	$left = absint( $left );
+
+	if ( $length < $right + $left ) {
+		$right = $left = 0;
 	}
 
-	$text = substr( $text, 0 - $length_unmasked );
-	$text = str_pad( $text, $length, '*', STR_PAD_LEFT );
+	if ( $length <= 48 ) {
+		$masked = str_repeat( '*', $length - ( $right + $left ) );
+	} elseif ( $right + $left < 48 ) {
+		$masked = str_repeat( '*', 48 - ( $right + $left ) );
+	} else {
+		$masked = '****';
+	}
+
+	$left_unmasked = $left ? substr( $text, 0, $left ) : '';
+	$right_unmasked = $right ? substr( $text, -1 * $right ) : '';
+
+	$text = $left_unmasked . $masked . $right_unmasked;
+
 	return $text;
+}
+
+
+/**
+ * Returns an array of allowed HTML tags and attributes for a given context.
+ *
+ * @param string $context Context used to decide allowed tags and attributes.
+ * @return array Array of allowed HTML tags and their allowed attributes.
+ */
+function wpcf7_kses_allowed_html( $context = 'form' ) {
+	static $allowed_tags = array();
+
+	if ( isset( $allowed_tags[$context] ) ) {
+		return apply_filters(
+			'wpcf7_kses_allowed_html',
+			$allowed_tags[$context],
+			$context
+		);
+	}
+
+	$allowed_tags[$context] = wp_kses_allowed_html( 'post' );
+
+	if ( 'form' === $context ) {
+		$additional_tags_for_form = array(
+			'button' => array(
+				'disabled' => true,
+				'name' => true,
+				'type' => true,
+				'value' => true,
+			),
+			'datalist' => array(),
+			'fieldset' => array(
+				'disabled' => true,
+				'name' => true,
+			),
+			'input' => array(
+				'accept' => true,
+				'alt' => true,
+				'capture' => true,
+				'checked' => true,
+				'disabled' => true,
+				'list' => true,
+				'max' => true,
+				'maxlength' => true,
+				'min' => true,
+				'minlength' => true,
+				'multiple' => true,
+				'name' => true,
+				'placeholder' => true,
+				'readonly' => true,
+				'size' => true,
+				'step' => true,
+				'type' => true,
+				'value' => true,
+			),
+			'label' => array(
+				'for' => true,
+			),
+			'legend' => array(),
+			'meter' => array(
+				'value' => true,
+				'min' => true,
+				'max' => true,
+				'low' => true,
+				'high' => true,
+				'optimum' => true,
+			),
+			'optgroup' => array(
+				'disabled' => true,
+				'label' => true,
+			),
+			'option' => array(
+				'disabled' => true,
+				'label' => true,
+				'selected' => true,
+				'value' => true,
+			),
+			'output' => array(
+				'for' => true,
+				'name' => true,
+			),
+			'progress' => array(
+				'max' => true,
+				'value' => true,
+			),
+			'select' => array(
+				'disabled' => true,
+				'multiple' => true,
+				'name' => true,
+				'size' => true,
+			),
+			'textarea' => array(
+				'cols' => true,
+				'disabled' => true,
+				'maxlength' => true,
+				'minlength' => true,
+				'name' => true,
+				'placeholder' => true,
+				'readonly' => true,
+				'rows' => true,
+				'spellcheck' => true,
+				'wrap' => true,
+			),
+		);
+
+		$additional_tags_for_form = array_map(
+			function ( $elm ) {
+				$global_attributes = array(
+					'aria-atomic' => true,
+					'aria-checked' => true,
+					'aria-describedby' => true,
+					'aria-details' => true,
+					'aria-disabled' => true,
+					'aria-hidden' => true,
+					'aria-invalid' => true,
+					'aria-label' => true,
+					'aria-labelledby' => true,
+					'aria-live' => true,
+					'aria-relevant' => true,
+					'aria-required' => true,
+					'aria-selected' => true,
+					'class' => true,
+					'data-*' => true,
+					'id' => true,
+					'inputmode' => true,
+					'role' => true,
+					'style' => true,
+					'tabindex' => true,
+					'title' => true,
+				);
+
+				return array_merge( $global_attributes, (array) $elm );
+			},
+			$additional_tags_for_form
+		);
+
+		$allowed_tags[$context] = array_merge(
+			$allowed_tags[$context],
+			$additional_tags_for_form
+		);
+	}
+
+	return apply_filters(
+		'wpcf7_kses_allowed_html',
+		$allowed_tags[$context],
+		$context
+	);
+}
+
+
+/**
+ * Sanitizes content for allowed HTML tags for the specified context.
+ *
+ * @param string $input Content to filter.
+ * @param string $context Context used to decide allowed tags and attributes.
+ * @return string Filtered text with allowed HTML tags and attributes intact.
+ */
+function wpcf7_kses( $input, $context = 'form' ) {
+	$output = wp_kses(
+		$input,
+		wpcf7_kses_allowed_html( $context )
+	);
+
+	return $output;
 }

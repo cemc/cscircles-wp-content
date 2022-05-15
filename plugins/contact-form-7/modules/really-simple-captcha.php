@@ -117,7 +117,15 @@ function wpcf7_captchar_form_tag_handler( $tag ) {
 	$atts['id'] = $tag->get_id_option();
 	$atts['tabindex'] = $tag->get_option( 'tabindex', 'signed_int', true );
 	$atts['autocomplete'] = 'off';
-	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
+
+	if ( $validation_error ) {
+		$atts['aria-invalid'] = 'true';
+		$atts['aria-describedby'] = wpcf7_get_validation_error_reference(
+			$tag->name
+		);
+	} else {
+		$atts['aria-invalid'] = 'false';
+	}
 
 	$value = (string) reset( $tag->values );
 
@@ -424,13 +432,27 @@ function wpcf7_init_captcha() {
 	return $captcha;
 }
 
+
+/**
+ * Returns the directory path for Really Simple CAPTCHA files.
+ *
+ * @return string Directory path.
+ */
 function wpcf7_captcha_tmp_dir() {
 	if ( defined( 'WPCF7_CAPTCHA_TMP_DIR' ) ) {
-		return WPCF7_CAPTCHA_TMP_DIR;
-	} else {
-		return path_join( wpcf7_upload_dir( 'dir' ), 'wpcf7_captcha' );
+		$dir = path_join( WP_CONTENT_DIR, WPCF7_CAPTCHA_TMP_DIR );
+		wp_mkdir_p( $dir );
+
+		if ( wpcf7_is_file_path_in_content_dir( $dir ) ) {
+			return $dir;
+		}
 	}
+
+	$dir = path_join( wpcf7_upload_dir( 'dir' ), 'wpcf7_captcha' );
+	wp_mkdir_p( $dir );
+	return $dir;
 }
+
 
 function wpcf7_captcha_tmp_url() {
 	if ( defined( 'WPCF7_CAPTCHA_TMP_URL' ) ) {

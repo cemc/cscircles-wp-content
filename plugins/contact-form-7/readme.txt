@@ -2,9 +2,9 @@
 Contributors: takayukister
 Donate link: https://contactform7.com/donate/
 Tags: contact, form, contact form, feedback, email, ajax, captcha, akismet, multilingual
-Requires at least: 5.3
-Tested up to: 5.5
-Stable tag: 5.2.1
+Requires at least: 5.7
+Tested up to: 5.9
+Stable tag: 5.5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,8 @@ If you activate certain features in this plugin, the contact form submitter's pe
 * reCAPTCHA ([Google](https://policies.google.com/?hl=en))
 * Akismet ([Automattic](https://automattic.com/privacy/))
 * Constant Contact ([Endurance International Group](https://www.endurance.com/privacy))
+* [Sendinblue](https://www.sendinblue.com/legal/privacypolicy/)
+* [Stripe](https://stripe.com/privacy)
 
 = Recommended plugins =
 
@@ -75,86 +77,46 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 
 For more information, see [Releases](https://contactform7.com/category/releases/).
 
-= 5.2.1 =
+= 5.5.6 =
 
-* Makes the [contact-form-7 404 "Not Found"] message localizable.
-* REST API: Adds the `permission_callback` argument to every endpoint definition.
-* Flamingo: Uses `id()` instead of `id`, if available.
-* Fixed: The `free_text` option did not work correctly with the `exclusive` option.
-* Applies `wpcf7_mail_tag_replaced` filters even when the `$posted_data` is null.
-* Adds custom mail-tag replacement for quiz fields.
-* Admin: Updates the date column format in the list table.
+[https://contactform7.com/contact-form-7-556/](https://contactform7.com/contact-form-7-556/)
 
-= 5.2 =
+= 5.5.5 =
 
-* Submission: Introduces the `$posted_data_hash` and `$skip_spam_check` properties.
-* Submission: Introduces the `wpcf7_skip_spam_check` filter hook.
-* Contact form: Introduces the `pref()` method.
-* REST API: Adds parsed form-tags data to the response.
-* REST API: Deprecates the `wpcf7_ajax_json_echo` and `wpcf7_ajax_onload` filter hooks and introduces the `wpcf7_feedback_response` and `wpcf7_refill_response` filter hooks as alternatives.
-* Frontend CSS: Style rules for the response output refer to the `form` element’s `class` attribute.
-* Frontend JavaScript: Abolishes the use of jQuery events.
-* reCAPTCHA: Moves script code to a separate file.
-* reCAPTCHA: Changes the name of the field for reCAPTCHA response token from `g-recaptcha-response` to `_wpcf7_recaptcha_response`.
+[https://contactform7.com/contact-form-7-555/](https://contactform7.com/contact-form-7-555/)
 
-= 5.1.9 =
+= 5.5.4 =
 
-* Special mail-tags: Reflects WP timezone to `[_date]` and `[_time]` mail-tags.
-* WPCF7_FormTag: Reflects WP timezone to `get_date_option()` output.
-* User input validation: Strictly compares to boolean _false_.
+[https://contactform7.com/contact-form-7-554/](https://contactform7.com/contact-form-7-554/)
 
-= 5.1.8 =
+= 5.5.3 =
 
-* reCAPTCHA: Shows no warning on upgrading from v2 if the global sitekey is defined.
-* reCAPTCHA: Improves the frontend JavaScript coding.
-* Accessibility: Improves the response message markup.
-* Fixes the regular expression pattern in `wpcf7_is_tel()`.
-* Fixed: Character count was not reset after a successful submission.
-* Fixed: The fourth parameter of the `wpcf7_special_mail_tags` filter hook was not correctly set.
+[https://contactform7.com/contact-form-7-553/](https://contactform7.com/contact-form-7-553/)
 
-= 5.1.7 =
+= 5.5.2 =
 
-* CSS: Adds an explicit LTR direction style rule for code inputs.
-* Accessibility: Uses _Error_ instead of _ERROR_ in warnings.
+* REST API: Removes argument schema reference that causes error when the form has 'id' field.
+* Changes method names that are reserved in PHP 5.6.
 
-= 5.1.6 =
+= 5.5.1 =
 
-* CSS: removes a style rule from the stylesheet that was unnecessary and conflicting with Twenty Twenty’s rules.
-* REST API: retrieves the contact form ID explicitly from the route parameters.
+* Fixed: Reserved keyword was used in PHP class constant name.
+* Fixed: Uncaught TypeError on `in_array()` call.
 
-= 5.1.5 =
+= 5.5 =
 
-* Config Validator: New test item for the unavailable_html_elements error.
-* Config Validator: New test item for the attachments_overweight error.
+[https://contactform7.com/contact-form-7-55/](https://contactform7.com/contact-form-7-55/)
 
-= 5.1.4 =
+= 5.4.2 =
 
-* reCAPTCHA: introduces the WPCF7_RECAPTCHA_SITEKEY and WPCF7_RECAPTCHA_SECRET constants.
-* reCAPTCHA: Introduces the wpcf7_recaptcha_sitekey and wpcf7_recaptcha_secret filter hooks.
-* Adds $status parameter to the wpcf7_form_response_output filter.
-* Creates a nonce only when the submitter is a logged-in user.
-* Introduces WPCF7_ContactForm::unit_tag(), a public method that returns a unit tag.
-* reCAPTCHA: gives a different spam log message for cases where the response token is empty.
-* Acceptance Checkbox: supports the label_first option in an acceptance form-tag.
+[https://contactform7.com/contact-form-7-542/](https://contactform7.com/contact-form-7-542/)
 
-= 5.1.3 =
+= 5.4.1 =
 
-* Fixes a bug making it unable to unselect an option in the Mail tab panel.
+[https://contactform7.com/contact-form-7-541/](https://contactform7.com/contact-form-7-541/)
 
-= 5.1.2 =
+= 5.4 =
 
-* Constant Contact: Introduces the contact list selector.
-* Constant Contact: Introduces the constant_contact additional setting.
-* reCAPTCHA: Introduces the wpcf7_recaptcha_actions and wpcf7_recaptcha_threshold filter hooks.
-
-= 5.1.1 =
-
-* reCAPTCHA: Modifies the reaction to empty response tokens.
-
-= 5.1 =
-
-* Introduces the Constant Contact integration module.
-* Updates the reCAPTCHA module to support reCAPTCHA v3.
-* Adds Dark Mode style rules.
+[https://contactform7.com/contact-form-7-54/](https://contactform7.com/contact-form-7-54/)
 
 == Upgrade Notice ==
