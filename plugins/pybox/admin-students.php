@@ -13,17 +13,55 @@ function cscircles_students_page() {
 
   if (isSoft($_REQUEST, 'submitted', 'true')) {
     $d = 0;
-    $h = 0;
-    $newhide = "";
-    $newnicks = array();
-    $newgroups = array();
+
+    // Load teacher's previous state
+    $newhidelist = explode(',', get_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', true));
+    $newhidemap = array();
+    foreach ($newhidelist as $id) {$newhidemap[$id]=true;};
+    $newnicks = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', true), true);
+    $newgroups = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentgroups', true), true);
+
+    // Process groups first b/c showonlyclass depends on it. Also nicks.
+    foreach ($_REQUEST as $key => $val) {
+      if (substr($key, 0, 1)=='n' && is_numeric(substr($key, 1))) {
+        $id = substr($key, 1);
+        $nick = $val;
+        $nick = preg_replace('_[<>&\"\\\\]_', "", trim($nick));
+        if ($nick != '') {
+          $newnicks[$id]=$nick;
+	} else {
+	  unset($newnicks[$id]);
+	}
+      }
+      if (substr($key, 0, 1)=='g' && is_numeric(substr($key, 1))) {
+        $id = substr($key, 1);
+        $group = $val;
+        $group = preg_replace('_[<>&\"\\\\]_', "", trim($group));
+        if ($group != '') {
+          $newgroups[$id]=$group;
+	} else {
+	  unset($newgroups[$id]);
+	}
+      }
+    }
+
+    // Process batch command that doesn't require explicit GET args
+    if (getSoft($_REQUEST, 'showonlyclass', '')!='') {
+      if ($_REQUEST['showonlyclass']=='<show all students>') $newhidemap = array();
+      else {
+        $newhidemap = array();
+        foreach($newgroups as $id=>$g) {
+	  if ($g != $_REQUEST['showonlyclass']) $newhidemap[$id] = true;
+	}
+      }
+    }
+
+    // If user manually modified visibility after showonlyclass, apply them
     foreach ($_REQUEST as $key => $val) {
       if (substr($key, 0, 1)=='s' && is_numeric(substr($key, 1))) {
         $id = substr($key, 1);
         if ($val == 'hide') {
-          if ($newhide != '') $newhide .= ",";
-          $newhide .= $id;
-          $h++;
+          $newhidemap[$id]=true;
         }
         else if ($val == 'remove') {
           if (trim(Normalizer::normalize(strtolower(get_user_meta($id, 'pbguru', true))))==
@@ -31,26 +69,17 @@ function cscircles_students_page() {
             update_user_meta($id, 'pbguru', '');
           $d++;
         }
-      }
-      if (substr($key, 0, 1)=='n' && is_numeric(substr($key, 1))) {
-        $id = substr($key, 1);
-        $nick = $val;
-        $nick = preg_replace('_[<>&\"\\\\]_', "", trim($nick));
-        if ($nick != '') 
-          $newnicks[$id]=$nick;
-      }
-      if (substr($key, 0, 1)=='g' && is_numeric(substr($key, 1))) {
-        $id = substr($key, 1);
-        $group = $val;
-        $group = preg_replace('_[<>&\"\\\\]_', "", trim($group));
-        if ($group != '') 
-          $newgroups[$id]=$group;
+        else if ($val == 'unhide') {
+	  unset($newhidemap[$id]);
+        }
       }
     }
-    update_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', $newhide);
+
+    // Encode and finish.
+    update_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', implode(',', array_keys($newhidemap)));
     update_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', json_encode($newnicks));
     update_user_meta(wp_get_current_user()->ID, 'pb_studentgroups', json_encode($newgroups));
-    echo "<div class='updated'>Deleted $d students. You have $h hidden students.</div>";
+    echo "<div class='updated'>Deleted $d students.</div>";
   }
 
 echo "<script type='text/javascript'>classlist = function() {
@@ -73,6 +102,7 @@ echo "<script type='text/javascript'>classlist = function() {
 }
 selectClass = function() {
   theclass = jQuery('#classlist-select')[0].value;
+  if (theclass=='') return;
   jQuery('.student-row').each(function(i, row){
     if (jQuery(row).find('.grouplabel')[0].value == theclass || theclass == '<show all students>')
      jQuery(jQuery(row).find('.unhide')[0]).prop('checked',true);
@@ -81,6 +111,12 @@ selectClass = function() {
   });
 }
 jQuery(classlist); // call once on load
+
+// To avoid massive URLs (limit is several hundred chars, and WP doesn't support POST in this context)
+// we only send info about students that were actually edited. This implements that.
+jQuery(document).on('change', 'tr.student-row input', function() { 
+// Remove the fake 'sparse' form tag
+jQuery(this.closest('tr')).find('input').removeAttr('form'); });
 </script>";
 
 echo "<p>Students who are hidden or removed won't show up
@@ -125,21 +161,21 @@ messages between you and them in the Mail page histories.</p>
     $group = getSoft($groups, $id, '');
 
     echo "<tr class='student-row'>
-<td><input type='radio' class='unhide' name='s$id' $c1 value='unhide'/></td>
-<td><input type='radio' class='hide' name='s$id' $c2 value='hide'/></td>
-<td><input type='radio' name='s$id' value='remove'/></td>
+<td><input form='sparse' type='radio' class='unhide' name='s$id' $c1 value='unhide'/></td>
+<td><input form='sparse' type='radio' class='hide' name='s$id' $c2 value='hide'/></td>
+<td><input form='sparse' type='radio' name='s$id' value='remove'/></td>
 <td>{$user->user_login}</td>
 <td>{$user->user_firstname} {$user->user_lastname}</td>
 <td>{$user->user_email}</td>
-<td><input style='width:100%' type='text' name = 'n$id' value=\"$nick\"></td>
-<td><input style='width:100%' type='text' class = 'grouplabel' name = 'g$id' value=\"$group\" onkeyup=\"javascript:classlist()\" onchange=\"javascript:classlist()\"></td>
+<td><input form='sparse' style='width:100%' type='text' name = 'n$id' value=\"$nick\"></td>
+<td><input form='sparse' style='width:100%' type='text' class = 'grouplabel' name = 'g$id' value=\"$group\" onkeyup=\"javascript:classlist()\" onchange=\"javascript:classlist()\"></td>
 </tr>";
   }
   echo "<tr id='classlist-tr'>
    <td colspan='7' style='text-align:right'>
    <div id='classlist-label'>Show a class and hide all other students? (Select and press <b>Submit</b> to activate.)</div>
    </td>
-   <td style='text-align:left'><select id='classlist-select' onchange='javascript:selectClass()'></select></td></tr>";
+   <td style='text-align:left'><select name='showonlyclass' id='classlist-select' onchange='javascript:selectClass()'></select></td></tr>";
 
   echo "</table>
    <button class='button-primary' id='submit'>Submit</button></form>";
