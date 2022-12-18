@@ -81,7 +81,7 @@ del list[1]     # list becomes ['zero', 'two']
 "string" in "superstring"                 #==> True
 "superstring".index("string")             #==> 5
 
-# more list methods: append(item), insert(item, index), extend(list),
+# more list methods: append(item), insert(index, item), extend(list),
 # remove(value), pop(), pop(index), reverse(), sort(), and more
 
 # some string methods: capitalize(), lower/upper(), islower/isupper(),
