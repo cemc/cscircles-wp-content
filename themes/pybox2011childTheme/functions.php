@@ -3,6 +3,9 @@ define( 'HEADER_IMAGE_WIDTH', apply_filters( 'twentyeleven_header_image_width', 
 define( 'HEADER_IMAGE_HEIGHT', apply_filters( 'twentyeleven_header_image_height', 150 ) );
 define( 'HEADER_IMAGE', content_url('/themes/pybox2011childTheme/images/header.jpg') );
 
+// Enables Contact Form 7 user tags
+add_filter( 'wpcf7_verify_nonce', '__return_true' );
+
 function pybox_on() {
   return function_exists('pyboxlog');
 }

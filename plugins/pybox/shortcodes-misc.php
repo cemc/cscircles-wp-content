@@ -1,5 +1,12 @@
 <?php
 
+add_shortcode('pyLoggedInOnly', 'pyLoggedInOnly');
+function pyLoggedInOnly($o, $c){
+  if ( is_user_logged_in() ) {
+    return do_short_and_sweetcode($c);
+  }
+}
+
 add_shortcode('pyDebug', 'pyDebug');
 function pyDebug($o, $c){
   if (WP_DEBUG)
