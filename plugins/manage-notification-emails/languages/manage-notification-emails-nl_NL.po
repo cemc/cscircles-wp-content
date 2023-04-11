@@ -1,0 +1,498 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Famne\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-24 21:59+0200\n"
+"PO-Revision-Date: 2021-05-24 22:13+0200\n"
+"Last-Translator: \n"
+"Language-Team: Dutch\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: core/functions.setup.php:27
+msgid "Donate"
+msgstr "Doneer"
+
+#: modules/custom-recipients.php:47
+msgid "Extra admin recipients"
+msgstr "Extra admin adressen"
+
+#: modules/custom-recipients.php:48
+msgid ""
+"Here you can add extra admin recipients who will also receive all admin "
+"notifications."
+msgstr ""
+"Hier kun je extra admin ontvangers toevoegen. Zij ontvangen ook alle admin "
+"notificaties."
+
+#: modules/custom-recipients.php:49
+msgid "E-mail address(es)"
+msgstr "E-mailadres(sen)"
+
+#: modules/export-settings.php:52
+msgid "Export and import settings"
+msgstr "Export en import instellingen"
+
+#: modules/export-settings.php:53
+msgid ""
+"Here you can export or import your Manage notification e-mails settings."
+msgstr ""
+"Hier kun je de instellingen van Manage Notification e-mails importeren en "
+"exporteren."
+
+#: modules/export-settings.php:57
+msgid "Do you want to overwrite your current settings?"
+msgstr "Wil je de huidige settings overschrijven?"
+
+#: modules/export-settings.php:58
+msgid "Start import"
+msgstr "Start importeren"
+
+#: modules/export-settings.php:97
+msgid "Error uploading file. Please try again."
+msgstr "Fout bij uploaden van het bestand. Probeer het opnieuw."
+
+#: modules/export-settings.php:102
+msgid "Incorrect file type."
+msgstr "Foutieve bestandstype."
+
+#: modules/export-settings.php:108
+msgid "File size exceeds maximum upload limit."
+msgstr "Het bestand overschrijdt de maximale upload limiet."
+
+#: modules/export-settings.php:120
+msgid "Import file empty."
+msgstr "Import bestand is leeg."
+
+#: modules/export-settings.php:128
+msgid "The import file has a different plugin version."
+msgstr "Het import bestand heeft een andere plugin versie."
+
+#: modules/pluggable/pluggable-functions-1.2.php:30
+#: modules/pluggable/pluggable-functions-1.3.php:34
+#: modules/pluggable/pluggable-functions-1.5.php:44
+#, php-format
+msgid "Password Lost and Changed for user: %s"
+msgstr "Wachtwoord verloren en veranderd voor gebruiker: %s"
+
+#: modules/pluggable/pluggable-functions-1.2.php:34
+#: modules/pluggable/pluggable-functions-1.3.php:38
+#: modules/pluggable/pluggable-functions-1.5.php:48
+#, php-format
+msgid "[%s] Password Lost/Changed"
+msgstr "[%s] Wachtwoord verloren/veranderd"
+
+#: modules/pluggable/pluggable-functions-1.2.php:162
+#: modules/pluggable/pluggable-functions-1.3.php:185
+#: modules/pluggable/pluggable-functions-1.5.php:200
+#, php-format
+msgid "New user registration on your site %s:"
+msgstr "Nieuwe geregistreerde gebruiker op je website %s:"
+
+#: modules/pluggable/pluggable-functions-1.2.php:163
+#: modules/pluggable/pluggable-functions-1.2.php:195
+#: modules/pluggable/pluggable-functions-1.3.php:186
+#: modules/pluggable/pluggable-functions-1.3.php:232
+#: modules/pluggable/pluggable-functions-1.5.php:202
+#: modules/pluggable/pluggable-functions-1.5.php:286
+#, php-format
+msgid "Username: %s"
+msgstr "Gebruikersnaam: %s"
+
+#: modules/pluggable/pluggable-functions-1.2.php:164
+#, php-format
+msgid "E-mail: %s"
+msgstr "E-mail: %s"
+
+#: modules/pluggable/pluggable-functions-1.2.php:167
+#: modules/pluggable/pluggable-functions-1.3.php:189
+#: modules/pluggable/pluggable-functions-1.5.php:209
+#, php-format
+msgid "[%s] New User Registration"
+msgstr "[%s] Nieuwe gebruiker registratie"
+
+#: modules/pluggable/pluggable-functions-1.2.php:196
+#: modules/pluggable/pluggable-functions-1.3.php:233
+#: modules/pluggable/pluggable-functions-1.5.php:287
+msgid "To set your password, visit the following address:"
+msgstr "Om je wachtwoord te resetten, gebruik het volgende adres:"
+
+#: modules/pluggable/pluggable-functions-1.2.php:201
+#: modules/pluggable/pluggable-functions-1.3.php:238
+#, php-format
+msgid "[%s] Your username and password info"
+msgstr "[%s] Jouw gebruikersnaam en wachtwoord informatie"
+
+#: modules/pluggable/pluggable-functions-1.3.php:187
+#: modules/pluggable/pluggable-functions-1.5.php:204
+#, php-format
+msgid "Email: %s"
+msgstr "Email: %s"
+
+#: modules/pluggable/pluggable-functions-1.5.php:295
+#, php-format
+msgid "[%s] Login Details"
+msgstr "[%s] Login Details"
+
+#: modules/settings-page/class.FAMNESettingsPage.php:100
+msgid "Network options"
+msgstr "Netwerk opties"
+
+#: modules/settings-page/class.FAMNESettingsPage.php:110
+msgid "Core options"
+msgstr "Core opties"
+
+#: modules/settings-page/class.FAMNESettingsPage.php:116
+msgid "Modules"
+msgstr "Modules"
+
+#: modules/settings-page/class.FAMNESettingsPage.php:122
+#: modules/settings-page/views/extra.php:23
+msgid "Information"
+msgstr "Informatie"
+
+#: modules/settings-page/class.FAMNESettingsPage.php:368
+msgid "Settings"
+msgstr "Instellingen"
+
+#: modules/settings-page/views/container-network.php:21
+#: modules/settings-page/views/container.php:23
+msgid "Manage the notification e-mails"
+msgstr "Beheer notificatie e-mails"
+
+#: modules/settings-page/views/container-network.php:21
+#: modules/settings-page/views/container.php:23
+msgid "version"
+msgstr "versie"
+
+#: modules/settings-page/views/container-network.php:26
+#: modules/settings-page/views/container.php:37
+msgid "Manage your notification e-mail preferences below."
+msgstr "Beheer hieronder jouw notificatie e-mail voorkeuren."
+
+#: modules/settings-page/views/container.php:30
+msgid "Site managed by network manager"
+msgstr "Website beheert door netwerk beheerder"
+
+#: modules/settings-page/views/container.php:31
+msgid ""
+"Manage notification e-mails settings for this site are globally managed in "
+"the multisite network settings menu."
+msgstr ""
+"Manage notification e-mails instelling voor deze site worden globaal beheerd "
+"in de multisite netwerk instellingen menu."
+
+#: modules/settings-page/views/donatebox.php:18
+msgid "If you find this plugin useful, you can show your appreciation here :-)"
+msgstr "Geef een kleine donatie als je deze plugin handig vindt"
+
+#: modules/settings-page/views/extra.php:25
+msgid "Available Manage Notification E-mail Modules"
+msgstr "Beschikbare Manage Notification E-mail Modules"
+
+#: modules/settings-page/views/modules.php:24
+msgid "Extra modules"
+msgstr "Extra modules"
+
+#: modules/settings-page/views/modules.php:25
+msgid ""
+"The modules below are options which are not available in WordPress by "
+"default."
+msgstr ""
+"De modules hieronder zijn opties de niet standaard beschikbaar zijn in "
+"WordPress."
+
+#: modules/settings-page/views/modules.php:39
+msgid "Multisite managed settings available"
+msgstr "Multisite beheer instellingen zijn beschikbaar"
+
+#: modules/settings-page/views/modules.php:40
+msgid ""
+"For this environment, it is possible for you to manage all settings globally "
+"in the network settings menu."
+msgstr ""
+"Voor deze omgeving is het mogelijk om al je instellingen globaal te beheren "
+"in het netwerk instellingen menu."
+
+#: modules/settings-page/views/network.php:29
+msgid "Manage multisite options"
+msgstr "Beheer multisite opties"
+
+#: modules/settings-page/views/network.php:30
+msgid ""
+"Here you can choose to manage all options for this plugin in one location. "
+"No hassle with toggling options on and off for each subsite individually."
+msgstr ""
+"Hier kun je kiezen om alle opties te beheren vanuit een locatie. Geen gedoe "
+"met het instellen van opties voor elke site apart."
+
+#: modules/settings-page/views/network.php:33
+msgid "Use the network settings."
+msgstr "Gebruik de netwerk instellingen."
+
+#: modules/settings-page/views/network.php:33
+msgid ""
+"Checking this option will disable per site management. All sites will use "
+"these global network settings."
+msgstr ""
+"Het aanvinken van deze optie zet het beheren per site uit. Alle site worden "
+"dan beheerd via deze globale netwerk instellingen."
+
+#: modules/settings-page/views/settings.php:22
+msgid "Options for e-mails to users"
+msgstr "Opties voor e-mails aan administratoren"
+
+#: modules/settings-page/views/settings.php:25
+msgid "New user notification to user"
+msgstr "Nieuwe gebruiker notificatie aan gebruiker"
+
+#: modules/settings-page/views/settings.php:25
+msgid "Send e-mail with login credentials to a newly-registered user."
+msgstr ""
+"Verstuur een e-mail met login gegevens naar een nieuw geregistreerde "
+"gebruiker."
+
+#: modules/settings-page/views/settings.php:26
+msgid "Notify post author"
+msgstr "Notificeer bericht schrijver"
+
+#: modules/settings-page/views/settings.php:26
+msgid ""
+"Send e-mail to an author (and/or others) of a comment/trackback/pingback on "
+"a post."
+msgstr ""
+"Verstuur een e-mail naar de auteur (en/of anderen) van een comment/trackback/"
+"pingback op een bericht."
+
+#: modules/settings-page/views/settings.php:27
+msgid "Notify moderator"
+msgstr "Notificeer moderator"
+
+#: modules/settings-page/views/settings.php:27
+msgid ""
+"Send e-mail to the moderator of the blog about a new comment that is "
+"awaiting approval."
+msgstr ""
+"Verstuur een e-mail naar de moderator van het blog over een nieuwe comment "
+"welke op een goedkeuring wacht."
+
+#: modules/settings-page/views/settings.php:28
+msgid "Password change notification to user"
+msgstr "Wijziging wachtwoord notificatie aan gebruiker"
+
+#: modules/settings-page/views/settings.php:28
+msgid ""
+"Send e-mail to registered user about changing his or her password. Be "
+"careful with this option, because when unchecked, the forgotten password "
+"request e-mails will be blocked too."
+msgstr ""
+"Verstuur een e-mail naar een geregistreerde gebruiker over het aanpassen van "
+"zijn of haar wachtwoord. Wees voorzichtig met deze optie omdat wanneer niet "
+"aangevinkt, de vergeten wachtwoord e-mails aanvragen ook worden geblokkeerd "
+"en dus niet verzonden."
+
+#: modules/settings-page/views/settings.php:29
+msgid "E-mail address change notification to user"
+msgstr "E-mailadres wijziging notificatie aan gebruiker"
+
+#: modules/settings-page/views/settings.php:29
+msgid ""
+"Send e-mail to registered user about changing his or her E-mail address."
+msgstr ""
+"Verstuur een e-mail naar een geregistreerde gebruiker over het aanpassen van "
+"zijn of haar e-mailadres."
+
+#: modules/settings-page/views/settings.php:30
+msgid "Password forgotten e-mail to user"
+msgstr "Wachtwoord vergeten e-mail aan gebruiker"
+
+#: modules/settings-page/views/settings.php:30
+msgid ""
+"Send the forgotten password e-mail to registered user.<br/>(To prevent "
+"locking yourself out, sending of the forgotten password e-mail for "
+"administrators will still work)"
+msgstr ""
+"Verstuur het vergeten wachtwoord e-mail naar de geregistreerde gebruiker."
+
+#: modules/settings-page/views/settings.php:34
+msgid "Options for e-mails to administrators"
+msgstr "Opties voor e-mails aan administrators"
+
+#: modules/settings-page/views/settings.php:38
+msgid "New user notification to admin"
+msgstr "Nieuwe gebruiker notificatie aan sitebeheerder"
+
+#: modules/settings-page/views/settings.php:38
+msgid "Sends an e-mail to the site admin after a new user is registered."
+msgstr ""
+"Verstuur een e-mail naar de sitebeheerder zodra er een nieuwe gebruiker is "
+"geregistreerd."
+
+#: modules/settings-page/views/settings.php:39
+msgid "Password change notification to admin"
+msgstr "Wijziging wachtwoord notificatie aan sitebeheerder"
+
+#: modules/settings-page/views/settings.php:39
+msgid "Send e-mail to the blog admin of a user changing his or her password."
+msgstr ""
+"Verstuur een e-mail naar de sitebeheerder van een gebruiker welke zijn "
+"wachtwoord heeft aangepast."
+
+#: modules/settings-page/views/settings.php:41
+#| msgid "Automatic WordPress core update e-mail"
+msgid "automatic WordPress core update e-mail"
+msgstr "automatische WordPress core update e-mail"
+
+#: modules/settings-page/views/settings.php:41
+msgid ""
+"Sends an e-mail after a successful automatic WordPress core update to "
+"administrators. E-mails about failed updates will always be sent to the "
+"administrators and cannot be disabled."
+msgstr ""
+"Verstuurd een e-mail na een succesvolle automatische core update aan "
+"administratoren. e-mails over mislukte updates worden altijd verstuurd aan "
+"administratoren."
+
+#: modules/settings-page/views/settings.php:42
+msgid "Automatic WordPress plugin update e-mail"
+msgstr "Automatische WordPress plugin update e-mail"
+
+#: modules/settings-page/views/settings.php:42
+msgid ""
+"Sends an e-mail after a successful automatic plugin update to "
+"administrators. E-mails about failed plugin updates will always be sent to "
+"the administrators"
+msgstr ""
+"Verstuurd een e-mail na een succesvolle automatische plugin update aan "
+"administratoren. e-mails over mislukte plugin updates worden altijd "
+"verstuurd aan administratoren"
+
+#: modules/settings-page/views/settings.php:43
+msgid "Automatic WordPress theme update e-mail"
+msgstr "Automatische WordPress thema update e-mail"
+
+#: modules/settings-page/views/settings.php:43
+msgid ""
+"Sends an e-mail after a successful automatic theme update to administrators. "
+"E-mails about failed theme updates will always be sent to the administrators"
+msgstr ""
+"Verstuurd een e-mail na een succesvolle automatische thema update aan "
+"administratoren. e-mails over mislukte thema updates worden altijd verstuurd "
+"aan administratoren"
+
+#: modules/settings-page/views/settings.php:50
+msgid "Password forgotten e-mail to administrator"
+msgstr "Wachtwoord vergeten e-mail aan sitebeheerder"
+
+#: modules/settings-page/views/settings.php:50
+msgid "Send the forgotten password e-mail to administrators."
+msgstr "Verstuur vergeten wachtwoord e-mail aan administratoren."
+
+#: modules/settings-page/views/settings.php:50
+msgid ""
+"Okay, this is a <strong style=\"color:#900\">DANGEROUS OPTION !</strong><br/"
+"> So be warned, because unchecking this option prevents sending out the "
+"forgotten password e-mail to all administrators. So hold on to your own "
+"password and uncheck this one at your own risk ;-)"
+msgstr ""
+"Okay, dit is een <strong style=\"color:#900\">GEVAARLIJKE OPTIE !</"
+"strong><br/> Wees gewaarschuwd, omdat het uitzetten van deze optie het "
+"verzenden van de vergeten wachtwoord e-mail aan adminstratoren blokeerd. Dus "
+"zorg dat je jouw wachtwoord goed bewaard en zet deze optie uit op eigen "
+"verantwoording ;-)"
+
+#: modules/settings-page/views/settings.php:54
+msgid "Reset settings"
+msgstr "Reset instellingen"
+
+#: modules/user-email-changed.php:53
+msgid "E-mail address changed by user"
+msgstr "E-mailadres is gewijzigd door gebruiker"
+
+#: modules/user-email-changed.php:54
+msgid "Request to change e-mailadress notification to admin"
+msgstr "Verzoek om e-mailadress aan te passen notificatie aan admin"
+
+#: modules/user-email-changed.php:54
+msgid ""
+"Sends an e-mail to administrators after a user requested to update his or "
+"her e-mailaddress."
+msgstr ""
+"Verstuurd een e-mail aan administratoren nadat een gebruiker een aanvraag "
+"heeft gedaan om zijn e-mailadres aan te passen."
+
+#: modules/user-email-changed.php:55
+msgid "User changed (confirmed) e-mail notification to admin"
+msgstr "Gebruiker heeft e-mail veranderd notificatie naar de administrator"
+
+#: modules/user-email-changed.php:55
+msgid ""
+"Sends an e-mail to administrators after a user successfully updated his or "
+"her e-mailaddress."
+msgstr ""
+"Verstuurd een e-mail aan administratoren nadat een gebruiker zijn e-"
+"mailadres succesvol heeft aangepast."
+
+#: modules/user-email-changed.php:79
+msgid ""
+"Howdy admin,\n"
+"        \n"
+"        Recently a user requested to have his email address on his account "
+"changed.\n"
+"\n"
+"        An email change request has been sent to ###EMAIL###\n"
+"        \n"
+"        Regards,\n"
+"        All at ###SITENAME###\n"
+"        ###SITEURL###"
+msgstr ""
+"Howdy admin,\n"
+"        \n"
+"        Recentelijk heeft een gebruiker een verzoek verstuurd om zijn e-mail "
+"aan te passen.\n"
+"\n"
+"        Een e-mail aanpassings verzoek is verstuur naar ###EMAIL###\n"
+"        \n"
+"        Gegroet,\n"
+"        ###SITENAME###\n"
+"        ###SITEURL###"
+
+#: modules/user-email-changed.php:94
+#, php-format
+msgid "[%s] User requested Email Change"
+msgstr "[%s] Gebruiker heeft een e-mail aanpassing verzocht"
+
+#: modules/user-email-changed.php:115
+msgid ""
+"Hi admin,\n"
+"\n"
+"    This notice confirms that the user ###USERNAME### changed his email "
+"address on ###SITENAME### from ###EMAIL### to ###NEW_EMAIL###.\n"
+"\n"
+"    Regards,\n"
+"    All at ###SITENAME###\n"
+"    ###SITEURL###"
+msgstr ""
+"Hi admin,\n"
+"\n"
+"    Deze melding bevestigt dat de gebruiker ###USERNAME### zijn e-mailadres "
+"heeft gewijzigd voor ###SITENAME### van ###EMAIL### naar ###NEW_EMAIL###.\n"
+"\n"
+"    Gegroet,\n"
+"    ###SITENAME###\n"
+"    ###SITEURL###"
+
+#: modules/user-email-changed.php:130
+#, php-format
+msgid "[%s] User Email Changed"
+msgstr "[%s] Gebruikers e-mailadress gewijzigd"
