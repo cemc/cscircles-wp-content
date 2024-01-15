@@ -737,9 +737,14 @@ function run_submission($post) {
   }
   
   $id = getSoft($post, "pyId", "EMPTY");
+
   $usercode = tabs_to_spaces(3, getSoft($post, "usercode" . $id, -1));
   if (!is_string($usercode))
     return merror("", "No usercode" . $id . "!" . print_r($post, TRUE));
+
+  $smart_quotes = array("\xe2\x80\x9c", "\xe2\x80\x9d", "\xe2\x80\x98", "\xe2\x80\x99");
+  $dumb_quotes = array('"', '"', "'", "'");
+  $usercode = str_replace($smart_quotes, $dumb_quotes, $usercode);
 
   $usercode = preg_replace('|\xc2\xa0|', ' ', $usercode); // nbsp
 
