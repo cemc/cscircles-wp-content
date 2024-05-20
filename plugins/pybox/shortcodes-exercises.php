@@ -578,7 +578,8 @@ if (!$facultative && !$scramble) {
       if ($savedCode !== NULL)
 	$thecode = $savedCode; 
     }
-
+    // Needed to render shortcodes in email replies (though should this even be allowed?)
+    $rows = 20;
   }
 
   if ($scramble) {

@@ -231,7 +231,7 @@ function pb_menu_items($wp_admin_bar) {
 			'Wordpress Dashboard' => get_bloginfo('wpurl') .'/wp-admin/index.php',
 			'Edit THIS Page' => get_edit_post_link());
     if ($_SERVER['SERVER_NAME'] == 'cscircles.cemc.uwaterloo.ca') {
-      $more_links['MySQL Frontend'] = "/PhpAdminCustomUrl/index.php"; 
+      $more_links['MySQL Frontend'] = "/phpmyadmin/"; 
       $more_links['[rebuild /export directory]'] = '/nav/?export=Y';
     }
     if ($ap != null) {
