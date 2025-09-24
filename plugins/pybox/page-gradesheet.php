@@ -6,9 +6,11 @@
     return '"'.str_replace('"', "'", strip_tags($s)).'"';
   }
 
-  $hidden = explode(",", get_user_meta(wp_get_current_user()->ID, 'pb_hidestudents', true));
-  $nicks = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentnicks', true), true);
-  $groups = json_decode(get_user_meta(wp_get_current_user()->ID, 'pb_studentgroups', true), true);
+  $current_id = wp_get_current_user()->ID;
+
+  $hidden = explode(",", get_user_meta($current_id, 'pb_hidestudents', true));
+  $nicks = json_decode(get_user_meta($current_id, 'pb_studentnicks', true), true);
+  $groups = json_decode(get_user_meta($current_id, 'pb_studentgroups', true), true);
 
   $my_students = getStudents();
   $completed_table = $wpdb->prefix . "pb_completed";

@@ -449,6 +449,7 @@ function returnfromprofile() {
 }
 
 function getSoft($array, $key, $default) {
+  if (is_null($array)) return $default;
   if (array_key_exists($key, $array))
     return $array[$key];
   return $default;
