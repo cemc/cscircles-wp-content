@@ -347,6 +347,22 @@ function tweak_admin_bar() {
 
   }  
 }
+//add username validation code
+/**
+ * Force usernames to be strictly alphanumeric (a-z, A-Z, 0-9), overriding core rules.
+ */
+function strict_alphanumeric_username( $username, $raw_username, $strict ) {
+    // Only apply our strict rule if WordPress requested strict sanitization
+    if ( $strict ) {
+        // Strip out EVERYTHING except a-z, A-Z, and 0-9
+        $username = preg_replace( '|[^a-z0-9]|i', '', $raw_username );
+    }
+    
+    return $username;
+}
+add_filter( 'sanitize_user', 'strict_alphanumeric_username', 10, 3 );
+
+
 
 
 
