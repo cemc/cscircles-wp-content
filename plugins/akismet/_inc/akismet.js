@@ -1,10 +1,12 @@
 jQuery( function ( $ ) {
 	var mshotRemovalTimer = null;
-	var mshotSecondTryTimer = null
-	var mshotThirdTryTimer = null
-	
-	var mshotEnabledLinkSelector = 'a[id^="author_comment_url"], tr.pingback td.column-author a:first-of-type, td.comment p a';
-	
+	var mshotRetryTimer = null;
+	var mshotTries = 0;
+	var mshotRetryInterval = 1000;
+	var mshotEnabledLinkSelector = 'a[id^="author_comment_url"], tr.pingback td.column-author a:first-of-type, td.comment p a, th.comment p a';
+
+	var preloadedMshotURLs = [];
+
 	$('.akismet-status').each(function () {
 		var thisId = $(this).attr('commentid');
 		$(this).prependTo('#comment-' + thisId + ' .column-comment');
@@ -99,13 +101,25 @@ jQuery( function ( $ ) {
 				}
 			}
 
-			clearTimeout( mshotSecondTryTimer );
-			clearTimeout( mshotThirdTryTimer );
+			clearTimeout( mshotRetryTimer );
 
-			var thisHref = $( this ).attr( 'href' );
+			var linkUrl = $( this ).attr( 'href' );
 
-			var mShot = $( '<div class="akismet-mshot mshot-container"><div class="mshot-arrow"></div><img src="' + akismet_mshot_url( thisHref ) + '" width="450" height="338" class="mshot-image" /></div>' );
+			if ( preloadedMshotURLs.indexOf( linkUrl ) !== -1 ) {
+				// This preview image was already preloaded, so begin with a retry URL so the user doesn't see the placeholder image for the first second.
+				mshotTries = 2;
+			}
+			else {
+				mshotTries = 1;
+			}
+
+			var mShot = $( '<div class="akismet-mshot mshot-container"><div class="mshot-arrow"></div><img src="' + akismet_mshot_url( linkUrl, mshotTries ) + '" width="450" height="338" class="mshot-image" /></div>' );
 			mShot.data( 'link', this );
+			mShot.data( 'url', linkUrl );
+
+			mShot.find( 'img' ).on( 'load', function () {
+				$( '.akismet-mshot' ).data( 'pending-request', false );
+			} );
 
 			var offset = $( this ).offset();
 
@@ -114,41 +128,95 @@ jQuery( function ( $ ) {
 				top: offset.top + ( $( this ).height() / 2 ) - 101 // 101 = top offset of the arrow plus the top border thickness
 			} );
 
-			// These retries appear to be superfluous if .mshot-image has already loaded, but it's because mShots
-			// can return a "Generating thumbnail..." image if it doesn't have a thumbnail ready, so we need
-			// to retry to see if we can get the newly generated thumbnail.
-			mshotSecondTryTimer = setTimeout( function () {
-				mShot.find( '.mshot-image' ).attr( 'src', akismet_mshot_url( thisHref, 2 ) );
-			}, 6000 );
-
-			mshotThirdTryTimer = setTimeout( function () {
-				mShot.find( '.mshot-image' ).attr( 'src', akismet_mshot_url( thisHref, 3 ) );
-			}, 12000 );
-
 			$( 'body' ).append( mShot );
-		} ).on( 'mouseout', 'a[id^="author_comment_url"], tr.pingback td.column-author a:first-of-type, td.comment p a', function () {
+
+			mshotRetryTimer = setTimeout( retryMshotUntilLoaded, mshotRetryInterval );
+		} ).on( 'mouseout', 'a[id^="author_comment_url"], tr.pingback td.column-author a:first-of-type, td.comment p a, th.comment p a', function () {
 			mshotRemovalTimer = setTimeout( function () {
-				clearTimeout( mshotSecondTryTimer );
-				clearTimeout( mshotThirdTryTimer );
+				clearTimeout( mshotRetryTimer );
 
 				$( '.akismet-mshot' ).remove();
 			}, 200 );
-		} ).on( 'mouseover', 'tr', function () {
-			// When the mouse hovers over a comment row, begin preloading mshots for any links in the comment or the comment author.
-			var linksToPreloadMshotsFor = $( this ).find( mshotEnabledLinkSelector );
-			
-			linksToPreloadMshotsFor.each( function () {
-				// Don't attempt to preload an mshot for a single link twice. Browser caching should cover this, but in case of
-				// race conditions, save a flag locally when we've begun trying to preload one.
-				if ( ! $( this ).data( 'akismet-mshot-preloaded' ) ) {
-					akismet_preload_mshot( $( this ).attr( 'href' ) );
-					$( this ).data( 'akismet-mshot-preloaded', true );
-				}
-			} );
+		} );
+
+		var preloadDelayTimer = null;
+
+		$( window ).on( 'scroll resize', function () {
+			clearTimeout( preloadDelayTimer );
+
+			preloadDelayTimer = setTimeout( preloadMshotsInViewport, 500 );
+		} );
+
+		preloadMshotsInViewport();
+	}
+
+	/**
+	 * The way mShots works is if there was no screenshot already recently generated for the URL,
+	 * it returns a "loading..." image for the first request. Then, some subsequent request will
+	 * receive the actual screenshot, but it's unknown how long it will take. So, what we do here
+	 * is continually re-request the mShot, waiting a second after every response until we get the
+	 * actual screenshot.
+	 */
+	function retryMshotUntilLoaded() {
+		clearTimeout( mshotRetryTimer );
+
+		var imageWidth = $( '.akismet-mshot img' ).get(0).naturalWidth;
+
+		if ( imageWidth == 0 ) {
+			// It hasn't finished loading yet the first time. Check again shortly.
+			setTimeout( retryMshotUntilLoaded, mshotRetryInterval );
+		}
+		else if ( imageWidth == 400 ) {
+			// It loaded the preview image.
+
+			if ( mshotTries == 20 ) {
+				// Give up if we've requested the mShot 20 times already.
+				return;
+			}
+
+			if ( ! $( '.akismet-mshot' ).data( 'pending-request' ) ) {
+				$( '.akismet-mshot' ).data( 'pending-request', true );
+
+				mshotTries++;
+
+				$( '.akismet-mshot .mshot-image' ).attr( 'src', akismet_mshot_url( $( '.akismet-mshot' ).data( 'url' ), mshotTries ) );
+			}
+
+			mshotRetryTimer = setTimeout( retryMshotUntilLoaded, mshotRetryInterval );
+		}
+		else {
+			// All done.
+		}
+	}
+	
+	function preloadMshotsInViewport() {
+		var windowWidth = $( window ).width();
+		var windowHeight = $( window ).height();
+
+		$( '#the-comment-list' ).find( mshotEnabledLinkSelector ).each( function ( index, element ) {
+			var linkUrl = $( this ).attr( 'href' );
+
+			// Don't attempt to preload an mshot for a single link twice.
+			if ( preloadedMshotURLs.indexOf( linkUrl ) !== -1 ) {
+				// The URL is already preloaded.
+				return true;
+			}
+
+			if ( typeof element.getBoundingClientRect !== 'function' ) {
+				// The browser is too old. Return false to stop this preloading entirely.
+				return false;
+			}
+
+			var rect = element.getBoundingClientRect();
+
+			if ( rect.top >= 0 && rect.left >= 0 && rect.bottom <= windowHeight && rect.right <= windowWidth ) {
+				akismet_preload_mshot( linkUrl );
+				$( this ).data( 'akismet-mshot-preloaded', true );
+			}
 		} );
 	}
 
-	$( '.checkforspam.enable-on-load' ).click( function( e ) {
+	$( '.checkforspam.enable-on-load' ).on( 'click', function( e ) {
 		if ( $( this ).hasClass( 'ajax-disabled' ) ) {
 			// Akismet hasn't been configured yet. Allow the user to proceed to the button's link.
 			return;
@@ -165,8 +233,7 @@ jQuery( function ( $ ) {
 		$('.checkforspam-spinner').addClass( 'spinner' ).addClass( 'is-active' );
 
 		akismet_check_for_spam(0, 100);
-	});
-	$( '.checkforspam.enable-on-load' ).removeClass( 'button-disabled' );
+	}).removeClass( 'button-disabled' );
 
 	var spam_count = 0;
 	var recheck_count = 0;
@@ -213,7 +280,7 @@ jQuery( function ( $ ) {
 	}
 	
 	if ( "start_recheck" in WPAkismet && WPAkismet.start_recheck ) {
-		$( '.checkforspam' ).click();
+		$( '.checkforspam:first' ).click();
 	}
 	
 	if ( typeof MutationObserver !== 'undefined' ) {
@@ -274,12 +341,14 @@ jQuery( function ( $ ) {
 	 * @return string The mShot URL;
 	 */
 	function akismet_mshot_url( linkUrl, retry ) {
-		var mshotUrl = '//s0.wordpress.com/mshots/v1/' + encodeURIComponent( linkUrl ) + '?w=900';
-		
-		if ( retry ) {
+		var mshotUrl = '//s0.wp.com/mshots/v1/' + encodeURIComponent( linkUrl ) + '?w=900';
+
+		if ( retry > 1 ) {
 			mshotUrl += '&r=' + encodeURIComponent( retry );
 		}
-		
+
+		mshotUrl += '&source=akismet';
+
 		return mshotUrl;
 	}
 	
@@ -291,6 +360,8 @@ jQuery( function ( $ ) {
 	function akismet_preload_mshot( linkUrl ) {
 		var img = new Image();
 		img.src = akismet_mshot_url( linkUrl );
+		
+		preloadedMshotURLs.push( linkUrl );
 	}
 
 	$( '.akismet-could-be-primary' ).each( function () {
@@ -314,37 +385,13 @@ jQuery( function ( $ ) {
 	/**
 	 * Shows the Enter API key form
 	 */
-	$( '.akismet-enter-api-key-box a' ).on( 'click', function ( e ) {
+	$( '.akismet-enter-api-key-box__reveal' ).on( 'click', function ( e ) {
 		e.preventDefault();
 
-		var div = $( '.enter-api-key' );
-		div.show( 500 );
+		var div = $( '.akismet-enter-api-key-box__form-wrapper' );
+		div.show();
 		div.find( 'input[name=key]' ).focus();
 
 		$( this ).hide();
-	} );
-
-	/**
-	 * Hides the Connect with Jetpack form | Shows the Activate Akismet Account form
-	 */
-	$( 'a.toggle-ak-connect' ).on( 'click', function ( e ) {
-		e.preventDefault();
-
-		$( '.akismet-ak-connect' ).slideToggle('slow');
-		$( 'a.toggle-ak-connect' ).hide();
-		$( '.akismet-jp-connect' ).hide();
-		$( 'a.toggle-jp-connect' ).show();
-	} );
-
-	/**
-	 * Shows the Connect with Jetpack form | Hides the Activate Akismet Account form
-	 */
-	$( 'a.toggle-jp-connect' ).on( 'click', function ( e ) {
-		e.preventDefault();
-
-		$( '.akismet-jp-connect' ).slideToggle('slow');
-		$( 'a.toggle-jp-connect' ).hide();
-		$( '.akismet-ak-connect' ).hide();
-		$( 'a.toggle-ak-connect' ).show();
 	} );
 });

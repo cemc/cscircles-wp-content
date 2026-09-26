@@ -95,7 +95,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    $command = PSAFEEXEC . " --share_newnet --fsize 100 --env_vars PY --gid 2000" .
      " --uidplus 50000 --cpu $cpulimit --mem 100000 --clock $clocklimit" .
      " --report_file $safeexecOutFile --chroot_dir " . PJAIL .
-     " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S -X frozen_modules=off $mainfile";
+     " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S $mainfile";
 
    global $log_it, $mainProfilingID;
    if ($log_it)
