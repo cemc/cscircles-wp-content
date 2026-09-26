@@ -95,7 +95,7 @@ function safepython($files, $mainfile, $stdin, $cpulimit = 1) {
    $command = PSAFEEXEC . " --share_newnet --fsize 100 --env_vars PY --gid 2000" .
      " --uidplus 50000 --cpu $cpulimit --mem 100000 --clock $clocklimit" .
      " --report_file $safeexecOutFile --chroot_dir " . PJAIL .
-     " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S $mainfile";
+     " --exec_dir /$dir --exec " . PPYTHON3MODJAIL . " -u -S -X frozen_modules=off $mainfile";
 
    global $log_it, $mainProfilingID;
    if ($log_it)
@@ -735,7 +735,17 @@ function run_submission($post) {
 			     .'run at home</a>.'), 
 			 cscurl('install')));
   }
-  
+
+  // Actual spam
+  if ($_SERVER['REMOTE_ADDR']=='104.233.217.52') {
+    return merror("", "Error");
+  }
+
+//  For testing
+//  if ($_SERVER['REMOTE_ADDR']=='172.116.55.236') {
+//    return merror("", "Error");
+//  }
+
   $id = getSoft($post, "pyId", "EMPTY");
 
   $usercode = tabs_to_spaces(3, getSoft($post, "usercode" . $id, -1));
