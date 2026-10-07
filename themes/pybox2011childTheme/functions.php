@@ -172,6 +172,13 @@ add_filter('show_admin_bar', '__return_true');
 
 add_action('admin_bar_menu', 'pb_menu_items', 5);
 function pb_menu_items($wp_admin_bar) {
+
+  $user_id      = get_current_user_id();
+  $current_user = wp_get_current_user();
+  $profile_url  = get_edit_profile_url( $user_id ) . '?wp_http_referer=' . urlencode($_SERVER['REQUEST_URI']);
+
+  $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => $profile_url, 'title'=>___t('My Account'), 'id'=>'upz'));
+
   $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => _cscurl('progress'), 'title'=>___t('My Progress'), 'id'=>'up'));
   if (!get_option('cscircles_hide_help'))
     $wp_admin_bar->add_menu( array( 'parent' => 'user-actions', 'href' => _cscurl('mail'), 'title'=>___t('Mail'), 'id'=>'uppity'));
@@ -339,7 +346,7 @@ function tweak_admin_bar() {
     // note! add_node can be used to update information
     $wp_admin_bar->add_node(array('id'=>'logout', 'href' => wp_logout_url( $_SERVER['REQUEST_URI'] )));
     $wp_admin_bar->add_node(array('id'=>'my-account', 'href' => null, 'title' => $howdy ));
-    $wp_admin_bar->add_node(array('id'=>'edit-profile', 'href' => $profile_url . '?wp_http_referer=' . urlencode($_SERVER['REQUEST_URI'])));
+    // $wp_admin_bar->add_node(array('id'=>'edit-profile', 'href' => $profile_url . '?wp_http_referer=' . urlencode($_SERVER['REQUEST_URI'])));
 
     if ( is_admin() ) { // proper language redirect on admin pages
       $wp_admin_bar->add_node(array('id'=>'view-site', 'href' => _cscurl('homepage')));
