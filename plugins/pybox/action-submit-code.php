@@ -582,7 +582,7 @@ _user_stdout.close()
     $m .= $simpleOutputDescription;
     $lines = explode("\n", trim($userResult["stderr"]));
     $goodFail = (count($lines)>0) && 
-      ($lines[count($lines)-1]) == $desirederror;
+      str_starts_with($lines[count($lines)-1], $desirederror);
     $m .= $errnice;
     return $goodFail ? tcpass($m) : tcfail($m);
   }
